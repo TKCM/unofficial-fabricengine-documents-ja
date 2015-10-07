@@ -58,7 +58,7 @@
   <div class="section" id="spatialquery-interface">
 <span id="spatialquery"></span><h1>SpatialQuery (interface)<a class="headerlink" href="#spatialquery-interface" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p><p class="plaintext">The <a class="reference internal" href="#spatialquery"><span>SpatialQuery</span></a> interface wraps a temporary query object that holds the spatial query context for a given <a class="reference internal" href="SpatialQueryable.html#spatialqueryable"><span>SpatialQueryable</span></a> geometry.
-To be valid, this query object needs to be used between a <a class="reference internal" href="SpatialQueryable.html#c44e850f4bb54a2bbe24e760c3d398a8"><span>SpatialQueryable.beginSpatialQuery</span></a> and <a class="reference internal" href="SpatialQueryable.html#c4cc2f86e70a4dec85c2a09d82e4b522"><span>SpatialQueryable.endSpatialQuery</span></a>
+To be valid, this query object needs to be used between a <a class="reference internal" href="SpatialQueryable.html#ff3b42bd56416b999557b95e8d5919"><span>SpatialQueryable.beginSpatialQuery</span></a> and <a class="reference internal" href="SpatialQueryable.html#fe23c1a3d19841008b7634366d5fb71c"><span>SpatialQueryable.endSpatialQuery</span></a>
 bracket, which allows to recycle the <a class="reference internal" href="#spatialquery"><span>SpatialQuery</span></a> to avoid the cost of memory allocations.
 See <a class="reference internal" href="spatialqueriesusage.html#spatialqueriesusage"><span>Using spatial queries with geometries</span></a> and <a class="reference internal" href="spatialqueriesusage.html#spatialqueryobject"><span>Using the SpatialQuery object</span></a> for more details.</p>
 <p><?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -126,25 +126,25 @@ See <a class="reference internal" href="spatialqueriesusage.html#spatialqueriesu
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a></td>
-<td><a class="reference internal" href="#e5460e34c9640a3b7e380a964e42911"><span>getClosest</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> position, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> scaling, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxUnscaledDistance )</td>
+<td><a class="reference internal" href="#edced95f0bad4dbe820dc9bef233f7ca"><span>getClosest</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> position, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> scaling, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxUnscaledDistance )</td>
 </tr>
 <tr class="row-even"><td>Size</td>
-<td><a class="reference internal" href="#d6674d8c432a4be7992cdbcf2e8653a1"><span>getElementsInBBox</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max )</td>
+<td><a class="reference internal" href="#ad3978cca93f4234874596f8dd7c671c"><span>getElementsInBBox</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max )</td>
 </tr>
 <tr class="row-odd"><td>Size</td>
-<td><a class="reference internal" href="#ab3167b30847dc8404e30ca92d702a"><span>getElementsInBSphere</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> center, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius )</td>
+<td><a class="reference internal" href="#ae5440e810ef4cc28525224b9561819c"><span>getElementsInBSphere</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> center, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius )</td>
 </tr>
 <tr class="row-even"><td>Size</td>
-<td><a class="reference internal" href="#fcc65ab96c431dac548d7359759053"><span>getLineIntersections</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> start, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> end, in UInt8 lineIntersectionType )</td>
+<td><a class="reference internal" href="#d0da6a824847b474e053b343ea50"><span>getLineIntersections</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> start, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> end, in UInt8 lineIntersectionType )</td>
 </tr>
 <tr class="row-odd"><td>Size</td>
-<td><a class="reference internal" href="#f171cce74914f19b4997ccd3ea81f4a"><span>getQueriedElement</span></a> ? ( in Size index )</td>
+<td><a class="reference internal" href="#a073cf534042ba8e24875184409600"><span>getQueriedElement</span></a> ? ( in Size index )</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a></td>
-<td><a class="reference internal" href="#da40ede3d4d4241a230ade78ee86c9a"><span>getQueriedLocation</span></a> ? ( in Size index )</td>
+<td><a class="reference internal" href="#cea9285a4ae44deae3382b05d06a2ed"><span>getQueriedLocation</span></a> ? ( in Size index )</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a></td>
-<td><a class="reference internal" href="#b96ff0e48549009890bcb397c7b806"><span>raycast</span></a> ! ( in <a class="reference internal" href="../Math/Ray.html#ray"><span>Ray</span></a> ray, in Boolean doubleSided, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> coneThreshold, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxDistance )</td>
+<td><a class="reference internal" href="#bfb1265edac43f1ba1127dc1b6b18ea"><span>raycast</span></a> ! ( in <a class="reference internal" href="../Math/Ray.html#ray"><span>Ray</span></a> ray, in Boolean doubleSided, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> coneThreshold, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxDistance )</td>
 </tr>
 </tbody>
 </table>
@@ -152,14 +152,14 @@ See <a class="reference internal" href="spatialqueriesusage.html#spatialqueriesu
 </div>
 <div class="section" id="functions-in-detail">
 <h2>Functions in detail<a class="headerlink" href="#functions-in-detail" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><span class="target" id="e5460e34c9640a3b7e380a964e42911"></span><p><p class="klcode"><a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a> <a class="reference internal" href="#spatialquery"><span>SpatialQuery</span></a>.getClosest! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> position, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> scaling, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxUnscaledDistance )</p>
+<p><span class="target" id="edced95f0bad4dbe820dc9bef233f7ca"></span><p><p class="klcode"><a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a> <a class="reference internal" href="#spatialquery"><span>SpatialQuery</span></a>.getClosest! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> position, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> scaling, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxUnscaledDistance )</p>
 <p class="plaintext">Finds the closest position of a <a class="reference internal" href="Geometry.html#geometry"><span>Geometry</span></a> from a specified local position, returns the result as a <a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a> .
-A hit was found if <a class="reference internal" href="GeometryLocation.html#dbef8dc5834bd4bdaa19f79c491cdd"><span>GeometryLocation.isValid</span></a> is true.
+A hit was found if <a class="reference internal" href="GeometryLocation.html#ffc175e8f89483fb85b976790fbd877"><span>GeometryLocation.isValid</span></a> is true.
 A scaling factor needs to be specified for proper support of non-uniform scaling, since it can influence the result.
-Properly calling <a class="reference internal" href="SpatialQueryable.html#dbe80c79984727b253bc56313370d4"><span>SpatialQueryable.prepareForSpatialQueries</span></a> beforehand can increase significatively the performance of multiple raycasts.</p>
+Properly calling <a class="reference internal" href="SpatialQueryable.html#b08fc645e045c0ac58d5fb9c31acaa"><span>SpatialQueryable.prepareForSpatialQueries</span></a> beforehand can increase significatively the performance of multiple raycasts.</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p class="last">this function is threadsafe, as long as the Geometry is not modified, and <a class="reference internal" href="SpatialQueryable.html#dbe80c79984727b253bc56313370d4"><span>SpatialQueryable.prepareForSpatialQueries</span></a> is not called during this function.</p>
+<p class="last">this function is threadsafe, as long as the Geometry is not modified, and <a class="reference internal" href="SpatialQueryable.html#b08fc645e045c0ac58d5fb9c31acaa"><span>SpatialQueryable.prepareForSpatialQueries</span></a> is not called during this function.</p>
 </div>
 <table border="1" class="paramtable docutils">
 <colgroup>
@@ -174,38 +174,38 @@ Properly calling <a class="reference internal" href="SpatialQueryable.html#dbe80
 </table>
 </p>
 <hr class="docutils" />
-<span class="target" id="d6674d8c432a4be7992cdbcf2e8653a1"></span><p><p class="klcode">Size <a class="reference internal" href="#spatialquery"><span>SpatialQuery</span></a>.getElementsInBBox! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max )</p>
+<span class="target" id="ad3978cca93f4234874596f8dd7c671c"></span><p><p class="klcode">Size <a class="reference internal" href="#spatialquery"><span>SpatialQuery</span></a>.getElementsInBBox! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max )</p>
 <p class="plaintext">Gets the elements intersecting a local bounding box.
 The definition of an <cite>element</cite> is Geometry-specific (polygon for PolygonMesh, segment for Lines, point for Points).
 The number of intersected elements is returned, and individual element indices must be gathered with the
-<a class="reference internal" href="#f171cce74914f19b4997ccd3ea81f4a"><span>SpatialQuery.getQueriedElement</span></a> before issuing another query.</p>
+<a class="reference internal" href="#a073cf534042ba8e24875184409600"><span>SpatialQuery.getQueriedElement</span></a> before issuing another query.</p>
 <p class="plaintext"><strong>Important</strong>: the returned values is a conservative approximation since only the bounding volume of the elements will be considered (eg: polygon&#8217;s bounding box for a <a class="reference internal" href="PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a>).
 This implies that some elements that are returned might not actually touch the queried bounding box (but are close to it). For more precision, the caller must perform additional filtering.</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p class="last">The choice to use <a class="reference internal" href="#f171cce74914f19b4997ccd3ea81f4a"><span>SpatialQuery.getQueriedElement</span></a> instead of simply returning an array of element indices avoids to allocate heap memory, which increases the performance.</p>
+<p class="last">The choice to use <a class="reference internal" href="#a073cf534042ba8e24875184409600"><span>SpatialQuery.getQueriedElement</span></a> instead of simply returning an array of element indices avoids to allocate heap memory, which increases the performance.</p>
 </div>
 </p>
 <hr class="docutils" />
-<span class="target" id="ab3167b30847dc8404e30ca92d702a"></span><p><p class="klcode">Size <a class="reference internal" href="#spatialquery"><span>SpatialQuery</span></a>.getElementsInBSphere! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> center, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius )</p>
+<span class="target" id="ae5440e810ef4cc28525224b9561819c"></span><p><p class="klcode">Size <a class="reference internal" href="#spatialquery"><span>SpatialQuery</span></a>.getElementsInBSphere! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> center, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius )</p>
 <p class="plaintext">Gets the elements intersecting a local bounding sphere.
 The definition of an <cite>element</cite> is Geometry-specific (polygon for PolygonMesh, segment for Lines, point for Points).
 The number of intersected elements is returned, and individual element indices must be gathered with the
-<a class="reference internal" href="#f171cce74914f19b4997ccd3ea81f4a"><span>SpatialQuery.getQueriedElement</span></a> before issuing another query.</p>
+<a class="reference internal" href="#a073cf534042ba8e24875184409600"><span>SpatialQuery.getQueriedElement</span></a> before issuing another query.</p>
 <p class="plaintext"><strong>Important</strong>: the returned values is a conservative approximation since only the bounding volume of the elements will be considered (eg: polygon&#8217;s bounding box for a <a class="reference internal" href="PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a>).
 This implies that some elements that are returned might not actually touch the queried bounding sphere (but are close to it). For more precision, the caller must perform additional filtering.</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p class="last">The choice to use <a class="reference internal" href="#f171cce74914f19b4997ccd3ea81f4a"><span>SpatialQuery.getQueriedElement</span></a> instead of simply returning an array of element indices avoids to allocate heap memory, which increases the performance.</p>
+<p class="last">The choice to use <a class="reference internal" href="#a073cf534042ba8e24875184409600"><span>SpatialQuery.getQueriedElement</span></a> instead of simply returning an array of element indices avoids to allocate heap memory, which increases the performance.</p>
 </div>
 </p>
 <hr class="docutils" />
-<span class="target" id="fcc65ab96c431dac548d7359759053"></span><p><p class="klcode">Size <a class="reference internal" href="#spatialquery"><span>SpatialQuery</span></a>.getLineIntersections! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> start, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> end, in UInt8 lineIntersectionType )</p>
+<span class="target" id="d0da6a824847b474e053b343ea50"></span><p><p class="klcode">Size <a class="reference internal" href="#spatialquery"><span>SpatialQuery</span></a>.getLineIntersections! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> start, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> end, in UInt8 lineIntersectionType )</p>
 <div class="versionadded">
 <p><span class="versionmodified">バージョン 1.13.0 で追加.</span></p>
 </div>
 <p class="plaintext">Gathers all intersections from a line, semi-line or line segment.
-The number of intersections is returned, and individual GeometryLocation can be retrieved using <a class="reference internal" href="#da40ede3d4d4241a230ade78ee86c9a"><span>SpatialQuery.getQueriedLocation</span></a> .
+The number of intersections is returned, and individual GeometryLocation can be retrieved using <a class="reference internal" href="#cea9285a4ae44deae3382b05d06a2ed"><span>SpatialQuery.getQueriedLocation</span></a> .
 Intersections will be sorted in the <cite>start</cite> to <cite>end</cite> direction.</p>
 <ul class="plaintext simple">
 <li>if <cite>lineIntersectionType</cite> == <cite>SpatialQuery_lineIntersection</cite> : intersects with an infinite line passing through <cite>start</cite> and <cite>end</cite></li>
@@ -214,35 +214,35 @@ Intersections will be sorted in the <cite>start</cite> to <cite>end</cite> direc
 </ul>
 </p>
 <hr class="docutils" />
-<span class="target" id="f171cce74914f19b4997ccd3ea81f4a"></span><p><p class="klcode">Size <a class="reference internal" href="#spatialquery"><span>SpatialQuery</span></a>.getQueriedElement? ( in Size index )</p>
-<p class="plaintext">Returns an element index gathered from a call to <a class="reference internal" href="#d6674d8c432a4be7992cdbcf2e8653a1"><span>SpatialQuery.getElementsInBBox</span></a> or <a class="reference internal" href="#ab3167b30847dc8404e30ca92d702a"><span>SpatialQuery.getElementsInBSphere</span></a> .
+<span class="target" id="a073cf534042ba8e24875184409600"></span><p><p class="klcode">Size <a class="reference internal" href="#spatialquery"><span>SpatialQuery</span></a>.getQueriedElement? ( in Size index )</p>
+<p class="plaintext">Returns an element index gathered from a call to <a class="reference internal" href="#ad3978cca93f4234874596f8dd7c671c"><span>SpatialQuery.getElementsInBBox</span></a> or <a class="reference internal" href="#ae5440e810ef4cc28525224b9561819c"><span>SpatialQuery.getElementsInBSphere</span></a> .
 The total element count is the returned value from these methods.
 Stored element indices are only valid until another query call is made.</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p class="last">The choice to use <a class="reference internal" href="#f171cce74914f19b4997ccd3ea81f4a"><span>SpatialQuery.getQueriedElement</span></a> instead of simply returning an array of element indices avoids to allocate heap memory, which increases the performance.</p>
+<p class="last">The choice to use <a class="reference internal" href="#a073cf534042ba8e24875184409600"><span>SpatialQuery.getQueriedElement</span></a> instead of simply returning an array of element indices avoids to allocate heap memory, which increases the performance.</p>
 </div>
 </p>
 <hr class="docutils" />
-<span class="target" id="da40ede3d4d4241a230ade78ee86c9a"></span><p><p class="klcode"><a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a> <a class="reference internal" href="#spatialquery"><span>SpatialQuery</span></a>.getQueriedLocation? ( in Size index )</p>
+<span class="target" id="cea9285a4ae44deae3382b05d06a2ed"></span><p><p class="klcode"><a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a> <a class="reference internal" href="#spatialquery"><span>SpatialQuery</span></a>.getQueriedLocation? ( in Size index )</p>
 <div class="versionadded">
 <p><span class="versionmodified">バージョン 1.13.0 で追加.</span></p>
 </div>
-<p class="plaintext">Returns a location gathered from a call to <a class="reference internal" href="#fcc65ab96c431dac548d7359759053"><span>SpatialQuery.getLineIntersections</span></a> .
+<p class="plaintext">Returns a location gathered from a call to <a class="reference internal" href="#d0da6a824847b474e053b343ea50"><span>SpatialQuery.getLineIntersections</span></a> .
 The total element count is the returned value from that method.
 Stored locations are only valid until another query call is made.</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p class="last">The choice to use <a class="reference internal" href="#da40ede3d4d4241a230ade78ee86c9a"><span>SpatialQuery.getQueriedLocation</span></a> instead of simply returning an array of locations avoids to allocate heap memory, which increases the performance.</p>
+<p class="last">The choice to use <a class="reference internal" href="#cea9285a4ae44deae3382b05d06a2ed"><span>SpatialQuery.getQueriedLocation</span></a> instead of simply returning an array of locations avoids to allocate heap memory, which increases the performance.</p>
 </div>
 </p>
 <hr class="docutils" />
-<span class="target" id="b96ff0e48549009890bcb397c7b806"></span><p><p class="klcode"><a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a> <a class="reference internal" href="#spatialquery"><span>SpatialQuery</span></a>.raycast! ( in <a class="reference internal" href="../Math/Ray.html#ray"><span>Ray</span></a> ray, in Boolean doubleSided, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> coneThreshold, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxDistance )</p>
-<p class="plaintext">Raycasts a Geometry and returns the result as a GeometryLocation . A hit was found if <a class="reference internal" href="GeometryLocation.html#dbef8dc5834bd4bdaa19f79c491cdd"><span>GeometryLocation.isValid</span></a> is true.
-Properly calling <a class="reference internal" href="SpatialQueryable.html#dbe80c79984727b253bc56313370d4"><span>SpatialQueryable.prepareForSpatialQueries</span></a> beforehand can increase significatively the performance of multiple raycasts.</p>
+<span class="target" id="bfb1265edac43f1ba1127dc1b6b18ea"></span><p><p class="klcode"><a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a> <a class="reference internal" href="#spatialquery"><span>SpatialQuery</span></a>.raycast! ( in <a class="reference internal" href="../Math/Ray.html#ray"><span>Ray</span></a> ray, in Boolean doubleSided, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> coneThreshold, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxDistance )</p>
+<p class="plaintext">Raycasts a Geometry and returns the result as a GeometryLocation . A hit was found if <a class="reference internal" href="GeometryLocation.html#ffc175e8f89483fb85b976790fbd877"><span>GeometryLocation.isValid</span></a> is true.
+Properly calling <a class="reference internal" href="SpatialQueryable.html#b08fc645e045c0ac58d5fb9c31acaa"><span>SpatialQueryable.prepareForSpatialQueries</span></a> beforehand can increase significatively the performance of multiple raycasts.</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p class="last">this function is threadsafe, as long as the Geometry is not modified, and <a class="reference internal" href="SpatialQueryable.html#dbe80c79984727b253bc56313370d4"><span>SpatialQueryable.prepareForSpatialQueries</span></a> is not called during this function.</p>
+<p class="last">this function is threadsafe, as long as the Geometry is not modified, and <a class="reference internal" href="SpatialQueryable.html#b08fc645e045c0ac58d5fb9c31acaa"><span>SpatialQueryable.prepareForSpatialQueries</span></a> is not called during this function.</p>
 </div>
 <table border="1" class="paramtable docutils">
 <colgroup>
@@ -287,6 +287,8 @@ Properly calling <a class="reference internal" href="SpatialQueryable.html#dbe80
     <ul class="this-page-menu">
       <li><a href="../../_sources/KLExtensionsGuide/Geometry/SpatialQuery.txt"
             rel="nofollow">ソースコードを表示</a></li>
+    <li><a href="http://docs.fabric-engine.com/FabricEngine/2.0.0/HTML/KLExtensionsGuide/Geometry/SpatialQuery.html"
+              rel="nofollow">原文公式ページへ移動</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">

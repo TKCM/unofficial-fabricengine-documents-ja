@@ -23,7 +23,7 @@ body {
 }
 
 div.document {
-    background-color: #171a1f;
+    background-color: #004040;
 }
 
 div.documentwrapper {
@@ -55,7 +55,7 @@ div.footer a {
 }
 
 div.related {
-    background-color: #1c252a;
+    background-color: #002e30;
     line-height: 30px;
     color: #ffffff;
 }

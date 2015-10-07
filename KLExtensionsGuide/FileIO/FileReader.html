@@ -116,25 +116,25 @@ stream capabilities. For an example implementation of this see the <a class="ref
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>Boolean</td>
-<td><a class="reference internal" href="#df4398d9424ba68bf2a95d7ad83bfb"><span>close</span></a> ! ()</td>
+<td><a class="reference internal" href="#f630b22777d4327a26a6014f97e99c0"><span>close</span></a> ! ()</td>
 </tr>
 <tr class="row-even"><td>Boolean</td>
-<td><a class="reference internal" href="#ef1490b8b0ed082f7ca4ade"><span>eof</span></a> ? ()</td>
+<td><a class="reference internal" href="#baaa2358418b41e18c7ccb30543db99e"><span>eof</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td>Boolean</td>
-<td><a class="reference internal" href="#ab81c4b5b544dadaa43668b171c4c66"><span>isOpen</span></a> ? ()</td>
+<td><a class="reference internal" href="#bd14ac625db49969b9eb9c48ef266a5"><span>isOpen</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td>Boolean</td>
-<td><a class="reference internal" href="#f6e7a8711cc423a9b32051df7e6bbfa"><span>open</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> filePath )</td>
+<td><a class="reference internal" href="#e9e7af9395874eb2a2514ceefecc024c"><span>open</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> filePath )</td>
 </tr>
 <tr class="row-odd"><td>UInt64</td>
-<td><a class="reference internal" href="#a1990fb1fc44a1bc7451392bb22df2"><span>pos</span></a> ? ()</td>
+<td><a class="reference internal" href="#a99ee4aa8bab7bea4924797b6"><span>pos</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#a0e87d390d54a248c3b5a699e5b2fa3"><span>seek</span></a> ! ( in UInt64 pos )</td>
+<td><a class="reference internal" href="#f6089e09408da2e1314accc0fd6b"><span>seek</span></a> ! ( in UInt64 pos )</td>
 </tr>
 <tr class="row-odd"><td>UInt64</td>
-<td><a class="reference internal" href="#e68c2bb6e004cd1b4598539b6ed38ff"><span>size</span></a> ? ()</td>
+<td><a class="reference internal" href="#ba34cdddbf95433d931982d7989f7f4a"><span>size</span></a> ? ()</td>
 </tr>
 </tbody>
 </table>
@@ -142,31 +142,31 @@ stream capabilities. For an example implementation of this see the <a class="ref
 </div>
 <div class="section" id="functions-in-detail">
 <h2>Functions in detail<a class="headerlink" href="#functions-in-detail" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><span class="target" id="df4398d9424ba68bf2a95d7ad83bfb"></span><p><p class="klcode">Boolean <a class="reference internal" href="#filereader"><span>FileReader</span></a>.close! ()</p>
+<p><span class="target" id="f630b22777d4327a26a6014f97e99c0"></span><p><p class="klcode">Boolean <a class="reference internal" href="#filereader"><span>FileReader</span></a>.close! ()</p>
 <p class="plaintext">closes an open file</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ef1490b8b0ed082f7ca4ade"></span><p><p class="klcode">Boolean <a class="reference internal" href="#filereader"><span>FileReader</span></a>.eof? ()</p>
+<span class="target" id="baaa2358418b41e18c7ccb30543db99e"></span><p><p class="klcode">Boolean <a class="reference internal" href="#filereader"><span>FileReader</span></a>.eof? ()</p>
 <p class="plaintext">returns true if the reader is at the end of the file</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ab81c4b5b544dadaa43668b171c4c66"></span><p><p class="klcode">Boolean <a class="reference internal" href="#filereader"><span>FileReader</span></a>.isOpen? ()</p>
+<span class="target" id="bd14ac625db49969b9eb9c48ef266a5"></span><p><p class="klcode">Boolean <a class="reference internal" href="#filereader"><span>FileReader</span></a>.isOpen? ()</p>
 <p class="plaintext">returns true if this reader has a valid file open</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f6e7a8711cc423a9b32051df7e6bbfa"></span><p><p class="klcode">Boolean <a class="reference internal" href="#filereader"><span>FileReader</span></a>.open! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> filePath )</p>
+<span class="target" id="e9e7af9395874eb2a2514ceefecc024c"></span><p><p class="klcode">Boolean <a class="reference internal" href="#filereader"><span>FileReader</span></a>.open! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> filePath )</p>
 <p class="plaintext">opens a file (eventually closes the previous one)</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a1990fb1fc44a1bc7451392bb22df2"></span><p><p class="klcode">UInt64 <a class="reference internal" href="#filereader"><span>FileReader</span></a>.pos? ()</p>
+<span class="target" id="a99ee4aa8bab7bea4924797b6"></span><p><p class="klcode">UInt64 <a class="reference internal" href="#filereader"><span>FileReader</span></a>.pos? ()</p>
 <p class="plaintext">tells the position of the stream</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a0e87d390d54a248c3b5a699e5b2fa3"></span><p><p class="klcode"><a class="reference internal" href="#filereader"><span>FileReader</span></a>.seek! ( in UInt64 pos )</p>
+<span class="target" id="f6089e09408da2e1314accc0fd6b"></span><p><p class="klcode"><a class="reference internal" href="#filereader"><span>FileReader</span></a>.seek! ( in UInt64 pos )</p>
 <p class="plaintext">sets the position of the stream</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="e68c2bb6e004cd1b4598539b6ed38ff"></span><p><p class="klcode">UInt64 <a class="reference internal" href="#filereader"><span>FileReader</span></a>.size? ()</p>
+<span class="target" id="ba34cdddbf95433d931982d7989f7f4a"></span><p><p class="klcode">UInt64 <a class="reference internal" href="#filereader"><span>FileReader</span></a>.size? ()</p>
 <p class="plaintext">returns the size of the file being read</p>
 </p>
 </p>
@@ -194,6 +194,8 @@ stream capabilities. For an example implementation of this see the <a class="ref
     <ul class="this-page-menu">
       <li><a href="../../_sources/KLExtensionsGuide/FileIO/FileReader.txt"
             rel="nofollow">ソースコードを表示</a></li>
+    <li><a href="http://docs.fabric-engine.com/FabricEngine/2.0.0/HTML/KLExtensionsGuide/FileIO/FileReader.html"
+              rel="nofollow">原文公式ページへ移動</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">

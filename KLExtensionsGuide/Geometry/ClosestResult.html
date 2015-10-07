@@ -140,13 +140,13 @@ enabling for specialization of its content (eg: polygons, geometries).</p>
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>Boolean</td>
-<td><a class="reference internal" href="#b42b1c0614f475b8bdb1ed5950a3123"><span>compareAndUpdate</span></a> ! ( in Size objectIndex, out <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxScaledSquaredDistance )</td>
+<td><a class="reference internal" href="#a52cdf92df3444e297bdd810327b3366"><span>compareAndUpdate</span></a> ! ( in Size objectIndex, out <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxScaledSquaredDistance )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#ad0c11d099140799400845863fe350b"><span>copyResultFrom</span></a> ! ( in Ref&lt;<a class="reference internal" href="#closestresult"><span>ClosestResult</span></a>&gt; other )</td>
+<td><a class="reference internal" href="#b05174370c9415da0f1eb6cb1dfc1f4"><span>copyResultFrom</span></a> ! ( in Ref&lt;<a class="reference internal" href="#closestresult"><span>ClosestResult</span></a>&gt; other )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#e18c6b44d8846eca37316efc705d84e"><span>reset</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> position, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> scaling, in Boolean hasScaling )</td>
+<td><a class="reference internal" href="#e05f546fcb944b8999eaa76d7b83690c"><span>reset</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> position, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> scaling, in Boolean hasScaling )</td>
 </tr>
 </tbody>
 </table>
@@ -154,16 +154,16 @@ enabling for specialization of its content (eg: polygons, geometries).</p>
 </div>
 <div class="section" id="functions-in-detail">
 <h2>Functions in detail<a class="headerlink" href="#functions-in-detail" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><span class="target" id="b42b1c0614f475b8bdb1ed5950a3123"></span><p><p class="klcode">Boolean <a class="reference internal" href="#closestresult"><span>ClosestResult</span></a>.compareAndUpdate! ( in Size objectIndex, out <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxScaledSquaredDistance )</p>
+<p><span class="target" id="a52cdf92df3444e297bdd810327b3366"></span><p><p class="klcode">Boolean <a class="reference internal" href="#closestresult"><span>ClosestResult</span></a>.compareAndUpdate! ( in Size objectIndex, out <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxScaledSquaredDistance )</p>
 <p class="plaintext">If the getClosest resulting squared scaled distance is &lt;= maxScaledSquaredDistance, returns &#8216;true&#8217;
 and the object should preserve location information for that best candidate.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ad0c11d099140799400845863fe350b"></span><p><p class="klcode"><a class="reference internal" href="#closestresult"><span>ClosestResult</span></a>.copyResultFrom! ( in Ref&lt;<a class="reference internal" href="#closestresult"><span>ClosestResult</span></a>&gt; other )</p>
+<span class="target" id="b05174370c9415da0f1eb6cb1dfc1f4"></span><p><p class="klcode"><a class="reference internal" href="#closestresult"><span>ClosestResult</span></a>.copyResultFrom! ( in Ref&lt;<a class="reference internal" href="#closestresult"><span>ClosestResult</span></a>&gt; other )</p>
 <p class="plaintext">Sets the resulting getClosest location from the other <a class="reference internal" href="#closestresult"><span>ClosestResult</span></a> (same type)</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="e18c6b44d8846eca37316efc705d84e"></span><p><p class="klcode"><a class="reference internal" href="#closestresult"><span>ClosestResult</span></a>.reset! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> position, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> scaling, in Boolean hasScaling )</p>
+<span class="target" id="e05f546fcb944b8999eaa76d7b83690c"></span><p><p class="klcode"><a class="reference internal" href="#closestresult"><span>ClosestResult</span></a>.reset! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> position, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> scaling, in Boolean hasScaling )</p>
 <p class="plaintext">Resets the content of the query (new getClosest beginning).
 If &#8216;hasScaling&#8217;, then &#8216;scaling&#8217; will contain a non-uniform scaling vector.
 Else, &#8216;scaling&#8217; will be :ref:<a href="#id1"><span class="problematic" id="id2">`</span></a>Vec3 &lt;vec3&gt;`(1,1,1).</p>
@@ -193,6 +193,8 @@ Else, &#8216;scaling&#8217; will be :ref:<a href="#id1"><span class="problematic
     <ul class="this-page-menu">
       <li><a href="../../_sources/KLExtensionsGuide/Geometry/ClosestResult.txt"
             rel="nofollow">ソースコードを表示</a></li>
+    <li><a href="http://docs.fabric-engine.com/FabricEngine/2.0.0/HTML/KLExtensionsGuide/Geometry/ClosestResult.html"
+              rel="nofollow">原文公式ページへ移動</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">

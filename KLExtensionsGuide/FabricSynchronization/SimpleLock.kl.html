@@ -97,19 +97,19 @@ The <a class="reference internal" href="AutoLock.html#autolock"><span>AutoLock</
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="AutoLock.html#b1d0afc944d15a8257b9a8a8b3b58"><span>AutoLock</span></a>  ( in <a class="reference internal" href="AutoLock.html#autolock"><span>AutoLock</span></a> other )</td>
+<td><a class="reference internal" href="AutoLock.html#b931c0f54b24ba4cc2221f37c961"><span>AutoLock</span></a>  ( in <a class="reference internal" href="AutoLock.html#autolock"><span>AutoLock</span></a> other )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="AutoLock.html#c50aee8edb487dae9b2d70ce818cb1"><span>AutoLock</span></a>  ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock )</td>
+<td><a class="reference internal" href="AutoLock.html#faddf24bee1d4d0fa8d5268c3eb1b1df"><span>AutoLock</span></a>  ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="AutoLock.html#a38931f473d4c158ba358f7ed5e37fa"><span>AutoLock</span></a>  ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxWaitSeconds )</td>
+<td><a class="reference internal" href="AutoLock.html#f9da36a4c04a5280b05ca97ad3dc91"><span>AutoLock</span></a>  ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxWaitSeconds )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="AutoLock.html#afe752d6333473885044a01aeb84776"><span>AutoLock</span></a>  ()</td>
+<td><a class="reference internal" href="AutoLock.html#df5be318960b4354ad603d5cc4c4151e"><span>AutoLock</span></a>  ()</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="AutoLock.html#autolock"><span>AutoLock</span></a></td>
-<td><a class="reference internal" href="AutoLock.html#a25f46c86b7e402bac8394a024fcded4"><span>clone</span></a> ? ()</td>
+<td><a class="reference internal" href="AutoLock.html#fe0eb397fafd4404949004b47e2c22f7"><span>clone</span></a> ? ()</td>
 </tr>
 </tbody>
 </table>
@@ -124,7 +124,7 @@ The <a class="reference internal" href="AutoLock.html#autolock"><span>AutoLock</
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="AutoLock.html#autolock"><span>AutoLock</span></a></td>
-<td><a class="reference internal" href="AutoLock.html#c7e24211441081cd2716a35e0915"><span>=</span></a> ( <a class="reference internal" href="../Parameters/Param.html#param"><span>Param</span></a> other )</td>
+<td><a class="reference internal" href="AutoLock.html#a86b8ed163584360b98b0e169589fcf3"><span>=</span></a> ( <a class="reference internal" href="../Parameters/Param.html#param"><span>Param</span></a> other )</td>
 </tr>
 </tbody>
 </table>
@@ -141,8 +141,8 @@ There is no queue, so starvation is possible under sustained access competition.
 multiple times does incur some overhead, so care should be taken to avoid locking when possible
 if execution speed is important.</p>
 <p class="plaintext">Locking is done by passing a <a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a> to the following functions:
-<a class="reference internal" href="functions.html#b626d64329740f383ea5ee7c1611855"><span>Acquire</span></a>, <a class="reference internal" href="functions.html#fc55d813d4b5ea3fd0be88c4ac1c0"><span>Release</span></a> and <a class="reference internal" href="functions.html#d0c4e64273b7a0a0a833f94a76"><span>TryAcquire</span></a>. The <a class="reference internal" href="AutoLock.html#autolock"><span>AutoLock</span></a>
-wrapper encapsulates the <a class="reference internal" href="functions.html#b626d64329740f383ea5ee7c1611855"><span>Acquire</span></a> and <a class="reference internal" href="functions.html#fc55d813d4b5ea3fd0be88c4ac1c0"><span>Release</span></a> of a <a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>, which can
+<a class="reference internal" href="functions.html#a3d371955d2e4176945731287fb8bdd5"><span>Acquire</span></a>, <a class="reference internal" href="functions.html#bc3162fbce45c1962482810fd4d24f"><span>Release</span></a> and <a class="reference internal" href="functions.html#bd74902b7c4be7b0ba9a7f16553fa9"><span>TryAcquire</span></a>. The <a class="reference internal" href="AutoLock.html#autolock"><span>AutoLock</span></a>
+wrapper encapsulates the <a class="reference internal" href="functions.html#a3d371955d2e4176945731287fb8bdd5"><span>Acquire</span></a> and <a class="reference internal" href="functions.html#bc3162fbce45c1962482810fd4d24f"><span>Release</span></a> of a <a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>, which can
 reduce coding the errors (eg: forgetting to release the lock).</p>
 <p class="plaintext">The following facilities might be useful for debugging locking problems:</p>
 <ul class="simple">
@@ -251,34 +251,34 @@ state forever. This applies for AutoLock helper since KL won&#8217;t cleanup the
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="SimpleLock.html#d359b6c48219677a01ca16eca54"><span>SimpleLock</span></a>  ( in <a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a> other )</td>
+<td><a class="reference internal" href="SimpleLock.html#a8f3e4c2b8d4da7b56e3e8ee2b0bf9a"><span>SimpleLock</span></a>  ( in <a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a> other )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="SimpleLock.html#f71056416404434b97cfd86e39f152b3"><span>SimpleLock</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> debugName )</td>
+<td><a class="reference internal" href="SimpleLock.html#ea994687938386145c23f765"><span>SimpleLock</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> debugName )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="SimpleLock.html#d1647b4e84872a60b2df471ebfde1"><span>SimpleLock</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> debugName, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxWaitSeconds )</td>
+<td><a class="reference internal" href="SimpleLock.html#c2d7cce89b7a442f9cd19b34f3599ebe"><span>SimpleLock</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> debugName, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxWaitSeconds )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="SimpleLock.html#a209e632b97e46f8912dfe41b946a332"><span>SimpleLock</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> debugName, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxWaitSeconds, in Boolean throwAtMaxWait )</td>
+<td><a class="reference internal" href="SimpleLock.html#bc13b509e64b6ba83389cc75d4c87b"><span>SimpleLock</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> debugName, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxWaitSeconds, in Boolean throwAtMaxWait )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="SimpleLock.html#a25f45e49f99d4348eb8ac89c9e"><span>SimpleLock</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> debugName, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxWaitSeconds, in Boolean throwAtMaxWait, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> secondsBetweenChecks )</td>
+<td><a class="reference internal" href="SimpleLock.html#beff199db345009718632841a4e89e"><span>SimpleLock</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> debugName, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxWaitSeconds, in Boolean throwAtMaxWait, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> secondsBetweenChecks )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="SimpleLock.html#b1bac090f34abfa3d5ac74de7fff48"><span>SimpleLock</span></a>  ()</td>
+<td><a class="reference internal" href="SimpleLock.html#e2383f11e46bba3c012fafb002d25"><span>SimpleLock</span></a>  ()</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a></td>
-<td><a class="reference internal" href="SimpleLock.html#cc4c99c67c42c7adfc80d413a01428"><span>clone</span></a> ? ()</td>
+<td><a class="reference internal" href="SimpleLock.html#b6b8915954141ae0397353c72e45b"><span>clone</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="SimpleLock.html#ad3502e7558f4c6abc59954a55942db2"><span>cloneMembersTo</span></a> ? ( io <a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a> that )</td>
+<td><a class="reference internal" href="SimpleLock.html#f66eb54637d4ab0b5dc0b73568cbf6e"><span>cloneMembersTo</span></a> ? ( io <a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a> that )</td>
 </tr>
 <tr class="row-odd"><td>Boolean</td>
-<td><a class="reference internal" href="SimpleLock.html#cb94ef38bc24ab7b73d17589440bfe3"><span>locked</span></a> ? ()</td>
+<td><a class="reference internal" href="SimpleLock.html#a43b614eacb641bda65d5da7824e6748"><span>locked</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="SimpleLock.html#e80f7860a4d347fea8065c7c6d9c0001"><span>~SimpleLock</span></a>  ()</td>
+<td><a class="reference internal" href="SimpleLock.html#d70abfc7d34f3caaf8ad463a5004d9"><span>~SimpleLock</span></a>  ()</td>
 </tr>
 </tbody>
 </table>
@@ -291,14 +291,14 @@ state forever. This applies for AutoLock helper since KL won&#8217;t cleanup the
 <h2>Functions<a class="headerlink" href="#functions" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><div class="section" id="tryacquire">
 <h3>TryAcquire<a class="headerlink" href="#tryacquire" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p class="klcode">Boolean TryAcquire ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock )</p>
-<p class="plaintext">Tries to acquire a lock immediately and will return <code class="docutils literal"><span class="pre">false</span></code> if failed.</p>
+<p class="klcode">Boolean TryAcquire ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxWaitSeconds )</p>
+<p class="plaintext">Tries to acquire a lock for <code class="docutils literal"><span class="pre">maxWaitSeconds</span></code> seconds. Will return <code class="docutils literal"><span class="pre">false</span></code> if failed.</p>
 </div>
 </p>
 <p><div class="section" id="id4">
 <h3>TryAcquire<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p class="klcode">Boolean TryAcquire ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock )</p>
-<p class="plaintext">Tries to acquire a lock immediately and will return <code class="docutils literal"><span class="pre">false</span></code> if failed.</p>
+<p class="klcode">Boolean TryAcquire ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxWaitSeconds )</p>
+<p class="plaintext">Tries to acquire a lock for <code class="docutils literal"><span class="pre">maxWaitSeconds</span></code> seconds. Will return <code class="docutils literal"><span class="pre">false</span></code> if failed.</p>
 </div>
 </p>
 <p><div class="section" id="acquire">
@@ -343,6 +343,8 @@ state forever. This applies for AutoLock helper since KL won&#8217;t cleanup the
     <ul class="this-page-menu">
       <li><a href="../../_sources/KLExtensionsGuide/FabricSynchronization/SimpleLock.kl.txt"
             rel="nofollow">ソースコードを表示</a></li>
+    <li><a href="http://docs.fabric-engine.com/FabricEngine/2.0.0/HTML/KLExtensionsGuide/FabricSynchronization/SimpleLock.html"
+              rel="nofollow">原文公式ページへ移動</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">

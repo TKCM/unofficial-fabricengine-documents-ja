@@ -96,7 +96,7 @@ points.</p>
 <img alt="../../_images/components.png" src="../../_images/components.png" />
 <p>The following table shows a simplified view of the storage and relationship between these components:</p>
 <img alt="../../_images/component_tables.png" src="../../_images/component_tables.png" />
-<p>This example uses the <a class="reference internal" href="PolygonMesh.html#b2c9e63707174645b7f989a0f7c8f970"><span>PolygonMesh.getDesc</span></a> function to report the structure corresponding to the illustrated
+<p>This example uses the <a class="reference internal" href="PolygonMesh.html#f8ff2640742be9f9b179950cdf7c4"><span>PolygonMesh.getDesc</span></a> function to report the structure corresponding to the illustrated
 mesh above.</p>
 <div class="highlight-kl" id="griddumpexample"><div class="highlight"><pre><span class="cm">/*</span>
 <span class="cm">** Example: Structure dump of a 2X2 grid:</span>
@@ -149,14 +149,14 @@ or <cite>.setPolygon</cite>, respectively.</li>
 <li><p class="first"><em class="dfn">neighborPolygon</em>: a point-polygon pair, which corresponds to one of the polygons around a point. The
 <cite>neighborPolygon</cite> is represented by a pair of indices formed by the point index and the <cite>neighborPolygonIndex</cite>.
 The <cite>neighborPolygonIndex</cite> is a per point local index that ranges from <cite>0</cite> to
-<a class="reference internal" href="PolygonMesh.html#fd514488b95ae3e43a5d8073e"><span>PolygonMesh.getPointPolygonCount</span></a> <cite>()-1</cite>, where each index corresponds to a polygon connected to that
+<a class="reference internal" href="PolygonMesh.html#cecae3a7da54b539c5d4cfe3bd85c30"><span>PolygonMesh.getPointPolygonCount</span></a> <cite>()-1</cite>, where each index corresponds to a polygon connected to that
 point. The <cite>neighborPolygon</cite> and the <cite>polygonPoint</cite> (described below) represent the same location, however
 they are point-relative or polygon-relative, respectively.</p>
 </li>
 <li><p class="first"><em class="dfn">polygonPoint</em>: a polygon-point pair, which corresponds to the polygon corner connecting a point (sometimes
 called a <cite>face-vertex</cite> or <cite>polygonNode</cite> in other software). The <cite>polygonPoint</cite> is represented by a pair of
 indices formed by the polygon index and the <cite>polygonPointIndex</cite>. The <cite>polygonPointIndex</cite> is a per polygon
-local index that ranges from <cite>0</cite> to <a class="reference internal" href="PolygonMesh.html#eb69ccb4399a55eb09c0b03d4b6"><span>PolygonMesh.getPolygonSize</span></a> <cite>()-1</cite>, where each index corresponds to a
+local index that ranges from <cite>0</cite> to <a class="reference internal" href="PolygonMesh.html#d1493c67e6cc47398a3aee3d56cab981"><span>PolygonMesh.getPolygonSize</span></a> <cite>()-1</cite>, where each index corresponds to a
 point connected to that polygon. The <cite>neighborPolygon</cite> and the <cite>polygonPoint</cite> (described below) represent
 the same location, however they are point-relative or polygon-relative, respectively.</p>
 </li>
@@ -181,9 +181,9 @@ Because of this, most functions will explicitly do, in KL guarded mode, a check 
 indices respect the bounds (using the <cite>Fabric_Guarded</cite> special KL condition). For example:</p>
 <ul class="simple">
 <li>A function that takes a <cite>point</cite> and a <cite>neighborPolygonIndex</cite> will ensure that the latter is within
-the [0 .. <a class="reference internal" href="PolygonMesh.html#fd514488b95ae3e43a5d8073e"><span>PolygonMesh.getPointPolygonCount</span></a> -1] range</li>
+the [0 .. <a class="reference internal" href="PolygonMesh.html#cecae3a7da54b539c5d4cfe3bd85c30"><span>PolygonMesh.getPointPolygonCount</span></a> -1] range</li>
 <li>A function that takes a <cite>polygon</cite> and a <cite>polygonPointIndex</cite> will ensure that the latter is within
-the [0 .. <a class="reference internal" href="PolygonMesh.html#eb69ccb4399a55eb09c0b03d4b6"><span>PolygonMesh.getPolygonSize</span></a> -1] range</li>
+the [0 .. <a class="reference internal" href="PolygonMesh.html#d1493c67e6cc47398a3aee3d56cab981"><span>PolygonMesh.getPolygonSize</span></a> -1] range</li>
 </ul>
 <p>Because of these explicit bound checks, and because the <a class="reference internal" href="PolygonMesh.html#polygonmesh"><span>PolygonMesh (object)</span></a> makes heavy usage of arrays, <cite>unguarded</cite> compilation typically provides a 30% speedup for most PolygonMesh methods.</p>
 </div>
@@ -196,11 +196,11 @@ and have the same size, which allow the attribute value arrays to be mapped dire
 such as OpenGL&#8217;s. However, maintaining a global value alignment while supporting value sharing around points
 requires additional attribute management for the <a class="reference internal" href="PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a>, and this has some impact on the API.</p>
 <p>In the <a class="reference internal" href="PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a> API, an <em class="dfn">attributeIndex</em> is relative to the <a class="reference internal" href="GeometryAttribute.html#geometryattribute"><span>GeometryAttribute</span></a> value
-arrays (total of <a class="reference internal" href="GeometryAttributes.html#fb975cc5574b3fb4d6543f76895171"><span>GeometryAttributes.size</span></a> elements). The correspondence between a <cite>attributeIndex</cite>
+arrays (total of <a class="reference internal" href="GeometryAttributes.html#a143cee5d9f64a949c041074ee6a27d8"><span>GeometryAttributes.size</span></a> elements). The correspondence between a <cite>attributeIndex</cite>
 and a point index is non-trivial, as it depends on the sharing (splitting) layout of attribute values around points.
 If there is an attribute split around a point (even for just one of many attributes), then each <cite>polygonPoint</cite> value combinations
 point will be stored at a different <cite>attributeIndex</cite>. It is guaranteed, however, that an <cite>attributeIndex</cite>
-within the [0 .. <a class="reference internal" href="PolygonMesh.html#d60e006ca44005976a7c33620dcc73"><span>PolygonMesh.pointCount</span></a> () - 1] range is owned by the point of the same
+within the [0 .. <a class="reference internal" href="PolygonMesh.html#f19f1b6a83e474683315b1a64549879"><span>PolygonMesh.pointCount</span></a> () - 1] range is owned by the point of the same
 same index.</p>
 <p>The following figure shows how split attribute values cause additional <cite>attributeIndex</cite>
 to be allocated:</p>
@@ -275,9 +275,9 @@ is only printed for points that have unshared attribute values (splits):</p>
 </div>
 <p>The following methods allow to set explicit attribute values:</p>
 <ul>
-<li><p class="first">Point-shared values (uniform values): <a class="reference internal" href="PolygonMesh.html#c602ccff3e41c896e608c4f68cd548"><span>PolygonMesh.setPointAttribute</span></a> <cite>(Size point, io GeometryAttribute attribute, Value value)</cite>:
+<li><p class="first">Point-shared values (uniform values): <a class="reference internal" href="PolygonMesh.html#e2bdcad5345045dea98138190e1d4458"><span>PolygonMesh.setPointAttribute</span></a> <cite>(Size point, io GeometryAttribute attribute, Value value)</cite>:
 these methods will ensure that all values are properly set in case other attributes are unshared around the same point.
-The <a class="reference internal" href="PolygonMesh.html#d4e18d7b0dc4afd994412013021c7d1"><span>PolygonMesh.setPointPosition</span></a> and <a class="reference internal" href="PolygonMesh.html#e47986b2287e4ccfa81aed5d525c0355"><span>PolygonMesh.setPointNormal</span></a> specialized
+The <a class="reference internal" href="PolygonMesh.html#d021a59e7264b04ad79d609b324ef4f"><span>PolygonMesh.setPointPosition</span></a> and <a class="reference internal" href="PolygonMesh.html#b1f1968f584b1bb83f93aa8b1b99b8"><span>PolygonMesh.setPointNormal</span></a> specialized
 methods are similar. These methods don&#8217;t change the attribute sharing layout (<cite>attributeIndex</cite>), and are
 thread-safe if the attribute sharing layout doesn&#8217;t change.</p>
 <div class="admonition note">
@@ -289,8 +289,8 @@ in your code.</p>
 </li>
 <li><p class="first">Values that might be unshared around points:</p>
 <ul class="simple">
-<li>Per point neighbor: <a class="reference internal" href="PolygonMesh.html#c602ccff3e41c896e608c4f68cd548"><span>PolygonMesh.setPointAttribute</span></a> <cite>(Size point, Size neighborPolygonIndex, io GeometryAttribute attribute, Value value)</cite></li>
-<li>Per polygon point: <a class="reference internal" href="PolygonMesh.html#a00c0dd454f01a30e97ab45a7580e"><span>PolygonMesh.setPolygonAttribute</span></a> <cite>(Size polygon, Size polygonPointIndex, io GeometryAttribute attribute, Value value)</cite></li>
+<li>Per point neighbor: <a class="reference internal" href="PolygonMesh.html#e2bdcad5345045dea98138190e1d4458"><span>PolygonMesh.setPointAttribute</span></a> <cite>(Size point, Size neighborPolygonIndex, io GeometryAttribute attribute, Value value)</cite></li>
+<li>Per polygon point: <a class="reference internal" href="PolygonMesh.html#a43bea41b767455ca9a12bb89e9a8ae0"><span>PolygonMesh.setPolygonAttribute</span></a> <cite>(Size polygon, Size polygonPointIndex, io GeometryAttribute attribute, Value value)</cite></li>
 </ul>
 <p>These methods will set the value to a specific neighbor polygon (polygon point). They will check if the point sharing can be maintained by comparing with the previously set values, and will allocate a new <cite>attributeIndex</cite> if this is not possible.
 These methods are <strong>not</strong> thread-safe if they change the attribute sharing layout (<cite>attributeIndex</cite>).</p>
@@ -304,19 +304,19 @@ in your code.</p>
 <p class="first admonition-title">注釈</p>
 <p>In order to properly manage value sharing, the PolygonMesh internally maintains a <cite>Boolean initialized</cite>
 state per attribute value, so it can distinguish between explicitly set values and default values.</p>
-<p class="last">The <a class="reference internal" href="PolygonMesh.html#cb810c4b6fa4563be0dc02446e9b543"><span>PolygonMesh.resetAttributeAndAvoidSharingChanges</span></a> method can avoid unrequired
+<p class="last">The <a class="reference internal" href="PolygonMesh.html#facb8be3a33b4fc1a183fe7fbceeba34"><span>PolygonMesh.resetAttributeAndAvoidSharingChanges</span></a> method can avoid unrequired
 splitting and unsplitting of attribute values by trying to maintain existing attribute sharing layout
 (<cite>attributeIndex</cite>)</p>
 </div>
 </li>
 </ul>
-<p>The <cite>attributeIndex</cite> can be retrieved using either the <a class="reference internal" href="PolygonMesh.html#b3160c68d15f45aea2421961168ee9e7"><span>PolygonMesh.getPointAttributeIndex</span></a> or
-the <a class="reference internal" href="PolygonMesh.html#a116baa86a4b42cead9e46b1528c9ee9"><span>PolygonMesh.getPolygonAttributeIndex</span></a> method.</p>
-<p>The <a class="reference internal" href="PolygonMesh.html#c0cacd0f44dfeadb3cd87da557c03"><span>PolygonMesh.arePointAttributesUniform</span></a>
-and the <a class="reference internal" href="PolygonMesh.html#d032ac953c4494eb9cd7734b0b4cff9"><span>PolygonMesh.isPointAttributeUniform</span></a> will tell if values for all or a specific attribute
+<p>The <cite>attributeIndex</cite> can be retrieved using either the <a class="reference internal" href="PolygonMesh.html#a3fcc4f48daa0de9bedb4d1fd9e"><span>PolygonMesh.getPointAttributeIndex</span></a> or
+the <a class="reference internal" href="PolygonMesh.html#b089bf01aa084ffe8a1b8716707deddc"><span>PolygonMesh.getPolygonAttributeIndex</span></a> method.</p>
+<p>The <a class="reference internal" href="PolygonMesh.html#fbd8d35b3e4d42e6b433d08b8e0b3ea6"><span>PolygonMesh.arePointAttributesUniform</span></a>
+and the <a class="reference internal" href="PolygonMesh.html#c5c064f1804c94b75d81eeef89d563"><span>PolygonMesh.isPointAttributeUniform</span></a> will tell if values for all or a specific attribute
 are shared for a point, respectively.</p>
 <p>Since the mesh maintains the attributes values aligned for being draw-API friendly (OpenGL), the triangles
-draw list directly correspond to triplets of <cite>attributeIndex</cite>. The <a class="reference internal" href="PolygonMesh.html#b80cdd6644f408a952a3bb3b4121c2c"><span>PolygonMesh.generateAttributesTriangleList</span></a>
+draw list directly correspond to triplets of <cite>attributeIndex</cite>. The <a class="reference internal" href="PolygonMesh.html#c3c48bb22540e1b0656c3ffac6ca7f"><span>PolygonMesh.generateAttributesTriangleList</span></a>
 method returns that list.</p>
 </div>
 <div class="section" id="borders-and-wings">
@@ -436,21 +436,21 @@ the polygons part of a same wing have consecutive <cite>polygonNeighborIndex</ci
 </pre></div>
 </div>
 <ul class="simple">
-<li>The point border and wing information can be retrieved with the <a class="reference internal" href="PolygonMesh.html#ce87df81182f497bb6d9a82bc8823578"><span>PolygonMesh.getPointBorderInfo</span></a> and
-<a class="reference internal" href="PolygonMesh.html#bc7c31ce4800b74f29a0cc8833d3"><span>PolygonMesh.getPointPolygonFullBorderInfo</span></a> methods.</li>
-<li>The polygon border information can be retrieved with the <a class="reference internal" href="PolygonMesh.html#d2e9f1bdf23b4fb68c35beb7482d949d"><span>PolygonMesh.isPolygonBorder</span></a> method.</li>
+<li>The point border and wing information can be retrieved with the <a class="reference internal" href="PolygonMesh.html#c2b6feb74d7b4c7fa2c46ab4c55f9912"><span>PolygonMesh.getPointBorderInfo</span></a> and
+<a class="reference internal" href="PolygonMesh.html#b422ce21abb4a9c86d99a6f4467fd68"><span>PolygonMesh.getPointPolygonFullBorderInfo</span></a> methods.</li>
+<li>The polygon border information can be retrieved with the <a class="reference internal" href="PolygonMesh.html#c2903291c1084a2b8e19c315e412210d"><span>PolygonMesh.isPolygonBorder</span></a> method.</li>
 <li>Given a <cite>neighborPolygonIndex</cite>, the previous and next
-<cite>neighborPolygonIndex</cite> within the wing can be retrieved with the <a class="reference internal" href="PolygonMesh.html#a9fc52ebdcd4e8cbe86cd33e56ed0c8"><span>PolygonMesh.getPointPrevNeighborPolygonIndexInWing</span></a>
-and the <a class="reference internal" href="PolygonMesh.html#d9b036f5a84ef6928b012e78bf1bc5"><span>PolygonMesh.getPointNextNeighborPolygonIndexInWing</span></a>, respectively.</li>
+<cite>neighborPolygonIndex</cite> within the wing can be retrieved with the <a class="reference internal" href="PolygonMesh.html#fc9ba9d1460145449d38d6cc7e8b64be"><span>PolygonMesh.getPointPrevNeighborPolygonIndexInWing</span></a>
+and the <a class="reference internal" href="PolygonMesh.html#cd3b5a089aa546a892caeaa1e22d4640"><span>PolygonMesh.getPointNextNeighborPolygonIndexInWing</span></a>, respectively.</li>
 </ul>
 </div>
 <div class="section" id="modifying-the-mesh-structure">
 <span id="modifyingpolygonmeshstructure"></span><h2>Modifying the mesh structure<a class="headerlink" href="#modifying-the-mesh-structure" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Various methods can modify the mesh structure, such as <a class="reference internal" href="PolygonMesh.html#d8ac19c397a48868afe5b669e1cacfb"><span>PolygonMesh.addPolygon</span></a>, <a class="reference internal" href="PolygonMesh.html#ea3d87aa84138ba479b231ae0293c"><span>PolygonMesh.createPoints</span></a>
-and <a class="reference internal" href="PolygonMesh.html#af6639911ec34f20ae718354c39a15dc"><span>PolygonMesh.deletePolygon</span></a>. All these functions are not threadsafe, and a calls to one of these while another
+<p>Various methods can modify the mesh structure, such as <a class="reference internal" href="PolygonMesh.html#b6945e69221c1006edc20e6"><span>PolygonMesh.addPolygon</span></a>, <a class="reference internal" href="PolygonMesh.html#e5a85186556a45f69329907197d4d3ca"><span>PolygonMesh.createPoints</span></a>
+and <a class="reference internal" href="PolygonMesh.html#cd312817c36f4478abfd13324b939848"><span>PolygonMesh.deletePolygon</span></a>. All these functions are not threadsafe, and a calls to one of these while another
 thread is accessing the mesh will cause an undefined behavior.</p>
 <p>When mentioned, the changes need to happen between a call to brackets
-<a class="reference internal" href="PolygonMesh.html#db9fa7283be2473c87ed2632274a4739"><span>PolygonMesh.beginStructureChanges</span></a> and <a class="reference internal" href="PolygonMesh.html#accbb34d8bb5417387d27db1f2beaf4d"><span>PolygonMesh.endStructureChanges</span></a>
+<a class="reference internal" href="PolygonMesh.html#a2b10b6e4053402185d79617eee878cc"><span>PolygonMesh.beginStructureChanges</span></a> and <a class="reference internal" href="PolygonMesh.html#d8bce17a7548f28938aad9e60c49eb"><span>PolygonMesh.endStructureChanges</span></a>
 (or using <cite>PolygonMeshStructureChangeBracket</cite>). This requirement, along with the point
 ordering notion (presented below), make the mesh API more complex while allowing optimal performance.</p>
 <p>If some specific mesh modeling methods are called outside of structure change brackets, an error message will
@@ -489,8 +489,8 @@ be printed:</p>
 <cite>polygonPointNeighbor</cite> indices for that point. Additionally to update the polygon
 ordering around the point, the process of point ordering also includes updating wing and border information
 for that point (see <a class="reference internal" href="#borderandwings"><span>Borders and wings</span></a> ).</p>
-<p>For an optimal performance when modifying multiple polygons, some methods such as <a class="reference internal" href="PolygonMesh.html#d8ac19c397a48868afe5b669e1cacfb"><span>PolygonMesh.addPolygon</span></a>
-will not update point ordering until the outer change bracket closes ( <a class="reference internal" href="PolygonMesh.html#accbb34d8bb5417387d27db1f2beaf4d"><span>PolygonMesh.endStructureChanges</span></a> ).
+<p>For an optimal performance when modifying multiple polygons, some methods such as <a class="reference internal" href="PolygonMesh.html#b6945e69221c1006edc20e6"><span>PolygonMesh.addPolygon</span></a>
+will not update point ordering until the outer change bracket closes ( <a class="reference internal" href="PolygonMesh.html#d8bce17a7548f28938aad9e60c49eb"><span>PolygonMesh.endStructureChanges</span></a> ).
 Using an internal list of the unordered points, the mesh will then update
 only unordered points.</p>
 <p>Delaying point polygons ordering in situations such as adding or deleting multiple polygons allows for these two optimizations:</p>
@@ -527,12 +527,12 @@ and will report a similar error.</p>
 <p>In special situations, it might be required to force a point polygons reordering even within a structure change bracket.
 The following methods allow to perform such an update:</p>
 <ul class="simple">
-<li><a class="reference internal" href="PolygonMesh.html#f971554b93df451a9255182de160bb1c"><span>PolygonMesh.updatePointsPolygonOrder</span></a> : will reorder polygons for all unordered points.</li>
-<li><a class="reference internal" href="PolygonMesh.html#e348cba72b5471c9831a4c8c328a03c"><span>PolygonMesh.updatePointPolygonOrder</span></a> : will reorder polygons for a specific point if unordered.</li>
+<li><a class="reference internal" href="PolygonMesh.html#f5907262cd44e2ace51851186ea0a3"><span>PolygonMesh.updatePointsPolygonOrder</span></a> : will reorder polygons for all unordered points.</li>
+<li><a class="reference internal" href="PolygonMesh.html#e3390eb0e94fab91cb345b16bbf712"><span>PolygonMesh.updatePointPolygonOrder</span></a> : will reorder polygons for a specific point if unordered.</li>
 </ul>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p class="last">The <a class="reference internal" href="PolygonMesh.html#aa4def14e94ab8363bf04405c72"><span>PolygonMesh.addPolygonAndUpdateStructure</span></a> is similar to the <a class="reference internal" href="PolygonMesh.html#d8ac19c397a48868afe5b669e1cacfb"><span>PolygonMesh.addPolygon</span></a> method
+<p class="last">The <a class="reference internal" href="PolygonMesh.html#a3703ac047d4afaa2a0d8d72b42dd53"><span>PolygonMesh.addPolygonAndUpdateStructure</span></a> is similar to the <a class="reference internal" href="PolygonMesh.html#b6945e69221c1006edc20e6"><span>PolygonMesh.addPolygon</span></a> method
 however it will reorder the related points immediately.</p>
 </div>
 </div>
@@ -540,13 +540,13 @@ however it will reorder the related points immediately.</p>
 <span id="deletedcomponentsreplacement"></span><h3>Replacement of deleted component indices<a class="headerlink" href="#replacement-of-deleted-component-indices" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>In general, the <a class="reference internal" href="PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a> maintains a contiguous range (<cite>0..N-1</cite>) of point and polygon indices. Because of this,
 it is usually safe to iterate over polygons and points using a simple index loop.</p>
-<p>However, when a modeling operation such as <a class="reference internal" href="PolygonMesh.html#af6639911ec34f20ae718354c39a15dc"><span>PolygonMesh.deletePolygon</span></a> removes points or polygons,
-the related indices will remain unused until the outer <a class="reference internal" href="PolygonMesh.html#accbb34d8bb5417387d27db1f2beaf4d"><span>PolygonMesh.endStructureChanges</span></a> bracket is called. The
+<p>However, when a modeling operation such as <a class="reference internal" href="PolygonMesh.html#cd312817c36f4478abfd13324b939848"><span>PolygonMesh.deletePolygon</span></a> removes points or polygons,
+the related indices will remain unused until the outer <a class="reference internal" href="PolygonMesh.html#d8bce17a7548f28938aad9e60c49eb"><span>PolygonMesh.endStructureChanges</span></a> bracket is called. The
 goal of this policy is to allow a safe and stable use of polygon and point indices over multiple modeling operations.</p>
 <p>This implies that the code that processing a mesh with removed components needs to be aware
-that some indices can be invalid (deleted components). The <a class="reference internal" href="PolygonMesh.html#bb14bb2ea28049e1bfe6bc8ff0da6bda"><span>PolygonMesh.isPolygonDeleted</span></a> and
-<a class="reference internal" href="PolygonMesh.html#d9cf7047b924b9dbf53a49680350546"><span>PolygonMesh.isPointDeleted</span></a> methods allow to verify if a specific index is valid.</p>
-<p>Once the outer <a class="reference internal" href="PolygonMesh.html#accbb34d8bb5417387d27db1f2beaf4d"><span>PolygonMesh.endStructureChanges</span></a> is reached, the mesh will recompact indices
+that some indices can be invalid (deleted components). The <a class="reference internal" href="PolygonMesh.html#d2dec8c5c99a4a7aa64965a689cb66b3"><span>PolygonMesh.isPolygonDeleted</span></a> and
+<a class="reference internal" href="PolygonMesh.html#b21249014f90aea10f7ed1f52aa0"><span>PolygonMesh.isPointDeleted</span></a> methods allow to verify if a specific index is valid.</p>
+<p>Once the outer <a class="reference internal" href="PolygonMesh.html#d8bce17a7548f28938aad9e60c49eb"><span>PolygonMesh.endStructureChanges</span></a> is reached, the mesh will recompact indices
 by replacing unused indices with the last valid ones and reduce the index range accordingly.
 At this point, it is safe again to iterate over all points or polygons using a simple index loop.</p>
 </div>
@@ -639,6 +639,8 @@ for concave polygons.</li>
     <ul class="this-page-menu">
       <li><a href="../../_sources/KLExtensionsGuide/Geometry/polygonmeshstructure.txt"
             rel="nofollow">ソースコードを表示</a></li>
+    <li><a href="http://docs.fabric-engine.com/FabricEngine/2.0.0/HTML/KLExtensionsGuide/Geometry/polygonmeshstructure.html"
+              rel="nofollow">原文公式ページへ移動</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">

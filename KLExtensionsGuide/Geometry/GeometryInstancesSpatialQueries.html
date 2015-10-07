@@ -59,11 +59,11 @@
 <span id="geometryinstancesspatialqueries"></span><h1>GeometryInstancesSpatialQueries (object)<a class="headerlink" href="#geometryinstancesspatialqueries-object" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p><p class="plaintext">The GeometryInstancesSpatialQueries object enables to issue spatial queries (<cite>raycast</cite>, <cite>getClosest</cite>)
 to a group of many geometry instances (<a class="reference internal" href="Geometry.html#geometry"><span>Geometry</span></a> - transform pairs) while ensuring scalability.</p>
-<p class="plaintext">Adding a new geometry instance is done in two steps. First, the <a class="reference internal" href="#af6c275a414eb7e7c092b2f5f932"><span>GeometryInstancesSpatialQueries.createInstance</span></a>
+<p class="plaintext">Adding a new geometry instance is done in two steps. First, the <a class="reference internal" href="#f5990978bc4d76b2ac9bda602b3814"><span>GeometryInstancesSpatialQueries.createInstance</span></a>
 function will return a new key associated to the geometry instance to be added.
-Then, that key needs to be passed back to the <a class="reference internal" href="#b3ad48a3e0704b409cfd52109b7b552c"><span>GeometryInstancesSpatialQueries.updateInstance</span></a> function when
+Then, that key needs to be passed back to the <a class="reference internal" href="#a6351abde9a6417d91cec998f5e9bca6"><span>GeometryInstancesSpatialQueries.updateInstance</span></a> function when
 updating geometry instance&#8217;s information. Changes will be detected and an incremental update will be performed
-when calling <a class="reference internal" href="#d06d4550df8d40288b6dae4357ecd9c6"><span>GeometryInstancesSpatialQueries.prepareForSpatialQueries</span></a>.</p>
+when calling <a class="reference internal" href="#fb2dbd07f4b66b1217408e0b7c34a"><span>GeometryInstancesSpatialQueries.prepareForSpatialQueries</span></a>.</p>
 <p class="plaintext">The geometry instance key is used to identify a geometry instance for all the methods,
 like knowing which one was hit by a raycast.</p>
 <p><?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -222,49 +222,49 @@ like knowing which one was hit by a raycast.</p>
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#d394f83a9db45f19941481cf3a17296"><span>GeometryInstancesSpatialQueries</span></a>  ( in <a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a> other )</td>
+<td><a class="reference internal" href="#bb35a05ca0f4b0396ad55688d3fd39d"><span>GeometryInstancesSpatialQueries</span></a>  ( in <a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a> other )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#b32e7eab4241d098a4e7cffc0d61b3"><span>GeometryInstancesSpatialQueries</span></a>  ()</td>
+<td><a class="reference internal" href="#a8d59c362ab412893264d9acd45bde0"><span>GeometryInstancesSpatialQueries</span></a>  ()</td>
 </tr>
 <tr class="row-odd"><td>Ref&lt;<a class="reference internal" href="GeometryInstancesSpatialQuery.html#geometryinstancesspatialquery"><span>GeometryInstancesSpatialQuery</span></a>&gt;</td>
-<td><a class="reference internal" href="#a21ed4368a2426890f2f58228bf3799"><span>beginSpatialQuery</span></a> ? ()</td>
+<td><a class="reference internal" href="#f3bb76993768416cb0f9f2ca5952ae63"><span>beginSpatialQuery</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a></td>
-<td><a class="reference internal" href="#d79d4adc80cbcca604fa728f"><span>clone</span></a> ? ()</td>
+<td><a class="reference internal" href="#ff5f1c5742efbc64100cb6edadfb"><span>clone</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td>Size</td>
-<td><a class="reference internal" href="#af6c275a414eb7e7c092b2f5f932"><span>createInstance</span></a> ! ()</td>
+<td><a class="reference internal" href="#f5990978bc4d76b2ac9bda602b3814"><span>createInstance</span></a> ! ()</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#c35d3a87c400b849bab378180d683"><span>endSpatialQuery</span></a> ? ( in Ref&lt;<a class="reference internal" href="GeometryInstancesSpatialQuery.html#geometryinstancesspatialquery"><span>GeometryInstancesSpatialQuery</span></a>&gt; query )</td>
+<td><a class="reference internal" href="#d54d441bcfe4abb8ca5edf0b50d2afe"><span>endSpatialQuery</span></a> ? ( in Ref&lt;<a class="reference internal" href="GeometryInstancesSpatialQuery.html#geometryinstancesspatialquery"><span>GeometryInstancesSpatialQuery</span></a>&gt; query )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#bc4dd50f2733496c9340d4e61d4d520b"><span>getClosest</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> position, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxUnscaledDistance, io Size geometryKey, io <a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a> location )</td>
+<td><a class="reference internal" href="#ab3964327e224ce7ad0994f1fae511f1"><span>getClosest</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> position, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxUnscaledDistance, io Size geometryKey, io <a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a> location )</td>
 </tr>
 <tr class="row-even"><td>Ref&lt;<a class="reference internal" href="Geometry.html#geometry"><span>Geometry</span></a>&gt;</td>
-<td><a class="reference internal" href="#cb37c02530df4b19a0c5f1f1ced8336b"><span>getInstanceGeometry</span></a> ? ( in Size geometryKey )</td>
+<td><a class="reference internal" href="#f1e878aa715443ca105a7d080700967"><span>getInstanceGeometry</span></a> ? ( in Size geometryKey )</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a></td>
-<td><a class="reference internal" href="#c8aaf9a3694451987461d8d148449c1"><span>getInstanceTransform</span></a> ? ( in Size geometryKey )</td>
+<td><a class="reference internal" href="#f05073ba7f49f98014a0d8ff9276ab"><span>getInstanceTransform</span></a> ? ( in Size geometryKey )</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
-<td><a class="reference internal" href="#cf86ba37a9884bd0a7398f15dbbbb757"><span>getWorldPositionAtLocation</span></a> ? ( in Size geometryKey, in <a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a> location )</td>
+<td><a class="reference internal" href="#ff15f44fa08af1b81312ab52f0"><span>getWorldPositionAtLocation</span></a> ? ( in Size geometryKey, in <a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a> location )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#d06d4550df8d40288b6dae4357ecd9c6"><span>prepareForSpatialQueries</span></a> ? ( in Size approximateNumberOfQueries, in Boolean prepareIndividualGeometries, in <a class="reference internal" href="../Containers/GenericValueContainer.html#genericvaluecontainer"><span>GenericValueContainer</span></a> options )</td>
+<td><a class="reference internal" href="#fb2dbd07f4b66b1217408e0b7c34a"><span>prepareForSpatialQueries</span></a> ? ( in Size approximateNumberOfQueries, in Boolean prepareIndividualGeometries, in <a class="reference internal" href="../Containers/GenericValueContainer.html#genericvaluecontainer"><span>GenericValueContainer</span></a> options )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#bdbce34e4ba2b0eb783edb88cb6c"><span>raycast</span></a> ? ( in <a class="reference internal" href="../Math/Ray.html#ray"><span>Ray</span></a> ray, in Boolean doubleSided, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> coneThreshold, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxDistance, io Size geometryKey, io <a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a> location )</td>
+<td><a class="reference internal" href="#f99db3a43cb42278e55b589fbe46816"><span>raycast</span></a> ? ( in <a class="reference internal" href="../Math/Ray.html#ray"><span>Ray</span></a> ray, in Boolean doubleSided, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> coneThreshold, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxDistance, io Size geometryKey, io <a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a> location )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#d9d4ceba88d94da5a54ed098d4ffcd3e"><span>removeInstance</span></a> ! ( in Size geometryKey )</td>
+<td><a class="reference internal" href="#ea00687ffb204958845ceac3a894f796"><span>removeInstance</span></a> ! ( in Size geometryKey )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#fd037d9906748aeac96bfbc24cb9bc6"><span>updateInstance</span></a> ! ( in Size geometryKey, in Ref&lt;<a class="reference internal" href="Geometry.html#geometry"><span>Geometry</span></a>&gt; geometry, in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> transform )</td>
+<td><a class="reference internal" href="#a6351abde9a6417d91cec998f5e9bca6"><span>updateInstance</span></a> ! ( in Size geometryKey, in Ref&lt;<a class="reference internal" href="Geometry.html#geometry"><span>Geometry</span></a>&gt; geometry, in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> transform )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#b3ad48a3e0704b409cfd52109b7b552c"><span>updateInstance</span></a> ! ( in Size geometryKey, in Ref&lt;<a class="reference internal" href="Geometry.html#geometry"><span>Geometry</span></a>&gt; geometry, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> transform )</td>
+<td><a class="reference internal" href="#dcbd5b2142d7456ea6805694b8eaf1a8"><span>updateInstance</span></a> ! ( in Size geometryKey, in Ref&lt;<a class="reference internal" href="Geometry.html#geometry"><span>Geometry</span></a>&gt; geometry, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> transform )</td>
 </tr>
 </tbody>
 </table>
@@ -272,57 +272,57 @@ like knowing which one was hit by a raycast.</p>
 </div>
 <div class="section" id="methods-in-detail">
 <h2>Methods in detail<a class="headerlink" href="#methods-in-detail" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><span class="target" id="d394f83a9db45f19941481cf3a17296"></span><p><p class="klcode"><a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a> ( in <a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a> other )</p>
+<p><span class="target" id="bb35a05ca0f4b0396ad55688d3fd39d"></span><p><p class="klcode"><a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a> ( in <a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a> other )</p>
 <p class="plaintext">copy constructor</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b32e7eab4241d098a4e7cffc0d61b3"></span><p><p class="klcode"><a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a> ()</p>
+<span class="target" id="a8d59c362ab412893264d9acd45bde0"></span><p><p class="klcode"><a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a> ()</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a21ed4368a2426890f2f58228bf3799"></span><p><p class="klcode">Ref&lt;<a class="reference internal" href="GeometryInstancesSpatialQuery.html#geometryinstancesspatialquery"><span>GeometryInstancesSpatialQuery</span></a>&gt; <a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a>.beginSpatialQuery? ()</p>
-<p class="plaintext">See <a class="reference internal" href="SpatialQueryable.html#c44e850f4bb54a2bbe24e760c3d398a8"><span>SpatialQueryable.beginSpatialQuery</span></a>.</p>
+<span class="target" id="f3bb76993768416cb0f9f2ca5952ae63"></span><p><p class="klcode">Ref&lt;<a class="reference internal" href="GeometryInstancesSpatialQuery.html#geometryinstancesspatialquery"><span>GeometryInstancesSpatialQuery</span></a>&gt; <a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a>.beginSpatialQuery? ()</p>
+<p class="plaintext">See <a class="reference internal" href="SpatialQueryable.html#ff3b42bd56416b999557b95e8d5919"><span>SpatialQueryable.beginSpatialQuery</span></a>.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d79d4adc80cbcca604fa728f"></span><p><p class="klcode"><a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a> <a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a>.clone? ()</p>
+<span class="target" id="ff5f1c5742efbc64100cb6edadfb"></span><p><p class="klcode"><a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a> <a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a>.clone? ()</p>
 <p class="plaintext">clone method</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="af6c275a414eb7e7c092b2f5f932"></span><p><p class="klcode">Size <a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a>.createInstance! ()</p>
+<span class="target" id="f5990978bc4d76b2ac9bda602b3814"></span><p><p class="klcode">Size <a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a>.createInstance! ()</p>
 <p class="plaintext">Returns a <cite>geometryKey</cite> to be used for a new Geometry instance. This <cite>geometryKey</cite> needs to be passed to  various functions
-such as <a class="reference internal" href="#b3ad48a3e0704b409cfd52109b7b552c"><span>GeometryInstancesSpatialQueries.updateInstance</span></a> or <a class="reference internal" href="#d9d4ceba88d94da5a54ed098d4ffcd3e"><span>GeometryInstancesSpatialQueries.removeInstance</span></a>
-in order to identify the Geometry instance. Functions such as <a class="reference internal" href="#bdbce34e4ba2b0eb783edb88cb6c"><span>GeometryInstancesSpatialQueries.raycast</span></a>
-and <a class="reference internal" href="#bc4dd50f2733496c9340d4e61d4d520b"><span>GeometryInstancesSpatialQueries.getClosest</span></a> will return the <cite>geometryKey</cite> as a reference.</p>
+such as <a class="reference internal" href="#a6351abde9a6417d91cec998f5e9bca6"><span>GeometryInstancesSpatialQueries.updateInstance</span></a> or <a class="reference internal" href="#ea00687ffb204958845ceac3a894f796"><span>GeometryInstancesSpatialQueries.removeInstance</span></a>
+in order to identify the Geometry instance. Functions such as <a class="reference internal" href="#f99db3a43cb42278e55b589fbe46816"><span>GeometryInstancesSpatialQueries.raycast</span></a>
+and <a class="reference internal" href="#ab3964327e224ce7ad0994f1fae511f1"><span>GeometryInstancesSpatialQueries.getClosest</span></a> will return the <cite>geometryKey</cite> as a reference.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c35d3a87c400b849bab378180d683"></span><p><p class="klcode"><a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a>.endSpatialQuery? ( in Ref&lt;<a class="reference internal" href="GeometryInstancesSpatialQuery.html#geometryinstancesspatialquery"><span>GeometryInstancesSpatialQuery</span></a>&gt; query )</p>
-<p class="plaintext">See <a class="reference internal" href="SpatialQueryable.html#c4cc2f86e70a4dec85c2a09d82e4b522"><span>SpatialQueryable.endSpatialQuery</span></a>.</p>
+<span class="target" id="d54d441bcfe4abb8ca5edf0b50d2afe"></span><p><p class="klcode"><a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a>.endSpatialQuery? ( in Ref&lt;<a class="reference internal" href="GeometryInstancesSpatialQuery.html#geometryinstancesspatialquery"><span>GeometryInstancesSpatialQuery</span></a>&gt; query )</p>
+<p class="plaintext">See <a class="reference internal" href="SpatialQueryable.html#fe23c1a3d19841008b7634366d5fb71c"><span>SpatialQueryable.endSpatialQuery</span></a>.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="bc4dd50f2733496c9340d4e61d4d520b"></span><p><p class="klcode"><a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a>.getClosest? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> position, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxUnscaledDistance, io Size geometryKey, io <a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a> location )</p>
-<p class="plaintext">Like <a class="reference internal" href="SpatialQueryable.html#d310dcee75c34fadb4c46e7603e5560a"><span>SpatialQueryable.getClosest</span></a>, but returns a <cite>geometryKey</cite> identifying the instance that was hit (if any).
+<span class="target" id="ab3964327e224ce7ad0994f1fae511f1"></span><p><p class="klcode"><a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a>.getClosest? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> position, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxUnscaledDistance, io Size geometryKey, io <a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a> location )</p>
+<p class="plaintext">Like <a class="reference internal" href="SpatialQueryable.html#ed530a4f258d8bdff9a3ba6b47"><span>SpatialQueryable.getClosest</span></a>, but returns a <cite>geometryKey</cite> identifying the instance that was hit (if any).
 If none was hit, the returned GeometryLocation will be invalid, and <cite>geometryKey</cite> will be <cite>InvalidIndex</cite>.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="cb37c02530df4b19a0c5f1f1ced8336b"></span><p><p class="klcode">Ref&lt;<a class="reference internal" href="Geometry.html#geometry"><span>Geometry</span></a>&gt; <a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a>.getInstanceGeometry? ( in Size geometryKey )</p>
+<span class="target" id="f1e878aa715443ca105a7d080700967"></span><p><p class="klcode">Ref&lt;<a class="reference internal" href="Geometry.html#geometry"><span>Geometry</span></a>&gt; <a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a>.getInstanceGeometry? ( in Size geometryKey )</p>
 <p class="plaintext">Returns the <a class="reference internal" href="Geometry.html#geometry"><span>Geometry</span></a> associated with the key
-(as last submitted through <a class="reference internal" href="#b3ad48a3e0704b409cfd52109b7b552c"><span>GeometryInstancesSpatialQueries.updateInstance</span></a>)</p>
+(as last submitted through <a class="reference internal" href="#a6351abde9a6417d91cec998f5e9bca6"><span>GeometryInstancesSpatialQueries.updateInstance</span></a>)</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c8aaf9a3694451987461d8d148449c1"></span><p><p class="klcode"><a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> <a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a>.getInstanceTransform? ( in Size geometryKey )</p>
+<span class="target" id="f05073ba7f49f98014a0d8ff9276ab"></span><p><p class="klcode"><a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> <a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a>.getInstanceTransform? ( in Size geometryKey )</p>
 <p class="plaintext">Returns the &#8216;transform&#8217; associated with the key
-(as last submitted through <a class="reference internal" href="#b3ad48a3e0704b409cfd52109b7b552c"><span>GeometryInstancesSpatialQueries.updateInstance</span></a>)</p>
+(as last submitted through <a class="reference internal" href="#a6351abde9a6417d91cec998f5e9bca6"><span>GeometryInstancesSpatialQueries.updateInstance</span></a>)</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="cf86ba37a9884bd0a7398f15dbbbb757"></span><p><p class="klcode"><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> <a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a>.getWorldPositionAtLocation? ( in Size geometryKey, in <a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a> location )</p>
+<span class="target" id="ff15f44fa08af1b81312ab52f0"></span><p><p class="klcode"><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> <a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a>.getWorldPositionAtLocation? ( in Size geometryKey, in <a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a> location )</p>
 <p class="plaintext">Returns geometry instance&#8217;s position, in world space, associated to a <a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a>
 (must be valid and related to that geometry).
 In particular, the <cite>geometryKey</cite> and <cite>location</cite> might have been returned by a call to
-<a class="reference internal" href="#bdbce34e4ba2b0eb783edb88cb6c"><span>GeometryInstancesSpatialQueries.raycast</span></a> or <a class="reference internal" href="#bc4dd50f2733496c9340d4e61d4d520b"><span>GeometryInstancesSpatialQueries.getClosest</span></a>.</p>
+<a class="reference internal" href="#f99db3a43cb42278e55b589fbe46816"><span>GeometryInstancesSpatialQueries.raycast</span></a> or <a class="reference internal" href="#ab3964327e224ce7ad0994f1fae511f1"><span>GeometryInstancesSpatialQueries.getClosest</span></a>.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d06d4550df8d40288b6dae4357ecd9c6"></span><p><p class="klcode"><a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a>.prepareForSpatialQueries? ( in Size approximateNumberOfQueries, in Boolean prepareIndividualGeometries, in <a class="reference internal" href="../Containers/GenericValueContainer.html#genericvaluecontainer"><span>GenericValueContainer</span></a> options )</p>
-<p class="plaintext">Similar to <a class="reference internal" href="SpatialQueryable.html#dbe80c79984727b253bc56313370d4"><span>SpatialQueryable.prepareForSpatialQueries</span></a> method.
-This function must be call after all instances have been updated with <a class="reference internal" href="#b3ad48a3e0704b409cfd52109b7b552c"><span>GeometryInstancesSpatialQueries.updateInstance</span></a>.
+<span class="target" id="fb2dbd07f4b66b1217408e0b7c34a"></span><p><p class="klcode"><a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a>.prepareForSpatialQueries? ( in Size approximateNumberOfQueries, in Boolean prepareIndividualGeometries, in <a class="reference internal" href="../Containers/GenericValueContainer.html#genericvaluecontainer"><span>GenericValueContainer</span></a> options )</p>
+<p class="plaintext">Similar to <a class="reference internal" href="SpatialQueryable.html#b08fc645e045c0ac58d5fb9c31acaa"><span>SpatialQueryable.prepareForSpatialQueries</span></a> method.
+This function must be call after all instances have been updated with <a class="reference internal" href="#a6351abde9a6417d91cec998f5e9bca6"><span>GeometryInstancesSpatialQueries.updateInstance</span></a>.
 This function is not thread-safe.</p>
 <table border="1" class="paramtable docutils">
 <colgroup>
@@ -337,28 +337,28 @@ This function is not thread-safe.</p>
 <td>Should contain an approximation of the total number of queries to be issued (such as <cite>raycast</cite> or <cite>getClosest</cite>).</td>
 </tr>
 <tr class="row-odd"><td>options</td>
-<td>See <a class="reference internal" href="SpatialQueryable.html#dbe80c79984727b253bc56313370d4"><span>SpatialQueryable.prepareForSpatialQueries</span></a> for a description of this parameter. Options are applied to all octrees (including instances&#8217; octrees).</td>
+<td>See <a class="reference internal" href="SpatialQueryable.html#b08fc645e045c0ac58d5fb9c31acaa"><span>SpatialQueryable.prepareForSpatialQueries</span></a> for a description of this parameter. Options are applied to all octrees (including instances&#8217; octrees).</td>
 </tr>
 </tbody>
 </table>
 </p>
 <hr class="docutils" />
-<span class="target" id="bdbce34e4ba2b0eb783edb88cb6c"></span><p><p class="klcode"><a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a>.raycast? ( in <a class="reference internal" href="../Math/Ray.html#ray"><span>Ray</span></a> ray, in Boolean doubleSided, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> coneThreshold, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxDistance, io Size geometryKey, io <a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a> location )</p>
-<p class="plaintext">Like <a class="reference internal" href="SpatialQueryable.html#f62b50dd0f724b7f9378a6f63a9d5ca6"><span>SpatialQueryable.raycast</span></a>, but returns a <cite>geometryKey</cite> identifying the instance that was hit (if any).
+<span class="target" id="f99db3a43cb42278e55b589fbe46816"></span><p><p class="klcode"><a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a>.raycast? ( in <a class="reference internal" href="../Math/Ray.html#ray"><span>Ray</span></a> ray, in Boolean doubleSided, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> coneThreshold, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxDistance, io Size geometryKey, io <a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a> location )</p>
+<p class="plaintext">Like <a class="reference internal" href="SpatialQueryable.html#c31e6246d454a0cbe9a5474e43b5f48"><span>SpatialQueryable.raycast</span></a>, but returns a <cite>geometryKey</cite> identifying the instance that was hit (if any).
 If none was hit, the returned GeometryLocation will be invalid, and <cite>geometryKey</cite> will be <cite>InvalidIndex</cite>.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d9d4ceba88d94da5a54ed098d4ffcd3e"></span><p><p class="klcode"><a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a>.removeInstance! ( in Size geometryKey )</p>
+<span class="target" id="ea00687ffb204958845ceac3a894f796"></span><p><p class="klcode"><a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a>.removeInstance! ( in Size geometryKey )</p>
 <p class="plaintext">Removes an instance from the geometry instances group. The same <cite>geometryKey</cite> might be
-reassigned to future <a class="reference internal" href="#af6c275a414eb7e7c092b2f5f932"><span>GeometryInstancesSpatialQueries.createInstance</span></a> calls.</p>
+reassigned to future <a class="reference internal" href="#f5990978bc4d76b2ac9bda602b3814"><span>GeometryInstancesSpatialQueries.createInstance</span></a> calls.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="fd037d9906748aeac96bfbc24cb9bc6"></span><p><p class="klcode"><a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a>.updateInstance! ( in Size geometryKey, in Ref&lt;<a class="reference internal" href="Geometry.html#geometry"><span>Geometry</span></a>&gt; geometry, in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> transform )</p>
+<span class="target" id="a6351abde9a6417d91cec998f5e9bca6"></span><p><p class="klcode"><a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a>.updateInstance! ( in Size geometryKey, in Ref&lt;<a class="reference internal" href="Geometry.html#geometry"><span>Geometry</span></a>&gt; geometry, in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> transform )</p>
 <p class="plaintext">Updates information for a given geometry instance. It is safe to change the &#8216;geometry&#8217; value.
 This function is not thread-safe.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b3ad48a3e0704b409cfd52109b7b552c"></span><p><p class="klcode"><a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a>.updateInstance! ( in Size geometryKey, in Ref&lt;<a class="reference internal" href="Geometry.html#geometry"><span>Geometry</span></a>&gt; geometry, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> transform )</p>
+<span class="target" id="dcbd5b2142d7456ea6805694b8eaf1a8"></span><p><p class="klcode"><a class="reference internal" href="#geometryinstancesspatialqueries"><span>GeometryInstancesSpatialQueries</span></a>.updateInstance! ( in Size geometryKey, in Ref&lt;<a class="reference internal" href="Geometry.html#geometry"><span>Geometry</span></a>&gt; geometry, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> transform )</p>
 <p class="plaintext">Updates information for a given geometry instance. It is safe to change the <cite>geometry</cite> value.
 This function is not thread-safe.</p>
 </p>
@@ -387,6 +387,8 @@ This function is not thread-safe.</p>
     <ul class="this-page-menu">
       <li><a href="../../_sources/KLExtensionsGuide/Geometry/GeometryInstancesSpatialQueries.txt"
             rel="nofollow">ソースコードを表示</a></li>
+    <li><a href="http://docs.fabric-engine.com/FabricEngine/2.0.0/HTML/KLExtensionsGuide/Geometry/GeometryInstancesSpatialQueries.html"
+              rel="nofollow">原文公式ページへ移動</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">

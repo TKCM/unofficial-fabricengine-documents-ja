@@ -69,26 +69,26 @@ In particular, most of the work for analyzing statistics and profiling events is
 <span id="fabricstatistics"></span><h2>Statistics<a class="headerlink" href="#statistics" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>The FabricStatistics extension can collect custom statistics and information for any registered objects, from any KL source code (extension, operator...).
 It supports object hierarchies, which simplifies the reports, and allows to sum values through the hierarchy (eg: memory usage).</p>
-<p>Statistics collection for an object is enabled through the implementation of the <a class="reference internal" href="StatisticSource.html#statisticsource"><span>StatisticSource</span></a> interface.
+<p>Statistics collection for an object is enabled through the implementation of the <code class="xref std std-kl-ref docutils literal"><span class="pre">StatisticSource</span></code> interface.
 Through the <code class="xref std std-kl-ref docutils literal"><span class="pre">StatisticSource.getStatistics</span></code> method, the object can submit any statistics or information that
-can be useful for further analysis. The implementation of the <a class="reference internal" href="StatisticSource.html#statisticsource"><span>StatisticSource</span></a> can be simplified by using
-the <a class="reference internal" href="StatisticsAutoRegisterMember.html#statisticsautoregistermember"><span>StatisticsAutoRegisterMember</span></a> helper object, as seen in the example below.</p>
-<p>In order to be registered by the FabricStatistics extension, objects implementing the <a class="reference internal" href="StatisticSource.html#statisticsource"><span>StatisticSource</span></a> interface must
+can be useful for further analysis. The implementation of the <code class="xref std std-kl-ref docutils literal"><span class="pre">StatisticSource</span></code> can be simplified by using
+the <code class="xref std std-kl-ref docutils literal"><span class="pre">StatisticsAutoRegisterMember</span></code> helper object, as seen in the example below.</p>
+<p>In order to be registered by the FabricStatistics extension, objects implementing the <code class="xref std std-kl-ref docutils literal"><span class="pre">StatisticSource</span></code> interface must
 call <code class="xref std std-kl-ref docutils literal"><span class="pre">RegisterToFabricStatistics</span></code> in their constructor(s), and <code class="xref std std-kl-ref docutils literal"><span class="pre">UnregisterFromFabricStatistics</span></code> in their destructor.
-Again, this process can be simplified and made more robust by using the <a class="reference internal" href="StatisticsAutoRegisterMember.html#statisticsautoregistermember"><span>StatisticsAutoRegisterMember</span></a> helper.</p>
+Again, this process can be simplified and made more robust by using the <code class="xref std std-kl-ref docutils literal"><span class="pre">StatisticsAutoRegisterMember</span></code> helper.</p>
 <p>Statistic source objects will be recorded only if statistics have been previously enabled by a call to the <code class="xref std std-kl-ref docutils literal"><span class="pre">EnableFabricStatistics</span></code> function.
 Statistic source objects that were constructed before a call to <code class="xref std std-kl-ref docutils literal"><span class="pre">EnableFabricStatistics</span></code> will not be monitored, so it is recommended
 to enable statistics before the scene gets populated.</p>
-<p>If a <a class="reference internal" href="StatisticSource.html#statisticsource"><span>StatisticSource</span></a> has some sub-objects that are themselves a <a class="reference internal" href="StatisticSource.html#statisticsource"><span>StatisticSource</span></a> (eg: <cite>PolygonMesh</cite> has a <cite>GeometryAttributes</cite> container),
+<p>If a <code class="xref std std-kl-ref docutils literal"><span class="pre">StatisticSource</span></code> has some sub-objects that are themselves a <code class="xref std std-kl-ref docutils literal"><span class="pre">StatisticSource</span></code> (eg: <cite>PolygonMesh</cite> has a <cite>GeometryAttributes</cite> container),
 this relationship must be explicitly recorded by calling the <code class="xref std std-kl-ref docutils literal"><span class="pre">AddStatisticsChild</span></code> function.</p>
 <div class="admonition warning">
 <p class="first admonition-title">警告</p>
 <p class="last">Failing to unregister an object in its destructor can lead to a crash, since the FabricStatistics extension only keeps
 a <cite>Ref&lt;&gt;</cite> (unowned) of the object in order to avoid leaks (else, the object would never destroyed). Again, this can be
-avoided by using the <a class="reference internal" href="StatisticsAutoRegisterMember.html#statisticsautoregistermember"><span>StatisticsAutoRegisterMember</span></a> helper.</p>
+avoided by using the <code class="xref std std-kl-ref docutils literal"><span class="pre">StatisticsAutoRegisterMember</span></code> helper.</p>
 </div>
 <p>Statistics returned by an object through the <code class="xref std std-kl-ref docutils literal"><span class="pre">StatisticSource.getStatistics</span></code> method are simple name / value pairs,
-embedded in a <a class="reference internal" href="StatisticRecord.html#statisticrecord"><span>StatisticRecord</span></a>. Support statistic value types include <cite>String</cite>, <cite>SInt64</cite> and <cite>Float64</cite>. Although
+embedded in a <code class="xref std std-kl-ref docutils literal"><span class="pre">StatisticRecord</span></code>. Support statistic value types include <cite>String</cite>, <cite>SInt64</cite> and <cite>Float64</cite>. Although
 returned statistics can be arbitrary (eg: <cite>Image</cite> returning its <cite>width</cite> and <cite>eight`</cite>), there are some standard fields:</p>
 <ul class="simple">
 <li>&#8220;Name&#8221; (the <cite>Statistic_Name</cite> constant): objects should provide a name, as this is the best way to identify an object in the statistics report.</li>
@@ -164,7 +164,7 @@ the statistic report is built. Information about destroyed objects is not retain
 the statistics to sum through the object hierarchies is provided by the <cite>ColumnsToSum</cite> argument in functions such as <code class="xref std std-kl-ref docutils literal"><span class="pre">GetStatisticStrings</span></code>.</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p class="last">The <a class="reference internal" href="FabricStatistics_RTValWrapper.html#fabricstatistics-rtvalwrapper"><span>FabricStatistics_RTValWrapper</span></a> object simply wraps the <cite>FabricStatistics</cite> global functions so they can
+<p class="last">The <code class="xref std std-kl-ref docutils literal"><span class="pre">FabricStatistics_RTValWrapper</span></code> object simply wraps the <cite>FabricStatistics</cite> global functions so they can
 be accessible through <cite>RTVals</cite> (global functions are not accessible because of a limitation)</p>
 </div>
 </div>
@@ -178,8 +178,8 @@ profile events can be nested, and the hierarchy of events will be recorded.</p>
 <code class="xref std std-kl-ref docutils literal"><span class="pre">StartFabricProfiling</span></code> or <code class="xref std std-kl-ref docutils literal"><span class="pre">StartFabricProfilingFrames</span></code>.</p>
 <p>Profiling events need to be bracketed through a call to <code class="xref std std-kl-ref docutils literal"><span class="pre">BeginProfilingEvent</span></code> and <code class="xref std std-kl-ref docutils literal"><span class="pre">EndProfilingEvent</span></code>.
 The <cite>key</cite> returned by <code class="xref std std-kl-ref docutils literal"><span class="pre">BeginProfilingEvent</span></code> must be passed to the corresponding <code class="xref std std-kl-ref docutils literal"><span class="pre">EndProfilingEvent</span></code>.
-When applicable, events can refer a <a class="reference internal" href="StatisticSource.html#statisticsource"><span>StatisticSource</span></a> object in order to provide more information.
-The <a class="reference internal" href="AutoProfilingEvent.html#autoprofilingevent"><span>AutoProfilingEvent</span></a> struct can simplify profiling events recording since it will automatically
+When applicable, events can refer a <code class="xref std std-kl-ref docutils literal"><span class="pre">StatisticSource</span></code> object in order to provide more information.
+The <code class="xref std std-kl-ref docutils literal"><span class="pre">AutoProfilingEvent</span></code> struct can simplify profiling events recording since it will automatically
 call <code class="xref std std-kl-ref docutils literal"><span class="pre">EndProfilingEvent</span></code> upon destruction.</p>
 <p>All recorded events from the last profiling session can be retrieved by calling <code class="xref std std-kl-ref docutils literal"><span class="pre">GetProfilingEvents</span></code> or <code class="xref std std-kl-ref docutils literal"><span class="pre">GetProfilingReport</span></code>.</p>
 <p><div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
@@ -222,13 +222,13 @@ call <code class="xref std std-kl-ref docutils literal"><span class="pre">EndPro
 <span class="cm">** Output:</span>
 <span class="cm">(stdin):34:3: warning: must use parentheses to call methods (deprecation; will become an error in next version)</span>
 
-<span class="cm">function main(): duration=750.421 ms, startTime=+1.200764e-6&#39;, threadIndex:0</span>
-<span class="cm">  function sub1(): duration=500.278 ms, startTime=+0.250014&#39;, threadIndex:0</span>
-<span class="cm">    function sub2(): duration=250.91 ms, startTime=+0.500028&#39;, threadIndex:0</span>
+<span class="cm">function main(): duration=750.437 ms, startTime=+1.200764e-6&#39;, threadIndex:0</span>
+<span class="cm">  function sub1(): duration=500.294 ms, startTime=+0.250015&#39;, threadIndex:0</span>
+<span class="cm">    function sub2(): duration=250.97 ms, startTime=+0.500029&#39;, threadIndex:0</span>
 
-<span class="cm">{level:0,frame:0,label:&quot;function main()&quot;,startTime:+1.200764887233167e-6,duration:+0.750042176866664,sourceName:&quot;&quot;,threadIndex:0}</span>
-<span class="cm">{level:1,frame:0,label:&quot;function sub1()&quot;,startTime:+2.500148594654794e-1,duration:+0.500027917783628,sourceName:&quot;&quot;,threadIndex:0}</span>
-<span class="cm">{level:2,frame:0,label:&quot;function sub2()&quot;,startTime:+0.500028818357293,duration:+2.500091558322651e-1,sourceName:&quot;&quot;,threadIndex:0}</span>
+<span class="cm">{level:0,frame:0,label:&quot;function main()&quot;,startTime:+1.200764887233167e-6,duration:+0.750043677822773,sourceName:&quot;&quot;,threadIndex:0}</span>
+<span class="cm">{level:1,frame:0,label:&quot;function sub1()&quot;,startTime:+2.500151596567013e-1,duration:+0.500029418739737,sourceName:&quot;&quot;,threadIndex:0}</span>
+<span class="cm">{level:2,frame:0,label:&quot;function sub2()&quot;,startTime:+0.500029118548515,duration:+2.500097562147087e-1,sourceName:&quot;&quot;,threadIndex:0}</span>
 
 <span class="cm">*/</span>
 </pre></div>
@@ -305,6 +305,8 @@ call <code class="xref std std-kl-ref docutils literal"><span class="pre">EndPro
     <ul class="this-page-menu">
       <li><a href="../../_sources/KLExtensionsGuide/FabricStatistics/index.txt"
             rel="nofollow">ソースコードを表示</a></li>
+    <li><a href="http://docs.fabric-engine.com/FabricEngine/2.0.0/HTML/KLExtensionsGuide/FabricStatistics/index.html"
+              rel="nofollow">原文公式ページへ移動</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">

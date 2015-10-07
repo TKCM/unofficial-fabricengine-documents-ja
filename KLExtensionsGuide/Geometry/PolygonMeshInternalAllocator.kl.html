@@ -61,7 +61,13 @@
 <h2>Functions<a class="headerlink" href="#functions" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><div class="section" id="nextoff">
 <h3>NextOff<a class="headerlink" href="#nextoff" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p class="klcode">UInt32 NextOff ( in UInt32 offset, in UInt32 start, in UInt32 end )</p>
+<p class="klcode">UInt32 NextOff ( in UInt32 offset, in UInt32 count )</p>
+<p class="plaintext">Returns the next offset (or index) within a circular array of size <cite>count</cite>. This is useful when accessing polygon&#8217;s
+next <cite>polygonPointIndex</cite> or point&#8217;s next <cite>pointNeighborIndex</cite>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="utilizinggpucompute.html#polygonmeshcomponents"><span>PolygonMesh</span></a></p>
+</div>
 </div>
 </p>
 <p><div class="section" id="prevoff">
@@ -93,6 +99,8 @@
     <ul class="this-page-menu">
       <li><a href="../../_sources/KLExtensionsGuide/Geometry/PolygonMeshInternalAllocator.kl.txt"
             rel="nofollow">ソースコードを表示</a></li>
+    <li><a href="http://docs.fabric-engine.com/FabricEngine/2.0.0/HTML/KLExtensionsGuide/Geometry/PolygonMeshInternalAllocator.html"
+              rel="nofollow">原文公式ページへ移動</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">

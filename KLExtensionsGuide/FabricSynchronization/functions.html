@@ -56,33 +56,33 @@
             
   <div class="section" id="fabricsynchronization-extension-s-free-functions">
 <span id="fabricsynchronization-extension-functions"></span><h1>FabricSynchronization Extension&#8217;s Free Functions<a class="headerlink" href="#fabricsynchronization-extension-s-free-functions" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p><span class="target" id="ca8eab4bcc0c4f9681f63870bb0bf86c"></span><p><p class="klcode">Acquire ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock )</p>
+<p><span class="target" id="ad2ce383c86f4a3f81a7352ec56479c0"></span><p><p class="klcode">Acquire ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock )</p>
 <p class="plaintext">Acquires a lock. If it takes more than <code class="docutils literal"><span class="pre">lock.maxWaitSeconds</span></code>, an exception is thrown.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b626d64329740f383ea5ee7c1611855"></span><p><p class="klcode">Acquire ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxWaitSeconds )</p>
+<span class="target" id="a3d371955d2e4176945731287fb8bdd5"></span><p><p class="klcode">Acquire ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxWaitSeconds )</p>
 <p class="plaintext">Acquires a lock. If it takes more than <code class="docutils literal"><span class="pre">maxWaitSeconds</span></code>, an exception is thrown.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="eeae4e1457c540e08faed1b0a019251c"></span><p><p class="klcode">ActiveWait ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> seconds )</p>
+<span class="target" id="cbc670d1e4fc0bfc9691dc0d73ec0"></span><p><p class="klcode">ActiveWait ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> seconds )</p>
 <p class="plaintext">Helper function for waiting actively during a specific timelapse.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="fc55d813d4b5ea3fd0be88c4ac1c0"></span><p><p class="klcode">Release ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock )</p>
+<span class="target" id="bc3162fbce45c1962482810fd4d24f"></span><p><p class="klcode">Release ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock )</p>
 <p class="plaintext">Releases a lock.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ed3c5b8c64b48008b98be58be34fe52"></span><p><p class="klcode">SimpleAcquire ( io UInt32 lockVariable )</p>
+<span class="target" id="ff53ccf842e091a94931d2b84c16"></span><p><p class="klcode">SimpleAcquire ( io UInt32 lockVariable )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="fc00bfcf464a7fbe5f85033ea17827"></span><p><p class="klcode">SimpleRelease ( io UInt32 lockVariable )</p>
+<span class="target" id="c57086cfdd4a403faed1b8dc674e9c0a"></span><p><p class="klcode">SimpleRelease ( io UInt32 lockVariable )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d0c4e64273b7a0a0a833f94a76"></span><p><p class="klcode">Boolean TryAcquire ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock )</p>
+<span class="target" id="a09e42a533e463aaea7047579d734a8"></span><p><p class="klcode">Boolean TryAcquire ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock )</p>
 <p class="plaintext">Tries to acquire a lock immediately and will return <code class="docutils literal"><span class="pre">false</span></code> if failed.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="dc9ab1edd4e48b1ba981a294f3b844f"></span><p><p class="klcode">Boolean TryAcquire ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxWaitSeconds )</p>
+<span class="target" id="bd74902b7c4be7b0ba9a7f16553fa9"></span><p><p class="klcode">Boolean TryAcquire ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxWaitSeconds )</p>
 <p class="plaintext">Tries to acquire a lock for <code class="docutils literal"><span class="pre">maxWaitSeconds</span></code> seconds. Will return <code class="docutils literal"><span class="pre">false</span></code> if failed.</p>
 </p>
 </p>
@@ -108,6 +108,8 @@
     <ul class="this-page-menu">
       <li><a href="../../_sources/KLExtensionsGuide/FabricSynchronization/functions.txt"
             rel="nofollow">ソースコードを表示</a></li>
+    <li><a href="http://docs.fabric-engine.com/FabricEngine/2.0.0/HTML/KLExtensionsGuide/FabricSynchronization/functions.html"
+              rel="nofollow">原文公式ページへ移動</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
