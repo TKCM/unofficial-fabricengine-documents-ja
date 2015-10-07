@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Extension Authoring Guide &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
+    <link rel="next" title="Introduction" href="intro.html" />
+    <link rel="prev" title="Using RTVals from C++ Applications" href="../RTValProgrammingGuide/capi.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="../RTValProgrammingGuide/capi.html" title="Using RTVals from C++ Applications"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="extension-authoring-guide">
+<span id="extrg"></span><h1>Extension Authoring Guide<a class="headerlink" href="#extension-authoring-guide" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<a class="reference internal image-reference" href="../_images/FE_logo_345_60.png"><img alt="../_images/FE_logo_345_60.png" src="../_images/FE_logo_345_60.png" style="width: 345px; height: 60px;" /></a>
+<div class="line-block">
+<div class="line">Fabric Engine version 2.0.0</div>
+<div class="line">Copyright 2010-2015 Fabric Software Inc. All rights reserved.</div>
+</div>
+<div class="section" id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#what-is-a-fabric-product-name-extension">What is a Fabric Engine Extension?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#types-of-extensions">Types of Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#limitations">Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="build.html">Building the Sample Extension</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="build.html#install-developer-tools">Install Developer Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html#copy-the-sample">Copy the Sample</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html#build-the-sample">Build the Sample</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html#test-the-sample">Test the Sample</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sample.html">Understanding the Sample Extension</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sample.html#helloworld-fpm-json"><code class="file docutils literal"><span class="pre">HelloWorld.fpm.json</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html#helloworld-kl"><code class="file docutils literal"><span class="pre">HelloWorld.kl</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html#helloworld-cpp"><code class="file docutils literal"><span class="pre">HelloWorld.cpp</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html#test-py"><code class="file docutils literal"><span class="pre">test.py</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html#sconstruct"><code class="file docutils literal"><span class="pre">SConstruct</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="fpm.html">The Extension Manifest File</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fpm.html#the-version-extension-versioning-specification-optional">The <code class="code docutils literal"><span class="pre">version</span></code> Extension Versioning Specification (optional)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fpm.html#the-override-extension-versioning-override-optional">The <code class="code docutils literal"><span class="pre">override</span></code> Extension Versioning Override (optional)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fpm.html#the-dfgpresets-canvas-presets-specification-optional">The <code class="code docutils literal"><span class="pre">dfgPresets</span></code> Canvas Presets Specification (optional)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fpm.html#the-libs-compiled-library-specification">The <code class="code docutils literal"><span class="pre">libs</span></code> Compiled Library Specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fpm.html#the-code-kl-source-code-specification">The <code class="code docutils literal"><span class="pre">code</span></code> KL Source Code Specification</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cPlusPlusApis.html">Wrapping C++ APIs for use in KL</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cPlusPlusApis.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cPlusPlusApis.html#type-conversion">Type Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cPlusPlusApis.html#mapping-classes-to-objects">Mapping Classes to Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cPlusPlusApis.html#memory-management">Memory Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPlusPlusApis.html#mapping-public-methods">Mapping Public methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPlusPlusApis.html#public-members">Public Members</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPlusPlusApis.html#pure-data-container-structs">Pure data container structs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPlusPlusApis.html#passing-arrays-from-kl-to-a-c-style-api">Passing Arrays from KL to a C-Style API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPlusPlusApis.html#mapping-class-hierarchies">Mapping Class Hierarchies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPlusPlusApis.html#managing-data-ownership-and-bidirectional-relationships">Managing Data Ownership and bidirectional relationships</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPlusPlusApis.html#handling-dependencies-between-classes">Handling Dependencies between Classes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cPlusPlusApis.html#other-tips-and-tricks">Other Tips and Tricks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cPlusPlusApis.html#mapping-const-functions-to-kl-as-const-functions">Mapping Const Functions to KL as const functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPlusPlusApis.html#cloning-objects-in-kl">Cloning Objects in KL</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="kl2edk.html">The <strong class="command">kl2edk</strong> Utility</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="kl2edk.html#required-build-flags">Required Build Flags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kl2edk.html#the-generated-header-files">The Generated Header Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kl2edk.html#cpp-code-generation">Cpp Code Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kl2edk.html#namespacing">Namespacing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kl2edk.html#the-fabricedk-h-header-file">The <code class="file docutils literal"><span class="pre">FabricEDK.h</span></code> Header File</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kl2edk.html#build-macros">Build Macros</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kl2edk.html#the-fabric-ext-export-function-definition-prefix">The <code class="code docutils literal"><span class="pre">FABRIC_EXT_EXPORT</span></code> Function Definition Prefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kl2edk.html#debugging-and-error-handling-functions">Debugging and Error-Handling Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kl2edk.html#older-extensions-before-kl2edk">Older Extensions (before kl2edk)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">Types and Extensions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="types.html#simple-types">Simple Types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="types.html#equivalences-for-simple-types">Equivalences for Simple Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html#the-kl-datawrapper-ty-and-kl-constdatawrapper-ty-templates">The <code class="samp docutils literal"><span class="pre">KL::DataWrapper&lt;</span><em><span class="pre">Ty</span></em><span class="pre">&gt;</span></code> and <code class="samp docutils literal"><span class="pre">KL::ConstDataWrapper&lt;</span><em><span class="pre">Ty</span></em><span class="pre">&gt;</span></code> Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#complex-types">Complex Types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="types.html#kl-string"><code class="code docutils literal"><span class="pre">KL::String</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html#kl-variablearray-ty"><code class="samp docutils literal"><span class="pre">KL::VariableArray&lt;</span><em><span class="pre">Ty</span></em><span class="pre">&gt;</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html#kl-fixedarray-ty-size"><code class="samp docutils literal"><span class="pre">KL::FixedArray&lt;</span><em><span class="pre">Ty</span></em><span class="pre">,</span> <em><span class="pre">size</span></em><span class="pre">&gt;</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html#kl-externalarray-ty"><code class="samp docutils literal"><span class="pre">KL::ExternalArray&lt;</span><em><span class="pre">Ty</span></em><span class="pre">&gt;</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html#kl-dict-keyty-valuety"><code class="samp docutils literal"><span class="pre">KL::Dict&lt;</span><em><span class="pre">KeyTy</span></em><span class="pre">,</span> <em><span class="pre">ValueTy</span></em><span class="pre">&gt;`</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html#kl-object"><code class="code docutils literal"><span class="pre">KL::Object</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#user-defined-types">User-Defined Types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="types.html#structures">Structures</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="types.html#mapping-kl-structures-to-third-party-api-structures">Mapping KL Structures to Third-Party API Structures</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="types.html#interfaces">Interfaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html#objects">Objects</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cconv.html">Calling Convention for Exported Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cconv.html#calling-convention-for-simple-types">Calling Convention for Simple Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cconv.html#calling-convention-for-complex-types">Calling Convention for Complex Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cconv.html#mixing-simple-and-complex-types">Mixing Simple and Complex Types</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reloading.html">Extension Reloading</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reloading.html#api-functions">API Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reloading.html#updating-kl-type-member-layout">Updating KL Type Member Layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reloading.html#updating-kl-source-code">Updating KL Source Code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reloading.html#extension-dependencies">Extension Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reloading.html#changing-function-prototypes-or-adding-removing-functions">Changing Function Prototypes or Adding/Removing Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Extension Authoring Guide</a><ul>
+<li><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="../RTValProgrammingGuide/capi.html"
+                        title="前の章へ">Using RTVals from C++ Applications</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="intro.html"
+                        title="次の章へ">Introduction</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/ExtensionAuthoringGuide/index.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="../RTValProgrammingGuide/capi.html" title="Using RTVals from C++ Applications"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

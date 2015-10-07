@@ -1,0 +1,687 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>BulletRigidBody.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="Bullet Extension’s Files" href="files.html" />
+    <link rel="next" title="BulletRigidBody_Constraints.kl" href="BulletRigidBody_Constraints.kl.html" />
+    <link rel="prev" title="BulletPolyhedralConvexShape.kl" href="BulletPolyhedralConvexShape.kl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="BulletRigidBody_Constraints.kl.html" title="BulletRigidBody_Constraints.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="BulletPolyhedralConvexShape.kl.html" title="BulletPolyhedralConvexShape.kl"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Bullet Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">Bullet Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="bullet-bulletrigidbody-kl">
+<span id="bulletrigidbody-kl"></span><span id="id1"></span><h1>BulletRigidBody.kl<a class="headerlink" href="#bullet-bulletrigidbody-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="bulletrigidbodyconstructioninfo-struct">
+<h3>BulletRigidBodyConstructionInfo (struct)<a class="headerlink" href="#bulletrigidbodyconstructioninfo-struct" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">The <a class="reference internal" href="BulletRigidBodyConstructionInfo.html#bulletrigidbodyconstructioninfo"><span>BulletRigidBodyConstructionInfo</span></a> structure provides information to create a rigid body. Setting mass to zero creates a fixed (non-dynamic) rigid body.
+For dynamic objects, you can use the collision shape to approximate the local inertia tensor, otherwise use the zero vector (default argument)
+You can use the motion state to synchronize the world transform between physics and graphics objects.
+And if the motion state is provided, the rigid body will initialize its initial world transform from the motion state,
+startWorldTransform is only used when you don&#8217;t provide a motion state.</p>
+<div class="section" id="members">
+<h4>Members<a class="headerlink" href="#members" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="21%" />
+<col width="16%" />
+<col width="63%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td>mass</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="BulletMotionState.html#bulletmotionstate"><span>BulletMotionState</span></a></td>
+<td>motionState</td>
+<td>When a motionState is provided, the rigid body will initialize its world transform from the motion state In this case, startWorldTransform is ignored.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a></td>
+<td>startWorldTransform</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="BulletCollisionShape.html#bulletcollisionshape"><span>BulletCollisionShape</span></a></td>
+<td>collisionShape</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td>localInertia</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td>linearDamping</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td>angularDamping</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td>friction</td>
+<td>best simulation results when friction is non-zero</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td>restitution</td>
+<td>best simulation results using zero restitution.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td>linearSleepingThreshold</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td>angularSleepingThreshold</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td>additionalDamping</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td>additionalDampingFactor</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td>additionalLinearDampingThresholdSqr</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td>additionalAngularDampingThresholdSqr</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td>additionalAngularDampingFactor</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="21%" />
+<col width="79%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBodyConstructionInfo.html#a34ee1a66a34e5c93f7fedd8263449d"><span>BulletRigidBodyConstructionInfo</span></a>  ( in <a class="reference internal" href="BulletRigidBodyConstructionInfo.html#bulletrigidbodyconstructioninfo"><span>BulletRigidBodyConstructionInfo</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBodyConstructionInfo.html#e22155a3338472886a43a70658a03ba"><span>BulletRigidBodyConstructionInfo</span></a>  ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> mass, in <a class="reference internal" href="BulletMotionState.html#bulletmotionstate"><span>BulletMotionState</span></a> motionState, in <a class="reference internal" href="BulletCollisionShape.html#bulletcollisionshape"><span>BulletCollisionShape</span></a> collisionShape )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBodyConstructionInfo.html#a73f62e850904eb2bab3c9f704d2069d"><span>BulletRigidBodyConstructionInfo</span></a>  ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> mass, in <a class="reference internal" href="BulletMotionState.html#bulletmotionstate"><span>BulletMotionState</span></a> motionState, in <a class="reference internal" href="BulletCollisionShape.html#bulletcollisionshape"><span>BulletCollisionShape</span></a> collisionShape, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> localInertia )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBodyConstructionInfo.html#e7e4d51c78a46e58e1c0f06d2e4b054"><span>BulletRigidBodyConstructionInfo</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBodyConstructionInfo.html#a418730d841f3abcb7ba590a66bd2"><span>__construct</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> mass, in <a class="reference internal" href="BulletMotionState.html#bulletmotionstate"><span>BulletMotionState</span></a> motionState, in <a class="reference internal" href="BulletCollisionShape.html#bulletcollisionshape"><span>BulletCollisionShape</span></a> collisionShape, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> localInertia )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="BulletRigidBodyConstructionInfo.html#bulletrigidbodyconstructioninfo"><span>BulletRigidBodyConstructionInfo</span></a></td>
+<td><a class="reference internal" href="BulletRigidBodyConstructionInfo.html#c384d2ec4e2e4a9f9fc31720c8230bd3"><span>clone</span></a> ? ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+<p><div class="section" id="bulletrigidbody-object">
+<h3>BulletRigidBody (object)<a class="headerlink" href="#bulletrigidbody-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">The <a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a> is the main class for rigid body objects. It is derived from <a class="reference internal" href="BulletICollisionObject.html#bulleticollisionobject"><span>BulletICollisionObject</span></a>, so it keeps a pointer to a <a class="reference internal" href="BulletCollisionShape.html#bulletcollisionshape"><span>BulletCollisionShape</span></a>.
+It is recommended for performance and memory use to share <a class="reference internal" href="BulletCollisionShape.html#bulletcollisionshape"><span>BulletCollisionShape</span></a> objects whenever possible.
+There are 3 types of rigid bodies:
+- A) Dynamic rigid bodies, with positive mass. Motion is controlled by rigid body dynamics.
+- B) Fixed objects with zero mass. They are not moving (basically collision objects)
+- C) Kinematic objects, which are objects without mass, but the user can move them. There is on-way interaction, and Bullet calculates a velocity based on the timestep and previous and current world transform.
+Bullet automatically deactivates dynamic rigid bodies, when the velocity is below a threshold for a given time.
+Deactivated (sleeping) rigid bodies don&#8217;t take any processing time, except a minor broadphase collision detection impact (to allow active objects to activate/wake up sleeping objects)</p>
+<div class="section" id="id2">
+<h4>Members<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="71%" />
+<col width="25%" />
+<col width="4%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Data</td>
+<td>pointer</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="BulletMotionState.html#bulletmotionstate"><span>BulletMotionState</span></a></td>
+<td>__motionState</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="BulletCollisionShape.html#bulletcollisionshape"><span>BulletCollisionShape</span></a></td>
+<td>__collisionShape</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Object[]</td>
+<td>__constraints</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="BulletBroadphaseProxy.html#bulletbroadphaseproxy"><span>BulletBroadphaseProxy</span></a></td>
+<td>__broadphaseProxy</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Object</td>
+<td>__userPointer</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id3">
+<h4>Methods<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#b4108c5ecee490985779ef96bfc163d"><span>BulletRigidBody</span></a>  ( in <a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#a0a23b92f9ef4b90a9495514a445be9c"><span>BulletRigidBody</span></a>  ( in <a class="reference internal" href="BulletRigidBodyConstructionInfo.html#bulletrigidbodyconstructioninfo"><span>BulletRigidBodyConstructionInfo</span></a> constructionInfo )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#c2406200114e4f27b1adb0504c356308"><span>BulletRigidBody</span></a>  ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#f7ab15c4e164fd983117b2d73bbcf65"><span>__addConstraintRef</span></a> ! ( in <a class="reference internal" href="BulletTypedConstraint.html#bullettypedconstraint"><span>BulletTypedConstraint</span></a> c )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#a3b7ba74482d9f9844e9f3e329ee"><span>__construct</span></a> ! ( in <a class="reference internal" href="BulletRigidBodyConstructionInfo.html#bulletrigidbodyconstructioninfo"><span>BulletRigidBodyConstructionInfo</span></a> constructionInfo )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#f18c126483794c1c3ec453f9d4a"><span>__destroy</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#a3ef99ef6e4a0b96a12ff13918d7f0"><span>__removeConstraintRef</span></a> ! ( in <a class="reference internal" href="BulletTypedConstraint.html#bullettypedconstraint"><span>BulletTypedConstraint</span></a> c )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#a349514979403d96b42e772516e671"><span>__setCollisionShape</span></a> ! ( in <a class="reference internal" href="BulletCollisionShape.html#bulletcollisionshape"><span>BulletCollisionShape</span></a> collisionShape )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#ad94f0234994be9a37a9f62f61a3658"><span>__setMotionState</span></a> ! ( in <a class="reference internal" href="BulletMotionState.html#bulletmotionstate"><span>BulletMotionState</span></a> motionState )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#f72634067864539a20dd18dc20e84ed"><span>__setNewBroadphaseProxy</span></a> ! ( in <a class="reference internal" href="BulletBroadphaseProxy.html#bulletbroadphaseproxy"><span>BulletBroadphaseProxy</span></a> broadphaseProxy )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#f2b8db888631412eb145983b49fcf89d"><span>activate</span></a> ! ( in Boolean forceActivation )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#dfb39e89b0734c6097389f786d07478b"><span>activate</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#a43ac9b28cd84719abe5709324ec6c07"><span>addConstraintRef</span></a> ! ( in <a class="reference internal" href="BulletTypedConstraint.html#bullettypedconstraint"><span>BulletTypedConstraint</span></a> c )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#ec205ec4244d8c8442d0eb398607b8"><span>applyCentralForce</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> force )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#f73d9d5c8014bc396c689d856e31b61"><span>applyCentralImpulse</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> impulse )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#b6fd752a0ed4233ae2af1160072c150"><span>applyDamping</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> timeStep )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#be2c3300dce42cfbb27e8cc64f9fac9"><span>applyForce</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> force, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> rel_pos )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#e8086de14d179bee8c8ec8e942fe"><span>applyGravity</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#a4cbbfc46d34fda93939b15d5f8931c"><span>applyImpulse</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> impulse, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> rel_pos )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#c64bf516c4247e588243cf38e715ade"><span>applyTorque</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> torque )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#c76a216d0454514800d86699d282f17"><span>applyTorqueImpulse</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> torque )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="BulletRigidBody.html#f7dd5fcb9f4d7b8d3ff0132fc388d2"><span>checkCollideWith</span></a> ? ( in <a class="reference internal" href="BulletICollisionObject.html#bulleticollisionobject"><span>BulletICollisionObject</span></a> co )</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="BulletRigidBody.html#caf71a0d890d430dae18db3d406e999e"><span>checkCollideWithOverride</span></a> ? ( in <a class="reference internal" href="BulletICollisionObject.html#bulleticollisionobject"><span>BulletICollisionObject</span></a> co )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#d0c58c9eb342f98617f4de691344aa"><span>clearForces</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#f92db93b6784573bf90031938460998"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#b3bf7c6ab84dd4b12fd3626b38b437"><span>computeAngularImpulseDenominator</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> axis )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#f7389c4c6146e48d0bd56ed37cf593"><span>computeImpulseDenominator</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> pos, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> normal )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#a56670987425f9f7400368d087c9f"><span>forceActivationState</span></a> ! ( in Integer newState )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#d4f22c8f352546469c95808c082e9570"><span>getAabb</span></a> ! ( io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> aabbMin, io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> aabbMax )</td>
+</tr>
+<tr class="row-even"><td>Integer</td>
+<td><a class="reference internal" href="BulletRigidBody.html#cf81be05ac146159b5e5e2e77d9dc24"><span>getActivationState</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#bbd3721e6f054e05a7c48e5581237b99"><span>getAngularDamping</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#bce5fe71034dde98b7520be89ada56"><span>getAngularFactor</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#decd851b90c449218c9c5e8cdee9c017"><span>getAngularSleepingThreshold</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#ba4d67cbe428ba30f2f87bc3bd3c1"><span>getAngularVelocity</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#e43824655ad54cb503d5f9dbb"><span>getAnisotropicFriction</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="BulletBroadphaseProxy.html#bulletbroadphaseproxy"><span>BulletBroadphaseProxy</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#f463594e455186815c7cb72704f0"><span>getBroadphaseHandle</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="BulletBroadphaseProxy.html#bulletbroadphaseproxy"><span>BulletBroadphaseProxy</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#b3ee8bbefb0743bf89308aefdfb43258"><span>getBroadphaseProxy</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#ddf84cc896043959a9bb4f496c665fd"><span>getCcdMotionThreshold</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#c855892dd114f6db2fd8aae1b0720f7"><span>getCcdSquareMotionThreshold</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#f6f63517050348e4a000c1254405b480"><span>getCcdSweptSphereRadius</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#d5d53e44d78dd0061ee509a63e"><span>getCenterOfMassPosition</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#daee2d1748d4e1eb8db7d88d67cff5e"><span>getCenterOfMassTransform</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Integer</td>
+<td><a class="reference internal" href="BulletRigidBody.html#d098c4b4784a182c266dd2180"><span>getCollisionFlags</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="BulletCollisionShape.html#bulletcollisionshape"><span>BulletCollisionShape</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#a5665c8a64b940afa5852edecbc65d45"><span>getCollisionShape</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Integer</td>
+<td><a class="reference internal" href="BulletRigidBody.html#f44717c2df0e4a74b75171eb15ba2dc8"><span>getCompanionId</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="BulletTypedConstraint.html#bullettypedconstraint"><span>BulletTypedConstraint</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#d172dddd846a0b46c7761c1e3fba4"><span>getConstraintRef</span></a> ? ( in Integer index )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#c22420f9f93542d18b3f9c9cc86ec36c"><span>getContactProcessingThreshold</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#caf3b645ac946a8b673774595b6c299"><span>getDeactivationTime</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#db64abb57f1c45f98d58733efe5d13c8"><span>getDeltaAngularVelocity</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#fe7ecacc98ba440ebf9ee6d662c8a850"><span>getDeltaLinearVelocity</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Integer</td>
+<td><a class="reference internal" href="BulletRigidBody.html#df21caf5d1a4bbfbc55101de749a172"><span>getFlags</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#a7ecd04ace87c53536f01f2bf6"><span>getFriction</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#fe8208c77b0c400c9f5e4360fc2f2c01"><span>getGravity</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#f8bafda466e04a7184045b5249a7da56"><span>getHitFraction</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#a2fc1ebeab43bf868e7841ceb5f7c0"><span>getInterpolationAngularVelocity</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#c4be1da0bbc4c709d26a83142d71d43"><span>getInterpolationLinearVelocity</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#e039a1ea4ae2950a6724369d0ecd"><span>getInterpolationWorldTransform</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#f716db29a8f467f9e58b8fc2c0fd286"><span>getInvInertiaDiagLocal</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Mat33.html#mat33"><span>Mat33</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#bb5a6f9bc0bc4331938b54faf0118d0c"><span>getInvInertiaTensorWorld</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#e495e7855d94322a3c8e5bd34060b22"><span>getInvMass</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Integer</td>
+<td><a class="reference internal" href="BulletRigidBody.html#f0a56ff4102854b39468633f610"><span>getIslandTag</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#d69f4b4b6e98bc4b78ecc7603c"><span>getLinearDamping</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#c6f080b43460eaf827e1ccad11352"><span>getLinearFactor</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#cad9e98e2431688baefb7532840c7"><span>getLinearSleepingThreshold</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#e3b55f2c804896a7ed8fc5f05f002d"><span>getLinearVelocity</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="BulletMotionState.html#bulletmotionstate"><span>BulletMotionState</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#ce04eec45ad4b48a83d2d8ba4d9b870"><span>getMotionState</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Integer</td>
+<td><a class="reference internal" href="BulletRigidBody.html#c913fff3655c4c70b5bcdf5ada5b13ab"><span>getNumConstraintRefs</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Object</td>
+<td><a class="reference internal" href="BulletRigidBody.html#d66a34af48a40fcf391d57901"><span>getObject</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Quat.html#quat"><span>Quat</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#c91a87efef4bd8b2a132d37b907285"><span>getOrientation</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Data</td>
+<td><a class="reference internal" href="BulletRigidBody.html#a3aa344ff9f34b7cc499c612a"><span>getPointer</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#d97d45a2c4f1b914e0f473d0c3c62"><span>getPushVelocity</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#d6b37e043b599035a579b92888b"><span>getRestitution</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#eb476020b38424ca4276bcbdb7e9991"><span>getTotalForce</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#b740b7ac80c04de9b286ab2735b20bf2"><span>getTotalTorque</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#d3dbc71b9b604c44b0b58bc1490d92bf"><span>getTurnVelocity</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Object</td>
+<td><a class="reference internal" href="BulletRigidBody.html#ab7aa06c2f443c8dcec3074dc2ff37"><span>getUserPointer</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#b5ee970837bd460cb8ee674c03aff223"><span>getVelocityInLocalPoint</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> rel_pos )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a></td>
+<td><a class="reference internal" href="BulletRigidBody.html#ebf52d938b0d48f6b8ddd8cab8f5d815"><span>getWorldTransform</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="BulletRigidBody.html#a4cb9b37273f4f0dba4bb5cefaf12a5b"><span>hasAnisotropicFriction</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="BulletRigidBody.html#ed50705dd9af4f07acd7bcab9f291f25"><span>hasContactResponse</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#d316445224ac0a8eb4066562b600d"><span>integrateVelocities</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> step )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="BulletRigidBody.html#ac8ede3fe22d4ad4ab83e12f4ffad5ea"><span>isActive</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="BulletRigidBody.html#d925ab0604dceb26d3311dfc2d6a2"><span>isInWorld</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="BulletRigidBody.html#a0ead93901480280287aa1a8b19c7f"><span>isKinematicObject</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="BulletRigidBody.html#a97d1605e8ca49baa72965cc6e276057"><span>isStaticObject</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="BulletRigidBody.html#f9381b3558464653a800664b8cf9bd5d"><span>isStaticOrKinematicObject</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="BulletRigidBody.html#a8bbb540d9427d87533feb2c9311de"><span>mergesSimulationIslands</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#f9e3805a747acaaf59751de38934b"><span>predictIntegratedTransform</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> step, io <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> predictedTransform )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#ee62e4ca566f4b5886d2294858bf23fd"><span>proceedToTransform</span></a> ! ( in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> newTrans )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#b9ddfe9f1047498051b746829df053"><span>removeConstraintRef</span></a> ! ( in <a class="reference internal" href="BulletTypedConstraint.html#bullettypedconstraint"><span>BulletTypedConstraint</span></a> c )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#a230c61c7034d6992ff997317bef52a"><span>saveKinematicState</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> step )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#c6751fe492683ecf71900ea3da7"><span>setActivationState</span></a> ! ( in Integer newState )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#f39e06d662c462399c98d9eb5ca76fe"><span>setAngularFactor</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> angFac )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#fcedb3df564a1cb86ea930e635c8b3"><span>setAngularFactor</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> angFac )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#a6bfa49b4798adb09b295af2aa3b"><span>setAngularVelocity</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> ang_vel )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#d4b80f3c38c84a11b1e6001187d8a11a"><span>setAnisotropicFriction</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> anisotropicFriction )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#ca349835576f460fa7ad71f8ae8316b4"><span>setCcdMotionThreshold</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> ccdMotionThreshold )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#d80329c98af4dc1ace28b9f4c38f232"><span>setCcdSweptSphereRadius</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#db86005e4d88b7b9920d6cff9c83"><span>setCenterOfMassTransform</span></a> ! ( in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> xform )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#a925fb42eb40008f7049c1807465cf"><span>setCollisionFlags</span></a> ! ( in Integer flags )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#ec9f66434ed5bbcde54c36fe81ac"><span>setCollisionShape</span></a> ! ( in <a class="reference internal" href="BulletCollisionShape.html#bulletcollisionshape"><span>BulletCollisionShape</span></a> collisionShape )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#b2e0e82b5e1b4296959d5e1e98bfc706"><span>setCompanionId</span></a> ! ( in Integer id )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#d16dec8a27634938aed20b8644257266"><span>setContactProcessingThreshold</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> contactProcessingThreshold )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#d075b33130458fbbc9f2c71f52e82f"><span>setDamping</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> lin_damping, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> ang_damping )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#a104388aced421a90bdddc93d934ef2"><span>setDeactivationTime</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> time )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#fdb3f6cfe144f0e9269a6f463d949ad"><span>setFlags</span></a> ! ( in Integer flags )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#fb8fd405ff9401885d71374d8a48304"><span>setFriction</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> frict )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#adde104a9546129fedd54daca42933"><span>setGravity</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> acceleration )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#faf08f5c2d41b692dad4052401058d"><span>setHitFraction</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> hitFraction )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#db76603caa8452f868545ebc2fb0824"><span>setInterpolationAngularVelocity</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> angvel )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#c088bf6949f14ab195b2bab7ddbf6d75"><span>setInterpolationLinearVelocity</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> linvel )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#ac75f5682c32443384ea63d965bb02c1"><span>setInterpolationWorldTransform</span></a> ! ( in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> trans )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#e54751f783f408caca2328958b0e1af"><span>setInvInertiaDiagLocal</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> diagInvInertia )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#fbee5640c5b74e378a5e06d2bc8ba5ac"><span>setInvMass</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> mass )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#fbacfccbf9704dc6bc49f30b52009b39"><span>setIslandTag</span></a> ! ( in Integer tag )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#ec52f67ef6446e8b7ed1657bfe91f8b"><span>setLinearFactor</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> linearFactor )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#e75543fa5401aa16d8098ec3a073f"><span>setLinearVelocity</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> lin_vel )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#ebda8594439a86335238812eea9f"><span>setMotionState</span></a> ! ( in <a class="reference internal" href="BulletMotionState.html#bulletmotionstate"><span>BulletMotionState</span></a> motionState )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#bb5939b3604155be71ab3edced07db"><span>setNewBroadphaseProxy</span></a> ! ( in <a class="reference internal" href="BulletBroadphaseProxy.html#bulletbroadphaseproxy"><span>BulletBroadphaseProxy</span></a> broadphaseProxy )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#df1f7bb7443c46ada1884d3d6b33ae20"><span>setRestitution</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> rest )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#def60ec44ac8549d45527739943"><span>setSleepingThresholds</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> linear, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> angular )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#cefc399c0ba4a40a410438035dcb49a"><span>setUserPointer</span></a> ! ( in Object userPointer )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#dfcc53f554064a21b8fa344f8dfc196d"><span>setWorldTransform</span></a> ! ( in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> worldTrans )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#eeb249d37c44478a1cd266450c2fbd"><span>translate</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> v )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#dea13182cf401b8378dd1d735cece4"><span>updateDeactivation</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> timeStep )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#b8e91294e71819a2111db2d7c85"><span>updateInertiaTensor</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="BulletRigidBody.html#d7e73738c884c63ac100c5c1d3b461e"><span>wantsSleeping</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRigidBody.html#b5c92dc46faafd157709801756f"><span>~BulletRigidBody</span></a>  ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="BulletPolyhedralConvexShape.kl.html"
+                        title="前の章へ">BulletPolyhedralConvexShape.kl</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="BulletRigidBody_Constraints.kl.html"
+                        title="次の章へ">BulletRigidBody_Constraints.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/Bullet/BulletRigidBody.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="BulletRigidBody_Constraints.kl.html" title="BulletRigidBody_Constraints.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="BulletPolyhedralConvexShape.kl.html" title="BulletPolyhedralConvexShape.kl"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Bullet Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >Bullet Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

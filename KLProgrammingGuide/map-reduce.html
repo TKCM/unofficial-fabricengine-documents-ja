@@ -1,0 +1,891 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Map-Reduce &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
+    <link rel="up" title="KL Programming Guide" href="index.html" />
+    <link rel="next" title="KL Style Guide" href="../KLStyleGuide/index.html" />
+    <link rel="prev" title="Statements" href="statements.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../KLStyleGuide/index.html" title="KL Style Guide"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="statements.html" title="Statements"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">KL Programming Guide</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="map-reduce">
+<span id="index-0"></span><span id="id1"></span><h1>Map-Reduce<a class="headerlink" href="#map-reduce" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Fabric Engine provides a generic map-reduce framework that can be used to create recursively-parallel operations on large data sets.</p>
+<p>This chapter does not attempt to explain the concepts behind and usage of the Fabric Engine map-reduce framework; it serves purely to enumerate the types and functions that are provided in KL to support the framework.  For more information on concepts and usage of the map-reduce framework, refer to the Map-Reduce Programming Guide.</p>
+<div class="section" id="map-reduce-types">
+<span id="mr-types"></span><span id="index-1"></span><h2>Map-Reduce Types<a class="headerlink" href="#map-reduce-types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>In order to support map-reduce, KL introduces two new derived types: <code class="samp docutils literal"><span class="pre">ValueProducer&lt;</span><em><span class="pre">ValueType</span></em><span class="pre">&gt;</span></code> and <code class="samp docutils literal"><span class="pre">ArrayProducer&lt;</span><em><span class="pre">ElementType</span></em><span class="pre">&gt;</span></code>.</p>
+<div class="section" id="the-valueproducer-valuetype-type">
+<span id="value-producer"></span><span id="index-2"></span><h3>The <code class="samp docutils literal"><span class="pre">ValueProducer&lt;</span><em><span class="pre">ValueType</span></em><span class="pre">&gt;</span></code> Type<a class="headerlink" href="#the-valueproducer-valuetype-type" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Given an existing type <code class="samp docutils literal"><em><span class="pre">ValueType</span></em></code>, the type <code class="samp docutils literal"><span class="pre">ValueProducer&lt;</span><em><span class="pre">ValueType</span></em><span class="pre">&gt;</span></code> is a map-reduce value producer that produces values of type <code class="samp docutils literal"><em><span class="pre">ValueType</span></em></code>.  Values of type <code class="samp docutils literal"><span class="pre">ValueProducer&lt;</span><em><span class="pre">ValueType</span></em><span class="pre">&gt;</span></code> have the following properties:</p>
+<ul>
+<li><p class="first">They can be assigned to variables of the same type; however, there must be an exact match for <code class="samp docutils literal"><em><span class="pre">ValueType</span></em></code>.  In other words, <code class="samp docutils literal"><span class="pre">ValueProducer&lt;</span><em><span class="pre">ValueType1</span></em><span class="pre">&gt;</span></code> and <code class="samp docutils literal"><span class="pre">ValueProducer&lt;</span><em><span class="pre">ValueType2</span></em><span class="pre">&gt;</span></code> are the same type if and only if <code class="samp docutils literal"><em><span class="pre">ValueType1</span></em></code> and <code class="samp docutils literal"><em><span class="pre">ValueType2</span></em></code> are the same type.</p>
+</li>
+<li><p class="first">They support a method</p>
+<pre class="literal-block">
+function <code class="samp docutils literal"><em><span class="pre">ValueType</span></em></code> ValueProducer&lt;<code class="samp docutils literal"><em><span class="pre">ValueType</span></em></code>&gt;.produce()
+</pre>
+<p>that produces the value producer&#8217;s value.</p>
+</li>
+<li><p class="first">They support a method</p>
+<pre class="literal-block">
+function ValueProducer&lt;<code class="samp docutils literal"><em><span class="pre">ValueType</span></em></code>&gt;.flush()
+</pre>
+<p>that recursively flushes any caches connected to the value producer.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="the-arrayproducer-elementtype-type">
+<span id="array-producer"></span><h3>The <code class="samp docutils literal"><span class="pre">ArrayProducer&lt;</span><em><span class="pre">ElementType</span></em><span class="pre">&gt;</span></code> Type<a class="headerlink" href="#the-arrayproducer-elementtype-type" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Given an existing type <code class="samp docutils literal"><em><span class="pre">ElementType</span></em></code>, the type <code class="samp docutils literal"><span class="pre">ArrayProducer&lt;</span><em><span class="pre">ElementType</span></em><span class="pre">&gt;</span></code> is a map-reduce array producer that produces values of type <code class="samp docutils literal"><em><span class="pre">ElementType</span></em></code>.  Values of type <code class="samp docutils literal"><span class="pre">ArrayProducer&lt;</span><em><span class="pre">ElementType</span></em><span class="pre">&gt;</span></code> have the following properties:</p>
+<ul>
+<li><p class="first">They can be assigned to variables of the same type; however, there must be an exact match for <code class="samp docutils literal"><em><span class="pre">ElementType</span></em></code>.  In other words, <code class="samp docutils literal"><span class="pre">ArrayProducer&lt;</span><em><span class="pre">ElementType1</span></em><span class="pre">&gt;</span></code> and <code class="samp docutils literal"><span class="pre">ArrayProducer&lt;</span><em><span class="pre">ElementType2</span></em><span class="pre">&gt;</span></code> are the same type if and only if <code class="samp docutils literal"><em><span class="pre">ElementType1</span></em></code> and <code class="samp docutils literal"><em><span class="pre">ElementType2</span></em></code> are the same type.</p>
+</li>
+<li><p class="first">They support a method</p>
+<pre class="literal-block">
+function Size ArrayProducer&lt;<code class="samp docutils literal"><em><span class="pre">ElementType</span></em></code>&gt;.getCount()
+</pre>
+<p>that returns the number of elements in the array producer.  Calling <code class="samp docutils literal"><span class="pre">produce(</span><em><span class="pre">i</span></em><span class="pre">)</span></code> (below) with <code class="samp docutils literal"><em><span class="pre">i</span></em></code> not less than the result of <code class="docutils literal"><span class="pre">getCount()</span></code> will throw an exception.</p>
+</li>
+<li><p class="first">They support a method</p>
+<pre class="literal-block">
+function <code class="samp docutils literal"><em><span class="pre">ElementType</span></em></code> ArrayProducer&lt;<code class="samp docutils literal"><em><span class="pre">ElementType</span></em></code>&gt;.produce(Index <code class="samp docutils literal"><em><span class="pre">i</span></em></code>)
+</pre>
+<p>that produces the array producer&#8217;s element at index <code class="samp docutils literal"><em><span class="pre">i</span></em></code>.</p>
+</li>
+<li><p class="first">They support a method</p>
+<pre class="literal-block">
+function ArrayProducer&lt;<code class="samp docutils literal"><em><span class="pre">ElementType</span></em></code>&gt;.flush()
+</pre>
+<p>that recursively flushes any caches connected to the array producer.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="map-reduce-functions">
+<span id="mr-functions"></span><h2>Map-Reduce Functions<a class="headerlink" href="#map-reduce-functions" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>KL supports several functions to support the creation of new value and array producers from existing producers as well as KL functions and values.</p>
+<div class="section" id="value-producer-creation-functions">
+<h3>Value Producer Creation Functions<a class="headerlink" href="#value-producer-creation-functions" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<dl class="function">
+<dt id="createConstValue">
+<code class="descname">createConstValue</code><span class="sig-paren">(</span><em>expr</em><span class="sig-paren">)</span><a class="headerlink" href="#createConstValue" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Creates a value producer that returns a constant value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">引数:</th><td class="field-body"><ul class="first simple">
+<li><strong>expr</strong> (<em>ValueType</em>) &#8211; The expression to evaluate to obtain the constant value.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値の型:</th><td class="field-body"><p class="first last">ValueProducer&lt;ValueType&gt;</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>operator entry() {
+  ValueProducer&lt;Integer&gt; vp = createConstValue( 42 );
+  report(vp);
+  report(vp.produce());
+}
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-python"><div class="highlight"><pre>ValueProducer&lt;Integer&gt;
+42
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="createValueGenerator">
+<code class="descname">createValueGenerator</code><span class="sig-paren">(</span><em>operatorName</em><span class="optional">[</span>, <em>sharedValueProducer</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#createValueGenerator" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Creates a value producer that calls the operator named <em>operatorName</em> to generate the value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">引数:</th><td class="field-body"><ul class="first simple">
+<li><strong>operatorName</strong> &#8211; The name of the operator to call to generate the value.</li>
+<li><strong>sharedValueProducer</strong> (<em>ValueProducer&lt;SharedValueType&gt;</em>) &#8211; (optional) Shared value producer to pass to <em>operatorName</em>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値の型:</th><td class="field-body"><p class="first last">ValueProducer&lt;ValueType&gt;</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The operator <em>operatorName</em> must have the following prototype:</p>
+<pre class="literal-block">
+operator <em>operatorName</em>(
+  io <em>ValueType</em> outputValue,
+  // required if and only if <em>sharedValueProducer</em> provided
+  in <em>SharedValueType</em> sharedValue
+  );
+</pre>
+<p>The type <em>ValueType</em> is inferred from the first parameter of <em>operatorName</em>.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>operator gen1(io String output) {
+  output = &quot;Hello!&quot;;
+}
+
+operator gen2(io String output, String shared) {
+  output = &quot;Hello, &quot; + shared;
+}
+
+operator entry() {
+  ValueProducer&lt;String&gt; vp1 = createValueGenerator(gen1);
+  report(&quot;vp1 = &quot; + vp1);
+  report(&quot;vp1.produce() = &quot; + vp1.produce());
+
+  ValueProducer&lt;String&gt; vp2 = createValueGenerator(gen2, vp1);
+  report(&quot;vp2 = &quot; + vp2);
+  report(&quot;vp2.produce() = &quot; + vp2.produce());
+}
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-python"><div class="highlight"><pre>vp1 = ValueProducer&lt;String&gt;
+vp1.produce() = Hello!
+vp2 = ValueProducer&lt;String&gt;
+vp2.produce() = Hello, Hello!
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="createValueTransform">
+<code class="descname">createValueTransform</code><span class="sig-paren">(</span><em>inputValueProducer</em>, <em>operatorName</em><span class="optional">[</span>, <em>sharedValueProducer</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#createValueTransform" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Creates a value producer that calls the given operator to transform the result of another value producer of the same type.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">引数:</th><td class="field-body"><ul class="first simple">
+<li><strong>inputValueProducer</strong> (<em>ValueProducer&lt;ValueType&gt;</em>) &#8211; The input value producer to transform.</li>
+<li><strong>operatorName</strong> &#8211; The name of the operator to call to transform the value.</li>
+<li><strong>sharedValueProducer</strong> (<em>ValueProducer&lt;SharedValueType&gt;</em>) &#8211; (optional) Shared value producer to pass to <em>operatorName</em>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値の型:</th><td class="field-body"><p class="first last">ValueProducer&lt;ValueType&gt;</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The operator <em>operatorName</em> must have the following prototype:</p>
+<pre class="literal-block">
+operator <em>operatorName</em>(
+  io <em>ValueType</em> value,
+  // required if and only if <em>sharedValueProducer</em> provided
+  in <em>SharedValueType</em> sharedValue
+  );
+</pre>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>operator multByTwo(
+  io Integer value
+  )
+{
+  value *= 2;
+}
+
+operator multByShared(
+  io Integer value,
+  Integer shared
+  )
+{
+  value *= shared;
+}
+
+operator entry() {
+  ValueProducer&lt;Integer&gt; vp;
+
+  vp = createValueTransform(
+    createConstValue( 42 ),
+    multByTwo
+    );
+  report(vp);
+  report(vp.produce());
+
+  vp = createValueTransform(
+    createConstValue( 2 ),
+    multByShared,
+    createConstValue( 3 )
+    );
+  report(vp);
+  report(vp.produce());
+}
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-python"><div class="highlight"><pre>ValueProducer&lt;Integer&gt;
+84
+ValueProducer&lt;Integer&gt;
+6
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="createValueMap">
+<code class="descname">createValueMap</code><span class="sig-paren">(</span><em>inputValueProducer</em>, <em>operatorName</em><span class="optional">[</span>, <em>sharedValueType</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#createValueMap" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Creates a value producer that calls the operator <em>operatorName</em> to map the result of another value producer, possibly to a value producer of a different type.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">引数:</th><td class="field-body"><ul class="first simple">
+<li><strong>inputValueProducer</strong> (<em>ValueProducer&lt;InputValueType&gt;</em>) &#8211; The input value producer whose value to map.</li>
+<li><strong>operatorName</strong> &#8211; The name of the operator to call to map the value.</li>
+<li><strong>sharedValueProducer</strong> (<em>ValueProducer&lt;SharedValueType&gt;</em>) &#8211; (optional) Shared value producer to pass to <em>operatorName</em>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値の型:</th><td class="field-body"><p class="first last">ValueProducer&lt;OutputValueType&gt;</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The operator <em>operatorName</em> must have the following prototype:</p>
+<pre class="literal-block">
+operator <em>operatorName</em>(
+  in <em>InputValueType</em> inputValue,
+  io <em>OutputValueType</em> outputValue,
+  // required if and only if <em>sharedValueProducer</em> provided
+  in <em>SharedValueType</em> sharedValue
+  );
+</pre>
+<p>The type <em>OutputValueType</em> is inferred from the second parameter of <em>operatorName</em>.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>operator multByPi(
+  Integer input,
+  io Scalar output
+  )
+{
+  output = 3.14 * input;
+}
+
+operator multByShared(
+  Integer input,
+  io Scalar output,
+  Scalar shared
+  )
+{
+  output = input * shared;
+}
+
+operator entry() {
+  ValueProducer&lt;Scalar&gt; vp;
+
+  vp = createValueMap(
+    createConstValue( 42 ),
+    multByPi
+    );
+  report(vp);
+  report(vp.produce());
+
+  vp = createValueMap(
+    createConstValue( 2 ),
+    multByShared,
+    createConstValue( Scalar(2.71) )
+    );
+  report(vp);
+  report(vp.produce());
+}
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-python"><div class="highlight"><pre>ValueProducer&lt;Scalar&gt;
+131.88
+ValueProducer&lt;Scalar&gt;
+5.42
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="createValueCache">
+<code class="descname">createValueCache</code><span class="sig-paren">(</span><em>inputValueProducer</em><span class="sig-paren">)</span><a class="headerlink" href="#createValueCache" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Creates a value producer that caches the result of another value producer of the same type.  For more information on producer caches, see refer to the Map-Reduce Programming Guide.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">引数:</th><td class="field-body"><ul class="first simple">
+<li><strong>inputValueProducer</strong> (<em>ValueProducer&lt;ValueType&gt;</em>) &#8211; The input value producer to cache.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値の型:</th><td class="field-body"><p class="first last">ValueProducer&lt;ValueType&gt;</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>operator valueGen(
+  io Scalar output
+  )
+{
+  output = 2.71;
+  report(&quot;Generating output = &quot; + output);
+}
+
+operator entry() {
+  ValueProducer&lt;Scalar&gt; vp = createValueCache(createValueGenerator(valueGen));
+  report(&quot;vp.produce() = &quot; + vp.produce());
+  report(&quot;vp.produce() = &quot; + vp.produce());
+  report(&quot;calling vp.flush()&quot;);
+  vp.flush();
+  report(&quot;vp.produce() = &quot; + vp.produce());
+  report(&quot;vp.produce() = &quot; + vp.produce());
+}
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-python"><div class="highlight"><pre>Generating output = 2.71
+vp.produce() = 2.71
+vp.produce() = 2.71
+calling vp.flush()
+Generating output = 2.71
+vp.produce() = 2.71
+vp.produce() = 2.71
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="array-producer-creation-functions">
+<h3>Array Producer Creation Functions<a class="headerlink" href="#array-producer-creation-functions" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<dl class="function">
+<dt id="createConstArray">
+<code class="descname">createConstArray</code><span class="sig-paren">(</span><em>arrayExpr</em><span class="sig-paren">)</span><a class="headerlink" href="#createConstArray" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Creates an array producer that returns constant values.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">引数:</th><td class="field-body"><ul class="first simple">
+<li><strong>expr</strong> &#8211; The expression to evaluate to obtain the constant array.  The expression must be some sort of KL array (variable-length, fixed-length or external).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値の型:</th><td class="field-body"><p class="first last">ArrayProducer&lt;ElementType&gt;</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The type <em>ElementType</em> is the element type of the the array given by <em>arrayExpr</em>.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>operator entry() {
+  Integer a[]; a.push(42); a.push(17); a.push(52); a.push(871);
+  ArrayProducer&lt;Integer&gt; ap = createConstArray(a);
+  report(ap);
+  report(ap.getCount());
+  report(ap.produce(2));
+}
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-python"><div class="highlight"><pre>ArrayProducer&lt;Integer&gt;
+4
+52
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="createArrayGenerator">
+<code class="descname">createArrayGenerator</code><span class="sig-paren">(</span><em>sizeProducer</em>, <em>operatorName</em><span class="optional">[</span>, <em>sharedValueProducer</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#createArrayGenerator" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Creates an array producer that calls the operator named <em>operatorName</em> to generate the elements of the array.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">引数:</th><td class="field-body"><ul class="first simple">
+<li><strong>sizeProducer</strong> (<em>ValueProducer&lt;Size&gt;</em>) &#8211; A value producer that produces a value of type <code class="docutils literal"><span class="pre">Size</span></code>.  This value producer is used to determine the size of the array (ie. the number of elements).</li>
+<li><strong>operatorName</strong> &#8211; The name of the operator to call to generate the elements.</li>
+<li><strong>sharedValueProducer</strong> (<em>ValueProducer&lt;SharedValueType&gt;</em>) &#8211; (optional) Shared value producer to pass to <em>operatorName</em>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値の型:</th><td class="field-body"><p class="first last">ArrayProducer&lt;ElementType&gt;</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The operator <em>operatorName</em> must have the following prototype:</p>
+<pre class="literal-block">
+operator <em>operatorName</em>(
+  io <em>ElementType</em> outputElementValue,
+  in Size index,
+  in Size size,
+  // required if and only if <em>sharedValueProducer</em> provided
+  in <em>SharedValueType</em> sharedValue
+  );
+</pre>
+<p>The type <em>ElementType</em> is inferred from the first parameter of <em>operatorName</em>.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>operator generator(
+  io Float32 value,
+  Size index,
+  Size count,
+  Float32 shared
+  )
+{
+  report(&quot;generator: value=&quot; + value + &quot; index=&quot; + index + &quot; count=&quot; + count + &quot; shared=&quot; + shared);
+  value = shared*index;
+}
+
+operator entry() {
+  ValueProducer&lt;Size&gt; cvg = createConstValue(Size(10));
+  ArrayProducer&lt;Float32&gt; ag4 = createArrayGenerator(cvg, generator, createConstValue(Float32(3.141)));
+  report(ag4);
+  report(ag4.getCount());
+  for (Size i=0; i&lt;10; ++i)
+    report(ag4.produce(i));
+}
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-python"><div class="highlight"><pre>ArrayProducer&lt;Float32&gt;
+10
+generator: value=0 index=0 count=10 shared=3.141
+0
+generator: value=0 index=1 count=10 shared=3.141
+3.141
+generator: value=0 index=2 count=10 shared=3.141
+6.282
+generator: value=0 index=3 count=10 shared=3.141
+9.423
+generator: value=0 index=4 count=10 shared=3.141
+12.564
+generator: value=0 index=5 count=10 shared=3.141
+15.705
+generator: value=0 index=6 count=10 shared=3.141
+18.846
+generator: value=0 index=7 count=10 shared=3.141
+21.987
+generator: value=0 index=8 count=10 shared=3.141
+25.128
+generator: value=0 index=9 count=10 shared=3.141
+28.269
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="createArrayTransform">
+<code class="descname">createArrayTransform</code><span class="sig-paren">(</span><em>inputArrayProducer</em>, <em>operatorName</em><span class="optional">[</span>, <em>sharedValueProducer</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#createArrayTransform" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Creates an array producer that transforms the input array producer by calling the operator named <em>operatorName</em> on the individual elements.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">引数:</th><td class="field-body"><ul class="first simple">
+<li><strong>inputArrayProducer</strong> (<em>ArrayProducer&lt;ElementType&gt;</em>) &#8211; The input array producer to transform.</li>
+<li><strong>operatorName</strong> &#8211; The name of the operator to call to transform the elements.</li>
+<li><strong>sharedValueProducer</strong> (<em>ValueProducer&lt;SharedValueType&gt;</em>) &#8211; (optional) Shared value producer to pass to <em>operatorName</em>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値の型:</th><td class="field-body"><p class="first last">ArrayProducer&lt;ElementType&gt;</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The operator <em>operatorName</em> must have the following prototype:</p>
+<pre class="literal-block">
+operator <em>operatorName</em>(
+  io <em>ElementType</em> elementValue,
+  in Size index,
+  in Size size,
+  // required if and only if <em>sharedValueProducer</em> provided
+  in <em>SharedValueType</em> sharedValue
+  );
+</pre>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>operator transform(
+  io Float32 value,
+  Size index,
+  Size count,
+  Float32 shared
+  )
+{
+  report(&quot;transform: value=&quot; + value + &quot; index=&quot; + index + &quot; count=&quot; + count + &quot; shared=&quot; + shared);
+  value *= shared * (index + 1);
+}
+
+operator entry() {
+  Float32 inputArray[]; inputArray.push(5.6); inputArray.push(-3.4); inputArray.push(1.4142);
+  ArrayProducer&lt;Float32&gt; inputArrayProducer = createConstArray(inputArray);
+  ArrayProducer&lt;Float32&gt; transformedArrayProducer = createArrayTransform(inputArrayProducer, transform, createConstValue(Float32(2.56)));
+  report(transformedArrayProducer);
+  report(transformedArrayProducer.getCount());
+  Size transformedArrayProducerCount = transformedArrayProducer.getCount();
+  for (Index i=0; i&lt;transformedArrayProducerCount; ++i)
+    report(transformedArrayProducer.produce(i));
+}
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-python"><div class="highlight"><pre>ArrayProducer&lt;Float32&gt;
+3
+transform: value=5.6 index=0 count=3 shared=2.56
+14.336
+transform: value=-3.4 index=1 count=3 shared=2.56
+-17.408
+transform: value=1.4142 index=2 count=3 shared=2.56
+10.86106
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="createArrayMap">
+<code class="descname">createArrayMap</code><span class="sig-paren">(</span><em>inputArrayProducer</em>, <em>operatorName</em><span class="optional">[</span>, <em>sharedValueProducer</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#createArrayMap" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Creates an array producer that calls the operator <em>operatorName</em> to map the elements of another array producer, possibly to an array producer of a different type.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">引数:</th><td class="field-body"><ul class="first simple">
+<li><strong>inputArrayProducer</strong> (<em>ArrayProducer&lt;InputElementType&gt;</em>) &#8211; The input array producer whose elements to map.</li>
+<li><strong>operatorName</strong> &#8211; The name of the operator to call to map the elements.</li>
+<li><strong>sharedValueProducer</strong> (<em>ValueProducer&lt;SharedValueType&gt;</em>) &#8211; (optional) Shared value producer to pass to <em>operatorName</em>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値の型:</th><td class="field-body"><p class="first last">ArrayProducer&lt;OutputElementType&gt;</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The operator <em>operatorName</em> must have the following prototype:</p>
+<pre class="literal-block">
+operator <em>operatorName</em>(
+  in <em>InputElementType</em> inputElementValue,
+  io <em>OutputElementType</em> outputElementValue,
+  in Size index,
+  in Size size,
+  // required if and only if <em>sharedValueProducer</em> provided
+  in <em>SharedValueType</em> sharedValue
+  );
+</pre>
+<p>The type <em>OutputElementType</em> is inferred from the second parameter of <em>operatorName</em>.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>operator map(
+  Float32 inputValue,
+  io String outputValue,
+  Size index,
+  Size count,
+  Float32 shared
+  )
+{
+  report(&quot;map: inputValue=&quot; + inputValue + &quot; index=&quot; + index + &quot; count=&quot; + count + &quot; shared=&quot; + shared);
+  Float32 float32Value = inputValue * shared * (index + 1);
+  if (abs(float32Value) &lt; 1.0)
+    outputValue = &quot;small&quot;;
+  else if (abs(float32Value) &lt; 10.0)
+    outputValue = &quot;medium&quot;;
+  else if (abs(float32Value) &lt; 100.0)
+    outputValue = &quot;large&quot;;
+  else
+    outputValue = &quot;x-large&quot;;
+}
+
+operator entry() {
+  Float32 inputArray[]; inputArray.push(5.6); inputArray.push(-0.034); inputArray.push(1.4142);
+  ArrayProducer&lt;Float32&gt; inputArrayProducer = createConstArray(inputArray);
+  ArrayProducer&lt;String&gt; mappedArrayProducer = createArrayMap(inputArrayProducer, map, createConstValue(Float32(2.56)));
+  report(mappedArrayProducer);
+  report(mappedArrayProducer.getCount());
+  Size mappedArrayProducerCount = mappedArrayProducer.getCount();
+  for (Index i=0; i&lt;mappedArrayProducerCount; ++i)
+    report(mappedArrayProducer.produce(i));
+}
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-python"><div class="highlight"><pre>ArrayProducer&lt;String&gt;
+3
+map: inputValue=5.6 index=0 count=3 shared=2.56
+large
+map: inputValue=-0.034 index=1 count=3 shared=2.56
+small
+map: inputValue=1.4142 index=2 count=3 shared=2.56
+large
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="createArrayCache">
+<code class="descname">createArrayCache</code><span class="sig-paren">(</span><em>inputArrayProducer</em><span class="sig-paren">)</span><a class="headerlink" href="#createArrayCache" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Creates an array producer that caches the result of another array producer of the same type.  For more information on producer caches, refer to the Map-Reduce Programming Guide.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">引数:</th><td class="field-body"><ul class="first simple">
+<li><strong>inputArrayProducer</strong> (<em>ArrayProducer&lt;ElementType&gt;</em>) &#8211; The input array producer to cache.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値の型:</th><td class="field-body"><p class="first last">ArrayProducer&lt;ElementType&gt;</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>operator elementGen(
+  io Scalar output,
+  Size index
+  )
+{
+  output = 2.71 * index;
+  report(&quot;Generating output = &quot; + output);
+}
+
+operator entry() {
+  ArrayProducer&lt;Scalar&gt; ap = createArrayCache(
+    createArrayGenerator(
+      createConstValue(Size(4)),
+      elementGen
+      )
+    );
+  report(&quot;ap.produce(2) = &quot; + ap.produce(2));
+  report(&quot;ap.produce(2) = &quot; + ap.produce(2));
+  report(&quot;calling ap.flush()&quot;);
+  ap.flush();
+  report(&quot;ap.produce(2) = &quot; + ap.produce(2));
+  report(&quot;ap.produce(2) = &quot; + ap.produce(2));
+}
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-python"><div class="highlight"><pre>Generating output = 5.42
+ap.produce(2) = 5.42
+ap.produce(2) = 5.42
+calling ap.flush()
+Generating output = 5.42
+ap.produce(2) = 5.42
+ap.produce(2) = 5.42
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="reduce-functions">
+<h3>Reduce Functions<a class="headerlink" href="#reduce-functions" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<dl class="function">
+<dt id="createReduce">
+<code class="descname">createReduce</code><span class="sig-paren">(</span><em>arrayProducer</em>, <em>operatorName</em><span class="optional">[</span>, <em>sharedValueProducer</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#createReduce" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Creates a value producer that reduces an array producer to a value producer by calling the operator named <em>operatorName</em> to contribute the individual elements to the reduction.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">引数:</th><td class="field-body"><ul class="first simple">
+<li><strong>arrayProducer</strong> (<em>ArrayProducer&lt;ElementType&gt;</em>) &#8211; The input array producer to reduce.</li>
+<li><strong>operatorName</strong> &#8211; The name of the operator to call to transform the elements.</li>
+<li><strong>sharedValueProducer</strong> (<em>ValueProducer&lt;SharedValueType&gt;</em>) &#8211; (optional) Shared value producer to pass to <em>operatorName</em>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値の型:</th><td class="field-body"><p class="first last">ValueProducer&lt;ValueType&gt;</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The operator <em>operatorName</em> must have the following prototype:</p>
+<pre class="literal-block">
+operator <em>operatorName</em>(
+  in <em>ElementType</em> inputElement,
+  io <em>ValueType</em> outputValue,
+  in Size index,
+  in Size size,
+  // required if and only if <em>sharedValueProducer</em> provided
+  in <em>SharedValueType</em> sharedValue
+  );
+</pre>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>operator generator(
+  io Integer outputValue,
+  Size index,
+  Size size
+  )
+{
+  outputValue = index + 1;
+}
+
+operator reduce(
+  Integer inputValue,
+  io Integer outputValue,
+  Size index,
+  Size size
+  )
+{
+  report(&quot;reduce: inputValue=&quot; + inputValue);
+  outputValue += inputValue;
+}
+
+operator entry() {
+  ValueProducer&lt;Integer&gt; sum = createReduce(
+    createArrayGenerator(
+      createConstValue(Size(10)),
+      generator
+      ),
+    reduce
+    );
+  report(&quot;sum.produce() = &quot; + sum.produce());
+}
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-python"><div class="highlight"><pre>reduce: inputValue=1
+reduce: inputValue=2
+reduce: inputValue=3
+reduce: inputValue=4
+reduce: inputValue=5
+reduce: inputValue=6
+reduce: inputValue=7
+reduce: inputValue=8
+reduce: inputValue=9
+reduce: inputValue=10
+sum.produce() = 55
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Map-Reduce</a><ul>
+<li><a class="reference internal" href="#map-reduce-types">Map-Reduce Types</a><ul>
+<li><a class="reference internal" href="#the-valueproducer-valuetype-type">The <code class="samp docutils literal"><span class="pre">ValueProducer&lt;</span><em><span class="pre">ValueType</span></em><span class="pre">&gt;</span></code> Type</a></li>
+<li><a class="reference internal" href="#the-arrayproducer-elementtype-type">The <code class="samp docutils literal"><span class="pre">ArrayProducer&lt;</span><em><span class="pre">ElementType</span></em><span class="pre">&gt;</span></code> Type</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#map-reduce-functions">Map-Reduce Functions</a><ul>
+<li><a class="reference internal" href="#value-producer-creation-functions">Value Producer Creation Functions</a></li>
+<li><a class="reference internal" href="#array-producer-creation-functions">Array Producer Creation Functions</a></li>
+<li><a class="reference internal" href="#reduce-functions">Reduce Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="statements.html"
+                        title="前の章へ">Statements</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="../KLStyleGuide/index.html"
+                        title="次の章へ">KL Style Guide</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/KLProgrammingGuide/map-reduce.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../KLStyleGuide/index.html" title="KL Style Guide"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="statements.html" title="Statements"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >KL Programming Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

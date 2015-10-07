@@ -1,0 +1,505 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Wrapping C++ APIs for use in KL &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
+    <link rel="up" title="Extension Authoring Guide" href="index.html" />
+    <link rel="next" title="The kl2edk Utility" href="kl2edk.html" />
+    <link rel="prev" title="The Extension Manifest File" href="fpm.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="kl2edk.html" title="The kl2edk Utility"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="fpm.html" title="The Extension Manifest File"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Extension Authoring Guide</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="wrapping-c-apis-for-use-in-kl">
+<span id="eag-cplusplusapis"></span><h1>Wrapping C++ APIs for use in KL<a class="headerlink" href="#wrapping-c-apis-for-use-in-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>This guide is intended to help developers wrapping C++ extensions for use in KL to use the best practices and follow common conventions when wrapping their own APIs using the EDK.</p>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The KL language is designed to provide a low barrier to entry for developers migrating from other languages. KL features high level systems such as reference counted containers and interfaces.</p>
+<p>The goal of wrapping an API for KL is to enable developers working with the KL language to utilise the API in a similar way to how they would work with the API in C++ or other languages where the API is exposed. The consistent mapping of an API ensures that users familiar with the API can transition to KL and quickly become productive without needing to learn new concepts.</p>
+<p>C++ API Code:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">getName</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>C++ Example Code:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span class="n">A</span> <span class="o">*</span><span class="n">val1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">A</span><span class="p">();</span>
+<span class="n">sprintf</span><span class="p">(</span><span class="n">val1</span><span class="o">-&gt;</span><span class="n">getName</span><span class="p">());</span>
+<span class="k">delete</span> <span class="n">val1</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>KL Example Code:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="nx">A</span> <span class="nx">val1</span> <span class="o">=</span> <span class="nx">A</span><span class="p">();</span>
+<span class="nb">report</span><span class="p">(</span><span class="nx">val1</span><span class="p">.</span><span class="nx">getName</span><span class="p">());</span>
+<span class="nx">val1</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>If an API has been well wrapped, then code written in C++ can be migrated to KL with only minor modifications. Classes defined in C++ can be exposed in KL with the same interfaces, meaning that users can create KL type and invoke methods on them as they would in C++. The differences between the KL and the C++ API should mainly be derived from the simpler memory management exposed in KL. Concepts such as pointers and memory allocation are not exposed in KL.</p>
+<p>Where there is direct overlap with the provided KL types, It is preferable to convert the API types directly to the KL types in the API wrapping layer. An example of this is basic math types such as Integers, Scalars, Vectors and Quaternions. Fabric Engine comes with a complete math library, so to provide a seamless integration the KL Math types should be generated by the API unless some good reason exists to propagate custom Math types in to KL.</p>
+</div>
+<div class="section" id="type-conversion">
+<h2>Type Conversion<a class="headerlink" href="#type-conversion" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Providing a set of utility functions to convert between common data types is the first step in mapping an API from C++ into KL. Conversion functions should be implemented for both directions enabling values to be pushed into the C++ API from KL, and pulled out of the API layer into KL.</p>
+<p>For convenience, you can use the <code class="code docutils literal"><span class="pre">use</span> <span class="pre">namespace</span></code> functionality of C++ to avoid prefixing the types and functions:</p>
+<p>Example Code from the Bullet Integration</p>
+<div class="highlight-c++"><div class="highlight"><pre><span class="kr">inline</span> <span class="kt">bool</span> <span class="nf">vec3ToBtVector3</span><span class="p">(</span><span class="k">const</span> <span class="n">KL</span><span class="o">::</span><span class="n">Vec3</span> <span class="o">&amp;</span> <span class="n">from</span><span class="p">,</span> <span class="n">btVector3</span> <span class="o">&amp;</span> <span class="n">to</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">to</span><span class="p">.</span><span class="n">setX</span><span class="p">(</span><span class="n">from</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+  <span class="n">to</span><span class="p">.</span><span class="n">setY</span><span class="p">(</span><span class="n">from</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+  <span class="n">to</span><span class="p">.</span><span class="n">setZ</span><span class="p">(</span><span class="n">from</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">inline</span> <span class="kt">bool</span> <span class="nf">btVector3ToVec3</span><span class="p">(</span><span class="k">const</span> <span class="n">btVector3</span> <span class="o">&amp;</span> <span class="n">from</span><span class="p">,</span> <span class="n">KL</span><span class="o">::</span><span class="n">Vec3</span> <span class="o">&amp;</span> <span class="n">to</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">to</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">from</span><span class="p">.</span><span class="n">getX</span><span class="p">();</span>
+  <span class="n">to</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">from</span><span class="p">.</span><span class="n">getY</span><span class="p">();</span>
+  <span class="n">to</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">from</span><span class="p">.</span><span class="n">getZ</span><span class="p">();</span>
+  <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>These utility methods become a key component of the API wrapping, and should be as simple and performant as possible. These methods are usually used to map arguments provided to methods from KL to the C++ API types and therefore may be called many times per graph evaluation.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">In some circumstances where the KL type&#8217;s memory layout can be guaranteed to match the memory layout of the C++ API types, the KL type can simply be cast to the C++ type. Using the ref:<cite>EAG.kl2edk</cite> utility, you can validate the exact memory layout of your KL types by checking the generated header files. See <a class="reference internal" href="kl2edk.html#eag-kl2edk"><span>The kl2edk Utility</span></a></p>
+</div>
+</div>
+<div class="section" id="mapping-classes-to-objects">
+<h2>Mapping Classes to Objects<a class="headerlink" href="#mapping-classes-to-objects" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>An API might define a collection of C++ classes organized into a hierarchy. The user of the API can construct these classes and invoke methods on them.
+Conceptually, the classes defined in the API should map to KL Objects. An instance of a KL Object should represent an instance of the C++ class. This relationship is managed via mapping methods on KL objects to static methods in the C++ wrapper layer.</p>
+<div class="section" id="memory-management">
+<h3>Memory Management<a class="headerlink" href="#memory-management" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>In KL, Objects are ref counted objects. Only once all references to an object are removed will an object be destroyed. KL objects provide constructors and destructors that are called when the object is created or destroyed. The lifetime of the KL object should be used to manage the lifetime of the instantiated C++ classes that the object represents.</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kr">object</span> <span class="nx">ObjectA</span> <span class="p">{</span>
+  <span class="nx">Data</span> <span class="nx">pointer</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">ObjectA</span><span class="p">()</span> <span class="o">=</span> <span class="s2">&quot;ObjectA_construct&quot;</span><span class="p">;</span>
+<span class="kd">function</span> <span class="o">~</span><span class="nx">ObjectA</span><span class="p">()</span> <span class="o">=</span> <span class="s2">&quot;ObjectA_destroy&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>KL objects must be referenced by at least once by an owning class or node to ensure that they are not destroyed. By maintaining references to objects, you can guarantee that they will not be destroyed, and can control when they will eventually be freed. For systems of interdependent classes see ‘Managing Data ownership and bidirectional relationships’ below.</p>
+</div>
+<div class="section" id="mapping-public-methods">
+<h3>Mapping Public methods<a class="headerlink" href="#mapping-public-methods" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Mapping methods from KL to C++ starts by defining the KL method, and the name of a static method that would be invoked when that method is called from C++. Only the public methods that define the interface of a class need to be mapped from KL to C++. These methods are the methods that clients of the class must invoke when working with the class. The KL objects represent a mapping of the public interface of the class, rather than a complete mapping of all protected and private methods.</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kr">object</span> <span class="nx">ObjectA</span> <span class="p">{</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">ObjectA</span><span class="p">.</span><span class="nx">methodA</span><span class="p">()</span> <span class="o">=</span> <span class="s2">&quot;ObjectA_methodA&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="public-members">
+<h3>Public Members<a class="headerlink" href="#public-members" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Mapping of public members from KL to C++ is not automatic. There is no facility in KL to detect when a KL Object’s or Struct’s member value changes to automatically synchronize values to the mapped C++ class or struct. Ideally all interactions with a struct or class occur through public methods(except in the ‘Simple Data-Container Structs’ example provided below).</p>
+</div>
+<div class="section" id="pure-data-container-structs">
+<h3>Pure data container structs<a class="headerlink" href="#pure-data-container-structs" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>In some cases, a C++ API may define simple structs that are used to pass a large number of variables into a constructor or method. In this case an equivalent KL struct can be defined, complete with all the same members. When the KL struct is passed into a method, the C++ mapping of the method can handle a manual conversion of the KL struct to the C++ struct. In the same way the Math types are mapped, each of the members is simply converted to the C++ API types.</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kr">struct</span>  <span class="nx">ClassAConstructionInfo</span>
+<span class="p">{</span>
+  <span class="nx">Scalar</span>      <span class="nx">foo</span><span class="p">;</span>
+  <span class="nx">Xfo</span>         <span class="nx">xfo</span><span class="p">;</span>
+  <span class="nx">Vec3</span>        <span class="nx">bar</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<div class="highlight-c++"><div class="highlight"><pre><span class="n">FABRIC_EXT_EXPORT</span> <span class="kt">void</span> <span class="nf">ClassA_construct</span><span class="p">(</span>
+  <span class="n">Fabric</span><span class="o">::</span><span class="n">EDK</span><span class="o">::</span><span class="n">KL</span><span class="o">::</span><span class="n">Traits</span><span class="o">&lt;</span> <span class="n">Fabric</span><span class="o">::</span><span class="n">EDK</span><span class="o">::</span><span class="n">KL</span><span class="o">::</span><span class="n">ClassA</span> <span class="o">&gt;::</span><span class="n">IOParam</span> <span class="n">this_</span><span class="p">,</span>
+  <span class="n">Fabric</span><span class="o">::</span><span class="n">EDK</span><span class="o">::</span><span class="n">KL</span><span class="o">::</span><span class="n">Traits</span><span class="o">&lt;</span> <span class="n">Fabric</span><span class="o">::</span><span class="n">EDK</span><span class="o">::</span><span class="n">KL</span><span class="o">::</span><span class="n">ClassAConstructionInfo</span> <span class="o">&gt;::</span><span class="n">INParam</span> <span class="n">constructionInfo</span>
+<span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">ClassAConstructionInfo</span> <span class="n">info</span><span class="p">;</span>
+
+  <span class="n">scalarToFloat</span><span class="p">(</span><span class="n">constructionInfo</span><span class="p">.</span><span class="n">foo</span><span class="p">,</span> <span class="n">info</span><span class="p">.</span><span class="n">m_foo</span><span class="p">);</span>
+  <span class="n">xfoToTransform</span><span class="p">(</span><span class="n">constructionInfo</span><span class="p">.</span><span class="n">xfo</span><span class="p">,</span> <span class="n">info</span><span class="p">.</span><span class="n">m_xfo</span><span class="p">);</span>
+  <span class="n">vec3ToVector3</span><span class="p">(</span><span class="n">constructionInfo</span><span class="p">.</span><span class="n">bar</span><span class="p">,</span> <span class="n">info</span><span class="p">.</span><span class="n">m_bar</span><span class="p">);</span>
+
+  <span class="n">this_</span><span class="o">-&gt;</span><span class="n">pointer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ClassA</span><span class="p">(</span><span class="n">info</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="passing-arrays-from-kl-to-a-c-style-api">
+<h3>Passing Arrays from KL to a C-Style API<a class="headerlink" href="#passing-arrays-from-kl-to-a-c-style-api" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Some C++ API&#8217;s, typically APIs developed for use in game runtimes, avoid using C++ array representations(e.g. std::vector), or any other higher level array representations, and instead use a combination of pointers and count values. Because pointers are not exposed in KL, the exposed KL API must operate at a slightly higher level, rather than expose the C++ method arguments directly in KL. A single array value can be passed into the method and in the C++ wrapping code, the arguments expanded for the C-style API. This provides a slightly higher level, but easier to use API in KL than the C++ API. It is up to the developers discretion to adopt the higher level function signatures when required and provide the mapping of the arguments in the C++ wrapping code. Kl2edk cannot automatically expand the KL arguments required for these functions, so usually these methods must be manually implemented.</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">A</span><span class="p">.</span><span class="nx">setWeights</span><span class="p">(</span><span class="nx">Vec3</span> <span class="nx">weights</span><span class="p">[])</span> <span class="o">=</span> <span class="s1">&#39;A_setWeights&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-c++"><div class="highlight"><pre><span class="n">FABRIC_EXT_EXPORT</span> <span class="kt">void</span> <span class="nf">A_setWeights</span><span class="p">(</span>
+  <span class="n">Fabric</span><span class="o">::</span><span class="n">EDK</span><span class="o">::</span><span class="n">KL</span><span class="o">::</span><span class="n">Traits</span><span class="o">&lt;</span> <span class="n">Fabric</span><span class="o">::</span><span class="n">EDK</span><span class="o">::</span><span class="n">KL</span><span class="o">::</span><span class="n">A</span> <span class="o">&gt;::</span><span class="n">IOParam</span> <span class="n">this_</span><span class="p">,</span>
+  <span class="n">Fabric</span><span class="o">::</span><span class="n">EDK</span><span class="o">::</span><span class="n">KL</span><span class="o">::</span><span class="n">Traits</span><span class="o">&lt;</span> <span class="n">Fabric</span><span class="o">::</span><span class="n">EDK</span><span class="o">::</span><span class="n">KL</span><span class="o">::</span><span class="n">VariableArray</span><span class="o">&lt;</span> <span class="n">Fabric</span><span class="o">::</span><span class="n">EDK</span><span class="o">::</span><span class="n">KL</span><span class="o">::</span><span class="n">Float32</span> <span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">INParam</span> <span class="n">weights</span>
+<span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">A</span><span class="o">*</span> <span class="n">cThis_</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">KLObjectToCPP</span><span class="o">&lt;</span><span class="n">KL</span><span class="o">::</span><span class="n">A</span><span class="p">,</span> <span class="n">A</span><span class="o">&gt;</span><span class="p">(</span><span class="n">this_</span><span class="p">,</span> <span class="n">cThis_</span><span class="p">)){</span>
+    <span class="n">setError</span><span class="p">(</span><span class="s">&quot;Error in A_setPositionsArray. unable to convert: this_&quot;</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">this_</span><span class="o">-&gt;</span><span class="n">pointer</span><span class="p">.</span><span class="n">setPositionsArray</span><span class="p">(</span><span class="n">weights</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span> <span class="o">&amp;</span><span class="n">weights</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">If the C++ class merely uses the passed in array values to extract some data, then as soon as the call stack unwinds the array may be safely destroyed. If the C++ API class stores the pointer to this array, then the memory associated with this array must be referenced by the KL object to ensure that it is not freed before the class is destroyed. The reference in KL to the array will ensure that the array is not freed by KL before the KL class is destroyed. Whenever a C++ class has a dependency on the existence of memory allocated elsewhere, a KL reference to the data must be set. See &#8216;Managing Data Ownership and bidirectional relationships&#8217; below.</p>
+</div>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">A</span><span class="p">.</span><span class="nx">setWeights</span><span class="p">(</span><span class="nx">Vec3</span> <span class="nx">weights</span><span class="p">[]){</span>
+   <span class="k">this</span><span class="p">.</span><span class="nx">__weights</span> <span class="o">=</span> <span class="nx">weights</span><span class="p">;</span>
+   <span class="k">this</span><span class="p">.</span><span class="nx">__setWeights</span><span class="p">(</span><span class="nx">weights</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">A</span><span class="p">.</span><span class="nx">__setWeights</span><span class="p">(</span><span class="nx">Vec3</span> <span class="nx">weights</span><span class="p">[])</span> <span class="o">=</span> <span class="s1">&#39;A_setWeights&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">The provided Bullet extension implements this slightly higher level wrapping of the Bullet API, enabling KL arrays to be passed into methods that, in the C++ API expect a count and pointer to be passed. Look at the provided source code of the Bullet extension for examples of how this has been implemented.</p>
+</div>
+</div>
+<div class="section" id="mapping-class-hierarchies">
+<h3>Mapping Class Hierarchies<a class="headerlink" href="#mapping-class-hierarchies" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Often C++ APIs are structured as hierarchies of classes that inherit from each other. Objects in KL cannot currently inherit from base objects, and so a direct mapping of a C++ class hierarchy is not possible.</p>
+<p>KL provides a system of interfaces which enable the specification of a set of methods that a given class must implement. Interfaces are similar to pure-virtual classes in C++, and therefore provide no implementations of methods or member values. Objects can support multiple interfaces, enabling class hierarchies to be supported through the implementation of interfaces, one for each of the inherited classes in the class hierarchy.</p>
+<p>Each KL object must then support the interfaces defined for each of the classes it inherits from in the class hierarchy.</p>
+<p>C++ API Code</p>
+<div class="highlight-c++"><div class="highlight"><pre><span class="c1">// A base class that implements a method called ‘getName’.</span>
+<span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">getName</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// A derived class that inherits from A.</span>
+<span class="k">class</span> <span class="nc">B</span> <span class="o">:</span> <span class="k">public</span> <span class="n">A</span> <span class="p">{</span>
+  <span class="n">method2</span><span class="p">(</span><span class="n">A</span> <span class="n">a</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>KL Wrapping Code</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="c1">// The ‘A’ interface declares a method called ‘getName’.</span>
+<span class="c1">// Objects that support the ‘A’ interface must implement ‘getName’</span>
+<span class="kr">interface</span> <span class="nx">A</span> <span class="p">{</span>
+  <span class="kr">String</span> <span class="nx">getName</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// Object B supports the ‘A’ interface (can be automatically cast to A)</span>
+<span class="c1">// and so must implement all methods defined in ‘getName’.</span>
+<span class="kr">object</span> <span class="nx">B</span> <span class="o">:</span> <span class="nx">A</span> <span class="p">{</span>
+  <span class="nx">Data</span> <span class="nx">pointer</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Object B must implement its own methods, and all the methods inherited</span>
+<span class="c1">// from its interfaces.</span>
+<span class="kd">function</span> <span class="kr">String</span> <span class="nx">B</span><span class="p">.</span><span class="nx">getName</span><span class="p">()</span> <span class="o">=</span> <span class="s2">&quot;b_getName&quot;</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">B</span><span class="p">.</span><span class="nx">method2</span><span class="p">(</span><span class="nx">A</span> <span class="nx">a</span><span class="p">)</span> <span class="o">=</span> <span class="s2">&quot;b_method1&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>C++ Wrapping Code.</p>
+<div class="highlight-c++"><div class="highlight"><pre><span class="n">FABRIC_EXT_EXPORT</span> <span class="kt">void</span> <span class="n">KL</span><span class="o">::</span><span class="n">String</span> <span class="n">b_getName</span><span class="p">(...){</span>
+  <span class="k">return</span> <span class="n">KL</span><span class="o">::</span><span class="n">String</span><span class="p">(</span><span class="n">this_</span><span class="p">.</span><span class="n">pointer</span><span class="o">-&gt;</span><span class="n">getName</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="n">FABRIC_EXT_EXPORT</span> <span class="kt">void</span> <span class="n">b_method1</span><span class="p">(</span>
+  <span class="n">KL</span><span class="o">::</span><span class="n">B</span><span class="o">::</span><span class="n">IOParam</span> <span class="n">this_</span><span class="p">,</span>
+  <span class="n">KL</span><span class="o">::</span><span class="n">A</span><span class="o">::</span><span class="n">INParam</span> <span class="n">a</span>
+<span class="p">){</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>KL Example Code</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="c1">// An instance of B can be created, and assigned to a reference of</span>
+<span class="c1">// type A interface.</span>
+<span class="nx">A</span> <span class="nx">val1</span> <span class="o">=</span> <span class="nx">B</span><span class="p">();</span>
+<span class="nb">report</span><span class="p">(</span><span class="nx">val1</span><span class="p">.</span><span class="nx">getName</span><span class="p">());</span>
+
+<span class="c1">// A new instance of type B is created and passed to the first.</span>
+<span class="c1">// method1 accepts a value of type A interface, so the B object is</span>
+<span class="c1">// automatically cast.</span>
+<span class="nx">A</span> <span class="nx">val2</span> <span class="o">=</span> <span class="nx">B</span><span class="p">();</span>
+<span class="nx">val1</span><span class="p">.</span><span class="nx">method1</span><span class="p">(</span><span class="nx">val2</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>For deep class hierarchies, many interfaces may be required, and all public methods exposed through the inheritance chain must be implemented directly by the leaf objects.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">Full support for Inheritance ok KL objects scheduled for an upcoming release which greatly simplify the mapping of C++ hierarchies.</p>
+</div>
+</div>
+<div class="section" id="managing-data-ownership-and-bidirectional-relationships">
+<h3>Managing Data Ownership and bidirectional relationships<a class="headerlink" href="#managing-data-ownership-and-bidirectional-relationships" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>In some APIs, you may have a collection of classes whose lifetimes are related, and must be destroyed in a specific order. KL can be utilized to manage the lifetimes of the objects in the system, such that objects will always be destroyed in a predictable order.</p>
+<p>The Ref&lt;&gt; feature in KL is a raw unmanaged pointer. Ref&lt;&gt; pointers will not affect the lifetime of an object, and so can be used in cases where backpointers are required.</p>
+<p>Note: If 2 classes reference each other, then neither class will ever be destroyed due to the cyclic reference. A Owner object should reference its ‘owned’ objects, and those ‘owned’ objects should maintain simple ‘Ref’ pointers back to the owners.
+Ref pointers must be manually maintained. If the pointer is not nulled and the owner is destroyed, the pointer will become garbage and cause a crash if accessed. Cleanup is required to ensure your code is stable under all conditions. .</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kr">object</span> <span class="nx">Slave</span> <span class="p">{</span>
+  <span class="nx">Data</span> <span class="nx">pointer</span><span class="p">;</span>
+  <span class="c1">// The slave maintains a raw pointer to the master(not a reference)</span>
+  <span class="c1">// Only if this pointer is valid is the slave in a valid state.</span>
+  <span class="nx">Ref</span><span class="o">&lt;</span><span class="nx">Owner</span><span class="o">&gt;</span> <span class="nx">master</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="kd">function</span> <span class="kr">Boolean</span> <span class="nx">Slave</span><span class="p">.</span><span class="nx">isValid</span><span class="p">(){</span>
+  <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">master</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">object</span> <span class="nx">Master</span> <span class="p">{</span>
+  <span class="nx">Data</span> <span class="nx">pointer</span><span class="p">;</span>
+  <span class="nx">Slave</span> <span class="nx">slaves</span><span class="p">[];</span>
+<span class="p">};</span>
+<span class="kd">function</span> <span class="nx">Master</span><span class="p">.</span><span class="nx">addSlave</span><span class="p">(</span><span class="nx">Slave</span> <span class="nx">slave</span><span class="p">){</span>
+  <span class="nx">slave</span><span class="p">.</span><span class="nx">master</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">__addSlave</span><span class="p">(</span><span class="nx">slave</span><span class="p">);</span>
+  <span class="c1">// Maintain a reference to the slave so that it is not destoyed.</span>
+  <span class="c1">// The calling code may have only a stack-allocated reference to the slave.</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">slaves</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">slave</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">Master</span><span class="p">.</span><span class="nx">__addSlave</span><span class="p">(</span><span class="nx">Slave</span> <span class="nx">slave</span><span class="p">)</span> <span class="o">=</span> <span class="s2">&quot;Master_addSlave&quot;</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="o">~</span><span class="nx">Master</span><span class="p">(){</span>
+  <span class="c1">// By nulling the back-pointer on the slaves, they become invalid.</span>
+  <span class="c1">// This can be used to protect against evaluation</span>
+  <span class="k">for</span><span class="p">(</span><span class="kr">Integer</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="k">this</span><span class="p">.</span><span class="nx">slaves</span><span class="p">.</span><span class="nx">size</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">slaves</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">master</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">__destroy</span><span class="p">();</span>
+  <span class="c1">// removing all the references from the master to the slaves may cause all</span>
+  <span class="c1">// the slaves to be destroyed, unless another class references the slaves.</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">slaves</span><span class="p">.</span><span class="nx">resize</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">Master</span><span class="p">.</span><span class="nx">__destroy</span><span class="p">()</span> <span class="o">=</span> <span class="s2">&quot;Master_destroy&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="handling-dependencies-between-classes">
+<h3>Handling Dependencies between Classes<a class="headerlink" href="#handling-dependencies-between-classes" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>When a class hierarchy is being mapped to KL, the dependencies between the class declarations needs to be mapped to kl. The Place where these dependencies are mapped, is the fpm.json file that loads the kl files for the extension.</p>
+<p>C++ Code Class A</p>
+<div class="highlight-c++"><div class="highlight"><pre><span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">getName</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>C++ Code  Class B</p>
+<div class="highlight-c++"><div class="highlight"><pre><span class="cp">#include &lt;A.h&gt;;</span>
+<span class="k">class</span> <span class="nc">B</span> <span class="p">{</span>
+  <span class="n">A</span><span class="o">*</span> <span class="n">m_a</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>KL Code object A</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kr">object</span> <span class="nx">A</span> <span class="p">{</span>
+  <span class="nx">Data</span> <span class="nx">pointer</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">KL</span> <span class="nx">Code</span> <span class="kr">object</span> <span class="nx">B</span>
+
+<span class="kr">object</span> <span class="nx">B</span> <span class="p">{</span>
+  <span class="nx">Data</span> <span class="nx">pointer</span><span class="p">;</span>
+  <span class="nx">A</span> <span class="nx">a</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">MyExt</span><span class="p">.</span><span class="nx">fpm</span><span class="p">.</span><span class="nx">json</span>
+
+<span class="p">{</span>
+ <span class="s2">&quot;libs&quot;</span><span class="o">:</span> <span class="p">[</span>
+  <span class="s2">&quot;MyExt&quot;</span>
+ <span class="p">],</span>
+ <span class="s2">&quot;code&quot;</span><span class="o">:</span> <span class="p">[</span>
+  <span class="s2">&quot;A.kl&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;B.kl&quot;</span><span class="p">,</span>
+ <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The dependencies between the C++ classes needs to be reflected in the definition of the KL objects, and in the order that the classes are loaded by the fpm.json file.</p>
+<p>Note: Object B maintains a KL reference to Object A, to ensure that its lifetime lasts longer than B. Only once A is destroyed or releases its reference to B(as long as only A reference B), B will be destroyed.</p>
+</div>
+</div>
+<div class="section" id="other-tips-and-tricks">
+<h2>Other Tips and Tricks<a class="headerlink" href="#other-tips-and-tricks" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="mapping-const-functions-to-kl-as-const-functions">
+<h3>Mapping Const Functions to KL as const functions<a class="headerlink" href="#mapping-const-functions-to-kl-as-const-functions" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>By default, kl methods that return values are const. You may have a class that declares methods that take non-const reference arguments and perform computation returning the results in the args. To declare a KL function that is also cost, simply append a ‘?’ as the end of the function name.</p>
+<p>C++ Code</p>
+<div class="highlight-c++"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MyCPPClass</span> <span class="p">{</span>
+   <span class="kt">void</span> <span class="n">doStuff</span><span class="p">(</span> <span class="n">Scalar</span><span class="o">&amp;</span> <span class="n">value</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>KL Code</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kr">object</span> <span class="nx">MyCPPClass</span> <span class="p">{</span>
+  <span class="nx">Data</span> <span class="nx">pointer</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">MyCPPClass</span><span class="p">.</span><span class="nx">doStuff</span><span class="o">?</span><span class="p">(</span><span class="k">io</span> <span class="nx">Scalar</span> <span class="nx">value</span><span class="p">)</span> <span class="o">=</span> <span class="s2">&quot;MyCPPClass_doStuff&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>C++ Code</p>
+<div class="highlight-c++"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MyCPPClass</span> <span class="p">{</span>
+   <span class="kt">int</span> <span class="n">computeDataReturnCode</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>KL Code</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kr">object</span> <span class="nx">MyCPPClass</span> <span class="p">{</span>
+  <span class="nx">Data</span> <span class="nx">pointer</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">MyCPPClass</span><span class="p">.</span><span class="nx">computeDataReturnCode</span><span class="o">!</span><span class="p">(</span><span class="k">io</span> <span class="nx">Scalar</span> <span class="nx">value</span><span class="p">)</span> <span class="o">=</span> <span class="s2">&quot;MyCPPClass_computeDataReturnCode&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="cloning-objects-in-kl">
+<h3>Cloning Objects in KL<a class="headerlink" href="#cloning-objects-in-kl" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>When a KL object that references some C++ data is cloned in KL, then the expected behavior is that the C++ class is also closed, ensuring that the 1-1 mapping of objects to C++ classes.</p>
+<p>KL Code</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kr">object</span> <span class="nx">MyObj</span> <span class="p">{</span>
+  <span class="kr">String</span> <span class="nx">s</span><span class="p">;</span>
+  <span class="c1">// …</span>
+<span class="p">};</span>
+<span class="kd">function</span> <span class="nx">MyObj</span> <span class="nx">MyObj</span><span class="p">.</span><span class="nx">clone</span><span class="p">()</span> <span class="o">=</span> <span class="s2">&quot;MyObj_clone&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>C++ code</p>
+<div class="highlight-c++"><div class="highlight"><pre><span class="n">FABRIC_EXT_EXPORT</span> <span class="kt">void</span> <span class="nf">MyObj_clone</span><span class="p">(</span>
+  <span class="n">KL</span><span class="o">::</span><span class="n">Traits</span><span class="o">&lt;</span> <span class="n">KL</span><span class="o">::</span><span class="n">MyObj</span> <span class="o">&gt;::</span><span class="n">Result</span> <span class="n">result</span><span class="p">,</span>
+  <span class="n">KL</span><span class="o">::</span><span class="n">Traits</span><span class="o">&lt;</span> <span class="n">KL</span><span class="o">::</span><span class="n">MyObj</span> <span class="o">&gt;::</span><span class="n">INParam</span> <span class="n">other</span>
+<span class="p">{</span>
+  <span class="c1">// The wrapped class must be cloned,</span>
+  <span class="c1">// and the cloned wrapper KL object must</span>
+  <span class="c1">// reference the newly constructed class.</span>
+  <span class="n">result</span><span class="o">-&gt;</span><span class="n">pointer</span> <span class="o">=</span> <span class="n">MyObj</span><span class="p">(</span><span class="n">other</span><span class="o">-&gt;</span><span class="n">pointer</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Wrapping C++ APIs for use in KL</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#type-conversion">Type Conversion</a></li>
+<li><a class="reference internal" href="#mapping-classes-to-objects">Mapping Classes to Objects</a><ul>
+<li><a class="reference internal" href="#memory-management">Memory Management</a></li>
+<li><a class="reference internal" href="#mapping-public-methods">Mapping Public methods</a></li>
+<li><a class="reference internal" href="#public-members">Public Members</a></li>
+<li><a class="reference internal" href="#pure-data-container-structs">Pure data container structs</a></li>
+<li><a class="reference internal" href="#passing-arrays-from-kl-to-a-c-style-api">Passing Arrays from KL to a C-Style API</a></li>
+<li><a class="reference internal" href="#mapping-class-hierarchies">Mapping Class Hierarchies</a></li>
+<li><a class="reference internal" href="#managing-data-ownership-and-bidirectional-relationships">Managing Data Ownership and bidirectional relationships</a></li>
+<li><a class="reference internal" href="#handling-dependencies-between-classes">Handling Dependencies between Classes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#other-tips-and-tricks">Other Tips and Tricks</a><ul>
+<li><a class="reference internal" href="#mapping-const-functions-to-kl-as-const-functions">Mapping Const Functions to KL as const functions</a></li>
+<li><a class="reference internal" href="#cloning-objects-in-kl">Cloning Objects in KL</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="fpm.html"
+                        title="前の章へ">The Extension Manifest File</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="kl2edk.html"
+                        title="次の章へ">The <strong class="command">kl2edk</strong> Utility</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/ExtensionAuthoringGuide/cPlusPlusApis.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="kl2edk.html" title="The kl2edk Utility"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="fpm.html" title="The Extension Manifest File"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Extension Authoring Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

@@ -1,0 +1,482 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Math.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="Math Extension’s Files" href="files.html" />
+    <link rel="next" title="Perlin.kl" href="Perlin.kl.html" />
+    <link rel="prev" title="Mat44_i.kl" href="Mat44_i.kl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="Perlin.kl.html" title="Perlin.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="Mat44_i.kl.html" title="Mat44_i.kl"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Math Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">Math Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="math-math-kl">
+<span id="math-kl"></span><span id="id1"></span><h1>Math.kl<a class="headerlink" href="#math-math-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="scalar-struct">
+<h3>Scalar (struct)<a class="headerlink" href="#scalar-struct" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="17%" />
+<col width="83%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Scalar.html#d408be14efdad94d07d9af6d1d7"><span>Scalar</span></a>  ( in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Scalar.html#d9df49e0f944f42aa6dbc79b836d582"><span>Scalar</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="Scalar.html#acdc98ab4b8198b834a086ae413a"><span>clamp</span></a> ? ( in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> min, in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> max )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="Scalar.html#a050fdbbe2c4914b51c949a3258d809"><span>clone</span></a> ? ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+<p><div class="section" id="float32-struct">
+<h3>Float32 (struct)<a class="headerlink" href="#float32-struct" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id2">
+<h4>Methods<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="17%" />
+<col width="83%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Float32.html#fb3c00fb3e4975a5dfc365e950d698"><span>Float32</span></a>  ( in <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Float32.html#d87d6e5d94c346c6a0206326edc42c2c"><span>Float32</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Float32.html#float32"><span>Float32</span></a></td>
+<td><a class="reference internal" href="Float32.html#f7f887e69e3e4ea897962bc0d5c0e9ba"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Float32.html#float32"><span>Float32</span></a></td>
+<td><a class="reference internal" href="Float32.html#f8ba99ad586f40778cc62a7bdde7b209"><span>linearInterpolate</span></a> ? ( in <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> other, in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> t )</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+<p><div class="section" id="float64-struct">
+<h3>Float64 (struct)<a class="headerlink" href="#float64-struct" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id3">
+<h4>Methods<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="17%" />
+<col width="83%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Float64.html#f930228841b849a5a1f274a8e7b38cba"><span>Float64</span></a>  ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Float64.html#e54ac30c9f4fde8168c4044ce1fb37"><span>Float64</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="Float64.html#ac2a2a4421093c8aa7049f9ab2e"><span>clamp</span></a> ? ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> min, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> max )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="Float64.html#fbc9b86d0c437ca83d9db17a0e8e5f"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="Float64.html#bdc8c9d428390c61243199c8918"><span>linearInterpolate</span></a> ? ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> other, in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> t )</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="fract">
+<h3>fract<a class="headerlink" href="#fract" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode"><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> fract ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> val )</p>
+<p class="plaintext">Returns the fractional component of the <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> value.</p>
+</div>
+</p>
+<p><div class="section" id="id4">
+<h3>fract<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode"><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> fract ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> val )</p>
+<p class="plaintext">Returns the fractional component of the <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> value.</p>
+</div>
+</p>
+<p><div class="section" id="math-radtodeg">
+<h3>Math_radToDeg<a class="headerlink" href="#math-radtodeg" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode"><a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> Math_radToDeg ( in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> val )</p>
+<p class="plaintext">Converts radians to degrees</p>
+</div>
+</p>
+<p><div class="section" id="math-degtorad">
+<h3>Math_degToRad<a class="headerlink" href="#math-degtorad" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode"><a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> Math_degToRad ( in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> val )</p>
+<p class="plaintext">Converts degrees to radians</p>
+</div>
+</p>
+<p><div class="section" id="math-clamp">
+<h3>Math_clamp<a class="headerlink" href="#math-clamp" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode"><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> Math_clamp ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> val, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> minval, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> maxval )</p>
+<p class="plaintext">Clamps a <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> value by min and max</p>
+</div>
+</p>
+<p><div class="section" id="id5">
+<h3>Math_clamp<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode"><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> Math_clamp ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> val, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> minval, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> maxval )</p>
+<p class="plaintext">Clamps a <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> value by min and max</p>
+</div>
+</p>
+<p><div class="section" id="math-linearinterpolate">
+<h3>Math_linearInterpolate<a class="headerlink" href="#math-linearinterpolate" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode"><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> Math_linearInterpolate ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> val1, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> val2, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> t )</p>
+<p class="plaintext">Linearly interpolates a <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> value with another based on a blend (0.0 to 1.0)</p>
+</div>
+</p>
+<p><div class="section" id="id6">
+<h3>Math_linearInterpolate<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode"><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> Math_linearInterpolate ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> val1, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> val2, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> t )</p>
+<p class="plaintext">Linearly interpolates a <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> value with another based on a blend (0.0 to 1.0)</p>
+</div>
+</p>
+<p><div class="section" id="math-max">
+<h3>Math_max<a class="headerlink" href="#math-max" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode"><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> Math_max ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> val1, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> val2 )</p>
+<p class="plaintext">Returns the maximum of two <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> values</p>
+</div>
+</p>
+<p><div class="section" id="id7">
+<h3>Math_max<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode"><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> Math_max ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> val1, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> val2 )</p>
+<p class="plaintext">Returns the maximum of two <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> values</p>
+</div>
+</p>
+<p><div class="section" id="math-min">
+<h3>Math_min<a class="headerlink" href="#math-min" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode"><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> Math_min ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> val1, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> val2 )</p>
+<p class="plaintext">Returns the minimum of two <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> values</p>
+</div>
+</p>
+<p><div class="section" id="id8">
+<h3>Math_min<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode"><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> Math_min ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> val1, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> val2 )</p>
+<p class="plaintext">Returns the minimum of two <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> values</p>
+</div>
+</p>
+<p><div class="section" id="math-lawofcosine">
+<h3>Math_lawOfCosine<a class="headerlink" href="#math-lawofcosine" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode"><a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> Math_lawOfCosine ( in <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> a, in <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> b, in <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> c )</p>
+<p class="plaintext">Returns the law of cosine result</p>
+</div>
+</p>
+<p><div class="section" id="math-reportwarning">
+<h3>Math_reportWarning<a class="headerlink" href="#math-reportwarning" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">Math_reportWarning ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> desc )</p>
+<p class="plaintext">Reports a mathematical warning and a call stack for the warning.</p>
+</div>
+</p>
+<p><div class="section" id="math-baddivisor">
+<h3>Math_badDivisor<a class="headerlink" href="#math-baddivisor" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">Boolean Math_badDivisor ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> s )</p>
+<p class="plaintext">Returns true if a divisor inside the safe range of <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> divisor values</p>
+</div>
+</p>
+<p><div class="section" id="id9">
+<h3>Math_badDivisor<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">Boolean Math_badDivisor ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> s )</p>
+<p class="plaintext">Returns true if a divisor inside the safe range of <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> divisor values</p>
+</div>
+</p>
+<p><div class="section" id="math-reportbaddivisor">
+<h3>Math_reportBadDivisor<a class="headerlink" href="#math-reportbaddivisor" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">Math_reportBadDivisor ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> s, in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> contextDesc )</p>
+<p class="plaintext">Reports a <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> bad divisor warning message</p>
+</div>
+</p>
+<p><div class="section" id="id10">
+<h3>Math_reportBadDivisor<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">Math_reportBadDivisor ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> s, in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> contextDesc )</p>
+<p class="plaintext">Reports a <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> bad divisor warning message</p>
+</div>
+</p>
+<p><div class="section" id="iszero">
+<h3>isZero<a class="headerlink" href="#iszero" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">Boolean isZero ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> x )</p>
+<p class="plaintext">Returns true if the provided <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> value zero is within the <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> precision range.</p>
+</div>
+</p>
+<p><div class="section" id="cbrt">
+<h3>cbrt<a class="headerlink" href="#cbrt" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode"><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> cbrt ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> v )</p>
+<p class="plaintext">Returns the cube root of the given value.</p>
+</div>
+</p>
+<p><div class="section" id="math-aspectfromfov">
+<h3>Math_aspectFromFov<a class="headerlink" href="#math-aspectfromfov" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode"><a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> Math_aspectFromFov ( in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> fovX, in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> fovY )</p>
+<p class="plaintext">computes the aspect ratio based on two field
+of view angles in radians</p>
+</div>
+</p>
+<p><div class="section" id="math-fovxtoy">
+<h3>Math_fovXtoY<a class="headerlink" href="#math-fovxtoy" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode"><a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> Math_fovXtoY ( in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> fovX, in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> aspect )</p>
+<p class="plaintext">computes the vertical field of view angle in radians
+given a horizontal field of view in radians and an aspect</p>
+</div>
+</p>
+<p><div class="section" id="math-fovytox">
+<h3>Math_fovYtoX<a class="headerlink" href="#math-fovytox" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode"><a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> Math_fovYtoX ( in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> fovY, in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> aspect )</p>
+<p class="plaintext">computes the horizontal field of view angle in radians
+given a vertical field of view in radians and an aspect</p>
+</div>
+</p>
+<p><div class="section" id="findquadraticroots">
+<h3>findQuadraticRoots<a class="headerlink" href="#findquadraticroots" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">Integer findQuadraticRoots ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> coeff[3], out <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> re[2] )</p>
+<p class="plaintext">Finds the roots of a quadratic equation.
+return(2): 2 real roots
+return(1): 1 real, <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> root
+return(0): 2 complex roots</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">The imaginary component may be NULL if not desired.</p>
+</div>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>coeff</td>
+<td>The 3 coeffients to the quadratic equation.</td>
+</tr>
+<tr class="row-even"><td>re</td>
+<td>The roots of the quadratic equation</td>
+</tr>
+</tbody>
+</table>
+</div>
+</p>
+<p><div class="section" id="findcubicroots">
+<h3>findCubicRoots<a class="headerlink" href="#findcubicroots" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">Integer findCubicRoots ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> coeff[4], out <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> roots[3] )</p>
+<p class="plaintext">Finds the roots of a cubic equation equation.
+Solves: coeff[3] * x^3 + coeff[2] * x^2 + coeff[1] * x + coeff[0] = 0
+returns:
+3 - 3 real roots
+1 - 1 real root (2 complex conjugate)</p>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="15%" />
+<col width="85%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>coeff</td>
+<td>The 4 coeffients to the cubic equation.</td>
+</tr>
+<tr class="row-even"><td>re</td>
+<td>The roots of the cubic equation</td>
+</tr>
+</tbody>
+</table>
+</div>
+</p>
+<p><div class="section" id="sinh">
+<h3>sinh<a class="headerlink" href="#sinh" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode"><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> sinh ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> x )</p>
+<p class="plaintext">the hyperbolic of sin for <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a></p>
+</div>
+</p>
+<p><div class="section" id="cosh">
+<h3>cosh<a class="headerlink" href="#cosh" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode"><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> cosh ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> x )</p>
+<p class="plaintext">the hyperbolic of cos for <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a></p>
+</div>
+</p>
+<p><div class="section" id="tanh">
+<h3>tanh<a class="headerlink" href="#tanh" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode"><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> tanh ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> x )</p>
+<p class="plaintext">the hyperbolic of tangent for <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a></p>
+</div>
+</p>
+<p><div class="section" id="coth">
+<h3>coth<a class="headerlink" href="#coth" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode"><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> coth ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> x )</p>
+<p class="plaintext">the hyperbolic of cotangent for <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a></p>
+</div>
+</p>
+<p><div class="section" id="sech">
+<h3>sech<a class="headerlink" href="#sech" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode"><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> sech ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> x )</p>
+<p class="plaintext">the hyperbolic secant for <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a></p>
+</div>
+</p>
+<p><div class="section" id="csch">
+<h3>csch<a class="headerlink" href="#csch" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode"><a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> csch ( in <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> x )</p>
+<p class="plaintext">the hyperbolic secant for <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a></p>
+</div>
+</p>
+<p><div class="section" id="id11">
+<h3>sinh<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode"><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> sinh ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> x )</p>
+<p class="plaintext">the hyperbolic of sin for <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a></p>
+</div>
+</p>
+<p><div class="section" id="id12">
+<h3>cosh<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode"><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> cosh ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> x )</p>
+<p class="plaintext">the hyperbolic of cos for <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a></p>
+</div>
+</p>
+<p><div class="section" id="id13">
+<h3>tanh<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode"><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> tanh ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> x )</p>
+<p class="plaintext">the hyperbolic of tangent for <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a></p>
+</div>
+</p>
+<p><div class="section" id="id14">
+<h3>coth<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode"><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> coth ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> x )</p>
+<p class="plaintext">the hyperbolic of cotangent for <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a></p>
+</div>
+</p>
+<p><div class="section" id="id15">
+<h3>sech<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode"><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> sech ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> x )</p>
+<p class="plaintext">the hyperbolic secant for <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a></p>
+</div>
+</p>
+<p><div class="section" id="id16">
+<h3>csch<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode"><a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> csch ( in <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> x )</p>
+<p class="plaintext">the hyperbolic secant for <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a></p>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="Mat44_i.kl.html"
+                        title="前の章へ">Mat44_i.kl</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="Perlin.kl.html"
+                        title="次の章へ">Perlin.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/Math/Math.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="Perlin.kl.html" title="Perlin.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="Mat44_i.kl.html" title="Mat44_i.kl"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Math Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >Math Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

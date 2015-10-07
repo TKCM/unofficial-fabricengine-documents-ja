@@ -1,0 +1,462 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>BulletSliderConstraint.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="Bullet Extension’s Files" href="files.html" />
+    <link rel="next" title="BulletSoftBody.kl" href="BulletSoftBody.kl.html" />
+    <link rel="prev" title="BulletSimplexSolverInterface.kl" href="BulletSimplexSolverInterface.kl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="BulletSoftBody.kl.html" title="BulletSoftBody.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="BulletSimplexSolverInterface.kl.html" title="BulletSimplexSolverInterface.kl"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Bullet Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">Bullet Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="bullet-bulletsliderconstraint-kl">
+<span id="bulletsliderconstraint-kl"></span><span id="id1"></span><h1>BulletSliderConstraint.kl<a class="headerlink" href="#bullet-bulletsliderconstraint-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="bulletsliderconstraint-object">
+<h3>BulletSliderConstraint (object)<a class="headerlink" href="#bulletsliderconstraint-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="members">
+<h4>Members<a class="headerlink" href="#members" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="78%" />
+<col width="17%" />
+<col width="6%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Data</td>
+<td>pointer</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a></td>
+<td>rbA</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a></td>
+<td>rbB</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="17%" />
+<col width="83%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#c2dfd906ee4146c7aaac777a55775fde"><span>BulletSliderConstraint</span></a>  ( in <a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a> rbA, in <a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a> rbB, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> frameInA, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> frameInB, in Boolean useLinearReferenceFrameA )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#dfe01e625a4a4b91aad5c77d0cfc7d"><span>BulletSliderConstraint</span></a>  ( in <a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a> rbA, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> frameInB, in Boolean useLinearReferenceFrameA )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#c1e768b67444cebe26af3ff6f8fa9e"><span>BulletSliderConstraint</span></a>  ( in <a class="reference internal" href="BulletSliderConstraint.html#bulletsliderconstraint"><span>BulletSliderConstraint</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#a5149344d014292aeec8d1aeea5ba78"><span>BulletSliderConstraint</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#ef7814f40d79805f515a7dbf366"><span>__construct</span></a> ! ( in <a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a> rbA, in <a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a> rbB, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> frameInA, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> frameInB, in Boolean useLinearReferenceFrameA )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#d93513742846cda3b11090bd2f048d"><span>__construct</span></a> ! ( in <a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a> rbA, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> frameInB, in Boolean useLinearReferenceFrameA )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#bb0fb983844e44078f1483889cce26eb"><span>calculateTransforms</span></a> ! ( in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> transA, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> transB )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="BulletSliderConstraint.html#bulletsliderconstraint"><span>BulletSliderConstraint</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#c0714e611df4c7084e19ff58bdb233e"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#dad5654f5041427bb17b2754b157c694"><span>enableFeedback</span></a> ! ( in Boolean needsFeedback )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#caa8b0ce2f5c4782a58eb0d263e20f6e"><span>getAncorInA</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#ff718914427eb236fa2c8f9bcf5e"><span>getAncorInB</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#d3542c2884981bf20561f7d4b3164"><span>getAngDepth</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#eeb34eeff4af9a83f12cdbb0af093"><span>getAngularPos</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#cf43313e2940deab7ac85e736e5c9d"><span>getAppliedImpulse</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#b1c0e956244e9699c55d45e00957fe"><span>getBreakingImpulseThreshold</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#b8229b98d0a4df3ad98f47f040db0c6"><span>getCalculatedTransformA</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#a74e8e9223eb4851b31e25f77de95da3"><span>getCalculatedTransformB</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>UInt32</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#b9030cc2c214118aa08751e36a3ffa3"><span>getConstraintType</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#fad68770449a86a011d921e1d01c"><span>getDampingDirAng</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#d20c54973bdd041fb98f1d663"><span>getDampingDirLin</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#f585af943140c497d62883c7ed489d"><span>getDampingLimAng</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#ec5a898b8b07496995eb5877a38b4d4d"><span>getDampingLimLin</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#fcc3d45fd614b7a81a5e84cab31bb26"><span>getDampingOrthoAng</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#a49a6cce4c049049446de4fe0948058"><span>getDampingOrthoLin</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#de8ec3453aa0befe55df2312ce"><span>getFrameOffsetA</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#aea2a351400a84544a8c2a7fd814"><span>getFrameOffsetB</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#e787fe127e0847959b63b49ba46e8510"><span>getLinDepth</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#beafbc7cb78043a38992e8ca573791ad"><span>getLinearPos</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#e7d3ee0512c49a6a46d0ac41adf3179"><span>getLowerAngLimit</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#a9f826ee844e5d9e60c83a9baba7ff"><span>getLowerLinLimit</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#f381a5fd4abe8b62cbc8300952e5"><span>getMaxAngMotorForce</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#c603d6f384bd9bcccab1be94e02a3"><span>getMaxLinMotorForce</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#e28c7525c4af424a905a6fd5a0b23434"><span>getParam</span></a> ? ( in Integer num )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#e2595304228a7ddbfab4b58c06a"><span>getParam</span></a> ? ( in Integer num, in Integer axis )</td>
+</tr>
+<tr class="row-odd"><td>Data</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#bd37c5de13aa4b3292c6d0064a26cb8f"><span>getPointer</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#bc1616cdc3044dfeb51f87fb4731c248"><span>getPoweredAngMotor</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#c58188b49e841089277e1c6d4dcc61c"><span>getPoweredLinMotor</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#a1e2bf6814c4e019306d9ed7cf0e822"><span>getRestitutionDirAng</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#e211d1c884234ec4b176c312bd255bb8"><span>getRestitutionDirLin</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#de50c05ac41288fd4b22237e873fb"><span>getRestitutionLimAng</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#bf31afe6f60c4a0cb2ccc3044cdd5141"><span>getRestitutionLimLin</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#bed6938b142241eab0ed489a70a77419"><span>getRestitutionOrthoAng</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#ba362c526be5471aa871c6746ee8a4ed"><span>getRestitutionOrthoLin</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#b1939d7e54da79f130ea9775e65d7"><span>getRigidBodyA</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#ba4002d994c8382b52da5dec52e77"><span>getRigidBodyB</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#e137dc870cf6439baad5f8db878226c3"><span>getSoftnessDirAng</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#bca518762e9439b835f1d204fc93692"><span>getSoftnessDirLin</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#cfd11f27a944ac3b131eb4d523cfd2b"><span>getSoftnessLimAng</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#a6bcce14ca5ab1ee96ac10f3cb5"><span>getSoftnessLimLin</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#de0984a5154cf3b6491493cf0b65b8"><span>getSoftnessOrthoAng</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#fdf0859242178691eb94e2a5e834"><span>getSoftnessOrthoLin</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#ad1a71a6f0409fa4da9e4cb0f62aa2"><span>getSolveAngLimit</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#cb8c47b7145448fa9a288e82c2059"><span>getSolveLinLimit</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#f5e58165615347a5868a6054f176de9e"><span>getTargetAngMotorVelocity</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#da81bcc4646eebf1bd82c8e3f3a85"><span>getTargetLinMotorVelocity</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#edb14e5eefe54c5a8008bbe487fd86cc"><span>getUpperAngLimit</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#a238bf0370642718a52b5068d82c526"><span>getUpperLinLimit</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#bd0b264fa677485892c13b1036c0946d"><span>getUseFrameOffset</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#edc8ff83714e42ab84bb52ff7d8ca5c6"><span>getUseLinearReferenceFrameA</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#be48466544634accaec6fca72e887"><span>isEnabled</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#d0ccf4b1143cba5e67bf022f61f06"><span>needsFeedback</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#e8aa9450282146909ef80fda0ba098f3"><span>setBreakingImpulseThreshold</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> threshold )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#ca14c77ec446686310709b565cda6"><span>setDampingDirAng</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> dampingDirAng )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#bb7d1e1b214c7b85eb85471dc34b32"><span>setDampingDirLin</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> dampingDirLin )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#ef8abb4d6ebd53757134f48fd1"><span>setDampingLimAng</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> dampingLimAng )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#eb0358b6b5f4924897537df065bd2e3"><span>setDampingLimLin</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> dampingLimLin )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#d9356c216b4588a2770d6859a77cdb"><span>setDampingOrthoAng</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> dampingOrthoAng )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#b0d525e81c41ebb89249416b04827c"><span>setDampingOrthoLin</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> dampingOrthoLin )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#a862e0ab647fbbe8ca2dc49af7e6e"><span>setEnabled</span></a> ! ( in Boolean enabled )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#ea2c1d5aec64c47931f800fec7db94e"><span>setFrames</span></a> ! ( in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> frameA, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> frameB )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#a9abe925e144e689824a5115e804234"><span>setLowerAngLimit</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> lowerLimit )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#c974d03640a94f76ac020829c5e94373"><span>setLowerLinLimit</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> lowerLimit )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#a40498176eb243ed82a77431ea54fa79"><span>setMaxAngMotorForce</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxAngMotorForce )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#a9112e8c10b46b5a64f9e98e64a5272"><span>setMaxLinMotorForce</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxLinMotorForce )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#d31d2bb1e02a4694a63a90ca7011e6fa"><span>setParam</span></a> ! ( in Integer num, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#bf03476e2941f285a5a8334f9eca3c"><span>setParam</span></a> ! ( in Integer num, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value, in Integer axis )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#afa796d316046ee9f52a6e458d0f000"><span>setPoweredAngMotor</span></a> ! ( in Boolean onOff )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#a1a71f70e29640f29e7a3ca89e410269"><span>setPoweredLinMotor</span></a> ! ( in Boolean onOff )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#f4947becd3744783b9962840a9cba9fe"><span>setRestitutionDirAng</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> restitutionDirAng )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#fec6cb4ed39415291f315c959f5d7d0"><span>setRestitutionDirLin</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> restitutionDirLin )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#ab3390fa5f4f64be2c71692fbe0035"><span>setRestitutionLimAng</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> restitutionLimAng )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#a8631bec2e2f43f288405bc780d7ac1b"><span>setRestitutionLimLin</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> restitutionLimLin )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#f9dcc2109e46e1a44ee47beb48a6da"><span>setRestitutionOrthoAng</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> restitutionOrthoAng )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#cedcca784c0c844a3dad501f334d"><span>setRestitutionOrthoLin</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> restitutionOrthoLin )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#db1cb751d64a838b4c2418f0c363da"><span>setSoftnessDirAng</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> softnessDirAng )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#f8a9c65da944b86a7adac0a039038fb"><span>setSoftnessDirLin</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> softnessDirLin )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#df6ebb0ece754d0c833002ef23fac2dd"><span>setSoftnessLimAng</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> softnessLimAng )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#a98b8e2016a71cda"><span>setSoftnessLimLin</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> softnessLimLin )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#ed237004d489ac1e4b445ba6efc"><span>setSoftnessOrthoAng</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> softnessOrthoAng )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#f15adc5d4319bb08a2d0c0a8771a"><span>setSoftnessOrthoLin</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> softnessOrthoLin )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#e134206bd6b93a7186c5b27"><span>setTargetAngMotorVelocity</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> targetAngMotorVelocity )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#e15f672142646068fe1b00b5b7962e1"><span>setTargetLinMotorVelocity</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> targetLinMotorVelocity )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#d894e0540ddab639e8107185a33"><span>setUpperAngLimit</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> upperLimit )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#cea5bf3ecdd845adbf9e01970457d395"><span>setUpperLinLimit</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> upperLimit )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#fe6eaa2fc49ddbd055559727b717d"><span>setUseFrameOffset</span></a> ! ( in Boolean frameOffsetOnOff )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#a640c5b388a589cfb22da1"><span>testAngLimits</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#e42381b974e4047b528f870b65da4a6"><span>testLinLimits</span></a> ! ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletSliderConstraint.html#af4aee7f3d4fc6a5dc0e806e524ec7"><span>~BulletSliderConstraint</span></a>  ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="BulletSimplexSolverInterface.kl.html"
+                        title="前の章へ">BulletSimplexSolverInterface.kl</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="BulletSoftBody.kl.html"
+                        title="次の章へ">BulletSoftBody.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/Bullet/BulletSliderConstraint.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="BulletSoftBody.kl.html" title="BulletSoftBody.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="BulletSimplexSolverInterface.kl.html" title="BulletSimplexSolverInterface.kl"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Bullet Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >Bullet Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

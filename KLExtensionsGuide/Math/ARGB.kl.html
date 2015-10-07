@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ARGB.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="Math Extension’s Files" href="files.html" />
+    <link rel="next" title="Box2.kl" href="Box2.kl.html" />
+    <link rel="prev" title="Math Extension’s Files" href="files.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="Box2.kl.html" title="Box2.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="files.html" title="Math Extension’s Files"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Math Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">Math Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="math-argb-kl">
+<span id="argb-kl"></span><span id="id1"></span><h1>ARGB.kl<a class="headerlink" href="#math-argb-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="argb-struct">
+<h3>ARGB (struct)<a class="headerlink" href="#argb-struct" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">The <a class="reference internal" href="ARGB.html#argb"><span>argb</span></a> type represents a 8 bit 4 channel color value, storing the components ordered as alpha, red, green and blue as Byte values.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="Color.html#color"><span>Color</span></a></p>
+</div>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Construct ARGB</span>
+<span class="cm">*/</span>
+
+<span class="nx">ARGB</span> <span class="nx">color</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="section" id="members">
+<h4>Members<a class="headerlink" href="#members" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="50%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Byte</td>
+<td>a</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Byte</td>
+<td>r</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Byte</td>
+<td>g</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Byte</td>
+<td>b</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="ARGB.html#eee5f4345d54bf198fc780cef27953e"><span>ARGB</span></a>  ( in <a class="reference internal" href="ARGB.html#argb"><span>ARGB</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="ARGB.html#b1d7f3b8c0494324bf1d5c0e042fcd0d"><span>ARGB</span></a>  ( in Byte a, in Byte r, in Byte g, in Byte b )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="ARGB.html#fce15c4e64849b374019e027f0"><span>ARGB</span></a>  ( in Integer a, in Integer r, in Integer g, in Integer b )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="ARGB.html#b989c6c331524f63bb39f7b7d5baa84b"><span>ARGB</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="ARGB.html#argb"><span>ARGB</span></a></td>
+<td><a class="reference internal" href="ARGB.html#a93984c81a142a693feb9ba780dce79"><span>add</span></a> ? ( in <a class="reference internal" href="ARGB.html#argb"><span>ARGB</span></a> other )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="ARGB.html#argb"><span>ARGB</span></a></td>
+<td><a class="reference internal" href="ARGB.html#b2868b54342a49a0cdd8b3e8bd4cd"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="ARGB.html#e49a60814b41e2981d21f1e46e25f1"><span>equal</span></a> ? ( in <a class="reference internal" href="ARGB.html#argb"><span>ARGB</span></a> other )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="ARGB.html#argb"><span>ARGB</span></a></td>
+<td><a class="reference internal" href="ARGB.html#b15ad3c2779844108d183aaa67b32ffa"><span>linearInterpolate</span></a> ? ( in <a class="reference internal" href="ARGB.html#argb"><span>ARGB</span></a> other, in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> t )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="ARGB.html#argb"><span>ARGB</span></a></td>
+<td><a class="reference internal" href="ARGB.html#dc6b59cf644d3bbf5688775069da7a"><span>multiply</span></a> ? ( in <a class="reference internal" href="ARGB.html#argb"><span>ARGB</span></a> other )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="ARGB.html#argb"><span>ARGB</span></a></td>
+<td><a class="reference internal" href="ARGB.html#df248d57f8c74260a88c08ec59c10aae"><span>multiplyScalar</span></a> ? ( in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> other )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="ARGB.html#argb"><span>ARGB</span></a></td>
+<td><a class="reference internal" href="ARGB.html#a7a987c234111a72ef3f4c8169881"><span>subtract</span></a> ? ( in <a class="reference internal" href="ARGB.html#argb"><span>ARGB</span></a> other )</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+<div class="section" id="operators">
+<h4>Operators<a class="headerlink" href="#operators" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="21%" />
+<col width="79%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="ARGB.html#argb"><span>ARGB</span></a></td>
+<td><a class="reference internal" href="ARGB.html#c9c4e5a90d24b28a7d994b94bf00197"><span>=</span></a> ( <a class="reference internal" href="../Parameters/Param.html#param"><span>Param</span></a> other )</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="files.html"
+                        title="前の章へ">Math Extension&#8217;s Files</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="Box2.kl.html"
+                        title="次の章へ">Box2.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/Math/ARGB.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="Box2.kl.html" title="Box2.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="files.html" title="Math Extension’s Files"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Math Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >Math Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

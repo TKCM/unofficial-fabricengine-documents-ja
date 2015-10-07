@@ -1,0 +1,414 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>OpenImageBuf.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="OpenImageIO Extension’s Files" href="files.html" />
+    <link rel="next" title="OpenImageDeepData.kl" href="OpenImageDeepData.kl.html" />
+    <link rel="prev" title="OpenImageIO Extension’s Files" href="files.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="OpenImageDeepData.kl.html" title="OpenImageDeepData.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="files.html" title="OpenImageIO Extension’s Files"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >OpenImageIO Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">OpenImageIO Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="openimageio-openimagebuf-kl">
+<span id="openimagebuf-kl"></span><span id="id1"></span><h1>OpenImageBuf.kl<a class="headerlink" href="#openimageio-openimagebuf-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="openimagebuf-object">
+<h3>OpenImageBuf (object)<a class="headerlink" href="#openimagebuf-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="12%" />
+<col width="88%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="OpenImageBuf.html#b6138c4ff68477cba120165fa2fc4b7"><span>OpenImageBuf</span></a>  ( in <a class="reference internal" href="OpenImageBuf.html#openimagebuf"><span>OpenImageBuf</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="OpenImageBuf.html#aa7fea6de6346fca3ea4597b9b24ecd"><span>OpenImageBuf</span></a>  ( in <a class="reference internal" href="OpenImageSpec.html#openimagespec"><span>OpenImageSpec</span></a> spec )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="OpenImageBuf.html#ff1753431ba461d9a46d986b7517dd1"><span>OpenImageBuf</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in <a class="reference internal" href="OpenImageSpec.html#openimagespec"><span>OpenImageSpec</span></a> spec )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="OpenImageBuf.html#d7b20ec05494ea38147469f18f67c40"><span>OpenImageBuf</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in SInt32 subimage, in SInt32 miplevel )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="OpenImageBuf.html#f43f7a5d8441a2a0bbc2ae67fbb999"><span>OpenImageBuf</span></a>  ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="OpenImageBuf.html#f11a549681874841812af95278e598bb"><span>alloc</span></a> ? ( in <a class="reference internal" href="OpenImageSpec.html#openimagespec"><span>OpenImageSpec</span></a> spec )</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="OpenImageBuf.html#c52ebbd7d88442ca8bb9f786e5d1b0c"><span>cachedpixels</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="OpenImageBuf.html#d18d4c124a80430e8278654bdb386582"><span>clear</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="OpenImageBuf.html#openimagebuf"><span>OpenImageBuf</span></a></td>
+<td><a class="reference internal" href="OpenImageBuf.html#bacdc2d2c405a81619c3cf74999f0"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="OpenImageBuf.html#cebed1f5f70e45cd9d234b5c8fc8346d"><span>copy</span></a> ? ( in <a class="reference internal" href="OpenImageBuf.html#openimagebuf"><span>OpenImageBuf</span></a> src )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="OpenImageBuf.html#d70c4be2efec471b8818560444acdb88"><span>copy_metadata</span></a> ? ( in <a class="reference internal" href="OpenImageBuf.html#openimagebuf"><span>OpenImageBuf</span></a> src )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="OpenImageBuf.html#e29b8b99bac64cbfbdd2822b566e53f5"><span>copy_pixels</span></a> ? ( in <a class="reference internal" href="OpenImageBuf.html#openimagebuf"><span>OpenImageBuf</span></a> src )</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="OpenImageBuf.html#b543db6a4b6ba8c007d9072a7c31"><span>deep</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Data</td>
+<td><a class="reference internal" href="OpenImageBuf.html#c763f593b4f5baab58b34972bcc8a"><span>deep_pixel_ptr</span></a> ? ( in SInt32 x, in SInt32 y, in SInt32 z, in SInt32 c )</td>
+</tr>
+<tr class="row-odd"><td>SInt32</td>
+<td><a class="reference internal" href="OpenImageBuf.html#dc549f27fa3b404b978aa4af60c223db"><span>deep_samples</span></a> ? ( in SInt32 x, in SInt32 y )</td>
+</tr>
+<tr class="row-even"><td>SInt32</td>
+<td><a class="reference internal" href="OpenImageBuf.html#e59494c7b00f4b7f8063aca6ec4f4a66"><span>deep_samples</span></a> ? ( in SInt32 x, in SInt32 y, in SInt32 z )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a></td>
+<td><a class="reference internal" href="OpenImageBuf.html#e4f4a352043b3b60aac460f6a7324"><span>deep_value</span></a> ? ( in SInt32 x, in SInt32 y, in SInt32 z, in SInt32 c, in SInt32 s )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="OpenImageDeepData.html#openimagedeepdata"><span>OpenImageDeepData</span></a></td>
+<td><a class="reference internal" href="OpenImageBuf.html#ee852a3ab342e788ab3f9615c1407a"><span>deepdata</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="OpenImageBuf.html#e8c1661a08a4a13a17318e12efdac61"><span>file_format_name</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="OpenImageBuf.html#ee1d0bd844c349eac883ec20240ab"><span>get_pixel_channels</span></a> ? ( in SInt32 xbegin, in SInt32 xend, in SInt32 ybegin, in SInt32 yend, in SInt32 zbegin, in SInt32 zend, in SInt32 chbegin, in SInt32 chend, in <a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a> format, io Data result, in SInt64 xstride, in SInt64 ystride, in SInt64 zstride )</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="OpenImageBuf.html#e8ac29ba7443a4af777d513352fe59"><span>get_pixels</span></a> ? ( in SInt32 xbegin, in SInt32 xend, in SInt32 ybegin, in SInt32 yend, in SInt32 zbegin, in SInt32 zend, in <a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a> format, io Data result, in SInt64 xstride, in SInt64 ystride, in SInt64 zstride )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a></td>
+<td><a class="reference internal" href="OpenImageBuf.html#d45a5b5606214decbb55d446d4c91f4f"><span>getchannel</span></a> ? ( in SInt32 x, in SInt32 y, in SInt32 z, in SInt32 c )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a></td>
+<td><a class="reference internal" href="OpenImageBuf.html#c56612e5dbca45f8a154c4bc4cceb565"><span>getchannel</span></a> ? ( in SInt32 x, in SInt32 y, in SInt32 z, in SInt32 c, in OpenImage_WrapMode wrap )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="OpenImageBuf.html#f57134a1c904d60baaba0ab5b746968"><span>geterror</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="OpenImageBuf.html#e32c8b5b9c049379c23bf53b2284dff"><span>getpixel</span></a> ? ( in SInt32 x, in SInt32 y, in SInt32 z, io <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> pixel[], in SInt32 maxchannels, in OpenImage_WrapMode wrap )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="OpenImageBuf.html#a609e821e7bf409f8f02020c5d40e17f"><span>getpixel</span></a> ? ( in SInt32 x, in SInt32 y, io <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> pixel[] )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="OpenImageBuf.html#ad19cb40ab64cfe8787eecd39be55a7"><span>getpixel</span></a> ? ( in SInt32 x, in SInt32 y, io <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> pixel[], in SInt32 maxchannels )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="OpenImageBuf.html#e0718fc0b6448ffb00c1affb7f14580"><span>has_error</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="OpenImageBuf.html#c49f9f4f9414d70bf8a5db93b76d5fd"><span>init_spec</span></a> ? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> filename, in SInt32 subimage, in SInt32 miplevel )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="OpenImageBuf.html#ef2475ea13f341d18fb904fd468b9839"><span>initialized</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="OpenImageBuf.html#a53900a48eec489cbf46b984dab6d10e"><span>interppixel</span></a> ? ( in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> x, in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> y, io <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> pixel[], in OpenImage_WrapMode wrap )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="OpenImageBuf.html#c7e2f25202643e9ad3b99a9cf0ecdd9"><span>interppixel_NDC</span></a> ? ( in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> s, in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> t, io <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> pixel[], in OpenImage_WrapMode wrap )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="OpenImageBuf.html#c5eae0a92a143c4a9c79642b1a5d07c"><span>interppixel_NDC_full</span></a> ? ( in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> s, in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> t, io <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> pixel[], in OpenImage_WrapMode wrap )</td>
+</tr>
+<tr class="row-even"><td>Data</td>
+<td><a class="reference internal" href="OpenImageBuf.html#b41de70c83e4e0a8dc1a17ae6928bfe"><span>localpixels</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>SInt32</td>
+<td><a class="reference internal" href="OpenImageBuf.html#b7f5347b542feb883689c46d193be"><span>miplevel</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="OpenImageBuf.html#b2248801cb0a439298c35dcbb7a0d383"><span>name</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="OpenImageSpec.html#openimagespec"><span>OpenImageSpec</span></a></td>
+<td><a class="reference internal" href="OpenImageBuf.html#c129299d73ca4bc9b78e824ece5e8b06"><span>nativespec</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>SInt32</td>
+<td><a class="reference internal" href="OpenImageBuf.html#f178b632e04d39924fbea96e63fc75"><span>nchannels</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>SInt32</td>
+<td><a class="reference internal" href="OpenImageBuf.html#f5009672bf044a7a0a4abee9bfd1ac6"><span>nmiplevels</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>SInt32</td>
+<td><a class="reference internal" href="OpenImageBuf.html#d1f2aa910446c8df9cc7084151bfb"><span>nsubimages</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>SInt32</td>
+<td><a class="reference internal" href="OpenImageBuf.html#a8adec2745934ea08d5a45e65f8236f2"><span>orientation</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>SInt32</td>
+<td><a class="reference internal" href="OpenImageBuf.html#c518a8ac241647c297eacb3b98184cce"><span>oriented_full_height</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>SInt32</td>
+<td><a class="reference internal" href="OpenImageBuf.html#a7c0bd8e90343baacf373225fe966ad"><span>oriented_full_width</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>SInt32</td>
+<td><a class="reference internal" href="OpenImageBuf.html#a03a241c1074da1a7c55bfd3c927999"><span>oriented_full_x</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>SInt32</td>
+<td><a class="reference internal" href="OpenImageBuf.html#e779dc08c3d84f559b0e4d621c160cd2"><span>oriented_full_y</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>SInt32</td>
+<td><a class="reference internal" href="OpenImageBuf.html#b72faf022ab493cb2b54e4f47e51d6e"><span>oriented_height</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>SInt32</td>
+<td><a class="reference internal" href="OpenImageBuf.html#f7db4c5f126847578898290e2f101079"><span>oriented_width</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>SInt32</td>
+<td><a class="reference internal" href="OpenImageBuf.html#a17eb420c23479db9a7b119576fb7aa"><span>oriented_x</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>SInt32</td>
+<td><a class="reference internal" href="OpenImageBuf.html#a707431170d44f4480b4a913437fbdb2"><span>oriented_y</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Data</td>
+<td><a class="reference internal" href="OpenImageBuf.html#c9c8a8e31fa94ff8b77f53088290a6f5"><span>pixeladdr</span></a> ? ( in SInt32 x, in SInt32 y )</td>
+</tr>
+<tr class="row-odd"><td>Data</td>
+<td><a class="reference internal" href="OpenImageBuf.html#bbccd27a6747b08d4531a0e7b9cde7"><span>pixeladdr</span></a> ? ( in SInt32 x, in SInt32 y, in SInt32 z )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="OpenImageBuf.html#ed480fa1c4844908128c70963e336"><span>pixels_valid</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a></td>
+<td><a class="reference internal" href="OpenImageBuf.html#f19ec165776e41af9c2225e4049dc3de"><span>pixeltype</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="OpenImageBuf.html#bdf0b547c1e4823a77ff3b76ebaea84"><span>read</span></a> ? ( in SInt32 subimage, in SInt32 miplevel, in Boolean force )</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="OpenImageBuf.html#ae4105bc544141fbaecf1eb902585799"><span>read</span></a> ? ( in SInt32 subimage, in SInt32 miplevel, in Boolean force, in <a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a> convert )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="OpenImageBuf.html#a391b5dba7b43388b954e8ffe910299"><span>reset</span></a> ? ( in <a class="reference internal" href="OpenImageSpec.html#openimagespec"><span>OpenImageSpec</span></a> spec )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="OpenImageBuf.html#a13fb442de848c580849684cf99a451"><span>reset</span></a> ? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in <a class="reference internal" href="OpenImageSpec.html#openimagespec"><span>OpenImageSpec</span></a> spec )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="OpenImageBuf.html#dbf1cb5382a42e3be25192de432da92"><span>reset</span></a> ? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in SInt32 subimage, in SInt32 miplevel )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="OpenImageROI.html#openimageroi"><span>OpenImageROI</span></a></td>
+<td><a class="reference internal" href="OpenImageBuf.html#c4b36aafb3e4ff1aad9b7c6dbe62015"><span>roi</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="OpenImageROI.html#openimageroi"><span>OpenImageROI</span></a></td>
+<td><a class="reference internal" href="OpenImageBuf.html#d622abfef04bd8ba39acbfcbf2e616"><span>roi_full</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="OpenImageBuf.html#b86b4e89ebc44f6c98a74e63e977ea92"><span>set_full</span></a> ? ( in SInt32 xbegin, in SInt32 xend, in SInt32 ybegin, in SInt32 yend, in SInt32 zbegin, in SInt32 zend )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="OpenImageBuf.html#db7883cd7448c8ccfea43891d35d5"><span>set_roi_full</span></a> ? ( in <a class="reference internal" href="OpenImageROI.html#openimageroi"><span>OpenImageROI</span></a> roi )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="OpenImageBuf.html#c8adaff8733484ba83471a8bf54da7c"><span>set_write_format</span></a> ? ( in <a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a> format )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="OpenImageBuf.html#a7349cb4f5196a996bdfb75a9aa"><span>set_write_tiles</span></a> ? ( in SInt32 width, in SInt32 height, in SInt32 depth )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="OpenImageBuf.html#e611e1637348f391b4786e618e26e8"><span>setpixel</span></a> ? ( in SInt32 i, in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> pixel[] )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="OpenImageBuf.html#f6a62285374921b2b658625d3bb06e"><span>setpixel</span></a> ? ( in SInt32 i, in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> pixel[], in SInt32 maxchannels )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="OpenImageBuf.html#afa0db1e4920b5817abddad45fc3"><span>setpixel</span></a> ? ( in SInt32 x, in SInt32 y, in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> pixel[] )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="OpenImageBuf.html#c4902c7ea5ea40db9e178ce05a312978"><span>setpixel</span></a> ? ( in SInt32 x, in SInt32 y, in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> pixel[], in SInt32 maxchannels )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="OpenImageBuf.html#aba47f6931c942b49e8351710a6e28f9"><span>setpixel</span></a> ? ( in SInt32 x, in SInt32 y, in SInt32 z, in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> pixel[], in SInt32 maxchannels )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="OpenImageSpec.html#openimagespec"><span>OpenImageSpec</span></a></td>
+<td><a class="reference internal" href="OpenImageBuf.html#f11765bf47faa42edd3ad924fb8b"><span>spec</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="OpenImageSpec.html#openimagespec"><span>OpenImageSpec</span></a></td>
+<td><a class="reference internal" href="OpenImageBuf.html#bf8c73b9b841de87f3dc73a62ca2f1"><span>specmod</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>OpenImage_IBStorage</td>
+<td><a class="reference internal" href="OpenImageBuf.html#c37af1e68b3d46d9a62d474058bb4bf7"><span>storage</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>SInt32</td>
+<td><a class="reference internal" href="OpenImageBuf.html#f4436eb57e345e692ba1e0cd345869f"><span>subimage</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="OpenImageBuf.html#c6459e0c299498bbb06579d5ef1c1f8"><span>swap</span></a> ? ( in <a class="reference internal" href="OpenImageBuf.html#openimagebuf"><span>OpenImageBuf</span></a> other )</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="OpenImageBuf.html#e43508857640e3800db984161e1b43"><span>write</span></a> ? ( in <a class="reference internal" href="OpenImageOutput.html#openimageoutput"><span>OpenImageOutput</span></a> out )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="OpenImageBuf.html#f6633d56f943c7861682167faf8e60"><span>write</span></a> ? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> filename )</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="OpenImageBuf.html#e2851a53e4c24dd9b38afa5e52df65f1"><span>write</span></a> ? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> filename, in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> fileformat )</td>
+</tr>
+<tr class="row-even"><td>SInt32</td>
+<td><a class="reference internal" href="OpenImageBuf.html#feb32e41ece5412b85d34eb2c8261e44"><span>xbegin</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>SInt32</td>
+<td><a class="reference internal" href="OpenImageBuf.html#c77e92d2c7d24f40942166076264b4e1"><span>xend</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>SInt32</td>
+<td><a class="reference internal" href="OpenImageBuf.html#ac163a4beba224b6c259b8d062"><span>xmax</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>SInt32</td>
+<td><a class="reference internal" href="OpenImageBuf.html#ea38c455100b47b5849eaf91562a0eae"><span>xmin</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>SInt32</td>
+<td><a class="reference internal" href="OpenImageBuf.html#e28b4d426d184cfa9136013f9203c06e"><span>ybegin</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>SInt32</td>
+<td><a class="reference internal" href="OpenImageBuf.html#dbdb6bf1b4e9439eaf13855d75f25dd3"><span>yend</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>SInt32</td>
+<td><a class="reference internal" href="OpenImageBuf.html#ee20bba5417c4eb49dd796671bad2297"><span>ymax</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>SInt32</td>
+<td><a class="reference internal" href="OpenImageBuf.html#e0a809abf824f3f8b3a27d8691a43aa"><span>ymin</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>SInt32</td>
+<td><a class="reference internal" href="OpenImageBuf.html#c4023c5175145d9bbd303ac526522e1"><span>zbegin</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>SInt32</td>
+<td><a class="reference internal" href="OpenImageBuf.html#affb4cb823948cd83f5b775c3898e9a"><span>zend</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>SInt32</td>
+<td><a class="reference internal" href="OpenImageBuf.html#e7d16ee426c84410ab39f43d8dd278df"><span>zmax</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>SInt32</td>
+<td><a class="reference internal" href="OpenImageBuf.html#cc381147fed5451d91f2eaac1a4f28ff"><span>zmin</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="OpenImageBuf.html#ecb004e143e1bf4d3e20df3fb36a"><span>~OpenImageBuf</span></a>  ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="files.html"
+                        title="前の章へ">OpenImageIO Extension&#8217;s Files</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="OpenImageDeepData.kl.html"
+                        title="次の章へ">OpenImageDeepData.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/OpenImageIO/OpenImageBuf.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="OpenImageDeepData.kl.html" title="OpenImageDeepData.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="files.html" title="OpenImageIO Extension’s Files"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >OpenImageIO Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >OpenImageIO Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

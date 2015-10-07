@@ -1,0 +1,301 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Mat22_d.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="Math Extension’s Files" href="files.html" />
+    <link rel="next" title="Mat22_i.kl" href="Mat22_i.kl.html" />
+    <link rel="prev" title="Mat22.kl" href="Mat22.kl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="Mat22_i.kl.html" title="Mat22_i.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="Mat22.kl.html" title="Mat22.kl"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Math Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">Math Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="math-mat22-d-kl">
+<span id="mat22-d-kl"></span><span id="id1"></span><h1>Mat22_d.kl<a class="headerlink" href="#math-mat22-d-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="mat22-d-struct">
+<h3>Mat22_d (struct)<a class="headerlink" href="#mat22-d-struct" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">The <a class="reference internal" href="Mat22_d.html#mat22-d"><span>Mat22_d</span></a> represents a 2 by 2 matrix. It uses <a class="reference internal" href="Vec2_d.html#vec2-d"><span>Vec2_d</span></a> types for each of the 2 rows.</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Construct Mat22_d</span>
+<span class="cm">*/</span>
+
+<span class="c1">// create a matrix 2x2</span>
+<span class="nx">Vec2_d</span> <span class="nx">v0</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">);</span>
+<span class="nx">Vec2_d</span> <span class="nx">v1</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">);</span>
+<span class="nx">Mat22_d</span> <span class="nx">mat</span><span class="p">(</span><span class="nx">v0</span><span class="p">,</span> <span class="nx">v1</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="section" id="members">
+<h4>Members<a class="headerlink" href="#members" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="73%" />
+<col width="18%" />
+<col width="9%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="Vec2_d.html#vec2-d"><span>Vec2_d</span></a></td>
+<td>row0</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Vec2_d.html#vec2-d"><span>Vec2_d</span></a></td>
+<td>row1</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="12%" />
+<col width="88%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat22_d.html#fe94923ccffd45d0b2378e9923d0009f"><span>Mat22_d</span></a>  ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> _00, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> _01, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> _10, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> _11 )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat22_d.html#e80fb11547d688023062a5ab852c"><span>Mat22_d</span></a>  ( in <a class="reference internal" href="Mat22_d.html#mat22-d"><span>Mat22_d</span></a> other )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat22_d.html#f30dbd718b9444ead4c4a5278d3f66e"><span>Mat22_d</span></a>  ( in <a class="reference internal" href="Vec2_d.html#vec2-d"><span>Vec2_d</span></a> row0, in <a class="reference internal" href="Vec2_d.html#vec2-d"><span>Vec2_d</span></a> row1 )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat22_d.html#fe4157a442e195b0a6369abddfbc"><span>Mat22_d</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Mat22_d.html#mat22-d"><span>Mat22_d</span></a></td>
+<td><a class="reference internal" href="Mat22_d.html#d7c4c7eb5a41479d9d0ffdaa3fc96e"><span>add</span></a> ? ( in <a class="reference internal" href="Mat22_d.html#mat22-d"><span>Mat22_d</span></a> other )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Mat22_d.html#mat22-d"><span>Mat22_d</span></a></td>
+<td><a class="reference internal" href="Mat22_d.html#eb978ea613c44dbbcfc1c30626b020c"><span>adjoint</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="Mat22_d.html#e9b9e18f34409b72f650711b6f264"><span>almostEqual</span></a> ? ( in <a class="reference internal" href="Mat22_d.html#mat22-d"><span>Mat22_d</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="Mat22_d.html#f0fd75781cc8496792b639e820070a8c"><span>almostEqual</span></a> ? ( in <a class="reference internal" href="Mat22_d.html#mat22-d"><span>Mat22_d</span></a> other, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> precision )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Mat22_d.html#mat22-d"><span>Mat22_d</span></a></td>
+<td><a class="reference internal" href="Mat22_d.html#a84b71448fa74f28802e94529b5cd690"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="Mat22_d.html#ce1a0f79499b4e8d9e8aa902d99d11a5"><span>determinant</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Mat22_d.html#mat22-d"><span>Mat22_d</span></a></td>
+<td><a class="reference internal" href="Mat22_d.html#e8eff4d1f6042538b3a5e8101d70a9b"><span>divideFloat64</span></a> ? ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="Mat22_d.html#d5e9c33455ab0ada098633824ab"><span>equal</span></a> ? ( in <a class="reference internal" href="Mat22_d.html#mat22-d"><span>Mat22_d</span></a> other )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat22_d.html#a98e84c04ccf86b936e50bd4aaa1"><span>get</span></a> ? ( io <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> v&lt;&gt; )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat22_d.html#b2c281a6154e9bae5fade5b7abdd8e"><span>get</span></a> ? ( io <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> v&lt;&gt;, in UInt32 o )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat22_d.html#ee5d4d5e68447448163d36f40c540e5"><span>get</span></a> ? ( io <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> v[] )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat22_d.html#e2627fd3714d00b7b7e3b8a06ac257"><span>get</span></a> ? ( io <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> v[], in UInt32 o )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat22_d.html#a3b808d6194d3999b5bf7fa3d6c40e"><span>get</span></a> ? ( io <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> v&lt;&gt; )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat22_d.html#c1397ea6fc418e9bebf158a71a306a"><span>get</span></a> ? ( io <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> v&lt;&gt;, in UInt32 o )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat22_d.html#f4cfaaf3e7934234978b71aa401c8ce2"><span>get</span></a> ? ( io <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> v[] )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat22_d.html#c74a0979a25b42918936a3aeec02db14"><span>get</span></a> ? ( io <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> v[], in UInt32 o )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Mat22_d.html#mat22-d"><span>Mat22_d</span></a></td>
+<td><a class="reference internal" href="Mat22_d.html#ce8220d75f7543148ea431df964849f7"><span>inverse</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Mat22_d.html#mat22-d"><span>Mat22_d</span></a></td>
+<td><a class="reference internal" href="Mat22_d.html#e02a000c55748e7af3d89fffeff50cb"><span>multiply</span></a> ? ( in <a class="reference internal" href="Mat22_d.html#mat22-d"><span>Mat22_d</span></a> other )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Mat22_d.html#mat22-d"><span>Mat22_d</span></a></td>
+<td><a class="reference internal" href="Mat22_d.html#abf43ea1445496a942bf650d1bec4ac"><span>multiplyFloat64</span></a> ? ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> other )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Vec2_d.html#vec2-d"><span>Vec2_d</span></a></td>
+<td><a class="reference internal" href="Mat22_d.html#dd1667d07fe45ce8b9b7747ddfe4517"><span>multiplyVector</span></a> ? ( in <a class="reference internal" href="Vec2_d.html#vec2-d"><span>Vec2_d</span></a> other )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat22_d.html#ddda205b4e14b9891b1a14342458e92"><span>set</span></a> ! ( in <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> v&lt;&gt; )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat22_d.html#cc057ce3d97407c895136209aaae982"><span>set</span></a> ! ( in <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> v&lt;&gt;, in UInt32 o )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat22_d.html#ca6be6cd0a4f47b257f9bb9936c7b9"><span>set</span></a> ! ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> _00, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> _01, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> _10, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> _11 )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat22_d.html#c9a0df7413c419ba4470546baf5aa31"><span>set</span></a> ! ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> v&lt;&gt; )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat22_d.html#d6bfc3a78f4b7a9d512275b3347b19"><span>set</span></a> ! ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> v&lt;&gt;, in UInt32 o )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat22_d.html#d5c4b4161a5a1550e7f6f94f7"><span>setColumns</span></a> ! ( in <a class="reference internal" href="Vec2_d.html#vec2-d"><span>Vec2_d</span></a> col0, in <a class="reference internal" href="Vec2_d.html#vec2-d"><span>Vec2_d</span></a> col1 )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat22_d.html#ea954a1bf08446bba4da9533bde8af77"><span>setDiagonal</span></a> ! ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> v )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat22_d.html#b50a347f46d48029680e42a292d2fa5"><span>setDiagonal</span></a> ! ( in <a class="reference internal" href="Vec2_d.html#vec2-d"><span>Vec2_d</span></a> v )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat22_d.html#d82299f85f48589a0193de2a57cd7f"><span>setIdentity</span></a> ! ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat22_d.html#afe9319aa6a4162881d499d970ef8ab"><span>setNull</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat22_d.html#e5b206d4aa5ae55269ce10c11bd"><span>setRows</span></a> ! ( in <a class="reference internal" href="Vec2_d.html#vec2-d"><span>Vec2_d</span></a> row0, in <a class="reference internal" href="Vec2_d.html#vec2-d"><span>Vec2_d</span></a> row1 )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Mat22_d.html#mat22-d"><span>Mat22_d</span></a></td>
+<td><a class="reference internal" href="Mat22_d.html#caea3d534f3048bd8ded97a1d87bad84"><span>subtract</span></a> ? ( in <a class="reference internal" href="Mat22_d.html#mat22-d"><span>Mat22_d</span></a> other )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Mat22_d.html#mat22-d"><span>Mat22_d</span></a></td>
+<td><a class="reference internal" href="Mat22_d.html#f5382b7edf6e422299268d2475c02c1c"><span>transpose</span></a> ? ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+<div class="section" id="operators">
+<h4>Operators<a class="headerlink" href="#operators" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="Mat22_d.html#mat22-d"><span>Mat22_d</span></a></td>
+<td><a class="reference internal" href="Mat22_d.html#d575b8c9c50144c282228ecb3036d246"><span>=</span></a> ( <a class="reference internal" href="../Parameters/Param.html#param"><span>Param</span></a> other )</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="Mat22.kl.html"
+                        title="前の章へ">Mat22.kl</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="Mat22_i.kl.html"
+                        title="次の章へ">Mat22_i.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/Math/Mat22_d.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="Mat22_i.kl.html" title="Mat22_i.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="Mat22.kl.html" title="Mat22.kl"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Math Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >Math Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

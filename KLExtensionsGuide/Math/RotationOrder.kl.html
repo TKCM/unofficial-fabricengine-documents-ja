@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>RotationOrder.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="Math Extension’s Files" href="files.html" />
+    <link rel="next" title="Vec2.kl" href="Vec2.kl.html" />
+    <link rel="prev" title="Ray.kl" href="Ray.kl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="Vec2.kl.html" title="Vec2.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="Ray.kl.html" title="Ray.kl"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Math Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">Math Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="math-rotationorder-kl">
+<span id="rotationorder-kl"></span><span id="id1"></span><h1>RotationOrder.kl<a class="headerlink" href="#math-rotationorder-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="rotationorder-struct">
+<h3>RotationOrder (struct)<a class="headerlink" href="#rotationorder-struct" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">The <code class="xref std std-kl-ref docutils literal"><span class="pre">Rotationorder</span></code> type represents the order in which rotations should be accumulated for a <a class="reference internal" href="Euler.html#euler"><span>Euler</span></a> rotation. <code class="xref std std-kl-ref docutils literal"><span class="pre">Rotationorder</span></code> can be constructed from order indices or strings.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="Euler.html#euler"><span>Euler</span></a></p>
+</div>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: RotationOrder</span>
+<span class="cm">*/</span>
+
+<span class="nx">RotationOrder</span> <span class="nx">ro1</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="nx">RotationOrder</span> <span class="nx">ro2</span><span class="p">(</span><span class="s1">&#39;xyz&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="section" id="members">
+<h4>Members<a class="headerlink" href="#members" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="47%" />
+<col width="37%" />
+<col width="16%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Integer</td>
+<td>order</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="RotationOrder.html#e6ad24152f4ecd862670eb6b4e2703"><span>RotationOrder</span></a>  ( in Integer order )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="RotationOrder.html#e026e490f44d4020b638e8b8068aaee6"><span>RotationOrder</span></a>  ( in <a class="reference internal" href="RotationOrder.html#rotationorder"><span>RotationOrder</span></a> other )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="RotationOrder.html#faa5fd5152bc449587d88c31bcf326a4"><span>RotationOrder</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> order )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="RotationOrder.html#b7f5c2ce4724a018dd7434f17956333"><span>RotationOrder</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="RotationOrder.html#rotationorder"><span>RotationOrder</span></a></td>
+<td><a class="reference internal" href="RotationOrder.html#a01450d526d4184b5daf5c64c46c75c"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="RotationOrder.html#fe177f153fc9417ea9cd16c23ff884fb"><span>isReversed</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="RotationOrder.html#ba87cf3a81784f90a1b54529e3cc1c8a"><span>isXYZ</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="RotationOrder.html#a3678a414d48ba24b279951cd500"><span>isXZY</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="RotationOrder.html#ec504a747f44418d85153965be34d551"><span>isYXZ</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="RotationOrder.html#fc84f1b0f491fb9ae1af53e55e176"><span>isYZX</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="RotationOrder.html#eb93f64440f8912367df8cc2597d"><span>isZXY</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="RotationOrder.html#a0eee51e0e4999999fa77553aa7384"><span>isZYX</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="RotationOrder.html#db54f553b3694104bb7a78a7802497c7"><span>setXYZ</span></a> ! ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="RotationOrder.html#fa9f297a79f4445680c5474565a0fc6f"><span>setXZY</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="RotationOrder.html#bd58c76c0bc42ddb4ccdf5ba6f01ae0"><span>setYXZ</span></a> ! ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="RotationOrder.html#ef031ed45422abf02a9879a3cf4fa"><span>setYZX</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="RotationOrder.html#a851a7a88964cd0b390f2eb215ede54"><span>setZXY</span></a> ! ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="RotationOrder.html#ffe0587598b49c6958433169362bccc"><span>setZYX</span></a> ! ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="Ray.kl.html"
+                        title="前の章へ">Ray.kl</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="Vec2.kl.html"
+                        title="次の章へ">Vec2.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/Math/RotationOrder.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="Vec2.kl.html" title="Vec2.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="Ray.kl.html" title="Ray.kl"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Math Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >Math Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

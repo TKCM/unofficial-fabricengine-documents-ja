@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>SliderGizmoHandler.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="Manipulation Extension’s Files" href="files.html" />
+    <link rel="next" title="SurfaceAttributePaintManipulator.kl" href="SurfaceAttributePaintManipulator.kl.html" />
+    <link rel="prev" title="PositionPlanarGizmoManager.kl" href="PositionPlanarGizmoManager.kl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="SurfaceAttributePaintManipulator.kl.html" title="SurfaceAttributePaintManipulator.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="PositionPlanarGizmoManager.kl.html" title="PositionPlanarGizmoManager.kl"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Manipulation Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">Manipulation Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="manipulation-slidergizmohandler-kl">
+<span id="slidergizmohandler-kl"></span><span id="id1"></span><h1>SliderGizmoHandler.kl<a class="headerlink" href="#manipulation-slidergizmohandler-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="slidergizmohandler-object">
+<h3>SliderGizmoHandler (object)<a class="headerlink" href="#slidergizmohandler-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 1.12.0 で追加.</span></p>
+</div>
+<p class="plaintext">The <a class="reference internal" href="SliderGizmoHandler.html#slidergizmohandler"><span>SliderGizmoHandler</span></a> converts mouse events into and absolute translation along a predefined axis. The <a class="reference internal" href="SliderGizmoHandler.html#slidergizmohandler"><span>SliderGizmoHandler</span></a> is intended to be used to compute the value of a slider.</p>
+<p class="plaintext">Compared to the <a class="reference internal" href="PositionAxisGizmoHandler.html#positionaxisgizmohandler"><span>PositionAxisGizmoHandler</span></a> that computes a relative translation, the <a class="reference internal" href="SliderGizmoHandler.html#slidergizmohandler"><span>SliderGizmoHandler</span></a> generates an absolute value in the parent space of the owner <a class="reference internal" href="../InlineDrawing/InlineInstance.html#inlineinstance"><span>InlineInstance</span></a>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="GizmoHandler.html#gizmohandler"><span>GizmoHandler</span></a>, <a class="reference internal" href="BaseGizmoHandler.html#basegizmohandler"><span>BaseGizmoHandler</span></a></p>
+</div>
+<div class="section" id="members">
+<h4>Members<a class="headerlink" href="#members" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="31%" />
+<col width="10%" />
+<col width="60%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Ref&lt;<a class="reference internal" href="../InlineDrawing/InlineInstance.html#inlineinstance"><span>InlineInstance</span></a>&gt;</td>
+<td>owner</td>
+<td>The instance that owns the handler. reference to the owner, which would cause a circular reference.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a></td>
+<td>ownerColor</td>
+<td>The un-highlighted color of the owner</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="GizmoManipulationCallback.html#gizmomanipulationcallback"><span>GizmoManipulationCallback</span></a></td>
+<td>callback</td>
+<td>The callback to be invoked when the gizmo is manipulated.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Util/EvalContext.html#evalcontext"><span>EvalContext</span></a></td>
+<td>evalContext</td>
+<td>The evaluation context provided when the handler was constructed. on the gizmo generates changes in the host DCC graph.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td>manipulationVector</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td>dragging</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a></td>
+<td>spaceXfo</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Vec2.html#vec2"><span>Vec2</span></a></td>
+<td>limits</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="16%" />
+<col width="84%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="SliderGizmoHandler.html#bdc88e09eee54f27b8a2d1f83b0b19d9"><span>SliderGizmoHandler</span></a>  ( in <a class="reference internal" href="../InlineDrawing/InlineInstance.html#inlineinstance"><span>InlineInstance</span></a> owner, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> manipulationVector, in <a class="reference internal" href="GizmoManipulationCallback.html#gizmomanipulationcallback"><span>GizmoManipulationCallback</span></a> callback, in <a class="reference internal" href="../Math/Vec2.html#vec2"><span>Vec2</span></a> limits )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="SliderGizmoHandler.html#d559e5bec7410e9c0130ac7ea73781"><span>SliderGizmoHandler</span></a>  ( in <a class="reference internal" href="SliderGizmoHandler.html#slidergizmohandler"><span>SliderGizmoHandler</span></a> other )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="SliderGizmoHandler.html#cbe5c2c4ecaf4532b2340202dda16c36"><span>SliderGizmoHandler</span></a>  ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="SliderGizmoHandler.html#slidergizmohandler"><span>SliderGizmoHandler</span></a></td>
+<td><a class="reference internal" href="SliderGizmoHandler.html#d4d58b08d3e4d8481ea3d6d86df8498"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="SliderGizmoHandler.html#a9cd3366eeb74810b1e9824da5aaad40"><span>onEvent</span></a> ! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent )</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="PositionPlanarGizmoManager.kl.html"
+                        title="前の章へ">PositionPlanarGizmoManager.kl</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="SurfaceAttributePaintManipulator.kl.html"
+                        title="次の章へ">SurfaceAttributePaintManipulator.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/Manipulation/SliderGizmoHandler.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="SurfaceAttributePaintManipulator.kl.html" title="SurfaceAttributePaintManipulator.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="PositionPlanarGizmoManager.kl.html" title="PositionPlanarGizmoManager.kl"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Manipulation Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >Manipulation Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

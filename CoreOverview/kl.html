@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The KL Language &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
+    <link rel="up" title="Core Overview" href="index.html" />
+    <link rel="next" title="Registered Types" href="registered-types.html" />
+    <link rel="prev" title="Introduction" href="introduction.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="registered-types.html" title="Registered Types"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="introduction.html" title="Introduction"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Core Overview</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="the-kl-language">
+<h1>The KL Language<a class="headerlink" href="#the-kl-language" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>KL is the custom language used to define operators in Fabric Engine. KL combines the benefits of high performance languages like C++ with the benefits of dynamic languages like JavaScript and Python. ‘KL’ stands for ‘Kernel Language’ and refers to the scope of the language: writing operators. Kernels are small stateless blocks of code with an entry function. The syntax of KL is similar to the syntax of JavaScript and C.</p>
+<div class="section" id="ease-of-use">
+<h2>Ease of Use<a class="headerlink" href="#ease-of-use" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>KL is a language intended to be used by developers of all levels, particularly those comfortable with dynamic languages. Developers familiar with dynamic languages like Python and JavaScript can quickly learn the rules of KL. Developers familiar with static languages will find KL easy to pick up.</p>
+</div>
+<div class="section" id="dynamic-compilation">
+<h2>Dynamic Compilation<a class="headerlink" href="#dynamic-compilation" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Fabric Engine integrates the LLVM compiler and uses it to compile the KL source code used in operators. The KL source code is compiled by Fabric Engine as the dynamic language constructs each operator. There are no custom IDE tools required to work with Fabric Engine, so developers can continue to use their normal editors. Applications can use dynamic compilation to create applications that have self-modifying behavior.</p>
+</div>
+<div class="section" id="cross-platform">
+<h2>Cross Platform<a class="headerlink" href="#cross-platform" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Fabric Engine applications are completely dynamic and portable across operating systems, CPU architectures and devices. This is because Fabric Engine dynamically compiles KL source code on target, which ensures that there is no compromise on performance. Fabric Engine currently supports all major operating systems on x86 architectures, and support for a wider range of CPU architectures is in development.</p>
+</div>
+<div class="section" id="performance">
+<h2>Performance<a class="headerlink" href="#performance" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>KL is a strongly typed language like C, and therefore can be optimized in the same way during compilation. The resulting native machine code executes as fast as C/C++ and is integrated into the application dynamically. A benefit of dynamic compilation is that the compilation process generates optimal machine code for the target CPU architecture.</p>
+</div>
+<div class="section" id="security">
+<h2>Security<a class="headerlink" href="#security" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Fabric Engine can be run in a range of client and server environments. The KL language is constrained in such a way that it makes it impossible for malicious applications to hijack a running application using Fabric Engine. This makes it safe to run Fabric Engine in either client-side applications or in online web services.</p>
+</div>
+<div class="section" id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Complete documentation for the KL language is provided in the <a class="reference internal" href="../KLProgrammingGuide/index.html#klpg"><span>KL Programming Guide</span></a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">The KL Language</a><ul>
+<li><a class="reference internal" href="#ease-of-use">Ease of Use</a></li>
+<li><a class="reference internal" href="#dynamic-compilation">Dynamic Compilation</a></li>
+<li><a class="reference internal" href="#cross-platform">Cross Platform</a></li>
+<li><a class="reference internal" href="#performance">Performance</a></li>
+<li><a class="reference internal" href="#security">Security</a></li>
+<li><a class="reference internal" href="#documentation">Documentation</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="introduction.html"
+                        title="前の章へ">Introduction</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="registered-types.html"
+                        title="次の章へ">Registered Types</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/CoreOverview/kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="registered-types.html" title="Registered Types"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="introduction.html" title="Introduction"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Core Overview</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>DrawingHandle.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="InlineDrawing Extension’s Files" href="files.html" />
+    <link rel="next" title="DrawingUtilityFunctions.kl" href="DrawingUtilityFunctions.kl.html" />
+    <link rel="prev" title="DrawContext.kl" href="DrawContext.kl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="DrawingUtilityFunctions.kl.html" title="DrawingUtilityFunctions.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="DrawContext.kl.html" title="DrawContext.kl"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >InlineDrawing Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">InlineDrawing Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="inlinedrawing-drawinghandle-kl">
+<span id="drawinghandle-kl"></span><span id="id1"></span><h1>DrawingHandle.kl<a class="headerlink" href="#inlinedrawing-drawinghandle-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="drawinghandle-object">
+<h3>DrawingHandle (object)<a class="headerlink" href="#drawinghandle-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 1.13.0 で追加.</span></p>
+</div>
+<p class="plaintext">The <a class="reference internal" href="DrawingHandle.html#drawinghandle"><span>DrawingHandle</span></a> is used to manage the lifetime of drawn objects.</p>
+<p class="plaintext">The <a class="reference internal" href="InlineDrawing.html#inlinedrawing"><span>InlineDrawing</span></a> system uses a singleton to store the data submitted to rendering. This makes adding data to the renderer easy, but removing data can be difficult.
+Often we want data to be removed when its owner is destroyed. The owner might be a node in Maya for example. By adding the <a class="reference internal" href="DrawingHandle.html#drawinghandle"><span>DrawingHandle</span></a> as a member of a splice node, any drawn elements associated with the handle will be automatically cleaned up when the Splice node is destroyed.</p>
+<p class="plaintext">When the <a class="reference internal" href="DrawingHandle.html#drawinghandle"><span>DrawingHandle</span></a> is used within Canvas, the visual programming system, the <a class="reference internal" href="DrawingHandle.html#drawinghandle"><span>DrawingHandle</span></a> is stored in a singleton, outside of the graph.
+You will need to call <a class="reference internal" href="DrawingHandle.html#drawinghandle"><span>DrawingHandle</span></a>.clear to remove its content from the drawing. So you should use the <a class="reference internal" href="DrawingHandle.html#drawinghandle"><span>DrawingHandle</span></a>.clear node prior to any draw nodes when using it in Canvas.</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: DrawingHandle</span>
+<span class="cm">*/</span>
+
+<span class="kr">require</span> <span class="nx">InlineDrawing</span><span class="p">;</span>
+  
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+
+      <span class="c1">// Create a handle to manage the lifetime of the drawn elements </span>
+      <span class="nx">DrawingHandle</span> <span class="nx">handle</span><span class="p">();</span>
+      
+      <span class="k">if</span><span class="p">(</span><span class="nx">handle</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">())</span> <span class="p">{</span>  
+      
+        <span class="nx">InlineDrawing</span> <span class="nx">drawing</span> <span class="o">=</span> <span class="nx">handle</span><span class="p">.</span><span class="nx">getDrawing</span><span class="p">();</span>
+      
+        <span class="c1">// create a couple of transforms parented into a hierarchy attached to the handle.</span>
+        <span class="nx">InlineTransform</span> <span class="nx">rootTransform</span> <span class="o">=</span> <span class="nx">handle</span><span class="p">.</span><span class="nx">getRootTransform</span><span class="p">();</span>
+        <span class="nx">InlineTransform</span> <span class="nx">transfo1</span> <span class="o">=</span> <span class="nx">StaticInlineTransform</span><span class="p">(</span><span class="s1">&#39;parent&#39;</span><span class="p">,</span> <span class="nx">rootTransform</span><span class="p">,</span> <span class="nx">Xfo</span><span class="p">());</span>
+        <span class="nx">InlineTransform</span> <span class="nx">transfo2</span> <span class="o">=</span> <span class="nx">StaticInlineTransform</span><span class="p">(</span><span class="s1">&#39;childA&#39;</span><span class="p">,</span> <span class="nx">transfo1</span><span class="p">,</span> <span class="nx">Xfo</span><span class="p">(</span><span class="nx">Vec3</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)));</span>
+        <span class="nx">InlineTransform</span> <span class="nx">transfo3</span> <span class="o">=</span> <span class="nx">StaticInlineTransform</span><span class="p">(</span><span class="s1">&#39;childB&#39;</span><span class="p">,</span> <span class="nx">transfo1</span><span class="p">,</span> <span class="nx">Xfo</span><span class="p">(</span><span class="nx">Vec3</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)));</span>
+      
+        <span class="c1">// Attach some points to transfo2</span>
+        <span class="nx">InlineShader</span> <span class="nx">flatShader</span> <span class="o">=</span> <span class="nx">drawing</span><span class="p">.</span><span class="nx">registerShader</span><span class="p">(</span><span class="nx">OGLFlatShader</span><span class="p">());</span>
+        <span class="nx">InlineShader</span> <span class="nx">surfaceShader</span> <span class="o">=</span> <span class="nx">drawing</span><span class="p">.</span><span class="nx">registerShader</span><span class="p">(</span><span class="nx">OGLSurfaceShader</span><span class="p">());</span>
+      
+        <span class="nx">InlineMaterial</span> <span class="nx">pointsMaterial</span> <span class="o">=</span> <span class="nx">flatShader</span><span class="p">.</span><span class="nx">getOrCreateMaterial</span><span class="p">(</span><span class="s2">&quot;points&quot;</span><span class="p">);</span>
+        <span class="nx">pointsMaterial</span><span class="p">.</span><span class="nx">setUniform</span><span class="p">(</span><span class="s1">&#39;u_color&#39;</span><span class="p">,</span> <span class="nx">Color</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">));</span>
+      
+        <span class="nx">Points</span> <span class="nx">points</span><span class="p">();</span>
+        <span class="nx">InlinePointsShape</span> <span class="nx">pointsShape</span><span class="p">(</span><span class="s2">&quot;points&quot;</span><span class="p">,</span> <span class="nx">points</span><span class="p">);</span>
+        <span class="nx">InlineInstance</span> <span class="nx">pointsdInstance</span> <span class="o">=</span> <span class="nx">InlineInstance</span><span class="p">(</span><span class="s2">&quot;points&quot;</span><span class="p">,</span> <span class="nx">transfo2</span><span class="p">,</span> <span class="nx">pointsShape</span><span class="p">,</span> <span class="nx">pointsMaterial</span><span class="p">);</span>
+      
+        <span class="c1">// Attach a mesh to transfo3</span>
+        <span class="nx">InlineMaterial</span> <span class="nx">surfaceMaterial</span> <span class="o">=</span> <span class="nx">surfaceShader</span><span class="p">.</span><span class="nx">getOrCreateMaterial</span><span class="p">(</span><span class="s2">&quot;surface&quot;</span><span class="p">);</span>
+        <span class="nx">surfaceMaterial</span><span class="p">.</span><span class="nx">setUniform</span><span class="p">(</span><span class="s1">&#39;u_diffuseColor&#39;</span><span class="p">,</span> <span class="nx">Color</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">));</span>
+      
+        <span class="nx">PolygonMesh</span> <span class="nx">mesh</span><span class="p">();</span>
+        <span class="nx">InlineMeshShape</span> <span class="nx">meshShape</span><span class="p">(</span><span class="s2">&quot;mesh&quot;</span><span class="p">,</span> <span class="nx">mesh</span><span class="p">);</span>
+        <span class="nx">InlineInstance</span> <span class="nx">meshInstance</span> <span class="o">=</span> <span class="nx">InlineInstance</span><span class="p">(</span><span class="s2">&quot;mesh&quot;</span><span class="p">,</span> <span class="nx">transfo3</span><span class="p">,</span> <span class="nx">meshShape</span><span class="p">,</span> <span class="nx">surfaceMaterial</span><span class="p">);</span>
+      
+      <span class="p">}</span>
+      
+      <span class="c1">// deactivate the drawing of all contents within the handle</span>
+      <span class="nx">handle</span><span class="p">.</span><span class="nx">setActive</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+      
+      <span class="c1">// activate it again</span>
+      <span class="nx">handle</span><span class="p">.</span><span class="nx">setActive</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+      
+      <span class="c1">// Later.... Destroy the handle. The hierarch containing the points and mesh will be removed from the InlineDrawing system</span>
+      <span class="nx">handle</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="9%" />
+<col width="91%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="DrawingHandle.html#fbf7c0c1242adb9006cb4f3fd7480"><span>DrawingHandle</span></a>  ( in <a class="reference internal" href="DrawingHandle.html#drawinghandle"><span>DrawingHandle</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="DrawingHandle.html#e151eb7124e11b677fb9b68bd4221"><span>DrawingHandle</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="DrawingHandle.html#e743d7f29c4b5a95b042379f745baa"><span>DrawingHandle</span></a>  ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="DrawingHandle.html#be1fd95f2e464daccd6ec439097113"><span>clear</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="DrawingHandle.html#drawinghandle"><span>DrawingHandle</span></a></td>
+<td><a class="reference internal" href="DrawingHandle.html#ed26ea04f0ea2712afbd149c04b"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="DrawingHandle.html#efef0fb1ee1946ff8acee10b393d3ff1"><span>drawAxes</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> transform, out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> dummyResult, out <a class="reference internal" href="InlineInstance.html#inlineinstance"><span>InlineInstance</span></a> instance )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="DrawingHandle.html#b5a8328af472897c558464e4ff3e0"><span>drawAxesInstances</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> transforms[], out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> dummyResult, out <a class="reference internal" href="InlineInstance.html#inlineinstance"><span>InlineInstance</span></a> instance )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="DrawingHandle.html#b53b0d74c084e27bed95463ba2ee680"><span>drawColoredPolygonMesh</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in <a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a> color, in <a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a> specular, in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> specFactor, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> transform, in <a class="reference internal" href="../Geometry/PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a> mesh, in Boolean wireFrame, in Boolean doubleSided, out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> dummyResult, out <a class="reference internal" href="InlineInstance.html#inlineinstance"><span>InlineInstance</span></a> instance )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="DrawingHandle.html#a0c63ab38b47a29b18be4a4be0e29e"><span>drawColoredPolygonMeshInstances</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in <a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a> color, in <a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a> specular, in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> specFactor, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> transforms[], in <a class="reference internal" href="../Geometry/PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a> mesh, in Boolean wireFrame, in Boolean doubleSided, out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> dummyResult, out <a class="reference internal" href="InlineInstance.html#inlineinstance"><span>InlineInstance</span></a> instance )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="DrawingHandle.html#fca601d993ad4f6cb8ae9876268dcaa7"><span>drawLines</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in <a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a> color, in <a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a> specular, in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> specFactor, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> transform, in <a class="reference internal" href="../Geometry/Lines.html#lines"><span>Lines</span></a> lines, out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> dummyResult, out <a class="reference internal" href="InlineInstance.html#inlineinstance"><span>InlineInstance</span></a> instance )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="DrawingHandle.html#b317e3209ef451bb30099bf7d9a4aff"><span>drawLinesInstances</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in <a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a> color, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> transforms[], in <a class="reference internal" href="../Geometry/Lines.html#lines"><span>Lines</span></a> lines, out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> dummyResult, out <a class="reference internal" href="InlineInstance.html#inlineinstance"><span>InlineInstance</span></a> instance )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="DrawingHandle.html#d4ff3a322144546b2a89deae40e8bba"><span>drawPoints</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> transform, in <a class="reference internal" href="../Geometry/Points.html#points"><span>Points</span></a> points, out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> dummyResult, out <a class="reference internal" href="InlineInstance.html#inlineinstance"><span>InlineInstance</span></a> instance )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="DrawingHandle.html#f1235a47ed9b211e18ed6a64c2"><span>drawPointsInstances</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> transforms[], in <a class="reference internal" href="../Geometry/Points.html#points"><span>Points</span></a> points, out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> dummyResult, out <a class="reference internal" href="InlineInstance.html#inlineinstance"><span>InlineInstance</span></a> instance )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="DrawingHandle.html#aead19a77441aa844ef50b15f67caa"><span>drawPolygonMesh</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in <a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a> color, in <a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a> specular, in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> specFactor, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> transform, in <a class="reference internal" href="../Geometry/PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a> mesh, in Boolean wireFrame, in Boolean doubleSided, out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> dummyResult, out <a class="reference internal" href="InlineInstance.html#inlineinstance"><span>InlineInstance</span></a> instance )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="DrawingHandle.html#ef06b1d64ed463c8ff9cd5470113b98"><span>drawPolygonMeshInstances</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in <a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a> color, in <a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a> specular, in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> specFactor, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> transforms[], in <a class="reference internal" href="../Geometry/PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a> mesh, in Boolean wireFrame, in Boolean doubleSided, out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> dummyResult, out <a class="reference internal" href="InlineInstance.html#inlineinstance"><span>InlineInstance</span></a> instance )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="DrawingHandle.html#e4c3da47e7df752e3cf80"><span>drawTexturedPlane</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in UInt32 width, in UInt32 height, in <a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a> pixels[], in Boolean mirrorU, in Boolean mirrorV, in Boolean discardAlpha, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> transform, out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> dummyResult, out <a class="reference internal" href="InlineInstance.html#inlineinstance"><span>InlineInstance</span></a> instance )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="DrawingHandle.html#d5383f58c97645e3853d103a498bc5d4"><span>drawTexturedPolygonMesh</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> filePath, in <a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a> specular, in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> specFactor, in <a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a> ambient, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> transform, in <a class="reference internal" href="../Geometry/PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a> mesh, in Boolean wireFrame, in Boolean doubleSided, out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> dummyResult, out <a class="reference internal" href="InlineInstance.html#inlineinstance"><span>InlineInstance</span></a> instance )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="DrawingHandle.html#ffb2a452454059879f56208bfee0ce"><span>drawTexturedPolygonMeshInstances</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> filePath, in <a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a> specular, in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> specFactor, in <a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a> ambient, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> transforms[], in <a class="reference internal" href="../Geometry/PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a> mesh, in Boolean wireFrame, in Boolean doubleSided, out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> dummyResult, out <a class="reference internal" href="InlineInstance.html#inlineinstance"><span>InlineInstance</span></a> instance )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="InlineDebugShape.html#inlinedebugshape"><span>InlineDebugShape</span></a></td>
+<td><a class="reference internal" href="DrawingHandle.html#f9787fe174e44ad9807a8bc23d691eb"><span>getDebugShape</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="InlineDebugShape.html#inlinedebugshape"><span>InlineDebugShape</span></a></td>
+<td><a class="reference internal" href="DrawingHandle.html#cb9c920218347df801a30fb527465a1"><span>getDebugShape</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> dummyResult )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="InlineDrawing.html#inlinedrawing"><span>InlineDrawing</span></a></td>
+<td><a class="reference internal" href="DrawingHandle.html#b520b8e44619485faa0d26d3413ca64d"><span>getDrawing</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="InlineDebugShape.html#inlinedebugshape"><span>InlineDebugShape</span></a></td>
+<td><a class="reference internal" href="DrawingHandle.html#d09816067d1a416482cd1eb9d8b1e6d7"><span>getEmptyDebugShape</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="InlineDebugShape.html#inlinedebugshape"><span>InlineDebugShape</span></a></td>
+<td><a class="reference internal" href="DrawingHandle.html#c6c427b649246e38dc1825a95305fa2"><span>getEmptyDebugShape</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> dummyResult )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="InlineTransform.html#inlinetransform"><span>InlineTransform</span></a></td>
+<td><a class="reference internal" href="DrawingHandle.html#e04aa8bffa10ad8a262094"><span>getRootTransform</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="DrawingHandle.html#fa2b86a444686dd387d20f297b8"><span>isEmpty</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="DrawingHandle.html#e10f83f43c5441f8ca74888980443aa"><span>removeDebugShape</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="DrawingHandle.html#b6f37ac0816643cfbd2abf14ffda2f46"><span>removeDebugShape</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> dummyResult )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="DrawingHandle.html#f09e7fca2afb4185a0608e1ef72618ef"><span>setActive</span></a> ! ( in Boolean active )</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="DrawContext.kl.html"
+                        title="前の章へ">DrawContext.kl</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="DrawingUtilityFunctions.kl.html"
+                        title="次の章へ">DrawingUtilityFunctions.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/InlineDrawing/DrawingHandle.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="DrawingUtilityFunctions.kl.html" title="DrawingUtilityFunctions.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="DrawContext.kl.html" title="DrawContext.kl"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >InlineDrawing Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >InlineDrawing Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

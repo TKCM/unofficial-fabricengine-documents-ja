@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ImporterIdentifier.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="Util Extension’s Files" href="files.html" />
+    <link rel="next" title="ImporterOptions.kl" href="ImporterOptions.kl.html" />
+    <link rel="prev" title="EvalContext.kl" href="EvalContext.kl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="ImporterOptions.kl.html" title="ImporterOptions.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="EvalContext.kl.html" title="EvalContext.kl"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Util Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">Util Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="util-importeridentifier-kl">
+<span id="importeridentifier-kl"></span><span id="id1"></span><h1>ImporterIdentifier.kl<a class="headerlink" href="#util-importeridentifier-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="importeridentifier-struct">
+<h3>ImporterIdentifier (struct)<a class="headerlink" href="#importeridentifier-struct" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">A data structure providing contextual information about an imported item. This is using in the <a class="reference internal" href="../Fbx/index.html#fbx-extension"><span>Fbx Extension</span></a> or <a class="reference internal" href="../Alembic/index.html#alembic-extension"><span>Alembic Extension</span></a> extension,
+for example.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">This data structure is likely to be deprecated soon.</p>
+</div>
+<div class="section" id="members">
+<h4>Members<a class="headerlink" href="#members" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="75%" />
+<col width="20%" />
+<col width="5%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="String.html#string"><span>String</span></a></td>
+<td>name</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Integer</td>
+<td>index</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Integer</td>
+<td>version</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="String.html#string"><span>String</span></a></td>
+<td>path</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="String.html#string"><span>String</span></a></td>
+<td>type</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="String.html#string"><span>String</span></a></td>
+<td>filePath</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Integer</td>
+<td>fileIndex</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="ImporterOptions.html#importeroptions"><span>ImporterOptions</span></a></td>
+<td>data</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="ImporterIdentifier.html#bde2e8038f64c35aace1a994e68fd3f"><span>ImporterIdentifier</span></a>  ( in <a class="reference internal" href="ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="ImporterIdentifier.html#cd0b0bf12b34dc1bc665d6c7fc4b1f5"><span>ImporterIdentifier</span></a>  ( in <a class="reference internal" href="String.html#string"><span>String</span></a> name, in <a class="reference internal" href="String.html#string"><span>String</span></a> path, in <a class="reference internal" href="String.html#string"><span>String</span></a> type )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="ImporterIdentifier.html#f1026da6f96346d7a50b619f098f2f10"><span>ImporterIdentifier</span></a>  ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a></td>
+<td><a class="reference internal" href="ImporterIdentifier.html#f2378c97c8614d0fa802e74b6649ac30"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="ImporterIdentifier.html#f14a1512b4b82a142c8efde61d701"><span>equals</span></a> ? ( in <a class="reference internal" href="ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="ImporterIdentifier.html#cc88c44ec9bca297f159c2a30"><span>getBoolData</span></a> ? ( in <a class="reference internal" href="String.html#string"><span>String</span></a> key )</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="ImporterIdentifier.html#be57ed3e384089a725949239b11461"><span>getBoolData</span></a> ? ( in <a class="reference internal" href="String.html#string"><span>String</span></a> key, in Boolean defaultValue )</td>
+</tr>
+<tr class="row-even"><td>Integer</td>
+<td><a class="reference internal" href="ImporterIdentifier.html#a64465c954e1aadd5d675b1075cb0"><span>getIntData</span></a> ? ( in <a class="reference internal" href="String.html#string"><span>String</span></a> key )</td>
+</tr>
+<tr class="row-odd"><td>Integer</td>
+<td><a class="reference internal" href="ImporterIdentifier.html#d24fe12c8b3a47cfa57c0dfbd695a9bc"><span>getIntData</span></a> ? ( in <a class="reference internal" href="String.html#string"><span>String</span></a> key, in Integer defaultValue )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="ImporterIdentifier.html#f40aebad061a453ca2e18aab340fbd4b"><span>getScalarData</span></a> ? ( in <a class="reference internal" href="String.html#string"><span>String</span></a> key )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="ImporterIdentifier.html#f217bfccf148d9baaf3794715115c4"><span>getScalarData</span></a> ? ( in <a class="reference internal" href="String.html#string"><span>String</span></a> key, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> defaultValue )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="ImporterIdentifier.html#f2629b710e34a2893c698b794e423fe"><span>getStringData</span></a> ? ( in <a class="reference internal" href="String.html#string"><span>String</span></a> key )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="ImporterIdentifier.html#febb160516543038e891727719fa70b"><span>getStringData</span></a> ? ( in <a class="reference internal" href="String.html#string"><span>String</span></a> key, in <a class="reference internal" href="String.html#string"><span>String</span></a> defaultValue )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="ImporterIdentifier.html#c53b46d75c6f4e22b85ea900e39e9d27"><span>hasBoolData</span></a> ? ( in <a class="reference internal" href="String.html#string"><span>String</span></a> key )</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="ImporterIdentifier.html#e2036815a8464c8a80d7e509dfe8e02c"><span>hasIntData</span></a> ? ( in <a class="reference internal" href="String.html#string"><span>String</span></a> key )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="ImporterIdentifier.html#c3f1cfe4e83495da4d08faf23afa23f"><span>hasScalarData</span></a> ? ( in <a class="reference internal" href="String.html#string"><span>String</span></a> key )</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="ImporterIdentifier.html#d1c61d9b02ed46b6a345e88255d943fe"><span>hasStringData</span></a> ? ( in <a class="reference internal" href="String.html#string"><span>String</span></a> key )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="ImporterIdentifier.html#dbe1d7fff74271ad89ef9580cf9f27"><span>setBoolData</span></a> ! ( in <a class="reference internal" href="String.html#string"><span>String</span></a> key, in Boolean value )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="ImporterIdentifier.html#fbf5a97c484397a7f864ffc479df5a"><span>setIntData</span></a> ! ( in <a class="reference internal" href="String.html#string"><span>String</span></a> key, in Integer value )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="ImporterIdentifier.html#cf0391993964c008ae302333e87e08e"><span>setScalarData</span></a> ! ( in <a class="reference internal" href="String.html#string"><span>String</span></a> key, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="ImporterIdentifier.html#d96b114aee9abc5f430eca0fe8"><span>setStringData</span></a> ! ( in <a class="reference internal" href="String.html#string"><span>String</span></a> key, in <a class="reference internal" href="String.html#string"><span>String</span></a> value )</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="EvalContext.kl.html"
+                        title="前の章へ">EvalContext.kl</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="ImporterOptions.kl.html"
+                        title="次の章へ">ImporterOptions.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/Util/ImporterIdentifier.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="ImporterOptions.kl.html" title="ImporterOptions.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="EvalContext.kl.html" title="EvalContext.kl"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Util Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >Util Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

@@ -1,0 +1,699 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Clients and the Application Lifecycle &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
+    <link rel="up" title="CAPI Programming Guide" href="index.html" />
+    <link rel="next" title="Canvas Core API" href="canvas.html" />
+    <link rel="prev" title="The C++ Language Interface" href="cpp-interface.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="canvas.html" title="Canvas Core API"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="cpp-interface.html" title="The C++ Language Interface"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">CAPI Programming Guide</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="clients-and-the-application-lifecycle">
+<span id="clients"></span><h1>Clients and the Application Lifecycle<a class="headerlink" href="#clients-and-the-application-lifecycle" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Before an application can do anything meaningful with CAPI it must first create a <em class="dfn">client</em>.  Similarly, before an application exits it must release the client.  This chapter explains these steps in detail.</p>
+<div class="section" id="creating-a-client">
+<h2>Creating a Client<a class="headerlink" href="#creating-a-client" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>In order to work with CAPI a client object must be created.  Client objects represent a space of objects, types and programs, and a given application can create multiple client objects to represent multiple Fabric applications.  However, most fabric applications will only need a single client.</p>
+<p>A client object is created through a call to one of the following functions:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="c1">// Creating a client object - C</span>
+<span class="n">FEC_ClientRef</span> <span class="nf">FEC_ClientCreate</span><span class="p">(</span>
+  <span class="n">FEC_ClientReportCallback</span> <span class="n">reportCallback</span><span class="p">,</span>
+  <span class="kt">void</span> <span class="o">*</span><span class="n">reportUserdata</span><span class="p">,</span>
+  <span class="p">...</span>
+ <span class="p">);</span>
+
+<span class="c1">// Creating a client object - C++</span>
+<span class="n">FabricCore</span><span class="o">::</span><span class="n">Client</span><span class="o">::</span><span class="n">Client</span><span class="p">(</span>
+  <span class="n">ReportCallback</span> <span class="n">reportCallback</span><span class="p">,</span>
+  <span class="kt">void</span> <span class="o">*</span><span class="n">reportUserdata</span><span class="p">,</span>
+  <span class="p">...</span>
+  <span class="p">);</span>
+</pre></div>
+</div>
+<p>The required parameter <code class="docutils literal"><span class="pre">guarded</span></code> is a boolean indicating whether array accesses should be guarded (ie. bounds-checked).  Setting this flag to a true value will slightly decrease runtime performance but will also provide errors when any array accesses are out-of-bounds.</p>
+<p>The optional parameters <code class="docutils literal"><span class="pre">reportCallback</span></code> and <code class="docutils literal"><span class="pre">reportUserdata</span></code>, if present, are a C function (or a &#8220;static&#8221; C++ function) to be called with any report statements the Fabric Core wishes to have displayed.  Such report statements are usually the result of <code class="docutils literal"><span class="pre">report</span></code> calls within KL code or runtime errors (such as out-of-bounds errors).  The function must have the prototype:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="c1">// Report callback function prototype - C and C++</span>
+<span class="kt">void</span> <span class="nf">ReportCallbackFunction</span><span class="p">(</span>
+  <span class="kt">void</span> <span class="o">*</span><span class="n">reportUserdata</span><span class="p">,</span>
+  <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">stringData</span><span class="p">,</span>
+  <span class="kt">uint32_t</span> <span class="n">stringLength</span>
+  <span class="p">);</span>
+</pre></div>
+</div>
+<p>The provided value of <code class="docutils literal"><span class="pre">reportUserdata</span></code> will be passed as the first parameter to the provided function.  The <code class="docutils literal"><span class="pre">stringData</span></code> and <code class="docutils literal"><span class="pre">stringLength</span></code> parameters will be a pointer to a C string representing the message to report (without newline) and the length of the string, respectively.</p>
+<p>If a <code class="docutils literal"><span class="pre">reportCallback</span></code> is not provided (or is <code class="docutils literal"><span class="pre">NULL</span></code>) then the Fabric Core will output the report statements to standard output.</p>
+</div>
+<div class="section" id="releasing-clients">
+<h2>Releasing Clients<a class="headerlink" href="#releasing-clients" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Once you are done using a client, it must be released.  Clients are reference-counted objects, so in C++ they will be automatically released then they go out of scope.  In C, you must make a manual call to <a class="reference internal" href="c-interface.html#c.FEC_RefRelease" title="FEC_RefRelease"><code class="xref c c-func docutils literal"><span class="pre">FEC_RefRelease()</span></code></a> to release the client.</p>
+</div>
+<div class="section" id="manipulating-clients">
+<h2>Manipulating Clients<a class="headerlink" href="#manipulating-clients" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Once a client is created, it can be manipulated using the <a class="reference internal" href="#capi-clients-api-reference"><span>client API functions</span></a>.</p>
+</div>
+<div class="section" id="api-reference-c">
+<span id="capi-clients-api-reference-c"></span><span id="capi-clients-api-reference"></span><h2>API Reference - C<a class="headerlink" href="#api-reference-c" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>There is also an <a class="reference internal" href="#capi-clients-api-reference-cpp"><span>API Reference - C++</span></a>.</p>
+<dl class="type">
+<dt id="c.FEC_ClientRef">
+<code class="descname">FEC_ClientRef</code><a class="headerlink" href="#c.FEC_ClientRef" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>A reference to a CAPI client.  These references are returned when creating a client with <a class="reference internal" href="#c.FEC_ClientCreate" title="FEC_ClientCreate"><code class="xref c c-func docutils literal"><span class="pre">FEC_ClientCreate()</span></code></a> and must be eventually released using <a class="reference internal" href="c-interface.html#c.FEC_RefRelease" title="FEC_RefRelease"><code class="xref c c-func docutils literal"><span class="pre">FEC_RefRelease()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="type">
+<dt id="c.FEC_ReportSource">
+<code class="descname">FEC_ReportSource</code><a class="headerlink" href="#c.FEC_ReportSource" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>The source type of a report line coming from the Fabric Core.  Can be one of:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">FEC_ReportSource_System</span></code></li>
+<li><code class="docutils literal"><span class="pre">FEC_ReportSource_System</span></code></li>
+</ul>
+<p>These values can also be used as as bits to mask or unmask these values using the <code class="xref c c-func docutils literal"><span class="pre">FEC_ClientSetReportSourceMask()</span></code> function.  As such, the following masks are also provided:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">FEC_ReportSource_NONE</span></code></li>
+<li><code class="docutils literal"><span class="pre">FEC_ReportSource_ALL</span></code></li>
+</ul>
+</dd></dl>
+
+<dl class="type">
+<dt id="c.FEC_ReportLevel">
+<code class="descname">FEC_ReportLevel</code><a class="headerlink" href="#c.FEC_ReportLevel" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>The severity level of a report line coming from the Fabric Core.  Can be one of:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">FEC_ReportLevel_Error</span></code></li>
+<li><code class="docutils literal"><span class="pre">FEC_ReportLevel_Warning</span></code></li>
+<li><a href="#id1"><span class="problematic" id="id2">``</span></a>FEC_ReportLevel_Info ``</li>
+<li><code class="docutils literal"><span class="pre">FEC_ReportLevel_Debug</span></code></li>
+</ul>
+</dd></dl>
+
+<dl class="type">
+<dt id="c.FEC_ClientReportCallback">
+<code class="descname">FEC_ClientReportCallback</code><a class="headerlink" href="#c.FEC_ClientReportCallback" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>The type of a report callback function associated with a client.  Such a function must have the prototype:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">ClientReportCallback</span><span class="p">(</span>
+  <span class="kt">void</span> <span class="o">*</span><span class="n">reportUserdata</span><span class="p">,</span>
+  <span class="n">FEC_ReportSource</span> <span class="n">source</span><span class="p">,</span>
+  <span class="n">FEC_ReportLevel</span> <span class="n">level</span><span class="p">,</span>
+  <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">lineCStr</span><span class="p">,</span>
+  <span class="kt">uint32_t</span> <span class="n">lineSize</span>
+  <span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.FEC_ClientCreate">
+<a class="reference internal" href="#c.FEC_ClientRef" title="FEC_ClientRef">FEC_ClientRef</a> <code class="descname">FEC_ClientCreate</code><span class="sig-paren">(</span><a class="reference internal" href="#c.FEC_ClientReportCallback" title="FEC_ClientReportCallback">FEC_ClientReportCallback</a><em>&nbsp;reportCallback</em>, void<em>&nbsp;*reportUserdata</em>, int<em>&nbsp;guarded</em>, int<em>&nbsp;traceOperators</em>, FEC_ClientOptimizationType<em>&nbsp;optimizationType</em><span class="sig-paren">)</span><a class="headerlink" href="#c.FEC_ClientCreate" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Create a new Fabric Platform core client.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>reportCallback</strong> &#8211; The callback function for report statements coming from the Fabric Engine core</li>
+<li><strong>reportUserdata</strong> &#8211; The userdata for report statements; passed to reportCallback</li>
+<li><strong>guarded</strong> &#8211; Whether to throw out-of-bounds exceptions for array accesses in KL</li>
+<li><strong>trapOnThrow</strong> &#8211; Whether to trap when an exception is thrown from KL</li>
+<li><strong>traceOperators</strong> &#8211; Whether to add automatic tracing report statements to operators</li>
+<li><strong>optimizationType</strong> &#8211; The KL optimization type for the client</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">The reference to the new client, or FEC_NULL_REF on error.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.FEC_ClientBind">
+<a class="reference internal" href="#c.FEC_ClientRef" title="FEC_ClientRef">FEC_ClientRef</a> <code class="descname">FEC_ClientBind</code><span class="sig-paren">(</span><a class="reference internal" href="#c.FEC_ClientReportCallback" title="FEC_ClientReportCallback">FEC_ClientReportCallback</a><em>&nbsp;reportCallback</em>, void<em>&nbsp;*reportUserdata</em>, char const<em>&nbsp;*contextID</em><span class="sig-paren">)</span><a class="headerlink" href="#c.FEC_ClientBind" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Bind to an existing client with a given client ID.  This allows multiple CAPI programs to work with the same client state inside the core of Fabric Engine.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>contextID</strong> &#8211; (C string) The context ID to bind to.  The context ID of a client can be obtained with the <a class="reference internal" href="#c.FEC_ClientGetContextID" title="FEC_ClientGetContextID"><code class="xref c c-func docutils literal"><span class="pre">FEC_ClientGetContextID()</span></code></a> function.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">A new reference to the existing client with the given context ID, or FEC_NULL_REF on error.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.FEC_ClientSetReportCallback">
+void <code class="descname">FEC_ClientSetReportCallback</code><span class="sig-paren">(</span><a class="reference internal" href="#c.FEC_ClientRef" title="FEC_ClientRef">FEC_ClientRef</a><em>&nbsp;clientRef</em>, <a class="reference internal" href="#c.FEC_ClientReportCallback" title="FEC_ClientReportCallback">FEC_ClientReportCallback</a><em>&nbsp;reportCallback</em>, void<em>&nbsp;*reportUserdata</em><span class="sig-paren">)</span><a class="headerlink" href="#c.FEC_ClientSetReportCallback" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Set the report callback for the client.  This will replace whatever report callback was already there.  Passing NULL for reportCallback will cause no report callbacks to be fired back to the client.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>clientRef</strong> &#8211; The client</li>
+<li><strong>reportCallback</strong> &#8211; The new report callback</li>
+<li><strong>reportUserdata</strong> &#8211; The userdata to pass to the report callback when fired</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.FEC_ClientEnableRuntimeLogging">
+void <code class="descname">FEC_ClientEnableRuntimeLogging</code><span class="sig-paren">(</span><a class="reference internal" href="#c.FEC_ClientRef" title="FEC_ClientRef">FEC_ClientRef</a><em>&nbsp;clientRef</em><span class="sig-paren">)</span><a class="headerlink" href="#c.FEC_ClientEnableRuntimeLogging" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Enable runtime logging for the client.  Runtime logging is what causes the report statements from KL programs to be fired as report callbacks to the client.  By default, runtime logging is enabled.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>clientRef</strong> &#8211; The client</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.FEC_ClientDisableRuntimeLogging">
+void <code class="descname">FEC_ClientDisableRuntimeLogging</code><span class="sig-paren">(</span><a class="reference internal" href="#c.FEC_ClientRef" title="FEC_ClientRef">FEC_ClientRef</a><em>&nbsp;clientRef</em><span class="sig-paren">)</span><a class="headerlink" href="#c.FEC_ClientDisableRuntimeLogging" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Disable runtime logging for the client.  Runtime logging is what causes the report statements from KL programs to be fired as report callbacks to the client.  By default, runtime logging is enabled.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>clientRef</strong> &#8211; The client</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">void FEC_ClientSetReportSourceMask(</code></dt>
+<dt>
+<code class="descname">FEC_ClientRef clientRef,</code></dt>
+<dt id="c.sourceMask">
+<a class="reference internal" href="#c.FEC_ReportSource" title="FEC_ReportSource">FEC_ReportSource</a> <code class="descname">sourceMask</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.sourceMask" title="この定義へのパーマリンク">¶</a></dt>
+<dt>
+<code class="descname">)</code></dt>
+<dd><p>Set the source mask for report lines coming from the Core.  This allows you, for instance, to only receive user report statements.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">Report line filtering could also happen at the client end, but it is generally more performant to allow the Core to perform the filtering.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">void FEC_ClientSetReportLevelMax(</code></dt>
+<dt>
+<code class="descname">FEC_ClientRef clientRef,</code></dt>
+<dt id="c.levelMax">
+<a class="reference internal" href="#c.FEC_ReportLevel" title="FEC_ReportLevel">FEC_ReportLevel</a> <code class="descname">levelMax</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.levelMax" title="この定義へのパーマリンク">¶</a></dt>
+<dt>
+<code class="descname">)</code></dt>
+<dd><p>Set the maximum severity level for report lines coming from the Core.  This allows you, for instance, to only receive report lines that are warnings or errors, and to filter out the info and debug lines.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">Report line filtering could also happen at the client end, but it is generally more performant to allow the Core to perform the filtering.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.FEC_ClientGetContextID">
+char const *<code class="descname">FEC_ClientGetContextID</code><span class="sig-paren">(</span><a class="reference internal" href="#c.FEC_ClientRef" title="FEC_ClientRef">FEC_ClientRef</a><em>&nbsp;clientRef</em><span class="sig-paren">)</span><a class="headerlink" href="#c.FEC_ClientGetContextID" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the context ID (a C string) associated with the client.  This string can be used in a call to <a class="reference internal" href="#c.FEC_ClientBind" title="FEC_ClientBind"><code class="xref c c-func docutils literal"><span class="pre">FEC_ClientBind()</span></code></a> to get a new reference to the client.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>clientRef</strong> &#8211; The client</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">The client ID as a C string</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.FEC_ClientStartInstrumentation">
+void <code class="descname">FEC_ClientStartInstrumentation</code><span class="sig-paren">(</span><a class="reference internal" href="#c.FEC_ClientRef" title="FEC_ClientRef">FEC_ClientRef</a><em>&nbsp;clientRef</em><span class="sig-paren">)</span><a class="headerlink" href="#c.FEC_ClientStartInstrumentation" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Start instrumentation of the client.  If instrumentation has already started, this function restarts it.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>clientRef</strong> &#8211; The client</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.FEC_ClientStopInstrumentation_Variant">
+FEC_Variant <code class="descname">FEC_ClientStopInstrumentation_Variant</code><span class="sig-paren">(</span><a class="reference internal" href="#c.FEC_ClientRef" title="FEC_ClientRef">FEC_ClientRef</a><em>&nbsp;clientRef</em>, char const<em>&nbsp;*resultType</em><span class="sig-paren">)</span><a class="headerlink" href="#c.FEC_ClientStopInstrumentation_Variant" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Stop instrumentation of the client and return the instrumentation results.  The format of the results depends on the value of the string <em>resultType</em>, and can be one of <cite>&#8220;timing&#8221;</cite>, <cite>&#8220;simpleTiming&#8221;</cite>, <cite>&#8220;simpleTimingNoExternal&#8221;</cite> and <cite>&#8220;raw&#8221;</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>clientRef</strong> &#8211; The client</li>
+<li><strong>resultType</strong> &#8211; The result format to use</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">The instrumentation data as a variant</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.FEC_ClientLoadExtension">
+void <code class="descname">FEC_ClientLoadExtension</code><span class="sig-paren">(</span><a class="reference internal" href="#c.FEC_ClientRef" title="FEC_ClientRef">FEC_ClientRef</a><em>&nbsp;clientRef</em>, char const<em>&nbsp;*extName</em>, int<em>&nbsp;reload</em><span class="sig-paren">)</span><a class="headerlink" href="#c.FEC_ClientLoadExtension" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Load an extension if it hasn&#8217;t already been loaded.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>clientRef</strong> &#8211; The client</li>
+<li><strong>extName</strong> &#8211; The name of the extension to load (a C string)</li>
+<li><strong>reload</strong> &#8211; If set to true to extension&#8217;s KL code will be reloaded from disk.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.FEC_ClientExportExtension">
+void <code class="descname">FEC_ClientExportExtension</code><span class="sig-paren">(</span><a class="reference internal" href="#c.FEC_ClientRef" title="FEC_ClientRef">FEC_ClientRef</a><em>&nbsp;clientRef</em>, char const<em>&nbsp;*extNameCString</em>, char const<em>&nbsp;*outputFile</em><span class="sig-paren">)</span><a class="headerlink" href="#c.FEC_ClientExportExtension" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Export an extension in obfuscated format to the specified file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>clientRef</strong> &#8211; The client</li>
+<li><strong>extNameCString</strong> &#8211; The name of the extension to export.</li>
+<li><strong>outputFile</strong> &#8211; The name of file to create.</li>
+<li><strong>compress</strong> &#8211; Compress the output file or leave it in plain text</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.FEC_ClientSetLogWarnings">
+void <code class="descname">FEC_ClientSetLogWarnings</code><span class="sig-paren">(</span><a class="reference internal" href="#c.FEC_ClientRef" title="FEC_ClientRef">FEC_ClientRef</a><em>&nbsp;clientRef</em>, int<em>&nbsp;logWarnings</em><span class="sig-paren">)</span><a class="headerlink" href="#c.FEC_ClientSetLogWarnings" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Tell the core whether to log warnings produced by the client.  Warnings are for deprecated behaviors on which the client is depending.  By default, warnings are <em>not</em> logged.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>clientRef</strong> &#8211; The client</li>
+<li><strong>logWarnings</strong> &#8211; Whether to log warnings</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="type">
+<dt id="c.FEC_ClientStatusCallback">
+<code class="descname">FEC_ClientStatusCallback</code><a class="headerlink" href="#c.FEC_ClientStatusCallback" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>The type of a status callback function associated with a client; see <a class="reference internal" href="#c.FEC_ClientSetStatusCallback" title="FEC_ClientSetStatusCallback"><code class="xref c c-func docutils literal"><span class="pre">FEC_ClientSetStatusCallback()</span></code></a>.  Such a function must have the prototype:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">ClientStatusCallback</span><span class="p">(</span>
+<span class="kt">void</span> <span class="o">*</span><span class="n">userdata</span><span class="p">,</span>
+<span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">destData</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">destLength</span><span class="p">,</span>
+<span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">payloadData</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">payloadLength</span>
+  <span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.FEC_ClientSetStatusCallback">
+void <code class="descname">FEC_ClientSetStatusCallback</code><span class="sig-paren">(</span><a class="reference internal" href="#c.FEC_ClientRef" title="FEC_ClientRef">FEC_ClientRef</a><em>&nbsp;clientRef</em>, <a class="reference internal" href="#c.FEC_ClientStatusCallback" title="FEC_ClientStatusCallback">FEC_ClientStatusCallback</a><em>&nbsp;callback</em>, void<em>&nbsp;*userdata</em><span class="sig-paren">)</span><a class="headerlink" href="#c.FEC_ClientSetStatusCallback" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Set the status callback associated with the client.  Status callbacks are used for KL code to communicate status messages back to the client.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>clientRef</strong> &#8211; The client</li>
+<li><strong>callback</strong> &#8211; The status callback to set</li>
+<li><strong>userdata</strong> &#8211; The userdata to pass to the status callback when called</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.FEC_ClientGetStatusUserdata">
+void *<code class="descname">FEC_ClientGetStatusUserdata</code><span class="sig-paren">(</span><a class="reference internal" href="#c.FEC_ClientRef" title="FEC_ClientRef">FEC_ClientRef</a><em>&nbsp;clientRef</em><span class="sig-paren">)</span><a class="headerlink" href="#c.FEC_ClientGetStatusUserdata" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns the status userdata associated with the client, specifically the last value set by <a class="reference internal" href="#c.FEC_ClientSetStatusCallback" title="FEC_ClientSetStatusCallback"><code class="xref c c-func docutils literal"><span class="pre">FEC_ClientSetStatusCallback()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>clientRef</strong> &#8211; The client</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">The status userdata associated with the client</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.FEC_ClientQueueStatusMessage">
+void <code class="descname">FEC_ClientQueueStatusMessage</code><span class="sig-paren">(</span><a class="reference internal" href="#c.FEC_ClientRef" title="FEC_ClientRef">FEC_ClientRef</a><em>&nbsp;clientRef</em>, char const<em>&nbsp;*destCString</em>, char const<em>&nbsp;*payloadCString</em><span class="sig-paren">)</span><a class="headerlink" href="#c.FEC_ClientQueueStatusMessage" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Queue a status message to be sent to all the clients with the current client ID (including the given client).  This allows a simple asynchronous communication mechanism between different parts of the same process that have references to the same client.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>clientRef</strong> &#8211; The client</li>
+<li><strong>destCString</strong> &#8211; The destination string passed to the status callbacks; a C string</li>
+<li><strong>payloadCString</strong> &#8211; the payload string passed to the status callbacks; a C string</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.FEC_ClientValidateLicense">
+void <code class="descname">FEC_ClientValidateLicense</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.FEC_ClientValidateLicense" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Force license evaluation to happen immediately.  This can be used to re-evaluate the license after it has been saved to disk. Results of license validation will be sent to the clients logger and licensing data will be also sent as a status callback.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>clientRef</strong> &#8211; The client</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.FEC_ClientHasCommercialLicense">
+void <code class="descname">FEC_ClientHasCommercialLicense</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.FEC_ClientHasCommercialLicense" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns true if the license currently in use is a paid commercial license. Always returns false if the license is not valid.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>clientRef</strong> &#8211; The client</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.FEC_SetStandaloneLicense">
+void <code class="descname">FEC_SetStandaloneLicense</code><span class="sig-paren">(</span>char const<em>&nbsp;*licenseCString</em><span class="sig-paren">)</span><a class="headerlink" href="#c.FEC_SetStandaloneLicense" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Set the local license.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>licenseCString</strong> &#8211; The license in RLM format</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.FEC_ClientEnableBackgroundTasks">
+void <code class="descname">FEC_ClientEnableBackgroundTasks</code><span class="sig-paren">(</span><a class="reference internal" href="#c.FEC_ClientRef" title="FEC_ClientRef">FEC_ClientRef</a><em>&nbsp;clientRef</em><span class="sig-paren">)</span><a class="headerlink" href="#c.FEC_ClientEnableBackgroundTasks" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Enable background task execution for the client.  This should be called once the application has finished loading.  If this function is never called then background tasks (such as background optimization of KL code) will never execute.  You can call this function immediately when the client is created but startup performance may suffer.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>clientRef</strong> &#8211; The client</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.FEC_ClientIsBackgroundOptimizationInProgress">
+int <code class="descname">FEC_ClientIsBackgroundOptimizationInProgress</code><span class="sig-paren">(</span><a class="reference internal" href="#c.FEC_ClientRef" title="FEC_ClientRef">FEC_ClientRef</a><em>&nbsp;clientRef</em><span class="sig-paren">)</span><a class="headerlink" href="#c.FEC_ClientIsBackgroundOptimizationInProgress" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Check whether background optimization of KL code is currently in progress.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>clientRef</strong> &#8211; The client</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">Non-zero if background optimization is in progress, zero otherwise</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.FEC_ClientAdoptCurrentGLContext">
+void <code class="descname">FEC_ClientAdoptCurrentGLContext</code><span class="sig-paren">(</span><a class="reference internal" href="#c.FEC_ClientRef" title="FEC_ClientRef">FEC_ClientRef</a><em>&nbsp;clientRef</em><span class="sig-paren">)</span><a class="headerlink" href="#c.FEC_ClientAdoptCurrentGLContext" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p><strong>*FIXME*</strong>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>clientRef</strong> (<a class="reference internal" href="#c.FEC_ClientRef" title="FEC_ClientRef"><em>FEC_ClientRef</em></a>) &#8211; The client</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.FEC_ClientIdle">
+void <code class="descname">FEC_ClientIdle</code><span class="sig-paren">(</span><a class="reference internal" href="#c.FEC_ClientRef" title="FEC_ClientRef">FEC_ClientRef</a><em>&nbsp;clientRef</em><span class="sig-paren">)</span><a class="headerlink" href="#c.FEC_ClientIdle" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Tell the Fabric Engine core that the main thread of the client is idle. Calling this function periodically gives the Core a chance to service callbacks that would otherwise not be serviced until the next time the Core is called.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>clientRef</strong> (<a class="reference internal" href="#c.FEC_ClientRef" title="FEC_ClientRef"><em>FEC_ClientRef</em></a>) &#8211; The client</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.FEC_ClientSupportsGPUCompute">
+void <code class="descname">FEC_ClientSupportsGPUCompute</code><span class="sig-paren">(</span><a class="reference internal" href="#c.FEC_ClientRef" title="FEC_ClientRef">FEC_ClientRef</a><em>&nbsp;clientRef</em><span class="sig-paren">)</span><a class="headerlink" href="#c.FEC_ClientSupportsGPUCompute" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns true if the Fabric Engine core has found hardware support for GPU compute.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>clientRef</strong> (<a class="reference internal" href="#c.FEC_ClientRef" title="FEC_ClientRef"><em>FEC_ClientRef</em></a>) &#8211; The client</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="capi-clients-api-reference-cpp">
+<span id="id3"></span><h2>API Reference - C++<a class="headerlink" href="#capi-clients-api-reference-cpp" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>There is also an <a class="reference internal" href="#capi-clients-api-reference-c"><span>API Reference - C</span></a>.</p>
+<dl class="type">
+<dt id="_CPPv2N10FabricCore10FabricCore22ClientOptimizationTypeE">
+<span id="FabricCore::FabricCore::ClientOptimizationType"></span><em class="property">type </em><code class="descclassname">FabricCore::</code><code class="descname">ClientOptimizationType</code><a class="headerlink" href="#_CPPv2N10FabricCore10FabricCore22ClientOptimizationTypeE" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>A type used to indicate which KL background optimization mode to use when creating the client using the Client constructor.  It can have one of three values:</p>
+<p>FabricCore::ClientOptimizationType_Background</p>
+<blockquote>
+<div>Optimize in the background (the default)</div></blockquote>
+<p>FabricCore::ClientOptimizationType_Synchronous</p>
+<blockquote>
+<div>Optimize KL code synchronously.  Slows program startup but optimized code is used immediately.</div></blockquote>
+<p>FabricCore::ClientOptimizationType_None</p>
+<blockquote>
+<div>Do not optimize KL code</div></blockquote>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Clients and the Application Lifecycle</a><ul>
+<li><a class="reference internal" href="#creating-a-client">Creating a Client</a></li>
+<li><a class="reference internal" href="#releasing-clients">Releasing Clients</a></li>
+<li><a class="reference internal" href="#manipulating-clients">Manipulating Clients</a></li>
+<li><a class="reference internal" href="#api-reference-c">API Reference - C</a></li>
+<li><a class="reference internal" href="#capi-clients-api-reference-cpp">API Reference - C++</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="cpp-interface.html"
+                        title="前の章へ">The C++ Language Interface</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="canvas.html"
+                        title="次の章へ">Canvas Core API</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/CAPIProgrammingGuide/clients.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="canvas.html" title="Canvas Core API"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="cpp-interface.html" title="The C++ Language Interface"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >CAPI Programming Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

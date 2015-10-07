@@ -1,0 +1,398 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Documentation System Sphinx Directives &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
+    <link rel="up" title="Fabric Engine Documentation System" href="index.html" />
+    <link rel="next" title="Documentation System KL Doxygen Qualifiers" href="qualifiers.html" />
+    <link rel="prev" title="Documentation System Hello World" href="example.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="qualifiers.html" title="Documentation System KL Doxygen Qualifiers"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="example.html" title="Documentation System Hello World"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Fabric Engine Documentation System</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="documentation-system-sphinx-directives">
+<h1>Documentation System Sphinx Directives<a class="headerlink" href="#documentation-system-sphinx-directives" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<a class="reference internal image-reference" href="../_images/FE_logo_345_60.png"><img alt="../_images/FE_logo_345_60.png" src="../_images/FE_logo_345_60.png" style="width: 345px; height: 60px;" /></a>
+<div class="line-block">
+<div class="line">Fabric Engine version 2.0.0</div>
+<div class="line">Copyright 2010-2015 Fabric Software Inc. All rights reserved.</div>
+</div>
+<ul class="simple">
+<li><span class="xref std std-ref">kl_example_directive</span>: A kl example which can be executed directly in sphinx</li>
+<li><span class="xref std std-ref">kl_fileexample_directive</span>: A kl file based example which can be executed directly in sphinx</li>
+<li><span class="xref std std-ref">kl_css_directive</span>: A nestable css directive for overriding the look and feel of sphinx per directive while auto-creating refs.</li>
+<li><span class="xref std std-ref">kl_constant_directive</span>: Doc-Gen for a KL constant.</li>
+<li><span class="xref std std-ref">kl_function_directive</span>: Doc-Gen for a free KL function</li>
+<li><span class="xref std std-ref">kl_interface_directive</span>: Doc-Gen for a KL interface</li>
+<li><span class="xref std std-ref">kl_inheritance_directive</span>: Doc-Gen for a KL inheritance diagram</li>
+<li><span class="xref std std-ref">kl_type_directive</span>: Doc-Gen for a KL type (struct or object)</li>
+<li><span class="xref std std-ref">kl_method_directive</span>: Doc-Gen for a single KL method</li>
+<li><span class="xref std std-ref">kl_methodlist_directive</span>: Doc-Gen for a list of KL methods (all for a type, or a category of methods)</li>
+<li><span class="xref std std-ref">kl_ext_constantlist_directive</span>: Doc-Gen for a list of all constants within an extension.</li>
+<li><span class="xref std std-ref">kl_ext_interfacelist_directive</span>: Doc-Gen for a toctree of all interfaces within an extension.</li>
+<li><span class="xref std std-ref">kl_ext_typelist_directive</span>: Doc-Gen for a toctree of all types within an extension.</li>
+<li><span class="xref std std-ref">kl_ext_functionlist_directive</span>: Doc-Gen for a all free functions within an extension.</li>
+</ul>
+<div class="section" id="the-kl-example-directive">
+<h2>The kl-example directive<a class="headerlink" href="#the-kl-example-directive" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The kl-example directive is used to embed a snipped of KL code into the page. This snipped is actually invoked and the output is collected. You may also use the nooutput option to disable the kl output.</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">kl-example</span><span class="p">::</span> Math-Test
+
+  require Math;
+
+  operator entry() {
+    Vec3 a(1,2,3);
+    Vec3 b(4,5,6);
+    report(a + b);
+  }
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-kl-fileexample-directive">
+<h2>The kl-fileexample directive<a class="headerlink" href="#the-kl-fileexample-directive" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The kl-fileexample is the same as the kl-example directive, just that it uses an input filepath. You can use ${ENVVAR} notations to express environment variables.</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">kl-fileexample</span><span class="p">::</span> ${FABRIC_SCENE_GRAPH_DIR}/Test/Exts/Singletons/Singletons_Test1.kl
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-kl-css-directive">
+<h2>The kl-css directive<a class="headerlink" href="#the-kl-css-directive" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The kl-css directive embeds another block into a paragraph with a css class applied. The css can be implemented in <em class="dfn">_static/custom.css</em>. The only allowed and required argument is the name of the css class to apply. The kl-css directive will also auto generate kl-ref directives for any types found within the content, so that KL types become clickable.</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">kl-css</span><span class="p">::</span> plaintext
+
+  In this example we are mentioning a Vec3 as well as a Mat44.
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-kl-constant-directive">
+<h2>The kl-constant directive<a class="headerlink" href="#the-kl-constant-directive" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The kl-constant directive is used to reference the documentation generation for a KL constant.</p>
+<ul class="simple">
+<li>title: (0(default) to 7): define the level of title to generate (0 == off, 1 first level title etc)</li>
+<li>createrefs: (0(default) or 1): when enabled the sphinx reference for this constant is created. this should only happen in the main page for the extension.</li>
+<li>userefs: (0 or 1(default)): enables or disables the auto generation of refs for all known KL types.</li>
+<li>brief: (0 or 1(default)): include the brief description of the element</li>
+<li>plaintext: (0 or 1(default)): include the plain text description of the element</li>
+<li>customrst: (0 or 1(default)): include custom rst (defined by rst and endrst)</li>
+<li>example: (0 or 1(default)): include any KL examples (defined by example and endexample)</li>
+</ul>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">kl-constant</span><span class="p">::</span> MAX_NAME_LENGTH
+  title=0;
+  createrefs=1;
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-kl-function-directive">
+<h2>The kl-function directive<a class="headerlink" href="#the-kl-function-directive" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The kl-function directive is used to reference the documentation generation for a KL free function.</p>
+<ul class="simple">
+<li>title: (0(default) to 7): define the level of title to generate (0 == off, 1 first level title etc)</li>
+<li>createrefs: (0(default) or 1): when enabled the sphinx reference for this function is created. this should only happen in the main page for the extension.</li>
+<li>userefs: (0 or 1(default)): enables or disables the auto generation of refs for all known KL types.</li>
+<li>params: (0(default) or 1): include the documentation of all function parameters</li>
+<li>brief: (0 or 1(default)): include the brief description of the element</li>
+<li>plaintext: (0 or 1(default)): include the plain text description of the element</li>
+<li>customrst: (0 or 1(default)): include custom rst (defined by rst and endrst)</li>
+<li>example: (0 or 1(default)): include any KL examples (defined by example and endexample)</li>
+</ul>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">kl-function</span><span class="p">::</span> radToDeg
+  params=1;
+  createrefs=1;
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-kl-interface-directive">
+<h2>The kl-interface directive<a class="headerlink" href="#the-kl-interface-directive" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The kl-interface directive is used to reference the documentation generation for a KL interface.</p>
+<ul class="simple">
+<li>title: (0(default) to 7): define the level of title to generate (0 == off, 1 first level title etc)</li>
+<li>createrefs: (0(default) or 1): when enabled the sphinx reference for this interface is created. this should only happen in the main page for the extension.</li>
+<li>userefs: (0 or 1(default)): enables or disables the auto generation of refs for all known KL types.</li>
+<li>methods: (0 or 1(default)): include the documentation of all interface methods</li>
+<li>brief: (0 or 1(default)): include the brief description of the element</li>
+<li>plaintext: (0 or 1(default)): include the plain text description of the element</li>
+<li>customrst: (0 or 1(default)): include custom rst (defined by rst and endrst)</li>
+<li>example: (0 or 1(default)): include any KL examples (defined by example and endexample)</li>
+</ul>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">kl-interface</span><span class="p">::</span> MyInterface
+  methods=1;
+  createrefs=0;
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-kl-inheritance-directive">
+<h2>The kl-inheritance directive<a class="headerlink" href="#the-kl-inheritance-directive" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The kl-inheritance directive is used to generate an inheritance graph.</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">kl-inheritance</span><span class="p">::</span> MySpecializedObject
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-kl-method-directive">
+<h2>The kl-method directive<a class="headerlink" href="#the-kl-method-directive" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The kl-method directive is used to reference the documentation generation for a KL method.</p>
+<ul class="simple">
+<li>title: (0(default) to 7): define the level of title to generate (0 == off, 1 first level title etc)</li>
+<li>createrefs: (0(default) or 1): when enabled the sphinx reference for this method is created. this should only happen in the main page for the extension.</li>
+<li>userefs: (0 or 1(default)): enables or disables the auto generation of refs for all known KL types.</li>
+<li>params: (0(default) or 1): include the documentation of all method parameters</li>
+<li>brief: (0 or 1(default)): include the brief description of the element</li>
+<li>plaintext: (0 or 1(default)): include the plain text description of the element</li>
+<li>customrst: (0 or 1(default)): include custom rst (defined by rst and endrst)</li>
+<li>example: (0 or 1(default)): include any KL examples (defined by example and endexample)</li>
+</ul>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">kl-method</span><span class="p">::</span> MyObject.getS
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-kl-methodlist-directive">
+<h2>The kl-methodlist directive<a class="headerlink" href="#the-kl-methodlist-directive" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The kl-methodlist directive is used to reference the documentation generation for a list of KL methods.</p>
+<ul class="simple">
+<li>title: (0(default) to 7): define the level of title to generate (0 == off, 1 first level title etc)</li>
+<li>createrefs: (0(default) or 1): when enabled the sphinx reference for each method is created. this should only happen in the main page for the extension.</li>
+<li>userefs: (0 or 1(default)): enables or disables the auto generation of refs for all known KL types.</li>
+<li>compact: (0(default) or 1): compact version of the method list, without any additional documentation (example or such).</li>
+<li>includeinherited: (0 or 1(default)): when enabled all inherited methods are shown</li>
+<li>includeprivate: (0(default) or 1): when enabled private methods are also shown</li>
+<li>category: (String): the category of methods to list (operators for operators, empty string for all)</li>
+<li>brief: (0 or 1(default)): include the brief description for each method</li>
+<li>plaintext: (0 or 1(default)): include the plain text description for each method</li>
+<li>customrst: (0 or 1(default)): include custom rst (defined by rst and endrst) for each method</li>
+<li>example: (0 or 1(default)): include any KL examples (defined by example and endexample) for each method</li>
+</ul>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">kl-methodlist</span><span class="p">::</span> MyStruct
+  category=operators;
+  example=0;
+  brief=0;
+  plaintext=1;
+</pre></div>
+</div>
+<p>Compact list for Vec4 methods:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">kl-methodlist</span><span class="p">::</span> Vec4
+  compact=1;
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-kl-type-directive">
+<h2>The kl-type directive<a class="headerlink" href="#the-kl-type-directive" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The kl-type directive is used to reference the documentation generation for a KL type (struct or object).</p>
+<ul class="simple">
+<li>title: (0(default) to 7): define the level of title to generate (0 == off, 1 first level title etc)</li>
+<li>createrefs: (0(default) or 1): when enabled the sphinx reference for this type is created. this should only happen in the main page for the extension.</li>
+<li>userefs: (0 or 1(default)): enables or disables the auto generation of refs for all known KL types.</li>
+<li>inheritancegraph: (0 or 1(default)): enables showing an inheritance graph</li>
+<li>members: (0 or 1(default)): include data type members</li>
+<li>methods: (0 or 1(default)): include the documentation of all interface methods</li>
+<li>brief: (0 or 1(default)): include the brief description of the element</li>
+<li>plaintext: (0 or 1(default)): include the plain text description of the element</li>
+<li>customrst: (0 or 1(default)): include custom rst (defined by rst and endrst)</li>
+<li>example: (0 or 1(default)): include any KL examples (defined by example and endexample)</li>
+</ul>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">kl-type</span><span class="p">::</span> Bone
+  members=1;
+  methods=0;
+  createrefs=0;
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-kl-ext-constantlist-directive">
+<h2>The kl-ext-constantlist directive<a class="headerlink" href="#the-kl-ext-constantlist-directive" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The kl-ext-constantlist is used list of all constants within an extension.</p>
+<ul class="simple">
+<li>title: (0(default) to 7): define the level of title to generate (0 == off, 1 first level title etc)</li>
+<li>includeprivate: (0(default) or 1): when enabled private interfaces are also shown</li>
+<li>createrefs: (0(default) or 1): when enabled the sphinx reference for each constant is created. this should only happen in the main page for the extension.</li>
+<li>userefs: (0 or 1(default)): enables or disables the auto generation of refs for all known KL types.</li>
+<li>brief: (0 or 1(default)): include the brief description of the element</li>
+<li>plaintext: (0 or 1(default)): include the plain text description of the element</li>
+<li>customrst: (0 or 1(default)): include custom rst (defined by rst and endrst)</li>
+<li>example: (0 or 1(default)): include any KL examples (defined by example and endexample)</li>
+</ul>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">kl-ext-constantlist</span><span class="p">::</span> Alembic
+  includeprivate=1;
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-kl-ext-interfacelist-directive">
+<h2>The kl-ext-interfacelist directive<a class="headerlink" href="#the-kl-ext-interfacelist-directive" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The kl-ext-interfacelist is used to create a toc tree listing all interfaces within an extension.</p>
+<ul class="simple">
+<li>title: (0(default) to 7): define the level of title to generate (0 == off, 1 first level title etc)</li>
+<li>includeprivate: (0(default) or 1): when enabled private interfaces are also shown</li>
+</ul>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">kl-ext-interfacelist</span><span class="p">::</span> Geometry
+  includeprivate=1;
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-kl-ext-typelist-directive">
+<h2>The kl-ext-typelist directive<a class="headerlink" href="#the-kl-ext-typelist-directive" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The kl-ext-typelist is used to create a toc tree listing all types within an extension. (it will only show the ones which have a proper label and reference. in this case we haven&#8217;t implemented all of them.)</p>
+<ul class="simple">
+<li>title: (0(default) to 7): define the level of title to generate (0 == off, 1 first level title etc)</li>
+<li>includeprivate: (0(default) or 1): when enabled private interfaces are also shown</li>
+<li>compact: (0(default) or 1): compact version of the function list, without any additional documentation (example or such).</li>
+<li>createrefs: (0(default) or 1): when enabled the sphinx reference for each function is created. this should only happen in the main page for the extension.</li>
+</ul>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">kl-ext-typelist</span><span class="p">::</span> Math
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-kl-ext-functionlist-directive">
+<h2>The kl-ext-functionlist directive<a class="headerlink" href="#the-kl-ext-functionlist-directive" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The kl-ext-functionlist is used to create a list similar to the kl-methodlist, but for free functions.</p>
+<ul class="simple">
+<li>title: (0(default) to 7): define the level of title to generate (0 == off, 1 first level title etc)</li>
+<li>includeprivate: (0(default) or 1): when enabled private interfaces are also shown</li>
+<li>compact: (0(default) or 1): compact version of the function list, without any additional documentation (example or such).</li>
+<li>createrefs: (0(default) or 1): when enabled the sphinx reference for each function is created. this should only happen in the main page for the extension.</li>
+<li>category: (String): the category of functions to list (empty string for all)</li>
+<li>userefs: (0 or 1(default)): enables or disables the auto generation of refs for all known KL types.</li>
+<li>brief: (0 or 1(default)): include the brief description for each function</li>
+<li>plaintext: (0 or 1(default)): include the plain text description for each function</li>
+<li>customrst: (0 or 1(default)): include custom rst (defined by rst and endrst) for each function</li>
+<li>example: (0 or 1(default)): include any KL examples (defined by example and endexample) for each function</li>
+</ul>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">kl-ext-functionlist</span><span class="p">::</span> Math
+  compact=1;
+
+<span class="p">..</span> <span class="ow">kl-ext-functionlist</span><span class="p">::</span> FabricTEEM
+  compact=0;
+</pre></div>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h2>Indices and Tables<a class="headerlink" href="#indices-and-tables" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="../genindex.html"><span>索引</span></a></li>
+<li><a class="reference internal" href="../search.html"><span>検索ページ</span></a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Documentation System Sphinx Directives</a><ul>
+<li><a class="reference internal" href="#the-kl-example-directive">The kl-example directive</a></li>
+<li><a class="reference internal" href="#the-kl-fileexample-directive">The kl-fileexample directive</a></li>
+<li><a class="reference internal" href="#the-kl-css-directive">The kl-css directive</a></li>
+<li><a class="reference internal" href="#the-kl-constant-directive">The kl-constant directive</a></li>
+<li><a class="reference internal" href="#the-kl-function-directive">The kl-function directive</a></li>
+<li><a class="reference internal" href="#the-kl-interface-directive">The kl-interface directive</a></li>
+<li><a class="reference internal" href="#the-kl-inheritance-directive">The kl-inheritance directive</a></li>
+<li><a class="reference internal" href="#the-kl-method-directive">The kl-method directive</a></li>
+<li><a class="reference internal" href="#the-kl-methodlist-directive">The kl-methodlist directive</a></li>
+<li><a class="reference internal" href="#the-kl-type-directive">The kl-type directive</a></li>
+<li><a class="reference internal" href="#the-kl-ext-constantlist-directive">The kl-ext-constantlist directive</a></li>
+<li><a class="reference internal" href="#the-kl-ext-interfacelist-directive">The kl-ext-interfacelist directive</a></li>
+<li><a class="reference internal" href="#the-kl-ext-typelist-directive">The kl-ext-typelist directive</a></li>
+<li><a class="reference internal" href="#the-kl-ext-functionlist-directive">The kl-ext-functionlist directive</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and Tables</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="example.html"
+                        title="前の章へ">Documentation System Hello World</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="qualifiers.html"
+                        title="次の章へ">Documentation System KL Doxygen Qualifiers</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/DocSystem/directives.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="qualifiers.html" title="Documentation System KL Doxygen Qualifiers"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="example.html" title="Documentation System Hello World"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Fabric Engine Documentation System</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

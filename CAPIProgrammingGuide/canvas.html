@@ -1,0 +1,2623 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Canvas Core API &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
+    <link rel="up" title="CAPI Programming Guide" href="index.html" />
+    <link rel="next" title="RTVal Programming Guide" href="../RTValProgrammingGuide/index.html" />
+    <link rel="prev" title="Clients and the Application Lifecycle" href="clients.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../RTValProgrammingGuide/index.html" title="RTVal Programming Guide"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="clients.html" title="Clients and the Application Lifecycle"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">CAPI Programming Guide</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="canvas-core-api">
+<span id="capipg-canvas"></span><h1>Canvas Core API<a class="headerlink" href="#canvas-core-api" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>The Canvas Core API is the lowest-level interface at which Canvas can be
+used.  The API is designed for use by a visual programming interface,
+but can be driven directly by scripting.</p>
+<p>The objects that are used by the Canvas Core API generally start with the
+the letters <code class="code docutils literal"><span class="pre">DFG</span></code> for historical reasons.  Occasionally Canvas may
+be referred to as &#8220;the DFG&#8221; in documentation.</p>
+<p>The main classes that the Canvas Core API exposes are:</p>
+<ul class="simple">
+<li><code class="code docutils literal"><span class="pre">FabricCore::DFGHost</span></code>: this object manages everything shared between
+different Canvas executables and bindings, such as the undo/redo stack and
+the preset tree, and is also the interface to use to create new bindings.</li>
+<li><code class="code docutils literal"><span class="pre">FabricCore::DFGBinding</span></code>: this object is a binding of an executable
+to a set of arguments, and is the interface for actually computing things
+in Canvas.  The executable that it binds may be a very complex graph with
+subgraphs, but fundamentally all computation happens at the level of
+bindings.</li>
+<li><code class="code docutils literal"><span class="pre">FabricCore::DFGExec</span></code>: this object is a Canvas executable, which
+can be either a graph of nodes or a KL function.</li>
+</ul>
+<p>Each of these objects has its API details laid out below.</p>
+<div class="section" id="canvas-core-api-in-python">
+<h2>Canvas Core API in Python<a class="headerlink" href="#canvas-core-api-in-python" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Note that the entire Canvas Core API is also available in Python through the
+FabricEngine.Core module.  The calls are 1-1 with the CAPI calls.  For examples
+of using the Python API to access the Canvas Core, please refer to the
+Canvas Core unit tests located under <code class="file docutils literal"><span class="pre">$FABRIC_DIR/Test/Core/Canvas</span></code>.</p>
+</div>
+<div class="section" id="canvas-core-api-enums">
+<h2>Canvas Core API Enums<a class="headerlink" href="#canvas-core-api-enums" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><code class="code docutils literal"><span class="pre">enum</span> <span class="pre">FabricCore::DFGPortType</span></code></p>
+<blockquote>
+<div><p>The type of a port in Canvas.  One of:</p>
+<ul class="simple">
+<li><code class="code docutils literal"><span class="pre">DFGPortType_In</span></code></li>
+<li><code class="code docutils literal"><span class="pre">DFGPortType_IO</span></code></li>
+<li><code class="code docutils literal"><span class="pre">DFGPortType_Out</span></code></li>
+</ul>
+</div></blockquote>
+<p><code class="code docutils literal"><span class="pre">FabricCore::DFGExecType</span></code></p>
+<blockquote>
+<div><p>The type of an executable in Canvas.  One of:</p>
+<ul class="simple">
+<li><code class="code docutils literal"><span class="pre">DFGExecType_Graph</span></code></li>
+<li><code class="code docutils literal"><span class="pre">DFGExecType_Func</span></code></li>
+</ul>
+</div></blockquote>
+<p><code class="code docutils literal"><span class="pre">FabricCore::DFGNodeType</span></code></p>
+<blockquote>
+<div><p>The type of a node in a Canvas graph.  One of:</p>
+<ul class="simple">
+<li><code class="code docutils literal"><span class="pre">DFGNodeType_Inst</span></code> - an instance of an executable</li>
+<li><code class="code docutils literal"><span class="pre">DFGNodeType_Get</span></code> - a variable get node</li>
+<li><code class="code docutils literal"><span class="pre">DFGNodeType_Set</span></code> - a variable set node</li>
+<li><code class="code docutils literal"><span class="pre">DFGNodeType_Var</span></code> - a variable definition node</li>
+<li><code class="code docutils literal"><span class="pre">DFGNodeType_User</span></code> - a user node</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="canvas-core-api-classes">
+<h2>Canvas Core API Classes<a class="headerlink" href="#canvas-core-api-classes" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="class">
+<dt id="_CPPv2N10FabricCore7DFGExecE">
+<span id="FabricCore::DFGExec"></span><em class="property">class </em><code class="descclassname">FabricCore::</code><code class="descname">DFGExec</code> : <em class="property">public</em> <code class="descclassname">FabricCore::</code><code class="descname">Ref</code><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExecE" title="この定義へのパーマリンク">¶</a></dt>
+<dd><blockquote>
+<div><dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec7DFGExecEv">
+<span id="FabricCore::DFGExec::DFGExec"></span><code class="descclassname"></code><code class="descname">DFGExec</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec7DFGExecEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec7DFGExecER7DFGExec">
+<span id="FabricCore::DFGExec::DFGExec__DFGExecCR"></span><code class="descclassname"></code><code class="descname">DFGExec</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec7DFGExecEv" title="FabricCore::DFGExec::DFGExec">DFGExec</a> <em class="property">const</em> &amp;<em>that</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec7DFGExecER7DFGExec" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExecaSER7DFGExec">
+<span id="FabricCore::DFGExec::assign-operator__DFGExecCR"></span><a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec7DFGExecEv" title="FabricCore::DFGExec::DFGExec">DFGExec</a> &amp;<code class="descclassname"></code><code class="descname">operator=</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec7DFGExecEv" title="FabricCore::DFGExec::DFGExec">DFGExec</a> <em class="property">const</em> &amp;<em>that</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExecaSER7DFGExec" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExecD0Ev">
+<span id="FabricCore::DFGExec::~DFGExec"></span><code class="descclassname"></code><code class="descname">~DFGExec</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExecD0Ev" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore7DFGExec7getTypeEv">
+<span id="FabricCore::DFGExec::getTypeC"></span>DFGExecType <code class="descclassname"></code><code class="descname">getType</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore7DFGExec7getTypeEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns the type of the executable, either <code class="code docutils literal"><span class="pre">FabricCore::DFGExecType_Graph</span></code>
+or <code class="code docutils literal"><span class="pre">FabricCore::DFGExecType_Func</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">戻り値:</th><td class="field-body">The type of the executable</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore7DFGExec11getNodeTypeEPc">
+<span id="FabricCore::DFGExec::getNodeType__cCPC"></span>DFGNodeType <code class="descclassname"></code><code class="descname">getNodeType</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>nodePath</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore7DFGExec11getNodeTypeEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns the type of a node in a graph.  See <code class="xref cpp cpp-enum docutils literal"><span class="pre">DFGNodeType</span></code> for
+various node types.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ nodeName:</th><td class="field-body">The name of the node in the graph</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The type of the node</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore7DFGExec7getHostEv">
+<span id="FabricCore::DFGExec::getHostC"></span>DFGHost <code class="descclassname"></code><code class="descname">getHost</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore7DFGExec7getHostEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns the host to which the executable belongs.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">戻り値:</th><td class="field-body"><code class="code docutils literal"><span class="pre">FabricCore::DFGHost</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore7DFGExec10getSubExecEPc">
+<span id="FabricCore::DFGExec::getSubExec__cCPC"></span><a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec7DFGExecEv" title="FabricCore::DFGExec::DFGExec">DFGExec</a> <code class="descclassname"></code><code class="descname">getSubExec</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>execPath</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore7DFGExec10getSubExecEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns the a sub-executable of an executable.  A sub-executable is
+referenced through a path of the form &#8220;node.subnode.subnode&#8221;, where
+each element of the path is a node in its containing graph.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ execPath:</th><td class="field-body">The path to the sub-executable</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The sub-executable</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore7DFGExec13getErrorCountEv">
+<span id="FabricCore::DFGExec::getErrorCountC"></span>unsigned <code class="descclassname"></code><code class="descname">getErrorCount</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore7DFGExec13getErrorCountEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns the number of errors on the executable.  Errors can be accessed
+by (zero-based) index using <a class="reference internal" href="#_CPPv2NK10FabricCore7DFGExec8getErrorEj" title="FabricCore::DFGExec::getError"><code class="xref cpp cpp-func docutils literal"><span class="pre">FabricCore::DFGExec::getError()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">戻り値:</th><td class="field-body">The number of errors</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore7DFGExec8getErrorEj">
+<span id="FabricCore::DFGExec::getError__unsignedC"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">getError</code><span class="sig-paren">(</span>unsigned <em>index</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore7DFGExec8getErrorEj" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns the error at the given index on the executable.  Errors can be accessed
+by (zero-based) index; see <a class="reference internal" href="#_CPPv2NK10FabricCore7DFGExec13getErrorCountEv" title="FabricCore::DFGExec::getErrorCount"><code class="xref cpp cpp-func docutils literal"><span class="pre">FabricCore::DFGExec::getErrorCount()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ index:</th><td class="field-body">The index of the error</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The error description</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore7DFGExec10getExtDepsEv">
+<span id="FabricCore::DFGExec::getExtDepsC"></span>String <code class="descclassname"></code><code class="descname">getExtDeps</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore7DFGExec10getExtDepsEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the extension dependencies description for the executabe in JSON-encoded form.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">戻り値:</th><td class="field-body">The extension dependencies description for the executabe in JSON-encoded form</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore7DFGExec14getExtDepCountEv">
+<span id="FabricCore::DFGExec::getExtDepCountC"></span>unsigned <code class="descclassname"></code><code class="descname">getExtDepCount</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore7DFGExec14getExtDepCountEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the numbed of extension dependencies for the executable.  Extension
+dependency information can be accessed on an index-basis; see also
+<a class="reference internal" href="#_CPPv2NK10FabricCore7DFGExec13getExtDepNameEj" title="FabricCore::DFGExec::getExtDepName"><code class="xref cpp cpp-func docutils literal"><span class="pre">FabricCore::DFGExec::getExtDepName()</span></code></a> and
+<a class="reference internal" href="#_CPPv2NK10FabricCore7DFGExec16getExtDepVersionEj" title="FabricCore::DFGExec::getExtDepVersion"><code class="xref cpp cpp-func docutils literal"><span class="pre">FabricCore::DFGExec::getExtDepVersion()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">戻り値:</th><td class="field-body">The number of extension dependencies</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore7DFGExec13getExtDepNameEj">
+<span id="FabricCore::DFGExec::getExtDepName__unsignedC"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">getExtDepName</code><span class="sig-paren">(</span>unsigned <em>index</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore7DFGExec13getExtDepNameEj" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the name of the extension dependency at the given index.  Extension
+dependency information can be accessed on an index-basis; see also
+<a class="reference internal" href="#_CPPv2NK10FabricCore7DFGExec14getExtDepCountEv" title="FabricCore::DFGExec::getExtDepCount"><code class="xref cpp cpp-func docutils literal"><span class="pre">FabricCore::DFGExec::getExtDepCount()</span></code></a> and
+<a class="reference internal" href="#_CPPv2NK10FabricCore7DFGExec16getExtDepVersionEj" title="FabricCore::DFGExec::getExtDepVersion"><code class="xref cpp cpp-func docutils literal"><span class="pre">FabricCore::DFGExec::getExtDepVersion()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ index:</th><td class="field-body">The index of the extension dependency</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The name of the extension</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore7DFGExec16getExtDepVersionEj">
+<span id="FabricCore::DFGExec::getExtDepVersion__unsignedC"></span>String <code class="descclassname"></code><code class="descname">getExtDepVersion</code><span class="sig-paren">(</span>unsigned <em>index</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore7DFGExec16getExtDepVersionEj" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the version specification of the extension dependency at the given index.  Extension
+dependency information can be accessed on an index-basis; see also
+<a class="reference internal" href="#_CPPv2NK10FabricCore7DFGExec14getExtDepCountEv" title="FabricCore::DFGExec::getExtDepCount"><code class="xref cpp cpp-func docutils literal"><span class="pre">FabricCore::DFGExec::getExtDepCount()</span></code></a> and
+<a class="reference internal" href="#_CPPv2NK10FabricCore7DFGExec13getExtDepNameEj" title="FabricCore::DFGExec::getExtDepName"><code class="xref cpp cpp-func docutils literal"><span class="pre">FabricCore::DFGExec::getExtDepName()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ index:</th><td class="field-body">The index of the extension dependency</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The version specification name of the extension</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore7DFGExec12haveExecPortEPc">
+<span id="FabricCore::DFGExec::haveExecPort__cCPC"></span>bool <code class="descclassname"></code><code class="descname">haveExecPort</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>portName</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore7DFGExec12haveExecPortEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Query whether the executable has a port with the given name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ portName:</th><td class="field-body">The name to query</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">true if there is a port with the given name, false if not</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore7DFGExec16getExecPortCountEv">
+<span id="FabricCore::DFGExec::getExecPortCountC"></span>unsigned <code class="descclassname"></code><code class="descname">getExecPortCount</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore7DFGExec16getExecPortCountEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the number of ports on the executable.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">戻り値:</th><td class="field-body">The number of ports on the executable</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore7DFGExec15getExecPortNameEj">
+<span id="FabricCore::DFGExec::getExecPortName__unsignedC"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">getExecPortName</code><span class="sig-paren">(</span>unsigned <em>index</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore7DFGExec15getExecPortNameEj" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the name of the executable port at the given index.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ index:</th><td class="field-body">The index of the port</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The name of the port</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore7DFGExec12getNodeCountEv">
+<span id="FabricCore::DFGExec::getNodeCountC"></span>unsigned <code class="descclassname"></code><code class="descname">getNodeCount</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore7DFGExec12getNodeCountEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the number of nodes in a graph.  Will throw an exception if the
+executable is not a graph.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">戻り値:</th><td class="field-body">The number of nodes in the graph</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore7DFGExec11getNodeNameEj">
+<span id="FabricCore::DFGExec::getNodeName__unsignedC"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">getNodeName</code><span class="sig-paren">(</span>unsigned <em>index</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore7DFGExec11getNodeNameEj" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the name of the node at the given index.    Will throw an exception if the
+executable is not a graph.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ index:</th><td class="field-body">The index of the node</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The number of nodes in the graph</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore7DFGExec11getNodeTypeEj">
+<span id="FabricCore::DFGExec::getNodeType__unsignedC"></span>DFGNodeType <code class="descclassname"></code><code class="descname">getNodeType</code><span class="sig-paren">(</span>unsigned <em>index</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore7DFGExec11getNodeTypeEj" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the type of the node at the given index.    Will throw an exception if the
+executable is not a graph.  See <code class="xref cpp cpp-enum docutils literal"><span class="pre">DFGNodeType</span></code> for the various
+node types.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ index:</th><td class="field-body">The index of the node</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The type of the node</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore7DFGExec11getInstExecEj">
+<span id="FabricCore::DFGExec::getInstExec__unsignedC"></span><a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec7DFGExecEv" title="FabricCore::DFGExec::DFGExec">DFGExec</a> <code class="descclassname"></code><code class="descname">getInstExec</code><span class="sig-paren">(</span>unsigned <em>index</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore7DFGExec11getInstExecEj" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Gets a handle to the executable that the instance node at the given index is an
+instance of.  Will throw an exception if the executable is not a graph
+or the node is not an instance.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ index:</th><td class="field-body">The index of the instance node</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The executable that the instance node is an instance of</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec7getDescEv">
+<span id="FabricCore::DFGExec::getDesc"></span>String <code class="descclassname"></code><code class="descname">getDesc</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec7getDescEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Gets a description of the executable.  The description is in JSON
+form, and can be useful for debugging.  Note, however, that it should
+not be used for persistence; instance, use <a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec10exportJSONEv" title="FabricCore::DFGExec::exportJSON"><code class="xref cpp cpp-func docutils literal"><span class="pre">FabricCore::DFGExec::exportJSON()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">戻り値:</th><td class="field-body">A description of the executable in JSON form</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec15getExecPortDescEPc">
+<span id="FabricCore::DFGExec::getExecPortDesc__cCP"></span>String <code class="descclassname"></code><code class="descname">getExecPortDesc</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>execPortName</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec15getExecPortDescEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Gets a description of a port of the executable.  The description is in JSON
+form, and can be useful for debugging.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">パラメタ execPortName:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">The name of the port of the executable</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">A description of the port in JSON form</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec11getNodeDescEPc">
+<span id="FabricCore::DFGExec::getNodeDesc__cCP"></span>String <code class="descclassname"></code><code class="descname">getNodeDesc</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>nodeName</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec11getNodeDescEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Gets a description of a node of the executable.  The description is in JSON
+form, and can be useful for debugging.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ nodeName:</th><td class="field-body">The name of the node of the graph</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">A description of the node in JSON form</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec15getNodePortDescEPc">
+<span id="FabricCore::DFGExec::getNodePortDesc__cCP"></span>String <code class="descclassname"></code><code class="descname">getNodePortDesc</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>nodePortPath</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec15getNodePortDescEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Gets a description of a port of a node of the executable.  The path should be
+of the form &#8220;nodeName.portName&#8221;.  The description is in JSON
+form, and can be useful for debugging.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ nodeName:</th><td class="field-body">The path to a port of a node in the graph</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">A description of the port in JSON form</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec22isExecPortResolvedTypeEjPc">
+<span id="FabricCore::DFGExec::isExecPortResolvedType__unsigned.cCP"></span>bool <code class="descclassname"></code><code class="descname">isExecPortResolvedType</code><span class="sig-paren">(</span>unsigned <em>index</em>, char <em class="property">const</em> *<em>typeName</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec22isExecPortResolvedTypeEjPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Determine whether the resolved type of a port of the executable is
+the given type (or an alias of that type).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>index</strong> &#8211; The index of the port of the executable</li>
+<li><strong>typeName</strong> &#8211; The name of the type</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">Whether the resolved type of the port is the given type</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec23getExecPortResolvedTypeEj">
+<span id="FabricCore::DFGExec::getExecPortResolvedType__unsigned"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">getExecPortResolvedType</code><span class="sig-paren">(</span>unsigned <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec23getExecPortResolvedTypeEj" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the resolved type of a port of the executable at a given index.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">This will return the type alias for the resolved type, so it
+shouldn&#8217;t generally be used for type checking; for example, this function
+could return <code class="code docutils literal"><span class="pre">Integer</span></code> or <code class="code docutils literal"><span class="pre">SInt32</span></code>, depending on how the
+graph was created.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ index:</th><td class="field-body">The index of the port of the executable</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The resolved type of the port</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec23getExecPortResolvedTypeEPc">
+<span id="FabricCore::DFGExec::getExecPortResolvedType__cCP"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">getExecPortResolvedType</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>execPortName</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec23getExecPortResolvedTypeEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the resolved type of a port of the executable with a given name.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">This will return the type alias for the resolved type, so it
+shouldn&#8217;t generally be used for type checking; for example, this function
+could return <code class="code docutils literal"><span class="pre">Integer</span></code> or <code class="code docutils literal"><span class="pre">SInt32</span></code>, depending on how the
+graph was created.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">パラメタ execPortName:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">The name of the port of the executable</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The resolved type of the port</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec23getNodePortResolvedTypeEPc">
+<span id="FabricCore::DFGExec::getNodePortResolvedType__cCP"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">getNodePortResolvedType</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>nodePortPath</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec23getNodePortResolvedTypeEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the resolved type of a port of a node of the graph with a given path.
+The path should be of the form &#8220;nodeName.portName&#8221;.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">This will return the type alias for the resolved type, so it
+shouldn&#8217;t generally be used for type checking; for example, this function
+could return <code class="code docutils literal"><span class="pre">Integer</span></code> or <code class="code docutils literal"><span class="pre">SInt32</span></code>, depending on how the
+graph was created.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">パラメタ nodePortPath:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">The path to a port of a node in the graph</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The resolved type of the port</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10exportJSONEv">
+<span id="FabricCore::DFGExec::exportJSON"></span>String <code class="descclassname"></code><code class="descname">exportJSON</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10exportJSONEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Create a JSON representation of the executable that can later be used
+by <a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec15addInstFromJSONEPc" title="FabricCore::DFGExec::addInstFromJSON"><code class="xref cpp cpp-func docutils literal"><span class="pre">FabricCore::DFGExec::addInstFromJSON()</span></code></a> to create a new
+executable that is the same.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">戻り値:</th><td class="field-body">The JSON representation of the graph</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec17addInstFromPresetEPc">
+<span id="FabricCore::DFGExec::addInstFromPreset__cCP"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">addInstFromPreset</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>presetFilePath</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec17addInstFromPresetEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Create a new instance node in the graph that is an instance of the
+preset with the given preset path.  Will throw an exception if the
+preset is not found or if the executable is not a graph.  The name of
+the new node will be derived from the name of the preset, but made unique
+within the graph.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">パラメタ presetFilePath:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">The path to the preset in the preset tree</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The name of that node that was created</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec19addInstWithNewGraphEPc">
+<span id="FabricCore::DFGExec::addInstWithNewGraph__cCP"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">addInstWithNewGraph</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>title</em> = 0<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec19addInstWithNewGraphEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Create a new instance node in the graph that is an instance of a new
+(empty) graph.  Optionally, specify the title of the new graph; if present,
+the name of the new node is derived from the title of the graph.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ title:</th><td class="field-body">(optional) The title of the graph that will be created</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The name of that node that was created</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec18addInstWithNewFuncEPc">
+<span id="FabricCore::DFGExec::addInstWithNewFunc__cCP"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">addInstWithNewFunc</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>title</em> = 0<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec18addInstWithNewFuncEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Create a new instance node in the graph that is an instance of a new
+(empty) function.  Optionally, specify the title of the new function; if present,
+the name of the new node is derived from the title of the function.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ title:</th><td class="field-body">(optional) The title of the function that will be created</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The name of that node that was created</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec15addInstFromJSONEPc">
+<span id="FabricCore::DFGExec::addInstFromJSON__cCP"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">addInstFromJSON</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>json</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec15addInstFromJSONEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Create a new instance node in the graph that is an instance of a new executable
+described by JSON obtained from <a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec10exportJSONEv" title="FabricCore::DFGExec::exportJSON"><code class="xref cpp cpp-func docutils literal"><span class="pre">FabricCore::DFGExec::exportJSON()</span></code></a>.  The
+name of the node will be derived from the title of the executable.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ json:</th><td class="field-body">The JSON description of the executable</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The name of that node that was created</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec6addVarEPcPcPc">
+<span id="FabricCore::DFGExec::addVar__cCP.cCP.cCP"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">addVar</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>desiredName</em>, char <em class="property">const</em> *<em>dataType</em>, char <em class="property">const</em> *<em>extDep</em> = 0<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec6addVarEPcPcPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Create a new variable declaration node in the graph with a given type and,
+optionally, an extension dependency for the type.  The actual name of
+the node will be derived from the <code class="code docutils literal"><span class="pre">desiredName</span></code> parameter.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>desiredName</strong> &#8211; The desired name of the new variable within the graph</li>
+<li><strong>dataType</strong> &#8211; The KL data type of the variable</li>
+<li><strong>extDep</strong> &#8211; (optional) An extension dependency for the type of the form <code class="code docutils literal"><span class="pre">{ExtensionName}:{VersionSpec}</span></code>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">The actual name of the variable declaration node that was created</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec6addGetEPcPc">
+<span id="FabricCore::DFGExec::addGet__cCP.cCP"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">addGet</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>desiredName</em>, char <em class="property">const</em> *<em>varPath</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec6addGetEPcPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Create a new get variable node in the graph.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>desiredName</strong> &#8211; The desired name of the get variable node within the graph</li>
+<li><strong>varPath</strong> &#8211; The path to the variable.  Variable paths follow &#8220;namespacing&#8221; rules whereby the are looked up starting from the current graph and continue searching in parent graphs until a match is found.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">The actual name of the get variable node that was created</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec6addSetEPcPc">
+<span id="FabricCore::DFGExec::addSet__cCP.cCP"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">addSet</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>desiredName</em>, char <em class="property">const</em> *<em>varPath</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec6addSetEPcPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Create a new set variable node in the graph.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>desiredName</strong> &#8211; The desired name of the get variable node within the graph</li>
+<li><strong>varPath</strong> &#8211; The path to the variable.  Variable paths follow &#8220;namespacing&#8221; rules whereby the are looked up starting from the current graph and continue searching in parent graphs until a match is found.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">The actual name of the set variable node that was created</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec11getVarValueEPc">
+<span id="FabricCore::DFGExec::getVarValue__cCP"></span><a class="reference internal" href="../RTValProgrammingGuide/capi.html#_CPPv2N10FabricCore5RTValE" title="FabricCore::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">getVarValue</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec11getVarValueEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the current value of a variable within the graph.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ name:</th><td class="field-body">The name of the get variable within the graph</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The current value of the variable as an RTVal, or a null RTVal if there is no current value</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec11setVarValueEPc5RTVal">
+<span id="FabricCore::DFGExec::setVarValue__cCP.RTVal"></span>void <code class="descclassname"></code><code class="descname">setVarValue</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>name</em>, <a class="reference internal" href="../RTValProgrammingGuide/capi.html#_CPPv2N10FabricCore5RTValE" title="FabricCore::RTVal">RTVal</a> <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec11setVarValueEPc5RTVal" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Set the current value of a variable within the graph.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> &#8211; The name of the get variable within the graph</li>
+<li><strong>value</strong> &#8211; The new value of the variable</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec13getRefVarPathEPc">
+<span id="FabricCore::DFGExec::getRefVarPath__cCP"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">getRefVarPath</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec13getRefVarPathEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the variable path associated with the given variable reference
+(get or set) node.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ name:</th><td class="field-body">The name of the variable reference node</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The current variable path of the node</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec13setRefVarPathEPcPc">
+<span id="FabricCore::DFGExec::setRefVarPath__cCP.cCP"></span>void <code class="descclassname"></code><code class="descname">setRefVarPath</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>name</em>, char <em class="property">const</em> *<em>varPath</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec13setRefVarPathEPcPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Set the variable path associated with the given variable reference
+(get or set) node.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> &#8211; The name of the variable reference node</li>
+<li><strong>varPath</strong> &#8211; The new variable path to set</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec7addUserEPc">
+<span id="FabricCore::DFGExec::addUser__cCP"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">addUser</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>desiredName</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec7addUserEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Create a new user node in the graph.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">パラメタ desiredName:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">The desired name of the user node within the graph</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The actual name of the user node that was created</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec9addExtDepEPcPc">
+<span id="FabricCore::DFGExec::addExtDep__cCP.cCP"></span>void <code class="descclassname"></code><code class="descname">addExtDep</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>extName</em>, char <em class="property">const</em> *<em>versionRange</em> = &quot;&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec9addExtDepEPcPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Add an extension dependency to the executable.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>extName</strong> &#8211; The name of the extension</li>
+<li><strong>versionRange</strong> &#8211; (optional) The version range of the extension</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10setExtDepsE8uint32_tPPc">
+<span id="FabricCore::DFGExec::setExtDeps__uint32_t.cCPP"></span>void <code class="descclassname"></code><code class="descname">setExtDeps</code><span class="sig-paren">(</span>uint32_t <em>nameAndVerCount</em>, char <em class="property">const</em> **<em>nameAndVers</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10setExtDepsE8uint32_tPPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Replace the current extension dependencies of the executable with a
+new set.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>nameAndVerCount</strong> &#8211; The number of new extension dependencies</li>
+<li><strong>nameAndVers</strong> &#8211; The new extension dependencies.  Each is a string of the form <code class="code docutils literal"><span class="pre">{ExtensionName}:{VersionRange}</span></code></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec12removeExtDepEPc">
+<span id="FabricCore::DFGExec::removeExtDep__cCP"></span>void <code class="descclassname"></code><code class="descname">removeExtDep</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>extName</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec12removeExtDepEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Remove the extension dependency for the extension with the given name</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ extName:</th><td class="field-body">The name of the extension</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec11addExecPortEPc15FEC_DFGPortTypePc">
+<span id="FabricCore::DFGExec::addExecPort__cCP.FEC_DFGPortType.cCP"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">addExecPort</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>desiredName</em>, FEC_DFGPortType <em>portType</em>, char <em class="property">const</em> *<em>typeSpec</em> = 0<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec11addExecPortEPc15FEC_DFGPortTypePc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Add a new port to the executable.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>desiredName</strong> &#8211; The desired name for the new port</li>
+<li><strong>portType</strong> &#8211; The type of the port, one of <code class="xref cpp cpp-enum docutils literal"><span class="pre">DFGPortType</span></code></li>
+<li><strong>typeSpec</strong> &#8211; The type specification of the port (eg. <code class="code docutils literal"><span class="pre">Float32</span></code> or <code class="code docutils literal"><span class="pre">$TYPE$</span></code>).  Note that type specifications only work with functions, and not with graphs.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">The actual name of the new port</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec16reorderExecPortsEjPj">
+<span id="FabricCore::DFGExec::reorderExecPorts__unsigned.unsignedCP"></span>void <code class="descclassname"></code><code class="descname">reorderExecPorts</code><span class="sig-paren">(</span>unsigned <em>newIndCount</em>, unsigned <em class="property">const</em> *<em>newInds</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec16reorderExecPortsEjPj" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Reorder the ports of the executable.  Takes an array of integers for which the element
+at index oldIndex is the newIndex for the existing port.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>newIndCount</strong> &#8211; The number of elements in the index map.  Must be equal to the number of ports.</li>
+<li><strong>newInds</strong> &#8211; The elements of the index map.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore7DFGExec13isConnectedToEPcPc">
+<span id="FabricCore::DFGExec::isConnectedTo__cCP.cCPC"></span>bool <code class="descclassname"></code><code class="descname">isConnectedTo</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>srcPortPath</em>, char <em class="property">const</em> *<em>dstPortPath</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore7DFGExec13isConnectedToEPcPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Query whether the source port is connected to the destination port.  The ports can be either node ports,
+in which case the path is of the form &#8220;nodeName.portName&#8221;, or executable ports,
+in which case the path is of the form &#8220;portName&#8221;.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>srcPortPath</strong> &#8211; The source port to check for connection</li>
+<li><strong>dstPortPath</strong> &#8211; The destination port to check for connection</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore7DFGExec10hasSrcPortEPc">
+<span id="FabricCore::DFGExec::hasSrcPort__cCPC"></span>bool <code class="descclassname"></code><code class="descname">hasSrcPort</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>portPath</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore7DFGExec10hasSrcPortEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Query whether a given port has a connection from another port.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ portPath:</th><td class="field-body">The port to check</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore7DFGExec11hasDstPortsEPc">
+<span id="FabricCore::DFGExec::hasDstPorts__cCPC"></span>bool <code class="descclassname"></code><code class="descname">hasDstPorts</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>portPath</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore7DFGExec11hasDstPortsEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Query whether a given port has one or more connections to other ports.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ portPath:</th><td class="field-body">The port to check</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore7DFGExec12canConnectToEPcPcPc">
+<span id="FabricCore::DFGExec::canConnectTo__cCP.cCP.cCPC"></span>String <code class="descclassname"></code><code class="descname">canConnectTo</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>srcPortPath</em>, char <em class="property">const</em> *<em>dstPortPath</em>, char <em class="property">const</em> *<em>separator</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore7DFGExec12canConnectToEPcPcPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Query whether a given port can connect to another port.  If connection
+is possible, it will return the empty string; otherwise, it will return
+a list of errors that would occur if the connection were made, with the
+errors separated by the specified separator string.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>srcPortPath</strong> &#8211; The source port for which to check connection</li>
+<li><strong>dstPortPath</strong> &#8211; The destination port for which to check connection</li>
+<li><strong>separator</strong> &#8211; The separator string for the errors</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec9connectToEPcPc">
+<span id="FabricCore::DFGExec::connectTo__cCP.cCP"></span>void <code class="descclassname"></code><code class="descname">connectTo</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>srcPortPath</em>, char <em class="property">const</em> *<em>dstPortPath</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec9connectToEPcPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Connect two ports in a graph.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>srcPortPath</strong> &#8211; The source port to connect</li>
+<li><strong>dstPortPath</strong> &#8211; The destination port to connect</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec14disconnectFromEPcPc">
+<span id="FabricCore::DFGExec::disconnectFrom__cCP.cCP"></span>void <code class="descclassname"></code><code class="descname">disconnectFrom</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>srcPortPath</em>, char <em class="property">const</em> *<em>dstPortPath</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec14disconnectFromEPcPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Disconnect two ports in a graph.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>srcPortPath</strong> &#8211; The source port to disconnect</li>
+<li><strong>dstPortPath</strong> &#8211; The destination port to disconnect</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec17disconnectFromAllEPc">
+<span id="FabricCore::DFGExec::disconnectFromAll__cCP"></span>void <code class="descclassname"></code><code class="descname">disconnectFromAll</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>portPath</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec17disconnectFromAllEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Disconnect any existing connections to the given port.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ portPath:</th><td class="field-body">The port to disconnect</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec16attachPresetFileEPcPcb">
+<span id="FabricCore::DFGExec::attachPresetFile__cCP.cCP.b"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">attachPresetFile</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>parentPresetDirPath</em>, char <em class="property">const</em> *<em>desiredName</em>, bool <em>replaceExisting</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec16attachPresetFileEPcPcb" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Attach the executable to a location in the preset tree, making it
+an available preset.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>parentPresetDirPath</strong> &#8211; The path of the directory in the preset tree in which to attach the preset</li>
+<li><strong>desiredName</strong> &#8211; The desired name of the preset within the preset directory</li>
+<li><strong>replaceExisting</strong> &#8211; If true and the desired name is used by an existing preset, replace the existing preset with this one; otherwise, a unique new name will be generated.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">The actual name of the preset within the preset directory</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec14renameExecPortEPcPc">
+<span id="FabricCore::DFGExec::renameExecPort__cCP.cCP"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">renameExecPort</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>oldName</em>, char <em class="property">const</em> *<em>desiredNewName</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec14renameExecPortEPcPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Rename a port of the executable.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>oldName</strong> &#8211; The old name of the port</li>
+<li><strong>desiredNewName</strong> &#8211; The desired new name of the port</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">The actual new name of the port</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10renameNodeEPcPc">
+<span id="FabricCore::DFGExec::renameNode__cCP.cCP"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">renameNode</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>oldName</em>, char <em class="property">const</em> *<em>desiredNewName</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10renameNodeEPcPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Rename a node of the executable.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>oldName</strong> &#8211; The old name of the node</li>
+<li><strong>desiredNewName</strong> &#8211; The desired new name of the node</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">The actual new name of the node</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec8getTitleEv">
+<span id="FabricCore::DFGExec::getTitle"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">getTitle</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec8getTitleEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the title of the executable.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">戻り値:</th><td class="field-body">The title of the executable</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec8setTitleEPc">
+<span id="FabricCore::DFGExec::setTitle__cCP"></span>void <code class="descclassname"></code><code class="descname">setTitle</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>title</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec8setTitleEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Set the title of the executable.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ title:</th><td class="field-body">The new title of the executable</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10setVersionEPc">
+<span id="FabricCore::DFGExec::setVersion__cCP"></span>void <code class="descclassname"></code><code class="descname">setVersion</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>version</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10setVersionEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Set the version of the executable; used when referencing presets with
+version requirements</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ version:</th><td class="field-body">The new version of the executable in the form &#8220;X.Y.Z&#8221;</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec12getInstTitleEj">
+<span id="FabricCore::DFGExec::getInstTitle__unsigned"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">getInstTitle</code><span class="sig-paren">(</span>unsigned <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec12getInstTitleEj" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the title of the instance node at the given node index.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ index:</th><td class="field-body">The index of the instance node</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The title of the instance node</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec12getInstTitleEPc">
+<span id="FabricCore::DFGExec::getInstTitle__cCP"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">getInstTitle</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>nodeName</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec12getInstTitleEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the title of the instance node with the given name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ nodeName:</th><td class="field-body">The name of the instance node</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The title of the instance node</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec12setInstTitleEjPc">
+<span id="FabricCore::DFGExec::setInstTitle__unsigned.cCP"></span>void <code class="descclassname"></code><code class="descname">setInstTitle</code><span class="sig-paren">(</span>unsigned <em>index</em>, char <em class="property">const</em> *<em>title</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec12setInstTitleEjPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Set the title of the instance node at the given index.  If the title that
+is passed is empty, the instance will adopt the title of the executable it
+is an instance of.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>index</strong> &#8211; The index of the instance node</li>
+<li><strong>title</strong> &#8211; The new title of the instance node</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec12setInstTitleEjPc">
+<span id="FabricCore::DFGExec::setInstTitle__unsigned.cCP"></span>void <code class="descclassname"></code><code class="descname">setInstTitle</code><span class="sig-paren">(</span>unsigned <em>index</em>, char <em class="property">const</em> *<em>title</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec12setInstTitleEjPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Set the title of the instance node with the given name.  If the title that
+is passed is empty, the instance will adopt the title of the executable it
+is an instance of.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>nodeName</strong> &#8211; The name of the instance node</li>
+<li><strong>title</strong> &#8211; The new title of the instance node</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec15getNodePortTypeEPc">
+<span id="FabricCore::DFGExec::getNodePortType__cCP"></span>DFGPortType <code class="descclassname"></code><code class="descname">getNodePortType</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>portPath</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec15getNodePortTypeEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the node port type of a port in the graph.  The portPath should be
+of the form &#8220;nodeName.portName&#8221; for node ports and &#8220;portName&#8221; for
+executable ports.</p>
+<p>The node port type is the type of the port for connection within the
+graph.  This is the inverse of the executable port type for an
+executable port; for example, if you have an &#8216;In&#8217; executable port on a
+graph, this has a node port type of &#8216;Out&#8217; because it acts like an &#8216;Out&#8217;
+port within the graph, ie. it connects to other &#8216;In&#8217; and &#8216;IO&#8217; ports.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ portPath:</th><td class="field-body">The port path</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The node port type of the port</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec15getExecPortTypeEj">
+<span id="FabricCore::DFGExec::getExecPortType__unsigned"></span>DFGPortType <code class="descclassname"></code><code class="descname">getExecPortType</code><span class="sig-paren">(</span>unsigned <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec15getExecPortTypeEj" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the executable port type of the port of the executable at the given
+index.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ index:</th><td class="field-body">The index of the executable port</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The executable port type of the port</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec15getExecPortTypeEPc">
+<span id="FabricCore::DFGExec::getExecPortType__cCP"></span>DFGPortType <code class="descclassname"></code><code class="descname">getExecPortType</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>portName</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec15getExecPortTypeEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the executable port type of the port of the executable with the given
+name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ portName:</th><td class="field-body">The name of the executable port</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The executable port type of the port</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec15setExecPortTypeEPc11DFGPortType">
+<span id="FabricCore::DFGExec::setExecPortType__cCP.DFGPortType"></span>void <code class="descclassname"></code><code class="descname">setExecPortType</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>portName</em>, DFGPortType <em>portType</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec15setExecPortTypeEPc11DFGPortType" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Set the executable port type of the port of the executable with the given
+name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>portName</strong> &#8211; The name of the executable port</li>
+<li><strong>portType</strong> &#8211; The new executable port type for the port</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec7getCodeEv">
+<span id="FabricCore::DFGExec::getCode"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">getCode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec7getCodeEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the KL code of the function executable.  If the executable
+is not a function executable an exception will be thrown.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">戻り値:</th><td class="field-body">The KL code of the function executable</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec7setCodeEPc">
+<span id="FabricCore::DFGExec::setCode__cCP"></span>void <code class="descclassname"></code><code class="descname">setCode</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>code</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec7setCodeEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Set the KL code of the function executable.  If the executable
+is not a function executable an exception will be thrown.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ code:</th><td class="field-body">The new KL code of the function executable</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore7DFGExec11getMetadataEPc">
+<span id="FabricCore::DFGExec::getMetadata__cCPC"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">getMetadata</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>key</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore7DFGExec11getMetadataEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Gets the metadata for the executable for the given key.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ key:</th><td class="field-body">The key for the metadata</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The metadata for that key, or the empty string if there is no metadata for that key</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec19getExecPortMetadataEPcPc">
+<span id="FabricCore::DFGExec::getExecPortMetadata__cCP.cCP"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">getExecPortMetadata</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>execPortPath</em>, char <em class="property">const</em> *<em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec19getExecPortMetadataEPcPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Gets the metadata for a port for the given key.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>portName</strong> &#8211; The name of the port</li>
+<li><strong>key</strong> &#8211; The key for the metadata</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">The metadata for that key, or the empty string if there is no metadata for that key</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec15getNodeMetadataEPcPc">
+<span id="FabricCore::DFGExec::getNodeMetadata__cCP.cCP"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">getNodeMetadata</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>nodeName</em>, char <em class="property">const</em> *<em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec15getNodeMetadataEPcPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Gets the metadata for a node for the given key.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>nodeName</strong> &#8211; The name of the node</li>
+<li><strong>key</strong> &#8211; The key for the metadata</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">The metadata for that key, or the empty string if there is no metadata for that key</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec19getNodePortMetadataEPcPc">
+<span id="FabricCore::DFGExec::getNodePortMetadata__cCP.cCP"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">getNodePortMetadata</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>nodePortPath</em>, char <em class="property">const</em> *<em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec19getNodePortMetadataEPcPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Gets the metadata for a node port for the given key.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>nodePortPath</strong> &#8211; The node port path of the form &#8220;nodeName.portName&#8221;</li>
+<li><strong>key</strong> &#8211; The key for the metadata</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">The metadata for that key, or the empty string if there is no metadata for that key</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec11setMetadataEPcPcbb">
+<span id="FabricCore::DFGExec::setMetadata__cCP.cCP.b.b"></span>void <code class="descclassname"></code><code class="descname">setMetadata</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>key</em>, char <em class="property">const</em> *<em>value</em>, bool <em>canUndo</em> = true, bool <em>shouldSplitFromPreset</em> = true<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec11setMetadataEPcPcbb" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Sets the metadata on the executable for the given key.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>key</strong> &#8211; The key for the metadata</li>
+<li><strong>value</strong> &#8211; The value for the metadata</li>
+<li><strong>canUndo</strong> &#8211; Whether the action should be undoable</li>
+<li><strong>shouldSplitFromPreset</strong> &#8211; Whether the metadata change should split from the preset, if the executable is an instance of a preset</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec19setExecPortMetadataEPcPcPcbb">
+<span id="FabricCore::DFGExec::setExecPortMetadata__cCP.cCP.cCP.b.b"></span>void <code class="descclassname"></code><code class="descname">setExecPortMetadata</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>execPortName</em>, char <em class="property">const</em> *<em>key</em>, char <em class="property">const</em> *<em>value</em>, bool <em>canUndo</em> = true, bool <em>shouldSplitFromPreset</em> = true<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec19setExecPortMetadataEPcPcPcbb" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Sets the metadata for an executable port for the given key.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>portName</strong> &#8211; The name of the executable port</li>
+<li><strong>key</strong> &#8211; The key for the metadata</li>
+<li><strong>value</strong> &#8211; The value for the metadata</li>
+<li><strong>canUndo</strong> &#8211; Whether the action should be undoable</li>
+<li><strong>shouldSplitFromPreset</strong> &#8211; Whether the metadata change should split from the preset, if the executable is an instance of a preset</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec15setNodeMetadataEPcPcPcbb">
+<span id="FabricCore::DFGExec::setNodeMetadata__cCP.cCP.cCP.b.b"></span>void <code class="descclassname"></code><code class="descname">setNodeMetadata</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>nodeName</em>, char <em class="property">const</em> *<em>key</em>, char <em class="property">const</em> *<em>value</em>, bool <em>canUndo</em> = true, bool <em>shouldSplitFromPreset</em> = true<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec15setNodeMetadataEPcPcPcbb" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Sets the metadata for a node for the given key.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>nodeName</strong> &#8211; The name of the node</li>
+<li><strong>key</strong> &#8211; The key for the metadata</li>
+<li><strong>value</strong> &#8211; The value for the metadata</li>
+<li><strong>canUndo</strong> &#8211; Whether the action should be undoable</li>
+<li><strong>shouldSplitFromPreset</strong> &#8211; Whether the metadata change should split from the preset, if the executable is an instance of a preset</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec19setNodePortMetadataEPcPcPcbb">
+<span id="FabricCore::DFGExec::setNodePortMetadata__cCP.cCP.cCP.b.b"></span>void <code class="descclassname"></code><code class="descname">setNodePortMetadata</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>nodePortPath</em>, char <em class="property">const</em> *<em>key</em>, char <em class="property">const</em> *<em>value</em>, bool <em>canUndo</em> = true, bool <em>shouldSplitFromPreset</em> = true<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec19setNodePortMetadataEPcPcPcbb" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Sets the metadata for a node port for the given key.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>nodeName</strong> &#8211; The path to the node port, of the form &#8220;nodeName.portName&#8221;</li>
+<li><strong>key</strong> &#8211; The key for the metadata</li>
+<li><strong>value</strong> &#8211; The value for the metadata</li>
+<li><strong>canUndo</strong> &#8211; Whether the action should be undoable</li>
+<li><strong>shouldSplitFromPreset</strong> &#8211; Whether the metadata change should split from the preset, if the executable is an instance of a preset</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec19getPortDefaultValueEPcPc">
+<span id="FabricCore::DFGExec::getPortDefaultValue__cCP.cCP"></span><a class="reference internal" href="../RTValProgrammingGuide/capi.html#_CPPv2N10FabricCore5RTValE" title="FabricCore::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">getPortDefaultValue</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>portPath</em>, char <em class="property">const</em> *<em>typeName</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec19getPortDefaultValueEPcPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Gets the current default value for a port for a given type.  The default
+value is the value the port has when it is disconnected but resolved to
+that type.  The path can be either to a node port (of the form &#8220;nodeName.portName&#8221;)
+or just the name of an executable port.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>portPath</strong> &#8211; The path the node port or executable port</li>
+<li><strong>typeName</strong> &#8211; The name of type for which to return the current default value</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">The current default value for the port for the given type</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec19setPortDefaultValueEPc5RTValb">
+<span id="FabricCore::DFGExec::setPortDefaultValue__cCP.RTVal.b"></span>void <code class="descclassname"></code><code class="descname">setPortDefaultValue</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>portPath</em>, <a class="reference internal" href="../RTValProgrammingGuide/capi.html#_CPPv2N10FabricCore5RTValE" title="FabricCore::RTVal">RTVal</a> <em>defaultValue</em>, bool <em>canUndo</em> = true<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec19setPortDefaultValueEPc5RTValb" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Sets the current default value for a port.  The default
+value for a given type is the value the port has when it is disconnected but resolved to
+that type.  In this case, the type is the type of the RTVal. The path can be either to a node port (of the form &#8220;nodeName.portName&#8221;)
+or just the name of an executable port.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>portPath</strong> &#8211; The path the node port or executable port</li>
+<li><strong>defaultValue</strong> &#8211; The new default value for the port for the type of the default value</li>
+<li><strong>canUndo</strong> &#8211; Whether the action should be undoable</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec17getImportPathnameEv">
+<span id="FabricCore::DFGExec::getImportPathname"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">getImportPathname</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec17getImportPathnameEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Gets the current import pathname for an executable.  The import pathname
+is automatically set for executables when they are loaded as presets; it
+is the path on disk from which the preset was loaded.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">戻り値:</th><td class="field-body">The import pathname for the executable</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec17setImportPathnameEPc">
+<span id="FabricCore::DFGExec::setImportPathname__cCP"></span>void <code class="descclassname"></code><code class="descname">setImportPathname</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>importPathname</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec17setImportPathnameEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Sets a new import pathname for an executable.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">パラメタ importPathame:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">The new import pathname for the executable</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec4bindE8uint32_tP5RTVal">
+<span id="FabricCore::DFGExec::bind__uint32_t.RTValCP"></span>DFGBinding <code class="descclassname"></code><code class="descname">bind</code><span class="sig-paren">(</span>uint32_t <em>rtValCount</em> = 0, <a class="reference internal" href="../RTValProgrammingGuide/capi.html#_CPPv2N10FabricCore5RTValE" title="FabricCore::RTVal">RTVal</a> <em class="property">const</em> *<em>rtVals</em> = 0<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec4bindE8uint32_tP5RTVal" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Create a new binding that is bound to this executable as its root
+executable, optionally providing RTVals to use as the binding&#8217;s
+arguments.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>rtValCount</strong> &#8211; (optional) The number of RTVal arguments for the binding</li>
+<li><strong>rtValCount</strong> &#8211; (optional) The RTVal arguments for the binding</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec14removeExecPortEPc">
+<span id="FabricCore::DFGExec::removeExecPort__cCP"></span>void <code class="descclassname"></code><code class="descname">removeExecPort</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>portName</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec14removeExecPortEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Remove the executable port with the given name</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ portName:</th><td class="field-body">The name of the port</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec14removeExecPortEj">
+<span id="FabricCore::DFGExec::removeExecPort__unsigned"></span>void <code class="descclassname"></code><code class="descname">removeExecPort</code><span class="sig-paren">(</span>unsigned <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec14removeExecPortEj" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Remove the executable port at the given index</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ index:</th><td class="field-body">The index of the port</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10removeNodeEPc">
+<span id="FabricCore::DFGExec::removeNode__cCP"></span>void <code class="descclassname"></code><code class="descname">removeNode</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>nodeName</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10removeNodeEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Remove the node with the given name</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ nodeName:</th><td class="field-body">The name of the node</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10createViewE23DFGNotificationCallbackPv">
+<span id="FabricCore::DFGExec::createView__DFGNotificationCallback.voidP"></span>DFGView <code class="descclassname"></code><code class="descname">createView</code><span class="sig-paren">(</span>DFGNotificationCallback <em>callback</em>, void *<em>userdata</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10createViewE23DFGNotificationCallbackPv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Create a view object that receives notifications of things that
+happen within the executable.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">Views are not recursive; you will received notifications about
+the executable itself, its ports, its nodes and its node ports,
+but not about subexecutables or their components.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>callback</strong> &#8211; The callback function to be invoked when a notification is sent</li>
+<li><strong>userdata</strong> &#8211; The userdata to pass to the callback function</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec19getExecPortTypeSpecEj">
+<span id="FabricCore::DFGExec::getExecPortTypeSpec__unsigned"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">getExecPortTypeSpec</code><span class="sig-paren">(</span>unsigned <em>execPortIndex</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec19getExecPortTypeSpecEj" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the current typeSpec for the executable port with the given index.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">パラメタ execPortIndex:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">The index of the executable port</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The current typeSpec for the port</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec19getExecPortTypeSpecEPc">
+<span id="FabricCore::DFGExec::getExecPortTypeSpec__cCP"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">getExecPortTypeSpec</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>execPortName</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec19getExecPortTypeSpecEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the current typeSpec for the executable port with the given name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">パラメタ execPortName:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">The name of the executable port</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The current typeSpec for the port</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec19setExecPortTypeSpecEjPc">
+<span id="FabricCore::DFGExec::setExecPortTypeSpec__unsigned.cCP"></span>void <code class="descclassname"></code><code class="descname">setExecPortTypeSpec</code><span class="sig-paren">(</span>unsigned <em>execPortIndex</em>, char <em class="property">const</em> *<em>typeSpec</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec19setExecPortTypeSpecEjPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Set the current typeSpec for the executable port with the given index.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>execPortIndex</strong> &#8211; The index of the executable port</li>
+<li><strong>typeSpec</strong> &#8211; The new typeSpec to set</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec19setExecPortTypeSpecEPcPc">
+<span id="FabricCore::DFGExec::setExecPortTypeSpec__cCP.cCP"></span>void <code class="descclassname"></code><code class="descname">setExecPortTypeSpec</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>execPortName</em>, char <em class="property">const</em> *<em>typeSpec</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec19setExecPortTypeSpecEPcPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Set the current typeSpec for the executable port with the given name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>execPortName</strong> &#8211; The name of the executable port</li>
+<li><strong>typeSpec</strong> &#8211; The new typeSpec to set</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec15getExecPortNameEj">
+<span id="FabricCore::DFGExec::getExecPortName__unsigned"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">getExecPortName</code><span class="sig-paren">(</span>unsigned <em>execPortIndex</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec15getExecPortNameEj" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the name of the executable port at the given index.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">パラメタ execPortIndex:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">The index of the executable port</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec16getNodePortCountEPc">
+<span id="FabricCore::DFGExec::getNodePortCount__cCP"></span>unsigned <code class="descclassname"></code><code class="descname">getNodePortCount</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>nodeName</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec16getNodePortCountEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the number of node ports on the given node.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ nodeName:</th><td class="field-body">The name of the node</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec15getNodePortNameEjj">
+<span id="FabricCore::DFGExec::getNodePortName__unsigned.unsigned"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">getNodePortName</code><span class="sig-paren">(</span>unsigned <em>nodeIndex</em>, unsigned <em>nodePortIndex</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec15getNodePortNameEjj" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the name of the node port for the given node and node port indices</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>nodeIndex</strong> &#8211; The index of the node</li>
+<li><strong>nodePortIndex</strong> &#8211; The index of the node port</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec15getNodePortNameEPcj">
+<span id="FabricCore::DFGExec::getNodePortName__cCP.unsigned"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">getNodePortName</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>nodeName</em>, unsigned <em>nodePortIndex</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec15getNodePortNameEPcj" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the name of a node port.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>nodeName</strong> &#8211; The name of the node</li>
+<li><strong>nodePortIndex</strong> &#8211; The index of the node port</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec15exportNodesJSONE8uint32_tPPCc">
+<span id="FabricCore::DFGExec::exportNodesJSON__uint32_t.cCPCP"></span>String <code class="descclassname"></code><code class="descname">exportNodesJSON</code><span class="sig-paren">(</span>uint32_t <em>nodeCount</em>, char <em class="property">const</em> **<em>nodeNames</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec15exportNodesJSONE8uint32_tPPCc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Export a collection of nodes as JSON that can later be used by
+<a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec15importNodesJSONEPc" title="FabricCore::DFGExec::importNodesJSON"><code class="xref cpp cpp-func docutils literal"><span class="pre">FabricCore::DFGExec::importNodesJSON()</span></code></a> to recreate the nodes
+elsewhere.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>nodeCount</strong> &#8211; The number of nodes to export</li>
+<li><strong>nodeNames</strong> &#8211; The names of the nodes to export</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">The nodes encoded as JSON</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec15importNodesJSONEPc">
+<span id="FabricCore::DFGExec::importNodesJSON__cCP"></span>String <code class="descclassname"></code><code class="descname">importNodesJSON</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>nodesJSON</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec15importNodesJSONEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Import a collection of nodes from JSON that were exported using
+<a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec15exportNodesJSONE8uint32_tPPCc" title="FabricCore::DFGExec::exportNodesJSON"><code class="xref cpp cpp-func docutils literal"><span class="pre">FabricCore::DFGExec::exportNodesJSON()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ nodesJSON:</th><td class="field-body">The nodes, encoded as JSON</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The names of the newly created nodes as a JSON array of strings</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec12implodeNodesEPc8uint32_tPPCc">
+<span id="FabricCore::DFGExec::implodeNodes__cCP.uint32_t.cCPCP"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">implodeNodes</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>desiredName</em>, uint32_t <em>nodeCount</em>, char <em class="property">const</em> **<em>nodeNames</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec12implodeNodesEPc8uint32_tPPCc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Implode a collection of nodes down to a single node.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">Imploding a collection of nodes will also include any nodes that
+are &#8220;between&#8221; nodes in the collection with respect to connections.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>desiredName</strong> &#8211; The desired name of the resulting node</li>
+<li><strong>nodeCount</strong> &#8211; The number of nodes to implode</li>
+<li><strong>nodeNames</strong> &#8211; The names of the nodes to implode</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">The actual name of the resulting node.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec11explodeNodeEPc">
+<span id="FabricCore::DFGExec::explodeNode__cCP"></span>String <code class="descclassname"></code><code class="descname">explodeNode</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>nodeName</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec11explodeNodeEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Explode a single node that is an instance of a graph into individual
+nodes within the executable.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ nodeName:</th><td class="field-body">The name of the node to explode</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The names of the resulting nodes, encoded as a JSON array of strings</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore7DFGExec13getPresetNameEv">
+<span id="FabricCore::DFGExec::getPresetNameC"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">getPresetName</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore7DFGExec13getPresetNameEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the name component of the preset path of the executable if it is
+an instance of a preset; otherwise, returns the empty string.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore7DFGExec13getPresetGUIDEv">
+<span id="FabricCore::DFGExec::getPresetGUIDC"></span>String <code class="descclassname"></code><code class="descname">getPresetGUID</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore7DFGExec13getPresetGUIDEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the preset GUID of the executable if it is an instance of a preset,
+otherwise returns the empty string.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore7DFGExec13setPresetGUIDEPc">
+<span id="FabricCore::DFGExec::setPresetGUID__cCPC"></span>void <code class="descclassname"></code><code class="descname">setPresetGUID</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>presetGUID</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore7DFGExec13setPresetGUIDEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Set the preset GUID of the executable.  The preset GUID must be a
+exactly 32 hex digits.</p>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">This function does not split the executable from the preset; it will
+change the preset GUID for all instance of the preset.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore7DFGExec13getPresetGUIDEv">
+<span id="FabricCore::DFGExec::getPresetGUIDC"></span>String <code class="descclassname"></code><code class="descname">getPresetGUID</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore7DFGExec13getPresetGUIDEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the original preset GUID of the executable if it was an instance of a preset,
+but is no longer a preset; otherwise, returns the empty string.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore7DFGExec24editWouldSplitFromPresetEv">
+<span id="FabricCore::DFGExec::editWouldSplitFromPresetC"></span>bool <code class="descclassname"></code><code class="descname">editWouldSplitFromPreset</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore7DFGExec24editWouldSplitFromPresetEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Queries whether editing the executable would cause it or one of its
+containing graphs would cause a preset split.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec20maybeSplitFromPresetEv">
+<span id="FabricCore::DFGExec::maybeSplitFromPreset"></span>void <code class="descclassname"></code><code class="descname">maybeSplitFromPreset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec20maybeSplitFromPresetEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Split the executable from the preset it is an instance of if it is
+an instance of a preset; otherwise, has no effect.</p>
+</dd></dl>
+
+</div></blockquote>
+<dl class="class">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBindingE">
+<span id="FabricCore::DFGExec::FabricCore::DFGBinding"></span><em class="property">class </em><code class="descclassname">FabricCore::</code><code class="descname">DFGBinding</code> : <em class="property">public</em> <code class="descclassname">FabricCore::</code><code class="descname">Ref</code><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBindingE" title="この定義へのパーマリンク">¶</a></dt>
+<dd><dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding10DFGBindingEv">
+<span id="FabricCore::DFGExec::FabricCore::DFGBinding::DFGBinding"></span><code class="descclassname"></code><code class="descname">DFGBinding</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding10DFGBindingEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding10DFGBindingER10DFGBinding">
+<span id="FabricCore::DFGExec::FabricCore::DFGBinding::DFGBinding__DFGBindingCR"></span><code class="descclassname"></code><code class="descname">DFGBinding</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding10DFGBindingEv" title="FabricCore::DFGExec::FabricCore::DFGBinding::DFGBinding">DFGBinding</a> <em class="property">const</em> &amp;<em>that</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding10DFGBindingER10DFGBinding" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBindingaSER10DFGBinding">
+<span id="FabricCore::DFGExec::FabricCore::DFGBinding::assign-operator__DFGBindingCR"></span><a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding10DFGBindingEv" title="FabricCore::DFGExec::FabricCore::DFGBinding::DFGBinding">DFGBinding</a> &amp;<code class="descclassname"></code><code class="descname">operator=</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding10DFGBindingEv" title="FabricCore::DFGExec::FabricCore::DFGBinding::DFGBinding">DFGBinding</a> <em class="property">const</em> &amp;<em>that</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBindingaSER10DFGBinding" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBindingD0Ev">
+<span id="FabricCore::DFGExec::FabricCore::DFGBinding::~DFGBinding"></span><code class="descclassname"></code><code class="descname">~DFGBinding</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBindingD0Ev" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding15getBindingForIDE8uint32_t">
+<span id="FabricCore::DFGExec::FabricCore::DFGBinding::getBindingForID__uint32_t"></span><a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding10DFGBindingEv" title="FabricCore::DFGExec::FabricCore::DFGBinding::DFGBinding">DFGBinding</a> <code class="descclassname"></code><code class="descname">getBindingForID</code><span class="sig-paren">(</span>uint32_t <em>bindingID</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding15getBindingForIDE8uint32_t" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the binding ID for the binding.  This can be used by <a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost15getBindingForIDE8uint32_t" title="FabricCore::DFGExec::FabricCore::DFGHost::getBindingForID"><code class="xref cpp cpp-func docutils literal"><span class="pre">FabricCore::DFGHost::getBindingForID()</span></code></a> to obtain a handle to a given binding in situations where it is not possible to pass the binding as a DFGBinding object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">戻り値:</th><td class="field-body">The binding ID for the DFGBinding</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore7DFGExec10FabricCore10DFGBinding7getHostEv">
+<span id="FabricCore::DFGExec::FabricCore::DFGBinding::getHostC"></span><a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHostE" title="FabricCore::DFGExec::FabricCore::DFGHost">DFGHost</a> <code class="descclassname"></code><code class="descname">getHost</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore7DFGExec10FabricCore10DFGBinding7getHostEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the DFGHost that owns the DFGBinding.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">戻り値:</th><td class="field-body">The DFGHost that owns the DFGBinding.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore7DFGExec10FabricCore10DFGBinding7getExecEv">
+<span id="FabricCore::DFGExec::FabricCore::DFGBinding::getExecC"></span><a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec7DFGExecEv" title="FabricCore::DFGExec::DFGExec">DFGExec</a> <code class="descclassname"></code><code class="descname">getExec</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore7DFGExec10FabricCore10DFGBinding7getExecEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the root DFGExec for the DFGBinding.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">戻り値:</th><td class="field-body">The root DFGExec for the DFGBinding</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding11getArgValueEj">
+<span id="FabricCore::DFGExec::FabricCore::DFGBinding::getArgValue__unsigned"></span><a class="reference internal" href="../RTValProgrammingGuide/capi.html#_CPPv2N10FabricCore5RTValE" title="FabricCore::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">getArgValue</code><span class="sig-paren">(</span>unsigned <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding11getArgValueEj" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the RTVal value for the binding argument at the given index.  Throws an exception if the index is not less than the result of <code class="code docutils literal"><span class="pre">FabricCore::DFGExec::getExecPortCount</span></code> on the root executable of the binding.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ index:</th><td class="field-body">The index of the port for which to get the argument.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The value of the argument as an RTVal.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding11getArgValueEPc">
+<span id="FabricCore::DFGExec::FabricCore::DFGBinding::getArgValue__cCP"></span><a class="reference internal" href="../RTValProgrammingGuide/capi.html#_CPPv2N10FabricCore5RTValE" title="FabricCore::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">getArgValue</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding11getArgValueEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the RTVal value for the binding argument with the given name.  Throws an exception if there is no port with the given name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ name:</th><td class="field-body">The name of the port for which to get the argument.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The value of the argument as an RTVal.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding11setArgValueE8LockTypej5RTValb">
+<span id="FabricCore::DFGExec::FabricCore::DFGBinding::setArgValue__LockType.unsigned.RTVal.b"></span>void <code class="descclassname"></code><code class="descname">setArgValue</code><span class="sig-paren">(</span>LockType <em>lockType</em>, unsigned <em>index</em>, <a class="reference internal" href="../RTValProgrammingGuide/capi.html#_CPPv2N10FabricCore5RTValE" title="FabricCore::RTVal">RTVal</a> <em>value</em>, bool <em>canUndo</em> = true<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding11setArgValueE8LockTypej5RTValb" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Set the RTVal value for the binding argument at the given index.  Throws an exception if there is no port with the given name.</p>
+<p>The KL type of the RTVal can be the same as or different from the current value for the argument.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>lockType</strong> &#8211; What type of locking do to.  Note that this also affects the messages you will see.</li>
+<li><strong>index</strong> &#8211; The index of the port for which to set the argument</li>
+<li><strong>value</strong> &#8211; The new value of the argument</li>
+<li><strong>canUndo</strong> &#8211; Whether the change to the argument should be an undoable action.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding11setArgValueEj5RTValb">
+<span id="FabricCore::DFGExec::FabricCore::DFGBinding::setArgValue__unsigned.RTVal.b"></span>void <code class="descclassname"></code><code class="descname">setArgValue</code><span class="sig-paren">(</span>unsigned <em>index</em>, <a class="reference internal" href="../RTValProgrammingGuide/capi.html#_CPPv2N10FabricCore5RTValE" title="FabricCore::RTVal">RTVal</a> <em>value</em>, bool <em>canUndo</em> = true<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding11setArgValueEj5RTValb" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Alias for <code class="code docutils literal"><span class="pre">FabricCore::DFGBindign::setArgValue(FabricCore::LockType_Exclusive,</span> <span class="pre">index,</span> <span class="pre">value,</span> <span class="pre">canUndo)</span></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding11setArgValueE8LockTypePc5RTValb">
+<span id="FabricCore::DFGExec::FabricCore::DFGBinding::setArgValue__LockType.cCP.RTVal.b"></span>void <code class="descclassname"></code><code class="descname">setArgValue</code><span class="sig-paren">(</span>LockType <em>lockType</em>, char <em class="property">const</em> *<em>name</em>, <a class="reference internal" href="../RTValProgrammingGuide/capi.html#_CPPv2N10FabricCore5RTValE" title="FabricCore::RTVal">RTVal</a> <em>value</em>, bool <em>canUndo</em> = true<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding11setArgValueE8LockTypePc5RTValb" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Set the RTVal value for the binding argument with the given name.  Throws an exception if there is no port with the given name.</p>
+<p>The KL type of the RTVal can be the same as or different from the current value for the argument.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>lockType</strong> &#8211; What type of locking do to.  Note that this also affects the messags you will see.</li>
+<li><strong>name</strong> &#8211; The name of the port for which to set the argument.</li>
+<li><strong>value</strong> &#8211; The new value of the argument</li>
+<li><strong>canUndo</strong> &#8211; Whether the change to the argument should be an undoable action.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding11setArgValueEPc5RTValb">
+<span id="FabricCore::DFGExec::FabricCore::DFGBinding::setArgValue__cCP.RTVal.b"></span>void <code class="descclassname"></code><code class="descname">setArgValue</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>name</em>, <a class="reference internal" href="../RTValProgrammingGuide/capi.html#_CPPv2N10FabricCore5RTValE" title="FabricCore::RTVal">RTVal</a> <em>value</em>, bool <em>canUndo</em> = true<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding11setArgValueEPc5RTValb" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Alias for <code class="code docutils literal"><span class="pre">FabricCore::DFGBindign::setArgValue(FabricCore::LockType_Exclusive,</span> <span class="pre">name,</span> <span class="pre">value,</span> <span class="pre">canUndo)</span></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding16execute_lockTypeE8LockType">
+<span id="FabricCore::DFGExec::FabricCore::DFGBinding::execute_lockType__LockType"></span>void <code class="descclassname"></code><code class="descname">execute_lockType</code><span class="sig-paren">(</span>LockType <em>lockType</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding16execute_lockTypeE8LockType" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Execute the binding, ie. execute the KL function that is generated from the root executable (graph or function), passing the argument values as the port values.</p>
+<p>Throws an exception if the graph cannot be executed for some reason, for instance there is a node in error that is (transitively) connected to one of the output ports.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ lockType:</th><td class="field-body">The type of lock to hold during execution</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding7executeEv">
+<span id="FabricCore::DFGExec::FabricCore::DFGBinding::execute"></span>void <code class="descclassname"></code><code class="descname">execute</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding7executeEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Alias for <code class="code docutils literal"><span class="pre">FabricCore::DFGBinding::execute_lockType(FabricCore::LockType_Exclusive)</span></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding23setNotificationCallbackE23DFGNotificationCallbackPv">
+<span id="FabricCore::DFGExec::FabricCore::DFGBinding::setNotificationCallback__DFGNotificationCallback.voidP"></span>void <code class="descclassname"></code><code class="descname">setNotificationCallback</code><span class="sig-paren">(</span>DFGNotificationCallback <em>callback</em>, void *<em>userdata</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding23setNotificationCallbackE23DFGNotificationCallbackPv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Set the notification callback function and userdata to pass it.  The
+function must have the function signature:</p>
+<div class="highlight-python"><div class="highlight"><pre>void BindingNotificationCallback(
+  void *userdata,
+  char const *jsonCString,
+  uint32_t jsonLength
+  );
+</pre></div>
+</div>
+<p>It will receive the value of <code class="code docutils literal"><span class="pre">userdata</span></code> that was passed to <code class="code docutils literal"><span class="pre">setNotificationCallback</span></code>,
+and <code class="code docutils literal"><span class="pre">jsonCString</span></code> and <code class="code docutils literal"><span class="pre">jsonLength</span></code> will be a JSON-encoded string with
+the contents of the notification.</p>
+<p>If <code class="code docutils literal"><span class="pre">callback</span></code> is NULL, the binding will not invoke notification callbacks.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>callback</strong> &#8211; The callback function to call for notifications, or NULL to disable notifications</li>
+<li><strong>userdata</strong> &#8211; The userdata value to pass to the callback function</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding10exportJSONEv">
+<span id="FabricCore::DFGExec::FabricCore::DFGBinding::exportJSON"></span>String <code class="descclassname"></code><code class="descname">exportJSON</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding10exportJSONEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Export the binding as a JSON-encoded string.  This string can be used by
+<a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost21createBindingFromJSONEPc8uint32_tP5RTVal" title="FabricCore::DFGExec::FabricCore::DFGHost::createBindingFromJSON"><code class="xref cpp cpp-func docutils literal"><span class="pre">FabricCore::DFGHost::createBindingFromJSON()</span></code></a> to create a binding
+with the same contents.</p>
+<p>The contents of the binding are recusrsively encoded.  Presets are reference
+through their preset path and/or GUID, while locally-defined graphs and
+functions are encoded inline.  The values of the binding argument and the default values
+of ports are also encoded, provided that the RTVal codecs provided to the
+Core are able to encode them; see the Core client constructors for details.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">戻り値:</th><td class="field-body">The binding encoded as a JSON string</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding13deallocValuesEv">
+<span id="FabricCore::DFGExec::FabricCore::DFGBinding::deallocValues"></span>void <code class="descclassname"></code><code class="descname">deallocValues</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding13deallocValuesEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Flush any temporary storage used by the binding.  This can be called
+on a binding that will never again be used in order to free memory used
+by the binding.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore7DFGExec10FabricCore10DFGBinding11getMetadataEPc">
+<span id="FabricCore::DFGExec::FabricCore::DFGBinding::getMetadata__cCPC"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">getMetadata</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>keyCStr</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore7DFGExec10FabricCore10DFGBinding11getMetadataEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Gets a named metadata value associated with the binding.  The key is case-sensitive,
+and if there is no metadata present for the given key this function
+returns the empty string.  See <code class="xref cpp cpp-func docutils literal"><span class="pre">FabricCore::DFGBinding::setMetdata()</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ key:</th><td class="field-body">The key for the metadata to obtain</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The value for the metadata, or the empty string if there is none.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding11setMetadataEPcPcb">
+<span id="FabricCore::DFGExec::FabricCore::DFGBinding::setMetadata__cCP.cCP.b"></span>void <code class="descclassname"></code><code class="descname">setMetadata</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>keyCStr</em>, char <em class="property">const</em> *<em>valueCStr</em>, bool <em>canUndo</em> = true<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding11setMetadataEPcPcb" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Sets a named metadata value associated with the binding.  The key is
+case-sensitive.  The current value for the key, if any, will be replaced.
+The canUndo parameter can optionally be provided to specify whether the
+action should be undoable; if it is not undoable then no undo action will
+be stored and then the previous value of the metadata for the key will
+not be restored when an undo occurs.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>key</strong> &#8211; The key for the metadata to obtain</li>
+<li><strong>value</strong> &#8211; The new value for the metadata</li>
+<li><strong>canUndo</strong> &#8211; Optional; whether to make the change undoable</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding7getVarsEv">
+<span id="FabricCore::DFGExec::FabricCore::DFGBinding::getVars"></span>String <code class="descclassname"></code><code class="descname">getVars</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding7getVarsEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns a JSON-encoded description of Canvas variables available within the
+binding.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Result:</th><td class="field-body">The JSON-encoded descripton of Canvas variables</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding10getVersionEv">
+<span id="FabricCore::DFGExec::FabricCore::DFGBinding::getVersion"></span>uint32_t <code class="descclassname"></code><code class="descname">getVersion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding10getVersionEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns the version of the binding.  The version of the binding is zero
+when the binding is first created, and is incremented every time the binding
+changes.  The binding version changes are undone when actions on the binding
+are undone.  The purpose of the version is to allow applications to know
+when the binding has changed and may need to be saved.  Note that the binding
+version is not persisted when the binding is persisted.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Result:</th><td class="field-body">The version of the binding</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHostE">
+<span id="FabricCore::DFGExec::FabricCore::DFGHost"></span><em class="property">class </em><code class="descclassname">FabricCore::</code><code class="descname">DFGHost</code> : <em class="property">public</em> <code class="descclassname">FabricCore::</code><code class="descname">Ref</code><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHostE" title="この定義へのパーマリンク">¶</a></dt>
+<dd><dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost7DFGHostEv">
+<span id="FabricCore::DFGExec::FabricCore::DFGHost::DFGHost"></span><code class="descclassname"></code><code class="descname">DFGHost</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost7DFGHostEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost7DFGHostER7DFGHost">
+<span id="FabricCore::DFGExec::FabricCore::DFGHost::DFGHost__DFGHostCR"></span><code class="descclassname"></code><code class="descname">DFGHost</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost7DFGHostEv" title="FabricCore::DFGExec::FabricCore::DFGHost::DFGHost">DFGHost</a> <em class="property">const</em> &amp;<em>that</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost7DFGHostER7DFGHost" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHostaSER7DFGHost">
+<span id="FabricCore::DFGExec::FabricCore::DFGHost::assign-operator__DFGHostCR"></span><a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost7DFGHostEv" title="FabricCore::DFGExec::FabricCore::DFGHost::DFGHost">DFGHost</a> &amp;<code class="descclassname"></code><code class="descname">operator=</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost7DFGHostEv" title="FabricCore::DFGExec::FabricCore::DFGHost::DFGHost">DFGHost</a> <em class="property">const</em> &amp;<em>that</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHostaSER7DFGHost" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHostD0Ev">
+<span id="FabricCore::DFGExec::FabricCore::DFGHost::~DFGHost"></span><a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost7DFGHostEv" title="FabricCore::DFGExec::FabricCore::DFGHost::DFGHost">DFGHost</a> &amp;<code class="descclassname"></code><code class="descname">~DFGHost</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHostD0Ev" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore7DFGExec10FabricCore7DFGHost10getContextEv">
+<span id="FabricCore::DFGExec::FabricCore::DFGHost::getContextC"></span>Context &amp;<code class="descclassname"></code><code class="descname">getContext</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore7DFGExec10FabricCore7DFGHost10getContextEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the Fabric Core context to which the DFGHost belongs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost9maybeUndoEv">
+<span id="FabricCore::DFGExec::FabricCore::DFGHost::maybeUndo"></span>bool <code class="descclassname"></code><code class="descname">maybeUndo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost9maybeUndoEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Attempt to undo one Canvas Core command.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">戻り値:</th><td class="field-body">Whether a command was undone</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost9maybeUndoEv">
+<span id="FabricCore::DFGExec::FabricCore::DFGHost::maybeUndo"></span>bool <code class="descclassname"></code><code class="descname">maybeUndo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost9maybeUndoEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Attempt to redo one Canvas Core command.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">戻り値:</th><td class="field-body">Whether a command was redone</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost13flushUndoRedoEv">
+<span id="FabricCore::DFGExec::FabricCore::DFGHost::flushUndoRedo"></span>void <code class="descclassname"></code><code class="descname">flushUndoRedo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost13flushUndoRedoEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Flush the undo and redo stacks.  This will purge memory used by the
+commands on the stack but the commands will destroyed.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost23getPresetImportPathnameEPc">
+<span id="FabricCore::DFGExec::FabricCore::DFGHost::getPresetImportPathname__cCP"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">getPresetImportPathname</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>nameSpacePath</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost23getPresetImportPathnameEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the filename from which a preset was imported.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">パラメタ presetPath:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">The path to the preset in the preset tree</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The filename from which the preset was imported, or the empty string if the preset was not imported from a file</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost13getPresetDescEPc">
+<span id="FabricCore::DFGExec::FabricCore::DFGHost::getPresetDesc__cCP"></span>FabricCore::String <code class="descclassname"></code><code class="descname">getPresetDesc</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>presetPath</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost13getPresetDescEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Generate a JSON description of a preset</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">パラメタ presetPath:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">The path to the preset in the preset tree</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The JSON description</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost12addPresetDirEPcPcPc">
+<span id="FabricCore::DFGExec::FabricCore::DFGHost::addPresetDir__cCP.cCP.cCP"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">addPresetDir</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>parentPresetDirPath</em>, char <em class="property">const</em> *<em>desiredName</em>, char <em class="property">const</em> *<em>pathname</em> = 0<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost12addPresetDirEPcPcPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Add a new preset directory (child) to an existing preset directory (parent) within the preset tree.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>parentPresetDirPath</strong> &#8211; The path of the parent preset directory to contain the new child preset directory</li>
+<li><strong>desiredName</strong> &#8211; The desired name of the new child preset directory</li>
+<li><strong>importPathname</strong> &#8211; If given, the import pathname to associate with the new child preset directory</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">The actual name of the new child preset directory</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost20importPresetFileJSONEPcPcPcPc">
+<span id="FabricCore::DFGExec::FabricCore::DFGHost::importPresetFileJSON__cCP.cCP.cCP.cCP"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">importPresetFileJSON</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>parentPresetDirPath</em>, char <em class="property">const</em> *<em>desiredName</em>, char <em class="property">const</em> *<em>json</em>, char <em class="property">const</em> *<em>importPathname</em> = 0<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost20importPresetFileJSONEPcPcPcPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Import a new preset (child), encoded as JSON, into an existing preset directory (parent).  The JSON-encoded representation is usually obtained through <code class="xref cpp cpp-func docutils literal"><span class="pre">String</span> <span class="pre">exportPresetJSON()</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>parentPresetDirPath</strong> &#8211; The path of the parent preset directory to contain the new child preset</li>
+<li><strong>desiredName</strong> &#8211; The desired name of the new child preset</li>
+<li><strong>json</strong> &#8211; The new preset encoded as JSON</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">The actual name of the new child preset</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost16exportPresetJSONEPc">
+<span id="FabricCore::DFGExec::FabricCore::DFGHost::exportPresetJSON__cCP"></span>String <code class="descclassname"></code><code class="descname">exportPresetJSON</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>presetPathCStr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost16exportPresetJSONEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Export an existing preset as JSON.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">パラメタ presetPath:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">The path to the preset</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The preset encoded as JSON</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost12removePresetEPc">
+<span id="FabricCore::DFGExec::FabricCore::DFGHost::removePreset__cCP"></span>void <code class="descclassname"></code><code class="descname">removePreset</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>presetPath</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost12removePresetEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Remove an existing preset from the preset tree.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">パラメタ presetPath:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">The path to the preset</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost21createNewUnboundGraphEv">
+<span id="FabricCore::DFGExec::FabricCore::DFGHost::createNewUnboundGraph"></span><a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec7DFGExecEv" title="FabricCore::DFGExec::DFGExec">DFGExec</a> <code class="descclassname"></code><code class="descname">createNewUnboundGraph</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost21createNewUnboundGraphEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Create a new DFGExec object that references an empty graph.  The graph is unbound, ie. it is not attached to a DFGBinding, and so can be edited but not executed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">戻り値:</th><td class="field-body">The new DFGExec object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost28createNewUnboundExecFromJSONEPc">
+<span id="FabricCore::DFGExec::FabricCore::DFGHost::createNewUnboundExecFromJSON__cCP"></span><a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec7DFGExecEv" title="FabricCore::DFGExec::DFGExec">DFGExec</a> <code class="descclassname"></code><code class="descname">createNewUnboundExecFromJSON</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>json</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost28createNewUnboundExecFromJSONEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Create a new DFGExec object described by JSON.  The JSON is usually obtained through <a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec10exportJSONEv" title="FabricCore::DFGExec::exportJSON"><code class="xref cpp cpp-func docutils literal"><span class="pre">FabricCore::DFGExec::exportJSON()</span></code></a>.  The executable is unbound, ie. it is not attached to a DFGBinding, and so can be edited but not executed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ json:</th><td class="field-body">The JSON-encoded description of the executable</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The new DFGExec object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost20createNewUnboundFuncEv">
+<span id="FabricCore::DFGExec::FabricCore::DFGHost::createNewUnboundFunc"></span><a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec7DFGExecEv" title="FabricCore::DFGExec::DFGExec">DFGExec</a> <code class="descclassname"></code><code class="descname">createNewUnboundFunc</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost20createNewUnboundFuncEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Create a new DFGExec object that references an empty function.  The function is unbound, ie. it is not attached to a DFGBinding, and so can be edited but not executed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">戻り値:</th><td class="field-body">The new DFGExec object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost21createNewUnboundGraphEv">
+<span id="FabricCore::DFGExec::FabricCore::DFGHost::createNewUnboundGraph"></span><a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBindingE" title="FabricCore::DFGExec::FabricCore::DFGBinding">DFGBinding</a> <code class="descclassname"></code><code class="descname">createNewUnboundGraph</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost21createNewUnboundGraphEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Create a new DFGBinding object with an empty graph as its root executable.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">戻り値:</th><td class="field-body">The new DFGBinding</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost22createBindingToNewFuncEv">
+<span id="FabricCore::DFGExec::FabricCore::DFGHost::createBindingToNewFunc"></span><a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBindingE" title="FabricCore::DFGExec::FabricCore::DFGBinding">DFGBinding</a> <code class="descclassname"></code><code class="descname">createBindingToNewFunc</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost22createBindingToNewFuncEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Create a new DFGBinding object with an empty function as its root executable.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">戻り値:</th><td class="field-body">The new DFGBinding</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost21createBindingFromJSONEPc8uint32_tP5RTVal">
+<span id="FabricCore::DFGExec::FabricCore::DFGHost::createBindingFromJSON__cCP.uint32_t.RTValCP"></span><a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBindingE" title="FabricCore::DFGExec::FabricCore::DFGBinding">DFGBinding</a> <code class="descclassname"></code><code class="descname">createBindingFromJSON</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>json</em>, uint32_t <em>rtValCount</em> = 0, <a class="reference internal" href="../RTValProgrammingGuide/capi.html#_CPPv2N10FabricCore5RTValE" title="FabricCore::RTVal">RTVal</a> <em class="property">const</em> *<em>rtVals</em> = 0<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost21createBindingFromJSONEPc8uint32_tP5RTVal" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Create a new DFGBinding object with its root executable described by JSON.  The JSON is usually obtained through <a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec10exportJSONEv" title="FabricCore::DFGExec::exportJSON"><code class="xref cpp cpp-func docutils literal"><span class="pre">FabricCore::DFGExec::exportJSON()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>json</strong> &#8211; The JSON-encoded description of the root executable</li>
+<li><strong>rtValCount</strong> &#8211; If given, the number of RTVals to bind to the arguments of the new DFGBinding</li>
+<li><strong>rtVals</strong> &#8211; If given, the RTVals to bind to the arguments of the new DFGBinding</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">The new DFGBinding</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost21createBindingToPresetEPc8uint32_tP5RTVal">
+<span id="FabricCore::DFGExec::FabricCore::DFGHost::createBindingToPreset__cCP.uint32_t.RTValCP"></span><a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBindingE" title="FabricCore::DFGExec::FabricCore::DFGBinding">DFGBinding</a> <code class="descclassname"></code><code class="descname">createBindingToPreset</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>presetFile</em>, uint32_t <em>rtValCount</em> = 0, <a class="reference internal" href="../RTValProgrammingGuide/capi.html#_CPPv2N10FabricCore5RTValE" title="FabricCore::RTVal">RTVal</a> <em class="property">const</em> *<em>rtVals</em> = 0<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost21createBindingToPresetEPc8uint32_tP5RTVal" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Create a new DFGBinding object with its root executable being an instance of a specified preset.  The JSON is usually obtained through <a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec10exportJSONEv" title="FabricCore::DFGExec::exportJSON"><code class="xref cpp cpp-func docutils literal"><span class="pre">FabricCore::DFGExec::exportJSON()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>presetFilePath</strong> &#8211; The path to the preset, within the preset tree, to use as the root executable</li>
+<li><strong>rtValCount</strong> &#8211; If given, the number of RTVals to bind to the arguments of the new DFGBinding</li>
+<li><strong>rtVals</strong> &#8211; If given, the RTVals to bind to the arguments of the new DFGBinding</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">The new DFGBinding</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost15getBindingForIDE8uint32_t">
+<span id="FabricCore::DFGExec::FabricCore::DFGHost::getBindingForID__uint32_t"></span><a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBindingE" title="FabricCore::DFGExec::FabricCore::DFGBinding">DFGBinding</a> <code class="descclassname"></code><code class="descname">getBindingForID</code><span class="sig-paren">(</span>uint32_t <em>bindingID</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost15getBindingForIDE8uint32_t" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Obtain a reference to the DFGBinding with the given binding ID, obtained through <code class="xref cpp cpp-func docutils literal"><span class="pre">FabricCore::DFGBinding::getBindingID()</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ bindingID:</th><td class="field-body">The binding ID</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">The DFGBinding with the given binding ID</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost10blockCompsEv">
+<span id="FabricCore::DFGExec::FabricCore::DFGHost::blockComps"></span>void <code class="descclassname"></code><code class="descname">blockComps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost10blockCompsEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Block recompilations of DFGBindings.  This can be used to increase performance during long scripted building of graphs.  Calling <a class="reference internal" href="#_CPPv2N10FabricCore7DFGExec10FabricCore10DFGBinding7executeEv" title="FabricCore::DFGExec::FabricCore::DFGBinding::execute"><code class="xref cpp cpp-func docutils literal"><span class="pre">FabricCore::DFGBinding::execute()</span></code></a> while recompilations are blocked will throw an exception.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost10blockCompsEv">
+<span id="FabricCore::DFGExec::FabricCore::DFGHost::blockComps"></span>void <code class="descclassname"></code><code class="descname">blockComps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore7DFGExec10FabricCore7DFGHost10blockCompsEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Unblock recompilations of DFGBindings.</p>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Canvas Core API</a><ul>
+<li><a class="reference internal" href="#canvas-core-api-in-python">Canvas Core API in Python</a></li>
+<li><a class="reference internal" href="#canvas-core-api-enums">Canvas Core API Enums</a></li>
+<li><a class="reference internal" href="#canvas-core-api-classes">Canvas Core API Classes</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="clients.html"
+                        title="前の章へ">Clients and the Application Lifecycle</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="../RTValProgrammingGuide/index.html"
+                        title="次の章へ">RTVal Programming Guide</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/CAPIProgrammingGuide/canvas.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../RTValProgrammingGuide/index.html" title="RTVal Programming Guide"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="clients.html" title="Clients and the Application Lifecycle"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >CAPI Programming Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

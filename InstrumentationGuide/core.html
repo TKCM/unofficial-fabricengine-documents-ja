@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Core Instrumentation Interface &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
+    <link rel="up" title="Instrumentation Guide" href="index.html" />
+    <link rel="next" title="GPU Compute Guide" href="../GPUCompute/index.html" />
+    <link rel="prev" title="Introduction" href="introduction.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../GPUCompute/index.html" title="GPU Compute Guide"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="introduction.html" title="Introduction"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Instrumentation Guide</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="core-instrumentation-interface">
+<h1>Core Instrumentation Interface<a class="headerlink" href="#core-instrumentation-interface" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>The lowest-level access to the Fabric Engine instrumentation interface is through the <code class="samp docutils literal"><span class="pre">startInstrumentation</span></code> and <code class="samp docutils literal"><span class="pre">stopInstrumentation</span></code> methods that are available on Fabric client objects.</p>
+<div class="section" id="the-startinstrumentation-method">
+<h2>The <code class="samp docutils literal"><span class="pre">startInstrumentation</span></code> Method<a class="headerlink" href="#the-startinstrumentation-method" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The <code class="samp docutils literal"><span class="pre">startInstrumentation</span></code> method tells Fabric Engine to start collecting instrumentation data.  It takes no parameters.  Calling this function a second time in a row has no effect.  Instrumentation data will continue to be collected until the <code class="samp docutils literal"><span class="pre">stopInstrumentation</span></code> method is called.</p>
+</div>
+<div class="section" id="the-stopinstrumentation-method">
+<h2>The <code class="samp docutils literal"><span class="pre">stopInstrumentation</span></code> Method<a class="headerlink" href="#the-stopinstrumentation-method" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The <code class="samp docutils literal"><span class="pre">stopInstrumentation</span></code> method tells Fabric Engine to stop collecting instrumentation data and returns the collected instrumentation data.  It takes a single parameter whose value specifies the format of the data that is returned; it should be one of the following values:</p>
+<dl class="docutils">
+<dt><code class="samp docutils literal"><span class="pre">&quot;raw&quot;</span></code></dt>
+<dd>Return the raw instrumentation data.  The format for this data is described below.</dd>
+<dt><code class="samp docutils literal"><span class="pre">&quot;svg&quot;</span></code></dt>
+<dd>Return the data as an SVG-formatted string that is suitable for display in any SVG-enabled display widget.</dd>
+</dl>
+</div>
+<div class="section" id="the-raw-data-format">
+<h2>The Raw Data Format<a class="headerlink" href="#the-raw-data-format" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The result of the <code class="samp docutils literal"><span class="pre">stopInstrumentation</span></code> method when passed the <code class="samp docutils literal"><span class="pre">&quot;raw&quot;</span></code> argument is the raw instrumentation data.  Its format is as follows:</p>
+<ul>
+<li><p class="first">An array of <em class="dfn">thread objects</em> each of which are an object with the following members:</p>
+<ul>
+<li><p class="first">An <code class="samp docutils literal"><span class="pre">&quot;n&quot;</span></code> member whose value, a string, is the name of the thread (eg. <code class="samp docutils literal"><span class="pre">&quot;Worker</span> <span class="pre">Thread</span> <span class="pre">1&quot;</span></code>)</p>
+</li>
+<li><p class="first">An <code class="samp docutils literal"><span class="pre">&quot;s&quot;</span></code> member whose value is an array of <em class="dfn">time records</em>.  Each sub-array time record specifies Fabric Engine accounted for while instrumenting, and the time records happened immediately after each other in the order of the array.  Each time record is itself an array with the following elements, in order:</p>
+<ul>
+<li><p class="first">A <em class="dfn">duration</em> value (floating-point) measured in seconds</p>
+</li>
+<li><p class="first">A <em class="dfn">description</em> value (string)</p>
+</li>
+<li><p class="first">A <em class="dfn">nesting depth</em> value (non-negative integer), used internally by the time record keeping mechanism</p>
+</li>
+<li><p class="first">A <em class="dfn">category</em> value indicating where the operation was happening, having one of the following values:</p>
+<dl class="docutils">
+<dt><code class="samp docutils literal"><span class="pre">0</span></code></dt>
+<dd><p class="first last">Time spent was external to Fabric (ie. by the dynamic language) or used by a worker thread while idle</p>
+</dd>
+<dt><code class="samp docutils literal"><span class="pre">1</span></code></dt>
+<dd><p class="first last">Time spent was internal to the Fabric Engine core itself but not in user code</p>
+</dd>
+<dt><code class="samp docutils literal"><span class="pre">2</span></code></dt>
+<dd><p class="first last">Time spent was in user code (ie. KL operators)</p>
+</dd>
+<dt><code class="samp docutils literal"><span class="pre">2</span></code></dt>
+<dd><p class="first last">Time spent was in an extension.  NOTE: as of this writing this category is currently not used and all time spend in extensions shows up in the user category.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="highlight-none"><div class="highlight"><pre>$ python
+Python 2.7.1 (r271:86832, Jul 31 2011, 19:30:53)
+[GCC 4.2.1 (Based on Apple Inc. build 5658) (LLVM build 2335.15.00)] on darwin
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; import json
+&gt;&gt;&gt; import FabricEngine.Core as fabric
+[FABRIC] Fabric Engine Core version |FABRIC_VERSION|
+&gt;&gt;&gt; fabricClient = fabric.createClient()
+[FABRIC] Searching extension directory &#39;/Users/pzion/Library/Fabric/Exts&#39;
+[FABRIC] [FabricALEMBIC] Extension registered
+[FABRIC] [FabricBULLET] Extension registered
+...
+[FABRIC] [FabricVIDEO] Extension registered
+[FABRIC] [TimeSample] Extension registered
+[FABRIC] Searching extension directory &#39;/Library/Fabric/Exts&#39;
+[FABRIC] Warning: unable to open extension directory &#39;/Library/Fabric/Exts&#39;
+&gt;&gt;&gt; fabricClient.startInstrumentation(); json.dumps(fabricClient.stopInstrumentation(&quot;raw&quot;))
+&#39;[{&quot;s&quot;: [[0.000253727, &quot;dynamic language&quot;, 0, 0], [4.105e-05, &quot;|FABRIC_PRODUCT_NAME|&quot;, 1, 1]], &quot;n&quot;: &quot;Main Thread&quot;}, {&quot;s&quot;: [[0.000294777, &quot;scheduler (idle)&quot;, 0, 0]], &quot;n&quot;: &quot;Worker Thread 1&quot;}, {&quot;s&quot;: [[0.000294777, &quot;scheduler (idle)&quot;, 0, 0]], &quot;n&quot;: &quot;Worker Thread 2&quot;}, {&quot;s&quot;: [[0.000294777, &quot;scheduler (idle)&quot;, 0, 0]], &quot;n&quot;: &quot;Worker Thread 3&quot;}, {&quot;s&quot;: [[0.000294777, &quot;scheduler (idle)&quot;, 0, 0]], &quot;n&quot;: &quot;Worker Thread 4&quot;}, {&quot;s&quot;: [[0.000294777, &quot;scheduler (idle)&quot;, 0, 0]], &quot;n&quot;: &quot;Worker Thread 5&quot;}, {&quot;s&quot;: [[0.000294777, &quot;scheduler (idle)&quot;, 0, 0]], &quot;n&quot;: &quot;Worker Thread 6&quot;}, {&quot;s&quot;: [[0.000294777, &quot;scheduler (idle)&quot;, 0, 0]], &quot;n&quot;: &quot;Worker Thread 7&quot;}, {&quot;s&quot;: [[0.000294777, &quot;scheduler (idle)&quot;, 0, 0]], &quot;n&quot;: &quot;Worker Thread 8&quot;}]&#39;
+&gt;&gt;&gt; fabricClient.startInstrumentation(); fabricClient.stopInstrumentation(&quot;svg&quot;)
+u&#39;&lt;?xml version=&quot;1.0&quot; standalone=&quot;no&quot;?&gt;\n&lt;!DOCTYPE svg PUBLIC &quot;-//W3C//DTD SVG 1.1//EN&quot; &quot;http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd&quot;&gt;\n&lt;svg wid  ...  hor=&quot;middle&quot; y=&quot;0.3692485019564629in&quot; alignment-baseline=&quot;middle&quot; font-family=&quot;Helvetica&quot; font-size=&quot;12&quot; &gt;\nscheduler (idle)  &lt;/text&gt;\n&lt;/svg&gt;\n&#39;
+&gt;&gt;&gt; quit()
+mbp:Core pzion$
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Core Instrumentation Interface</a><ul>
+<li><a class="reference internal" href="#the-startinstrumentation-method">The <code class="samp docutils literal"><span class="pre">startInstrumentation</span></code> Method</a></li>
+<li><a class="reference internal" href="#the-stopinstrumentation-method">The <code class="samp docutils literal"><span class="pre">stopInstrumentation</span></code> Method</a></li>
+<li><a class="reference internal" href="#the-raw-data-format">The Raw Data Format</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="introduction.html"
+                        title="前の章へ">Introduction</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="../GPUCompute/index.html"
+                        title="次の章へ">GPU Compute Guide</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/InstrumentationGuide/core.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../GPUCompute/index.html" title="GPU Compute Guide"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="introduction.html" title="Introduction"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Instrumentation Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

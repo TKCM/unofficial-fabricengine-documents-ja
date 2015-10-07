@@ -1,0 +1,657 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ClipValues.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="Animation Extension’s Files" href="files.html" />
+    <link rel="next" title="Keyframe.kl" href="Keyframe.kl.html" />
+    <link rel="prev" title="Clip.kl" href="Clip.kl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="Keyframe.kl.html" title="Keyframe.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="Clip.kl.html" title="Clip.kl"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Animation Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">Animation Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="animation-clipvalues-kl">
+<span id="clipvalues-kl"></span><span id="id1"></span><h1>ClipValues.kl<a class="headerlink" href="#animation-clipvalues-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="vec4value-struct">
+<h3>Vec4Value (struct)<a class="headerlink" href="#vec4value-struct" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">The <a class="reference internal" href="Vec4Value.html#vec4value"><span>Vec4Value</span></a> stores a Vec4 value and associated bitwise flags. Used by the <a class="reference internal" href="ClipValues.html#clipvalues"><span>ClipValues</span></a> object.</p>
+<div class="section" id="members">
+<h4>Members<a class="headerlink" href="#members" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="67%" />
+<col width="23%" />
+<col width="10%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Vec4.html#vec4"><span>Vec4</span></a></td>
+<td>value</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>UInt32</td>
+<td>flags</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec4Value.html#de89dfdd6442da6d01039ab17aad8"><span>Vec4Value</span></a>  ( in <a class="reference internal" href="../Math/Vec4.html#vec4"><span>Vec4</span></a> value )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec4Value.html#e27a1d925e1c4b179b9cda7e58bc3eb3"><span>Vec4Value</span></a>  ( in <a class="reference internal" href="../Math/Vec4.html#vec4"><span>Vec4</span></a> value, in UInt32 flags )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec4Value.html#eb527656d246c7a37c759919a8709f"><span>Vec4Value</span></a>  ( in <a class="reference internal" href="Vec4Value.html#vec4value"><span>Vec4Value</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec4Value.html#a75d6d773b194b4ba5390f473b96a226"><span>Vec4Value</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Vec4Value.html#vec4value"><span>Vec4Value</span></a></td>
+<td><a class="reference internal" href="Vec4Value.html#dc39d3bff7f4c1683cd71ad9161797f"><span>clone</span></a> ? ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+<p><div class="section" id="xfovalue-struct">
+<h3>XfoValue (struct)<a class="headerlink" href="#xfovalue-struct" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">The <a class="reference internal" href="XfoValue.html#xfovalue"><span>XfoValue</span></a> stores a Xfo value and associated bitwise flags. Used by the <a class="reference internal" href="ClipValues.html#clipvalues"><span>ClipValues</span></a> object.</p>
+<div class="section" id="id2">
+<h4>Members<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="64%" />
+<col width="25%" />
+<col width="11%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a></td>
+<td>value</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>UInt32</td>
+<td>flags</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id3">
+<h4>Methods<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="XfoValue.html#dbeb7fc5a84b34b83809057dcc398b"><span>XfoValue</span></a>  ( in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> value )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="XfoValue.html#b5b1be2024f95bd907a9d29e7778d"><span>XfoValue</span></a>  ( in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> value, in UInt32 flags )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="XfoValue.html#ad5ecfc80547d5b357d0fdd5f24b57"><span>XfoValue</span></a>  ( in <a class="reference internal" href="XfoValue.html#xfovalue"><span>XfoValue</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="XfoValue.html#ce056cde7e4b4aa7744602ccb41fa9"><span>XfoValue</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="XfoValue.html#xfovalue"><span>XfoValue</span></a></td>
+<td><a class="reference internal" href="XfoValue.html#aee7727d327424b81818076a9bf874b"><span>clone</span></a> ? ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+<p><div class="section" id="vec2value-struct">
+<h3>Vec2Value (struct)<a class="headerlink" href="#vec2value-struct" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">The <a class="reference internal" href="Vec2Value.html#vec2value"><span>Vec2Value</span></a> stores a Vec2 value and associated bitwise flags. Used by the <a class="reference internal" href="ClipValues.html#clipvalues"><span>ClipValues</span></a> object.</p>
+<div class="section" id="id4">
+<h4>Members<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="67%" />
+<col width="23%" />
+<col width="10%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Vec2.html#vec2"><span>Vec2</span></a></td>
+<td>value</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>UInt32</td>
+<td>flags</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id5">
+<h4>Methods<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec2Value.html#f82766334ac9960603fbf32dc62e"><span>Vec2Value</span></a>  ( in <a class="reference internal" href="../Math/Vec2.html#vec2"><span>Vec2</span></a> value )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec2Value.html#b93f142dcf4f41a4c6fc3d6c716d90"><span>Vec2Value</span></a>  ( in <a class="reference internal" href="../Math/Vec2.html#vec2"><span>Vec2</span></a> value, in UInt32 flags )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec2Value.html#d4b8e99ba950496a8f306750e859dcc0"><span>Vec2Value</span></a>  ( in <a class="reference internal" href="Vec2Value.html#vec2value"><span>Vec2Value</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec2Value.html#a374af6334854ea9bc69bfc01065d5e6"><span>Vec2Value</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Vec2Value.html#vec2value"><span>Vec2Value</span></a></td>
+<td><a class="reference internal" href="Vec2Value.html#cf584f8a863347c0a47dc0ec73dc3969"><span>clone</span></a> ? ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+<p><div class="section" id="vec3value-struct">
+<h3>Vec3Value (struct)<a class="headerlink" href="#vec3value-struct" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">The <a class="reference internal" href="Vec3Value.html#vec3value"><span>Vec3Value</span></a> stores a Vec3 value and associated bitwise flags. Used by the <a class="reference internal" href="ClipValues.html#clipvalues"><span>ClipValues</span></a> object.</p>
+<div class="section" id="id6">
+<h4>Members<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="67%" />
+<col width="23%" />
+<col width="10%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td>value</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>UInt32</td>
+<td>flags</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id7">
+<h4>Methods<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec3Value.html#cae742dbf51f4f14aea48a002436a1bb"><span>Vec3Value</span></a>  ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec3Value.html#c49f0ec564244566959582b51cae37d0"><span>Vec3Value</span></a>  ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value, in UInt32 flags )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec3Value.html#f7c7c060f8cc4275a3ab477d12d39fc9"><span>Vec3Value</span></a>  ( in <a class="reference internal" href="Vec3Value.html#vec3value"><span>Vec3Value</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec3Value.html#f18b5d045fcb53c2023856fce98"><span>Vec3Value</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Vec3Value.html#vec3value"><span>Vec3Value</span></a></td>
+<td><a class="reference internal" href="Vec3Value.html#edced123ca4cba9f70f6d6430f8c87"><span>clone</span></a> ? ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+<p><div class="section" id="scalarvalue-struct">
+<h3>ScalarValue (struct)<a class="headerlink" href="#scalarvalue-struct" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">The <a class="reference internal" href="ScalarValue.html#scalarvalue"><span>ScalarValue</span></a> stores a Scalar value and associated bitwise flags. Used by the <a class="reference internal" href="ClipValues.html#clipvalues"><span>ClipValues</span></a> object.</p>
+<div class="section" id="id8">
+<h4>Members<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="71%" />
+<col width="21%" />
+<col width="9%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td>value</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>UInt32</td>
+<td>flags</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id9">
+<h4>Methods<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="ScalarValue.html#f53c9c1c5e4e859840a2234a3c2b89"><span>ScalarValue</span></a>  ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="ScalarValue.html#b65d0230acd45c495199f1c833babc3"><span>ScalarValue</span></a>  ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value, in UInt32 flags )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="ScalarValue.html#f1d545e3d94b7bb2605748ac1dac4c"><span>ScalarValue</span></a>  ( in <a class="reference internal" href="ScalarValue.html#scalarvalue"><span>ScalarValue</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="ScalarValue.html#e32f7fd3041407694dc4facdb5ce781"><span>ScalarValue</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="ScalarValue.html#scalarvalue"><span>ScalarValue</span></a></td>
+<td><a class="reference internal" href="ScalarValue.html#d2f68915c6df4569a51b2d94cd2b4d51"><span>clone</span></a> ? ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+<p><div class="section" id="quatvalue-struct">
+<h3>QuatValue (struct)<a class="headerlink" href="#quatvalue-struct" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">The <a class="reference internal" href="QuatValue.html#quatvalue"><span>QuatValue</span></a> stores a Quat value and associated bitwise flags. Used by the <a class="reference internal" href="ClipValues.html#clipvalues"><span>ClipValues</span></a> object.</p>
+<div class="section" id="id10">
+<h4>Members<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="67%" />
+<col width="23%" />
+<col width="10%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Quat.html#quat"><span>Quat</span></a></td>
+<td>value</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>UInt32</td>
+<td>flags</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id11">
+<h4>Methods<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="QuatValue.html#ce68417dab9346e2b0df40c354af1899"><span>QuatValue</span></a>  ( in <a class="reference internal" href="../Math/Quat.html#quat"><span>Quat</span></a> value )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="QuatValue.html#d0dced72df094034907b2609e9f7eda6"><span>QuatValue</span></a>  ( in <a class="reference internal" href="../Math/Quat.html#quat"><span>Quat</span></a> value, in UInt32 flags )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="QuatValue.html#aeb1f3a3a7a4168987f8fe9d16d3d57"><span>QuatValue</span></a>  ( in <a class="reference internal" href="QuatValue.html#quatvalue"><span>QuatValue</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="QuatValue.html#f05de4355d4449a9fa94106a4f5640a"><span>QuatValue</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="QuatValue.html#quatvalue"><span>QuatValue</span></a></td>
+<td><a class="reference internal" href="QuatValue.html#de5215877014ffba5bc0ce51208465c"><span>clone</span></a> ? ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+<p><div class="section" id="clipvalues-object">
+<h3>ClipValues (object)<a class="headerlink" href="#clipvalues-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">The <a class="reference internal" href="ClipValues.html#clipvalues"><span>ClipValues</span></a> stores sets clip values, keyed by name.
+The <a class="reference internal" href="Clip.html#clip"><span>Clip</span></a> values is used as an intermediate container to store animation data generated by the evaluation of Clips.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="Clip.html#clip"><span>Clip</span></a>, <code class="xref std std-kl-ref docutils literal"><span class="pre">TrackSet</span></code></p>
+</div>
+<p><div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: clipValues.kl</span>
+<span class="cm">*/</span>
+
+<span class="kr">require</span> <span class="nx">Animation</span><span class="p">;</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">(){</span>
+
+  <span class="nx">ClipValues</span> <span class="nx">clipValues1</span><span class="p">();</span>
+  <span class="nx">clipValues1</span><span class="p">.</span><span class="nx">setScalarValue</span><span class="p">(</span><span class="s1">&#39;ScalarValue&#39;</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">);</span>
+  <span class="nx">clipValues1</span><span class="p">.</span><span class="nx">setVec2Value</span><span class="p">(</span><span class="s1">&#39;Vec2Value&#39;</span><span class="p">,</span> <span class="nx">Vec2</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">));</span>
+  <span class="nx">clipValues1</span><span class="p">.</span><span class="nx">setVec3Value</span><span class="p">(</span><span class="s1">&#39;Vec3Value&#39;</span><span class="p">,</span> <span class="nx">Vec3</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">));</span>
+  <span class="nx">clipValues1</span><span class="p">.</span><span class="nx">setVec4Value</span><span class="p">(</span><span class="s1">&#39;Vec4Value&#39;</span><span class="p">,</span> <span class="nx">Vec4</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">,</span> <span class="mf">5.7</span><span class="p">));</span>
+  <span class="nx">clipValues1</span><span class="p">.</span><span class="nx">setQuatValue</span><span class="p">(</span><span class="s1">&#39;QuatValue&#39;</span><span class="p">,</span> <span class="nx">Quat</span><span class="p">());</span>
+  <span class="nx">clipValues1</span><span class="p">.</span><span class="nx">setXfoValue</span><span class="p">(</span><span class="s1">&#39;XfoValue&#39;</span><span class="p">,</span> <span class="nx">Xfo</span><span class="p">(</span><span class="nx">Vec3</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)));</span>
+
+  <span class="nx">ClipValues</span> <span class="nx">clipValues2</span><span class="p">();</span>
+  <span class="nx">clipValues2</span><span class="p">.</span><span class="nx">setScalarValue</span><span class="p">(</span><span class="s1">&#39;ScalarValue&#39;</span><span class="p">,</span> <span class="mf">2.6</span><span class="p">);</span>
+  <span class="nx">clipValues2</span><span class="p">.</span><span class="nx">setVec2Value</span><span class="p">(</span><span class="s1">&#39;Vec2Value&#39;</span><span class="p">,</span> <span class="nx">Vec2</span><span class="p">(</span><span class="mf">5.1</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">));</span>
+  <span class="nx">clipValues2</span><span class="p">.</span><span class="nx">setVec3Value</span><span class="p">(</span><span class="s1">&#39;Vec3Value&#39;</span><span class="p">,</span> <span class="nx">Vec3</span><span class="p">(</span><span class="mf">5.1</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">));</span>
+  <span class="nx">clipValues2</span><span class="p">.</span><span class="nx">setVec4Value</span><span class="p">(</span><span class="s1">&#39;Vec4Value&#39;</span><span class="p">,</span> <span class="nx">Vec4</span><span class="p">(</span><span class="mf">5.1</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">));</span>
+  <span class="nx">clipValues2</span><span class="p">.</span><span class="nx">setQuatValue</span><span class="p">(</span><span class="s1">&#39;QuatValue&#39;</span><span class="p">,</span> <span class="nx">Quat</span><span class="p">());</span>
+  <span class="nx">clipValues2</span><span class="p">.</span><span class="nx">setXfoValue</span><span class="p">(</span><span class="s1">&#39;XfoValue&#39;</span><span class="p">,</span> <span class="nx">Xfo</span><span class="p">(</span><span class="nx">Vec3</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">4.7</span><span class="p">,</span> <span class="mf">8.3</span><span class="p">)));</span>
+
+  <span class="nb">report</span><span class="p">(</span><span class="nx">clipValues1</span><span class="p">.</span><span class="nx">subtract</span><span class="p">(</span><span class="nx">clipValues2</span><span class="p">).</span><span class="nx">getDesc</span><span class="p">());</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">clipValues1</span><span class="p">.</span><span class="nx">linearInterpolate</span><span class="p">(</span><span class="nx">clipValues2</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">).</span><span class="nx">getDesc</span><span class="p">());</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">clipValues1</span><span class="p">.</span><span class="nx">addWeighted</span><span class="p">(</span><span class="nx">clipValues2</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">).</span><span class="nx">getDesc</span><span class="p">());</span>
+
+
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">ClipValues:{ </span>
+<span class="cm">  ScalarValue=-1.399902 </span>
+<span class="cm">  Vec2Value={x:-4.700195,y:-0.5} </span>
+<span class="cm">  Vec3Value={x:-4.700195,y:-0.5,z:-6.90039} </span>
+<span class="cm">  Vec4Value={x:-4.700195,y:-0.5,z:-6.90039,t:+5.40039} </span>
+<span class="cm">  QuatValue={v:{x:+0.0,y:+0.0,z:+0.0},w:+1.0} </span>
+<span class="cm">  XfoValue={tr:{x:-1.0,y:-2.200195,z:-8.0},ori:{v:{x:+0.0,y:+0.0,z:+0.0},w:+1.0},sc:{x:+1.0,y:+1.0,z:+1.0}} </span>
+<span class="cm">}</span>
+<span class="cm">ClipValues:{ </span>
+<span class="cm">  ScalarValue=+1.830078 </span>
+<span class="cm">  Vec2Value={x:+2.515136,y:+1.425048} </span>
+<span class="cm">  Vec3Value={x:+2.515136,y:+1.425048,z:+5.504883} </span>
+<span class="cm">  Vec4Value={x:+2.515136,y:+1.425048,z:+5.504883,t:+3.270019} </span>
+<span class="cm">  QuatValue={v:{x:+0.0,y:+0.0,z:+0.0},w:+1.0} </span>
+<span class="cm">  XfoValue={tr:{x:+1.949951,y:+3.490234,z:+3.899902},ori:{v:{x:+0.0,y:+0.0,z:+0.0},w:+1.0},sc:{x:+1.0,y:+1.0,z:+1.0}} </span>
+<span class="cm">}</span>
+<span class="cm">ClipValues:{ </span>
+<span class="cm">  ScalarValue=+2.759765 </span>
+<span class="cm">  Vec2Value={x:+3.459961,y:+2.220214} </span>
+<span class="cm">  Vec3Value={x:+3.459961,y:+2.220214,z:+7.980469} </span>
+<span class="cm">  Vec4Value={x:+3.459961,y:+2.220214,z:+7.980469,t:+5.879883} </span>
+<span class="cm">  QuatValue={v:{x:+0.0,y:+0.0,z:+0.0},w:+1.0} </span>
+<span class="cm">  XfoValue={tr:{x:+3.0,y:+5.320312,z:+5.280273},ori:{v:{x:+0.0,y:+0.0,z:+0.0},w:+1.0},sc:{x:+1.0,y:+1.0,z:+1.0}} </span>
+<span class="cm">}</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</p>
+<div class="section" id="id12">
+<h4>Members<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="78%" />
+<col width="18%" />
+<col width="4%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="ScalarValue.html#scalarvalue"><span>ScalarValue</span></a>[<a class="reference internal" href="../Util/String.html#string"><span>String</span></a>]</td>
+<td>scalarValues</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Vec2Value.html#vec2value"><span>Vec2Value</span></a>[<a class="reference internal" href="../Util/String.html#string"><span>String</span></a>]</td>
+<td>vec2Values</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Vec3Value.html#vec3value"><span>Vec3Value</span></a>[<a class="reference internal" href="../Util/String.html#string"><span>String</span></a>]</td>
+<td>vec3Values</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Vec4Value.html#vec4value"><span>Vec4Value</span></a>[<a class="reference internal" href="../Util/String.html#string"><span>String</span></a>]</td>
+<td>vec4Values</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="QuatValue.html#quatvalue"><span>QuatValue</span></a>[<a class="reference internal" href="../Util/String.html#string"><span>String</span></a>]</td>
+<td>quatValues</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="XfoValue.html#xfovalue"><span>XfoValue</span></a>[<a class="reference internal" href="../Util/String.html#string"><span>String</span></a>]</td>
+<td>xfoValues</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id13">
+<h4>Methods<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="18%" />
+<col width="82%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="ClipValues.html#e46d70924604ab99c5bbec4f72d133c"><span>ClipValues</span></a>  ( in <a class="reference internal" href="ClipValues.html#clipvalues"><span>ClipValues</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="ClipValues.html#fec27749f7549ce9e7a54751e270ac8"><span>ClipValues</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="ClipValues.html#d821326be5314cf583e197392456f56a"><span>addWeighted</span></a> ! ( in <a class="reference internal" href="ClipValues.html#clipvalues"><span>ClipValues</span></a> other, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> weight )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="ClipValues.html#clipvalues"><span>ClipValues</span></a></td>
+<td><a class="reference internal" href="ClipValues.html#cc28dcc567a43629964b898e361a0f8"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="ClipValues.html#c996d3902f034d068a98e3729d2f02da"><span>cloneMembersTo</span></a> ? ( io <a class="reference internal" href="ClipValues.html#clipvalues"><span>ClipValues</span></a> that )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="ClipValues.html#d9aedf22fa53440699d832ffcc74aaed"><span>getDesc</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Quat.html#quat"><span>Quat</span></a></td>
+<td><a class="reference internal" href="ClipValues.html#f641e292a4fb39b8ca5e8dad9243e"><span>getQuatValue</span></a> ? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="ClipValues.html#ec4e44ac24d199b03b4f87fd3d4b0"><span>getScalarValue</span></a> ? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Vec2.html#vec2"><span>Vec2</span></a></td>
+<td><a class="reference internal" href="ClipValues.html#dba7b1cb64a55bd9046d7ac859d62"><span>getVec2Value</span></a> ? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="ClipValues.html#c13aed4c637b4b40aee783116245ad65"><span>getVec3Value</span></a> ? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Vec4.html#vec4"><span>Vec4</span></a></td>
+<td><a class="reference internal" href="ClipValues.html#c38c4e902dd462d8df895d295b2ae09"><span>getVec4Value</span></a> ? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a></td>
+<td><a class="reference internal" href="ClipValues.html#e029431b24a4305a746c8040542e107"><span>getXfoValue</span></a> ? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="ClipValues.html#d82ed26355b647caa8627db41531baeb"><span>hasQuatValue</span></a> ? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="ClipValues.html#c82730cffec145a6b29915f53e5102d4"><span>hasScalarValue</span></a> ? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="ClipValues.html#a4394f1f2e294034b215be11cb1877eb"><span>hasVec2Value</span></a> ? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="ClipValues.html#d95f324484489896b499390260064"><span>hasVec3Value</span></a> ? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="ClipValues.html#d0869fd7084278a6f0be7ca314f297"><span>hasVec4Value</span></a> ? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="ClipValues.html#f6344e43f26f4f3f85190ff73ca2f7d1"><span>hasXfoValue</span></a> ? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="ClipValues.html#clipvalues"><span>ClipValues</span></a></td>
+<td><a class="reference internal" href="ClipValues.html#a9c97612824eefa3f15995872375d1"><span>linearInterpolate</span></a> ? ( in <a class="reference internal" href="ClipValues.html#clipvalues"><span>ClipValues</span></a> other, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> t )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="ClipValues.html#a19511b2ccd4bc89222cac971a6c4c4"><span>setQuatValue</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in <a class="reference internal" href="../Math/Quat.html#quat"><span>Quat</span></a> value )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="ClipValues.html#a8a413c2aa524c1faf9466dc3e2dfc38"><span>setQuatValue</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in <a class="reference internal" href="../Math/Quat.html#quat"><span>Quat</span></a> value, in UInt32 flags )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="ClipValues.html#dd72aa37629e4cd782f0deef6ff33c2e"><span>setScalarValue</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="ClipValues.html#cad56798426947268ecb2c82b4fdd624"><span>setScalarValue</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value, in UInt32 flags )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="ClipValues.html#a1755df9fc45c3bd294c515d0f4512"><span>setVec2Value</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in <a class="reference internal" href="../Math/Vec2.html#vec2"><span>Vec2</span></a> value )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="ClipValues.html#fc230ecb4054af85613fa77cb441"><span>setVec2Value</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in <a class="reference internal" href="../Math/Vec2.html#vec2"><span>Vec2</span></a> value, in UInt32 flags )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="ClipValues.html#a9e633909c9480a8417a3064edd68e3"><span>setVec3Value</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="ClipValues.html#fab14289653f4ecea7086d5bff68e391"><span>setVec3Value</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value, in UInt32 flags )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="ClipValues.html#df1b770bf421e8dff175a7486a3d4"><span>setVec4Value</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in <a class="reference internal" href="../Math/Vec4.html#vec4"><span>Vec4</span></a> value )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="ClipValues.html#fd8b78b41e5d423fb46ef5787cd3bf64"><span>setVec4Value</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in <a class="reference internal" href="../Math/Vec4.html#vec4"><span>Vec4</span></a> value, in UInt32 flags )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="ClipValues.html#f1dcfa6b456c8d0aa192a1e0d57b"><span>setXfoValue</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> value )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="ClipValues.html#a7a1480104900ac6fe5501dad3bcf"><span>setXfoValue</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> value, in UInt32 flags )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="ClipValues.html#clipvalues"><span>ClipValues</span></a></td>
+<td><a class="reference internal" href="ClipValues.html#d61faedf63264c27baabb103c33a8960"><span>subtract</span></a> ? ( in <a class="reference internal" href="ClipValues.html#clipvalues"><span>ClipValues</span></a> other )</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="Clip.kl.html"
+                        title="前の章へ">Clip.kl</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="Keyframe.kl.html"
+                        title="次の章へ">Keyframe.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/Animation/ClipValues.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="Keyframe.kl.html" title="Keyframe.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="Clip.kl.html" title="Clip.kl"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Animation Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >Animation Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

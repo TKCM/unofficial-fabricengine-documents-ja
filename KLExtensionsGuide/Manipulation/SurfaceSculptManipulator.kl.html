@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>SurfaceSculptManipulator.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="Manipulation Extension’s Files" href="files.html" />
+    <link rel="next" title="TransformManipulationCallback.kl" href="TransformManipulationCallback.kl.html" />
+    <link rel="prev" title="SurfacePaintManipulator.kl" href="SurfacePaintManipulator.kl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="TransformManipulationCallback.kl.html" title="TransformManipulationCallback.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="SurfacePaintManipulator.kl.html" title="SurfacePaintManipulator.kl"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Manipulation Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">Manipulation Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="manipulation-surfacesculptmanipulator-kl">
+<span id="surfacesculptmanipulator-kl"></span><span id="id1"></span><h1>SurfaceSculptManipulator.kl<a class="headerlink" href="#manipulation-surfacesculptmanipulator-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="surfacesculptmanipulator-object">
+<h3>SurfaceSculptManipulator (object)<a class="headerlink" href="#surfacesculptmanipulator-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 1.12.0 で追加.</span></p>
+</div>
+<p class="plaintext">The <a class="reference internal" href="SurfaceSculptManipulator.html#surfacesculptmanipulator"><span>SurfaceSculptManipulator</span></a> is based on the <a class="reference internal" href="SurfacePaintManipulator.html#surfacepaintmanipulator"><span>SurfacePaintManipulator</span></a>
+to provide a sculpt based painting example. The <a class="reference internal" href="SurfaceSculptManipulator.html#surfacesculptmanipulator"><span>SurfaceSculptManipulator</span></a> modifies the vertex
+positions on a mesh, pushing or pulling them in the direction of the paint brush ray.</p>
+</div>
+<div class="section" id="usage">
+<h3>Usage<a class="headerlink" href="#usage" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li>Click and drag with the Left mouse button to push the surface vertices</li>
+<li>Click and drag with the Right mouse button to pull the surface vertices</li>
+<li>Click and drag with the Middle mouse button to smooth surface vertices</li>
+<li>The mouse wheel can be used to resize the paint brush, except on platforms that do not support the mouse wheel.</li>
+<li>The &#8216;Ctrl&#8217; modifier key can be held during a mouse drag to resize the brush on these platforms.</li>
+</ul>
+<div class="section" id="members">
+<h4>Members<a class="headerlink" href="#members" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="52%" />
+<col width="14%" />
+<col width="34%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="../InlineDrawing/InlineInstance.html#inlineinstance"><span>InlineInstance</span></a>[]</td>
+<td>targetGeometries</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="SurfacePaintManipulator_StrokePoint.html#surfacepaintmanipulator-strokepoint"><span>SurfacePaintManipulator_StrokePoint</span></a>[]</td>
+<td>strokePath</td>
+<td>The stroke points making up the current paint stroke.</td>
+</tr>
+<tr class="row-odd"><td>SurfacePaintManipulator_State</td>
+<td>state</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td>brushSize</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td>brushStrength</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td>brushScaleSpeed</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td>mouseDownBrushSize</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Vec2.html#vec2"><span>Vec2</span></a></td>
+<td>mouseDownScreenPos</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../InlineDrawing/InlineMaterial.html#inlinematerial"><span>InlineMaterial</span></a></td>
+<td>paintBrushMaterial</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../InlineDrawing/InlineInstance.html#inlineinstance"><span>InlineInstance</span></a></td>
+<td>paintBrush</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
+<td>portToDrive</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
+<td>hostName</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
+<td>graphName</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>UInt32</td>
+<td>evalID</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td>sculptStrength</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td>recomputePointNormals</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Integer</td>
+<td>paintMode</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="SurfaceSculptCommand.html#surfacesculptcommand"><span>SurfaceSculptCommand</span></a></td>
+<td>command</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Util/EvalContext.html#evalcontext"><span>EvalContext</span></a></td>
+<td>evalContext</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="SurfaceSculptManipulator.html#f594d1a854138afcefd0244c1c4ee"><span>SurfaceSculptManipulator</span></a>  ( in <a class="reference internal" href="../Util/EvalContext.html#evalcontext"><span>EvalContext</span></a> evalContext )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="SurfaceSculptManipulator.html#fd3af3a5ee4afc837240c41643a559"><span>SurfaceSculptManipulator</span></a>  ( in <a class="reference internal" href="SurfaceSculptManipulator.html#surfacesculptmanipulator"><span>SurfaceSculptManipulator</span></a> other )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="SurfaceSculptManipulator.html#f74e1f3c5f457e86a493568122b951"><span>SurfaceSculptManipulator</span></a>  ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="SurfaceSculptManipulator.html#surfacesculptmanipulator"><span>SurfaceSculptManipulator</span></a></td>
+<td><a class="reference internal" href="SurfaceSculptManipulator.html#d368a04ae2641aa945976f32f79ecd3"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="SurfaceSculptManipulator.html#c56f1ec39be9469e955170a7bac29813"><span>onPaint</span></a> ! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent, in <a class="reference internal" href="SurfacePaintManipulator_PointCollection.html#surfacepaintmanipulator-pointcollection"><span>SurfacePaintManipulator_PointCollection</span></a> collectedPoints )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="SurfaceSculptManipulator.html#c216ba48004fe5b1bf88decc490f09"><span>onStrokeBegin</span></a> ! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="SurfaceSculptManipulator.html#ca06ab0b9f9e4334bc1945703daa9833"><span>onStrokeEnd</span></a> ! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="SurfaceSculptManipulator.html#e8b0ade22c5440c80c597e49dc36f16"><span>setSculptStrength</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> sculptStrength )</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="SurfacePaintManipulator.kl.html"
+                        title="前の章へ">SurfacePaintManipulator.kl</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="TransformManipulationCallback.kl.html"
+                        title="次の章へ">TransformManipulationCallback.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/Manipulation/SurfaceSculptManipulator.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="TransformManipulationCallback.kl.html" title="TransformManipulationCallback.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="SurfacePaintManipulator.kl.html" title="SurfacePaintManipulator.kl"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Manipulation Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >Manipulation Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

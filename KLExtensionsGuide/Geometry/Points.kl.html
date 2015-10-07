@@ -1,0 +1,402 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Points.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="Geometry Extension’s Files" href="files.html" />
+    <link rel="next" title="PointsDCCConversion.kl" href="PointsDCCConversion.kl.html" />
+    <link rel="prev" title="OctreeQueryInternal.kl" href="OctreeQueryInternal.kl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="PointsDCCConversion.kl.html" title="PointsDCCConversion.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="OctreeQueryInternal.kl.html" title="OctreeQueryInternal.kl"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Geometry Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">Geometry Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="geometry-points-kl">
+<span id="points-kl"></span><span id="id1"></span><h1>Points.kl<a class="headerlink" href="#geometry-points-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="points-object">
+<h3>Points (object)<a class="headerlink" href="#points-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">The <a class="reference internal" href="Points.html#points"><span>Points</span></a> object implements a point cloud geometry. All its data is contained in its <a class="reference internal" href="GeometryAttributes.html#geometryattributes"><span>GeometryAttributes</span></a>
+container that can be retrieved by calling <a class="reference internal" href="Points.html#ba304a9720f647bdab3b550a68d43ead"><span>Points.getAttributes</span></a>.</p>
+<div class="section" id="point-sizes">
+<span id="pointsizes"></span><h4>Point sizes<a class="headerlink" href="#point-sizes" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>A <cite>size</cite> attribute can be defined by <a class="reference internal" href="Points.html#acf2491a2f5f4898a06f8c5323310ee3"><span>Points.getOrCreateSizesAttribute</span></a> or <a class="reference internal" href="Points.html#a1e0707797564ca7b8562eda5ce1cbaf"><span>Points.setSizesAttribute</span></a>. 
+This attribute will then be used by helpers such as <a class="reference internal" href="Points.html#cfb87ced0149969a44b20ad7b326f1"><span>Points.getSize</span></a>, and the point 
+bounding spheres defined by the <cite>size</cite> will be used to compute points&#8217; volume for SpatialQueryable functions such
+as <a class="reference internal" href="Points.html#da58fd1dd264489a17905232277a0b7"><span>Points.raycast</span></a>.</p>
+<p>If no size attribute is defined, the <cite>Points.defaultPointSize</cite> constant will be used as the size for all points.</p>
+</div>
+<div class="section" id="members">
+<h4>Members<a class="headerlink" href="#members" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="24%" />
+<col width="7%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="GeometryAttributes.html#geometryattributes"><span>GeometryAttributes</span></a></td>
+<td>attributes</td>
+<td>Container for all attributes.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
+<td>debugName</td>
+<td>Name that will be printed in descriptions.</td>
+</tr>
+<tr class="row-odd"><td>UInt32</td>
+<td>structureVersion</td>
+<td>Version of the geometry structure itself, excluding the <a class="reference internal" href="GeometryAttributes.html#geometryattributes"><span>GeometryAttributes</span></a> content.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Containers/ThreadsafeMetaDataContainer.html#threadsafemetadatacontainer"><span>ThreadsafeMetaDataContainer</span></a></td>
+<td>metaData</td>
+<td>Container for holding various user data (<a class="reference internal" href="Geometry.html#geometry"><span>Geometry</span></a> specific), such as the BoundingBox cache data, or raycast acceleration structures and data (<a class="reference internal" href="Octree.html#octree"><span>Octree</span></a>).</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td>defaultPointSize</td>
+<td>used for get/setSize if <cite>sizesAttribute</cite> is not specified (see <a class="reference internal" href="PointsModeling.kl.html#pointsizes"><span>Point sizes</span></a>)</td>
+</tr>
+<tr class="row-even"><td>Ref&lt;<a class="reference internal" href="ScalarAttribute.html#scalarattribute"><span>ScalarAttribute</span></a>&gt;</td>
+<td>sizesAttribute</td>
+<td>used for get/setSize if specified (see <a class="reference internal" href="PointsModeling.kl.html#pointsizes"><span>Point sizes</span></a>)</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Points</span>
+<span class="cm">*/</span>
+
+<span class="kr">require</span> <span class="nx">Geometry</span><span class="p">;</span>
+  
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+
+      
+        <span class="nx">Points</span> <span class="nx">points</span> <span class="o">=</span> <span class="nx">Points</span><span class="p">();</span>
+        <span class="nx">points</span><span class="p">.</span><span class="nx">getOrCreateSizesAttribute</span><span class="p">();</span>
+      
+        <span class="nx">points</span><span class="p">.</span><span class="nx">resize</span><span class="p">(</span> <span class="mi">5</span> <span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span> <span class="nx">Size</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span> <span class="p">)</span> <span class="p">{</span>
+          <span class="nx">points</span><span class="p">.</span><span class="nx">setPosition</span><span class="p">(</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">Vec3</span><span class="p">(</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">);</span>
+          <span class="nx">points</span><span class="p">.</span><span class="nx">setSize</span><span class="p">(</span> <span class="nx">i</span><span class="p">,</span> <span class="p">(</span><span class="nx">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.1f</span> <span class="p">);</span>
+        <span class="p">}</span>
+        <span class="nb">report</span><span class="p">(</span> <span class="nx">points</span><span class="p">.</span><span class="nx">getDesc</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">)</span> <span class="p">);</span>
+  
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">Points: Points pointCount: 5 nbAttributeVectors: 2</span>
+<span class="cm">Attributes: nb elements = 5</span>
+<span class="cm">  0: positions={x:+0.0,y:+0.0,z:+0.0} pointSizes=+0.1 </span>
+<span class="cm">  1: positions={x:+0.0,y:+1.0,z:+0.0} pointSizes=+0.2 </span>
+<span class="cm">  2: positions={x:+0.0,y:+2.0,z:+0.0} pointSizes=+0.3 </span>
+<span class="cm">  3: positions={x:+0.0,y:+3.0,z:+0.0} pointSizes=+0.4 </span>
+<span class="cm">  4: positions={x:+0.0,y:+4.0,z:+0.0} pointSizes=+0.5 </span>
+
+
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="27%" />
+<col width="73%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Points.html#c8a85f9aa7ba4932946dd1a6f5efb772"><span>Points</span></a>  ( in <a class="reference internal" href="Points.html#points"><span>Points</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Points.html#ddf438e5544b1a84a50db3fd820687"><span>Points</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> debugName )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Points.html#a2968ab9704391a5e964757b2e1afd"><span>Points</span></a>  ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Points.html#e776438e9154cc1bb5da721283293e4"><span>_setPointsFromExternalArray</span></a> ! ( in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> values&lt;&gt;, in Size components )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Points.html#e02862d09b4257b0968eb401fe6dd5"><span>_setPointsFromExternalArray_d</span></a> ! ( in <a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> values&lt;&gt;, in Size components )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Points.html#ba670218a4437892575818d4e257e1"><span>addPlane</span></a> ! ( in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> xfo, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> length, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> width, in Integer lengthRows, in Integer widthRows )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Points.html#bd0dc67e10ea40df800087773086ab70"><span>addPoint</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> pos )</td>
+</tr>
+<tr class="row-even"><td>Size</td>
+<td><a class="reference internal" href="Points.html#c9872669369d4ed49d63b59e7ad9a393"><span>addPoints</span></a> ! ( in Size count )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Points.html#f5ae7d40e41308baf2459b643c126"><span>addPoints</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> positions[] )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Points.html#a2dc0bee18e4bf8a91a11d6d11488a6"><span>clear</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Points.html#points"><span>Points</span></a></td>
+<td><a class="reference internal" href="Points.html#fc8d3f0d9e48a2aaa4974b2e6e5d0d"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Points.html#d94c067481564e31814c93cc5c1d92d7"><span>cloneMembersTo</span></a> ? ( io <a class="reference internal" href="Points.html#points"><span>Points</span></a> that )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Points.html#abbdc68a4ab1b85b0d2c60c9610b"><span>convertToCPU</span></a> ! ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Points.html#f1a64201814747eee23d954b"><span>convertToGPU</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Points.html#f0e235594fbeb4e5f16553b98de5"><span>copy</span></a> ! ( in <a class="reference internal" href="Geometry.html#geometry"><span>Geometry</span></a> src )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Points.html#db9a90588e24414ab5a43ffe55536935"><span>copy</span></a> ! ( in <a class="reference internal" href="Points.html#points"><span>Points</span></a> src )</td>
+</tr>
+<tr class="row-odd"><td>Size</td>
+<td><a class="reference internal" href="Points.html#bed2265490c959963abeceaf9f5"><span>elementCount</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Ref&lt;<a class="reference internal" href="GeometryAttributes.html#geometryattributes"><span>GeometryAttributes</span></a>&gt;</td>
+<td><a class="reference internal" href="Points.html#ba304a9720f647bdab3b550a68d43ead"><span>getAttributes</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="LocalBoundingVolume.html#localboundingvolume"><span>LocalBoundingVolume</span></a></td>
+<td><a class="reference internal" href="Points.html#a9e665340e088919cd4405c98c9"><span>getBoundingVolume</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="Points.html#b8ae2df302941799928ddc64e3ae566"><span>getDebugName</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="Points.html#fb79e0e441faa7da1929f9cd5b1"><span>getDesc</span></a> ? ( in Boolean withAttributes, in Boolean useUnitTestPrint )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="LocalBoundingVolume.html#localboundingvolume"><span>LocalBoundingVolume</span></a></td>
+<td><a class="reference internal" href="Points.html#cff97298def420eb93a8621a1a1e233"><span>getElementBoundingVolume</span></a> ? ( in Size index )</td>
+</tr>
+<tr class="row-odd"><td>UInt32</td>
+<td><a class="reference internal" href="Points.html#cc3f033e40394dca9dc591fd372190f3"><span>getMemType</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Ref&lt;<a class="reference internal" href="../Containers/ThreadsafeMetaDataContainer.html#threadsafemetadatacontainer"><span>ThreadsafeMetaDataContainer</span></a>&gt;</td>
+<td><a class="reference internal" href="Points.html#e52268094b1249bd89e4bd2b792f664e"><span>getMetaData</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Ref&lt;<a class="reference internal" href="ScalarAttribute.html#scalarattribute"><span>ScalarAttribute</span></a>&gt;</td>
+<td><a class="reference internal" href="Points.html#acf2491a2f5f4898a06f8c5323310ee3"><span>getOrCreateSizesAttribute</span></a> ! ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="Points.html#e940ea8cc4d4627972099612cc4b86a"><span>getPosition</span></a> ? ( in Size point )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="Points.html#cfb87ced0149969a44b20ad7b326f1"><span>getSize</span></a> ? ( in Size point )</td>
+</tr>
+<tr class="row-even"><td>UInt32</td>
+<td><a class="reference internal" href="Points.html#b02b0b60c6441f8b87ee75d74676f35"><span>getStructureVersion</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>UInt32</td>
+<td><a class="reference internal" href="Points.html#b6e157167cb40c3a8638bf05ec72c94"><span>getVersion</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Points.html#fe900eb7aac4fe6b46e0465dc139e64"><span>incrementPositionsVersion</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Points.html#d1c60ff6fbca436d8eb1c9e38fb85ef7"><span>incrementSizesVersion</span></a> ! ()</td>
+</tr>
+<tr class="row-even"><td>Size</td>
+<td><a class="reference internal" href="Points.html#e00202ed192401388ebdefb4384738e"><span>pointCount</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Points.html#f0a19638b2458d98dbdd7399a3093b"><span>resize</span></a> ! ( in Size newSize )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Points.html#cea1bcdf7bc446238a9fe9b18f4a55e6"><span>setPosition</span></a> ! ( in Size point, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> position )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Points.html#deec8a34f815479ab4483a3c365c85fd"><span>setSize</span></a> ! ( in Size point, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> size )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Points.html#a1e0707797564ca7b8562eda5ce1cbaf"><span>setSizesAttribute</span></a> ! ( in Ref&lt;<a class="reference internal" href="ScalarAttribute.html#scalarattribute"><span>ScalarAttribute</span></a>&gt; sizesAttribute )</td>
+</tr>
+<tr class="row-odd"><td>Size</td>
+<td><a class="reference internal" href="Points.html#c716b6b8e72439298e65bd9893b1ea2"><span>size</span></a> ? ()</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="importexporthelpers-methods">
+<h5>ImportExportHelpers methods<a class="headerlink" href="#importexporthelpers-methods" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<table border="1" class="methodtable docutils">
+<colgroup>
+<col width="2%" />
+<col width="98%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Points.html#c5da34bdc9354d798cb1f51bd1e8d7aa"><span>_getPointsAsExternalArray</span></a> ? ( io <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> values&lt;&gt;, in Size components )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Points.html#b9be133a4694891d5564991f59ac"><span>_getPointsAsExternalArray_d</span></a> ? ( io <a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> values&lt;&gt;, in Size components )</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="spatialqueryable-methods">
+<h5>SpatialQueryable methods<a class="headerlink" href="#spatialqueryable-methods" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<table border="1" class="methodtable docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="Points.html#bc5508d50a3417da44c5182142266f8"><span>areGeometryLocationsEquivalent</span></a> ? ( in <a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a> location0, in <a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a> location1 )</td>
+</tr>
+<tr class="row-even"><td>Ref&lt;<a class="reference internal" href="SpatialQuery.html#spatialquery"><span>SpatialQuery</span></a>&gt;</td>
+<td><a class="reference internal" href="Points.html#fd7ac91a566472c8be8def3517ae696"><span>beginSpatialQuery</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Points.html#d41869b871243cd9e4462b2f7e92269"><span>endSpatialQuery</span></a> ? ( in Ref&lt;<a class="reference internal" href="SpatialQuery.html#spatialquery"><span>SpatialQuery</span></a>&gt; query )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a></td>
+<td><a class="reference internal" href="Points.html#f6853249fa63461f80f0a353bf351ab5"><span>getClosest</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> position, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> scaling, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxUnscaledDistance )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Points.html#c7310c414e8b40d38fd73439de98203a"><span>getLocationAttributeIndicesAndWeights</span></a> ? ( in <a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a> location, io <a class="reference internal" href="../Containers/LocalL16UInt32Array.html#locall16uint32array"><span>LocalL16UInt32Array</span></a> attributeIndices, io <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> weights )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="Points.html#f45bcec608744ea97af93bfc719f8b7"><span>getLocationBoundingSphereCoordinate</span></a> ? ( in <a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a> location )</td>
+</tr>
+<tr class="row-odd"><td>Size</td>
+<td><a class="reference internal" href="Points.html#d95dd64df5a84d4eadf05c46171b3709"><span>getLocationPointIndex</span></a> ? ( in <a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a> location )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="Points.html#e3f7c0a5468f8f4b8997fd4ee8f2"><span>getPositionAtLocation</span></a> ? ( in <a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a> location )</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="Points.html#fc68df0a4a68448cbb12ae77969dbba1"><span>isLocationAtPointCenter</span></a> ? ( in <a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a> location )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Points.html#b12ac915c7764d77abd0a791feb43575"><span>prepareForSpatialQueries</span></a> ? ( in Size approximateNumberOfQueries, in <a class="reference internal" href="../Containers/GenericValueContainer.html#genericvaluecontainer"><span>GenericValueContainer</span></a> options )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a></td>
+<td><a class="reference internal" href="Points.html#da58fd1dd264489a17905232277a0b7"><span>raycast</span></a> ? ( in <a class="reference internal" href="../Math/Ray.html#ray"><span>Ray</span></a> ray, in Boolean doubleSided, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> coneThreshold, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxDistance )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Points.html#fc34e3446940f5ad77215e28229957"><span>removeSpatialQueryAcceleration</span></a> ! ()</td>
+</tr>
+</tbody>
+</table>
+</div>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="OctreeQueryInternal.kl.html"
+                        title="前の章へ">OctreeQueryInternal.kl</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="PointsDCCConversion.kl.html"
+                        title="次の章へ">PointsDCCConversion.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/Geometry/Points.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="PointsDCCConversion.kl.html" title="PointsDCCConversion.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="OctreeQueryInternal.kl.html" title="OctreeQueryInternal.kl"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Geometry Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >Geometry Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

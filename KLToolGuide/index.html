@@ -1,0 +1,344 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Using the KL Tool to Develop and Debug Extensions &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
+    <link rel="next" title="Map-Reduce Programming Guide" href="../MapReduceProgrammingGuide/index.html" />
+    <link rel="prev" title="Util Extension’s Free Functions" href="../KLExtensionsGuide/Util/functions.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../MapReduceProgrammingGuide/index.html" title="Map-Reduce Programming Guide"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="../KLExtensionsGuide/Util/functions.html" title="Util Extension’s Free Functions"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="using-the-kl-tool-to-develop-and-debug-extensions">
+<span id="kltoolguide"></span><h1>Using the KL Tool to Develop and Debug Extensions<a class="headerlink" href="#using-the-kl-tool-to-develop-and-debug-extensions" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<a class="reference internal image-reference" href="../_images/FE_logo_345_60.png"><img alt="../_images/FE_logo_345_60.png" src="../_images/FE_logo_345_60.png" style="width: 345px; height: 60px;" /></a>
+<div class="line-block">
+<div class="line">Fabric Engine version 2.0.0</div>
+<div class="line">Copyright 2010-2015 Fabric Software Inc. All rights reserved.</div>
+</div>
+</div>
+<div class="section" id="the-kl-tool">
+<h1>The KL Tool<a class="headerlink" href="#the-kl-tool" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Distributed with Fabric Engine is a command-line executable <code class="file docutils literal"><span class="pre">kl</span></code>
+(<code class="file docutils literal"><span class="pre">kl.exe</span></code> on Windows) under the <code class="file docutils literal"><span class="pre">bin/</span></code> folder in the Fabric
+Engine distribution.  It is referred to as the <em class="dfn">KL tool</em>.</p>
+<p>The KL tool enables running KL programs from the command line and reporting
+results. The KL tool is used throughout the internal unit test suite at
+Fabric Software. In addition, the KL tool can be very useful in the
+development of your own custom KL extensions.</p>
+<p>When a Fabric Engine environment is set up by sourcing <code class="file docutils literal"><span class="pre">environment.sh</span></code>
+at the root level of the Fabric Engine distribution, or by double-clicking
+<code class="file docutils literal"><span class="pre">prompt.bat</span></code> on Windows, the KL tool should be available on your
+<span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">PATH</span></code> and can be run on the command line as the command <code class="file docutils literal"><span class="pre">kl</span></code>.
+You can verify that it is working by running <strong class="command">kl --help</strong>, which
+should show you all the options available.</p>
+<div class="section" id="compiling-and-evaluating-kl-source-files-with-the-kl-tool">
+<h2>Compiling and Evaluating KL Source Files with the KL Tool<a class="headerlink" href="#compiling-and-evaluating-kl-source-files-with-the-kl-tool" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The KL tool should be run providing the name of a KL source file to compile
+and run. The provided KL source file is normally a small text file containing
+an entry operator (see below) and some code to generate output. For example,
+if the file <code class="file docutils literal"><span class="pre">MyTest.kl</span></code> contained KL source code, you would run it in
+the KL tool with the command:</p>
+<div class="highlight-python"><div class="highlight"><pre>kl MyTest.kl
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-entry-operator">
+<h2>The <code class="docutils literal"><span class="pre">entry()</span></code> Operator<a class="headerlink" href="#the-entry-operator" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The KL tool will look for an operator called <code class="docutils literal"><span class="pre">entry</span></code> taking zero arguments
+within the code. This operator will be called by the KL tool after it
+has compiled the source code.</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">Hello World</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="testing-extensions">
+<h1>Testing Extensions<a class="headerlink" href="#testing-extensions" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Often, a simple KL source file can be written that loads and performs various
+tests on your extension. Simply by including the <code class="docutils literal"><span class="pre">require</span> <span class="pre">MyExtension;</span></code>
+statement at the beginning of the file will cause the functionality of your
+entire extension to included. The <code class="docutils literal"><span class="pre">require</span></code> statement will also validate
+that your extension does not include any syntactic errors. If the compilation
+of the extension as well as the code in the KL source file that requires it is
+successful, then the entry operator will be invoked.</p>
+<p>In order to test your extension, the KL source file will will typically
+construct objects and structs defined in your extension, and test the
+functions by invoking them and reporting the results.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">It is better to avoid reporting entire data structures, as these can change
+without breaking the behavior of the code. Instead, consider invoking
+methods on your types and check the results. Avoid testing internal methods
+that are not intended to be exposed to users.Your extension should define
+methods that are expected to be used in other extensions, or in operators in
+Splice. These methods define the interface to your extension, and should be
+tested thoroughly.It is good practice to use access modifiers such as
+<code class="code docutils literal"><span class="pre">public</span></code> and <code class="code docutils literal"><span class="pre">private</span></code> to control the external API to your
+objects and structs; see <a class="reference internal" href="../KLProgrammingGuide/types.html#klpg-types-member-access"><span>Structure, Object and Interface Access Contols</span></a> for more details.</p>
+</div>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: A Simple Test in KL</span>
+<span class="cm">*/</span>
+
+<span class="kr">require</span> <span class="nx">Math</span><span class="p">;</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">Mat33</span> <span class="nx">mat33</span> <span class="o">=</span> <span class="nx">Quat</span><span class="p">(</span><span class="nx">Euler</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="nx">HALF_PI</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="nx">RotationOrder</span><span class="p">(</span><span class="s1">&#39;zyx&#39;</span><span class="p">))).</span><span class="nx">toMat33</span><span class="p">();</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">mat33</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">{row0:{x:+0.596046e-7,y:+0.0,z:+0.999999},row1:{x:+0.0,y:+1.0,z:+0.0},row2:{x:-0.999999,y:+0.0,z:+0.596046e-7}}</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+<div class="section" id="output-to-a-text-file">
+<h2>Output to a Text File<a class="headerlink" href="#output-to-a-text-file" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The output of the KL tool can be sent to a text file by using the <code class="code docutils literal"><span class="pre">&gt;</span></code>
+shell operator:</p>
+<div class="highlight-python"><div class="highlight"><pre>kl MyTest.kl &gt; MyTest.out
+</pre></div>
+</div>
+<p>This can be useful when the test generates a lot of output, or when you want
+to search through the output in a text editor.  It is also useful for
+generating the file with correct output for unit test cases.</p>
+</div>
+<div class="section" id="setting-up-unit-tests-that-use-the-kl-tool">
+<h2>Setting up Unit Tests that Use the KL Tool<a class="headerlink" href="#setting-up-unit-tests-that-use-the-kl-tool" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Unit testing systems are easy to setup using the KL tool. Unit tests typically
+compare a reference output against the current output to determine if the
+behavior of your code has changed.</p>
+<p>If you are using Linux or OS X, or a mingw shell on Windows, you can use the
+<strong class="command">cmp</strong> and <strong class="command">diff</strong> utilities to create simple scripts to
+perform tests.  A sample such script might be:</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>#!/bin/bash
+
+USAGE=&quot;Usage: $0 file1.kl file2.kl ... fileN.kl&quot;
+
+if [ &quot;$#&quot; == &quot;0&quot; ]; then
+  echo &quot;$USAGE&quot;
+  exit 1
+fi
+
+while (( &quot;$#&quot; )); do
+
+  KL=$1
+  OUT=${KL%.kl}.out
+  RES=${KL%.kl}.res
+
+  kl &quot;$KL&quot; &gt;&quot;$RES&quot;
+  if ! cmp &quot;$OUT&quot; &quot;$RES&quot;; then
+    echo &quot;FAIL $KL&quot;
+    echo &quot;diff:&quot;
+    diff -u &quot;$OUT&quot; &quot;$RES&quot;
+    # rm &quot;$RES&quot;
+    exit 1
+  else
+    echo &quot;PASS $KL&quot;
+    rm &quot;$RES&quot;
+  fi
+
+  shift
+
+done
+</pre></div>
+</div>
+<p>This script expects, for a given KL source file <code class="file docutils literal"><span class="pre">test.kl</span></code>, for there
+to be a corresponding file <code class="file docutils literal"><span class="pre">test.out</span></code> with the correct output.  If
+this script is placed in a file such as <code class="file docutils literal"><span class="pre">verify.sh</span></code>, you can then run:</p>
+<div class="highlight-python"><div class="highlight"><pre>./verify.sh test.kl
+</pre></div>
+</div>
+<p>to see whether the output of <code class="file docutils literal"><span class="pre">test.kl</span></code> matches the contents of
+<code class="file docutils literal"><span class="pre">test.out</span></code>.</p>
+<p>More complex scripts can be written for testing.  The following example Python
+code runs the KL tool and compares the output against a reference file. The
+reference file will be generated if it does not exist, or the <code class="code docutils literal"><span class="pre">--update</span>
+<span class="pre">True</span></code> option is set.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="c"># Import system modules</span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">string</span><span class="o">,</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+
+<span class="c"># Parse the commandline args.</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&#39;klFile&#39;</span><span class="p">,</span> <span class="n">help</span> <span class="o">=</span> <span class="s">&quot;The kl File to use in the test&quot;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&#39;--update&#39;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">help</span> <span class="o">=</span> <span class="s">&quot;Force the update of the reference file&quot;</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+<span class="n">klFile</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">klFile</span>
+<span class="n">cmdstring</span> <span class="o">=</span> <span class="s">&quot;kl.exe &quot;</span> <span class="o">+</span> <span class="n">klFile</span>
+
+<span class="c"># Call the KL tool piping output to the output buffer.</span>
+<span class="n">proc</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">cmdstring</span><span class="p">,</span><span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+  <span class="n">line</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+  <span class="k">if</span> <span class="n">line</span> <span class="o">!=</span> <span class="s">&#39;&#39;</span><span class="p">:</span>
+    <span class="n">output</span> <span class="o">+=</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="k">break</span>
+<span class="n">referencefile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">klFile</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;.txt&#39;</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">referencefile</span><span class="p">)</span> <span class="ow">or</span> <span class="n">args</span><span class="o">.</span><span class="n">update</span> <span class="o">==</span> <span class="s">&#39;True&#39;</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">referencefile</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+      <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">&quot;Reference Created&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="n">referenceTxt</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span> <span class="n">referencefile</span> <span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+  <span class="k">if</span> <span class="n">referenceTxt</span> <span class="o">==</span> <span class="n">output</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;Test:&quot;</span> <span class="o">+</span> <span class="n">klFile</span> <span class="o">+</span> <span class="s">&quot; Passed&quot;</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;Test:&quot;</span> <span class="o">+</span> <span class="n">klFile</span> <span class="o">+</span> <span class="s">&quot; Failed&quot;</span>
+</pre></div>
+</div>
+<p>Place the python code above in a python file called (for example)
+<code class="file docutils literal"><span class="pre">pythonTester.py</span></code>. You would then run it passing a unit test KL source
+file to test against.</p>
+<div class="code highlight-python"><div class="highlight"><pre>python pythonTester.py test.kl
+</pre></div>
+</div>
+<p>To update test results, run the tester with the &#8211;update argument.</p>
+<p>​  python pythonTester.py test.kl &#8211;update</p>
+<p>Setting up a unit testing framework for your custom extensions and running
+them regularly will help catch changes that might break your APIs.</p>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and Tables<a class="headerlink" href="#indices-and-tables" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="../genindex.html"><span>索引</span></a></li>
+<li><a class="reference internal" href="../search.html"><span>検索ページ</span></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Using the KL Tool to Develop and Debug Extensions</a></li>
+<li><a class="reference internal" href="#the-kl-tool">The KL Tool</a><ul>
+<li><a class="reference internal" href="#compiling-and-evaluating-kl-source-files-with-the-kl-tool">Compiling and Evaluating KL Source Files with the KL Tool</a></li>
+<li><a class="reference internal" href="#the-entry-operator">The <code class="docutils literal"><span class="pre">entry()</span></code> Operator</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#testing-extensions">Testing Extensions</a><ul>
+<li><a class="reference internal" href="#output-to-a-text-file">Output to a Text File</a></li>
+<li><a class="reference internal" href="#setting-up-unit-tests-that-use-the-kl-tool">Setting up Unit Tests that Use the KL Tool</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and Tables</a></li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="../KLExtensionsGuide/Util/functions.html"
+                        title="前の章へ">Util Extension&#8217;s Free Functions</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="../MapReduceProgrammingGuide/index.html"
+                        title="次の章へ">Map-Reduce Programming Guide</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/KLToolGuide/index.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../MapReduceProgrammingGuide/index.html" title="Map-Reduce Programming Guide"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="../KLExtensionsGuide/Util/functions.html" title="Util Extension’s Free Functions"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

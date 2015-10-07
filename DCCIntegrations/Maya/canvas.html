@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Canvas inside of Maya &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="canvas-inside-of-maya">
+<span id="fabricformaya-canvas"></span><h1>Canvas inside of Maya<a class="headerlink" href="#canvas-inside-of-maya" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<img alt="../../_images/userguide_29.jpg" src="../../_images/userguide_29.jpg" />
+<div class="section" id="the-canvasnode">
+<h2>The CanvasNode<a class="headerlink" href="#the-canvasnode" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Canvas is integrated inside of maya as a maya hypergraph node. You can instantiate the canvasNode in the node editor hitting <em class="dfn">TAB</em> and typing <em class="dfn">canvas</em> or through the Fabric top level menu and choosing <em class="dfn">Create graph</em>. You can then open up the Canvas user interface through the <em class="dfn">Open Canvas</em> button on the Maya Attribute editor.</p>
+<img alt="../../_images/userguide_30.jpg" src="../../_images/userguide_30.jpg" />
+</div>
+<div class="section" id="adding-ports-attributes">
+<h2>Adding ports / attributes<a class="headerlink" href="#adding-ports-attributes" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The CanvasNode inside of Maya doesn&#8217;t come with any attributes by default. It&#8217;s so to say a generic node for any purpose. After opening up the Canvas user interface you can expose ports the normal way. Doing that will also add matching attributes to the Maya node, which allow you to connect data between the two worlds. The supported data types are;</p>
+<blockquote>
+<div><ul class="simple">
+<li>Boolean</li>
+<li>Integer / SInt32 / UInt32</li>
+<li>Scalar / Float32 / Float64</li>
+<li>String</li>
+<li>Vec3</li>
+<li>Euler</li>
+<li>Color</li>
+<li>Mat44</li>
+<li>Lines</li>
+<li>PolygonMesh</li>
+</ul>
+</div></blockquote>
+<p>When using the dialog to create a port there are a couple of extra features within Maya.</p>
+<img alt="../../_images/userguide_31.jpg" src="../../_images/userguide_31.jpg" />
+</div>
+<div class="section" id="native-vs-multi-arrays">
+<h2>Native vs. multi arrays<a class="headerlink" href="#native-vs-multi-arrays" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Maya supports two types of arrays</p>
+<blockquote>
+<div><ul class="simple">
+<li>Native: Maya has a way of representing a IntArray, DoubleArray or VectorArray as a single attribute. This is very efficient for large arrays and is much faster than using multi arrays.</li>
+<li>Multi: Each element of the array has its own single plug, you can connect them to different things in the hyper graph and you can build up arrays interactively. This is very flexible, but much slower than native arrays.</li>
+</ul>
+</div></blockquote>
+<p>Within Canvas you can choose which type of array you want - depending on your needs.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">Native arrays are only support for these types: <code class="code docutils literal"><span class="pre">Scalar[]</span></code>, <code class="code docutils literal"><span class="pre">Float32[]</span></code>, <code class="code docutils literal"><span class="pre">Integer[]</span></code>, <code class="code docutils literal"><span class="pre">SInt32[]</span></code>, <code class="code docutils literal"><span class="pre">Vec3[]</span></code>.</p>
+</div>
+</div>
+<div class="section" id="opaque-data">
+<h2>Opaque data<a class="headerlink" href="#opaque-data" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>By checking the <em class="dfn">opaque in DCC</em> checkbox causes Maya to use a special data type for the Maya attribute instead of reflecting it as a native type. These attributes can be connected between each other (from one Maya node to the next) without Maya interpreting the data. This is very useful when passing heavy data around which you don&#8217;t need access to outside of Canvas, but you still want to pass it between Maya nodes. This is also very useful for passing data between Canvas Maya nodes which Maya is not able to reflect at all (for example a custom KL datastructure).</p>
+</div>
+<div class="section" id="port-metadata">
+<h2>Port metadata<a class="headerlink" href="#port-metadata" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>To drive some of the user interface features you can set metadata on the port. This will be picked up by Maya when creating attribute. Open the meta data section of the dialog when creating a port. Right now Maya supports only the <em class="dfn">range</em> settings.</p>
+<img alt="../../_images/userguide_32.jpg" src="../../_images/userguide_32.jpg" />
+</div>
+<div class="section" id="loading-saving-of-canvas-graphs">
+<h2>Loading / saving of Canvas graphs<a class="headerlink" href="#loading-saving-of-canvas-graphs" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>You can save out Canvas graphs from Maya to disk and also load them back. To do this select the Canvas Maya node of choice and pick <em class="dfn">Load graph</em> or <em class="dfn">Save graph</em>.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">You can only load graphs into a Canvas Maya node which is empty.</p>
+</div>
+</div>
+<div class="section" id="realtime-rendering">
+<h2>Realtime Rendering<a class="headerlink" href="#realtime-rendering" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>You can draw into Maya&#8217;s viewport directly from Canvas. For this you can use the <em class="dfn">EmptyDrawingHandle</em> node and consecutive nodes such as <em class="dfn">DrawingHandle.DrawPolygonMesh</em>. Please see the <code class="code docutils literal"><span class="pre">InlineDrawing</span></code> Canvas sample scenes for examples of this.</p>
+<img alt="../../_images/userguide_33.jpg" src="../../_images/userguide_33.jpg" />
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">You need to provide a proper name (for the name port) for each of the drawing nodes when using multiple nodes consecutively.</p>
+</div>
+</div>
+<div class="section" id="keyboard-shortcuts">
+<h2>Keyboard shortcuts<a class="headerlink" href="#keyboard-shortcuts" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Canvas for Maya implements all standard <a class="reference internal" href="../../CanvasUserGuide/shortcuts.html#canvas-user-guide-shortcuts"><span>キーボードショートカット</span></a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Canvas inside of Maya</a><ul>
+<li><a class="reference internal" href="#the-canvasnode">The CanvasNode</a></li>
+<li><a class="reference internal" href="#adding-ports-attributes">Adding ports / attributes</a></li>
+<li><a class="reference internal" href="#native-vs-multi-arrays">Native vs. multi arrays</a></li>
+<li><a class="reference internal" href="#opaque-data">Opaque data</a></li>
+<li><a class="reference internal" href="#port-metadata">Port metadata</a></li>
+<li><a class="reference internal" href="#loading-saving-of-canvas-graphs">Loading / saving of Canvas graphs</a></li>
+<li><a class="reference internal" href="#realtime-rendering">Realtime Rendering</a></li>
+<li><a class="reference internal" href="#keyboard-shortcuts">Keyboard shortcuts</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/DCCIntegrations/Maya/canvas.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

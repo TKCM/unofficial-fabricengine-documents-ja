@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Reference counted data structures &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
+    <link rel="up" title="Canvas Programmer Guide" href="index.html" />
+    <link rel="next" title="Port value persistance" href="valuepersistance.html" />
+    <link rel="prev" title="Caches" href="caches.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="valuepersistance.html" title="Port value persistance"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="caches.html" title="Caches"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Canvas Programmer Guide</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="reference-counted-data-structures">
+<span id="canvas-programmer-guide-referencetypes"></span><h1>Reference counted data structures<a class="headerlink" href="#reference-counted-data-structures" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>To understand the issues with reference counted data structures in Canvas two things are relevant:</p>
+<blockquote>
+<div><ul class="simple">
+<li>KL objects, arrays and dictionaries are reference counted</li>
+<li>Canvas passes data between nodes without cloning</li>
+</ul>
+</div></blockquote>
+<p>This is not a problem for simple values, such as <em class="dfn">Scalar</em> or <em class="dfn">String</em>, or structs such as <em class="dfn">Vec3</em> for example, because they are copied. Copying a reference counted container however doesn&#8217;t result in a deep copy, so the referenced data won&#8217;t be cloned. This means that when passing KL objects or arrays through Canvas you have to be very conscious on when you should use <a class="reference internal" href="caches.html#canvas-programmer-guide-caches"><span>Caches</span></a> or <a class="reference internal" href="variables.html#canvas-programmer-guide-variables"><span>Variables</span></a> or <em class="dfn">Clone</em> nodes.</p>
+<p>In the example below the array is changed even though we are not setting it in the variable again. This is due to the fact that the array is reference counted.</p>
+<img alt="../_images/userguide_27.jpg" src="../_images/userguide_27.jpg" />
+<p>To make this graph behave as initially expected you need to add a clone node. That way the array is cloned after being accessed and the original array in the variable won&#8217;t change.</p>
+<img alt="../_images/userguide_28.jpg" src="../_images/userguide_28.jpg" />
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="caches.html"
+                        title="前の章へ">Caches</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="valuepersistance.html"
+                        title="次の章へ">Port value persistance</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/CanvasProgrammerGuide/referencetypes.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="valuepersistance.html" title="Port value persistance"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="caches.html" title="Caches"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Canvas Programmer Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

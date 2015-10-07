@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>BulletBoxShape.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="Bullet Extension’s Files" href="files.html" />
+    <link rel="next" title="BulletBroadphaseInterface.kl" href="BulletBroadphaseInterface.kl.html" />
+    <link rel="prev" title="BulletBox2dBox2dCollisionAlgorithm.kl" href="BulletBox2dBox2dCollisionAlgorithm.kl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="BulletBroadphaseInterface.kl.html" title="BulletBroadphaseInterface.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="BulletBox2dBox2dCollisionAlgorithm.kl.html" title="BulletBox2dBox2dCollisionAlgorithm.kl"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Bullet Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">Bullet Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="bullet-bulletboxshape-kl">
+<span id="bulletboxshape-kl"></span><span id="id1"></span><h1>BulletBoxShape.kl<a class="headerlink" href="#bullet-bulletboxshape-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="bulletboxshape-object">
+<h3>BulletBoxShape (object)<a class="headerlink" href="#bulletboxshape-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">The <a class="reference internal" href="BulletBoxShape.html#bulletboxshape"><span>BulletBoxShape</span></a> is a box primitive around the origin, its sides axis aligned with length specified by half extents, in local shape coordinates. When used as part of a <a class="reference internal" href="BulletICollisionObject.html#bulleticollisionobject"><span>BulletICollisionObject</span></a> or <a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a> it will be an oriented box in world space.</p>
+<div class="section" id="members">
+<h4>Members<a class="headerlink" href="#members" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="33%" />
+<col width="50%" />
+<col width="17%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Data</td>
+<td>pointer</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="18%" />
+<col width="82%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletBoxShape.html#f4aff5e5c320480eba48ce6f4cdfe6ab"><span>BulletBoxShape</span></a>  ( in <a class="reference internal" href="BulletBoxShape.html#bulletboxshape"><span>BulletBoxShape</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletBoxShape.html#fd5e2972ef724b259fec1f3d6cf9e1c5"><span>BulletBoxShape</span></a>  ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> boxHalfExtents )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletBoxShape.html#e5ac031ac714bb984d3db587e5a4689"><span>BulletBoxShape</span></a>  ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletBoxShape.html#fecd0b8ebd4fb89a999d24f675117b"><span>__construct</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> boxHalfExtents )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletBoxShape.html#f51e61abfd54e11aaf126263a0ac2a4"><span>__destroy</span></a> ! ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletBoxShape.html#ffd5feb27974d429bc6f440c6d5247e"><span>batchedUnitVectorGetSupportingVertexWithoutMargin</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> vectors[], io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> supportVerticesOut[] )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletBoxShape.html#da4e4b947132435da0ce458f8454c613"><span>calculateLocalInertia</span></a> ? ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> mass, io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> inertia )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="BulletBoxShape.html#bulletboxshape"><span>BulletBoxShape</span></a></td>
+<td><a class="reference internal" href="BulletBoxShape.html#d42da3872134470a098ae3241f85236"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletBoxShape.html#beeaa4e98bde40b487fa763a41365228"><span>getAabb</span></a> ? ( in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> t, io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> aabbMin, io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> aabbMax )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletBoxShape.html#d760833d9f41caba95d49f56362c1d"><span>getEdge</span></a> ? ( in Integer i, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> pa, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> pb )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletBoxShape.html#e21d778fcf6460cb845854efff8711a"><span>getHalfExtentsWithMargin</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletBoxShape.html#ebc1ffe47a2401c96bd3e2490b74ef8"><span>getHalfExtentsWithoutMargin</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletBoxShape.html#ca95b9c845d4851931eedd41ecd1863"><span>getMargin</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="BulletBoxShape.html#f3b767c46b74436b821f3f0fffc16e1d"><span>getName</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Integer</td>
+<td><a class="reference internal" href="BulletBoxShape.html#c5700e253f4044b186766164556c8e06"><span>getNumEdges</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Integer</td>
+<td><a class="reference internal" href="BulletBoxShape.html#b29cb6db66b44c4ab5591d6d9d331f11"><span>getNumPlanes</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Integer</td>
+<td><a class="reference internal" href="BulletBoxShape.html#c038342128472bbec458716d2a00b7"><span>getNumVertices</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletBoxShape.html#a9095d0ae851486d80508d2d111195d7"><span>getPlane</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> planeNormal, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> planeSupport, in Integer i )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletBoxShape.html#e3bc13503345a8adee5950d1df2602"><span>getPlaneEquation</span></a> ? ( io <a class="reference internal" href="../Math/Vec4.html#vec4"><span>Vec4</span></a> plane, in Integer i )</td>
+</tr>
+<tr class="row-even"><td>Data</td>
+<td><a class="reference internal" href="BulletBoxShape.html#c31f79ab1094c88b4bcf86bf19f4667"><span>getPointer</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletBoxShape.html#f69342899955d4a3713b9a34"><span>getVertex</span></a> ? ( in Integer i, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> vtx )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="BulletBoxShape.html#cf78461096d422c8017a0f908d8a4a2"><span>isInside</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> pt, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> tolerance )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletBoxShape.html#b6dce0280984bb2a87e623b84fec954"><span>localGetSupportingVertex</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> vec )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletBoxShape.html#e588da1918fa4388aa129fb82b336112"><span>localGetSupportingVertexWithoutMargin</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> vec )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletBoxShape.html#a5fbc363af53477dbed1715997593757"><span>setLocalScaling</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> scaling )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletBoxShape.html#a22c347261b84770bb388b4f706c8099"><span>setMargin</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> collisionMargin )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletBoxShape.html#a20c4013a4843269ef7babdc8701813"><span>setMargin</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> margin )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletBoxShape.html#a4b4079524a4365b6044b5e266ce324"><span>~BulletBoxShape</span></a>  ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="BulletBox2dBox2dCollisionAlgorithm.kl.html"
+                        title="前の章へ">BulletBox2dBox2dCollisionAlgorithm.kl</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="BulletBroadphaseInterface.kl.html"
+                        title="次の章へ">BulletBroadphaseInterface.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/Bullet/BulletBoxShape.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="BulletBroadphaseInterface.kl.html" title="BulletBroadphaseInterface.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="BulletBox2dBox2dCollisionAlgorithm.kl.html" title="BulletBox2dBox2dCollisionAlgorithm.kl"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Bullet Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >Bullet Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

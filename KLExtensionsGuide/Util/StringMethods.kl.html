@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>StringMethods.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="Util Extension’s Files" href="files.html" />
+    <link rel="next" title="VersionUtils.kl" href="VersionUtils.kl.html" />
+    <link rel="prev" title="Regex.kl" href="Regex.kl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="VersionUtils.kl.html" title="VersionUtils.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="Regex.kl.html" title="Regex.kl"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Util Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">Util Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="util-stringmethods-kl">
+<span id="stringmethods-kl"></span><span id="id1"></span><h1>StringMethods.kl<a class="headerlink" href="#util-stringmethods-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="string-struct">
+<h3>String (struct)<a class="headerlink" href="#string-struct" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="16%" />
+<col width="84%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="String.html#b4974641438a9e095637081f23ab"><span>String</span></a>  ( in <a class="reference internal" href="String.html#string"><span>String</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="String.html#c51049be1c634621970ea890af003f65"><span>String</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="String.html#d96ffd3bda63497cbf935234cb7b2227"><span>capitalize</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="String.html#a1d6766e3ed04ce491ac270a88392f10"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Size</td>
+<td><a class="reference internal" href="String.html#ea88258484c2a9669bb3ba1d4c07f"><span>count</span></a> ? ( in <a class="reference internal" href="String.html#string"><span>String</span></a> search )</td>
+</tr>
+<tr class="row-even"><td>Size</td>
+<td><a class="reference internal" href="String.html#fc3e45a3e94b9fa0b025ee4e532c27"><span>count</span></a> ? ( in <a class="reference internal" href="String.html#string"><span>String</span></a> search, in Size start, in Size end )</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="String.html#df2acad43d8945cf8415cc43c98cacca"><span>endsWith</span></a> ? ( in <a class="reference internal" href="String.html#string"><span>String</span></a> search )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="String.html#f67ebab347af48209589809863e88f0b"><span>endsWith</span></a> ? ( in <a class="reference internal" href="String.html#string"><span>String</span></a> search, in Size start, in Size end )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="String.html#cc5bf4126b68496681df05af23e9a046"><span>fill</span></a> ! ( in <a class="reference internal" href="String.html#string"><span>String</span></a> c, in Size count )</td>
+</tr>
+<tr class="row-even"><td>Integer</td>
+<td><a class="reference internal" href="String.html#dd02c8c829564edf9d5a43be1e65901c"><span>find</span></a> ? ( in <a class="reference internal" href="String.html#string"><span>String</span></a> search )</td>
+</tr>
+<tr class="row-odd"><td>Integer</td>
+<td><a class="reference internal" href="String.html#daffafe1139a41338dcb2678c5107ba6"><span>find</span></a> ? ( in <a class="reference internal" href="String.html#string"><span>String</span></a> search, in Size start )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="String.html#b3362d20e634a87bb37854792880b17"><span>isAlpha</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="String.html#b0ba52618345c99ba9e340d3c80d0a"><span>isAlphaNumeric</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="String.html#f0de904e36bece7f9b122351fa"><span>isDigit</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="String.html#dd0f84e94e410b960a091c0c1f5dd0"><span>join</span></a> ? ( in <a class="reference internal" href="String.html#string"><span>String</span></a> segments[] )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="String.html#a521968e504013834ffc0a989b0709"><span>left</span></a> ? ( in Size divider )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="String.html#de5ba59ff4b0e88fbff56904fe5c3"><span>leftStrip</span></a> ? ( in Size length )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="String.html#df1e1274643219b3d48588aebc359"><span>lower</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="String.html#string"><span>String</span></a>[]</td>
+<td><a class="reference internal" href="String.html#aebdd1df6a074445a287c0c6fe8cbc47"><span>partition</span></a> ? ( in <a class="reference internal" href="String.html#string"><span>String</span></a> separator )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="String.html#cc670d7aeb8409a9f96a595efb18cb6"><span>replace</span></a> ? ( in <a class="reference internal" href="String.html#string"><span>String</span></a> search, in <a class="reference internal" href="String.html#string"><span>String</span></a> replacement )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="String.html#b4e458c94ff4de6b4f5ae75523b6055"><span>replace</span></a> ? ( in <a class="reference internal" href="String.html#string"><span>String</span></a> search, in <a class="reference internal" href="String.html#string"><span>String</span></a> replacement, in Size count )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="String.html#e10f37eeab344723a07f7c5b1303382c"><span>replaceAny</span></a> ? ( in <a class="reference internal" href="String.html#string"><span>String</span></a> search, in <a class="reference internal" href="String.html#string"><span>String</span></a> replacement )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="String.html#e43d61c1e94f1ca1748ac1b4f214c8"><span>replaceAny</span></a> ? ( in <a class="reference internal" href="String.html#string"><span>String</span></a> search, in <a class="reference internal" href="String.html#string"><span>String</span></a> replacement, in Size count )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="String.html#ccc736b6934353b500c4afb1d3b54c"><span>reverse</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Integer</td>
+<td><a class="reference internal" href="String.html#d58a0f1ab449b5bb83d2138145748f"><span>reverseFind</span></a> ? ( in <a class="reference internal" href="String.html#string"><span>String</span></a> search )</td>
+</tr>
+<tr class="row-even"><td>Integer</td>
+<td><a class="reference internal" href="String.html#cc7a9c89031423e99713d825ed9d324"><span>reverseFind</span></a> ? ( in <a class="reference internal" href="String.html#string"><span>String</span></a> search, in Size end )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="String.html#string"><span>String</span></a>[]</td>
+<td><a class="reference internal" href="String.html#b7ed790d453647f688688f5b0cd62698"><span>reversePartition</span></a> ? ( in <a class="reference internal" href="String.html#string"><span>String</span></a> separator )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="String.html#d1104851c3541df9688553156e0f3fc"><span>right</span></a> ? ( in Size length )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="String.html#bc8c5f6dea040a9a246afa3516676a0"><span>rightStrip</span></a> ? ( in Size length )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="String.html#string"><span>String</span></a>[]</td>
+<td><a class="reference internal" href="String.html#ac03b8ec3074cf0af8cb797a04f598f"><span>split</span></a> ? ( in <a class="reference internal" href="String.html#string"><span>String</span></a> separator )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="String.html#string"><span>String</span></a>[]</td>
+<td><a class="reference internal" href="String.html#eadf2d3329c4032b4b646707b5aa87e"><span>splitAny</span></a> ? ( in <a class="reference internal" href="String.html#string"><span>String</span></a> separator )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="String.html#ac95d3f31c7942cfab44c8a620736a87"><span>startsWith</span></a> ? ( in <a class="reference internal" href="String.html#string"><span>String</span></a> search )</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="String.html#b58ce01ff4afebdc78cb4bb6b3e22"><span>startsWith</span></a> ? ( in <a class="reference internal" href="String.html#string"><span>String</span></a> search, in Size start, in Size end )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="String.html#bbb4a8be664eb59cefc883d9fda9a5"><span>subString</span></a> ? ( in Size start, in Size length )</td>
+</tr>
+<tr class="row-odd"><td>Integer</td>
+<td><a class="reference internal" href="String.html#bf6a349c64522adee52bdb0829a8b"><span>toInteger</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="String.html#e33ff5d708744775a5cbd74bfab9e97c"><span>toScalar</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="String.html#dc6d6b2f34fb3b7ea21c947986e68"><span>upper</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="String.html#c04f8247252a46b6bff2c93982beb2ca"><span>whiteSpace</span></a> ! ( in Size count )</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="Regex.kl.html"
+                        title="前の章へ">Regex.kl</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="VersionUtils.kl.html"
+                        title="次の章へ">VersionUtils.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/Util/StringMethods.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="VersionUtils.kl.html" title="VersionUtils.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="Regex.kl.html" title="Regex.kl"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Util Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >Util Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

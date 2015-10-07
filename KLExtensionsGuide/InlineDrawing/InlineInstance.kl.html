@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>InlineInstance.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="InlineDrawing Extension’s Files" href="files.html" />
+    <link rel="next" title="InlineLinesShape.kl" href="InlineLinesShape.kl.html" />
+    <link rel="prev" title="InlineFileBasedTexture.kl" href="InlineFileBasedTexture.kl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="InlineLinesShape.kl.html" title="InlineLinesShape.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="InlineFileBasedTexture.kl.html" title="InlineFileBasedTexture.kl"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >InlineDrawing Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">InlineDrawing Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="inlinedrawing-inlineinstance-kl">
+<span id="inlineinstance-kl"></span><span id="id1"></span><h1>InlineInstance.kl<a class="headerlink" href="#inlinedrawing-inlineinstance-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="inlineinstance-object">
+<h3>InlineInstance (object)<a class="headerlink" href="#inlineinstance-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 1.12.0 で追加.</span></p>
+</div>
+<p class="plaintext">The <a class="reference internal" href="InlineInstance.html#inlineinstance"><span>InlineInstance</span></a> represents a drawable instance of an <a class="reference internal" href="InlineShape.html#inlineshape"><span>InlineShape</span></a> using an <a class="reference internal" href="InlineTransform.html#inlinetransform"><span>InlineTransform</span></a>.
+<a class="reference internal" href="InlineInstance.html#inlineinstance"><span>InlineInstance</span></a> objects are stored within an <a class="reference internal" href="InlineMaterial.html#inlinematerial"><span>InlineMaterial</span></a>.</p>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="16%" />
+<col width="84%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="InlineInstance.html#f3da2aded5a48fd87ca638889b39135"><span>InlineInstance</span></a>  ( in <a class="reference internal" href="InlineInstance.html#inlineinstance"><span>InlineInstance</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="InlineInstance.html#a6e4af25a8ce44a5898d20f53b217a9b"><span>InlineInstance</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in <a class="reference internal" href="InlineTransform.html#inlinetransform"><span>InlineTransform</span></a> transform, in <a class="reference internal" href="InlineShape.html#inlineshape"><span>InlineShape</span></a> shape )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="InlineInstance.html#a109594395821152a431ca18bf"><span>InlineInstance</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in <a class="reference internal" href="InlineTransform.html#inlinetransform"><span>InlineTransform</span></a> transform, in <a class="reference internal" href="InlineShape.html#inlineshape"><span>InlineShape</span></a> shape, io <a class="reference internal" href="InlineMaterial.html#inlinematerial"><span>InlineMaterial</span></a> material )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="InlineInstance.html#f033d806f75e467aa70d1c6590980615"><span>InlineInstance</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="InlineInstance.html#c82f019ea98477da9fa5c871fb6ce66"><span>addMaterial</span></a> ! ( io <a class="reference internal" href="InlineMaterial.html#inlinematerial"><span>InlineMaterial</span></a> material )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="InlineInstance.html#inlineinstance"><span>InlineInstance</span></a></td>
+<td><a class="reference internal" href="InlineInstance.html#cfeccc573eb41bbbfeb84065be778c8"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="InlineInstance.html#e6a5e7f5a7554296b92cb3b54c69c0ff"><span>containsUniforms</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="InlineInstance.html#e6052b861784891b802208851467734"><span>draw</span></a> ! ( io <a class="reference internal" href="DrawContext.html#drawcontext"><span>DrawContext</span></a> context )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="InlineUniform.html#inlineuniform"><span>InlineUniform</span></a></td>
+<td><a class="reference internal" href="InlineInstance.html#feacb4cdf04e02b8fa5018743ad11a"><span>getInstanceUniform</span></a> ? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="InlineMaterial.html#inlinematerial"><span>InlineMaterial</span></a></td>
+<td><a class="reference internal" href="InlineInstance.html#a1189c402a9a022a4d9e2a44d6"><span>getMaterial</span></a> ? ( in Index index )</td>
+</tr>
+<tr class="row-odd"><td>Size</td>
+<td><a class="reference internal" href="InlineInstance.html#d30d7aeeda740d4a433160d5a632fe0"><span>getNumMaterials</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="InlineInstance.html#d67a07f1df4bae84b995e0ef49bba5"><span>getPath</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="InlineShape.html#inlineshape"><span>InlineShape</span></a></td>
+<td><a class="reference internal" href="InlineInstance.html#a27013e2de0945a696cbca5689d8476a"><span>getShape</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="InlineTransform.html#inlinetransform"><span>InlineTransform</span></a></td>
+<td><a class="reference internal" href="InlineInstance.html#edaf3aa6d7454d930621b8f11d10b8"><span>getTransform</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="InlineUniform.html#inlineuniform"><span>InlineUniform</span></a></td>
+<td><a class="reference internal" href="InlineInstance.html#fe082b9b26204a9c9eb28a8d8747c4bd"><span>getTransformUniform</span></a> ? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in Index index )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="InlineInstance.html#fe3397dace1d47cd9059c3bd6ed20e04"><span>hasInstanceUniform</span></a> ? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="InlineInstance.html#c9edfbc946747e59e7b7598f00f74f8"><span>hasMaterial</span></a> ? ( in <a class="reference internal" href="InlineMaterial.html#inlinematerial"><span>InlineMaterial</span></a> material )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="InlineInstance.html#ea7dcc402bbd5c8bda5f7186d8"><span>hasTransformUniform</span></a> ? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in Index index )</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="InlineInstance.html#eb4103606ea54c5ba4b3f09091840310"><span>isActive</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Geometry/GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a>[]</td>
+<td><a class="reference internal" href="InlineInstance.html#aec8cb86fe43cc85ad05f82dc70ea9"><span>raycast</span></a> ? ( in <a class="reference internal" href="../Math/Ray.html#ray"><span>Ray</span></a> ray, in Boolean closest, in Boolean doubleSided, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> coneThreshold, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxDistance )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="InlineInstance.html#e5c305fee9494baab133c3d884bf55cd"><span>removeMaterial</span></a> ! ( io <a class="reference internal" href="InlineMaterial.html#inlinematerial"><span>InlineMaterial</span></a> material )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="InlineInstance.html#e35fbc0b66be4e899dce5d8082462884"><span>setActive</span></a> ! ( in Boolean active )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="InlineInstance.html#a70753eb240c40db899832e31a15bd67"><span>setInstanceUniform</span></a> ! ( in <a class="reference internal" href="InlineUniform.html#inlineuniform"><span>InlineUniform</span></a> uniform )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="InlineInstance.html#a3c39b792141999dcdf5df3c39452f"><span>setShape</span></a> ! ( in <a class="reference internal" href="InlineShape.html#inlineshape"><span>InlineShape</span></a> shape )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="InlineInstance.html#ebb2917ac720454fab73922c754e1099"><span>setTransform</span></a> ! ( in <a class="reference internal" href="InlineTransform.html#inlinetransform"><span>InlineTransform</span></a> transform )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="InlineInstance.html#ef0aa0d1e4b74573826af45947a179c0"><span>setTransformUniform</span></a> ! ( in <a class="reference internal" href="InlineUniform.html#inlineuniform"><span>InlineUniform</span></a> uniform, in Index index )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="InlineInstance.html#ce702f10ca4632b9dfec686f77dfda"><span>~InlineInstance</span></a>  ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="InlineFileBasedTexture.kl.html"
+                        title="前の章へ">InlineFileBasedTexture.kl</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="InlineLinesShape.kl.html"
+                        title="次の章へ">InlineLinesShape.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/InlineDrawing/InlineInstance.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="InlineLinesShape.kl.html" title="InlineLinesShape.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="InlineFileBasedTexture.kl.html" title="InlineFileBasedTexture.kl"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >InlineDrawing Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >InlineDrawing Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

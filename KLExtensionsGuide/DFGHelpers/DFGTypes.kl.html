@@ -1,0 +1,560 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>DFGTypes.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="DFGHelpers Extension’s Files" href="files.html" />
+    <link rel="next" title="DFGHelpers Extension’s Types" href="types.html" />
+    <link rel="prev" title="DFGHelpers Extension’s Files" href="files.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="types.html" title="DFGHelpers Extension’s Types"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="files.html" title="DFGHelpers Extension’s Files"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >DFGHelpers Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">DFGHelpers Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="dfghelpers-dfgtypes-kl">
+<span id="dfgtypes-kl"></span><span id="id1"></span><h1>DFGTypes.kl<a class="headerlink" href="#dfghelpers-dfgtypes-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="noise-cache-object">
+<h3>Noise_Cache (object)<a class="headerlink" href="#noise-cache-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="members">
+<h4>Members<a class="headerlink" href="#members" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="61%" />
+<col width="34%" />
+<col width="5%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="../Geometry/PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a></td>
+<td>mesh</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>UInt32</td>
+<td>meshVesion</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>:ref:<a href="#id2"><span class="problematic" id="id3">`</span></a>Vec3 &lt;vec3&gt;`&lt;&gt;</td>
+<td>positions</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>:ref:<a href="#id4"><span class="problematic" id="id5">`</span></a>Vec3 &lt;vec3&gt;`&lt;&gt;</td>
+<td>normals</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>:ref:<a href="#id6"><span class="problematic" id="id7">`</span></a>Vec3 &lt;vec3&gt;`&lt;&gt;</td>
+<td>originalPositions</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>:ref:<a href="#id8"><span class="problematic" id="id9">`</span></a>Vec3 &lt;vec3&gt;`&lt;&gt;</td>
+<td>originalNormals</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>:ref:<a href="#id10"><span class="problematic" id="id11">`</span></a>Vec3 &lt;vec3&gt;`&lt;&gt;</td>
+<td>velocities</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>UInt32&lt;&gt;</td>
+<td>neighborA</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>UInt32&lt;&gt;</td>
+<td>neighborB</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Noise_Cache.html#faba70a4bad8b5c641e404487d1"><span>Noise_Cache</span></a>  ( in <a class="reference internal" href="Noise_Cache.html#noise-cache"><span>Noise_Cache</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Noise_Cache.html#d72b175f905a4835a77ca38ead210558"><span>Noise_Cache</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Noise_Cache.html#noise-cache"><span>Noise_Cache</span></a></td>
+<td><a class="reference internal" href="Noise_Cache.html#c10f33f1174a34981433dcbe10dc03"><span>clone</span></a> ? ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+<p><div class="section" id="characterinstance-cache-object">
+<h3>CharacterInstance_Cache (object)<a class="headerlink" href="#characterinstance-cache-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id12">
+<h4>Members<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="79%" />
+<col width="17%" />
+<col width="4%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>StaticInlineTransform</td>
+<td>transform</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Characters/Character.html#character"><span>Character</span></a>[]</td>
+<td>characters</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../InlineDrawing/DrawingHandle.html#drawinghandle"><span>DrawingHandle</span></a>[]</td>
+<td>handles</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../InlineDrawing/InlineMatrixArrayTexture.html#inlinematrixarraytexture"><span>InlineMatrixArrayTexture</span></a>[]</td>
+<td>poseTextures</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id13">
+<h4>Methods<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="CharacterInstance_Cache.html#e9dced725d7d49c6a6655315276a20a0"><span>CharacterInstance_Cache</span></a>  ( in <a class="reference internal" href="CharacterInstance_Cache.html#characterinstance-cache"><span>CharacterInstance_Cache</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="CharacterInstance_Cache.html#eec248269490381c5000bfdad08b0"><span>CharacterInstance_Cache</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="CharacterInstance_Cache.html#characterinstance-cache"><span>CharacterInstance_Cache</span></a></td>
+<td><a class="reference internal" href="CharacterInstance_Cache.html#bdee48e49496bc3c8e9a7981"><span>clone</span></a> ? ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+<p><div class="section" id="torus-cache-object">
+<h3>Torus_Cache (object)<a class="headerlink" href="#torus-cache-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id14">
+<h4>Members<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="68%" />
+<col width="26%" />
+<col width="6%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="../Geometry/PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a></td>
+<td>mesh</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td>innerRadius</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td>outerRadius</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>UInt32</td>
+<td>detail</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id15">
+<h4>Methods<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Torus_Cache.html#e5dfe1cc154135b36766bc713d6f0e"><span>Torus_Cache</span></a>  ( in <a class="reference internal" href="Torus_Cache.html#torus-cache"><span>Torus_Cache</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Torus_Cache.html#e6d6f143406439595acb14b56f09b82"><span>Torus_Cache</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Torus_Cache.html#torus-cache"><span>Torus_Cache</span></a></td>
+<td><a class="reference internal" href="Torus_Cache.html#d205b704d64d4f779ca3d4baa83ee693"><span>clone</span></a> ? ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+<p><div class="section" id="instance-cache-object">
+<h3>Instance_Cache (object)<a class="headerlink" href="#instance-cache-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id16">
+<h4>Members<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="73%" />
+<col width="22%" />
+<col width="5%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>UInt32</td>
+<td>meshVesion</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>StaticInlineTransform</td>
+<td>transform</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../InlineDrawing/InlineShape.html#inlineshape"><span>InlineShape</span></a></td>
+<td>shape</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../InlineDrawing/InlineInstance.html#inlineinstance"><span>InlineInstance</span></a></td>
+<td>instance</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../InlineDrawing/InlineMaterial.html#inlinematerial"><span>InlineMaterial</span></a></td>
+<td>material</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id17">
+<h4>Methods<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Instance_Cache.html#a5c46da467a9ad58f0e0c1e4b15"><span>Instance_Cache</span></a>  ( in <a class="reference internal" href="Instance_Cache.html#instance-cache"><span>Instance_Cache</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Instance_Cache.html#e5626f0cf4702b996060d16e6f79d"><span>Instance_Cache</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Instance_Cache.html#instance-cache"><span>Instance_Cache</span></a></td>
+<td><a class="reference internal" href="Instance_Cache.html#bbfeace701049b2871f28234cb9ace9"><span>clone</span></a> ? ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+<p><div class="section" id="clonemesh-cache-object">
+<h3>CloneMesh_Cache (object)<a class="headerlink" href="#clonemesh-cache-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id18">
+<h4>Members<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="68%" />
+<col width="26%" />
+<col width="6%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="../Geometry/PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a></td>
+<td>mesh</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>UInt32</td>
+<td>meshVesion</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td>innerRadius</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td>outerRadius</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>UInt32</td>
+<td>detail</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id19">
+<h4>Methods<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="27%" />
+<col width="73%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="CloneMesh_Cache.html#e1978a7b654e4456aea7c0ba58560c57"><span>CloneMesh_Cache</span></a>  ( in <a class="reference internal" href="CloneMesh_Cache.html#clonemesh-cache"><span>CloneMesh_Cache</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="CloneMesh_Cache.html#a7cd38438d984cd3bb225797e604d5ca"><span>CloneMesh_Cache</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="CloneMesh_Cache.html#clonemesh-cache"><span>CloneMesh_Cache</span></a></td>
+<td><a class="reference internal" href="CloneMesh_Cache.html#aecee2aa3938482fa252d205a193c366"><span>clone</span></a> ? ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+<p><div class="section" id="fbxcharacter-cache-object">
+<h3>FbxCharacter_Cache (object)<a class="headerlink" href="#fbxcharacter-cache-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id20">
+<h4>Members<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="72%" />
+<col width="22%" />
+<col width="6%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="../FbxHelpers/FbxCharacter.html#fbxcharacter"><span>FbxCharacter</span></a></td>
+<td>character</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id21">
+<h4>Methods<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="28%" />
+<col width="72%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="FbxCharacter_Cache.html#b441654d4f5741c08523db4c75041982"><span>FbxCharacter_Cache</span></a>  ( in <a class="reference internal" href="FbxCharacter_Cache.html#fbxcharacter-cache"><span>FbxCharacter_Cache</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="FbxCharacter_Cache.html#be767e4470944ce0a5735fb877da492c"><span>FbxCharacter_Cache</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="FbxCharacter_Cache.html#fbxcharacter-cache"><span>FbxCharacter_Cache</span></a></td>
+<td><a class="reference internal" href="FbxCharacter_Cache.html#e6d9462c2a40cda4c368deb7243761"><span>clone</span></a> ? ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+<p><div class="section" id="wrapdeformer-bindingdata-object">
+<h3>WrapDeformer_BindingData (object)<a class="headerlink" href="#wrapdeformer-bindingdata-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id22">
+<h4>Members<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="66%" />
+<col width="30%" />
+<col width="4%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>UInt32</td>
+<td>referenceMeshVersion</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Geometry/GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a>[]</td>
+<td>locations</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a>[]</td>
+<td>distances</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Boolean[]</td>
+<td>valid</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id23">
+<h4>Methods<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="WrapDeformer_BindingData.html#a4a43c2fcbc4411888ed172c5b21782"><span>WrapDeformer_BindingData</span></a>  ( in <a class="reference internal" href="WrapDeformer_BindingData.html#wrapdeformer-bindingdata"><span>WrapDeformer_BindingData</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="WrapDeformer_BindingData.html#d776c8f86f417d9c7716a08e038b59"><span>WrapDeformer_BindingData</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="WrapDeformer_BindingData.html#wrapdeformer-bindingdata"><span>WrapDeformer_BindingData</span></a></td>
+<td><a class="reference internal" href="WrapDeformer_BindingData.html#e2510c84bc34aebb452ac07fb806821"><span>clone</span></a> ? ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+<p><div class="section" id="meshcache-object">
+<h3>MeshCache (object)<a class="headerlink" href="#meshcache-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id24">
+<h4>Members<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="74%" />
+<col width="20%" />
+<col width="7%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="../Geometry/PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a></td>
+<td>mesh</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>UInt32</td>
+<td>version</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id25">
+<h4>Methods<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="MeshCache.html#b530b41708040c3be71c4e5c2b759c7"><span>MeshCache</span></a>  ( in <a class="reference internal" href="MeshCache.html#meshcache"><span>MeshCache</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="MeshCache.html#d79959162401c97883a22d8476666"><span>MeshCache</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="MeshCache.html#meshcache"><span>MeshCache</span></a></td>
+<td><a class="reference internal" href="MeshCache.html#bad535f5994046b78a77b57056a9468d"><span>clone</span></a> ? ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="files.html"
+                        title="前の章へ">DFGHelpers Extension&#8217;s Files</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="types.html"
+                        title="次の章へ">DFGHelpers Extension&#8217;s Types</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/DFGHelpers/DFGTypes.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="types.html" title="DFGHelpers Extension’s Types"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="files.html" title="DFGHelpers Extension’s Files"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >DFGHelpers Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >DFGHelpers Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

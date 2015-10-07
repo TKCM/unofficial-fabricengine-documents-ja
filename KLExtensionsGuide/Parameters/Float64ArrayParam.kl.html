@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Float64ArrayParam.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="Parameters Extension’s Files" href="files.html" />
+    <link rel="next" title="Float64Param.kl" href="Float64Param.kl.html" />
+    <link rel="prev" title="EulerParam.kl" href="EulerParam.kl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="Float64Param.kl.html" title="Float64Param.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="EulerParam.kl.html" title="EulerParam.kl"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Parameters Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">Parameters Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="parameters-float64arrayparam-kl">
+<span id="float64arrayparam-kl"></span><span id="id1"></span><h1>Float64ArrayParam.kl<a class="headerlink" href="#parameters-float64arrayparam-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="float64arrayparam-object">
+<h3>Float64ArrayParam (object)<a class="headerlink" href="#float64arrayparam-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 1.12.0 で追加.</span></p>
+</div>
+<p class="plaintext">The <a class="reference internal" href="Float64ArrayParam.html#float64arrayparam"><span>Float64ArrayParam (object)</span></a> implements the <a class="reference internal" href="Param.html#param"><span>Param (interface)</span></a> interface for Float64 array values.</p>
+<div class="plaintext highlight-kl"><div class="highlight"><pre>
+</pre></div>
+</div>
+<p class="plaintext"><a class="reference internal" href="Float64ArrayParam.html#float64arrayparam"><span>Float64ArrayParam</span></a> param = :ref:<a href="#id2"><span class="problematic" id="id3">`</span></a>Float64ArrayParam &lt;float64arrayparam&gt;`(&#8216;dimensions&#8217;);
+param.resize(3);
+param.setValue(0, 12.7);
+param.setValue(1, 13.8);
+param.setValue(2, 14.9);
+report(param.getValue(2));</p>
+<div class="section" id="members">
+<h4>Members<a class="headerlink" href="#members" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="80%" />
+<col width="15%" />
+<col width="5%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
+<td>name</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a>[]</td>
+<td>values</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Param.html#param"><span>Param</span></a>[<a class="reference internal" href="../Util/String.html#string"><span>String</span></a>]</td>
+<td>options</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="28%" />
+<col width="72%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Float64ArrayParam.html#ba2a2c5e5fb480187686c7b798811e7"><span>Float64ArrayParam</span></a>  ( in <a class="reference internal" href="Float64ArrayParam.html#float64arrayparam"><span>Float64ArrayParam</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Float64ArrayParam.html#e0841720a88444bdb601b5c84def90f2"><span>Float64ArrayParam</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Float64ArrayParam.html#c25e15be4a234c87a22b7d7ff7aff995"><span>Float64ArrayParam</span></a>  ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Float64ArrayParam.html#float64arrayparam"><span>Float64ArrayParam</span></a></td>
+<td><a class="reference internal" href="Float64ArrayParam.html#ea15dce54044324b547fda4ff69375c"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="Float64ArrayParam.html#c21b3ee7f4950ad663a9114011fbb"><span>getName</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Param.html#param"><span>Param</span></a></td>
+<td><a class="reference internal" href="Float64ArrayParam.html#ba2ed6f15b4dd5bae6380ba3b10c0d"><span>getOption</span></a> ? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="Float64ArrayParam.html#ef72ed28be944f2f9732871c90de2468"><span>getValue</span></a> ? ( in Index index )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="Float64ArrayParam.html#ed0bbb97d7643319fc1e38c4d944e0c"><span>getValueType</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Float64ArrayParam.html#a3f6640aec04387a7520b19a1014d72"><span>resize</span></a> ! ( in Size size )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Float64ArrayParam.html#c3c52aa8267243d581672d4dca3a5931"><span>setOption</span></a> ! ( in <a class="reference internal" href="Param.html#param"><span>Param</span></a> option )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Float64ArrayParam.html#b036721e344297891c7b2ba0d36e4f"><span>setValue</span></a> ! ( in Index index, in <a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> value )</td>
+</tr>
+<tr class="row-even"><td>Size</td>
+<td><a class="reference internal" href="Float64ArrayParam.html#d3e524f05d044b5b273f7c9b63d12cc"><span>size</span></a> ? ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="EulerParam.kl.html"
+                        title="前の章へ">EulerParam.kl</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="Float64Param.kl.html"
+                        title="次の章へ">Float64Param.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/Parameters/Float64ArrayParam.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="Float64Param.kl.html" title="Float64Param.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="EulerParam.kl.html" title="EulerParam.kl"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Parameters Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >Parameters Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

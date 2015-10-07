@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>PackedIndexLists.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="Containers Extension’s Files" href="files.html" />
+    <link rel="next" title="ThreadsafeMetaDataContainer.kl" href="ThreadsafeMetaDataContainer.kl.html" />
+    <link rel="prev" title="LocalArrays.kl" href="LocalArrays.kl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="ThreadsafeMetaDataContainer.kl.html" title="ThreadsafeMetaDataContainer.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="LocalArrays.kl.html" title="LocalArrays.kl"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Containers Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">Containers Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="containers-packedindexlists-kl">
+<span id="packedindexlists-kl"></span><span id="id1"></span><h1>PackedIndexLists.kl<a class="headerlink" href="#containers-packedindexlists-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="packedindexlists-struct">
+<h3>PackedIndexLists (struct)<a class="headerlink" href="#packedindexlists-struct" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">The <a class="reference internal" href="PackedIndexLists.html#packedindexlists"><span>PackedIndexLists</span></a> allows to store multiple double-linked lists of UInt32 values
+into a single memory buffer.</p>
+<p class="plaintext">/note List and element keys are not safe-guarded; a wrong usage will lead to unexpected results.</p>
+<p class="plaintext">/example
+require Containers;</p>
+<p class="plaintext">function printList( <a class="reference internal" href="PackedIndexLists.html#packedindexlists"><span>PackedIndexLists</span></a> lists, PackedIndexListKey listKey ) {
+report(&#8220;Elements:&#8221;);
+PackedIndexListKey key = listKey;
+UInt32 index;
+while( lists.getNextIndexAndIncrement( key, index ) )
+report(&#8221;  &#8221; + index );
+}</p>
+<p class="plaintext">operator entry(){</p>
+<p class="plaintext"><a class="reference internal" href="PackedIndexLists.html#packedindexlists"><span>PackedIndexLists</span></a> lists;</p>
+<p class="plaintext">PackedIndexListKey list1 = lists.createList();
+lists.listAddIndex( list1, 3 );</p>
+<p class="plaintext">//Keep a key for element 9, as we will remove it later
+PackedIndexListElementKey element9 = lists.listAddIndex( list1, 9 );</p>
+<p class="plaintext">PackedIndexListKey list2 = lists.createList();
+lists.listAddIndex( list2, 1 );
+lists.listAddIndex( list2, 2 );</p>
+<p class="plaintext">lists.listAddIndex( list1, 8 );</p>
+<p class="plaintext">lists.listAddIndex( list2, 5 );</p>
+<p class="plaintext">//Remove &#8216;9&#8217; from list1
+lists.removeListElement( element9 );</p>
+<p class="plaintext">printList( lists, list1 );
+printList( lists, list2 );
+}
+/endexample</p>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="PackedIndexLists.html#a92499d6378942309f364e6d1c59107f"><span>PackedIndexLists</span></a>  ( in <a class="reference internal" href="PackedIndexLists.html#packedindexlists"><span>PackedIndexLists</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><span class="xref std std-ref">PackedIndexLists</span>  ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="PackedIndexLists.html#afd46a505f4b7e990b49dd33c9917b"><span>clearAll</span></a> ! ( in Boolean deallocate )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="PackedIndexLists.html#ce2d5cfc23bc4a9ea33255105ac557c9"><span>clearList</span></a> ! ( in PackedIndexListKey listKey )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="PackedIndexLists.html#packedindexlists"><span>PackedIndexLists</span></a></td>
+<td><a class="reference internal" href="PackedIndexLists.html#ab58900699664d87a2544bac2de315ed"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>PackedIndexListKey</td>
+<td><a class="reference internal" href="PackedIndexLists.html#d3438882949420292c43765e1076578"><span>createList</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="PackedIndexLists.html#cecd024047c9ae18817680db71aa"><span>deleteList</span></a> ! ( in PackedIndexListKey listKey )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="PackedIndexLists.html#b5964b54c93bed531ced3dcfb89"><span>getListDesc</span></a> ? ( in PackedIndexListKey listKey )</td>
+</tr>
+<tr class="row-odd"><td>Size</td>
+<td><a class="reference internal" href="PackedIndexLists.html#f0e759df9614ac284538c9c4379de4e"><span>getListSize_slow</span></a> ? ( in PackedIndexListKey listKey )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="PackedIndexLists.html#a887e97a2409eb8baf3c7f896de0c"><span>getNextIndexAndIncrement</span></a> ? ( io PackedIndexListElementKey elementKey, io UInt32 index )</td>
+</tr>
+<tr class="row-odd"><td>PackedIndexListElementKey</td>
+<td><a class="reference internal" href="PackedIndexLists.html#e4491185dfb8002a3c6482"><span>listAddIndex</span></a> ! ( in PackedIndexListKey listKey, in UInt32 index )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="PackedIndexLists.html#d420c98d8cf42a6bd63c99d776125ea"><span>listIsEmpty</span></a> ? ( in PackedIndexListKey listKey )</td>
+</tr>
+<tr class="row-odd"><td>PackedIndexListElementKey</td>
+<td><a class="reference internal" href="PackedIndexLists.html#c1f58c80edf6499b93d0f9266696044f"><span>moveElementToList</span></a> ! ( in PackedIndexListElementKey elementKey, in PackedIndexListKey targetListKey )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="PackedIndexLists.html#c6240d34dbb837c2012daaf76b4"><span>removeListElement</span></a> ! ( in PackedIndexListElementKey elementKey )</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="LocalArrays.kl.html"
+                        title="前の章へ">LocalArrays.kl</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="ThreadsafeMetaDataContainer.kl.html"
+                        title="次の章へ">ThreadsafeMetaDataContainer.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/Containers/PackedIndexLists.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="ThreadsafeMetaDataContainer.kl.html" title="ThreadsafeMetaDataContainer.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="LocalArrays.kl.html" title="LocalArrays.kl"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Containers Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >Containers Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

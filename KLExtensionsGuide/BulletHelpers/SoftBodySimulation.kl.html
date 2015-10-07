@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>SoftBodySimulation.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="BulletHelpers Extension’s Files" href="files.html" />
+    <link rel="next" title="BulletHelpers Extension’s Types" href="types.html" />
+    <link rel="prev" title="RigidBodySimulation.kl" href="RigidBodySimulation.kl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="types.html" title="BulletHelpers Extension’s Types"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="RigidBodySimulation.kl.html" title="RigidBodySimulation.kl"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Bullet Helpers Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">BulletHelpers Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="bullethelpers-softbodysimulation-kl">
+<span id="softbodysimulation-kl"></span><span id="id1"></span><h1>SoftBodySimulation.kl<a class="headerlink" href="#bullethelpers-softbodysimulation-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="softbodysimulation-object">
+<h3>SoftBodySimulation (object)<a class="headerlink" href="#softbodysimulation-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klbrief">An object for managing rigid body simulations.</p>
+<p class="plaintext">The <a class="reference internal" href="RigidBodySimulation.html#rigidbodysimulation"><span>RigidBodySimulation</span></a> object provides a tool to combine Fabric Engine systems such as <a class="reference internal" href="../Geometry/Geometry.html#geometry"><span>Geometry</span></a> and <a class="reference internal" href="../InlineDrawing/InlineDrawing.html#inlinedrawing"><span>InlineDrawing</span></a> with Bullet Physics.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="SoftBodySimulation.html#softbodysimulation"><span>SoftBodySimulation</span></a></p>
+</div>
+<div class="section" id="members">
+<h4>Members<a class="headerlink" href="#members" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="71%" />
+<col width="26%" />
+<col width="3%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Boolean</td>
+<td>initialized</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td>timeStep</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>UInt32</td>
+<td>subSteps</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="SoftBodyMesh.html#softbodymesh"><span>SoftBodyMesh</span></a>[]</td>
+<td>softBodyMeshes</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="SoftBodyLines.html#softbodylines"><span>SoftBodyLines</span></a>[]</td>
+<td>softBodyLines</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Bullet/BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a>[]</td>
+<td>rigidBodies</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Bullet/BulletBroadphaseInterface.html#bulletbroadphaseinterface"><span>BulletBroadphaseInterface</span></a></td>
+<td>broadphase</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Bullet/BulletCollisionDispatcher.html#bulletcollisiondispatcher"><span>BulletCollisionDispatcher</span></a></td>
+<td>dispatcher</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Bullet/BulletConstraintSolver.html#bulletconstraintsolver"><span>BulletConstraintSolver</span></a></td>
+<td>solver</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Bullet/BulletCollisionConfiguration.html#bulletcollisionconfiguration"><span>BulletCollisionConfiguration</span></a></td>
+<td>collisionConfiguration</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Bullet/BulletDynamicsWorld.html#bulletdynamicsworld"><span>BulletDynamicsWorld</span></a></td>
+<td>dynamicsWorld</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Bullet/BulletSoftSoftCollisionAlgorithm.html#bulletsoftsoftcollisionalgorithm"><span>BulletSoftSoftCollisionAlgorithm</span></a>[]</td>
+<td>SoftSoftCollisionAlgorithms</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Bullet/BulletSoftRigidCollisionAlgorithm.html#bulletsoftrigidcollisionalgorithm"><span>BulletSoftRigidCollisionAlgorithm</span></a>[]</td>
+<td>SoftRigidCollisionAlgorithms</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Bullet/BulletSoftBodyWorldInfo.html#bulletsoftbodyworldinfo"><span>BulletSoftBodyWorldInfo</span></a></td>
+<td>softBodyWorldInfo</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="28%" />
+<col width="72%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="SoftBodySimulation.html#ff560a14a94435d8df300f214a4494c"><span>SoftBodySimulation</span></a>  ( in <a class="reference internal" href="SoftBodySimulation.html#softbodysimulation"><span>SoftBodySimulation</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="SoftBodySimulation.html#dd0f67fe924443f3b8cc803de95e12ff"><span>SoftBodySimulation</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Bullet/BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a></td>
+<td><a class="reference internal" href="SoftBodySimulation.html#f1b9cd2164494d9ceb81e92c39489e"><span>addRigidBody</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> mass, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> xfo, in <a class="reference internal" href="../Bullet/BulletCollisionShape.html#bulletcollisionshape"><span>BulletCollisionShape</span></a> shape )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="SoftBodyMesh.html#softbodymesh"><span>SoftBodyMesh</span></a></td>
+<td><a class="reference internal" href="SoftBodySimulation.html#aba17dc468c1427e9128f287aa364b18"><span>addSoftBody</span></a> ! ( in <a class="reference internal" href="../Bullet/BulletSoftBody.html#bulletsoftbody"><span>BulletSoftBody</span></a> psb, in <a class="reference internal" href="../Geometry/PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a> mesh )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="SoftBodyLines.html#softbodylines"><span>SoftBodyLines</span></a></td>
+<td><a class="reference internal" href="SoftBodySimulation.html#d67c9c56d7c4016bc4efc8206a45b2a"><span>addSoftBodyLines</span></a> ! ( in <a class="reference internal" href="../Bullet/BulletSoftBody.html#bulletsoftbody"><span>BulletSoftBody</span></a> psb, in <a class="reference internal" href="../Geometry/Lines.html#lines"><span>Lines</span></a> lines )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="SoftBodySimulation.html#softbodysimulation"><span>SoftBodySimulation</span></a></td>
+<td><a class="reference internal" href="SoftBodySimulation.html#c31bf658b04477bb5b5fe74501b52bc"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="SoftBodySimulation.html#f6d3b8cc3fa14c02bf16631faa85b213"><span>createFlatGround</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> yPosition )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Bullet/BulletSoftRigidDynamicsWorld.html#bulletsoftrigiddynamicsworld"><span>BulletSoftRigidDynamicsWorld</span></a></td>
+<td><a class="reference internal" href="SoftBodySimulation.html#c34569f33473fbec4f1b8c6eb19e2"><span>getSoftDynamicsWorld</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="SoftBodySimulation.html#d36b1578c446fabd0a661b954b9dad"><span>initPhysics</span></a> ! ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="SoftBodySimulation.html#bf175ca96d144cfeae09acf4d5f16369"><span>resetSimulation</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="SoftBodySimulation.html#d2f72bef3eb8495783042f4c97469516"><span>stepSimulation</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="SoftBodySimulation.html#f721b009b1784e8ebb15b26f136837db"><span>~SoftBodySimulation</span></a>  ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="RigidBodySimulation.kl.html"
+                        title="前の章へ">RigidBodySimulation.kl</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="types.html"
+                        title="次の章へ">BulletHelpers Extension&#8217;s Types</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/BulletHelpers/SoftBodySimulation.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="types.html" title="BulletHelpers Extension’s Types"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="RigidBodySimulation.kl.html" title="RigidBodySimulation.kl"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Bullet Helpers Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >BulletHelpers Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

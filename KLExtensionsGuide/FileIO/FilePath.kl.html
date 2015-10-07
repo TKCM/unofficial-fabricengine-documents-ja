@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>FilePath.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="FileIO Extension’s Files" href="files.html" />
+    <link rel="next" title="FileReader.kl" href="FileReader.kl.html" />
+    <link rel="prev" title="Debugging.kl" href="Debugging.kl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="FileReader.kl.html" title="FileReader.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="Debugging.kl.html" title="Debugging.kl"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >FileIO Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">FileIO Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="fileio-filepath-kl">
+<span id="filepath-kl"></span><span id="id1"></span><h1>FilePath.kl<a class="headerlink" href="#fileio-filepath-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="filepath-object">
+<h3>FilePath (object)<a class="headerlink" href="#filepath-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="FilePath.html#a7a7c5524ae74ee0afaceed99450ef4c"><span>FilePath</span></a>  ( in <a class="reference internal" href="FilePath.html#filepath"><span>FilePath</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="FilePath.html#b91318522d94d33b9e5a99c011a38bd"><span>FilePath</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> value )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="FilePath.html#d0a5b813e674a5e8eca182acc10db35"><span>FilePath</span></a>  ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="FilePath.html#filepath"><span>FilePath</span></a></td>
+<td><a class="reference internal" href="FilePath.html#c347d81c40e5b6810e4729a5e0d4"><span>append</span></a> ! ( in <a class="reference internal" href="FilePath.html#filepath"><span>FilePath</span></a> a )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="FilePath.html#bef1c790ac34a88a63a34ad9464102a"><span>clear</span></a> ! ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="FilePath.html#filepath"><span>FilePath</span></a></td>
+<td><a class="reference internal" href="FilePath.html#a006c57145d68a17ab1cdbc9544f"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="FilePath.html#e82dfc5ad0f4f1f8cb92ab27b829c91"><span>cloneMembersTo</span></a> ? ( io <a class="reference internal" href="FilePath.html#filepath"><span>FilePath</span></a> that )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="FilePath.html#e8fb59b4c42fab0010e194acaa184"><span>exists</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="FilePath.html#filepath"><span>FilePath</span></a></td>
+<td><a class="reference internal" href="FilePath.html#d887805f874b4946a4e74f1cf8babaf6"><span>expandEnvVars</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="FilePath.html#ddcddb8f7da24b25afa25abf81f4ccfc"><span>extension</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="FilePath.html#filepath"><span>FilePath</span></a></td>
+<td><a class="reference internal" href="FilePath.html#e4578e5fb5424aa6b005337ab0e3f340"><span>fileName</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="FilePath.html#filepath"><span>FilePath</span></a>[]</td>
+<td><a class="reference internal" href="FilePath.html#b256e6559843ef9747f147a8f201e6"><span>getSubPaths</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="FilePath.html#ab4718734b734c80905bb03a15673d01"><span>hasExtension</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="FilePath.html#bb8c819192c46ceaf7789ed76133ee7"><span>hasFileName</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="FilePath.html#d059fcdb9f354ba7b8e27bcfd28e191f"><span>hasParentPath</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="FilePath.html#c3430948818b484c8f8fc30fb79d6bc0"><span>hasRelativePath</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="FilePath.html#ba3801e6e0749619ba060e7aae7d516"><span>hasRootDirectory</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="FilePath.html#e21a7ae6ada4f588700b8b48e30d38a"><span>hasRootName</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="FilePath.html#abcaa90dec1486487a6a1cc21cd01b4"><span>hasStem</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="FilePath.html#f0db7f25d8f49ae93d12f183a144b7f"><span>isAbsolute</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="FilePath.html#c92b04d5b3e44dd887a9db8aeeefad3"><span>isDirectory</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="FilePath.html#c62d553f94192a3a0ad7beb7cc2f6"><span>isEmpty</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="FilePath.html#e2e3a10148c5413eb3a2aabd57ffa1ab"><span>isRegularFile</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="FilePath.html#a095e777e5c45b38b2dda041a45711b"><span>isRelative</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="FilePath.html#feae7b7614e67aecb425c705bfd46"><span>isSymlink</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="FileTime.html#filetime"><span>FileTime</span></a></td>
+<td><a class="reference internal" href="FilePath.html#f4ec1c70750f4e88b49c1dba00648389"><span>last_write_time</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="FilePath.html#filepath"><span>FilePath</span></a></td>
+<td><a class="reference internal" href="FilePath.html#d1de2659455dacfd2696d7a8eb10"><span>makePreferred</span></a> ! ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="FilePath.html#filepath"><span>FilePath</span></a></td>
+<td><a class="reference internal" href="FilePath.html#dcaff745f294d3c8a6ee6d9a98fbb8d"><span>parentPath</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="FilePath.html#filepath"><span>FilePath</span></a></td>
+<td><a class="reference internal" href="FilePath.html#c8bc3040b28f4b348c4aff3b113fc061"><span>relativePath</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="FilePath.html#filepath"><span>FilePath</span></a></td>
+<td><a class="reference internal" href="FilePath.html#e296af84ed7980b771e1e177fcf"><span>removeFileName</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="FilePath.html#filepath"><span>FilePath</span></a></td>
+<td><a class="reference internal" href="FilePath.html#d1e8475aa3743019172f7d3a4af7733"><span>replaceExtension</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> newExtension )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="FilePath.html#filepath"><span>FilePath</span></a></td>
+<td><a class="reference internal" href="FilePath.html#c98f5e9d4c10a95bba7998caa906"><span>rootDirectory</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="FilePath.html#filepath"><span>FilePath</span></a></td>
+<td><a class="reference internal" href="FilePath.html#b129de7cfe6477698d14e2ee60e57fd"><span>rootName</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="FilePath.html#filepath"><span>FilePath</span></a></td>
+<td><a class="reference internal" href="FilePath.html#e2bc1841df1943c5869a61c9038a6a65"><span>rootPath</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="FilePath.html#aaa2428e8e50bedde556498d"><span>stem</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="FilePath.html#e85a0580e13413ead2d0f905dcbd4f8"><span>string</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="FilePath.html#b372f0e094a4ec8b763f241e71b164d"><span>~FilePath</span></a>  ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="Debugging.kl.html"
+                        title="前の章へ">Debugging.kl</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="FileReader.kl.html"
+                        title="次の章へ">FileReader.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/FileIO/FilePath.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="FileReader.kl.html" title="FileReader.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="Debugging.kl.html" title="Debugging.kl"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >FileIO Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >FileIO Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

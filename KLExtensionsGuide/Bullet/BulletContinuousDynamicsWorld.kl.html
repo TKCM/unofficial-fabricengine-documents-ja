@@ -1,0 +1,362 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>BulletContinuousDynamicsWorld.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="Bullet Extension’s Files" href="files.html" />
+    <link rel="next" title="BulletConvex2dConvex2dAlgorithm.kl" href="BulletConvex2dConvex2dAlgorithm.kl.html" />
+    <link rel="prev" title="BulletContactConstraint.kl" href="BulletContactConstraint.kl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="BulletConvex2dConvex2dAlgorithm.kl.html" title="BulletConvex2dConvex2dAlgorithm.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="BulletContactConstraint.kl.html" title="BulletContactConstraint.kl"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Bullet Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">Bullet Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="bullet-bulletcontinuousdynamicsworld-kl">
+<span id="bulletcontinuousdynamicsworld-kl"></span><span id="id1"></span><h1>BulletContinuousDynamicsWorld.kl<a class="headerlink" href="#bullet-bulletcontinuousdynamicsworld-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="bulletcontinuousdynamicsworld-object">
+<h3>BulletContinuousDynamicsWorld (object)<a class="headerlink" href="#bulletcontinuousdynamicsworld-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">btContinuousDynamicsWorld adds optional (per object) continuous collision detection for fast moving objects to the btDiscreteDynamicsWorld.
+This copes with fast moving objects that otherwise would tunnel/miss collisions.
+Under construction, don&#8217;t use yet! Please use btDiscreteDynamicsWorld instead.</p>
+<div class="section" id="members">
+<h4>Members<a class="headerlink" href="#members" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="70%" />
+<col width="27%" />
+<col width="3%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Data</td>
+<td>pointer</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="BulletDispatcher.html#bulletdispatcher"><span>BulletDispatcher</span></a></td>
+<td>__dispatcher</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="BulletBroadphaseInterface.html#bulletbroadphaseinterface"><span>BulletBroadphaseInterface</span></a></td>
+<td>__pairCache</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="BulletConstraintSolver.html#bulletconstraintsolver"><span>BulletConstraintSolver</span></a></td>
+<td>__constraintSolver</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="BulletCollisionConfiguration.html#bulletcollisionconfiguration"><span>BulletCollisionConfiguration</span></a></td>
+<td>__collisionConfiguration</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="BulletICollisionObject.html#bulleticollisionobject"><span>BulletICollisionObject</span></a>[]</td>
+<td>__collisionObjects</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="BulletTypedConstraint.html#bullettypedconstraint"><span>BulletTypedConstraint</span></a>[]</td>
+<td>__constraints</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="BulletActionInterface.html#bulletactioninterface"><span>BulletActionInterface</span></a>[]</td>
+<td>__actions</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="16%" />
+<col width="84%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#c5ee32be7ef644e083f7dc1f058fff1b"><span>BulletContinuousDynamicsWorld</span></a>  ( in <a class="reference internal" href="BulletContinuousDynamicsWorld.html#bulletcontinuousdynamicsworld"><span>BulletContinuousDynamicsWorld</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#a681266489394908b5f0cf7af7ab8639"><span>BulletContinuousDynamicsWorld</span></a>  ( in <a class="reference internal" href="BulletDispatcher.html#bulletdispatcher"><span>BulletDispatcher</span></a> dispatcher, in <a class="reference internal" href="BulletBroadphaseInterface.html#bulletbroadphaseinterface"><span>BulletBroadphaseInterface</span></a> pairCache, in <a class="reference internal" href="BulletConstraintSolver.html#bulletconstraintsolver"><span>BulletConstraintSolver</span></a> constraintSolver, in <a class="reference internal" href="BulletCollisionConfiguration.html#bulletcollisionconfiguration"><span>BulletCollisionConfiguration</span></a> collisionConfiguration )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#df56db6ed852472f98d36bad7a25a208"><span>BulletContinuousDynamicsWorld</span></a>  ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#dcd206a23e2547f38a21fd50aa009909"><span>__addAction</span></a> ! ( in <a class="reference internal" href="BulletActionInterface.html#bulletactioninterface"><span>BulletActionInterface</span></a> action )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#f8f3fb78a3e4c83a38bcea6718960a5"><span>__addCollisionObject</span></a> ! ( in <a class="reference internal" href="BulletICollisionObject.html#bulleticollisionobject"><span>BulletICollisionObject</span></a> collisionObject, in SInt16 collisionFilterGroup, in SInt16 collisionFilterMask )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#c77810a8f1d43c09938c9a383d31696"><span>__addConstraint</span></a> ! ( in <a class="reference internal" href="BulletTypedConstraint.html#bullettypedconstraint"><span>BulletTypedConstraint</span></a> constraint, in Boolean disableCollisionsBetweenLinkedBodies )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#c589778bb0a420eb0a4c344ac0ed5ee"><span>__addRigidBody</span></a> ! ( in <a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a> body )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#cb7d53c543fc4b9ba568e8d64392b293"><span>__construct</span></a> ! ( in <a class="reference internal" href="BulletDispatcher.html#bulletdispatcher"><span>BulletDispatcher</span></a> dispatcher, in <a class="reference internal" href="BulletBroadphaseInterface.html#bulletbroadphaseinterface"><span>BulletBroadphaseInterface</span></a> pairCache, in <a class="reference internal" href="BulletConstraintSolver.html#bulletconstraintsolver"><span>BulletConstraintSolver</span></a> constraintSolver, in <a class="reference internal" href="BulletCollisionConfiguration.html#bulletcollisionconfiguration"><span>BulletCollisionConfiguration</span></a> collisionConfiguration )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#b27d49743e7b3d82addb2a3725e"><span>__destroy</span></a> ! ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#a54567db042d4e0cb0d4d9700efbb28f"><span>__removeAction</span></a> ! ( in <a class="reference internal" href="BulletActionInterface.html#bulletactioninterface"><span>BulletActionInterface</span></a> action )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#aa8e6676b4a6cbb233738b62f34eb"><span>__removeCollisionObject</span></a> ! ( in <a class="reference internal" href="BulletICollisionObject.html#bulleticollisionobject"><span>BulletICollisionObject</span></a> collisionObject )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#b1f9d4b58b491c86a18ae7cdf46b49"><span>__removeConstraint</span></a> ! ( in <a class="reference internal" href="BulletTypedConstraint.html#bullettypedconstraint"><span>BulletTypedConstraint</span></a> constraint )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#a1a10231f9d544fcb0b2b5c442535faf"><span>__removeRigidBody</span></a> ! ( in <a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a> body )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#f3e932e7b914f8f852aeb4b1789272b"><span>__setBroadphase</span></a> ! ( in <a class="reference internal" href="BulletBroadphaseInterface.html#bulletbroadphaseinterface"><span>BulletBroadphaseInterface</span></a> pairCache )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#b7db521060b44ad3b576d04ac849b8e2"><span>__setConstraintSolver</span></a> ! ( in <a class="reference internal" href="BulletConstraintSolver.html#bulletconstraintsolver"><span>BulletConstraintSolver</span></a> solver )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#b81c152dadfb49e3b658174b925899cf"><span>addAction</span></a> ! ( in <a class="reference internal" href="BulletActionInterface.html#bulletactioninterface"><span>BulletActionInterface</span></a> action )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#a983fbae9248cab341a101634c38bb"><span>addCollisionObject</span></a> ! ( in <a class="reference internal" href="BulletICollisionObject.html#bulleticollisionobject"><span>BulletICollisionObject</span></a> collisionObject )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#a06409788c2d4984bc2d2620bfffae26"><span>addCollisionObject</span></a> ! ( in <a class="reference internal" href="BulletICollisionObject.html#bulleticollisionobject"><span>BulletICollisionObject</span></a> collisionObject, in SInt16 collisionFilterGroup, in SInt16 collisionFilterMask )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#e5a70826408434a87eb0b3aa4f6ff99"><span>addConstraint</span></a> ! ( in <a class="reference internal" href="BulletTypedConstraint.html#bullettypedconstraint"><span>BulletTypedConstraint</span></a> constraint )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#e9823e12a10e454fb0fcfec9d95537e1"><span>addConstraint</span></a> ! ( in <a class="reference internal" href="BulletTypedConstraint.html#bullettypedconstraint"><span>BulletTypedConstraint</span></a> constraint, in Boolean disableCollisionsBetweenLinkedBodies )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#aae8f061f348049d4e86edd6a37beb"><span>addRigidBody</span></a> ! ( in <a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a> body )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#ac97a20cca45818e7868250bec451f"><span>applyGravity</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#dd6e2e2c744dec99c3ea47b8bc0735"><span>calculateTimeOfImpacts</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> timeStep )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#b46d1a450456bad18100254c6f268"><span>clearForces</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#bulletcontinuousdynamicsworld"><span>BulletContinuousDynamicsWorld</span></a></td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#bb1f801f43d4b5290ea33206d007b13"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="BulletBroadphaseInterface.html#bulletbroadphaseinterface"><span>BulletBroadphaseInterface</span></a></td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#d5452d341b74ce09dc7679b1f52c3b8"><span>getBroadphase</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="BulletICollisionObject.html#bulleticollisionobject"><span>BulletICollisionObject</span></a>[]</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#aeefe5eb9574e0794cbeeec4d82ddd8"><span>getCollisionObjectArray</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="BulletTypedConstraint.html#bullettypedconstraint"><span>BulletTypedConstraint</span></a></td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#fec0fd47b785b4c89cc92bc8bf"><span>getConstraint</span></a> ? ( in Integer index )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="BulletConstraintSolver.html#bulletconstraintsolver"><span>BulletConstraintSolver</span></a></td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#e1ee443047b69b492a2fa785dfce"><span>getConstraintSolver</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="BulletDispatcher.html#bulletdispatcher"><span>BulletDispatcher</span></a></td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#d9df7f26154433a136ac72d99ad08a"><span>getDispatcher</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#ea14a0a39134bf1b949d4a743d24685"><span>getForceUpdateAllAabbs</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#d943683343a448d3847a69430eeceaa1"><span>getGravity</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Integer</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#e63a68cda7ef45a6bcb36e9076e105b1"><span>getNumCollisionObjects</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Integer</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#d44bd174ab68187c6f9a2e98fe2"><span>getNumConstraints</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Data</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#a3ad655d939446dc834ee9093c80f88d"><span>getPointer</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#eaea23cf5b8b407cb998836f257c0a8d"><span>getSynchronizeAllMotionStates</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>UInt32</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#e98c5a33254e4f6a9e3c76078ef43be0"><span>getWorldType</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#c64e583aec49b0aae379946d3573fe"><span>internalSingleStepSimulation</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> timeStep )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#a06b8906b80e49cf866f6016861ef006"><span>performDiscreteCollisionDetection</span></a> ! ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#ab498b98f3434695b29c1938aa4d65ee"><span>removeAction</span></a> ! ( in <a class="reference internal" href="BulletActionInterface.html#bulletactioninterface"><span>BulletActionInterface</span></a> action )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#dc9ad4b67b0474a8fd5bd6df8ea9ce9"><span>removeCollisionObject</span></a> ! ( in <a class="reference internal" href="BulletICollisionObject.html#bulleticollisionobject"><span>BulletICollisionObject</span></a> collisionObject )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#b362d9ceb90448ca8214a5061106217"><span>removeConstraint</span></a> ! ( in <a class="reference internal" href="BulletTypedConstraint.html#bullettypedconstraint"><span>BulletTypedConstraint</span></a> constraint )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#dc21b707449898b61571794134364"><span>removeRigidBody</span></a> ! ( in <a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a> body )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#e469a74c43b9c1948b376a4256"><span>setBroadphase</span></a> ! ( in <a class="reference internal" href="BulletBroadphaseInterface.html#bulletbroadphaseinterface"><span>BulletBroadphaseInterface</span></a> pairCache )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#f2a68546301648499c437f60656c328e"><span>setConstraintSolver</span></a> ! ( in <a class="reference internal" href="BulletConstraintSolver.html#bulletconstraintsolver"><span>BulletConstraintSolver</span></a> solver )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#d816b641004a369d50cb57c5fe34c9"><span>setForceUpdateAllAabbs</span></a> ! ( in Boolean forceUpdateAllAabbs )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#e44b50a85adbc0c5992"><span>setGravity</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> gravity )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#f2103c1c74c30be68a487fc771ebc"><span>setNumTasks</span></a> ! ( in Integer numTasks )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#cd97af4e72f5477a927dcc6770a14842"><span>setSynchronizeAllMotionStates</span></a> ! ( in Boolean synchronizeAll )</td>
+</tr>
+<tr class="row-even"><td>Integer</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#a9bb626ed24755a2839100e1f738c1"><span>stepSimulation</span></a> ? ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> timeStep )</td>
+</tr>
+<tr class="row-odd"><td>Integer</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#dbd4475513d4835b6f1af578bfe9029"><span>stepSimulation</span></a> ? ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> timeStep, in Integer maxSubSteps )</td>
+</tr>
+<tr class="row-even"><td>Integer</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#b52a83a054a345e7854881d0368c0f55"><span>stepSimulation</span></a> ? ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> timeStep, in Integer maxSubSteps, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> fixedTimeStep )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#b6b49ab84b6457194b5d8a4cb5e8b79"><span>synchronizeMotionStates</span></a> ! ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#f03609aa9f5d4d15b51dbba556223e5b"><span>synchronizeSingleMotionState</span></a> ! ( in <a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a> body )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#e260c4c555ec488b9b8b0c9ae0f2fa27"><span>updateAabbs</span></a> ! ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#a0dabd5048ccb8d7c042f6537a5b"><span>updateSingleAabb</span></a> ! ( in <a class="reference internal" href="BulletICollisionObject.html#bulleticollisionobject"><span>BulletICollisionObject</span></a> colObj )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletContinuousDynamicsWorld.html#ddfcba1e904c0aa84f54b74e8ac7d3"><span>~BulletContinuousDynamicsWorld</span></a>  ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="BulletContactConstraint.kl.html"
+                        title="前の章へ">BulletContactConstraint.kl</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="BulletConvex2dConvex2dAlgorithm.kl.html"
+                        title="次の章へ">BulletConvex2dConvex2dAlgorithm.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/Bullet/BulletContinuousDynamicsWorld.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="BulletConvex2dConvex2dAlgorithm.kl.html" title="BulletConvex2dConvex2dAlgorithm.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="BulletContactConstraint.kl.html" title="BulletContactConstraint.kl"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Bullet Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >Bullet Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

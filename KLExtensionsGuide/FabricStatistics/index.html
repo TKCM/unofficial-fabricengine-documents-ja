@@ -1,0 +1,348 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>FabricStatistics Extension &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="KL Extensions Guide" href="../index.html" />
+    <link rel="next" title="FabricStatistics Extension’s Files" href="files.html" />
+    <link rel="prev" title="FabricOGL Extension’s Free Functions" href="../FabricOGL/functions.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="files.html" title="FabricStatistics Extension’s Files"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="../FabricOGL/functions.html" title="FabricOGL Extension’s Free Functions"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">KL Extensions Guide</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="fabricstatistics-extension">
+<span id="id1"></span><h1>FabricStatistics Extension<a class="headerlink" href="#fabricstatistics-extension" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<a class="reference internal image-reference" href="../../_images/FE_logo_345_60.png"><img alt="../../_images/FE_logo_345_60.png" src="../../_images/FE_logo_345_60.png" style="width: 345px; height: 60px;" /></a>
+<div class="line-block">
+<div class="line">Fabric Engine version 2.0.0</div>
+<div class="line">Copyright 2010-2015 Fabric Software Inc. All rights reserved.</div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">FabricStatistics</span></code> extension wraps a singleton statistics collector which can efficiently collect and
+synthesize custom statistics and profiling information. Through a thread-safe singleton, statistic source objects
+and profiling events can be recorded at any time from KL code.</p>
+<p>The FabricStatistics extension has been designed for both simplicity of usage and to minimize overhead.
+In particular, most of the work for analyzing statistics and profiling events is delayed until a final report is requested.</p>
+<div class="section" id="statistics">
+<span id="fabricstatistics"></span><h2>Statistics<a class="headerlink" href="#statistics" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The FabricStatistics extension can collect custom statistics and information for any registered objects, from any KL source code (extension, operator...).
+It supports object hierarchies, which simplifies the reports, and allows to sum values through the hierarchy (eg: memory usage).</p>
+<p>Statistics collection for an object is enabled through the implementation of the <a class="reference internal" href="StatisticSource.html#statisticsource"><span>StatisticSource</span></a> interface.
+Through the <code class="xref std std-kl-ref docutils literal"><span class="pre">StatisticSource.getStatistics</span></code> method, the object can submit any statistics or information that
+can be useful for further analysis. The implementation of the <a class="reference internal" href="StatisticSource.html#statisticsource"><span>StatisticSource</span></a> can be simplified by using
+the <a class="reference internal" href="StatisticsAutoRegisterMember.html#statisticsautoregistermember"><span>StatisticsAutoRegisterMember</span></a> helper object, as seen in the example below.</p>
+<p>In order to be registered by the FabricStatistics extension, objects implementing the <a class="reference internal" href="StatisticSource.html#statisticsource"><span>StatisticSource</span></a> interface must
+call <code class="xref std std-kl-ref docutils literal"><span class="pre">RegisterToFabricStatistics</span></code> in their constructor(s), and <code class="xref std std-kl-ref docutils literal"><span class="pre">UnregisterFromFabricStatistics</span></code> in their destructor.
+Again, this process can be simplified and made more robust by using the <a class="reference internal" href="StatisticsAutoRegisterMember.html#statisticsautoregistermember"><span>StatisticsAutoRegisterMember</span></a> helper.</p>
+<p>Statistic source objects will be recorded only if statistics have been previously enabled by a call to the <code class="xref std std-kl-ref docutils literal"><span class="pre">EnableFabricStatistics</span></code> function.
+Statistic source objects that were constructed before a call to <code class="xref std std-kl-ref docutils literal"><span class="pre">EnableFabricStatistics</span></code> will not be monitored, so it is recommended
+to enable statistics before the scene gets populated.</p>
+<p>If a <a class="reference internal" href="StatisticSource.html#statisticsource"><span>StatisticSource</span></a> has some sub-objects that are themselves a <a class="reference internal" href="StatisticSource.html#statisticsource"><span>StatisticSource</span></a> (eg: <cite>PolygonMesh</cite> has a <cite>GeometryAttributes</cite> container),
+this relationship must be explicitly recorded by calling the <code class="xref std std-kl-ref docutils literal"><span class="pre">AddStatisticsChild</span></code> function.</p>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">Failing to unregister an object in its destructor can lead to a crash, since the FabricStatistics extension only keeps
+a <cite>Ref&lt;&gt;</cite> (unowned) of the object in order to avoid leaks (else, the object would never destroyed). Again, this can be
+avoided by using the <a class="reference internal" href="StatisticsAutoRegisterMember.html#statisticsautoregistermember"><span>StatisticsAutoRegisterMember</span></a> helper.</p>
+</div>
+<p>Statistics returned by an object through the <code class="xref std std-kl-ref docutils literal"><span class="pre">StatisticSource.getStatistics</span></code> method are simple name / value pairs,
+embedded in a <a class="reference internal" href="StatisticRecord.html#statisticrecord"><span>StatisticRecord</span></a>. Support statistic value types include <cite>String</cite>, <cite>SInt64</cite> and <cite>Float64</cite>. Although
+returned statistics can be arbitrary (eg: <cite>Image</cite> returning its <cite>width</cite> and <cite>eight`</cite>), there are some standard fields:</p>
+<ul class="simple">
+<li>&#8220;Name&#8221; (the <cite>Statistic_Name</cite> constant): objects should provide a name, as this is the best way to identify an object in the statistics report.</li>
+<li>&#8220;Category&#8221; (the <cite>Statistic_Category</cite> constant): this allows to regroup objects of different types in the statistics report for more clarity.</li>
+<li>&#8220;Type&#8221; (the <cite>Statistic_Type</cite> constant): the KL type of the source. This one doesn&#8217;t have to be provided, as it is
+automatically generated using the <code class="docutils literal"><span class="pre">.type()</span></code> KL feature. The statistics report can regroup objects of the same type for more clarity.</li>
+<li>&#8220;Memory&#8221; (the <cite>Statistic_MemoryUsage</cite> constant): the main memory usage for an object. If the object has sub-objects
+that implement themselves the StatisticSource interface, these should not be included in the &#8220;Memory&#8221;, but
+rather registered as children objects (using the <code class="xref std std-kl-ref docutils literal"><span class="pre">AddStatisticsChild</span></code> function). By default, the &#8220;Memory&#8221;
+statistic will get summed through the hierarchy in the final report. Since KL doesn&#8217;t provide (yet) facilities for
+retrieving actual memory usage, this has to be estimated manually.</li>
+<li>&#8220;GPUMemory&#8221; (the <cite>Statistic_GPUMemoryUsage</cite> constant): similar to &#8220;Memory&#8221; (above), but for the GPU (eg: OpenGL buffer objects).</li>
+</ul>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kr">require</span> <span class="nx">FabricStatistics</span><span class="p">;</span>
+
+<span class="kr">object</span> <span class="nx">MyObject</span> <span class="o">:</span> <span class="nx">StatisticSourceWithAutoRegisterMember</span> <span class="p">{</span>
+    <span class="kr">String</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="kr">Float32</span> <span class="nx">scalars</span><span class="p">[];</span>
+
+    <span class="nx">StatisticsAutoRegisterMember</span> <span class="nx">autoStats</span><span class="p">;</span>
+  <span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">MyObject</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span> <span class="nx">FabricStatisticsEnabled</span><span class="p">()</span> <span class="p">)</span> <span class="c1">//Reduce overhead if stats are turned off</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">autoStats</span> <span class="o">=</span> <span class="nx">StatisticsAutoRegisterMember</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">StatisticRecord</span><span class="p">[]</span> <span class="nx">MyObject</span><span class="p">.</span><span class="nx">getStatistics</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">StatisticRecord</span> <span class="nx">stats</span><span class="p">[];</span>
+  <span class="nx">stats</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">StatisticRecord</span><span class="p">(</span><span class="nx">Statistic_Name</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">));</span>
+  <span class="nx">stats</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">StatisticRecord</span><span class="p">(</span><span class="nx">Statistic_MemoryUsage</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">scalars</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span><span class="o">*</span><span class="mi">4</span> <span class="p">));</span>
+  <span class="k">return</span> <span class="nx">stats</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="nx">EnableFabricStatistics</span><span class="p">();</span>
+
+  <span class="nx">MyObject</span> <span class="nx">obj1</span><span class="p">();</span>
+  <span class="nx">obj1</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">&quot;obj1&quot;</span><span class="p">;</span>
+  <span class="nx">obj1</span><span class="p">.</span><span class="nx">scalars</span><span class="p">.</span><span class="nx">resize</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+
+  <span class="nx">MyObject</span> <span class="nx">obj2</span><span class="p">();</span>
+  <span class="nx">obj2</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">&quot;obj2&quot;</span><span class="p">;</span>
+  <span class="nx">obj2</span><span class="p">.</span><span class="nx">scalars</span><span class="p">.</span><span class="nx">resize</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+
+  <span class="nx">MyObject</span> <span class="nx">obj3</span><span class="p">();</span>
+  <span class="nx">obj3</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">&quot;obj3&quot;</span><span class="p">;</span>
+  <span class="nx">obj3</span><span class="p">.</span><span class="nx">scalars</span><span class="p">.</span><span class="nx">resize</span><span class="p">(</span><span class="mi">30</span><span class="p">);</span>
+
+  <span class="c1">//Make obj3 a children of obj2</span>
+  <span class="nx">AddStatisticsChild</span><span class="p">(</span><span class="nx">obj2</span><span class="p">.</span><span class="nx">autoStats</span><span class="p">,</span> <span class="nx">obj3</span><span class="p">.</span><span class="nx">autoStats</span><span class="p">);</span>
+
+  <span class="nb">report</span><span class="p">(</span> <span class="nx">GetStatisticsReport</span><span class="p">()</span> <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">Name=&quot;obj1&quot; Memory=40 Type=&quot;MyObject&quot;</span>
+<span class="cm">Name=&quot;obj2&quot; Memory=80 MemorySum=200 Type=&quot;MyObject&quot;</span>
+<span class="cm">  Name=&quot;obj3&quot; Memory=120 Type=&quot;MyObject&quot;</span>
+
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+<p>Statistics for all registered objects and their hierarchy can be retrieved by calling functions such as
+<code class="xref std std-kl-ref docutils literal"><span class="pre">GetStatisticStrings</span></code> and <code class="xref std std-kl-ref docutils literal"><span class="pre">GetStatisticsCSV</span></code>. In order to minimize runtime overhead,
+statistic source objects&#8217; <code class="xref std std-kl-ref docutils literal"><span class="pre">StatisticSource.getStatistics</span></code> methods are only called when
+the statistic report is built. Information about destroyed objects is not retained.</p>
+<p>The report can generate the sum of some statistics (eg: &#8220;Memory&#8221;). The list of
+the statistics to sum through the object hierarchies is provided by the <cite>ColumnsToSum</cite> argument in functions such as <code class="xref std std-kl-ref docutils literal"><span class="pre">GetStatisticStrings</span></code>.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">The <a class="reference internal" href="FabricStatistics_RTValWrapper.html#fabricstatistics-rtvalwrapper"><span>FabricStatistics_RTValWrapper</span></a> object simply wraps the <cite>FabricStatistics</cite> global functions so they can
+be accessible through <cite>RTVals</cite> (global functions are not accessible because of a limitation)</p>
+</div>
+</div>
+<div class="section" id="profiling">
+<span id="fabricstatisticsprofiling"></span><h2>Profiling<a class="headerlink" href="#profiling" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The FabricStatistics extension provides some facility for recording custom profiling events.
+FabricStatistics profile events are mostly useful for tracking specific details,
+for example breaking operators into multiple steps, identified with custom tags. The FabricStatistics
+profile events can be nested, and the hierarchy of events will be recorded.</p>
+<p>Submitted profiling events will only be recorded if profiling is enabled by a call to
+<code class="xref std std-kl-ref docutils literal"><span class="pre">StartFabricProfiling</span></code> or <code class="xref std std-kl-ref docutils literal"><span class="pre">StartFabricProfilingFrames</span></code>.</p>
+<p>Profiling events need to be bracketed through a call to <code class="xref std std-kl-ref docutils literal"><span class="pre">BeginProfilingEvent</span></code> and <code class="xref std std-kl-ref docutils literal"><span class="pre">EndProfilingEvent</span></code>.
+The <cite>key</cite> returned by <code class="xref std std-kl-ref docutils literal"><span class="pre">BeginProfilingEvent</span></code> must be passed to the corresponding <code class="xref std std-kl-ref docutils literal"><span class="pre">EndProfilingEvent</span></code>.
+When applicable, events can refer a <a class="reference internal" href="StatisticSource.html#statisticsource"><span>StatisticSource</span></a> object in order to provide more information.
+The <a class="reference internal" href="AutoProfilingEvent.html#autoprofilingevent"><span>AutoProfilingEvent</span></a> struct can simplify profiling events recording since it will automatically
+call <code class="xref std std-kl-ref docutils literal"><span class="pre">EndProfilingEvent</span></code> upon destruction.</p>
+<p>All recorded events from the last profiling session can be retrieved by calling <code class="xref std std-kl-ref docutils literal"><span class="pre">GetProfilingEvents</span></code> or <code class="xref std std-kl-ref docutils literal"><span class="pre">GetProfilingReport</span></code>.</p>
+<p><div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: CPUProfiling.kl</span>
+<span class="cm">*/</span>
+
+<span class="kr">require</span> <span class="nx">FabricStatistics</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">sub2</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">AutoProfilingEvent</span> <span class="nx">p</span><span class="p">(</span><span class="kr">FUNC</span><span class="p">);</span><span class="c1">//We use the &#39;FUNC&#39; built-in KL constant (name of current function)</span>
+  <span class="nx">ActiveWait</span><span class="p">(</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">sub1</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">AutoProfilingEvent</span> <span class="nx">p</span><span class="p">(</span><span class="kr">FUNC</span><span class="p">);</span><span class="c1">//We use the &#39;FUNC&#39; built-in KL constant (name of current function)</span>
+  <span class="nx">ActiveWait</span><span class="p">(</span><span class="mf">0.25</span><span class="p">);</span>
+  <span class="nx">sub2</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">AutoProfilingEvent</span> <span class="nx">p</span><span class="p">(</span><span class="kr">FUNC</span><span class="p">);</span><span class="c1">//We use the &#39;FUNC&#39; built-in KL constant (name of current function)</span>
+  <span class="nx">ActiveWait</span><span class="p">(</span><span class="mf">0.25</span><span class="p">);</span>
+  <span class="nx">sub1</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="nx">StartFabricProfiling</span><span class="p">();</span>
+  <span class="nx">main</span><span class="p">();</span>
+  <span class="nx">StopFabricProfiling</span><span class="p">();</span>
+
+  <span class="nb">report</span><span class="p">(</span> <span class="nx">GetProfilingReport</span><span class="p">()</span> <span class="p">);</span>
+
+  <span class="nx">ProfilingEvent</span> <span class="nx">events</span><span class="p">[](</span><span class="nx">GetProfilingEvents</span> <span class="p">());</span>
+  <span class="k">for</span><span class="p">(</span><span class="kr">Integer</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">events</span><span class="p">.</span><span class="nx">size</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="nb">report</span><span class="p">(</span> <span class="nx">events</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+<span class="cm">(stdin):34:3: warning: must use parentheses to call methods (deprecation; will become an error in next version)</span>
+
+<span class="cm">function main(): duration=750.421 ms, startTime=+1.200764e-6&#39;, threadIndex:0</span>
+<span class="cm">  function sub1(): duration=500.278 ms, startTime=+0.250014&#39;, threadIndex:0</span>
+<span class="cm">    function sub2(): duration=250.91 ms, startTime=+0.500028&#39;, threadIndex:0</span>
+
+<span class="cm">{level:0,frame:0,label:&quot;function main()&quot;,startTime:+1.200764887233167e-6,duration:+0.750042176866664,sourceName:&quot;&quot;,threadIndex:0}</span>
+<span class="cm">{level:1,frame:0,label:&quot;function sub1()&quot;,startTime:+2.500148594654794e-1,duration:+0.500027917783628,sourceName:&quot;&quot;,threadIndex:0}</span>
+<span class="cm">{level:2,frame:0,label:&quot;function sub2()&quot;,startTime:+0.500028818357293,duration:+2.500091558322651e-1,sourceName:&quot;&quot;,threadIndex:0}</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</p>
+<div class="section" id="table-of-contents">
+<h3>Table of Contents<a class="headerlink" href="#table-of-contents" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="files.html">FabricStatistics Extension&#8217;s Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="FabricStatistics.kl.html">FabricStatistics.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FabricStatisticsInternal.kl.html">FabricStatisticsInternal.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FabricStatistics_RTValWrapper.kl.html">FabricStatistics_RTValWrapper.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="StatisticRecord.kl.html">StatisticRecord.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="StatisticsAutoRegisterMember.kl.html">StatisticsAutoRegisterMember.kl</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="interfaces.html">FabricStatistics Extension&#8217;s Interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="StatisticSource.html">StatisticSource (interface)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="StatisticSourceWithAutoRegisterMember.html">StatisticSourceWithAutoRegisterMember (interface)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">FabricStatistics Extension&#8217;s Types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="AutoProfilingEvent.html">AutoProfilingEvent (struct)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ProfilingEvent.html">ProfilingEvent (struct)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="StatisticRecord.html">StatisticRecord (struct)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="StatisticsAutoRegisterMember.html">StatisticsAutoRegisterMember (object)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">FabricStatistics Extension&#8217;s Free Functions</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h3>Indices and Tables<a class="headerlink" href="#indices-and-tables" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><a class="reference internal" href="../../genindex.html"><span>索引</span></a></li>
+<li><a class="reference internal" href="../../search.html"><span>検索ページ</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">FabricStatistics Extension</a><ul>
+<li><a class="reference internal" href="#statistics">Statistics</a></li>
+<li><a class="reference internal" href="#profiling">Profiling</a><ul>
+<li><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and Tables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="../FabricOGL/functions.html"
+                        title="前の章へ">FabricOGL Extension&#8217;s Free Functions</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="files.html"
+                        title="次の章へ">FabricStatistics Extension&#8217;s Files</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/FabricStatistics/index.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="files.html" title="FabricStatistics Extension’s Files"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="../FabricOGL/functions.html" title="FabricOGL Extension’s Free Functions"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

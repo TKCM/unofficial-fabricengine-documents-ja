@@ -1,0 +1,337 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>KL2DFG Command line utility &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
+    <link rel="up" title="Canvas Programmer Guide" href="index.html" />
+    <link rel="next" title="Frequently Asked Questions" href="faq.html" />
+    <link rel="prev" title="Port value persistance" href="valuepersistance.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="faq.html" title="Frequently Asked Questions"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="valuepersistance.html" title="Port value persistance"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Canvas Programmer Guide</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="kl2dfg-command-line-utility">
+<span id="canvas-programmer-guide-kl2dfg"></span><h1>KL2DFG Command line utility<a class="headerlink" href="#kl2dfg-command-line-utility" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>kl2dfg is a command line executable which allows to generate Canvas preset files for a given KL extension. If successful, it creates a log file called <em class="dfn">kl2dfg.log</em> in the destination folder which lists the complete process. To use the resulting presets in Canvas the target folder has to be on the <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">FABRIC_DFG_PATH</span></code> environment variable. Alternatively you can also specify a subfolder for an extension to provide Canvas presets using the <code class="code docutils literal"><span class="pre">dfgPresets</span></code> member. Please see <a class="reference internal" href="../ExtensionAuthoringGuide/fpm.html#eag-fpm"><span>The Extension Manifest File</span></a> for more information.</p>
+<p>To try out KL2DFG, simply open a shell using the Fabric environment variables (see <a class="reference internal" href="../GettingStartedGuide/licensing.html#gettingstarted-baseinstallation"><span>Fabric Engine ライセンスのインストール</span></a>), and type</p>
+<p><div class="highlight-bash"><div class="highlight"><pre>kl2dfg
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-bash"><div class="highlight"><pre>kl2dfg can be used to generate preset files out of KL extensions.
+For more options use kl2dfg --help
+</pre></div>
+</div>
+</p>
+<p>kl2dfg supports a series of options, which can be obtained by running kl2dfg with the <em class="dfn">help</em> flag</p>
+<p><div class="highlight-bash"><div class="highlight"><pre>kl2dfg --help
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-bash"><div class="highlight"><pre>kl2dfg can be used to generate preset files out of KL extensions.
+
+Usage:    kl2dfg <span class="o">[</span>options<span class="o">]</span> FPMFILE OUTPUTDIR
+Example:  kl2dfg Math.fpm.json /temp/presets/Math
+
+Valid options:
+  -list            Lists all of the valid doxygen qualifiers.
+  -polymorphism    Enables polymorphism <span class="k">for</span> generated presets.
+  -inheritance     Enables inheritance <span class="k">for</span> generated presets.
+  -genAllArrays    Automatically generates all array presets.
+  -addExecutePort  Automatically adds a leading execute port <span class="k">for</span> all presets.
+</pre></div>
+</div>
+</p>
+<p>Available options:</p>
+<div class="section" id="list">
+<h2>list<a class="headerlink" href="#list" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Presents the user with a list of doxygen modifiers which can be used to drive kl2dfg&#8217;s behavior. Doxygen qualifiers can be used inside the doxygen style comments of a function. For example:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="c1">/// \dfgPresetTitle MyPresetName</span>
+<span class="kd">function</span> <span class="kr">Boolean</span> <span class="nx">someFunction</span><span class="p">(</span><span class="nx">Scalar</span> <span class="nx">a</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Will cause kl2dfg to pick a different name for the preset than the name of the function. For a full list of qualifiers please use the <em class="dfn">list</em> flag.</p>
+<p><div class="highlight-bash"><div class="highlight"><pre>kl2dfg -list
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-bash"><div class="highlight"><pre>kl2dfg can be used to generate preset files out of KL extensions.
+
+The kl code can be annotated within doxygen style comments to control
+kl2dfg<span class="s1">&#39;s behavior. Find a list of doxygen qualifiers below:</span>
+
+<span class="s1">\dfgPresetCreate</span>
+<span class="s1">Forces creation of preset</span>
+
+<span class="s1">\dfgPresetOmit</span>
+<span class="s1">Avoids creation of preset, obsolete if function also has \internal</span>
+
+<span class="s1">\dfgPresetTitle &quot;title&quot;</span>
+<span class="s1">Overrides the title of the preset</span>
+
+<span class="s1">\dfgPresetFolder &quot;myFolder&quot;</span>
+<span class="s1">Relative path for the folder to use for the preset</span>
+
+<span class="s1">\dfgPresetCacheRule &quot;Never&quot;</span>
+<span class="s1">Sets up the cache rule to use for the preset</span>
+
+<span class="s1">\dfgPresetColor Color(255, 0, 0)</span>
+<span class="s1">Overdrives the preset body + header color</span>
+
+<span class="s1">\dfgPresetHeaderColor Color(0, 255, 0)</span>
+<span class="s1">Overdrives just the preset header color, can be combined with dfgPresetColor</span>
+
+<span class="s1">\dfgPresetTextColor Color(0, 255, 0)</span>
+<span class="s1">Overdrives the color of the text inside the node</span>
+
+<span class="s1">\dfgPresetDefault port Value</span>
+<span class="s1">Sets up the default value to use for a given input port</span>
+
+<span class="s1">\dfgPresetRange port (0.0, 1.0)</span>
+<span class="s1">Defines the range to use for sliders, works with Floats and Integers</span>
+
+<span class="s1">\dfgPresetCombo port (&quot;label1&quot;, &quot;label2&quot;, ...)</span>
+<span class="s1">Enables the use of a combo box in the ui, works for Integers and Strings</span>
+
+<span class="s1">\dfgPresetHidden port true</span>
+<span class="s1">Hides a given port from the UI when editing a node (or shows it if set to false)</span>
+
+<span class="s1">\dfgPresetTooltip</span>
+<span class="s1">  My elaborate tooltip description for the node.</span>
+<span class="s1">\enddfgPresetTooltip</span>
+<span class="s1">Shows a tooltip on the node. If this isn&#39;</span>t provided the plain text in the comment
+above the <span class="k">function</span> will be used <span class="k">for</span> the tooltip.
+
+<span class="se">\d</span>fgCollapsedState state
+Sets the default collapsed state <span class="k">for</span> a node. Can be 0, <span class="m">1</span> or 2.
+
+<span class="se">\d</span>fgDocUrl http:///www.mydomain.com/docs/mydoc.html
+Sets up documentation links <span class="k">for</span> the generated nodes.
+
+<span class="se">\d</span>fgAlwaysShowDaisyChainPorts <span class="nb">true</span>
+Ensures that the daisy chain ports on the right of input ports are always shown.
+
+<span class="se">\d</span>fgCreateArrayPreset
+If specified the array presets <span class="k">for</span> the given <span class="nb">type</span> / <span class="k">function</span> will be generated. This is independent of the -genAllArrays <span class="nb">command </span>line flag.
+
+<span class="se">\d</span>fgUseInheritance
+If specified on a KL <span class="nb">type</span> <span class="o">(</span>struct or object<span class="o">)</span> all inherited methods will also be generated as presets. This is independent of the -inheritance <span class="nb">command </span>line flag.
+
+<span class="se">\d</span>fgAddExecutePort
+If specified the <span class="k">function</span> preset will contain an execute port, which allows to daisy chain functions. This is independent of the -addExecutePort <span class="nb">command </span>line flag
+
+<span class="se">\d</span>fgArrayPexMargin 10000
+The margin used when switching from a linear loop to pex in array presets.
+
+Examples:
+
+Exts/Math/RotationOrder.kl
+Exts/Math/RotationOrder/RotationOrder.canvas
+Exts/Geometry/PolygonMesh/AddTeapot.canvas
+</pre></div>
+</div>
+</p>
+</div>
+<div class="section" id="polymorphism">
+<h2>polymorphism<a class="headerlink" href="#polymorphism" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>kl2dfg will generate only one preset for methods with the same notation within an extension. For example:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kd">function</span> <span class="kr">SInt32</span> <span class="nx">Vec3</span><span class="p">.</span><span class="nx">getMySum</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+
+<span class="kd">function</span> <span class="kr">SInt32</span> <span class="nx">Vec4</span><span class="p">.</span><span class="nx">getMySum</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>Would result in only one Canvas preset file, called <em class="dfn">Func.getMySum</em> instead of two separate presets for <em class="dfn">Vec3</em> and <em class="dfn">Vec4</em>.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">You can find more information about the consequences of polymorphism here: <a class="reference internal" href="polymorphism.html#canvas-programmer-guide-polymorphism"><span>Polymorphic nodes</span></a>.</p>
+</div>
+</div>
+<div class="section" id="inheritance">
+<h2>inheritance<a class="headerlink" href="#inheritance" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Enables the generation of presets for inherited methods. For example:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kr">interface</span> <span class="nx">i</span> <span class="p">{</span>
+  <span class="kr">String</span> <span class="nx">getName</span><span class="p">();</span>
+<span class="p">};</span>
+
+<span class="kr">object</span> <span class="nx">a</span> <span class="o">:</span> <span class="nx">i</span> <span class="p">{</span>
+  <span class="kr">SInt32</span> <span class="nx">index</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">a</span><span class="p">.</span><span class="nx">getName</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="s1">&#39;a&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">index</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">object</span> <span class="nx">b</span> <span class="o">:</span> <span class="nx">a</span> <span class="p">{</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">b</span><span class="p">.</span><span class="nx">reportSomething</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s1">&#39;something&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Without inheritance the presets generated would be:</p>
+<div class="highlight-bash"><div class="highlight"><pre>a.getName
+b.reportSomething
+</pre></div>
+</div>
+<p>With inheritance enabled the presets generated would be:</p>
+<div class="highlight-bash"><div class="highlight"><pre>a.getName
+b.getName
+b.reportSomething
+</pre></div>
+</div>
+<p>can also enable this functionality on a per preset basis by using the <em class="dfn">dfgUseInheritance</em> doxygen qualifier.</p>
+</div>
+<div class="section" id="genallarrays">
+<h2>genAllArrays<a class="headerlink" href="#genallarrays" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Enables the generation of array presets for given methods. This makes working with arrays inside of Canvas much easier. You can also enable this functionality on a per preset basis by using the <em class="dfn">dfgCreateArrayPreset</em> doxygen qualifier.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">This functionality might be deprecated in future version of kl2dfg.</p>
+</div>
+</div>
+<div class="section" id="addexecuteport">
+<h2>addExecutePort<a class="headerlink" href="#addexecuteport" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>For easier daisy chaining of Canvas presets kl2dfg supports to add an extra port as the first port of any Canvas preset.
+You can also enable this functionality on a per preset basis by using the <em class="dfn">dfgAddExecutePort</em> doxygen qualifier.</p>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Generating all math presets in a temporary location:</p>
+<p><div class="highlight-bash"><div class="highlight"><pre>kl2dfg <span class="nv">$FABRIC_DIR</span>/Exts/Builtin/Math/Math.fpm.json <span class="nv">$TEMP</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-bash"><div class="highlight"><pre>[FABRIC:MT] Fabric Engine version 2.0.0
+[FABRIC:MT] Loading DFG presets from D:\fabric\Presets\DFG
+[FABRIC:MT] Registered extensions {Alembic:1.0.0,AlembicWrapper:1.2.0,Animation:1.1.0,Bullet:1.0.1,BulletHelpers:1.0.0,Characters:1.1.0,Containers:1.1.0,DFGHelpers,FabricInterfaces:1.0.1,FabricSynchronization:1.1.0,Fbx:1.1.0,FbxHelpers:1.0.2,FileIO:1.2.0,Geometry:1.2.0,Images:1.0.2,InlineDrawing:1.2.0,JSON:1.0.0,Manipulation:1.1.0,Math:1.2.0,FabricOBJ:1.1.0,FabricOGL:1.0.0,OpenImageIO:1.0.2,OSOGL:1.1.0,Parameters:1.0.0,Singletons:1.1.0,FabricStatistics:1.1.0,Util:1.1.0} in directory: D:\fabric\Exts
+[FABRIC:MT] Registered extensions {FESRetopo,FABRIK,Kraken,ParticleSystem,Constrains,Scatter:0.1.0,RiggingToolbox,Vegetation:1.0.0} in directory: D:\fabric\ThirdParty\Exts
+[FABRIC:MT] IRCache: Not pruning since last prune was less than 24 hours ago
+[FABRIC:MT] Loaded extension Math in 122.830ms (cached)
+[FABRIC:MT] Loaded extension Singletons in 5.301ms (cached)
+[FABRIC:MT] Loaded extension FabricInterfaces in 12.377ms (cached)
+782 preset files generated in &#39;R:\Temp&#39;
+LogFile was saved to R:\Temp\kl2dfg.log
+</pre></div>
+</div>
+</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">KL2DFG Command line utility</a><ul>
+<li><a class="reference internal" href="#list">list</a></li>
+<li><a class="reference internal" href="#polymorphism">polymorphism</a></li>
+<li><a class="reference internal" href="#inheritance">inheritance</a></li>
+<li><a class="reference internal" href="#genallarrays">genAllArrays</a></li>
+<li><a class="reference internal" href="#addexecuteport">addExecutePort</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="valuepersistance.html"
+                        title="前の章へ">Port value persistance</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="faq.html"
+                        title="次の章へ">Frequently Asked Questions</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/CanvasProgrammerGuide/kl2dfg.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="faq.html" title="Frequently Asked Questions"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="valuepersistance.html" title="Port value persistance"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Canvas Programmer Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

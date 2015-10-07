@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Licensing Guide &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
+    <link rel="next" title="Fabric Engine Documentation System" href="../DocSystem/index.html" />
+    <link rel="prev" title="Extension Reloading" href="../ExtensionAuthoringGuide/reloading.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../DocSystem/index.html" title="Fabric Engine Documentation System"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="../ExtensionAuthoringGuide/reloading.html" title="Extension Reloading"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="licensing-guide">
+<span id="lg"></span><h1>Licensing Guide<a class="headerlink" href="#licensing-guide" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<a class="reference internal image-reference" href="../_images/FE_logo_345_60.png"><img alt="../_images/FE_logo_345_60.png" src="../_images/FE_logo_345_60.png" style="width: 345px; height: 60px;" /></a>
+<div class="line-block">
+<div class="line">Fabric Engine version 2.0.0</div>
+<div class="line">Copyright 2010-2015 Fabric Software Inc. All rights reserved.</div>
+</div>
+</div>
+<div class="section" id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Fabric uses the Reprise License Manager (RLM) to manage its licensing. Fabric Engine verifies on startup if there is a valid license and notifies the user of its status.</p>
+<div class="section" id="how-it-works">
+<h2>How it works<a class="headerlink" href="#how-it-works" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>When a Fabric application starts it will check for a valid license. If a license it not found it will display a window allowing individuals to input their RLM node-locked Evaluation license. If the user does not have a valid license then Fabric will continue to run but will force a hard 15-second pause in the application every 15 minutes and will display the licensing window again.</p>
+<p>Studios making use of the Fabric Fifty program as well as Commercial and Educational customers will receive an RLM floating license. Floating licenses allow an organization to run an RLM server in a central location and have their users validate licensing against this server rather than requiring each user to have their own license. With floating licenses the server holds a fixed number of licenses and will allow up to that many users to run the software at any given time. The number of actual users may be higher, floating licenses only allow for a fixed number of licenses to be &#8220;checked out&#8221; at any given time. Once a user finishes using the software the license is &#8220;checked in&#8221; again and can be used by someone else. More information on managing floating licenses can be found in <a class="reference internal" href="#lg-floating"><span>Floating licenses with an RLM server</span></a>.</p>
+<p>Using floating licenses requires that all users have access to the RLM server in order to validate licensing, whether this be via a local network or over a VPN from home.</p>
+</div>
+<div class="section" id="plugin-licensing">
+<h2>Plugin licensing<a class="headerlink" href="#plugin-licensing" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Fabric plugins such as Fabric for Maya only check out a license once they start performing computations. This means that a plugin that is &#8220;idle&#8221;, i.e. the plugin is loaded but not being used, will not use a license. Once a license is checked out though it will remain in use until the Fabric plugin is unloaded.</p>
+</div>
+<div class="section" id="types-of-licenses">
+<h2>Types of licenses<a class="headerlink" href="#types-of-licenses" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>For more information on the types of licenses available please refer to the LICENSE.txt file found in the root Fabric folder after unpacking the installation .zip file.</p>
+</div>
+<div class="section" id="license-file-paths">
+<h2>License file paths<a class="headerlink" href="#license-file-paths" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Normally a user running with a node-locked Evaluation license should not need to worry about where the Fabric license is stored as the licensing windows should allow updating it as necessary, however for users who may need access to the license file for any reason it can be found here on Linux and OSX:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$HOME</span>/.fabric-engine/rlm/
+</pre></div>
+</div>
+<p>And here on Windows:</p>
+<div class="highlight-bash"><div class="highlight"><pre>%APPDATA%<span class="se">\F</span>abric Engine<span class="se">\r</span>lm<span class="se">\</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="floating-licenses-with-an-rlm-server">
+<span id="lg-floating"></span><h1>Floating licenses with an RLM server<a class="headerlink" href="#floating-licenses-with-an-rlm-server" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="preparing-the-rlm-server">
+<h2>Preparing the RLM server<a class="headerlink" href="#preparing-the-rlm-server" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>In order to use an RLM server if you do not already have one you will need to download the RLM server package appropriate to your system from:</p>
+<blockquote>
+<div><a class="reference external" href="http://dist.fabricengine.com/rlm/">http://dist.fabricengine.com/rlm/</a></div></blockquote>
+<p>This server package contains three files, the <strong class="command">rlm</strong> and <strong class="command">rlmutil</strong> binaries, as well as the <code class="file docutils literal"><span class="pre">fabricinc.set</span></code> file that enables licensing of Fabric Engine via the RLM server.</p>
+<div class="section" id="if-you-already-have-an-rlm-server">
+<h3>If you already have an RLM server<a class="headerlink" href="#if-you-already-have-an-rlm-server" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>If you already have an RLM server running on your network then you will only need to add the <code class="file docutils literal"><span class="pre">fabricinc.set</span></code> file to your RLM server directory and then add the .lic license file after you get one (described below).</p>
+</div>
+<div class="section" id="installing-a-new-rlm-server">
+<h3>Installing a new RLM server<a class="headerlink" href="#installing-a-new-rlm-server" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>If you do not already have an RLM license server running you can install one using the <strong class="command">rlm</strong> binary in the package supplied above. Copy the files in the package into a folder on the license server system where you would like to keep them. Once you have your .lic license file as described below copied into this same folder, simply running the <strong class="command">rlm</strong> binary will launch the RLM server. If you have not modified any settings the server will by default run on port 5053.</p>
+<p>In Windows you may get a notification asking to open a port in the firewall. This is required for the RLM server to be accessible by other machines on the network.</p>
+<p>If you have trouble installing the RLM server please see <span class="xref std std-ref">help</span>.</p>
+</div>
+</div>
+<div class="section" id="getting-your-floating-license">
+<h2>Getting your floating license<a class="headerlink" href="#getting-your-floating-license" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>In order to request your Fabric Fifty licenses you will need to supply the &#8220;Host ID&#8221; of your license server in order for the Fabric Engine team to create your license. You can get your system&#8217;s &#8220;Host ID&#8221; using the <strong class="command">rlmutil</strong> binary supplied in the server package above. From the folder where you extracted the package binaries, open a command prompt and run:</p>
+<pre class="literal-block">
+./rlmutil <em>rlmhostid</em>
+</pre>
+<p>This should give a result that resembles this:</p>
+<div class="highlight-none"><div class="highlight"><pre>user@host~/fabric-rlm$ ./rlmutil rlmhostid
+rlmutil v9.4
+Copyright (C) 2006-2012, Reprise Software, Inc. All rights reserved.
+
+Hostid of this machine: e0e0e0e0e0e0 a0a0a0a0a0a0
+</pre></div>
+</div>
+<p>Depending on your machine configuration there may be one or multiple &#8220;Host ID&#8221; values displayed. These can all be copied and entered as the &#8220;Host ID&#8221; value in the Fabric Engine licensing request form here along with the other required data:</p>
+<blockquote>
+<div><a class="reference external" href="http://fabricengine.com/request-fabric-fifty/">http://fabricengine.com/request-fabric-fifty/</a></div></blockquote>
+<p>You will receive a license from the Fabric Engine team once your request has been processed which can be copied into a file with a .lic extension (fabric.lic, for example). This file needs to be copied into the folder where your RLM server is installed. Once the server is restarted you should have a valid RLM server running that is ready to validate Fabric Engine licenses.</p>
+</div>
+<div class="section" id="using-the-rlm-server-for-licensing">
+<h2>Using the RLM server for licensing<a class="headerlink" href="#using-the-rlm-server-for-licensing" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Once your RLM server is running you&#8217;ll need to point your user instances of Fabric Engine to this server. This can be done via the standard RLM environment variable:</p>
+<div class="highlight-none"><div class="highlight"><pre>RLM_LICENSE=port@host
+</pre></div>
+</div>
+<p>Or via the Fabric-specific RLM variable:</p>
+<div class="highlight-none"><div class="highlight"><pre>fabricinc_LICENSE=port@host
+</pre></div>
+</div>
+<p>If the licensing server is running and you have entered its host and port correctly then your copy of Fabric Engine should now be licensed.</p>
+</div>
+<div class="section" id="running-fabric-2-licenses-alongside-1-x">
+<h2>Running Fabric 2 licenses alongside 1.x<a class="headerlink" href="#running-fabric-2-licenses-alongside-1-x" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Some user sites may wish to run licenses for both Fabric 2 and previous Fabric 1.x simultaneously. Doing this only requires ensuring that the .lic files have different names and that both are available in the RLM server folder.</p>
+</div>
+<div class="section" id="custom-server-configuration">
+<h2>Custom server configuration<a class="headerlink" href="#custom-server-configuration" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>RLM allows end-user configuration of some licensing parameters via the <em class="dfn">ISV Options File</em>. The options file should be named <code class="file docutils literal"><span class="pre">fabricinc.opt</span></code> and placed in the same directory as the <code class="file docutils literal"><span class="pre">fabricinc.set</span></code> file. Full documentation on available options can be seen here:</p>
+<blockquote>
+<div><a class="reference external" href="http://www.reprisesoftware.com/RLM_Enduser.html">http://www.reprisesoftware.com/RLM_Enduser.html</a></div></blockquote>
+<div class="section" id="reserving-licenses-by-group">
+<h3>Reserving licenses by group<a class="headerlink" href="#reserving-licenses-by-group" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Some users may wish to permanently allocate a number of server licenses to a particular group while leaving the remaining floating licenses available to anyone. This can be achieved using the GROUP, HOST_GROUP, and RESERVE options in the options file.</p>
+<p>A group must first be created in the options file to specify the usernames or hostnames that belong to it. A list of usernames is created using the GROUP option, while a list of hostnames is created using HOST_GROUP.</p>
+<div class="highlight-none"><div class="highlight"><pre>GROUP &lt;groupname&gt; [ &lt;user&gt; &lt;user&gt; ... ]
+HOST_GROUP &lt;groupname&gt; [ &lt;host&gt; &lt;host&gt; ... ]
+</pre></div>
+</div>
+<p>For example:</p>
+<div class="highlight-none"><div class="highlight"><pre>GROUP developers steve joe david
+HOST_GROUP devhosts myhost joesbox davepc
+</pre></div>
+</div>
+<p>Once the group has been created, licenses can be allocated to that group by creating a RESERVE line in the options file.</p>
+<div class="highlight-none"><div class="highlight"><pre>RESERVE &lt;number&gt; fabric [ GROUP | HOST_GROUP ] &lt;groupname&gt;
+</pre></div>
+</div>
+<p>For example:</p>
+<div class="highlight-none"><div class="highlight"><pre>RESERVE 5 fabric GROUP developers
+RESERVE 10 fabric HOST_GROUP devhosts
+</pre></div>
+</div>
+<p>Once the RLM server is restarted, the specified number of licenses will be available only to that group while remaining licenses will be free to anyone.
+.. _help:</p>
+</div>
+</div>
+</div>
+<div class="section" id="getting-help">
+<h1>Getting Help<a class="headerlink" href="#getting-help" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>For further information regarding RLM licensing you can consult the RLM End-User Manual available here:</p>
+<blockquote>
+<div><a class="reference external" href="http://www.reprisesoftware.com/RLM_Enduser.html">http://www.reprisesoftware.com/RLM_Enduser.html</a></div></blockquote>
+<p>For additional inquiries regarding licensing and Fabric Engine please contact <code class="docutils literal"><span class="pre">support&#64;fabricengine.com</span></code>.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Licensing Guide</a></li>
+<li><a class="reference internal" href="#overview">Overview</a><ul>
+<li><a class="reference internal" href="#how-it-works">How it works</a></li>
+<li><a class="reference internal" href="#plugin-licensing">Plugin licensing</a></li>
+<li><a class="reference internal" href="#types-of-licenses">Types of licenses</a></li>
+<li><a class="reference internal" href="#license-file-paths">License file paths</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#floating-licenses-with-an-rlm-server">Floating licenses with an RLM server</a><ul>
+<li><a class="reference internal" href="#preparing-the-rlm-server">Preparing the RLM server</a><ul>
+<li><a class="reference internal" href="#if-you-already-have-an-rlm-server">If you already have an RLM server</a></li>
+<li><a class="reference internal" href="#installing-a-new-rlm-server">Installing a new RLM server</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#getting-your-floating-license">Getting your floating license</a></li>
+<li><a class="reference internal" href="#using-the-rlm-server-for-licensing">Using the RLM server for licensing</a></li>
+<li><a class="reference internal" href="#running-fabric-2-licenses-alongside-1-x">Running Fabric 2 licenses alongside 1.x</a></li>
+<li><a class="reference internal" href="#custom-server-configuration">Custom server configuration</a><ul>
+<li><a class="reference internal" href="#reserving-licenses-by-group">Reserving licenses by group</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#getting-help">Getting Help</a></li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="../ExtensionAuthoringGuide/reloading.html"
+                        title="前の章へ">Extension Reloading</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="../DocSystem/index.html"
+                        title="次の章へ">Fabric Engine Documentation System</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/LicensingGuide/index.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../DocSystem/index.html" title="Fabric Engine Documentation System"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="../ExtensionAuthoringGuide/reloading.html" title="Extension Reloading"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

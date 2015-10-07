@@ -1,0 +1,361 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>IntegerUtils.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="Util Extension’s Files" href="files.html" />
+    <link rel="next" title="NumberMethods.kl" href="NumberMethods.kl.html" />
+    <link rel="prev" title="ImporterOptions.kl" href="ImporterOptions.kl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="NumberMethods.kl.html" title="NumberMethods.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="ImporterOptions.kl.html" title="ImporterOptions.kl"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Util Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">Util Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="util-integerutils-kl">
+<span id="integerutils-kl"></span><span id="id1"></span><h1>IntegerUtils.kl<a class="headerlink" href="#util-integerutils-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="flagandindex-struct">
+<h3>FlagAndIndex (struct)<a class="headerlink" href="#flagandindex-struct" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">Simple structure that stores a flag and a 31-bit index into a UInt32 value.</p>
+<div class="section" id="members">
+<h4>Members<a class="headerlink" href="#members" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="44%" />
+<col width="39%" />
+<col width="17%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>UInt32</td>
+<td>value</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="FlagAndIndex.html#faa2397be4dd68ad6971cd85ec439"><span>FlagAndIndex</span></a>  ( in <a class="reference internal" href="FlagAndIndex.html#flagandindex"><span>FlagAndIndex</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="FlagAndIndex.html#fd0b7be73287489999e64e285f1eca27"><span>FlagAndIndex</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="FlagAndIndex.html#c5b38bbd93954c43aac2efd4198c35f2"><span>clearFlag</span></a> ! ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="FlagAndIndex.html#flagandindex"><span>FlagAndIndex</span></a></td>
+<td><a class="reference internal" href="FlagAndIndex.html#b0cda564eed447e782fd90eddde27529"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="FlagAndIndex.html#ced2802541584a04815dbd3534beed1c"><span>get</span></a> ? ( io Boolean flag, io UInt32 index )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="FlagAndIndex.html#f799812c1b84d88ad04c9ec4bdacff1"><span>getFlag</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>UInt32</td>
+<td><a class="reference internal" href="FlagAndIndex.html#ce478b5bd7940d89a15ffd6b910360a"><span>getIndex</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="FlagAndIndex.html#d98f89a46e4491aac2dbc52f90044aa"><span>getMaybeInvalidIndex</span></a> ? ( io Boolean flag, io UInt32 index )</td>
+</tr>
+<tr class="row-odd"><td>UInt32</td>
+<td><a class="reference internal" href="FlagAndIndex.html#f984b6bc82471d9a7a8d4be369636e"><span>getMaybeInvalidIndex</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="FlagAndIndex.html#aff4d8ae76340679d852ac27a2ce636"><span>getThenClearFlag</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="FlagAndIndex.html#be70c124d0ea480d83c3e42df5242446"><span>getThenSetFlag</span></a> ! ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="FlagAndIndex.html#f99e051a6e46e1a3bd064c4eff5360"><span>isInvalidIndex</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>UInt32</td>
+<td><a class="reference internal" href="FlagAndIndex.html#c092eb3d0e0543998a1b463a19cec3e3"><span>set</span></a> ! ( in Boolean flag, in UInt32 index )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="FlagAndIndex.html#c3221366b32c4104b31ce0d82fc60a3b"><span>setFlag</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td>UInt32</td>
+<td><a class="reference internal" href="FlagAndIndex.html#ae5e2157d2564de8a7c31d2822a120b3"><span>setIndex</span></a> ! ( in UInt32 index )</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="getflag">
+<h3>getFlag<a class="headerlink" href="#getflag" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">Boolean getFlag ( in UInt16 val, in UInt16 flag )</p>
+</div>
+</p>
+<p><div class="section" id="setflag">
+<h3>setFlag<a class="headerlink" href="#setflag" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">setFlag ( io UInt16 val, in UInt16 flag )</p>
+</div>
+</p>
+<p><div class="section" id="clearflag">
+<h3>clearFlag<a class="headerlink" href="#clearflag" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">clearFlag ( io UInt8 val, in UInt8 flag )</p>
+<p class="plaintext">removes a given UInt8 flag from an UInt8 bit mask</p>
+</div>
+</p>
+<p><div class="section" id="id2">
+<h3>getFlag<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">Boolean getFlag ( in UInt16 val, in UInt16 flag )</p>
+</div>
+</p>
+<p><div class="section" id="id3">
+<h3>setFlag<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">setFlag ( io UInt16 val, in UInt16 flag )</p>
+</div>
+</p>
+<p><div class="section" id="id4">
+<h3>clearFlag<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">clearFlag ( io UInt8 val, in UInt8 flag )</p>
+<p class="plaintext">removes a given UInt8 flag from an UInt8 bit mask</p>
+</div>
+</p>
+<p><div class="section" id="swap">
+<h3>swap<a class="headerlink" href="#swap" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">swap ( io <a class="reference internal" href="../Containers/LocalL8ScalarArray.html#locall8scalararray"><span>LocalL8ScalarArray</span></a> first, io <a class="reference internal" href="../Containers/LocalL8ScalarArray.html#locall8scalararray"><span>LocalL8ScalarArray</span></a> second )</p>
+<p class="plaintext">swaps one <a class="reference internal" href="../Containers/LocalL8ScalarArray.html#locall8scalararray"><span>LocalL8ScalarArray</span></a> with another one</p>
+</div>
+</p>
+<p><div class="section" id="log2roundup">
+<h3>Log2RoundUp<a class="headerlink" href="#log2roundup" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">UInt8 Log2RoundUp ( in UInt32 value )</p>
+<p class="plaintext">performs a logarithmic round up for the provided value</p>
+</div>
+</p>
+<p><div class="section" id="getbit">
+<h3>getBit<a class="headerlink" href="#getbit" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">Boolean getBit ( in UInt32 val, in UInt32 bit )</p>
+<p class="plaintext">returns a certain bit of a given UInt32 value</p>
+</div>
+</p>
+<p><div class="section" id="setbit">
+<h3>setBit<a class="headerlink" href="#setbit" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">setBit ( io UInt32 val, in UInt32 bit )</p>
+<p class="plaintext">sets a certain bit of a given UInt32 value</p>
+</div>
+</p>
+<p><div class="section" id="atomicsetbit">
+<h3>atomicSetBit<a class="headerlink" href="#atomicsetbit" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">atomicSetBit ( io UInt32 val, in UInt32 bit, in Boolean value )</p>
+<p class="plaintext">sets a bit to 0 or 1 for a given UInt32 value</p>
+</div>
+</p>
+<p><div class="section" id="getthensetbit">
+<h3>getThenSetBit<a class="headerlink" href="#getthensetbit" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">Boolean getThenSetBit ( io UInt64 val, in UInt64 bit )</p>
+<p class="plaintext">first gets and then sets a bit of a UInt64 value</p>
+</div>
+</p>
+<p><div class="section" id="clearbit">
+<h3>clearBit<a class="headerlink" href="#clearbit" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">clearBit ( io UInt64 val, in UInt64 bit )</p>
+<p class="plaintext">sets a bit of a UInt64 value to 0</p>
+</div>
+</p>
+<p><div class="section" id="atomicclearbit">
+<h3>atomicClearBit<a class="headerlink" href="#atomicclearbit" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">atomicClearBit ( io UInt32 val, in UInt32 bit )</p>
+<p class="plaintext">sets a bit to 0 for a given UInt32 value</p>
+</div>
+</p>
+<p><div class="section" id="getthenclearbit">
+<h3>getThenClearBit<a class="headerlink" href="#getthenclearbit" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">Boolean getThenClearBit ( io UInt32 val, in UInt32 bit )</p>
+<p class="plaintext">first gets and then clears a bit of a given UInt32 value</p>
+</div>
+</p>
+<p><div class="section" id="id5">
+<h3>setBit<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">setBit ( io UInt32 val, in UInt32 bit )</p>
+<p class="plaintext">sets a certain bit of a given UInt32 value</p>
+</div>
+</p>
+<p><div class="section" id="id6">
+<h3>atomicSetBit<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">atomicSetBit ( io UInt32 val, in UInt32 bit, in Boolean value )</p>
+<p class="plaintext">sets a bit to 0 or 1 for a given UInt32 value</p>
+</div>
+</p>
+<p><div class="section" id="id7">
+<h3>getThenSetBit<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">Boolean getThenSetBit ( io UInt64 val, in UInt64 bit )</p>
+<p class="plaintext">first gets and then sets a bit of a UInt64 value</p>
+</div>
+</p>
+<p><div class="section" id="getsetbitsstring">
+<h3>getSetBitsString<a class="headerlink" href="#getsetbitsstring" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> getSetBitsString ( in UInt64 val )</p>
+<p class="plaintext">returns a UInt64 number as a bitmask</p>
+</div>
+</p>
+<p><div class="section" id="id8">
+<h3>getBit<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">Boolean getBit ( in UInt32 val, in UInt32 bit )</p>
+<p class="plaintext">returns a certain bit of a given UInt32 value</p>
+</div>
+</p>
+<p><div class="section" id="id9">
+<h3>setBit<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">setBit ( io UInt32 val, in UInt32 bit )</p>
+<p class="plaintext">sets a certain bit of a given UInt32 value</p>
+</div>
+</p>
+<p><div class="section" id="id10">
+<h3>getThenSetBit<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">Boolean getThenSetBit ( io UInt64 val, in UInt64 bit )</p>
+<p class="plaintext">first gets and then sets a bit of a UInt64 value</p>
+</div>
+</p>
+<p><div class="section" id="id11">
+<h3>clearBit<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">clearBit ( io UInt64 val, in UInt64 bit )</p>
+<p class="plaintext">sets a bit of a UInt64 value to 0</p>
+</div>
+</p>
+<p><div class="section" id="id12">
+<h3>setBit<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">setBit ( io UInt32 val, in UInt32 bit )</p>
+<p class="plaintext">sets a certain bit of a given UInt32 value</p>
+</div>
+</p>
+<p><div class="section" id="id13">
+<h3>getThenSetBit<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">Boolean getThenSetBit ( io UInt64 val, in UInt64 bit )</p>
+<p class="plaintext">first gets and then sets a bit of a UInt64 value</p>
+</div>
+</p>
+<p><div class="section" id="id14">
+<h3>getSetBitsString<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> getSetBitsString ( in UInt64 val )</p>
+<p class="plaintext">returns a UInt64 number as a bitmask</p>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="ImporterOptions.kl.html"
+                        title="前の章へ">ImporterOptions.kl</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="NumberMethods.kl.html"
+                        title="次の章へ">NumberMethods.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/Util/IntegerUtils.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="NumberMethods.kl.html" title="NumberMethods.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="ImporterOptions.kl.html" title="ImporterOptions.kl"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Util Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >Util Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

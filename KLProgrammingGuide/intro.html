@@ -1,0 +1,344 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Introduction &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
+    <link rel="up" title="KL Programming Guide" href="index.html" />
+    <link rel="next" title="KL Syntax" href="syntax.html" />
+    <link rel="prev" title="KL Programming Guide" href="index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="syntax.html" title="KL Syntax"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="KL Programming Guide"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">KL Programming Guide</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>KL (pronounced &#8220;kale&#8221;) is the programming language used for Fabric Engine operators.  KL stands for &#8220;kernel language&#8221;; in this context, <em>kernel</em> refers to the concept of a computational kernel as used in multithreaded programming.</p>
+<p>KL was designed with the following goals:</p>
+<ul class="simple">
+<li>KL is designed to run performance-critical sections of dynamic-language programs.  As such, KL is designed so that KL programs run as quickly as possible on modern hardware.</li>
+<li>KL should be easy to learn for someone who is already familiar with programming in Python, JavaScript and other scripting languages.</li>
+<li>It must be possible to compile most KL programs to run on different architectures and kinds of hardware, specifically CPUs and GPUs.</li>
+</ul>
+<p>KL is a language with a syntax very similar to JavaScript but that is <em>procedural</em>, <em>strongly-typed</em> and with <em>low-level data layouts</em>.  Being <strong>procedural</strong> means that, unlike JavaScript, functions (or, rather, closures) are not first-class objects that can be passed around in the language; instead, functions are always globally declared.  Being <strong>strongly-typed</strong> means that, in a KL program, the types of all variables and function parameters are known at compile type, unlike JavaScript where types are only known at runtime.  Having <strong>low-level data layouts</strong> means that the size of data and the way that it is laid out in memory is guaranteed and controllable by the programmer.</p>
+<div class="section" id="running-the-examples">
+<span id="klpg-kl-tool"></span><h2>Running the Examples<a class="headerlink" href="#running-the-examples" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>This guide is full of KL example code.  We encourage you to not only read the examples and their output, but to try making changes to them based on what you&#8217;re learning and see how it affects the results.</p>
+<p>In order to run KL code in isolation (ie. outside of Fabric Engine) we have created the <em>KL tool</em>.  The KL tool has been used to generate all of the output you will find in this guide.  It is installed as part of the Fabric Engine installer, available at <a class="reference external" href="http://dist.fabric-engine.com/">http://dist.fabric-engine.com/</a>FabricEngine/latest/.  As part of the install process, the <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">FABRIC_DIR</span></code> environment variable will be set, and the KL tool will be installed in the directory <code class="file docutils literal"><span class="pre">$FABRIC_DIR/bin</span></code>.  Once the KL tool is installed, you can copy the source code for an example into a text file and run <strong class="command">kl filename.kl</strong> from a command line to reproduce the results.</p>
+<div class="admonition hint">
+<p class="first admonition-title">ヒント</p>
+<p class="last">The KL tool supports a wide variety of options that can aid in developing Fabric Engine applications.  Run <strong class="command">kl --help</strong> for information on the available options.  In particular, <strong class="command">kl --loadexts</strong> is very useful for debugging custom Fabric Engine extensions.</p>
+</div>
+</div>
+<div class="section" id="hello-world-in-kl">
+<h2>Hello World in KL<a class="headerlink" href="#hello-world-in-kl" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Before diving in to the details of the language, we will present some simple examples.  We don&#8217;t expect you to understand all the details of the examples, but hopefully they will give you a basic idea of what KL programs look like as well as some of what is possible with KL.</p>
+<p>Traditionally, the first program you see in a language is one that says hello.  In KL, the &#8220;Hello, world!&#8221; program is simple:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Hello World</span>
+<span class="cm">*/</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">Hello, world!</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+<p>Running this program through the KL tool, the output is &#8220;Hello, world!&#8221;.</p>
+<p>There&#8217;s not much to learn from this program, but it does introduce a few concepts:</p>
+<ul class="simple">
+<li>The <code class="docutils literal"><span class="pre">entry</span></code> operator is what is run by the KL tool.  KL distinguishes places in the program that can be called from the outside world; in this case, the outside world is the KL tool itself.  We discuss more about operators in the section <a class="reference internal" href="globals.html#operators"><span>Operators</span></a></li>
+<li>The <code class="docutils literal"><span class="pre">report</span></code> function sends some text to wherever messages go.  In the case of the KL tool, messages go to standard output; for console applications (in Node.js or Python for example), messages go to standard error.</li>
+<li>The text <code class="docutils literal"><span class="pre">&quot;Hello,</span> <span class="pre">world!&quot;</span></code> is a string constant.  String constants in KL follow almost exactly the same syntax as JavaScript.</li>
+</ul>
+</div>
+<div class="section" id="fibonacci-sequence-in-kl">
+<h2>Fibonacci Sequence in KL<a class="headerlink" href="#fibonacci-sequence-in-kl" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Next, we present a somewhat more sophisticated example that computes the first few terms of the Fibonacci sequence.  The Fibonacci sequence is the number sequence whose first two terms are 1 and 1, and whose further terms are the sum of the previous two in the sequence, ie. 2, 3, 5, 8, and so on.  There are several ways of computing the Fibonacci sequence in a programming language but we choose the naive, recursive way in order to illustrate some more language features of KL.</p>
+<p>The source code for the Fibonacci sequence generator in KL is:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Fibonacci Sequence</span>
+<span class="cm">*/</span>
+
+<span class="cm">/* Recursively compute the Fibonacci sequence.</span>
+<span class="cm">** The first term is returned with n = 0</span>
+<span class="cm">*/</span>
+
+<span class="kd">function</span> <span class="kr">Integer</span> <span class="nx">fibonacci</span><span class="p">(</span><span class="kr">Integer</span> <span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// The first two terms (n=0 or n=1) are 1</span>
+  <span class="k">else</span>
+    <span class="k">return</span> <span class="nx">fibonacci</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="nx">fibonacci</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kr">Integer</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span>
+    <span class="nb">report</span><span class="p">(</span><span class="nx">fibonacci</span><span class="p">(</span><span class="nx">i</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">1</span>
+<span class="cm">1</span>
+<span class="cm">2</span>
+<span class="cm">3</span>
+<span class="cm">5</span>
+<span class="cm">8</span>
+<span class="cm">13</span>
+<span class="cm">21</span>
+<span class="cm">34</span>
+<span class="cm">55</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+<p>The Fibonacci example highlights a few simple features of KL, including:</p>
+<ul class="simple">
+<li>Function and parameter declaration</li>
+<li>Recursion</li>
+<li>Conditional statements</li>
+<li>Loops</li>
+<li>Comments</li>
+</ul>
+</div>
+<div class="section" id="mandelbrot-set-in-kl">
+<h2>Mandelbrot Set in KL<a class="headerlink" href="#mandelbrot-set-in-kl" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Finally, we present an example of a KL program that generates the Mandelbrot set and outputs it visually as ASCII art.  The Mandelbrot set is a mathematical set defined by complex recursive functions, but that it best known because the patterns it contains are visually stunning.  Refer to the Wikipedia entry on the Mandelbrot set at <a class="reference external" href="http://en.wikipedia.org/wiki/Mandelbrot_set">http://en.wikipedia.org/wiki/Mandelbrot_set</a> for more information.</p>
+<p>KL includes very powerful features for extending the language for computational problems such as that of computing the values of the Mandelbrot set, as seen in the source code below:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Mandelbrot Set</span>
+<span class="cm">*/</span>
+
+<span class="kr">struct</span> <span class="nx">Complex32</span> <span class="p">{</span>
+  <span class="kr">Float32</span> <span class="nx">re</span><span class="p">;</span>
+  <span class="kr">Float32</span> <span class="nx">im</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">Complex32</span><span class="p">(</span><span class="kr">Float32</span> <span class="nx">re</span><span class="p">,</span> <span class="kr">Float32</span> <span class="nx">im</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">re</span> <span class="o">=</span> <span class="nx">re</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">im</span> <span class="o">=</span> <span class="nx">im</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">Complex32</span> <span class="o">+</span><span class="p">(</span><span class="nx">Complex32</span> <span class="nx">lhs</span><span class="p">,</span> <span class="nx">Complex32</span> <span class="nx">rhs</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">Complex32</span><span class="p">(</span><span class="nx">lhs</span><span class="p">.</span><span class="nx">re</span> <span class="o">+</span> <span class="nx">rhs</span><span class="p">.</span><span class="nx">re</span><span class="p">,</span> <span class="nx">lhs</span><span class="p">.</span><span class="nx">im</span> <span class="o">+</span> <span class="nx">rhs</span><span class="p">.</span><span class="nx">im</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">Complex32</span> <span class="o">*</span><span class="p">(</span><span class="nx">Complex32</span> <span class="nx">lhs</span><span class="p">,</span> <span class="nx">Complex32</span> <span class="nx">rhs</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">Complex32</span><span class="p">(</span><span class="nx">lhs</span><span class="p">.</span><span class="nx">re</span><span class="o">*</span><span class="nx">rhs</span><span class="p">.</span><span class="nx">re</span><span class="o">-</span><span class="nx">lhs</span><span class="p">.</span><span class="nx">im</span><span class="o">*</span><span class="nx">rhs</span><span class="p">.</span><span class="nx">im</span><span class="p">,</span> <span class="nx">lhs</span><span class="p">.</span><span class="nx">re</span><span class="o">*</span><span class="nx">rhs</span><span class="p">.</span><span class="nx">im</span> <span class="o">+</span> <span class="nx">lhs</span><span class="p">.</span><span class="nx">im</span><span class="o">*</span><span class="nx">rhs</span><span class="p">.</span><span class="nx">re</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="kr">Float32</span> <span class="nx">Complex32</span><span class="p">.</span><span class="nx">normSq</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">re</span><span class="o">*</span><span class="k">this</span><span class="p">.</span><span class="nx">re</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">im</span><span class="o">*</span><span class="k">this</span><span class="p">.</span><span class="nx">im</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="kr">UInt8</span> <span class="nx">computeDwell</span><span class="p">(</span><span class="nx">Complex32</span> <span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">Complex32</span> <span class="nx">z</span> <span class="o">=</span> <span class="nx">c</span><span class="p">;</span>
+  <span class="kr">UInt8</span> <span class="nx">count</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">count</span> <span class="o">&lt;</span> <span class="mi">255</span><span class="p">;</span> <span class="o">++</span><span class="nx">count</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">z</span><span class="p">.</span><span class="nx">normSq</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">)</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="nx">z</span> <span class="o">=</span> <span class="nx">z</span><span class="o">*</span><span class="nx">z</span> <span class="o">+</span> <span class="nx">c</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">count</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="nx">Complex32</span> <span class="nx">z</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nx">Size</span> <span class="nx">row</span><span class="o">=</span><span class="mi">9</span><span class="p">;</span> <span class="nx">row</span><span class="o">&lt;=</span><span class="mi">31</span><span class="p">;</span> <span class="o">++</span><span class="nx">row</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">z</span><span class="p">.</span><span class="nx">im</span> <span class="o">=</span> <span class="kr">Float32</span><span class="p">(</span><span class="mf">4.0</span> <span class="o">*</span> <span class="nx">row</span> <span class="o">/</span> <span class="mf">40.0</span> <span class="o">-</span> <span class="mf">2.0</span><span class="p">);</span>
+    <span class="kr">String</span> <span class="nx">rowString</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nx">Size</span> <span class="nx">col</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">col</span><span class="o">&lt;=</span><span class="mi">78</span><span class="p">;</span> <span class="o">++</span><span class="nx">col</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">z</span><span class="p">.</span><span class="nx">re</span> <span class="o">=</span> <span class="kr">Float32</span><span class="p">(</span><span class="mf">4.0</span> <span class="o">*</span> <span class="nx">col</span> <span class="o">/</span> <span class="mf">78.0</span> <span class="o">-</span> <span class="mf">2.0</span><span class="p">);</span>
+      <span class="kr">UInt8</span> <span class="nx">dwell</span> <span class="o">=</span> <span class="nx">computeDwell</span><span class="p">(</span><span class="nx">z</span><span class="p">);</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="nx">dwell</span> <span class="o">&amp;</span> <span class="mi">192</span><span class="p">)</span>
+        <span class="nx">rowString</span> <span class="o">+=</span> <span class="s2">&quot;#&quot;</span><span class="p">;</span>
+      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">dwell</span> <span class="o">&amp;</span> <span class="mi">48</span><span class="p">)</span>
+        <span class="nx">rowString</span> <span class="o">+=</span> <span class="s2">&quot;*&quot;</span><span class="p">;</span>
+      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">dwell</span> <span class="o">&amp;</span> <span class="mi">12</span><span class="p">)</span>
+        <span class="nx">rowString</span> <span class="o">+=</span> <span class="s2">&quot;.&quot;</span><span class="p">;</span>
+      <span class="k">else</span>
+        <span class="nx">rowString</span> <span class="o">+=</span> <span class="s2">&quot; &quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nb">report</span><span class="p">(</span><span class="nx">rowString</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">                                  .....                                        </span>
+<span class="cm">                                .......#.                                      </span>
+<span class="cm">                              ......**.....                                    </span>
+<span class="cm">                            .......####*.....                                  </span>
+<span class="cm">                         ..........####.........                               </span>
+<span class="cm">                    ........*#**##########*...*..                              </span>
+<span class="cm">               .............*#################....                             </span>
+<span class="cm">            ...............###################....                             </span>
+<span class="cm">          ......*..*.*...*#####################...                             </span>
+<span class="cm">        ........*######*.######################*..                             </span>
+<span class="cm">      ......*..################################...                             </span>
+<span class="cm">############################################*.....                             </span>
+<span class="cm">      ......*..################################...                             </span>
+<span class="cm">        ........*######*.######################*..                             </span>
+<span class="cm">          ......*..*.*...*#####################...                             </span>
+<span class="cm">            ...............###################....                             </span>
+<span class="cm">               .............*#################....                             </span>
+<span class="cm">                    ........*#**##########*...*..                              </span>
+<span class="cm">                         ..........####.........                               </span>
+<span class="cm">                            .......####*.....                                  </span>
+<span class="cm">                              ......**.....                                    </span>
+<span class="cm">                                .......#.                                      </span>
+<span class="cm">                                  .....                                        </span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+<p>The Mandelbrot set example highlights a few of the more sophisticated features of KL, including:</p>
+<ul class="simple">
+<li>User-defined types</li>
+<li>Constructors</li>
+<li>Operator overloads</li>
+<li>Methods</li>
+<li>Bitwise operators</li>
+<li>Variable-length arrays</li>
+</ul>
+</div>
+<div class="section" id="how-this-guide-is-organized">
+<h2>How This Guide is Organized<a class="headerlink" href="#how-this-guide-is-organized" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Unlike other languages, KL is a language designed to add performance-critical sections to programs written in dynamic languages.  As such, this guide assumes that you are already familiar with the basic concepts of modern programming languages, including types, expressions, statements (eg. conditional statements, loop statements, return statements) and functions.</p>
+<p>Since it&#8217;s difficult to provide meaningful examples in a computer language without using many concepts of the language, we will often use or even refer to concepts that aren&#8217;t discussed until later in the guide.  We leave it up to you to decide whether to jump ahead or to just keep reading and see where things go.</p>
+<p>The remainder of the guide is laid out as follows:</p>
+<ul class="simple">
+<li><a class="reference internal" href="syntax.html#syntax"><span>KL Syntax</span></a> describes the syntax of KL.  KL has a syntax very similar to JavaScript (like JavaScript, it is a C-like language) so this syntax will be familiar to many programmers.  If you are already familiar with the syntax of JavaScript or C, we recommend that you skip this chapter and move on to the next; you can always come back to it later for reference.</li>
+<li><a class="reference internal" href="types.html#klpg-types"><span>The KL Type System</span></a> introduces the type system of KL.  KL comes with a rich set of base types that includes integers, floating-point numbers, strings and booleans, as well as derived types including structures, arrays and dictionaries.</li>
+<li><a class="reference internal" href="globals.html#globals"><span>Functions and Other Global Declarations</span></a> describes how functions and other global declarations are made in KL.  KL includes support for basic functions (also referred to as procedures in other languages), but also support more complex function concepts such as prototypes, methods and overloaded operators.  It also supports global constants, as well as a facility to import functionality from external modules.</li>
+<li><a class="reference internal" href="ops-exprs.html#ops-exprs"><span>Operators and Expressions</span></a> describes the set of operators supported by KL and the different kinds of expressions that can be formed using these operators.  It also discusses the rules that govern scoping for variables and other symbols.</li>
+<li><a class="reference internal" href="statements.html#statements"><span>Statements</span></a> describes the different statements that are available for function bodies in KL.</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Introduction</a><ul>
+<li><a class="reference internal" href="#running-the-examples">Running the Examples</a></li>
+<li><a class="reference internal" href="#hello-world-in-kl">Hello World in KL</a></li>
+<li><a class="reference internal" href="#fibonacci-sequence-in-kl">Fibonacci Sequence in KL</a></li>
+<li><a class="reference internal" href="#mandelbrot-set-in-kl">Mandelbrot Set in KL</a></li>
+<li><a class="reference internal" href="#how-this-guide-is-organized">How This Guide is Organized</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="index.html"
+                        title="前の章へ">KL Programming Guide</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="syntax.html"
+                        title="次の章へ">KL Syntax</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/KLProgrammingGuide/intro.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="syntax.html" title="KL Syntax"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="KL Programming Guide"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >KL Programming Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

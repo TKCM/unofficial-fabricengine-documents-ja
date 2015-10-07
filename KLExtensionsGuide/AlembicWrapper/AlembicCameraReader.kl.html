@@ -1,0 +1,293 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>AlembicCameraReader.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="AlembicWrapper Extension’s Files" href="files.html" />
+    <link rel="next" title="AlembicCameraWriter.kl" href="AlembicCameraWriter.kl.html" />
+    <link rel="prev" title="AlembicArchiveWriter.kl" href="AlembicArchiveWriter.kl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="AlembicCameraWriter.kl.html" title="AlembicCameraWriter.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="AlembicArchiveWriter.kl.html" title="AlembicArchiveWriter.kl"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >AlembicWrapper Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">AlembicWrapper Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="alembicwrapper-alembiccamerareader-kl">
+<span id="alembiccamerareader-kl"></span><span id="id1"></span><h1>AlembicCameraReader.kl<a class="headerlink" href="#alembicwrapper-alembiccamerareader-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="alembiccamerareader-object">
+<h3>AlembicCameraReader (object)<a class="headerlink" href="#alembiccamerareader-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">The <a class="reference internal" href="AlembicCameraReader.html#alembiccamerareader"><span>AlembicCameraReader</span></a> specializes the <a class="reference internal" href="AlembicObjectReader.html#alembicobjectreader"><span>AlembicObjectReader</span></a> interface for reading <a class="reference internal" href="../Alembic/AlembicICamera.html#alembicicamera"><span>AlembicICamera</span></a> data.
+It can be created using the <a class="reference internal" href="AlembicArchiveReader.html#e9c834327a373b3d0c696a910"><span>AlembicArchiveReader.getCamera</span></a> method.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="AlembicCameraWriter.html#alembiccamerawriter"><span>AlembicCameraWriter</span></a></p>
+</div>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: AlembicCameraReader</span>
+<span class="cm">*/</span>
+
+<span class="kr">require</span> <span class="nx">AlembicWrapper</span><span class="p">;</span>
+<span class="kr">require</span> <span class="nx">FileIO</span><span class="p">;</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  
+  <span class="nx">FilePath</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">FilePath</span><span class="p">(</span><span class="s1">&#39;${FABRIC_SCENE_GRAPH_DIR}/Python/Apps/Resources/Alembic/frog.abc&#39;</span><span class="p">).</span><span class="nx">expandEnvVars</span><span class="p">();</span>
+
+  <span class="nx">AlembicArchiveReader</span> <span class="nx">archive</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">string</span><span class="p">());</span>
+  <span class="kr">String</span> <span class="nx">cameraPaths</span><span class="p">[]</span> <span class="o">=</span> <span class="nx">archive</span><span class="p">.</span><span class="nx">getPathsOfType</span><span class="p">(</span><span class="s1">&#39;Camera&#39;</span><span class="p">);</span>
+
+  <span class="k">for</span><span class="p">(</span><span class="nx">Size</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">cameraPaths</span><span class="p">.</span><span class="nx">size</span><span class="p">();</span><span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="nx">AlembicCameraReader</span> <span class="nx">camera</span> <span class="o">=</span> <span class="nx">archive</span><span class="p">.</span><span class="nx">getCamera</span><span class="p">(</span><span class="nx">cameraPaths</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+    <span class="nb">report</span><span class="p">(</span><span class="s1">&#39;samples: &#39;</span><span class="o">+</span><span class="nx">camera</span><span class="p">.</span><span class="nx">getNumSamples</span><span class="p">());</span>
+
+    <span class="nx">camera</span><span class="p">.</span><span class="nx">readSample</span><span class="p">(</span><span class="mf">2.4</span><span class="p">);</span>
+    <span class="nb">report</span><span class="p">(</span><span class="s1">&#39;focalLength: &#39;</span><span class="o">+</span><span class="nx">camera</span><span class="p">.</span><span class="nx">getFocalLength</span><span class="p">());</span>
+    <span class="nb">report</span><span class="p">(</span><span class="s1">&#39;nearClippingPlane: &#39;</span><span class="o">+</span><span class="nx">camera</span><span class="p">.</span><span class="nx">getNearClippingPlane</span><span class="p">());</span>
+    <span class="nb">report</span><span class="p">(</span><span class="s1">&#39;farClippingPlane: &#39;</span><span class="o">+</span><span class="nx">camera</span><span class="p">.</span><span class="nx">getFarClippingPlane</span><span class="p">());</span>
+    
+  <span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+<span class="cm">HDF5-DIAG: Error detected in HDF5 (1.8.13) thread 0:</span>
+<span class="cm">  #000: c:\Users\Andrew\Fabric\SceneGraph\ThirdParty\scripts\src\hdf5-1.8.13\src\H5F.c line 861 in H5Fis_hdf5(): unable to open file</span>
+<span class="cm">    major: Low-level I/O</span>
+<span class="cm">    minor: Unable to initialize object</span>
+<span class="cm">  #001: c:\Users\Andrew\Fabric\SceneGraph\ThirdParty\scripts\src\hdf5-1.8.13\src\H5FD.c line 985 in H5FD_open(): open failed</span>
+<span class="cm">    major: Virtual File Layer</span>
+<span class="cm">    minor: Unable to initialize object</span>
+<span class="cm">  #002: c:\Users\Andrew\Fabric\SceneGraph\ThirdParty\scripts\src\hdf5-1.8.13\src\H5FDsec2.c line 343 in H5FD_sec2_open(): unable to open file: name = &#39;D:\fabric/Python/Apps/Resources/Alembic/frog.abc&#39;, errno = 2, error message = &#39;No such file or directory&#39;, flags = 0, o_flags = 0</span>
+<span class="cm">    major: File accessibilty</span>
+<span class="cm">    minor: Unable to open file</span>
+
+<span class="cm">Error: Alembic: AlembicIArchive_constructFromString: Unknown core type / file not found.</span>
+<span class="cm">KL stack trace:</span>
+<span class="cm">[ST] 1 create.L.OO_AlembicArchiveReader.R.ST() AlembicArchiveReader.kl:43</span>
+<span class="cm">[ST] 2 operator.entry() (stdin):13</span>
+<span class="cm">[ST] 3 kl.internal.entry.stub.cpu()</span>
+<span class="cm">Error: Alembic: Error in AlembicIArchive_getTop. unable to convert: this_</span>
+<span class="cm">KL stack trace:</span>
+<span class="cm">[ST] 1 method.getAllPaths.L.UO_AlembicArchiveReader() AlembicArchiveReader.kl:140</span>
+<span class="cm">[ST] 2 method.getPathsOfType.L.UO_AlembicArchiveReader.R.ST() AlembicArchiveReader.kl:162</span>
+<span class="cm">[ST] 3 operator.entry() (stdin):14</span>
+<span class="cm">[ST] 4 kl.internal.entry.stub.cpu()</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="AlembicCameraReader.html#f61ff4d12747fe9b7a73b34da4cc1b"><span>AlembicCameraReader</span></a>  ( in <a class="reference internal" href="AlembicCameraReader.html#alembiccamerareader"><span>AlembicCameraReader</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="AlembicCameraReader.html#fa8ccbc9c1b74662867895cf9802e1ba"><span>AlembicCameraReader</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="AlembicCameraReader.html#alembiccamerareader"><span>AlembicCameraReader</span></a></td>
+<td><a class="reference internal" href="AlembicCameraReader.html#b927b9b23234d5f981612689ba22fba"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="AlembicCameraReader.html#d8ba216c2b4692a2a2dd408f4e3535"><span>getFStop</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="AlembicCameraReader.html#fffae779f34bef906f8f1a18ae73dd"><span>getFarClippingPlane</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="AlembicCameraReader.html#b2db1c0dbe4154b084555bbf687f0d"><span>getFocalLength</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="AlembicCameraReader.html#e37bfa42b6e48b9b29bc9648242c65a"><span>getFocusDistance</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="AlembicCameraReader.html#a41ed8569224b919c3f42ff25f938be"><span>getHorizontalAperture</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="AlembicCameraReader.html#bd2715eb93b54d60b9f7ce5d6c8516d4"><span>getHorizontalFilmOffset</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Alembic/AlembicIObject.html#alembiciobject"><span>AlembicIObject</span></a></td>
+<td><a class="reference internal" href="AlembicCameraReader.html#fa7087acba436f9b7cad8461636d3d"><span>getIObject</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="AlembicCameraReader.html#ca5270b2b094b9ba67a586214642efa"><span>getLensSqueezeRatio</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="AlembicCameraReader.html#b0c14367794fa398b4f3ba011693a3"><span>getNearClippingPlane</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>SInt32</td>
+<td><a class="reference internal" href="AlembicCameraReader.html#adc87c443f554090985f097edcca4335"><span>getNumSamples</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="AlembicCameraReader.html#a394690bf38f9049e066393"><span>getOverScanBottom</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="AlembicCameraReader.html#f00681a801c4e61ba90149871f2d60b"><span>getOverScanLeft</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="AlembicCameraReader.html#b62294400427b9c8f307c4991134a"><span>getOverScanRight</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="AlembicCameraReader.html#de9c444e7d7419b9200432fe61c15df"><span>getOverScanTop</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="AlembicCameraReader.html#f46792f377473eb4792f56e51dbbbe"><span>getPath</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Alembic/AlembicCameraSample.html#alembiccamerasample"><span>AlembicCameraSample</span></a></td>
+<td><a class="reference internal" href="AlembicCameraReader.html#abf5b3d7ff24fb08308a58389456890"><span>getSampleA</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Alembic/AlembicCameraSample.html#alembiccamerasample"><span>AlembicCameraSample</span></a></td>
+<td><a class="reference internal" href="AlembicCameraReader.html#d605e979e9446c910ec986138f5bed"><span>getSampleB</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Alembic/AlembicICameraSchema.html#alembicicameraschema"><span>AlembicICameraSchema</span></a></td>
+<td><a class="reference internal" href="AlembicCameraReader.html#a4608fa3a0f45ce9f6a09cefb2111fd"><span>getSchema</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="AlembicCameraReader.html#c7aab1574971b872992febbff9fb"><span>getShutterClose</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="AlembicCameraReader.html#d9c9ece02b344db940fcbee8c14ec29"><span>getShutterOpen</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Alembic/AlembicTimeSampling.html#alembictimesampling"><span>AlembicTimeSampling</span></a></td>
+<td><a class="reference internal" href="AlembicCameraReader.html#b9cc8e462fde4400afa50368e069d87f"><span>getTimeSampling</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="AlembicCameraReader.html#f2220f948d514fb2aee1af11feda9e21"><span>getVerticalAperture</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="AlembicCameraReader.html#a63f8dc24ef84f60bd1af5d6272d4834"><span>getVerticalFilmOffset</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="AlembicCameraReader.html#ddbb4e4624b43aecbdee5b2b1a0ba"><span>readSample</span></a> ! ( in <a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> time )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="AlembicCameraReader.html#e8453902fe247b4a9265be48ffc5e0d"><span>reset</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="AlembicCameraReader.html#d6c9ad3947f7970a48abf6853162"><span>valid</span></a> ? ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="AlembicArchiveWriter.kl.html"
+                        title="前の章へ">AlembicArchiveWriter.kl</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="AlembicCameraWriter.kl.html"
+                        title="次の章へ">AlembicCameraWriter.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/AlembicWrapper/AlembicCameraReader.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="AlembicCameraWriter.kl.html" title="AlembicCameraWriter.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="AlembicArchiveWriter.kl.html" title="AlembicArchiveWriter.kl"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >AlembicWrapper Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >AlembicWrapper Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Using RTVals from Python Applications &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
+    <link rel="up" title="RTVal Programming Guide" href="index.html" />
+    <link rel="next" title="Using RTVals from C++ Applications" href="capi.html" />
+    <link rel="prev" title="What is an RTVal?" href="what.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="capi.html" title="Using RTVals from C++ Applications"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="what.html" title="What is an RTVal?"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">RTVal Programming Guide</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="using-rtvals-from-python-applications">
+<h1>Using RTVals from Python Applications<a class="headerlink" href="#using-rtvals-from-python-applications" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>The section explains how to use RTVals within a Fabric Engine client application written in Python</p>
+<div class="section" id="obtain-a-fabric-product-name-client-handle">
+<h2>Obtain a Fabric Engine Client Handle<a class="headerlink" href="#obtain-a-fabric-product-name-client-handle" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>We will assume that you have already obtained a Fabric Engine client handle.  For more information on obtaining a client handle, see <a class="reference internal" href="../DependencyGraphProgrammingGuide/introduction.html#dgpg-client-create"><span>The fabricClient Object</span></a>.</p>
+<p>For the rest of this section, we will assume that the client handle is referred to by the Python variable named <cite>client</cite>.</p>
+<div class="highlight-none"><div class="highlight"><pre>$ python
+&gt;&gt;&gt; import FabricEngine.Core
+&gt;&gt;&gt; client = FabricEngine.Core.createClient()
+[FABRIC:MT] Fabric Core version 1.10.0
+[FABRIC:MT] Registered extensions {BadVersion,UnitTest,FabricALEMBIC,FabricBULLET,FabricCIMG,FabricEXR,FabricFBX,FabricFILESTREAM,Geometry,FabricHDR,FabricLIDAR,Math,FabricOBJ,FabricOPENCV,FabricOGL,FabricPNG,FabricStringTools,FabricTEEM,FabricTGA,FabricVIDEO} in directory: /Users/pzion/Fabric/CreationPlatform/stage/Darwin/x86_64/Release/Exts
+&gt;&gt;&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-derived-types">
+<h2>Using Derived Types<a class="headerlink" href="#using-derived-types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>You can always use a base KL type such as <code class="docutils literal"><span class="pre">String</span></code> or <code class="docutils literal"><span class="pre">UInt32</span></code> for an RTVal; they are built-in and always available.</p>
+<p>If you want your RTVal to be of a <a class="reference internal" href="../KLProgrammingGuide/types.html#klpg-types-derived"><span>derived type</span></a>, the type must already be registered.</p>
+<p>Many custom types are already provided by <a class="reference internal" href="../KLExtensionsGuide/index.html#extr"><span>built-in extensions</span></a>.  You can use any of these types for an RTVal, provided that the extension has been loaded.  Extensions are loaded by KL code that uses them (eg. DG operators), or you can explicitly load extensions by using the <code class="docutils literal"><span class="pre">client.loadExtension(&lt;extension</span> <span class="pre">name&gt;)</span></code> method.</p>
+<p>You can also register a custom type to then use for RTVals; see <a class="reference internal" href="../DependencyGraphProgrammingGuide/registered-types.html#dgpg-registered-types"><span>Registered Types</span></a>.</p>
+<p>For the purposes of these examples, we will register a custom structure MyType with a custom constructor and a couple of methods:</p>
+<div class="highlight-none"><div class="highlight"><pre>&gt;&gt;&gt; myTypeSource = &quot;&quot;&quot;
+... function MyType(String string, UInt32 uint32) {
+...   this.string = string;
+...   this.uint32 = uint32;
+... }
+...
+... function MyType.tweet() {
+...   report(&quot;Tweet tweet!  string=&#39;&quot; + this.string + &quot;&#39; uint32=&quot; + this.uint32);
+... }
+...
+... function MyType.append!(MyType that) {
+...   this.string += that.string;
+...   this.uint32 += that.uint32;
+... }
+... &quot;&quot;&quot;
+&gt;&gt;&gt;
+&gt;&gt;&gt; myTypeDesc = {
+...   &#39;members&#39;: [{&#39;string&#39;: &#39;String&#39;}, {&#39;uint32&#39;: &#39;UInt32&#39;}],
+...   &#39;klBindings&#39;: {
+...     &#39;filename&#39;: &quot;(inline)&quot;,
+...     &#39;sourceCode&#39;: myTypeSource
+...    }
+... }
+&gt;&gt;&gt;
+&gt;&gt;&gt; client.RT.registerType(&#39;MyType&#39;, myTypeDesc)
+[FABRIC:MT] Compiled extension MyType in 0.961ms
+[FABRIC:ID] Optimized extension MyType in 29.553ms
+&gt;&gt;&gt; print client.RT.getRegisteredTypes()[&#39;MyType&#39;]
+{&#39;uuid&#39;: &#39;8E8A7F4C&#39;, &#39;name&#39;: &#39;MyType&#39;, &#39;members&#39;: [{&#39;type&#39;: &#39;String&#39;, &#39;name&#39;: &#39;string&#39;}, {&#39;type&#39;: &#39;UInt32&#39;, &#39;name&#39;: &#39;uint32&#39;}], &#39;size&#39;: 32}
+&gt;&gt;&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-an-rtval">
+<h2>Creating an RTVal<a class="headerlink" href="#creating-an-rtval" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>To create a type, call the method <code class="docutils literal"><span class="pre">client.RT.types.&lt;TypeName&gt;(&lt;constructor</span> <span class="pre">parameters&gt;)</span></code>:</p>
+<div class="highlight-none"><div class="highlight"><pre>&gt;&gt;&gt; myRTVal = client.RT.types.MyType(&quot;Hello&quot;, 42)
+&gt;&gt;&gt; print myRTVal
+&lt;RTVal:{string:&quot;Hello&quot;,uint32:42}&gt;
+&gt;&gt;&gt;
+</pre></div>
+</div>
+<p>You can see that the constructor for the RTVal was called with the passed
+parameters.  You can see that RTVals have an automatic conversion to a string that describe the value, which is very handy for debugging.</p>
+<p>If you try to construct with a non-existing constructor, you&#8217;ll get an exception:</p>
+<div class="highlight-none"><div class="highlight"><pre>&gt;&gt;&gt; client.RT.types.MyType(&quot;foo&quot;)
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+AttributeError: KL compile failed: constructArgs__ST.kl:2:106: error: no resolution for constructor MyType(io _CN&lt;ST&gt;)
+candidates are:
+  function MyType(MyType)
+  function MyType()
+  function MyType(String, UInt32)
+&gt;&gt;&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="getting-python-values-from-an-rtval">
+<h2>Getting Python values from an RTVal<a class="headerlink" href="#getting-python-values-from-an-rtval" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>By default RTVal methods and members are represented in Python by an &#8216;RTVal&#8217; type, however in the case of simple types such as integers and strings a user may want these to be represented by the default Python type. The getSimpleType() method can be used on any
+RTVal to return its value as a simple Python type, or &#8216;None&#8217; if there is no default Python type that can be used to represent it:</p>
+<div class="highlight-none"><div class="highlight"><pre>&gt;&gt;&gt; print myRTVal
+&lt;RTVal:{string:&quot;Hello&quot;,uint32:42}&gt;
+&gt;&gt;&gt; print myRTVal.getSimpleType()
+None
+&gt;&gt;&gt; print myRTVal.uint32
+&lt;RTVal:42&gt;
+&gt;&gt;&gt; print myRTVal.uint32.getSimpleType()
+42
+</pre></div>
+</div>
+</div>
+<div class="section" id="calling-an-rtval-method">
+<h2>Calling an RTVal Method<a class="headerlink" href="#calling-an-rtval-method" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>To call a method, simply calling the method, passing arguments.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">Method calls in Python have a quirk where the name of the return type, as a string, must be passed as a first parameter; if there is no return type for the method, pass the empty string.  This quirk will be fixed in a future version of Fabric Engine.</p>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>&gt;&gt;&gt; myRTVal.tweet(&#39;&#39;)
+[FABRIC:MT] Tweet tweet!  string=&#39;Hello&#39; uint32=42
+&gt;&gt;&gt;
+</pre></div>
+</div>
+<p>In addition to plain Python types like integers and strings, you can also pass other RTVals as arguments:</p>
+<div class="highlight-none"><div class="highlight"><pre>&gt;&gt;&gt; myRTVal2 = client.RT.types.MyType(&quot;, there&quot;, 71)
+&gt;&gt;&gt; print(myRTVal2)
+&lt;RTVal:{string:&quot;, there&quot;,uint32:71}&gt;
+&gt;&gt;&gt; myRTVal.append(&#39;&#39;, myRTVal2)
+&gt;&gt;&gt; myRTVal.tweet(&#39;&#39;)
+[FABRIC:MT] Tweet tweet!  string=&#39;Hello, there&#39; uint32=113
+&gt;&gt;&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-objects">
+<h2>Creating Objects<a class="headerlink" href="#creating-objects" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>As with objects in KL, a newly-created RTVal of an object type is always null.  To create a non-null object RTVal, call <code class="docutils literal"><span class="pre">client.RT.types.&lt;MyObjType&gt;.create(&lt;create</span> <span class="pre">args&gt;)</span></code>.</p>
+</div>
+<div class="section" id="copying-rtval-references">
+<h2>Copying RTVal References<a class="headerlink" href="#copying-rtval-references" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Python variables that point to RTVals are references; as such, when you assign an RTVal to a variable it just makes another reference, and doesn&#8217;t copy the underlying value.</p>
+</div>
+<div class="section" id="destroying-an-rtval">
+<h2>Destroying an RTVal<a class="headerlink" href="#destroying-an-rtval" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>In Python, RTVals are automatically destroyed when they go out of scope.</p>
+</div>
+<div class="section" id="interfacing-with-the-dependency-graph">
+<h2>Interfacing with the Dependency Graph<a class="headerlink" href="#interfacing-with-the-dependency-graph" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>RTVals can be used to interface with the <a class="reference internal" href="../DependencyGraphProgrammingGuide/index.html#dgpg"><span>dependency graph</span></a>.  You can use the <code class="docutils literal"><span class="pre">node.getValue(&lt;member&gt;,</span> <span class="pre">&lt;slice&gt;)</span></code> method to get a member value as an RTVal:</p>
+<div class="highlight-none"><div class="highlight"><pre>&gt;&gt;&gt; node = client.DG.createNode(&quot;node&quot;)
+&gt;&gt;&gt; node.addMember(&quot;myType&quot;, &quot;MyType&quot;)
+&gt;&gt;&gt; print node.getValue(&quot;myType&quot;, 0)
+&lt;RTVal:{string:&quot;&quot;,uint32:0}&gt;
+&gt;&gt;&gt;
+</pre></div>
+</div>
+<p>Similarly, you can use the <code class="docutils literal"><span class="pre">setValue(&lt;member&gt;,</span> <span class="pre">&lt;slice&gt;,</span> <span class="pre">&lt;value&gt;)</span></code> method to set the value from an RTVal:</p>
+<div class="highlight-none"><div class="highlight"><pre>&gt;&gt;&gt; node.setValue(&quot;myType&quot;, 0, myRTVal)
+&gt;&gt;&gt; print node.getValue(&quot;myType&quot;, 0)
+&lt;RTVal:{string:&quot;Hello, there&quot;,uint32:113}&gt;
+&gt;&gt;&gt;
+</pre></div>
+</div>
+<p>The same methods can also be used to work with events and event handlers.</p>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">When you call <code class="docutils literal"><span class="pre">getValue</span></code> on a dependency graph node, the returned RTVal is a copy, and not a reference, of the value.  Thus, if you change the returned RTVal you will not change the value in the node from which it came.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Using RTVals from Python Applications</a><ul>
+<li><a class="reference internal" href="#obtain-a-fabric-product-name-client-handle">Obtain a Fabric Engine Client Handle</a></li>
+<li><a class="reference internal" href="#using-derived-types">Using Derived Types</a></li>
+<li><a class="reference internal" href="#creating-an-rtval">Creating an RTVal</a></li>
+<li><a class="reference internal" href="#getting-python-values-from-an-rtval">Getting Python values from an RTVal</a></li>
+<li><a class="reference internal" href="#calling-an-rtval-method">Calling an RTVal Method</a></li>
+<li><a class="reference internal" href="#creating-objects">Creating Objects</a></li>
+<li><a class="reference internal" href="#copying-rtval-references">Copying RTVal References</a></li>
+<li><a class="reference internal" href="#destroying-an-rtval">Destroying an RTVal</a></li>
+<li><a class="reference internal" href="#interfacing-with-the-dependency-graph">Interfacing with the Dependency Graph</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="what.html"
+                        title="前の章へ">What is an RTVal?</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="capi.html"
+                        title="次の章へ">Using RTVals from C++ Applications</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/RTValProgrammingGuide/python.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="capi.html" title="Using RTVals from C++ Applications"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="what.html" title="What is an RTVal?"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >RTVal Programming Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

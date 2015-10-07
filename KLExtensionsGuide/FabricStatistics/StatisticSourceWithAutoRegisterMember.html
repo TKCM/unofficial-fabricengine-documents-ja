@@ -1,0 +1,558 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>StatisticSourceWithAutoRegisterMember (interface) &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="FabricStatistics Extension’s Interfaces" href="interfaces.html" />
+    <link rel="next" title="FabricStatistics Extension’s Types" href="types.html" />
+    <link rel="prev" title="StatisticSource (interface)" href="StatisticSource.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="types.html" title="FabricStatistics Extension’s Types"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="StatisticSource.html" title="StatisticSource (interface)"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >FabricStatistics Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="interfaces.html" accesskey="U">FabricStatistics Extension&#8217;s Interfaces</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="statisticsourcewithautoregistermember-interface">
+<span id="statisticsourcewithautoregistermember"></span><h1>StatisticSourceWithAutoRegisterMember (interface)<a class="headerlink" href="#statisticsourcewithautoregistermember-interface" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><p class="plaintext">The <a class="reference internal" href="#statisticsourcewithautoregistermember"><span>StatisticSourceWithAutoRegisterMember</span></a> interface is a simplified interface for supporting the <a class="reference internal" href="StatisticSource.html#statisticsource"><span>StatisticSource</span></a> interface
+while delegating most implementation details to a member of type <a class="reference internal" href="StatisticsAutoRegisterMember.html#statisticsautoregistermember"><span>StatisticsAutoRegisterMember</span></a>.
+The <a class="reference internal" href="StatisticsAutoRegisterMember.html#statisticsautoregistermember"><span>StatisticsAutoRegisterMember</span></a> member then manages the registration and unregistration, and the storage of the private key.</p>
+<p class="plaintext">An object implementing the <a class="reference internal" href="#statisticsourcewithautoregistermember"><span>StatisticSourceWithAutoRegisterMember (interface)</span></a> interface must have a StatisticsAutoRegisterMember member,
+and must construct it in its constructor if <a class="reference internal" href="functions.html#bf5324d8e46b4b15528629494ae99"><span>FabricStatisticsEnabled</span></a> (passing <cite>this</cite> as construction argument).
+The object then only needs to implement the <a class="reference internal" href="#statisticsourcewithautoregistermember"><span>StatisticSourceWithAutoRegisterMember</span></a> simplified interface.</p>
+<p class="plaintext">Important: for a good behavior, the <a class="reference internal" href="StatisticsAutoRegisterMember.html#statisticsautoregistermember"><span>StatisticsAutoRegisterMember</span></a> member should not be cloned, which requires a custom implementation of .clone() by owner objects.</p>
+<p class="plaintext">See <a class="reference internal" href="index.html#fabricstatistics"><span>Statistics</span></a> for an example of usage.</p>
+<p><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.28.0 (20110507.0327)
+ -->
+<!-- Title: StatisticSourceWithAutoRegisterMember Pages: 1 -->
+<svg width="586pt" height="1340pt"
+ viewBox="0.00 0.00 586.00 1340.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 1336)">
+<title>StatisticSourceWithAutoRegisterMember</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-1336 583,-1336 583,5 -4,5"/>
+<!-- StatisticSourceWithAutoRegisterMember -->
+<g id="node1" class="node"><title>StatisticSourceWithAutoRegisterMember</title>
+<a xlink:href="../FabricStatistics/StatisticSourceWithAutoRegisterMember.html" xlink:title="StatisticSourceWithAutoRegisterMember">
+<polygon fill="#3fabd3" stroke="#3f3f3f" points="195.5,-252 0.5,-252 0.5,-216 195.5,-216 195.5,-252"/>
+<text text-anchor="middle" x="98" y="-231.5" font-family="Arial" font-size="10.00">StatisticSourceWithAutoRegisterMember</text>
+</a>
+</g>
+<!-- BaseAttribute -->
+<g id="node2" class="node"><title>BaseAttribute</title>
+<a xlink:href="../Geometry/BaseAttribute.html" xlink:title="BaseAttribute">
+<polygon fill="#b4ced8" stroke="#3f3f3f" points="353,-900 277,-900 277,-864 353,-864 353,-900"/>
+<text text-anchor="middle" x="315" y="-879.5" font-family="Arial" font-size="10.00">BaseAttribute</text>
+</a>
+</g>
+<!-- BaseAttribute&#45;&gt;StatisticSourceWithAutoRegisterMember -->
+<g id="edge2" class="edge"><title>BaseAttribute&#45;&gt;StatisticSourceWithAutoRegisterMember</title>
+<path fill="none" stroke="#3f3f3f" d="M308.025,-863.992C278.131,-773.893 144.79,-372.008 108.273,-261.947"/>
+<polygon fill="#3f3f3f" stroke="#3f3f3f" points="111.519,-260.617 105.048,-252.228 104.875,-262.821 111.519,-260.617"/>
+</g>
+<!-- ColorAttribute -->
+<g id="node4" class="node"><title>ColorAttribute</title>
+<a xlink:href="../Geometry/ColorAttribute.html" xlink:title="ColorAttribute">
+<polygon fill="#b4ced8" stroke="#3f3f3f" points="544,-1332 468,-1332 468,-1296 544,-1296 544,-1332"/>
+<text text-anchor="middle" x="506" y="-1311.5" font-family="Arial" font-size="10.00">ColorAttribute</text>
+</a>
+</g>
+<!-- ColorAttribute&#45;&gt;BaseAttribute -->
+<g id="edge4" class="edge"><title>ColorAttribute&#45;&gt;BaseAttribute</title>
+<path fill="none" stroke="#3f3f3f" d="M467.634,-1306.81C455.48,-1302.8 442.856,-1296.59 434,-1287 331.938,-1176.44 317.693,-982.485 316.047,-910.202"/>
+<polygon fill="#3f3f3f" stroke="#3f3f3f" points="319.545,-910.002 315.883,-900.06 312.546,-910.115 319.545,-910.002"/>
+</g>
+<!-- IntegerAttribute -->
+<g id="node6" class="node"><title>IntegerAttribute</title>
+<a xlink:href="../Geometry/IntegerAttribute.html" xlink:title="IntegerAttribute">
+<polygon fill="#b4ced8" stroke="#3f3f3f" points="547.5,-1278 464.5,-1278 464.5,-1242 547.5,-1242 547.5,-1278"/>
+<text text-anchor="middle" x="506" y="-1257.5" font-family="Arial" font-size="10.00">IntegerAttribute</text>
+</a>
+</g>
+<!-- IntegerAttribute&#45;&gt;BaseAttribute -->
+<g id="edge6" class="edge"><title>IntegerAttribute&#45;&gt;BaseAttribute</title>
+<path fill="none" stroke="#3f3f3f" d="M464.164,-1251.32C453.196,-1247.3 442.136,-1241.46 434,-1233 344.273,-1139.7 322.694,-976.026 317.569,-910.4"/>
+<polygon fill="#3f3f3f" stroke="#3f3f3f" points="321.033,-909.756 316.835,-900.028 314.05,-910.25 321.033,-909.756"/>
+</g>
+<!-- Mat33Attribute -->
+<g id="node8" class="node"><title>Mat33Attribute</title>
+<a xlink:href="../Geometry/Mat33Attribute.html" xlink:title="Mat33Attribute">
+<polygon fill="#b4ced8" stroke="#3f3f3f" points="546,-1224 466,-1224 466,-1188 546,-1188 546,-1224"/>
+<text text-anchor="middle" x="506" y="-1203.5" font-family="Arial" font-size="10.00">Mat33Attribute</text>
+</a>
+</g>
+<!-- Mat33Attribute&#45;&gt;BaseAttribute -->
+<g id="edge8" class="edge"><title>Mat33Attribute&#45;&gt;BaseAttribute</title>
+<path fill="none" stroke="#3f3f3f" d="M465.928,-1197.57C454.495,-1193.52 442.736,-1187.61 434,-1179 356.24,-1102.38 328.305,-968.099 319.54,-910.048"/>
+<polygon fill="#3f3f3f" stroke="#3f3f3f" points="323.002,-909.529 318.119,-900.127 316.073,-910.522 323.002,-909.529"/>
+</g>
+<!-- Mat44Attribute -->
+<g id="node10" class="node"><title>Mat44Attribute</title>
+<a xlink:href="../Geometry/Mat44Attribute.html" xlink:title="Mat44Attribute">
+<polygon fill="#b4ced8" stroke="#3f3f3f" points="546,-1170 466,-1170 466,-1134 546,-1134 546,-1170"/>
+<text text-anchor="middle" x="506" y="-1149.5" font-family="Arial" font-size="10.00">Mat44Attribute</text>
+</a>
+</g>
+<!-- Mat44Attribute&#45;&gt;BaseAttribute -->
+<g id="edge10" class="edge"><title>Mat44Attribute&#45;&gt;BaseAttribute</title>
+<path fill="none" stroke="#3f3f3f" d="M465.939,-1143.04C454.638,-1138.98 442.951,-1133.19 434,-1125 368.104,-1064.7 334.946,-959.629 322.286,-909.775"/>
+<polygon fill="#3f3f3f" stroke="#3f3f3f" points="325.673,-908.889 319.891,-900.011 318.874,-910.557 325.673,-908.889"/>
+</g>
+<!-- QuatAttribute -->
+<g id="node12" class="node"><title>QuatAttribute</title>
+<a xlink:href="../Geometry/QuatAttribute.html" xlink:title="QuatAttribute">
+<polygon fill="#b4ced8" stroke="#3f3f3f" points="543,-1116 469,-1116 469,-1080 543,-1080 543,-1116"/>
+<text text-anchor="middle" x="506" y="-1095.5" font-family="Arial" font-size="10.00">QuatAttribute</text>
+</a>
+</g>
+<!-- QuatAttribute&#45;&gt;BaseAttribute -->
+<g id="edge12" class="edge"><title>QuatAttribute&#45;&gt;BaseAttribute</title>
+<path fill="none" stroke="#3f3f3f" d="M468.657,-1089.22C456.728,-1085.09 443.984,-1079.21 434,-1071 379.754,-1026.41 343.106,-950.021 326.375,-909.354"/>
+<polygon fill="#3f3f3f" stroke="#3f3f3f" points="329.618,-908.037 322.644,-900.061 323.122,-910.645 329.618,-908.037"/>
+</g>
+<!-- RGBAAttribute -->
+<g id="node14" class="node"><title>RGBAAttribute</title>
+<a xlink:href="../Geometry/RGBAAttribute.html" xlink:title="RGBAAttribute">
+<polygon fill="#b4ced8" stroke="#3f3f3f" points="546.5,-1062 465.5,-1062 465.5,-1026 546.5,-1026 546.5,-1062"/>
+<text text-anchor="middle" x="506" y="-1041.5" font-family="Arial" font-size="10.00">RGBAAttribute</text>
+</a>
+</g>
+<!-- RGBAAttribute&#45;&gt;BaseAttribute -->
+<g id="edge14" class="edge"><title>RGBAAttribute&#45;&gt;BaseAttribute</title>
+<path fill="none" stroke="#3f3f3f" d="M465.339,-1032.8C454.634,-1028.77 443.417,-1023.55 434,-1017 391.21,-987.224 353.907,-938.633 333.223,-908.586"/>
+<polygon fill="#3f3f3f" stroke="#3f3f3f" points="336.097,-906.587 327.595,-900.266 330.299,-910.51 336.097,-906.587"/>
+</g>
+<!-- RGBAttribute -->
+<g id="node16" class="node"><title>RGBAttribute</title>
+<a xlink:href="../Geometry/RGBAttribute.html" xlink:title="RGBAttribute">
+<polygon fill="#b4ced8" stroke="#3f3f3f" points="543,-1008 469,-1008 469,-972 543,-972 543,-1008"/>
+<text text-anchor="middle" x="506" y="-987.5" font-family="Arial" font-size="10.00">RGBAttribute</text>
+</a>
+</g>
+<!-- RGBAttribute&#45;&gt;BaseAttribute -->
+<g id="edge16" class="edge"><title>RGBAttribute&#45;&gt;BaseAttribute</title>
+<path fill="none" stroke="#3f3f3f" d="M468.881,-978.157C457.471,-973.92 444.981,-968.752 434,-963 402.829,-946.674 370.037,-923.625 346.955,-906.286"/>
+<polygon fill="#3f3f3f" stroke="#3f3f3f" points="348.992,-903.438 338.911,-900.179 344.76,-909.014 348.992,-903.438"/>
+</g>
+<!-- ScalarAttribute -->
+<g id="node18" class="node"><title>ScalarAttribute</title>
+<a xlink:href="../Geometry/ScalarAttribute.html" xlink:title="ScalarAttribute">
+<polygon fill="#b4ced8" stroke="#3f3f3f" points="546.5,-954 465.5,-954 465.5,-918 546.5,-918 546.5,-954"/>
+<text text-anchor="middle" x="506" y="-933.5" font-family="Arial" font-size="10.00">ScalarAttribute</text>
+</a>
+</g>
+<!-- ScalarAttribute&#45;&gt;BaseAttribute -->
+<g id="edge18" class="edge"><title>ScalarAttribute&#45;&gt;BaseAttribute</title>
+<path fill="none" stroke="#3f3f3f" d="M465.379,-924.68C435.491,-916.14 394.395,-904.399 362.872,-895.392"/>
+<polygon fill="#3f3f3f" stroke="#3f3f3f" points="363.577,-891.954 353,-892.572 361.654,-898.684 363.577,-891.954"/>
+</g>
+<!-- ScalarConstantArrayAttribute -->
+<g id="node20" class="node"><title>ScalarConstantArrayAttribute</title>
+<a xlink:href="../Geometry/ScalarConstantArrayAttribute.html" xlink:title="ScalarConstantArrayAttribute">
+<polygon fill="#b4ced8" stroke="#3f3f3f" points="577.5,-900 434.5,-900 434.5,-864 577.5,-864 577.5,-900"/>
+<text text-anchor="middle" x="506" y="-879.5" font-family="Arial" font-size="10.00">ScalarConstantArrayAttribute</text>
+</a>
+</g>
+<!-- ScalarConstantArrayAttribute&#45;&gt;BaseAttribute -->
+<g id="edge20" class="edge"><title>ScalarConstantArrayAttribute&#45;&gt;BaseAttribute</title>
+<path fill="none" stroke="#3f3f3f" d="M434.355,-882C410.657,-882 384.818,-882 363.346,-882"/>
+<polygon fill="#3f3f3f" stroke="#3f3f3f" points="363.185,-878.5 353.185,-882 363.185,-885.5 363.185,-878.5"/>
+</g>
+<!-- SkinningAttribute -->
+<g id="node22" class="node"><title>SkinningAttribute</title>
+<a xlink:href="../Geometry/SkinningAttribute.html" xlink:title="SkinningAttribute">
+<polygon fill="#b4ced8" stroke="#3f3f3f" points="551.5,-846 460.5,-846 460.5,-810 551.5,-810 551.5,-846"/>
+<text text-anchor="middle" x="506" y="-825.5" font-family="Arial" font-size="10.00">SkinningAttribute</text>
+</a>
+</g>
+<!-- SkinningAttribute&#45;&gt;BaseAttribute -->
+<g id="edge22" class="edge"><title>SkinningAttribute&#45;&gt;BaseAttribute</title>
+<path fill="none" stroke="#3f3f3f" d="M460.21,-840.797C430.886,-849.176 392.634,-860.104 362.896,-868.601"/>
+<polygon fill="#3f3f3f" stroke="#3f3f3f" points="361.816,-865.27 353.162,-871.382 363.739,-872 361.816,-865.27"/>
+</g>
+<!-- UInt16ConstantArrayAttribute -->
+<g id="node24" class="node"><title>UInt16ConstantArrayAttribute</title>
+<a xlink:href="../Geometry/UInt16ConstantArrayAttribute.html" xlink:title="UInt16ConstantArrayAttribute">
+<polygon fill="#b4ced8" stroke="#3f3f3f" points="577.5,-792 434.5,-792 434.5,-756 577.5,-756 577.5,-792"/>
+<text text-anchor="middle" x="506" y="-771.5" font-family="Arial" font-size="10.00">UInt16ConstantArrayAttribute</text>
+</a>
+</g>
+<!-- UInt16ConstantArrayAttribute&#45;&gt;BaseAttribute -->
+<g id="edge24" class="edge"><title>UInt16ConstantArrayAttribute&#45;&gt;BaseAttribute</title>
+<path fill="none" stroke="#3f3f3f" d="M453.171,-792.049C446.611,-794.815 440.075,-797.818 434,-801 402.829,-817.326 370.037,-840.375 346.955,-857.714"/>
+<polygon fill="#3f3f3f" stroke="#3f3f3f" points="344.76,-854.986 338.911,-863.821 348.992,-860.562 344.76,-854.986"/>
+</g>
+<!-- UInt32Attribute -->
+<g id="node26" class="node"><title>UInt32Attribute</title>
+<a xlink:href="../Geometry/UInt32Attribute.html" xlink:title="UInt32Attribute">
+<polygon fill="#b4ced8" stroke="#3f3f3f" points="546.5,-738 465.5,-738 465.5,-702 546.5,-702 546.5,-738"/>
+<text text-anchor="middle" x="506" y="-717.5" font-family="Arial" font-size="10.00">UInt32Attribute</text>
+</a>
+</g>
+<!-- UInt32Attribute&#45;&gt;BaseAttribute -->
+<g id="edge26" class="edge"><title>UInt32Attribute&#45;&gt;BaseAttribute</title>
+<path fill="none" stroke="#3f3f3f" d="M465.339,-731.197C454.634,-735.229 443.417,-740.447 434,-747 391.21,-776.776 353.907,-825.367 333.223,-855.414"/>
+<polygon fill="#3f3f3f" stroke="#3f3f3f" points="330.299,-853.49 327.595,-863.734 336.097,-857.413 330.299,-853.49"/>
+</g>
+<!-- Vec2Attribute -->
+<g id="node28" class="node"><title>Vec2Attribute</title>
+<a xlink:href="../Geometry/Vec2Attribute.html" xlink:title="Vec2Attribute">
+<polygon fill="#b4ced8" stroke="#3f3f3f" points="544,-684 468,-684 468,-648 544,-648 544,-684"/>
+<text text-anchor="middle" x="506" y="-663.5" font-family="Arial" font-size="10.00">Vec2Attribute</text>
+</a>
+</g>
+<!-- Vec2Attribute&#45;&gt;BaseAttribute -->
+<g id="edge28" class="edge"><title>Vec2Attribute&#45;&gt;BaseAttribute</title>
+<path fill="none" stroke="#3f3f3f" d="M467.926,-675.036C456.209,-679.154 443.78,-684.961 434,-693 379.754,-737.592 343.106,-813.979 326.375,-854.646"/>
+<polygon fill="#3f3f3f" stroke="#3f3f3f" points="323.122,-853.355 322.644,-863.939 329.618,-855.963 323.122,-853.355"/>
+</g>
+<!-- Vec3Attribute -->
+<g id="node30" class="node"><title>Vec3Attribute</title>
+<a xlink:href="../Geometry/Vec3Attribute.html" xlink:title="Vec3Attribute">
+<polygon fill="#b4ced8" stroke="#3f3f3f" points="544,-630 468,-630 468,-594 544,-594 544,-630"/>
+<text text-anchor="middle" x="506" y="-609.5" font-family="Arial" font-size="10.00">Vec3Attribute</text>
+</a>
+</g>
+<!-- Vec3Attribute&#45;&gt;BaseAttribute -->
+<g id="edge30" class="edge"><title>Vec3Attribute&#45;&gt;BaseAttribute</title>
+<path fill="none" stroke="#3f3f3f" d="M467.777,-620.315C455.916,-624.397 443.437,-630.364 434,-639 368.104,-699.297 334.946,-804.371 322.286,-854.225"/>
+<polygon fill="#3f3f3f" stroke="#3f3f3f" points="318.874,-853.443 319.891,-863.989 325.673,-855.111 318.874,-853.443"/>
+</g>
+<!-- Vec3_dAttribute -->
+<g id="node32" class="node"><title>Vec3_dAttribute</title>
+<a xlink:href="../Geometry/Vec3_dAttribute.html" xlink:title="Vec3_dAttribute">
+<polygon fill="#b4ced8" stroke="#3f3f3f" points="549,-576 463,-576 463,-540 549,-540 549,-576"/>
+<text text-anchor="middle" x="506" y="-555.5" font-family="Arial" font-size="10.00">Vec3_dAttribute</text>
+</a>
+</g>
+<!-- Vec3_dAttribute&#45;&gt;BaseAttribute -->
+<g id="edge32" class="edge"><title>Vec3_dAttribute&#45;&gt;BaseAttribute</title>
+<path fill="none" stroke="#3f3f3f" d="M462.972,-567.516C452.494,-571.513 441.985,-577.133 434,-585 356.24,-661.619 328.305,-795.901 319.54,-853.952"/>
+<polygon fill="#3f3f3f" stroke="#3f3f3f" points="316.073,-853.478 318.119,-863.873 323.002,-854.471 316.073,-853.478"/>
+</g>
+<!-- Vec4Attribute -->
+<g id="node34" class="node"><title>Vec4Attribute</title>
+<a xlink:href="../Geometry/Vec4Attribute.html" xlink:title="Vec4Attribute">
+<polygon fill="#b4ced8" stroke="#3f3f3f" points="544,-522 468,-522 468,-486 544,-486 544,-522"/>
+<text text-anchor="middle" x="506" y="-501.5" font-family="Arial" font-size="10.00">Vec4Attribute</text>
+</a>
+</g>
+<!-- Vec4Attribute&#45;&gt;BaseAttribute -->
+<g id="edge34" class="edge"><title>Vec4Attribute&#45;&gt;BaseAttribute</title>
+<path fill="none" stroke="#3f3f3f" d="M467.853,-511.391C455.718,-515.42 443.05,-521.59 434,-531 344.273,-624.304 322.694,-787.974 317.569,-853.6"/>
+<polygon fill="#3f3f3f" stroke="#3f3f3f" points="314.05,-853.75 316.835,-863.972 321.033,-854.244 314.05,-853.75"/>
+</g>
+<!-- BaseGeometry -->
+<g id="node36" class="node"><title>BaseGeometry</title>
+<a xlink:href="../Geometry/BaseGeometry.html" xlink:title="BaseGeometry">
+<polygon fill="#b4ced8" stroke="#3f3f3f" points="356,-414 274,-414 274,-378 356,-378 356,-414"/>
+<text text-anchor="middle" x="315" y="-393.5" font-family="Arial" font-size="10.00">BaseGeometry</text>
+</a>
+</g>
+<!-- BaseGeometry&#45;&gt;StatisticSourceWithAutoRegisterMember -->
+<g id="edge36" class="edge"><title>BaseGeometry&#45;&gt;StatisticSourceWithAutoRegisterMember</title>
+<path fill="none" stroke="#3f3f3f" d="M273.948,-386.946C260.032,-382.753 244.735,-376.904 232,-369 184.984,-339.819 142.339,-290.711 118.615,-260.455"/>
+<polygon fill="#3f3f3f" stroke="#3f3f3f" points="121.319,-258.23 112.438,-252.454 115.778,-262.508 121.319,-258.23"/>
+</g>
+<!-- Lines -->
+<g id="node38" class="node"><title>Lines</title>
+<a xlink:href="../Geometry/Lines.html" xlink:title="Lines">
+<polygon fill="#b4ced8" stroke="#3f3f3f" points="533,-468 479,-468 479,-432 533,-432 533,-468"/>
+<text text-anchor="middle" x="506" y="-447.5" font-family="Arial" font-size="10.00">Lines</text>
+</a>
+</g>
+<!-- Lines&#45;&gt;BaseGeometry -->
+<g id="edge38" class="edge"><title>Lines&#45;&gt;BaseGeometry</title>
+<path fill="none" stroke="#3f3f3f" d="M478.72,-442.492C449.701,-434.2 402.304,-420.658 366.129,-410.323"/>
+<polygon fill="#3f3f3f" stroke="#3f3f3f" points="366.825,-406.881 356.248,-407.5 364.902,-413.612 366.825,-406.881"/>
+</g>
+<!-- Points -->
+<g id="node40" class="node"><title>Points</title>
+<a xlink:href="../Geometry/Points.html" xlink:title="Points">
+<polygon fill="#b4ced8" stroke="#3f3f3f" points="533,-414 479,-414 479,-378 533,-378 533,-414"/>
+<text text-anchor="middle" x="506" y="-393.5" font-family="Arial" font-size="10.00">Points</text>
+</a>
+</g>
+<!-- Points&#45;&gt;BaseGeometry -->
+<g id="edge40" class="edge"><title>Points&#45;&gt;BaseGeometry</title>
+<path fill="none" stroke="#3f3f3f" d="M478.72,-396C449.825,-396 402.709,-396 366.594,-396"/>
+<polygon fill="#3f3f3f" stroke="#3f3f3f" points="366.248,-392.5 356.248,-396 366.248,-399.5 366.248,-392.5"/>
+</g>
+<!-- PolygonMesh -->
+<g id="node42" class="node"><title>PolygonMesh</title>
+<a xlink:href="../Geometry/PolygonMesh.html" xlink:title="PolygonMesh">
+<polygon fill="#b4ced8" stroke="#3f3f3f" points="544,-360 468,-360 468,-324 544,-324 544,-360"/>
+<text text-anchor="middle" x="506" y="-339.5" font-family="Arial" font-size="10.00">PolygonMesh</text>
+</a>
+</g>
+<!-- PolygonMesh&#45;&gt;BaseGeometry -->
+<g id="edge42" class="edge"><title>PolygonMesh&#45;&gt;BaseGeometry</title>
+<path fill="none" stroke="#3f3f3f" d="M467.66,-352.669C438.635,-360.961 398.086,-372.547 366.219,-381.652"/>
+<polygon fill="#3f3f3f" stroke="#3f3f3f" points="364.857,-378.401 356.203,-384.513 366.78,-385.131 364.857,-378.401"/>
+</g>
+<!-- GeometryAttributes -->
+<g id="node44" class="node"><title>GeometryAttributes</title>
+<a xlink:href="../Geometry/GeometryAttributes.html" xlink:title="GeometryAttributes">
+<polygon fill="#b4ced8" stroke="#3f3f3f" points="365.5,-360 264.5,-360 264.5,-324 365.5,-324 365.5,-360"/>
+<text text-anchor="middle" x="315" y="-339.5" font-family="Arial" font-size="10.00">GeometryAttributes</text>
+</a>
+</g>
+<!-- GeometryAttributes&#45;&gt;StatisticSourceWithAutoRegisterMember -->
+<g id="edge44" class="edge"><title>GeometryAttributes&#45;&gt;StatisticSourceWithAutoRegisterMember</title>
+<path fill="none" stroke="#3f3f3f" d="M264.296,-327.661C253.47,-323.981 242.206,-319.712 232,-315 196.937,-298.81 159.591,-275.467 133.429,-257.995"/>
+<polygon fill="#3f3f3f" stroke="#3f3f3f" points="135.253,-255.003 125.005,-252.314 131.339,-260.807 135.253,-255.003"/>
+</g>
+<!-- GeometryInstancesSpatialQueries -->
+<g id="node46" class="node"><title>GeometryInstancesSpatialQueries</title>
+<a xlink:href="../Geometry/GeometryInstancesSpatialQueries.html" xlink:title="GeometryInstancesSpatialQueries">
+<polygon fill="#b4ced8" stroke="#3f3f3f" points="397.5,-306 232.5,-306 232.5,-270 397.5,-270 397.5,-306"/>
+<text text-anchor="middle" x="315" y="-285.5" font-family="Arial" font-size="10.00">GeometryInstancesSpatialQueries</text>
+</a>
+</g>
+<!-- GeometryInstancesSpatialQueries&#45;&gt;StatisticSourceWithAutoRegisterMember -->
+<g id="edge46" class="edge"><title>GeometryInstancesSpatialQueries&#45;&gt;StatisticSourceWithAutoRegisterMember</title>
+<path fill="none" stroke="#3f3f3f" d="M242.109,-269.944C222.387,-264.99 200.861,-259.584 180.635,-254.504"/>
+<polygon fill="#3f3f3f" stroke="#3f3f3f" points="181.374,-251.081 170.823,-252.039 179.669,-257.87 181.374,-251.081"/>
+</g>
+<!-- Image2D -->
+<g id="node48" class="node"><title>Image2D</title>
+<a xlink:href="../Images/Image2D.html" xlink:title="Image2D">
+<polygon fill="#b4ced8" stroke="#3f3f3f" points="342.5,-252 287.5,-252 287.5,-216 342.5,-216 342.5,-252"/>
+<text text-anchor="middle" x="315" y="-231.5" font-family="Arial" font-size="10.00">Image2D</text>
+</a>
+</g>
+<!-- Image2D&#45;&gt;StatisticSourceWithAutoRegisterMember -->
+<g id="edge48" class="edge"><title>Image2D&#45;&gt;StatisticSourceWithAutoRegisterMember</title>
+<path fill="none" stroke="#3f3f3f" d="M287.205,-234C266.472,-234 236.301,-234 206.166,-234"/>
+<polygon fill="#3f3f3f" stroke="#3f3f3f" points="205.961,-230.5 195.961,-234 205.961,-237.5 205.961,-230.5"/>
+</g>
+<!-- Image2DColor -->
+<g id="node50" class="node"><title>Image2DColor</title>
+<a xlink:href="../Images/Image2DColor.html" xlink:title="Image2DColor">
+<polygon fill="#b4ced8" stroke="#3f3f3f" points="544.5,-306 467.5,-306 467.5,-270 544.5,-270 544.5,-306"/>
+<text text-anchor="middle" x="506" y="-285.5" font-family="Arial" font-size="10.00">Image2DColor</text>
+</a>
+</g>
+<!-- Image2DColor&#45;&gt;Image2D -->
+<g id="edge50" class="edge"><title>Image2DColor&#45;&gt;Image2D</title>
+<path fill="none" stroke="#3f3f3f" d="M467.207,-277.202C433.819,-267.663 385.445,-253.841 352.463,-244.418"/>
+<polygon fill="#3f3f3f" stroke="#3f3f3f" points="353.332,-241.026 342.755,-241.644 351.408,-247.757 353.332,-241.026"/>
+</g>
+<!-- Image2DRGB -->
+<g id="node52" class="node"><title>Image2DRGB</title>
+<a xlink:href="../Images/Image2DRGB.html" xlink:title="Image2DRGB">
+<polygon fill="#b4ced8" stroke="#3f3f3f" points="544,-252 468,-252 468,-216 544,-216 544,-252"/>
+<text text-anchor="middle" x="506" y="-231.5" font-family="Arial" font-size="10.00">Image2DRGB</text>
+</a>
+</g>
+<!-- Image2DRGB&#45;&gt;Image2D -->
+<g id="edge52" class="edge"><title>Image2DRGB&#45;&gt;Image2D</title>
+<path fill="none" stroke="#3f3f3f" d="M467.66,-234C434.364,-234 385.903,-234 352.779,-234"/>
+<polygon fill="#3f3f3f" stroke="#3f3f3f" points="352.602,-230.5 342.602,-234 352.602,-237.5 352.602,-230.5"/>
+</g>
+<!-- Image2DRGBA -->
+<g id="node54" class="node"><title>Image2DRGBA</title>
+<a xlink:href="../Images/Image2DRGBA.html" xlink:title="Image2DRGBA">
+<polygon fill="#b4ced8" stroke="#3f3f3f" points="547.5,-198 464.5,-198 464.5,-162 547.5,-162 547.5,-198"/>
+<text text-anchor="middle" x="506" y="-177.5" font-family="Arial" font-size="10.00">Image2DRGBA</text>
+</a>
+</g>
+<!-- Image2DRGBA&#45;&gt;Image2D -->
+<g id="edge54" class="edge"><title>Image2DRGBA&#45;&gt;Image2D</title>
+<path fill="none" stroke="#3f3f3f" d="M464.455,-191.584C431.178,-201.092 384.477,-214.435 352.389,-223.603"/>
+<polygon fill="#3f3f3f" stroke="#3f3f3f" points="351.173,-220.31 342.519,-226.423 353.096,-227.041 351.173,-220.31"/>
+</g>
+<!-- Image2DScalar -->
+<g id="node56" class="node"><title>Image2DScalar</title>
+<a xlink:href="../Images/Image2DScalar.html" xlink:title="Image2DScalar">
+<polygon fill="#b4ced8" stroke="#3f3f3f" points="547.5,-144 464.5,-144 464.5,-108 547.5,-108 547.5,-144"/>
+<text text-anchor="middle" x="506" y="-123.5" font-family="Arial" font-size="10.00">Image2DScalar</text>
+</a>
+</g>
+<!-- Image2DScalar&#45;&gt;Image2D -->
+<g id="edge56" class="edge"><title>Image2DScalar&#45;&gt;Image2D</title>
+<path fill="none" stroke="#3f3f3f" d="M464.386,-136.553C453.79,-140.563 442.868,-145.93 434,-153 411.447,-170.982 420.955,-189.534 398,-207 384.917,-216.955 367.991,-223.336 352.918,-227.378"/>
+<polygon fill="#3f3f3f" stroke="#3f3f3f" points="351.743,-224.061 342.848,-229.818 353.391,-230.865 351.743,-224.061"/>
+</g>
+<!-- OGLBuffer -->
+<g id="node58" class="node"><title>OGLBuffer</title>
+<a xlink:href="../InlineDrawing/OGLBuffer.html" xlink:title="OGLBuffer">
+<polygon fill="#b4ced8" stroke="#3f3f3f" points="346,-198 284,-198 284,-162 346,-162 346,-198"/>
+<text text-anchor="middle" x="315" y="-177.5" font-family="Arial" font-size="10.00">OGLBuffer</text>
+</a>
+</g>
+<!-- OGLBuffer&#45;&gt;StatisticSourceWithAutoRegisterMember -->
+<g id="edge58" class="edge"><title>OGLBuffer&#45;&gt;StatisticSourceWithAutoRegisterMember</title>
+<path fill="none" stroke="#3f3f3f" d="M283.652,-187.622C256.989,-194.319 216.943,-204.377 180.953,-213.417"/>
+<polygon fill="#3f3f3f" stroke="#3f3f3f" points="179.77,-210.105 170.924,-215.935 181.475,-216.894 179.77,-210.105"/>
+</g>
+<!-- OGLTexture2D -->
+<g id="node60" class="node"><title>OGLTexture2D</title>
+<a xlink:href="../InlineDrawing/OGLTexture2D.html" xlink:title="OGLTexture2D">
+<polygon fill="#b4ced8" stroke="#3f3f3f" points="355.5,-144 274.5,-144 274.5,-108 355.5,-108 355.5,-144"/>
+<text text-anchor="middle" x="315" y="-123.5" font-family="Arial" font-size="10.00">OGLTexture2D</text>
+</a>
+</g>
+<!-- OGLTexture2D&#45;&gt;StatisticSourceWithAutoRegisterMember -->
+<g id="edge60" class="edge"><title>OGLTexture2D&#45;&gt;StatisticSourceWithAutoRegisterMember</title>
+<path fill="none" stroke="#3f3f3f" d="M274.089,-137.123C260.478,-141.443 245.335,-146.843 232,-153 196.937,-169.19 159.591,-192.533 133.429,-210.005"/>
+<polygon fill="#3f3f3f" stroke="#3f3f3f" points="131.339,-207.193 125.005,-215.686 135.253,-212.997 131.339,-207.193"/>
+</g>
+<!-- Octree -->
+<g id="node62" class="node"><title>Octree</title>
+<a xlink:href="../Geometry/Octree.html" xlink:title="Octree">
+<polygon fill="#b4ced8" stroke="#3f3f3f" points="342,-90 288,-90 288,-54 342,-54 342,-90"/>
+<text text-anchor="middle" x="315" y="-69.5" font-family="Arial" font-size="10.00">Octree</text>
+</a>
+</g>
+<!-- Octree&#45;&gt;StatisticSourceWithAutoRegisterMember -->
+<g id="edge62" class="edge"><title>Octree&#45;&gt;StatisticSourceWithAutoRegisterMember</title>
+<path fill="none" stroke="#3f3f3f" d="M287.882,-77.2424C271.055,-81.4049 249.192,-88.3298 232,-99 184.984,-128.181 142.339,-177.289 118.615,-207.545"/>
+<polygon fill="#3f3f3f" stroke="#3f3f3f" points="115.778,-205.492 112.438,-215.546 121.319,-209.77 115.778,-205.492"/>
+</g>
+<!-- SparseGrid -->
+<g id="node64" class="node"><title>SparseGrid</title>
+<a xlink:href="../Geometry/SparseGrid.html" xlink:title="SparseGrid">
+<polygon fill="#b4ced8" stroke="#3f3f3f" points="347.5,-36 282.5,-36 282.5,-0 347.5,-0 347.5,-36"/>
+<text text-anchor="middle" x="315" y="-15.5" font-family="Arial" font-size="10.00">SparseGrid</text>
+</a>
+</g>
+<!-- SparseGrid&#45;&gt;StatisticSourceWithAutoRegisterMember -->
+<g id="edge64" class="edge"><title>SparseGrid&#45;&gt;StatisticSourceWithAutoRegisterMember</title>
+<path fill="none" stroke="#3f3f3f" d="M282.194,-23.4989C266.002,-27.4694 246.69,-34.1118 232,-45 173.361,-88.4623 130.901,-165.594 111.236,-206.596"/>
+<polygon fill="#3f3f3f" stroke="#3f3f3f" points="108.032,-205.185 106.949,-215.725 114.368,-208.161 108.032,-205.185"/>
+</g>
+</g>
+</svg></p>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="43%" />
+<col width="57%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="StatisticRecord.html#statisticrecord"><span>StatisticRecord</span></a>[]</td>
+<td><a class="reference internal" href="#d081ab9b8f524b3cb87956bbbfa16cd8"><span>getStatistics</span></a> ? ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+<div class="section" id="functions-in-detail">
+<h2>Functions in detail<a class="headerlink" href="#functions-in-detail" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><span class="target" id="d081ab9b8f524b3cb87956bbbfa16cd8"></span><p class="klcode"><a class="reference internal" href="StatisticRecord.html#statisticrecord"><span>StatisticRecord</span></a>[] <a class="reference internal" href="#statisticsourcewithautoregistermember"><span>StatisticSourceWithAutoRegisterMember</span></a>.getStatistics? ()</p>
+<p class="plaintext">Returns statistics related to this object. The <cite>Name</cite> should be included, but the <cite>Type</cite> will be automatically generated.</p>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="StatisticSource.html"
+                        title="前の章へ">StatisticSource (interface)</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="types.html"
+                        title="次の章へ">FabricStatistics Extension&#8217;s Types</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/FabricStatistics/StatisticSourceWithAutoRegisterMember.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="types.html" title="FabricStatistics Extension’s Types"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="StatisticSource.html" title="StatisticSource (interface)"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >FabricStatistics Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="interfaces.html" >FabricStatistics Extension&#8217;s Interfaces</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

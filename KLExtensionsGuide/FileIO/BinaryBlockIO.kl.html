@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>BinaryBlockIO.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="FileIO Extension’s Files" href="files.html" />
+    <link rel="next" title="BinaryBlockReader.kl" href="BinaryBlockReader.kl.html" />
+    <link rel="prev" title="FileIO Extension’s Files" href="files.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="BinaryBlockReader.kl.html" title="BinaryBlockReader.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="files.html" title="FileIO Extension’s Files"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >FileIO Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">FileIO Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="fileio-binaryblockio-kl">
+<span id="binaryblockio-kl"></span><span id="id1"></span><h1>BinaryBlockIO.kl<a class="headerlink" href="#fileio-binaryblockio-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="binaryblockio-object">
+<h3>BinaryBlockIO (object)<a class="headerlink" href="#binaryblockio-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.0.0 で追加.</span></p>
+</div>
+<p class="plaintext">The <a class="reference internal" href="BinaryBlockIO.html#binaryblockio"><span>BinaryBlockIO</span></a> provides a data structure which can both read and write a binary file using blocks.
+This can be very useful within canvas to read and write data for file caching scenarios.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="BinaryBlockReader.html#binaryblockreader"><span>BinaryBlockReader</span></a>, <a class="reference internal" href="BinaryBlockWriter.html#binaryblockwriter"><span>BinaryBlockWriter</span></a></p>
+</div>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BinaryBlockIO.html#f68d434f00847248c125fbc97ffa0af"><span>BinaryBlockIO</span></a>  ( in <a class="reference internal" href="BinaryBlockIO.html#binaryblockio"><span>BinaryBlockIO</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BinaryBlockIO.html#a7761f4cb1714a708c21849dee8c1125"><span>BinaryBlockIO</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> filePath )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BinaryBlockIO.html#be397dea5f7c417d9ae81a6aafbf0ff1"><span>BinaryBlockIO</span></a>  ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="BinaryBlockIO.html#binaryblockio"><span>BinaryBlockIO</span></a></td>
+<td><a class="reference internal" href="BinaryBlockIO.html#c7f664214b4cb604c1e175882b18"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BinaryBlockIO.html#bfac9065b646038889dbbf19d17235"><span>close</span></a> ! ()</td>
+</tr>
+<tr class="row-even"><td>Boolean[]</td>
+<td><a class="reference internal" href="BinaryBlockIO.html#f5b89648d443f91508cdc308ece79"><span>readBooleanArray</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a>[]</td>
+<td><a class="reference internal" href="BinaryBlockIO.html#ab8fe5ed1d39465ab598f50c0680d148"><span>readColorArray</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a>[]</td>
+<td><a class="reference internal" href="BinaryBlockIO.html#c1026e73d4583ac30dcc46516668b"><span>readFloat32Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Mat33.html#mat33"><span>Mat33</span></a>[]</td>
+<td><a class="reference internal" href="BinaryBlockIO.html#f1d7f7f368944431b1a5919b3d160e3e"><span>readMat33Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a>[]</td>
+<td><a class="reference internal" href="BinaryBlockIO.html#db4dd52cee5f45c1b7f8ad34f9042669"><span>readMat44Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Quat.html#quat"><span>Quat</span></a>[]</td>
+<td><a class="reference internal" href="BinaryBlockIO.html#c80204a777e412a9292cbb516dcae01"><span>readQuatArray</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
+</tr>
+<tr class="row-even"><td>SInt32[]</td>
+<td><a class="reference internal" href="BinaryBlockIO.html#f5c663fc5455abdf97f48c7c600be"><span>readSInt32Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
+</tr>
+<tr class="row-odd"><td>UInt32[]</td>
+<td><a class="reference internal" href="BinaryBlockIO.html#e23824924585868f9be084d1980c"><span>readUInt32Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Vec2.html#vec2"><span>Vec2</span></a>[]</td>
+<td><a class="reference internal" href="BinaryBlockIO.html#c6ec4efff5c43b69bdb467439aef023"><span>readVec2Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a>[]</td>
+<td><a class="reference internal" href="BinaryBlockIO.html#f96a68419c834a55a9dd9360c5d5e737"><span>readVec3Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Vec4.html#vec4"><span>Vec4</span></a>[]</td>
+<td><a class="reference internal" href="BinaryBlockIO.html#bce7883a66f4dca84fecdf4e6713bdf"><span>readVec4Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a>[]</td>
+<td><a class="reference internal" href="BinaryBlockIO.html#b69d2215f1584693b8376adef2999da5"><span>readXfoArray</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BinaryBlockIO.html#ec6abe01b297430ea5fde56cc1ddc3b4"><span>setFilePath</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> filePath )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BinaryBlockIO.html#c9ef7ab488747f1a0c868636a0fe573"><span>setMode</span></a> ! ( in SInt32 mode )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BinaryBlockIO.html#b75dd8b459c4f13afa1e3e854a2b3bd"><span>writeBooleanArray</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in Boolean array[] )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BinaryBlockIO.html#cf336c1188134706bcfc61d386f343f6"><span>writeColorArray</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a> array[] )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BinaryBlockIO.html#ad49bcb419e42f8b47eb7839b27e429"><span>writeFloat32Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> array[] )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BinaryBlockIO.html#d397eb48e0e416d8b0768f84f2c857f"><span>writeMat33Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Mat33.html#mat33"><span>Mat33</span></a> array[] )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BinaryBlockIO.html#e0d1df2c28c48be9cc28fb9ff45c4d5"><span>writeMat44Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> array[] )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BinaryBlockIO.html#f96398aba96469ab133a21b31082ca1"><span>writeQuatArray</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Quat.html#quat"><span>Quat</span></a> array[] )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BinaryBlockIO.html#fc6b6a4c3841c18218898c52bbc25e"><span>writeSInt32Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in SInt32 array[] )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BinaryBlockIO.html#f2f41a9c24a4e5cae748acdd0d1efb6"><span>writeUInt32Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in UInt32 array[] )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BinaryBlockIO.html#ce793b861004454a8961d67264d0868"><span>writeVec2Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Vec2.html#vec2"><span>Vec2</span></a> array[] )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BinaryBlockIO.html#cb1a8c5eb1f040e498c33a1d387e451f"><span>writeVec3Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> array[] )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BinaryBlockIO.html#b73b8d72b0d24a41aeb5963be43bb14f"><span>writeVec4Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Vec4.html#vec4"><span>Vec4</span></a> array[] )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BinaryBlockIO.html#c016649054fab980e87c7f749adfd"><span>writeXfoArray</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> array[] )</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="files.html"
+                        title="前の章へ">FileIO Extension&#8217;s Files</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="BinaryBlockReader.kl.html"
+                        title="次の章へ">BinaryBlockReader.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/FileIO/BinaryBlockIO.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="BinaryBlockReader.kl.html" title="BinaryBlockReader.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="files.html" title="FileIO Extension’s Files"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >FileIO Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >FileIO Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Mat33.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="Math Extension’s Files" href="files.html" />
+    <link rel="next" title="Mat33_d.kl" href="Mat33_d.kl.html" />
+    <link rel="prev" title="Mat22_i.kl" href="Mat22_i.kl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="Mat33_d.kl.html" title="Mat33_d.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="Mat22_i.kl.html" title="Mat22_i.kl"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Math Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">Math Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="math-mat33-kl">
+<span id="mat33-kl"></span><span id="id1"></span><h1>Mat33.kl<a class="headerlink" href="#math-mat33-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="mat33-struct">
+<h3>Mat33 (struct)<a class="headerlink" href="#mat33-struct" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">The <a class="reference internal" href="Mat33.html#mat33"><span>Mat33</span></a> represents a 3 by 3 matrix. It uses <a class="reference internal" href="Vec3.html#vec3"><span>Vec3</span></a> types for each of the 3 rows.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="Quat.html#quat"><span>Quat</span></a>, <a class="reference internal" href="Mat44.html#mat44"><span>Mat44</span></a></p>
+</div>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Vec4</span>
+<span class="cm">*/</span>
+
+<span class="c1">// create a matrix 3x3</span>
+<span class="nx">Vec3</span> <span class="nx">v0</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">);</span>
+<span class="nx">Vec3</span> <span class="nx">v1</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">);</span>
+<span class="nx">Vec3</span> <span class="nx">v2</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">);</span>
+<span class="nx">Mat33</span> <span class="nx">mat</span><span class="p">(</span><span class="nx">v0</span><span class="p">,</span> <span class="nx">v1</span><span class="p">,</span> <span class="nx">v2</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="section" id="fabric-engine-matrices-are-column-major-rather-than-row-major">
+<h4>Fabric Engine Matrices are column-major rather than row-major<a class="headerlink" href="#fabric-engine-matrices-are-column-major-rather-than-row-major" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>Most DCCs follow a row-major convention for expressing their matrices which implies that
+multiplication of matrices occurs in the opposite order to those in Fabric Engine.</p>
+<p>In Maya and Softimage, to transform a point (P) by a matrix (WM), you would post-multiply the vector by the matrix 
+by placing it on the left side of the matrix.</p>
+<blockquote>
+<div>(P&#8217; = P x WM)</div></blockquote>
+<p>In Fabric Engine, to transform a point (P) by a matrix (WM), you would post-multiply it by placing it on the right hand side of the matrix.</p>
+<blockquote>
+<div>(P&#8217; = WM x P)</div></blockquote>
+<p>When multiplying matrices together, the order of the matrices is also swapped when compared to Maya/Softimage.</p>
+<p>To Transform a Matrix (M) into the space of a another matrix (WM), you would place the L on the right hand side of WM</p>
+<p>(M&#8217; = WM x M)</p>
+<p>In Maya, Softimage and 3dsmax, the order of the matrices in the multiplication would be swapped.</p>
+<p>(M&#8217; = M x WM)</p>
+</div>
+<div class="section" id="members">
+<h4>Members<a class="headerlink" href="#members" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="69%" />
+<col width="21%" />
+<col width="10%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="Vec3.html#vec3"><span>Vec3</span></a></td>
+<td>row0</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Vec3.html#vec3"><span>Vec3</span></a></td>
+<td>row1</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Vec3.html#vec3"><span>Vec3</span></a></td>
+<td>row2</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="7%" />
+<col width="93%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat33.html#cd7f6560a5e4a129d417c9a547883fb"><span>Mat33</span></a>  ( in <a class="reference internal" href="Mat33.html#mat33"><span>Mat33</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat33.html#f1d49c03ea447fb4696db1b492afd0"><span>Mat33</span></a>  ( in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> _00, in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> _01, in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> _02, in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> _10, in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> _11, in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> _12, in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> _20, in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> _21, in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> _22 )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat33.html#e343109130f473e9dd31c93bfff0804"><span>Mat33</span></a>  ( in <a class="reference internal" href="Vec3.html#vec3"><span>Vec3</span></a> row0, in <a class="reference internal" href="Vec3.html#vec3"><span>Vec3</span></a> row1, in <a class="reference internal" href="Vec3.html#vec3"><span>Vec3</span></a> row2 )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat33.html#d1573767d44d4bd1be3f0dfb876ddcde"><span>Mat33</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Mat33.html#mat33"><span>Mat33</span></a></td>
+<td><a class="reference internal" href="Mat33.html#da3297944e6ba3abc19d20f7f3aa"><span>add</span></a> ? ( in <a class="reference internal" href="Mat33.html#mat33"><span>Mat33</span></a> other )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Mat33.html#mat33"><span>Mat33</span></a></td>
+<td><a class="reference internal" href="Mat33.html#f4068c5a39454985be3a58367496094c"><span>adjoint</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="Mat33.html#b0449f40a44d45bc81ef0ae6d5cca0"><span>almostEqual</span></a> ? ( in <a class="reference internal" href="Mat33.html#mat33"><span>Mat33</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="Mat33.html#c1b202a632b4014924e3a23cae987b4"><span>almostEqual</span></a> ? ( in <a class="reference internal" href="Mat33.html#mat33"><span>Mat33</span></a> other, in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> precision )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Mat33.html#mat33"><span>Mat33</span></a></td>
+<td><a class="reference internal" href="Mat33.html#d1e9760359949649dc5bd0b546d0d23"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="Mat33.html#d1adc232984b4309baacb6d94166a11a"><span>determinant</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Mat33.html#mat33"><span>Mat33</span></a></td>
+<td><a class="reference internal" href="Mat33.html#c69c49a4f70af3e57f6cf00b147"><span>divideScalar</span></a> ? ( in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="Mat33.html#c71cf4394cd487aeacbd908a4c25"><span>equal</span></a> ? ( in <a class="reference internal" href="Mat33.html#mat33"><span>Mat33</span></a> other )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat33.html#a22f174794d0980bd2f82f1a0c8c3"><span>get</span></a> ? ( io <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> v&lt;&gt; )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat33.html#a88023895cf54965a96053f31b7645c6"><span>get</span></a> ? ( io <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> v&lt;&gt;, in UInt32 o )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat33.html#d38acb5639e4b12992e85f86c506d0d"><span>get</span></a> ? ( io <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> v[] )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat33.html#a9a63edcd4646aadcfe01967e090a"><span>get</span></a> ? ( io <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> v[], in UInt32 o )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat33.html#ffb2700fd4417faf878d33f365525b"><span>get</span></a> ? ( io <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> v&lt;&gt; )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat33.html#fb1e1f6648bc43e49b5a1b3615da146e"><span>get</span></a> ? ( io <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> v&lt;&gt;, in UInt32 o )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat33.html#e2aa11ce1254dec9e8342cf5d406e50"><span>get</span></a> ? ( io <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> v[] )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat33.html#e24fef72a140d0a5825546ae5ae07e"><span>get</span></a> ? ( io <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> v[], in UInt32 o )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Mat33.html#mat33"><span>Mat33</span></a></td>
+<td><a class="reference internal" href="Mat33.html#a32c9e16db4fd7939ba0b9127f5e2c"><span>inverse</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Mat33.html#mat33"><span>Mat33</span></a></td>
+<td><a class="reference internal" href="Mat33.html#fd9be62f3ef46e8b37a637f4d15b2cf"><span>inverse_safe</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Mat33.html#mat33"><span>Mat33</span></a></td>
+<td><a class="reference internal" href="Mat33.html#fcf025bf44cd824fbb50fa37d420"><span>multiply</span></a> ? ( in <a class="reference internal" href="Mat33.html#mat33"><span>Mat33</span></a> other )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Mat33.html#mat33"><span>Mat33</span></a></td>
+<td><a class="reference internal" href="Mat33.html#a288089fb20344f8a9bf751adf4dc607"><span>multiplyScalar</span></a> ? ( in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> other )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="Mat33.html#f1d1dfc4cd5449d999036a289ea89296"><span>multiplyVector</span></a> ? ( in <a class="reference internal" href="Vec3.html#vec3"><span>Vec3</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat33.html#a8f9f0c2a4ea4a4ca004223d1455db7b"><span>set</span></a> ! ( in <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> v&lt;&gt; )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat33.html#a968c42c616e4b508e7ce83f29b830a1"><span>set</span></a> ! ( in <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> v&lt;&gt;, in UInt32 o )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat33.html#baa8fa7404fc29ee5765a2732aa32"><span>set</span></a> ! ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> v&lt;&gt; )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat33.html#d1f89ad1a82943caa9340e0dd58974e7"><span>set</span></a> ! ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> v&lt;&gt;, in UInt32 o )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat33.html#c914dbec7024a59b97011b4020d317a"><span>set</span></a> ! ( in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> _00, in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> _01, in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> _02, in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> _10, in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> _11, in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> _12, in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> _20, in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> _21, in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> _22 )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat33.html#cf13a37eb8ec4ca1bafbe2ac224e8e99"><span>set</span></a> ! ( in <a class="reference internal" href="Vec3.html#vec3"><span>Vec3</span></a> row0, in <a class="reference internal" href="Vec3.html#vec3"><span>Vec3</span></a> row1, in <a class="reference internal" href="Vec3.html#vec3"><span>Vec3</span></a> row2 )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat33.html#e6ed593672d947eeb559bd9515047315"><span>setColumns</span></a> ! ( in <a class="reference internal" href="Vec3.html#vec3"><span>Vec3</span></a> col0, in <a class="reference internal" href="Vec3.html#vec3"><span>Vec3</span></a> col1, in <a class="reference internal" href="Vec3.html#vec3"><span>Vec3</span></a> col2 )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat33.html#f92d340f8be4dadd76cb0c33d"><span>setDiagonal</span></a> ! ( in <a class="reference internal" href="Scalar.html#scalar"><span>Scalar</span></a> v )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat33.html#ce4e35b1ae5d4a149282e40c0e668d1e"><span>setDiagonal</span></a> ! ( in <a class="reference internal" href="Vec3.html#vec3"><span>Vec3</span></a> v )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat33.html#f0dc53fb884489a024df3b0d70e843"><span>setIdentity</span></a> ! ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat33.html#d6e7f7f1ddc4e12b45f462f30303ee6"><span>setNull</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Mat33.html#c451c8a983c4e679e7ce6d3c8db4fe9"><span>setRows</span></a> ! ( in <a class="reference internal" href="Vec3.html#vec3"><span>Vec3</span></a> row0, in <a class="reference internal" href="Vec3.html#vec3"><span>Vec3</span></a> row1, in <a class="reference internal" href="Vec3.html#vec3"><span>Vec3</span></a> row2 )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Mat33.html#mat33"><span>Mat33</span></a></td>
+<td><a class="reference internal" href="Mat33.html#f7b6adfe095c4cff97aca78a1681c9ad"><span>subtract</span></a> ? ( in <a class="reference internal" href="Mat33.html#mat33"><span>Mat33</span></a> other )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Mat33.html#mat33"><span>Mat33</span></a></td>
+<td><a class="reference internal" href="Mat33.html#e2ab7f4bee4e66a8cc4eb11a82cbab"><span>transpose</span></a> ? ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+<div class="section" id="operators">
+<h4>Operators<a class="headerlink" href="#operators" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="Mat33.html#mat33"><span>Mat33</span></a></td>
+<td><a class="reference internal" href="Mat33.html#f6c2cb864ac4dc6964a8f1ab4dcb6f7"><span>=</span></a> ( <a class="reference internal" href="../Parameters/Param.html#param"><span>Param</span></a> other )</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="Mat22_i.kl.html"
+                        title="前の章へ">Mat22_i.kl</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="Mat33_d.kl.html"
+                        title="次の章へ">Mat33_d.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/Math/Mat33.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="Mat33_d.kl.html" title="Mat33_d.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="Mat22_i.kl.html" title="Mat22_i.kl"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Math Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >Math Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

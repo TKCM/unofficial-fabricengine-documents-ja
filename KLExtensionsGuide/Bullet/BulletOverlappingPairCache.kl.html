@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>BulletOverlappingPairCache.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="Bullet Extension’s Files" href="files.html" />
+    <link rel="next" title="BulletPersistentManifold.kl" href="BulletPersistentManifold.kl.html" />
+    <link rel="prev" title="BulletMotionState.kl" href="BulletMotionState.kl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="BulletPersistentManifold.kl.html" title="BulletPersistentManifold.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="BulletMotionState.kl.html" title="BulletMotionState.kl"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Bullet Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">Bullet Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="bullet-bulletoverlappingpaircache-kl">
+<span id="bulletoverlappingpaircache-kl"></span><span id="id1"></span><h1>BulletOverlappingPairCache.kl<a class="headerlink" href="#bullet-bulletoverlappingpaircache-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="bulletoverlappingpaircache-object">
+<h3>BulletOverlappingPairCache (object)<a class="headerlink" href="#bulletoverlappingpaircache-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">The btOverlappingPairCache provides an interface for overlapping pair management (add, remove, storage), used by the btBroadphaseInterface broadphases.
+The btHashedOverlappingPairCache and btSortedOverlappingPairCache classes are two implementations.</p>
+<div class="section" id="members">
+<h4>Members<a class="headerlink" href="#members" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="33%" />
+<col width="50%" />
+<col width="17%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Data</td>
+<td>pointer</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletOverlappingPairCache.html#f3dc4c8024d94fc8a41987c8364d3d68"><span>BulletOverlappingPairCache</span></a>  ( in <a class="reference internal" href="BulletOverlappingPairCache.html#bulletoverlappingpaircache"><span>BulletOverlappingPairCache</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletOverlappingPairCache.html#f46c45c72e4a4f48be3752f3a5a94240"><span>BulletOverlappingPairCache</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletOverlappingPairCache.html#ee7460f442eab7f197b8a4f64f0"><span>cleanOverlappingPair</span></a> ! ( in <a class="reference internal" href="BulletBroadphasePair.html#bulletbroadphasepair"><span>BulletBroadphasePair</span></a> pair, in <a class="reference internal" href="BulletDispatcher.html#bulletdispatcher"><span>BulletDispatcher</span></a> dispatcher )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletOverlappingPairCache.html#e3dc1aa4587a158e7a0062c28f7"><span>cleanProxyFromPairs</span></a> ! ( in <a class="reference internal" href="BulletBroadphaseProxy.html#bulletbroadphaseproxy"><span>BulletBroadphaseProxy</span></a> proxy, in <a class="reference internal" href="BulletDispatcher.html#bulletdispatcher"><span>BulletDispatcher</span></a> dispatcher )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="BulletOverlappingPairCache.html#bulletoverlappingpaircache"><span>BulletOverlappingPairCache</span></a></td>
+<td><a class="reference internal" href="BulletOverlappingPairCache.html#d2e1e69e4e4420a92d644f6baf033d"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="BulletBroadphasePair.html#bulletbroadphasepair"><span>BulletBroadphasePair</span></a></td>
+<td><a class="reference internal" href="BulletOverlappingPairCache.html#d946603fb15f42ae81e0e95bc488fe72"><span>findPair</span></a> ? ( in <a class="reference internal" href="BulletBroadphaseProxy.html#bulletbroadphaseproxy"><span>BulletBroadphaseProxy</span></a> proxy0, in <a class="reference internal" href="BulletBroadphaseProxy.html#bulletbroadphaseproxy"><span>BulletBroadphaseProxy</span></a> proxy1 )</td>
+</tr>
+<tr class="row-odd"><td>Integer</td>
+<td><a class="reference internal" href="BulletOverlappingPairCache.html#fd28bceef014f76ac546746eec56bec"><span>getNumOverlappingPairs</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="BulletBroadphasePair.html#bulletbroadphasepair"><span>BulletBroadphasePair</span></a>[]</td>
+<td><a class="reference internal" href="BulletOverlappingPairCache.html#f1ad72badb3448e9ebf8bfc7ca988a2"><span>getOverlappingPairArray</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="BulletBroadphasePair.html#bulletbroadphasepair"><span>BulletBroadphasePair</span></a></td>
+<td><a class="reference internal" href="BulletOverlappingPairCache.html#ee6e081137c64f459b130d6a8b132836"><span>getOverlappingPairArrayPtr</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Data</td>
+<td><a class="reference internal" href="BulletOverlappingPairCache.html#b679e444a038a84ce96c8be5889"><span>getPointer</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="BulletOverlappingPairCache.html#ef7602f4ee54d29a1dc8aee2893664a"><span>hasDeferredRemoval</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletOverlappingPairCache.html#ba6c045f5933d2aa2c0855e84"><span>sortOverlappingPairs</span></a> ! ( in <a class="reference internal" href="BulletDispatcher.html#bulletdispatcher"><span>BulletDispatcher</span></a> dispatcher )</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="BulletMotionState.kl.html"
+                        title="前の章へ">BulletMotionState.kl</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="BulletPersistentManifold.kl.html"
+                        title="次の章へ">BulletPersistentManifold.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/Bullet/BulletOverlappingPairCache.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="BulletPersistentManifold.kl.html" title="BulletPersistentManifold.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="BulletMotionState.kl.html" title="BulletMotionState.kl"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Bullet Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >Bullet Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

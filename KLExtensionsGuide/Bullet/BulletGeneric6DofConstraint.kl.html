@@ -1,0 +1,602 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>BulletGeneric6DofConstraint.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="Bullet Extension’s Files" href="files.html" />
+    <link rel="next" title="BulletHingeConstraint.kl" href="BulletHingeConstraint.kl.html" />
+    <link rel="prev" title="BulletDynamicsWorld.kl" href="BulletDynamicsWorld.kl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="BulletHingeConstraint.kl.html" title="BulletHingeConstraint.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="BulletDynamicsWorld.kl.html" title="BulletDynamicsWorld.kl"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Bullet Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">Bullet Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="bullet-bulletgeneric6dofconstraint-kl">
+<span id="bulletgeneric6dofconstraint-kl"></span><span id="id1"></span><h1>BulletGeneric6DofConstraint.kl<a class="headerlink" href="#bullet-bulletgeneric6dofconstraint-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="bulletgeneric6dofconstraint-object">
+<h3>BulletGeneric6DofConstraint (object)<a class="headerlink" href="#bulletgeneric6dofconstraint-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext"><a class="reference internal" href="BulletGeneric6DofConstraint.html#bulletgeneric6dofconstraint"><span>BulletGeneric6DofConstraint</span></a> between two rigidbodies each with a pivotpoint that descibes the axis location in local space</p>
+<div class="section" id="members">
+<h4>Members<a class="headerlink" href="#members" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="78%" />
+<col width="17%" />
+<col width="6%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Data</td>
+<td>pointer</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a></td>
+<td>rbA</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a></td>
+<td>rbB</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="21%" />
+<col width="79%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#e57124a68d430d8f9c7b1399def6c4"><span>BulletGeneric6DofConstraint</span></a>  ( in <a class="reference internal" href="BulletGeneric6DofConstraint.html#bulletgeneric6dofconstraint"><span>BulletGeneric6DofConstraint</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#aca0af3ba76c44089605e8d05c2c2b8d"><span>BulletGeneric6DofConstraint</span></a>  ( in <a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a> rbA, in <a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a> rbB, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> rbAFrame, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> rbBFrame, in Boolean useLinearReferenceFrameA )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#bce8474170f94f50864e39b7e6f4c635"><span>BulletGeneric6DofConstraint</span></a>  ( in <a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a> rbA, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> rbAFrame, in Boolean useLinearReferenceFrameB )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#c7a19beeb5994e8b803b61cddc9d8713"><span>BulletGeneric6DofConstraint</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#dcc7a185bc374065854a68befc57995d"><span>__construct</span></a> ! ( in <a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a> rbA, in <a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a> rbB, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> rbAFrame, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> rbBFrame, in Boolean useLinearReferenceFrameA )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#aab3f7ce524117a17de5e6ab93acfe"><span>__construct</span></a> ! ( in <a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a> rbA, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> rbAFrame, in Boolean useLinearReferenceFrameB )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#ff291151e49499da0739ea272014cb7"><span>buildJacobian</span></a> ! ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#f6a8af2d4285baa308e615855c9d"><span>calculateTransforms</span></a> ! ( in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> transA, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> transB )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="BulletGeneric6DofConstraint.html#bulletgeneric6dofconstraint"><span>BulletGeneric6DofConstraint</span></a></td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#b732b7a921745c889b0ea28ff8e7648"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#d8fed60d60cf4977a46fbfa6311e138a"><span>enableFeedback</span></a> ! ( in Boolean needsFeedback )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#dd18e1e13e14d84a1cbd5fb23b0ce18"><span>getAngle</span></a> ? ( in Integer axis_index )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#bedf1bd1645f39bb2f31fdb3e39e5"><span>getAngularLowerLimit</span></a> ? ( io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> angularLower )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#e09af53dc3d40d6b861bb85d2b76c02"><span>getAngularUpperLimit</span></a> ? ( io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> angularUpper )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#f340d8ccfe4432d91508304aeea1cae"><span>getAppliedImpulse</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#f0272ea34cf4458cb132449d8c79b4cd"><span>getAxis</span></a> ? ( in Integer axis_index )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#d74a686febf43939899bd554b1ad639"><span>getBreakingImpulseThreshold</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a></td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#ec58446a934063b30f796efa025d07"><span>getCalculatedTransformA</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a></td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#ea47bb1b64a379b63ab8dddb01d04"><span>getCalculatedTransformB</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>UInt32</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#fabd10e7d9841afb43a372a638a1aab"><span>getConstraintType</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a></td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#adf718a84548d99212b99ff192a1c1"><span>getFrameOffsetA</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a></td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#cde34e860234b81b16ab45af709c677"><span>getFrameOffsetB</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#d1eb49b19420d3aa9beed1e7"><span>getLinearLowerLimit</span></a> ? ( io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> linearLower )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#bbede93bfddb4f128f6f753d1e43635b"><span>getLinearUpperLimit</span></a> ? ( io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> linearUpper )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#dee09ac862ab42a5b82defa3614de7c5"><span>getParam</span></a> ? ( in Integer num )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#aba47dbaba704541bbcd7575318afa7e"><span>getParam</span></a> ? ( in Integer num, in Integer axis )</td>
+</tr>
+<tr class="row-even"><td>Data</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#bc09bf41968b12fd40a88875fd"><span>getPointer</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#dfba28b7f046a185d99e16a102ce8f"><span>getRelativePivotPosition</span></a> ? ( in Integer axis_index )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a></td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#c22d314e4cd249f5aa757b6d93acc9b6"><span>getRigidBodyA</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a></td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#c69476c567ee470691c682dec6bfeb98"><span>getRigidBodyB</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="BulletRotationalLimitMotor.html#bulletrotationallimitmotor"><span>BulletRotationalLimitMotor</span></a></td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#a77d41133804e6ba3408a62db97c1a3"><span>getRotationalLimitMotor</span></a> ? ( in Integer index )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="BulletTranslationalLimitMotor.html#bullettranslationallimitmotor"><span>BulletTranslationalLimitMotor</span></a></td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#b042096b1893494e8c88662b2993aa3c"><span>getTranslationalLimitMotor</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#b544be6134468b9f4f0c552e8390a"><span>getUseFrameOffset</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#a79588d324bfaa3a1e2f7e3aa57d4"><span>isEnabled</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#a7514a2ac8e3477ea13599a1dd6b22bb"><span>isLimited</span></a> ? ( in Integer limitIndex )</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#fa19c1368f4347e696ac9ce44d507000"><span>needsFeedback</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#c3c1e1a97af449085784266e62f08e1"><span>setAngularLowerLimit</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> angularLower )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#b99ab3b1c0ad4df684584bbee742d287"><span>setAngularUpperLimit</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> angularUpper )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#b85e7304766bd2dc42617ee303d"><span>setAxis</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> axis1, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> axis2 )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#a121c6f9e4d84b3083976e8a6d9f87df"><span>setBreakingImpulseThreshold</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> threshold )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#caee1d30439b4a4c88730d31a69738cb"><span>setEnabled</span></a> ! ( in Boolean enabled )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#a027216a1f54598a4be03a16a394471"><span>setFrames</span></a> ! ( in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> frameA, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> frameB )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#a858430f88341d8a07bc5bae1a18477"><span>setLimit</span></a> ! ( in Integer axis, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> lo, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> hi )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#a02c9b82bbb346ab80c7e08366ae8af1"><span>setLinearLowerLimit</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> linearLower )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#dd092a53ca48048bd03db278ab999d"><span>setLinearUpperLimit</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> linearUpper )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#e34d8d1b8e941a9943a41d5a1c612fe"><span>setParam</span></a> ! ( in Integer num, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#dad6379e9cf041feb09ae3df0972ffcb"><span>setParam</span></a> ! ( in Integer num, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value, in Integer axis )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#fd05e33bb444bff86942a33d52aefce"><span>setUseFrameOffset</span></a> ! ( in Boolean frameOffsetOnOff )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#dbce4a70a6014d81a76b88d625508365"><span>testAngularLimitMotor</span></a> ? ( in Integer axis_index )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#a98e07fd7a8f4fb8a076b1ae06331eea"><span>updateRHS</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> timeStep )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletGeneric6DofConstraint.html#add190cfa4617871bdac695fca7ed"><span>~BulletGeneric6DofConstraint</span></a>  ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+<p><div class="section" id="bullettranslationallimitmotor-object">
+<h3>BulletTranslationalLimitMotor (object)<a class="headerlink" href="#bullettranslationallimitmotor-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id2">
+<h4>Members<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="33%" />
+<col width="50%" />
+<col width="17%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Data</td>
+<td>pointer</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id3">
+<h4>Methods<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="15%" />
+<col width="85%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#ed5cb5a3f4f82935c64dade2b1ddf"><span>BulletTranslationalLimitMotor</span></a>  ( in <a class="reference internal" href="BulletTranslationalLimitMotor.html#bullettranslationallimitmotor"><span>BulletTranslationalLimitMotor</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#aad3142fefc9427cb84b102541b35de3"><span>BulletTranslationalLimitMotor</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="BulletTranslationalLimitMotor.html#bullettranslationallimitmotor"><span>BulletTranslationalLimitMotor</span></a></td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#a9c05ea09c4b929d6037e2cfec0dd2"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#b2a9eaf4af8e4d34ba195295a803c8ae"><span>getAccumulatedImpulse</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Integer[3]</td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#af4b9745d99432b8e75f05d0a9266a3"><span>getCurrentLimit</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#c97ee0683549659f881cfbf6165b79"><span>getCurrentLimitError</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#fb9943579a90450eb1c186c5a51f3ffc"><span>getCurrentLinearDiff</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#c6ded87541f08175264d9fdc1756"><span>getDamping</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean[3]</td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#f6dc07c42dd405b81b85811a7b1096c"><span>getEnableMotor</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#f4a30e68cb42d3976418691cc9c39d"><span>getLimitSoftness</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#c1744c7689540fdbb59f2f6005a34a2"><span>getLowerLimit</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#ea49528075bf4830a039906b095bd80f"><span>getMaxMotorForce</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#c75971daaa4bfa990946c2052fa3cb"><span>getNormalCFM</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Data</td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#e1f3fde1d4d46a993dfac4c5ad9b1d5"><span>getPointer</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#c98e0a1aa27482ca8e1ae41aedef278"><span>getStopCFM</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#ba69f01b24b68a824a256505c056b"><span>getStopERP</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#e5a3314645b7492f9b3a0cc8badfe341"><span>getTargetVelocity</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#ff8e575954b679b469c5513229404"><span>getUpperLimit</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#f62142fe741f8802bbfda504cf122"><span>isLimited</span></a> ? ( in Integer limitIndex )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#c7063bb12fd24eb88d9b1f78f85304d9"><span>needApplyForce</span></a> ? ( in Integer limitIndex )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#e7cb99b1f9483a986757837fb6ee2a"><span>setAccumulatedImpulse</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#bf699c0c89c34b09816463b41cefb327"><span>setCurrentLimit</span></a> ! ( in Integer value[3] )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#ae9b90530c34e7287ab2637f89a1458"><span>setCurrentLimitError</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#daba53b472582d6bca986fbd9f2"><span>setCurrentLinearDiff</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#ade16e377441ea5f1c1cb5f730b80"><span>setDamping</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#fc4ef3d8cb546d293a224b9b13afcf7"><span>setEnableMotor</span></a> ! ( in Boolean value[3] )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#e464690b5604453b2b42a616d71c4c9"><span>setLimitSoftness</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#d3c2b41677d34f018fcfa0fbf8ef02e4"><span>setLowerLimit</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#f46f5c9d51443b0a295b6adf8dadf82"><span>setMaxMotorForce</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#e2f1526d104dd3aaf01d8e18e741dc"><span>setNormalCFM</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#df8969dd3545079ca33c52cc50c63c"><span>setRestitution</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#d6e6796284f04546899edafea7305158"><span>setStopCFM</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#dd7572d72bde42a6b03c019a606ae88a"><span>setStopERP</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#cea3a6a4fe4bce91de531c28627b0a"><span>setTargetVelocity</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#f2582b649ca44bd4a91c5187569abc6d"><span>setUpperLimit</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#e84f308ef90f449aa9e87c7b9e65d556"><span>solveLinearAxis</span></a> ? ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> timeStep, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> jacDiagABInv, in <a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a> body1, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> pointInA, in <a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a> body2, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> pointInB, in Integer limit_index, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> axis_normal_on_a, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> anchorPos )</td>
+</tr>
+<tr class="row-odd"><td>Integer</td>
+<td><a class="reference internal" href="BulletTranslationalLimitMotor.html#f21e0d7c3bf4105ab339691c39fe69c"><span>testLimitValue</span></a> ? ( in Integer limitIndex, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> test_value )</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+<p><div class="section" id="bulletrotationallimitmotor-object">
+<h3>BulletRotationalLimitMotor (object)<a class="headerlink" href="#bulletrotationallimitmotor-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id4">
+<h4>Members<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="33%" />
+<col width="50%" />
+<col width="17%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Data</td>
+<td>pointer</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id5">
+<h4>Methods<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#ea164200ab740ec8a1715247f9af7ba"><span>BulletRotationalLimitMotor</span></a>  ( in <a class="reference internal" href="BulletRotationalLimitMotor.html#bulletrotationallimitmotor"><span>BulletRotationalLimitMotor</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#bb4b8798c57e40cc81103abab86c5960"><span>BulletRotationalLimitMotor</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="BulletRotationalLimitMotor.html#bulletrotationallimitmotor"><span>BulletRotationalLimitMotor</span></a></td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#d590d61f3459462da91099b628dabe1b"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#cf8731917e4f489ab18587fa8ae795d1"><span>getAccumulatedImpulse</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#dc88686bd6c4a1696a32eb3629bf00c"><span>getBounce</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Integer</td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#d9f963201c945c09ed5c5ddd0129ed6"><span>getCurrentLimit</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#a00baacdd2480b934031659613b4a6"><span>getCurrentLimitError</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#ccf861fa81864969bd31891463850e0c"><span>getCurrentPosition</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#ee2530fe0c94a27a4f5f8d006440818"><span>getDamping</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#a15fae77afc441b6bb9d21cb9d71934a"><span>getEnableMotor</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#c523cee49b14b9f89f2882b727e59b5"><span>getHiLimit</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#ade3881298f64c3086ae7e648413cd0b"><span>getLimitSoftness</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#dc84429c3a80487a8b13ecd4fad0e7e0"><span>getLoLimit</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#a6826bd1c4e48c09464100e031af87a"><span>getMaxLimitForce</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#adc16074e6e4748b5e788ab75397f1b"><span>getMaxMotorForce</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#ba0ecaab944782b5ea4aea1fa3ad47"><span>getNormalCFM</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Data</td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#c6092a6b9418b9c28b7e2bab67ac9"><span>getPointer</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#e6ad652d457ba18d5432a5adc221"><span>getStopCFM</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#eb6e3a554861ab18d336635c84ae"><span>getStopERP</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#eb869ebf43048b7ceadbc904a093"><span>getTargetVelocity</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#ba02c5a03984468280035439a5eba61f"><span>isLimited</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#de209979720d4e61a44190d3f101cdd9"><span>needApplyTorques</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#e48e138825b41d0aa253707697646cf"><span>setBounce</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#cda5d90cc0764832ae6d404f379dd88d"><span>setDamping</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#b90a8667ffc45f592cdd0ade4ada11e"><span>setEnableMotor</span></a> ! ( in Boolean value )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#c7c6700c1df4fc788332f09e9d56411"><span>setHiLimit</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#af1dfe447e9bf5b2e0251540903"><span>setLimitSoftness</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#dde739a6493e45f488cae5ab17ad7329"><span>setLoLimit</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#abbe1e2ebd874a8aae83d1b815894d5b"><span>setMaxLimitForce</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#e2987ac89ae243f1896aa298a09df29e"><span>setMaxMotorForce</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#e60c3ece3f5b4e5e8d19749e0eb9d5b1"><span>setNormalCFM</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#c73f1baa0f4461a01205fcd5d98821"><span>setStopCFM</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#ab11f881b7e049d3b9d366ac034c6d6f"><span>setStopERP</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#db0dd59e77c4e8692c62b1f101aeff7"><span>setTargetVelocity</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#f8af1294b2792c62af9570f6de9"><span>solveAngularLimits</span></a> ? ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> timeStep, io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> axis, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> jacDiagABInv, in <a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a> body0, in <a class="reference internal" href="BulletRigidBody.html#bulletrigidbody"><span>BulletRigidBody</span></a> body1 )</td>
+</tr>
+<tr class="row-even"><td>Integer</td>
+<td><a class="reference internal" href="BulletRotationalLimitMotor.html#e12f09906d9489ca45c5801585654f2"><span>testLimitValue</span></a> ? ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> test_value )</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="BulletDynamicsWorld.kl.html"
+                        title="前の章へ">BulletDynamicsWorld.kl</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="BulletHingeConstraint.kl.html"
+                        title="次の章へ">BulletHingeConstraint.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/Bullet/BulletGeneric6DofConstraint.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="BulletHingeConstraint.kl.html" title="BulletHingeConstraint.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="BulletDynamicsWorld.kl.html" title="BulletDynamicsWorld.kl"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Bullet Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >Bullet Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Quat_d.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="Math Extension’s Files" href="files.html" />
+    <link rel="next" title="Quat_i.kl" href="Quat_i.kl.html" />
+    <link rel="prev" title="Quat.kl" href="Quat.kl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="Quat_i.kl.html" title="Quat_i.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="Quat.kl.html" title="Quat.kl"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Math Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">Math Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="math-quat-d-kl">
+<span id="quat-d-kl"></span><span id="id1"></span><h1>Quat_d.kl<a class="headerlink" href="#math-quat-d-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="quat-d-struct">
+<h3>Quat_d (struct)<a class="headerlink" href="#quat-d-struct" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">The <a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a> represents a 3D rotation as a quaternion. Quat_dernions are used within the <a class="reference internal" href="Xfo.html#xfo"><span>Xfo</span></a> type. A <a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a> can be converted to and from <a class="reference internal" href="Mat33_d.html#mat33-d"><span>Mat33_d</span></a>  as well as <a class="reference internal" href="Euler_d.html#euler-d"><span>Euler_d</span></a> types.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="Xfo.html#xfo"><span>Xfo</span></a>, <a class="reference internal" href="Euler_d.html#euler-d"><span>Euler_d</span></a>, <a class="reference internal" href="Mat33_d.html#mat33-d"><span>Mat33_d</span></a></p>
+</div>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Quat_d</span>
+<span class="cm">*/</span>
+
+<span class="c1">// create several quaternions</span>
+<span class="nx">Quat_d</span> <span class="nx">q0</span><span class="p">,</span> <span class="nx">q1</span><span class="p">,</span> <span class="nx">q2</span><span class="p">,</span> <span class="nx">q3</span><span class="p">,</span> <span class="nx">q4</span><span class="p">;</span>
+<span class="nx">q0</span> <span class="o">=</span> <span class="nx">Quat_d</span><span class="p">(</span><span class="nx">Vec3_d</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">);</span>
+<span class="nx">q1</span><span class="p">.</span><span class="nx">setFromEuler_d</span><span class="p">(</span><span class="nx">Euler_d</span><span class="p">(</span><span class="nx">PI</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">));</span>
+<span class="nx">q2</span><span class="p">.</span><span class="nx">setFromDirectionAndUpvector</span><span class="p">(</span><span class="nx">Vec3_d</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="nx">Vec3_d</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">));</span>
+<span class="nx">q3</span><span class="p">.</span><span class="nx">setFrom2Vectors</span><span class="p">(</span><span class="nx">Vec3_d</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="nx">Vec3_d</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">));</span>
+<span class="nx">q4</span><span class="p">.</span><span class="nx">setFromAxisAndAngle</span><span class="p">(</span><span class="nx">Vec3_d</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="nx">HALF_PI</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="section" id="members">
+<h4>Members<a class="headerlink" href="#members" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="81%" />
+<col width="9%" />
+<col width="9%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="Vec3_d.html#vec3-d"><span>Vec3_d</span></a></td>
+<td>v</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a></td>
+<td>w</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Quat_d.html#c6df7c4b34fd398e1f6622894894b"><span>Quat_d</span></a>  ( in <a class="reference internal" href="Euler_d.html#euler-d"><span>Euler_d</span></a> e )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Quat_d.html#c9a9500203624eb4993634a0523f6250"><span>Quat_d</span></a>  ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> w, in <a class="reference internal" href="Vec3_d.html#vec3-d"><span>Vec3_d</span></a> v )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Quat_d.html#be1897f86bf840f3865433749cc6946f"><span>Quat_d</span></a>  ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> x, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> y, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> z, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> w )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Quat_d.html#f6825073864adb95453d3ae1376afb"><span>Quat_d</span></a>  ( in <a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a> other )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Quat_d.html#ae7ea8c9a5b4eefadf1a5a42857fb1c"><span>Quat_d</span></a>  ( in <a class="reference internal" href="Vec3_d.html#vec3-d"><span>Vec3_d</span></a> v, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> w )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Quat_d.html#da932e830f54e3eb6d036df437169fc"><span>Quat_d</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#df74a5234d47c69003dc5dbbb1e7a9"><span>add</span></a> ? ( in <a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Quat_d.html#c3890cb90b9e4836a748f590ed03bfd5"><span>alignWith</span></a> ! ( in <a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a> other )</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="Quat_d.html#c2e91c3beef4118b47b9bcb473c1a8f"><span>almostEqual</span></a> ? ( in <a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="Quat_d.html#e5e6031543148dba70faf83029c0723"><span>almostEqual</span></a> ? ( in <a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a> other, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> precision )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#f6be846624c45dca329b8cb3e2adbed"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#bab74e06743a1856d70f4210174a3"><span>conjugate</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#f4372f2a4985a965ba30f13a2a48"><span>divide</span></a> ? ( in <a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a> other )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#f205d144fa452a9ec3be578a06b7c8"><span>divideFloat64</span></a> ? ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> other )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#b3ce777aae44571b80e89de6469824c"><span>dot</span></a> ? ( in <a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="Quat_d.html#cd8336bfabf942eeac21fd9b6d0c9bb7"><span>equal</span></a> ? ( in <a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a> other )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Quat_d.html#c95993012b449dba1c3616cdccbfc40"><span>get</span></a> ? ( io <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> v&lt;&gt; )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Quat_d.html#d241987ce9e4960b56add29ca9160df"><span>get</span></a> ? ( io <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> v&lt;&gt;, in UInt32 o )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Quat_d.html#df46718416199f4f9ba5e08dbc8"><span>get</span></a> ? ( io <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> v[] )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Quat_d.html#d9edd452a1409ca3b7b843ea904e22"><span>get</span></a> ? ( io <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> v[], in UInt32 o )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Quat_d.html#e67c471fe7964b9c835e01e67ead13a3"><span>get</span></a> ? ( io <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> v&lt;&gt; )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Quat_d.html#a28d81b3406948e9bc0bfa8db3b8a771"><span>get</span></a> ? ( io <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> v&lt;&gt;, in UInt32 o )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Quat_d.html#ed25013ce4dbfa85ab42755295c60"><span>get</span></a> ? ( io <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> v[] )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Quat_d.html#c6a24d60ee499fb7c258a77b567df1"><span>get</span></a> ? ( io <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> v[], in UInt32 o )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#f1929e449464cb87bdb0d3c7a99c5"><span>getAngle</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Vec3_d.html#vec3-d"><span>Vec3_d</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#bd619f674d2b4e9ea1ac5da144a314f7"><span>getXaxis</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Vec3_d.html#vec3-d"><span>Vec3_d</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#e1f9a894d24b24afec56e9dab8b0e2"><span>getYaxis</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Vec3_d.html#vec3-d"><span>Vec3_d</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#d3014c0a7ed14850a595b7af47ba8817"><span>getZaxis</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#f0f2e7b74b5bb4e383337de3e559"><span>inverse</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#bcfa6bea52a4ec98ac2d77ca2611ecb"><span>length</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#cf819a0b0466a9cd5fdca5ea85f99"><span>lengthSquared</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#a396aed037614d399dbfbe9be201ae3c"><span>linearInterpolate</span></a> ? ( in <a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a> other, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> t )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Quat_d.html#decac009aae45e2abd1f50e9546fa40"><span>mirror</span></a> ! ( in Integer axisIndex )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#eaf68e9d3144ba6890fd0086b7d42e2"><span>multiply</span></a> ? ( in <a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a> other )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#bca30ac4c4e908562a0b70d4e41"><span>multiplyFloat64</span></a> ? ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> other )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Vec3_d.html#vec3-d"><span>Vec3_d</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#c7af4a1e22ed4b8a9b59ce1f6947be84"><span>rotateVector</span></a> ? ( in <a class="reference internal" href="Vec3_d.html#vec3-d"><span>Vec3_d</span></a> v )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Quat_d.html#b6263c31f3cb4d63a67c6c21f85815d6"><span>set</span></a> ! ( in <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> v&lt;&gt; )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Quat_d.html#d0c3018eea6f4919902bf2bc54eefa22"><span>set</span></a> ! ( in <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> v&lt;&gt;, in UInt32 o )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Quat_d.html#b7d3fbb5b6477496c3769496c8647d"><span>set</span></a> ! ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> v&lt;&gt; )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Quat_d.html#c55c154a928015433fb57cef15"><span>set</span></a> ! ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> v&lt;&gt;, in UInt32 o )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Quat_d.html#c568fa4e6596517c014f653dbc"><span>set</span></a> ! ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> w, in <a class="reference internal" href="Vec3_d.html#vec3-d"><span>Vec3_d</span></a> v )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Quat_d.html#a7bc541afb46edb133d229b3365429"><span>set</span></a> ! ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> x, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> y, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> z, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> w )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Quat_d.html#fe4ff0b7f85404589e99fd465c3e2ff"><span>set</span></a> ! ( in <a class="reference internal" href="Vec3_d.html#vec3-d"><span>Vec3_d</span></a> v, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> w )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#c26fb5507b4211823ff68cd74d842f"><span>setFrom2Vectors</span></a> ! ( in <a class="reference internal" href="Vec3_d.html#vec3-d"><span>Vec3_d</span></a> sourceDirVec, in <a class="reference internal" href="Vec3_d.html#vec3-d"><span>Vec3_d</span></a> destDirVec )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#b14a9a314e15a5ad6439b3755a65"><span>setFrom2Vectors</span></a> ! ( in <a class="reference internal" href="Vec3_d.html#vec3-d"><span>Vec3_d</span></a> sourceDirVec, in <a class="reference internal" href="Vec3_d.html#vec3-d"><span>Vec3_d</span></a> destDirVec, in Boolean arbitraryIfAmbiguous )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#b3af7d8092204faf85ab580f8e662632"><span>setFromAxisAndAngle</span></a> ! ( in <a class="reference internal" href="Vec3_d.html#vec3-d"><span>Vec3_d</span></a> axis, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> angle )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#ec58bde2dfc3418fb1813dcf010d7b2d"><span>setFromDirectionAndUpvector</span></a> ! ( in <a class="reference internal" href="Vec3_d.html#vec3-d"><span>Vec3_d</span></a> direction, in <a class="reference internal" href="Vec3_d.html#vec3-d"><span>Vec3_d</span></a> upvector )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#d67ae0b76a54fc2a7297bb4681c29e0"><span>setFromEuler_d</span></a> ! ( in <a class="reference internal" href="Euler_d.html#euler-d"><span>Euler_d</span></a> e )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#a4e78a73ed8d4f05ba747d2c02f9eb5b"><span>setFromEuler_dAngles</span></a> ! ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> eulerX, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> eulerY, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> eulerZ )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#eca113cb7b349368db9d1c55617bf98"><span>setFromEuler_dAngles</span></a> ! ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> eulerX, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> eulerY, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> eulerZ, in <a class="reference internal" href="RotationOrder.html#rotationorder"><span>RotationOrder</span></a> ro )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#b640fb0841504e74a6713d1b8b6701e9"><span>setFromEuler_dAngles</span></a> ! ( in <a class="reference internal" href="Vec3_d.html#vec3-d"><span>Vec3_d</span></a> angles )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#e097faa9ffcb443aaa6660b646ceac46"><span>setFromEuler_dAngles</span></a> ! ( in <a class="reference internal" href="Vec3_d.html#vec3-d"><span>Vec3_d</span></a> angles, in <a class="reference internal" href="RotationOrder.html#rotationorder"><span>RotationOrder</span></a> ro )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#d3c5e77aa42a799a802f703542027"><span>setFromMat33_d</span></a> ! ( in <a class="reference internal" href="Mat33_d.html#mat33-d"><span>Mat33_d</span></a> mat )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Quat_d.html#b46be62dbec467b9be39137613ef110"><span>setIdentity</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#d745dabc9467e9a2777b7881061e4"><span>setUnit</span></a> ! ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#ff2ad1f016a24c9cada88e160b2705d5"><span>sphericalLinearInterpolate</span></a> ? ( in <a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a> q2, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> t )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#e66ddbbb1dca4efa9c228e19880f082e"><span>subtract</span></a> ? ( in <a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a> other )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Euler_d.html#euler-d"><span>Euler_d</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#e598c4d2296c4229971f699894ba3ab0"><span>toEuler_d</span></a> ? ( in <a class="reference internal" href="RotationOrder.html#rotationorder"><span>RotationOrder</span></a> rotationOrder )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Vec3_d.html#vec3-d"><span>Vec3_d</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#fbcc8598eb4cc49e1e426fc0806fab"><span>toEuler_dAngles</span></a> ? ( in <a class="reference internal" href="RotationOrder.html#rotationorder"><span>RotationOrder</span></a> order )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Vec3_d.html#vec3-d"><span>Vec3_d</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#ff102d055dd4871b6bdd4093d726126"><span>toEuler_dAngles</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Mat33_d.html#mat33-d"><span>Mat33_d</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#b4f70fee7ba249b3b59af6e7310a8268"><span>toMat33_d</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#ad2ab8e79ba34ccd9431ac8e3adb841a"><span>unit</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#a92cedc619764cc9a12a3dbb7194eeec"><span>unit_safe</span></a> ? ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+<div class="section" id="operators">
+<h4>Operators<a class="headerlink" href="#operators" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="Quat_d.html#quat-d"><span>Quat_d</span></a></td>
+<td><a class="reference internal" href="Quat_d.html#a2b32ededc4bd3b9ccbd35744afdfd"><span>=</span></a> ( <a class="reference internal" href="../Parameters/Param.html#param"><span>Param</span></a> other )</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="Quat.kl.html"
+                        title="前の章へ">Quat.kl</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="Quat_i.kl.html"
+                        title="次の章へ">Quat_i.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/Math/Quat_d.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="Quat_i.kl.html" title="Quat_i.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="Quat.kl.html" title="Quat.kl"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Math Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >Math Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

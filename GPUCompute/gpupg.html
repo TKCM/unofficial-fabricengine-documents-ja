@@ -1,0 +1,327 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>GPU Compute Programming Guide &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="gpu-compute-programming-guide">
+<span id="gpupg"></span><h1>GPU Compute Programming Guide<a class="headerlink" href="#gpu-compute-programming-guide" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title first">Table of Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#kl-example" id="id1">KL Example</a></li>
+<li><a class="reference internal" href="#invoking-a-gpu-operator" id="id2">Invoking a GPU Operator</a></li>
+<li><a class="reference internal" href="#type-support" id="id3">Type Support</a></li>
+<li><a class="reference internal" href="#memory-management" id="id4">Memory Management</a><ul>
+<li><a class="reference internal" href="#changing-memory-backing" id="id5">Changing Memory Backing</a></li>
+<li><a class="reference internal" href="#gl-binding" id="id6">GL Binding</a></li>
+<li><a class="reference internal" href="#determining-array-memory-location" id="id7">Determining Array Memory Location</a></li>
+<li><a class="reference internal" href="#memory-and-resizing-arrays" id="id8">Memory and Resizing Arrays</a></li>
+<li><a class="reference internal" href="#the-copyto-array-method" id="id9">The copyTo() Array Method</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#parameter-passing" id="id10">Parameter Passing</a></li>
+</ul>
+</div>
+<p>This document provides an outline of KL programing with GPU Compute (currently for Nvidia CUDA hardware) covering some details of its implementation in addition to explaining how it can be used in KL code. Everything in this document assumes that the user has correctly enabled CUDA GPU compute support as outlined in the <a class="reference internal" href="index.html#gpucompute"><span>GPU Compute Guide</span></a>.</p>
+<p>As GPU compute is still a relatively new feature there may be additional changes in its API as it evolves and we are always interested in feedback and suggestions from end users.</p>
+<div class="section" id="kl-example">
+<span id="gpupg-example"></span><h2><a class="toc-backref" href="#id1">KL Example</a><a class="headerlink" href="#kl-example" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The following is an example of KL code using GPU compute and is provided as a starting point to further discussion. This particular code shows the syntax used to invoke an operator on the GPU but is not an example of an algorithm that is particularly well-suited to GPU execution.</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: GPU Compute</span>
+<span class="cm">*/</span>
+
+<span class="kd">operator</span> <span class="nx">myComputeKernel</span><span class="o">&lt;&lt;&lt;</span><span class="nx">index</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="nx">Scalar</span> <span class="nx">input</span><span class="p">[],</span> <span class="k">io</span> <span class="nx">Scalar</span> <span class="nx">output</span><span class="p">[])</span>
+<span class="p">{</span>
+  <span class="nx">output</span><span class="p">[</span><span class="nx">index</span><span class="p">]</span> <span class="o">=</span> <span class="nx">input</span><span class="p">[</span><span class="nx">index</span><span class="p">]</span> <span class="o">+</span> <span class="nx">Scalar</span><span class="p">(</span><span class="nx">log</span><span class="p">(</span><span class="nx">index</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="kr">Boolean</span> <span class="nx">runOnGPU</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+  <span class="nx">Scalar</span> <span class="nx">input</span><span class="p">[];</span>
+  <span class="nx">input</span><span class="p">.</span><span class="nx">resize</span><span class="p">(</span><span class="mi">1024</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kr">Integer</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="mi">1024</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="nx">input</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">i</span><span class="o">*</span><span class="nx">i</span><span class="p">;</span>
+  <span class="nx">input</span><span class="p">.</span><span class="nx">convertToSVM</span><span class="p">();</span>
+
+  <span class="nx">Scalar</span> <span class="nx">output</span><span class="p">[];</span>
+  <span class="nx">output</span><span class="p">.</span><span class="nx">convertToGPU</span><span class="p">();</span>
+  <span class="nx">output</span><span class="p">.</span><span class="nx">resize</span><span class="p">(</span><span class="mi">1024</span><span class="p">);</span>
+  <span class="nx">myComputeKernel</span><span class="o">&lt;&lt;&lt;</span><span class="mi">1024</span><span class="err">@</span><span class="nx">runOnGPU</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="nx">input</span><span class="p">,</span> <span class="nx">output</span><span class="p">);</span>
+  <span class="nx">output</span><span class="p">.</span><span class="nx">convertToCPU</span><span class="p">();</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">output</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="invoking-a-gpu-operator">
+<h2><a class="toc-backref" href="#id2">Invoking a GPU Operator</a><a class="headerlink" href="#invoking-a-gpu-operator" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>GPU compute functionality is accessed in KL via the standard <a class="reference internal" href="../KLProgrammingGuide/statements.html#klpg-parallel-execution-statement"><span>Parallel Execution Statement</span></a> syntax on an operator plus an &#64; followed by a Boolean that evaluates to <code class="docutils literal"><span class="pre">true</span></code>. Passing no parameter or <code class="docutils literal"><span class="pre">false</span></code> after the &#64; symbol will invoke the operator on the CPU.</p>
+<p>On machines with no CUDA support, or where CUDA support has not been enabled or failed to load, passing an &#64;true parameter to a <a class="reference internal" href="../KLProgrammingGuide/statements.html#klpg-parallel-execution-statement"><span>Parallel Execution Statement</span></a> call will invoke the operator in a simulated GPU environment on the CPU, which can sometimes be useful for testing. A message will be printed each time an operator is invoked in this way to ensure that the user is aware that this code is not running on the GPU despite the &#64;true PEX call:</p>
+<div class="highlight-none"><div class="highlight"><pre>[FABRIC:MT] Falling back to running GPU operator on CPU
+</pre></div>
+</div>
+</div>
+<div class="section" id="type-support">
+<h2><a class="toc-backref" href="#id3">Type Support</a><a class="headerlink" href="#type-support" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Not all KL types are supported on the GPU and in particular <code class="docutils literal"><span class="pre">object</span></code>, <code class="docutils literal"><span class="pre">interface</span></code>, and <code class="docutils literal"><span class="pre">MapReduce</span></code> operators are currently unsupported. KL will output an error if a user tries to run an operator that uses one of these types on the GPU. In addition <code class="docutils literal"><span class="pre">Dict</span></code> and <code class="docutils literal"><span class="pre">String</span></code> types cannot currently be passed as parameters to a GPU operator, though a GPU operator may make use of them internally. These limitations around types may be removed in an upcoming version based on feedback and relevant use cases.</p>
+<p>The KL type that is most relevant to running operators on the GPU is the Variable Array as this maps most directly to use cases where the GPU operates in parallel on a large set (or sets) of input data. These variable arrays will often contain elements of a complex struct type, such as a <code class="xref std std-kl-ref docutils literal"><span class="pre">Vec3</span></code> or an <code class="xref std std-kl-ref docutils literal"><span class="pre">Xfo</span></code>. See the <code class="docutils literal"><span class="pre">input</span></code> and <code class="docutils literal"><span class="pre">output</span></code> arrays in the <a class="reference internal" href="#gpupg-example"><span>KL Example</span></a>.</p>
+</div>
+<div class="section" id="memory-management">
+<h2><a class="toc-backref" href="#id4">Memory Management</a><a class="headerlink" href="#memory-management" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>There are four types of memory made available in GPU compute so that the user can choose the type most suited to their needs. The three types are:</p>
+<ul class="simple">
+<li><em>CPU</em>: Standard CPU memory, allocated on the heap via malloc(). This is the default backing memory for all types created on the CPU.</li>
+<li><em>GPU</em>: Standard GPU-allocated memory. This type of memory is accessible only on the GPU and attempting to access it on the CPU will result in an error (in <code class="docutils literal"><span class="pre">guarded</span></code> mode) or a crash (in <code class="docutils literal"><span class="pre">unguarded</span></code> mode).</li>
+<li><em>SVM</em>: SVM stands for Shared Virtual Memory and in the CUDA case represents what is referred to as CUDA Managed Memory. This type of memory is accessible both on the CPU and the GPU and data transfers are managed transparently by the Nvidia driver. This type of memory is easiest for new users as it does not require the user to track where memory lives. More experienced users however may require more fine-grained control.</li>
+<li><em>GLBuffer</em>: GLBuffer is memory that was loaded into an OpenGL buffer and then bound for use in GPU compute operators. This type of memory will be discussed further in the &#8220;GL Binding&#8221; section.</li>
+</ul>
+<div class="section" id="changing-memory-backing">
+<h3><a class="toc-backref" href="#id5">Changing Memory Backing</a><a class="headerlink" href="#changing-memory-backing" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>All KL types support several methods to change where their backing memory lives. For most types (including all shallow types) these methods are a no-op as their backing memory is not owned by them. However in the case of Variable Arrays these methods change where the member elements of the Variable Array are stored. The three relevant methods are:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">myVar.convertToCPU()</span></code></li>
+<li><code class="docutils literal"><span class="pre">myVar.convertToGPU()</span></code></li>
+<li><code class="docutils literal"><span class="pre">myVar.convertToSVM()</span></code></li>
+</ul>
+<p>These methods convert the backing memory of the type to one of the three types of memory discussed above.</p>
+</div>
+<div class="section" id="gl-binding">
+<h3><a class="toc-backref" href="#id6">GL Binding</a><a class="headerlink" href="#gl-binding" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>There is an additional conversion method convertToGLBuffer() on Variable Arrays that allows converting their backing memory into a GL buffer which can be used in rendering in addition to GPU compute. This method requires that a valid GL context be bound at the time it&#8217;s called and will otherwise result in an exception:</p>
+<div class="highlight-none"><div class="highlight"><pre>Exception: glewInit() call failed; is there a valid GL context bound?
+</pre></div>
+</div>
+<p>A short example of using GL binding is provided here:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: GL binding in KL</span>
+<span class="cm">*/</span>
+
+<span class="kr">require</span> <span class="nx">FabricOGL</span><span class="p">;</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="nx">Scalar</span> <span class="nx">input</span><span class="p">[];</span>
+  <span class="nx">input</span><span class="p">.</span><span class="nx">resize</span><span class="p">(</span><span class="mi">1024</span><span class="p">);</span>
+
+  <span class="c1">// the convertToGLBuffer() call returns the GL buffer ID</span>
+  <span class="kr">Integer</span> <span class="nx">bufferId</span> <span class="o">=</span> <span class="nx">input</span><span class="p">.</span><span class="nx">convertToGLBuffer</span><span class="p">(</span><span class="nx">GL_ARRAY_BUFFER</span><span class="p">,</span> <span class="nx">GL_DYNAMIC_DRAW</span><span class="p">);</span>
+
+  <span class="c1">// the GL buffer ID can also be retrieved later via the getBufferId() method</span>
+  <span class="nx">bufferId</span> <span class="o">=</span> <span class="nx">input</span><span class="p">.</span><span class="nx">getBufferId</span><span class="p">();</span>
+
+  <span class="nb">report</span><span class="p">(</span><span class="s1">&#39;GL buffer ID is: &#39;</span><span class="o">+</span><span class="nx">bufferId</span><span class="p">);</span>
+  <span class="nx">myGPUOperator</span><span class="o">&lt;&lt;&lt;</span><span class="mi">1024</span><span class="err">@</span><span class="kc">true</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="nx">input</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The parameters passed to convertToGLBuffer() are the same as the <cite>target</cite> and <cite>usage</cite> parameters normally passed to a <cite>glBufferData()</cite> call and can have the same values.</p>
+</div>
+<div class="section" id="determining-array-memory-location">
+<h3><a class="toc-backref" href="#id7">Determining Array Memory Location</a><a class="headerlink" href="#determining-array-memory-location" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>KL provides a mechanism to determine where a given Variable Array&#8217;s elements currently live using the getElementsMemType() method. A short example of its use is outlined here:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Variable Array Memory Types in KL</span>
+<span class="cm">*/</span>
+
+<span class="kd">function</span> <span class="nx">printMemoryType</span><span class="p">(</span><span class="nx">Vec3</span> <span class="nx">myArray</span><span class="p">[])</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">myArray</span><span class="p">.</span><span class="nx">getElementsMemType</span><span class="p">()</span> <span class="o">==</span> <span class="nx">Fabric_MemType_CPU</span><span class="p">)</span>
+    <span class="nb">report</span><span class="p">(</span><span class="s1">&#39;Array elements are in CPU memory.&#39;</span><span class="p">);</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">myArray</span><span class="p">.</span><span class="nx">getElementsMemType</span><span class="p">()</span> <span class="o">==</span> <span class="nx">Fabric_MemType_GPU</span><span class="p">)</span>
+    <span class="nb">report</span><span class="p">(</span><span class="s1">&#39;Array elements are in GPU memory.&#39;</span><span class="p">);</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">myArray</span><span class="p">.</span><span class="nx">getElementsMemType</span><span class="p">()</span> <span class="o">==</span> <span class="nx">Fabric_MemType_SVM</span><span class="p">)</span>
+    <span class="nb">report</span><span class="p">(</span><span class="s1">&#39;Array elements are in Shared Virtual memory.&#39;</span><span class="p">);</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">myArray</span><span class="p">.</span><span class="nx">getElementsMemType</span><span class="p">()</span> <span class="o">==</span> <span class="nx">Fabric_MemType_GLBuffer</span><span class="p">)</span>
+    <span class="nb">report</span><span class="p">(</span><span class="s1">&#39;Array elements are stored in a GL buffer.&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="memory-and-resizing-arrays">
+<h3><a class="toc-backref" href="#id8">Memory and Resizing Arrays</a><a class="headerlink" href="#memory-and-resizing-arrays" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>When using GPU compute the array resize() method resizes the allocated memory on the device where the memory resides. GL buffer-bound arrays can not be resized via the resize() method and will throw an error.</p>
+<p>For memory types that are accessible on the CPU (CPU and SVM), the elements in a newly-resized array will be initialized using the default constructor for the element type of the array (for example initialized with the Vec3() constructor). For GPU memory the elements in a newly-resized array will be initialized to zeros. This is an important distinction to be aware of as it represents a difference in behavior between CPU and GPU arrays.</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: The resize() method</span>
+<span class="cm">*/</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="nx">Vec3</span> <span class="nx">a</span><span class="p">[];</span>
+
+  <span class="c1">// array is resized to 1024 elements in CPU memory, all elements are</span>
+  <span class="c1">// initialized with the Vec3() constructor</span>
+  <span class="nx">a</span><span class="p">.</span><span class="nx">resize</span><span class="p">(</span><span class="mi">1024</span><span class="p">);</span>
+
+  <span class="c1">// all 1024 elements are removed from CPU memory and transferred to GPU</span>
+  <span class="nx">a</span><span class="p">.</span><span class="nx">convertToGPU</span><span class="p">();</span>
+
+  <span class="c1">// the array in GPU memory is resized to 2048 elements, the first 1024</span>
+  <span class="c1">// hold their previous values while the new elements are initialized with 0s</span>
+  <span class="nx">a</span><span class="p">.</span><span class="nx">resize</span><span class="p">(</span><span class="mi">2048</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-copyto-array-method">
+<h3><a class="toc-backref" href="#id9">The copyTo() Array Method</a><a class="headerlink" href="#the-copyto-array-method" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>The copyTo() method can be used to transfer data between arrays, regardless of where their memory is located. The method will resize the destination array to be of the same size as the source array. Memory location for the destination array will remain unchanged.</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: The copyTo() method</span>
+<span class="cm">*/</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="nx">Vec3</span> <span class="nx">a</span><span class="p">[];</span>
+  <span class="nx">a</span><span class="p">.</span><span class="nx">resize</span><span class="p">(</span><span class="mi">1024</span><span class="p">);</span>
+  <span class="c1">// ... fill &#39;a&#39; with data ...</span>
+
+  <span class="nx">Vec3</span> <span class="nx">b</span><span class="p">[];</span>
+  <span class="nx">b</span><span class="p">.</span><span class="nx">resize</span><span class="p">(</span><span class="mi">128</span><span class="p">);</span>
+  <span class="c1">// ... fill &#39;b&#39; with data ...</span>
+  <span class="nx">b</span><span class="p">.</span><span class="nx">convertToGPU</span><span class="p">();</span>
+
+  <span class="c1">// resizes &#39;b&#39; to 1024 elements (on GPU) and copies the values from &#39;a&#39;</span>
+  <span class="nx">a</span><span class="p">.</span><span class="nx">copyTo</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="parameter-passing">
+<h2><a class="toc-backref" href="#id10">Parameter Passing</a><a class="headerlink" href="#parameter-passing" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Parameters to a KL GPU operator can be of any supported type and as with any normal KL operator they can be passed as <code class="docutils literal"><span class="pre">in</span></code> (the default) or <code class="docutils literal"><span class="pre">io</span></code> parameters. Shallow type parameters (such as an <code class="docutils literal"><span class="pre">Integer</span></code> or a <code class="docutils literal"><span class="pre">struct</span></code>) will have their values copied to and from the GPU before and after each parallel operator invocation. Variable Arrays on the other hand will only have a pointer to their values passed into the operator. The backing memory for the Variable Array elements must live in memory accessible to the target device.</p>
+<p>In <code class="docutils literal"><span class="pre">guarded</span></code> mode, KL will perform checks on Variable Array parameters to ensure that their backing memory currently lives in an accessible memory space. If not a KL exception will be thrown to inform the user. As an example, the following KL code:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: GPU Compute - Memory</span>
+<span class="cm">*/</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="kr">Integer</span> <span class="nx">input</span><span class="p">[];</span>
+  <span class="nx">input</span><span class="p">.</span><span class="nx">resize</span><span class="p">(</span><span class="mi">1024</span><span class="p">);</span>
+  <span class="kr">Integer</span> <span class="nx">output</span><span class="p">[];</span>
+  <span class="nx">output</span><span class="p">.</span><span class="nx">resize</span><span class="p">(</span><span class="mi">1024</span><span class="p">);</span>
+  <span class="nx">myComputeKernel</span><span class="o">&lt;&lt;&lt;</span><span class="mi">1024</span><span class="err">@</span><span class="kc">true</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="nx">input</span><span class="p">,</span> <span class="nx">output</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Will result in the error message:</p>
+<div class="highlight-none"><div class="highlight"><pre>Error: input: data not available in GPU memory
+</pre></div>
+</div>
+<p>Adding a <code class="docutils literal"><span class="pre">convertToGPU()</span></code> or <code class="docutils literal"><span class="pre">convertToSVM()</span></code> method call to the <code class="docutils literal"><span class="pre">input</span></code> and <code class="docutils literal"><span class="pre">output</span></code> parameters will resolve the error, as seen in the <a class="reference internal" href="#gpupg-example"><span>KL Example</span></a>.</p>
+<p>In <code class="docutils literal"><span class="pre">unguarded</span></code> mode KL code that uses device and CPU memory incorrectly will crash.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">GPU Compute Programming Guide</a><ul>
+<li><a class="reference internal" href="#kl-example">KL Example</a></li>
+<li><a class="reference internal" href="#invoking-a-gpu-operator">Invoking a GPU Operator</a></li>
+<li><a class="reference internal" href="#type-support">Type Support</a></li>
+<li><a class="reference internal" href="#memory-management">Memory Management</a><ul>
+<li><a class="reference internal" href="#changing-memory-backing">Changing Memory Backing</a></li>
+<li><a class="reference internal" href="#gl-binding">GL Binding</a></li>
+<li><a class="reference internal" href="#determining-array-memory-location">Determining Array Memory Location</a></li>
+<li><a class="reference internal" href="#memory-and-resizing-arrays">Memory and Resizing Arrays</a></li>
+<li><a class="reference internal" href="#the-copyto-array-method">The copyTo() Array Method</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#parameter-passing">Parameter Passing</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/GPUCompute/gpupg.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

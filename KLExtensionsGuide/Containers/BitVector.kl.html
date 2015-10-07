@@ -1,0 +1,379 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>BitVector.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="Containers Extension’s Files" href="files.html" />
+    <link rel="next" title="GenericValue.kl" href="GenericValue.kl.html" />
+    <link rel="prev" title="Containers Extension’s Files" href="files.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="GenericValue.kl.html" title="GenericValue.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="files.html" title="Containers Extension’s Files"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Containers Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">Containers Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="containers-bitvector-kl">
+<span id="bitvector-kl"></span><span id="id1"></span><h1>BitVector.kl<a class="headerlink" href="#containers-bitvector-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="bitvector-struct">
+<h3>BitVector (struct)<a class="headerlink" href="#bitvector-struct" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">The <a class="reference internal" href="BitVector.html#bitvector"><span>BitVector</span></a> is a memory-efficient Boolean array, where each element uses a single bit.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">Setting different bits in parallel might lead to unexpected results, in which case methods such as <a class="reference internal" href="BitVector.html#bitvector"><span>BitVector</span></a>.atomicSet should be used.</p>
+</div>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: BitVector</span>
+<span class="cm">*/</span>
+
+<span class="kr">require</span> <span class="nx">Containers</span><span class="p">;</span>
+  
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+
+      <span class="nx">BitVector</span> <span class="nx">b</span><span class="p">;</span>
+      <span class="nx">b</span><span class="p">.</span><span class="nx">resize</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+      <span class="nx">b</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+      <span class="nx">b</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+      <span class="nx">b</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+      <span class="nx">b</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+      <span class="nb">report</span><span class="p">(</span><span class="nx">b</span><span class="p">.</span><span class="nx">getString</span><span class="p">());</span>    
+  
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">[1,0,0,1]</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BitVector.html#a236594c1d44a90b23062f2adaaff5c"><span>BitVector</span></a>  ( in <a class="reference internal" href="BitVector.html#bitvector"><span>BitVector</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BitVector.html#d85cfd36fbcd4522be53fbc562de1633"><span>BitVector</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BitVector.html#b707058cb52c4294ade99b97d7c8c90a"><span>atomicClear</span></a> ! ( in UInt32 index )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BitVector.html#e3e87a5e342045dd8bfef80046a93d17"><span>atomicSet</span></a> ! ( in UInt32 index )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BitVector.html#c6ee3d2b3f814ee5891ee64607230e71"><span>atomicSet</span></a> ! ( in UInt32 index, in Boolean value )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="BitVectorIterator.html#bitvectoriterator"><span>BitVectorIterator</span></a></td>
+<td><a class="reference internal" href="BitVector.html#f0cca886e974184bdd1ba3c1c4693e0"><span>begin</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BitVector.html#f238aac7ed39469da6b9bfb527bbf222"><span>clear</span></a> ! ( in UInt32 index )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BitVector.html#bcf15b7b5c416baf6c02b74e0912ca"><span>clearAll</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="BitVector.html#bitvector"><span>BitVector</span></a></td>
+<td><a class="reference internal" href="BitVector.html#a627e4282ce45f8b094457f5ad8a35a"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BitVector.html#c578759b8dde41c98ed7a5c9473ea264"><span>copy</span></a> ! ( in <a class="reference internal" href="BitVector.html#bitvector"><span>BitVector</span></a> src )</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="BitVector.html#d4711ef498f84c4ca52c6b19bc17d629"><span>get</span></a> ? ( in UInt32 index )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="BitVector.html#ef888b5308c3449a88c0f8f0ba6cfe12"><span>getNext</span></a> ? ( io <a class="reference internal" href="BitVectorIterator.html#bitvectoriterator"><span>BitVectorIterator</span></a> iter )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="BitVector.html#bf3a19599b7c49bc964698defbbf9dca"><span>getString</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="BitVector.html#f45650b10674a168a68778bec0f37cb"><span>getThenClear</span></a> ! ( in UInt32 index )</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="BitVector.html#bc51263f69c34a5fafe1701625bbf249"><span>getThenSet</span></a> ! ( in UInt32 index )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="BitVector.html#d00fc580a4474a44af7f34f8ba7a26ee"><span>getThenSet</span></a> ! ( in UInt32 index, in Boolean value )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BitVector.html#d829e0790944e29d3cf072f4be098e"><span>resize</span></a> ! ( in UInt32 size )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BitVector.html#f9b102ffdd8b421da434cb5254ae8c0b"><span>set</span></a> ! ( in UInt32 index )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BitVector.html#fe49d6f3d87f49da9f1e675040385b34"><span>set</span></a> ! ( in UInt32 index, in Boolean value )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BitVector.html#a95644da0a9bcac5bd8fa8ead"><span>setAll</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td>UInt32</td>
+<td><a class="reference internal" href="BitVector.html#c84bb3a9b4e79a2db731708a84563"><span>size</span></a> ? ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+<div class="section" id="operators">
+<h4>Operators<a class="headerlink" href="#operators" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="28%" />
+<col width="72%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="BitVector.html#bitvector"><span>BitVector</span></a></td>
+<td><a class="reference internal" href="BitVector.html#db40b954dd9489f982e1471c8b6374a"><span>=</span></a> ( <a class="reference internal" href="../Parameters/Param.html#param"><span>Param</span></a> other )</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+<p><div class="section" id="locall256bitvector-struct">
+<h3>LocalL256BitVector (struct)<a class="headerlink" href="#locall256bitvector-struct" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">Same as a <a class="reference internal" href="BitVector.html#bitvector"><span>BitVector</span></a>, but the first 256 bits will not require memory allocation (local).</p>
+<div class="section" id="id2">
+<h4>Methods<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="28%" />
+<col width="72%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="LocalL256BitVector.html#c66cc0411ab77aa756e100b920"><span>LocalL256BitVector</span></a>  ( in <a class="reference internal" href="LocalL256BitVector.html#locall256bitvector"><span>LocalL256BitVector</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="LocalL256BitVector.html#bed6e3aafa64a4da3d7bef77ab1784e"><span>LocalL256BitVector</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="LocalL256BitVector.html#da5e318d0fce4d72b0d40bae75bc8238"><span>atomicClear</span></a> ! ( in UInt32 index )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="LocalL256BitVector.html#bca03b7eb94016a540180b700db4af"><span>atomicSet</span></a> ! ( in UInt32 index )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="LocalL256BitVector.html#a98f390a68b24a71b134f41fb666ab3a"><span>atomicSet</span></a> ! ( in UInt32 index, in Boolean value )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="BitVectorIterator.html#bitvectoriterator"><span>BitVectorIterator</span></a></td>
+<td><a class="reference internal" href="LocalL256BitVector.html#a765fdc918864dc49f704bb7c28b3e56"><span>begin</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="LocalL256BitVector.html#c0563da9203440b83192886ef052c7c"><span>clear</span></a> ! ( in UInt32 index )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="LocalL256BitVector.html#e847e9f04d41e9a6c637f0b4099f32"><span>clearAll</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="LocalL256BitVector.html#locall256bitvector"><span>LocalL256BitVector</span></a></td>
+<td><a class="reference internal" href="LocalL256BitVector.html#cd001bcb8034f38b1929b8e77602ee4"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="LocalL256BitVector.html#b29953a25b6b442481d340bc78dc4c1d"><span>copy</span></a> ! ( in <a class="reference internal" href="LocalL256BitVector.html#locall256bitvector"><span>LocalL256BitVector</span></a> src )</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="LocalL256BitVector.html#e824c88ea364cb18166dd098451a38d"><span>get</span></a> ? ( in UInt32 index )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="LocalL256BitVector.html#e915d3d503074fb7acac3903b4822ff9"><span>getNext</span></a> ? ( io <a class="reference internal" href="BitVectorIterator.html#bitvectoriterator"><span>BitVectorIterator</span></a> iter )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="LocalL256BitVector.html#a1fab63fab2d4815835190d6b9976642"><span>getString</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="LocalL256BitVector.html#be7f9afca240a08d6d4e5db2587b3c"><span>getThenClear</span></a> ! ( in UInt32 index )</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="LocalL256BitVector.html#f1497bf7214ec58f626b6afea481ed"><span>getThenSet</span></a> ! ( in UInt32 index )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="LocalL256BitVector.html#e9c93677e7fb4e9bb37229879adb0757"><span>getThenSet</span></a> ! ( in UInt32 index, in Boolean value )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="LocalL256BitVector.html#a5abb8c74054ec0aab9762d10e79603"><span>resize</span></a> ! ( in UInt32 size )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="LocalL256BitVector.html#e82791b46a1997930f4dcbe7a3e"><span>set</span></a> ! ( in UInt32 index )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="LocalL256BitVector.html#e3443882a8294d5b978c23d25e5ceea7"><span>set</span></a> ! ( in UInt32 index, in Boolean value )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="LocalL256BitVector.html#fac7b181b6c4a6ebc771864b2138e8a"><span>setAll</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td>UInt32</td>
+<td><a class="reference internal" href="LocalL256BitVector.html#aa4873dfd784840b3665a115f444b3d"><span>size</span></a> ? ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+<p><div class="section" id="bitvectoriterator-struct">
+<h3>BitVectorIterator (struct)<a class="headerlink" href="#bitvectoriterator-struct" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">a helper structure to perform iteration on a <a class="reference internal" href="BitVector.html#bitvector"><span>BitVector</span></a></p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="BitVector.html#f0cca886e974184bdd1ba3c1c4693e0"><span>BitVector.begin</span></a></p>
+</div>
+<div class="section" id="members">
+<h4>Members<a class="headerlink" href="#members" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="47%" />
+<col width="37%" />
+<col width="16%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Integer</td>
+<td>index</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id3">
+<h4>Methods<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="28%" />
+<col width="72%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BitVectorIterator.html#b65aaf1692334b5fa38ca09c9d026103"><span>BitVectorIterator</span></a>  ( in <a class="reference internal" href="BitVectorIterator.html#bitvectoriterator"><span>BitVectorIterator</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BitVectorIterator.html#e2fed021243d2b28b178eb353724e"><span>BitVectorIterator</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="BitVectorIterator.html#bitvectoriterator"><span>BitVectorIterator</span></a></td>
+<td><a class="reference internal" href="BitVectorIterator.html#c1774205f415444099b1970bf8c5ff3d"><span>clone</span></a> ? ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="files.html"
+                        title="前の章へ">Containers Extension&#8217;s Files</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="GenericValue.kl.html"
+                        title="次の章へ">GenericValue.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/Containers/BitVector.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="GenericValue.kl.html" title="GenericValue.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="files.html" title="Containers Extension’s Files"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Containers Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >Containers Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

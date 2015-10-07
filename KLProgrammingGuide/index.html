@@ -1,0 +1,301 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>KL Programming Guide &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
+    <link rel="next" title="Introduction" href="intro.html" />
+    <link rel="prev" title="Frequently Asked Questions" href="../CanvasProgrammerGuide/faq.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="../CanvasProgrammerGuide/faq.html" title="Frequently Asked Questions"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="kl-programming-guide">
+<span id="klpg"></span><h1>KL Programming Guide<a class="headerlink" href="#kl-programming-guide" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<a class="reference internal image-reference" href="../_images/FE_logo_345_60.png"><img alt="../_images/FE_logo_345_60.png" src="../_images/FE_logo_345_60.png" style="width: 345px; height: 60px;" /></a>
+<div class="line-block">
+<div class="line">Fabric Engine version 2.0.0</div>
+<div class="line">Copyright 2010-2015 Fabric Software Inc. All rights reserved.</div>
+</div>
+<div class="section" id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#running-the-examples">Running the Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#hello-world-in-kl">Hello World in KL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#fibonacci-sequence-in-kl">Fibonacci Sequence in KL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#mandelbrot-set-in-kl">Mandelbrot Set in KL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#how-this-guide-is-organized">How This Guide is Organized</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="syntax.html">KL Syntax</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="syntax.html#encoding">Encoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="syntax.html#line-continuations">Line Continuations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="syntax.html#comments">Comments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="syntax.html#block-comments">Block Comments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="syntax.html#line-comments">Line Comments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="syntax.html#tokens">Tokens</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="syntax.html#keywords">Keywords</a></li>
+<li class="toctree-l3"><a class="reference internal" href="syntax.html#index-8">Identifiers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="syntax.html#symbols">Symbols</a></li>
+<li class="toctree-l3"><a class="reference internal" href="syntax.html#constants">Constants</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="syntax.html#program-structure">Program Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">The KL Type System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="types.html#base-types">Base Types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="types.html#the-boolean-type">The <code class="code docutils literal"><span class="pre">Boolean</span></code> Type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html#integer-types">Integer Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html#floating-point-types">Floating-Point Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html#the-string-type">The <code class="docutils literal"><span class="pre">String</span></code> Type</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#derived-types">Derived Types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="types.html#structures">Structures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html#objects">Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html#interfaces">Interfaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html#arrays">Arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html#dictionaries">Dictionaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html#map-reduce-types">Map-Reduce Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#implicit-type-casting-rules-in-kl">Implicit Type Casting Rules in KL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#type-aliases">Type Aliases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#the-data-type-and-the-data-and-datasize-methods">The <code class="docutils literal"><span class="pre">Data</span></code> Type and the <code class="docutils literal"><span class="pre">data</span></code> and <code class="docutils literal"><span class="pre">dataSize</span></code> Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="globals.html">Functions and Other Global Declarations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="globals.html#functions">Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="globals.html#function-definitions">Function Definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="globals.html#function-invocations">Function Invocations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="globals.html#function-prototypes">Function Prototypes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="globals.html#polymorphism">Polymorphism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="globals.html#operators">Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="globals.html#constructors">Constructors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="globals.html#constructor-declarations">Constructor Declarations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="globals.html#constructor-invocation">Constructor Invocation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="globals.html#destructors">Destructors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="globals.html#methods">Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="globals.html#method-definitions">Method Definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="globals.html#method-invocation">Method Invocation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="globals.html#methods-taking-read-only-or-read-write-values-for-this">Methods Taking Read-Only or Read-Write Values for <code class="docutils literal"><span class="pre">this</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="globals.html#interface-methods-and-inheritance">Interface methods and inheritance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="globals.html#access-to-methods">Access to Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="globals.html#overloaded-operators">Overloaded Operators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="globals.html#binary-operator-overloads">Binary Operator Overloads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="globals.html#unary-operator-overloads">Unary Operator Overloads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="globals.html#direct-assignment-overloads">Direct Assignment Overloads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="globals.html#compound-assignment-overloads">Compound Assignment Overloads</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="globals.html#inline-functions-and-methods">Inline Functions and Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="globals.html#built-in-functions-and-methods">Built-In Functions and Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="globals.html#debugging-functions">Debugging Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="globals.html#error-status-functions">Error Status Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="globals.html#integer-numerical-functions">Integer Numerical Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="globals.html#floating-point-numerical-functions">Floating-Point Numerical Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="globals.html#vector-functions">Vector Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="globals.html#conversion-functions">Conversion Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="globals.html#thread-core-related-functions">Thread/Core-related Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="globals.html#performance-counter-functions">Performance Counter Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="globals.html#fabric-context-functions">Fabric Context Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="globals.html#named-constants">Named Constants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="globals.html#predefined-constants">Predefined Constants</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="globals.html#importing-functionality-with-require">Importing Functionality With <code class="docutils literal"><span class="pre">require</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globals.html#using-require-with-version-information">Using <code class="docutils literal"><span class="pre">require</span></code> with version information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="globals.html#extension-versioning-environment-variables">Extension versioning environment variables</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ops-exprs.html">Operators and Expressions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ops-exprs.html#operators">Operators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ops-exprs.html#arithmetic-operators">Arithmetic Operators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ops-exprs.html#logical-operators">Logical Operators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ops-exprs.html#bitwise-operators">Bitwise Operators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ops-exprs.html#assignment-operators">Assignment Operators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ops-exprs.html#operators-and-polymorphism">Operators and Polymorphism</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ops-exprs.html#expressions">Expressions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ops-exprs.html#simple-expressions">Simple Expressions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ops-exprs.html#compound-expressions">Compound Expressions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ops-exprs.html#controlling-order-of-operations">Controlling Order of Operations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ops-exprs.html#scoping-rules">Scoping Rules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ops-exprs.html#types-of-scopes">Types of Scopes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ops-exprs.html#nested-scopes-example">Nested Scopes Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="statements.html">Statements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="statements.html#simple-statements">Simple Statements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="statements.html#expression-statements">Expression Statements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="statements.html#parallel-execution-statement">Parallel Execution Statement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="statements.html#the-empty-statement">The Empty Statement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="statements.html#variable-declaration-statements">Variable Declaration Statements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="statements.html#constant-declaration-statements">Constant Declaration Statements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="statements.html#the-return-statement">The <code class="docutils literal"><span class="pre">return</span></code> Statement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="statements.html#the-throw-statement">The <code class="docutils literal"><span class="pre">throw</span></code> Statement</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="statements.html#complex-statements">Complex Statements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="statements.html#compound-statements">Compound Statements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="statements.html#conditional-statements">Conditional Statements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="statements.html#loop-statements">Loop Statements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="statements.html#loop-control-statements">Loop Control Statements</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="map-reduce.html">Map-Reduce</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="map-reduce.html#map-reduce-types">Map-Reduce Types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="map-reduce.html#the-valueproducer-valuetype-type">The <code class="samp docutils literal"><span class="pre">ValueProducer&lt;</span><em><span class="pre">ValueType</span></em><span class="pre">&gt;</span></code> Type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="map-reduce.html#the-arrayproducer-elementtype-type">The <code class="samp docutils literal"><span class="pre">ArrayProducer&lt;</span><em><span class="pre">ElementType</span></em><span class="pre">&gt;</span></code> Type</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="map-reduce.html#map-reduce-functions">Map-Reduce Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="map-reduce.html#value-producer-creation-functions">Value Producer Creation Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="map-reduce.html#array-producer-creation-functions">Array Producer Creation Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="map-reduce.html#reduce-functions">Reduce Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h2>Indices and Tables<a class="headerlink" href="#indices-and-tables" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="../genindex.html"><span>索引</span></a></li>
+<li><a class="reference internal" href="../search.html"><span>検索ページ</span></a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">KL Programming Guide</a><ul>
+<li><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and Tables</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="../CanvasProgrammerGuide/faq.html"
+                        title="前の章へ">Frequently Asked Questions</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="intro.html"
+                        title="次の章へ">Introduction</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/KLProgrammingGuide/index.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="../CanvasProgrammerGuide/faq.html" title="Frequently Asked Questions"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

@@ -1,0 +1,2073 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The KL Type System &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
+    <link rel="up" title="KL Programming Guide" href="index.html" />
+    <link rel="next" title="Functions and Other Global Declarations" href="globals.html" />
+    <link rel="prev" title="KL Syntax" href="syntax.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="globals.html" title="Functions and Other Global Declarations"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="syntax.html" title="KL Syntax"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">KL Programming Guide</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="the-kl-type-system">
+<span id="klpg-types"></span><h1>The KL Type System<a class="headerlink" href="#the-kl-type-system" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Unlike most languages, KL has a dynamic type system that is inherited from the Fabric environment.  In most cases, compound types are registered from the Fabric environment running in a dynamic language (eg. JavaScript or Python); those types are then automatically made available to KL programs running in that environment.  This does not, however, affect the semantics of the language; the KL type system can still be explained purely from the point of view of the language itself.</p>
+<p>Like most programming languages, KL has support for both a fixed set of base types from which other types are derived as well as different kinds of derived types.</p>
+<div class="section" id="base-types">
+<span id="index-0"></span><h2>Base Types<a class="headerlink" href="#base-types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The base types in KL are the following:</p>
+<dl class="docutils">
+<dt><code class="code docutils literal"><span class="pre">Boolean</span></code></dt>
+<dd>can be either <code class="code docutils literal"><span class="pre">true</span></code> or <code class="code docutils literal"><span class="pre">false</span></code></dd>
+<dt><code class="docutils literal"><span class="pre">UInt8</span></code></dt>
+<dd>an 8-bit unsigned integer</dd>
+<dt><code class="docutils literal"><span class="pre">Byte</span></code></dt>
+<dd>an alias for <code class="docutils literal"><span class="pre">UInt8</span></code></dd>
+<dt><code class="docutils literal"><span class="pre">SInt8</span></code></dt>
+<dd>an 8-bit signed integer</dd>
+<dt><code class="docutils literal"><span class="pre">UInt16</span></code></dt>
+<dd>a 16-bit unsigned integer</dd>
+<dt><code class="docutils literal"><span class="pre">SInt16</span></code></dt>
+<dd>a 16-bit signed integer</dd>
+<dt><code class="docutils literal"><span class="pre">UInt32</span></code></dt>
+<dd>a 32-bit unsigned integer</dd>
+<dt><code class="docutils literal"><span class="pre">Count</span></code></dt>
+<dd>an alias for <code class="docutils literal"><span class="pre">UInt32</span></code>; used to represent cardinal numbers</dd>
+<dt><code class="docutils literal"><span class="pre">Index</span></code></dt>
+<dd>an alias for <code class="docutils literal"><span class="pre">UInt32</span></code>; used to represent ordinal numbers</dd>
+<dt><code class="docutils literal"><span class="pre">Size</span></code></dt>
+<dd>an alias for <code class="docutils literal"><span class="pre">UInt32</span></code></dd>
+<dt><code class="docutils literal"><span class="pre">SInt32</span></code></dt>
+<dd>a 32-bit signed integer</dd>
+<dt><code class="docutils literal"><span class="pre">Integer</span></code></dt>
+<dd>an alias for <code class="docutils literal"><span class="pre">SInt32</span></code></dd>
+<dt><code class="docutils literal"><span class="pre">UInt64</span></code></dt>
+<dd>a 64-bit unsigned integer</dd>
+<dt><code class="docutils literal"><span class="pre">DataSize</span></code></dt>
+<dd>an alias for <code class="docutils literal"><span class="pre">UInt64</span></code>; used to represent sizes of blocks of memory</dd>
+<dt><code class="docutils literal"><span class="pre">SInt64</span></code></dt>
+<dd>a 64-bit signed integer</dd>
+<dt><code class="docutils literal"><span class="pre">Float32</span></code></dt>
+<dd>a 32-bit IEEE floating point</dd>
+<dt><code class="docutils literal"><span class="pre">Scalar</span></code></dt>
+<dd>an alias for <code class="docutils literal"><span class="pre">Float32</span></code></dd>
+<dt><code class="docutils literal"><span class="pre">Float64</span></code></dt>
+<dd>a 64-bit IEEE floating point</dd>
+<dt><code class="docutils literal"><span class="pre">String</span></code></dt>
+<dd>a sequence of zero or more characters</dd>
+</dl>
+<div class="section" id="the-boolean-type">
+<span id="index-1"></span><h3>The <code class="code docutils literal"><span class="pre">Boolean</span></code> Type<a class="headerlink" href="#the-boolean-type" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>The value of an expression of <code class="code docutils literal"><span class="pre">Boolean</span></code> type is either logical true or logical false.  The type has the following properties:</p>
+<ul class="simple">
+<li>The constants <code class="code docutils literal"><span class="pre">true</span></code> and <code class="code docutils literal"><span class="pre">false</span></code> are <code class="code docutils literal"><span class="pre">Boolean</span></code> values with logical values true and false, respectively.</li>
+<li>All other base types cast to Boolean as follows:<ul>
+<li>All values of integer type (eg. <code class="docutils literal"><span class="pre">UInt32</span></code>, <code class="docutils literal"><span class="pre">Byte</span></code>) cast to true if and only if the value is non-zero</li>
+<li>All values of floating-point type (ie. <code class="docutils literal"><span class="pre">Float32</span></code> and <code class="docutils literal"><span class="pre">Float64</span></code>) cast true if and only if the value is not equal to <code class="docutils literal"><span class="pre">0.0</span></code> or <code class="docutils literal"><span class="pre">-0.0</span></code></li>
+<li><code class="docutils literal"><span class="pre">String</span></code> values cast to true if and only if their length is greater than zero</li>
+<li>Arrays and dictionaries cast to true if and only if they are non-empty</li>
+<li>By default, structures do not cast to <code class="code docutils literal"><span class="pre">Boolean</span></code>, but you can implement the cast if desired by creating a <code class="code docutils literal"><span class="pre">Boolean</span></code> constructor that takes the structure as a parameter; see <a class="reference internal" href="globals.html#klpg-constructor"><span>Constructors</span></a></li>
+</ul>
+</li>
+<li>For operators:<ul>
+<li>None of the arithmetic operators (binary <code class="docutils literal"><span class="pre">+</span></code>, <code class="docutils literal"><span class="pre">-</span></code>, <code class="docutils literal"><span class="pre">*</span></code>, <code class="docutils literal"><span class="pre">/</span></code>, <code class="docutils literal"><span class="pre">%</span></code> as well as unary <code class="docutils literal"><span class="pre">-</span></code> and <code class="docutils literal"><span class="pre">+</span></code>) are valid for <code class="code docutils literal"><span class="pre">Boolean</span></code> values</li>
+<li>Only the <code class="docutils literal"><span class="pre">==</span></code> and <code class="docutils literal"><span class="pre">!=</span></code> comparison operators are valid for <code class="code docutils literal"><span class="pre">Boolean</span></code> values</li>
+<li>All of the bitwise binary operators (<code class="docutils literal"><span class="pre">|</span></code>, <code class="docutils literal"><span class="pre">&amp;amp;</span></code>, <code class="docutils literal"><span class="pre">^</span></code> and <code class="docutils literal"><span class="pre">~</span></code>) are valid for <code class="code docutils literal"><span class="pre">Boolean</span></code> values and treat the value as if it were a single bit</li>
+</ul>
+</li>
+</ul>
+<p>The following example shows the use of the <code class="code docutils literal"><span class="pre">Boolean</span></code> type:</p>
+<div class="highlight-python"><div class="highlight"><pre>operator entry() {
+  Boolean a = true;
+  report(a);
+  Boolean b = a &amp; false;
+  report(b);
+  report(a != b);
+}
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">true</span>
+<span class="n">false</span>
+<span class="n">true</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="integer-types">
+<span id="index-2"></span><h3>Integer Types<a class="headerlink" href="#integer-types" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>The <code class="docutils literal"><span class="pre">UInt8</span></code>, <code class="docutils literal"><span class="pre">SInt8</span></code>, <code class="docutils literal"><span class="pre">UInt16</span></code>, <code class="docutils literal"><span class="pre">SInt16</span></code>, <code class="docutils literal"><span class="pre">UInt32</span></code>, <code class="docutils literal"><span class="pre">SInt32</span></code>, <code class="docutils literal"><span class="pre">UInt64</span></code> and <code class="docutils literal"><span class="pre">SInt64</span></code> types, as well as their aliases (<code class="docutils literal"><span class="pre">Byte</span></code>, <code class="docutils literal"><span class="pre">Integer</span></code>, <code class="docutils literal"><span class="pre">Size</span></code>, <code class="docutils literal"><span class="pre">Count</span></code>, <code class="docutils literal"><span class="pre">Index</span></code> and <code class="docutils literal"><span class="pre">DataSize</span></code>), are collectively known as the <span class="target" id="index-3"></span>integer types and represent whole integers.  These types differ only in their bit width and whether they are signed or unsigned, as follows:</p>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">UInt8</span></code></dt>
+<dd>an 8-bit unsigned integer</dd>
+<dt><code class="docutils literal"><span class="pre">Byte</span></code></dt>
+<dd>an alias for <code class="docutils literal"><span class="pre">UInt8</span></code></dd>
+<dt><code class="docutils literal"><span class="pre">SInt8</span></code></dt>
+<dd>an 8-bit signed integer</dd>
+<dt><code class="docutils literal"><span class="pre">UInt16</span></code></dt>
+<dd>a 16-bit unsigned integer</dd>
+<dt><code class="docutils literal"><span class="pre">SInt16</span></code></dt>
+<dd>a 16-bit signed integer</dd>
+<dt><code class="docutils literal"><span class="pre">UInt32</span></code></dt>
+<dd>a 32-bit unsigned integer</dd>
+<dt><code class="docutils literal"><span class="pre">SInt32</span></code></dt>
+<dd>a 32-bit signed integer</dd>
+<dt><code class="docutils literal"><span class="pre">Integer</span></code></dt>
+<dd>an alias for <code class="docutils literal"><span class="pre">SInt32</span></code></dd>
+<dt><code class="docutils literal"><span class="pre">UInt64</span></code></dt>
+<dd>a 64-bit unsigned integer</dd>
+<dt><code class="docutils literal"><span class="pre">SInt64</span></code></dt>
+<dd>a 64-bit signed integer</dd>
+<dt><code class="docutils literal"><span class="pre">Count</span></code></dt>
+<dd>an alias for <code class="docutils literal"><span class="pre">UInt32</span></code>.  <code class="docutils literal"><span class="pre">Size</span></code> is usually used to count the number of elements in an array</dd>
+<dt><code class="docutils literal"><span class="pre">Index</span></code></dt>
+<dd>an alias for <code class="docutils literal"><span class="pre">UInt32</span></code>.  <code class="docutils literal"><span class="pre">Index</span></code> is usually used to index into an array</dd>
+<dt><code class="docutils literal"><span class="pre">DataSize</span></code></dt>
+<dd>an alias for <code class="docutils literal"><span class="pre">UInt64</span></code>.  <code class="docutils literal"><span class="pre">DataSize</span></code> is used to represent the size of a block of memory and is the return type for the <code class="docutils literal"><span class="pre">dataSize</span></code> method of types.</dd>
+<dt><code class="docutils literal"><span class="pre">Size</span></code></dt>
+<dd>an alias for <code class="docutils literal"><span class="pre">UInt32</span></code>.</dd>
+</dl>
+<p>Integer types behave as follows:</p>
+<ul class="simple">
+<li>All of the <a class="reference internal" href="ops-exprs.html#arithmetic-ops"><span>arithmetic</span></a>, <a class="reference internal" href="ops-exprs.html#logical-ops"><span>logical</span></a> and <a class="reference internal" href="ops-exprs.html#bitwise-ops"><span>bitwise</span></a> operators work as expected for all integer types.</li>
+<li>Integer constants are typed using the suffixes <code class="docutils literal"><span class="pre">s32</span></code> for <code class="docutils literal"><span class="pre">SInt32</span></code>, <code class="docutils literal"><span class="pre">u64</span></code> for <code class="docutils literal"><span class="pre">UInt64</span></code>, and so on; if a suffix is omitted, the type is <code class="docutils literal"><span class="pre">SInt32</span></code>.  For more details, see <a class="reference internal" href="syntax.html#integer-constants"><span>Integer Constants</span></a>.</li>
+</ul>
+<p>The following shows the use of integer types:</p>
+<div class="highlight-python"><div class="highlight"><pre>operator entry() {
+  Byte b = 64;
+  report(b);
+  Size s = 45 * Size(b) + 32;
+  report(s);
+  Integer i = -75 * Integer(s) + 18;
+  report(i);
+}
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="mi">64</span>
+<span class="mi">2912</span>
+<span class="o">-</span><span class="mi">218382</span>
+</pre></div>
+</div>
+<div class="section" id="integer-atomic-methods">
+<span id="index-4"></span><h4>Integer Atomic Methods<a class="headerlink" href="#integer-atomic-methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>The integer types have a set of built-in <a class="reference internal" href="globals.html#methods"><span>Methods</span></a> that perform atomic
+operations on a value of the type.  Atomic operations are used to implement
+lock-free algorithms; for more information on atomic operations, see
+<a class="reference external" href="http://en.wikipedia.org/wiki/Linearizability">http://en.wikipedia.org/wiki/Linearizability</a>.</p>
+<dl class="function">
+<dt>
+<code class="descname">UInt8 UInt8.atomicAdd(UInt8 val)</code></dt>
+<dt>
+<code class="descname">SInt8 SInt8.atomicAdd(SInt8 val)</code></dt>
+<dt>
+<code class="descname">UInt16 UInt16.atomicAdd(UInt16 val)</code></dt>
+<dt>
+<code class="descname">SInt16 SInt16.atomicAdd(SInt16 val)</code></dt>
+<dt>
+<code class="descname">UInt32 UInt32.atomicAdd(UInt32 val)</code></dt>
+<dt>
+<code class="descname">SInt32 SInt32.atomicAdd(SInt32 val)</code></dt>
+<dt>
+<code class="descname">UInt64 UInt64.atomicAdd(UInt64 val)</code></dt>
+<dt>
+<code class="descname">SInt64 SInt64.atomicAdd(SInt64 val)</code></dt>
+<dd><p>Atomically add a value to the integer</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>val</strong> &#8211; The value to add</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">the old value of the integer</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">UInt8 UInt8.atomicInc()</code></dt>
+<dt>
+<code class="descname">SInt8 SInt8.atomicInc()</code></dt>
+<dt>
+<code class="descname">UInt16 UInt16.atomicInc()</code></dt>
+<dt>
+<code class="descname">SInt16 SInt16.atomicInc()</code></dt>
+<dt>
+<code class="descname">UInt32 UInt32.atomicInc()</code></dt>
+<dt>
+<code class="descname">SInt32 SInt32.atomicInc()</code></dt>
+<dt>
+<code class="descname">UInt64 UInt64.atomicInc()</code></dt>
+<dt>
+<code class="descname">SInt64 SInt64.atomicInc()</code></dt>
+<dd><p>Atomically increments the integer</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">戻り値:</th><td class="field-body">the old value of the integer</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">UInt8 UInt8.atomicSub(UInt8 val)</code></dt>
+<dt>
+<code class="descname">SInt8 SInt8.atomicSub(SInt8 val)</code></dt>
+<dt>
+<code class="descname">UInt16 UInt16.atomicSub(UInt16 val)</code></dt>
+<dt>
+<code class="descname">SInt16 SInt16.atomicSub(SInt16 val)</code></dt>
+<dt>
+<code class="descname">UInt32 UInt32.atomicSub(UInt32 val)</code></dt>
+<dt>
+<code class="descname">SInt32 SInt32.atomicSub(SInt32 val)</code></dt>
+<dt>
+<code class="descname">UInt64 UInt64.atomicSub(UInt64 val)</code></dt>
+<dt>
+<code class="descname">SInt64 SInt64.atomicSub(SInt64 val)</code></dt>
+<dd><p>Atomically subtracts a value from the integer</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>val</strong> &#8211; The value to add</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">the old value of the integer</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">UInt8 UInt8.atomicDec()</code></dt>
+<dt>
+<code class="descname">SInt8 SInt8.atomicDec()</code></dt>
+<dt>
+<code class="descname">UInt16 UInt16.atomicDec()</code></dt>
+<dt>
+<code class="descname">SInt16 SInt16.atomicDec()</code></dt>
+<dt>
+<code class="descname">UInt32 UInt32.atomicDec()</code></dt>
+<dt>
+<code class="descname">SInt32 SInt32.atomicDec()</code></dt>
+<dt>
+<code class="descname">UInt64 UInt64.atomicDec()</code></dt>
+<dt>
+<code class="descname">SInt64 SInt64.atomicDec()</code></dt>
+<dd><p>Atomically decrements the integer</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">戻り値:</th><td class="field-body">the old value of the integer</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">UInt8 UInt8.atomicOr(UInt8 val)</code></dt>
+<dt>
+<code class="descname">SInt8 SInt8.atomicOr(SInt8 val)</code></dt>
+<dt>
+<code class="descname">UInt16 UInt16.atomicOr(UInt16 val)</code></dt>
+<dt>
+<code class="descname">SInt16 SInt16.atomicOr(SInt16 val)</code></dt>
+<dt>
+<code class="descname">UInt32 UInt32.atomicOr(UInt32 val)</code></dt>
+<dt>
+<code class="descname">SInt32 SInt32.atomicOr(SInt32 val)</code></dt>
+<dt>
+<code class="descname">UInt64 UInt64.atomicOr(UInt64 val)</code></dt>
+<dt>
+<code class="descname">SInt64 SInt64.atomicOr(SInt64 val)</code></dt>
+<dd><p>Atomically perform a bitwise or on the integer</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>val</strong> &#8211; The value to or with the integer</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">the old value of the integer</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">UInt8 UInt8.atomicAnd(UInt8 val)</code></dt>
+<dt>
+<code class="descname">SInt8 SInt8.atomicAnd(SInt8 val)</code></dt>
+<dt>
+<code class="descname">UInt16 UInt16.atomicAnd(UInt16 val)</code></dt>
+<dt>
+<code class="descname">SInt16 SInt16.atomicAnd(SInt16 val)</code></dt>
+<dt>
+<code class="descname">UInt32 UInt32.atomicAnd(UInt32 val)</code></dt>
+<dt>
+<code class="descname">SInt32 SInt32.atomicAnd(SInt32 val)</code></dt>
+<dt>
+<code class="descname">UInt64 UInt64.atomicAnd(UInt64 val)</code></dt>
+<dt>
+<code class="descname">SInt64 SInt64.atomicAnd(SInt64 val)</code></dt>
+<dd><p>Atomically perform a bitwise and on the integer</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>val</strong> &#8211; The value to and with the integer</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">the old value of the integer</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">UInt8 UInt8.atomicXor(UInt8 val)</code></dt>
+<dt>
+<code class="descname">SInt8 SInt8.atomicXor(SInt8 val)</code></dt>
+<dt>
+<code class="descname">UInt16 UInt16.atomicXor(UInt16 val)</code></dt>
+<dt>
+<code class="descname">SInt16 SInt16.atomicXor(SInt16 val)</code></dt>
+<dt>
+<code class="descname">UInt32 UInt32.atomicXor(UInt32 val)</code></dt>
+<dt>
+<code class="descname">SInt32 SInt32.atomicXor(SInt32 val)</code></dt>
+<dt>
+<code class="descname">UInt64 UInt64.atomicXor(UInt64 val)</code></dt>
+<dt>
+<code class="descname">SInt64 SInt64.atomicXor(SInt64 val)</code></dt>
+<dd><p>Atomically perform a bitwise xor on the integer</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>val</strong> &#8211; The value to xor with the integer</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">the old value of the integer</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">UInt8 UInt8.atomicCAS(UInt8 oldVal, UInt8 newVal)</code></dt>
+<dt>
+<code class="descname">SInt8 SInt8.atomicCAS(SInt8 oldVal, SInt8 newVal)</code></dt>
+<dt>
+<code class="descname">UInt16 UInt16.atomicCAS(UInt16 oldVal, UInt16 newVal)</code></dt>
+<dt>
+<code class="descname">SInt16 SInt16.atomicCAS(SInt16 oldVal, SInt16 newVal)</code></dt>
+<dt>
+<code class="descname">UInt32 UInt32.atomicCAS(UInt32 oldVal, UInt32 newVal)</code></dt>
+<dt>
+<code class="descname">SInt32 SInt32.atomicCAS(SInt32 oldVal, SInt32 newVal)</code></dt>
+<dt>
+<code class="descname">UInt64 UInt64.atomicCAS(UInt64 oldVal, UInt64 newVal)</code></dt>
+<dt>
+<code class="descname">SInt64 SInt64.atomicCAS(SInt64 oldVal, SInt64 newVal)</code></dt>
+<dd><p>Atomically perform a compare-and-swap operation: if the integer&#8217;s value
+is <code class="docutils literal"><span class="pre">oldVal</span></code>, change it to <code class="docutils literal"><span class="pre">newVal</span></code>.  Returns <code class="docutils literal"><span class="pre">oldVal</span></code> if and only
+if the value was changed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>oldVal</strong> &#8211; The value to compare with the integer</li>
+<li><strong>newVal</strong> &#8211; The value to set the integer to if the comparison succeeds</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">the old value of the integer</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="floating-point-types">
+<span id="index-5"></span><h3>Floating-Point Types<a class="headerlink" href="#floating-point-types" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>The <code class="docutils literal"><span class="pre">Float32</span></code> and <code class="docutils literal"><span class="pre">Float64</span></code> types (as well as <code class="docutils literal"><span class="pre">Scalar</span></code>, an alias for <code class="docutils literal"><span class="pre">Float32</span></code>) are collectively known as <em class="dfn">floating-point types</em> and represent <abbr>IEEE</abbr> floating-point numbers.  These types differ only in their bit width, as follows:</p>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">Float32</span></code></dt>
+<dd>a 32-bit <abbr>IEEE</abbr> floating-point number</dd>
+<dt><code class="docutils literal"><span class="pre">Float64</span></code></dt>
+<dd>a 64-bit <abbr>IEEE</abbr> floating-point number</dd>
+<dt><code class="docutils literal"><span class="pre">Scalar</span></code></dt>
+<dd>an alias for <code class="docutils literal"><span class="pre">Float32</span></code></dd>
+</dl>
+<p>Floating-point types behave as follows:</p>
+<ul class="simple">
+<li>Floating-point constants have the same syntax as in JavaScript and C, and are of type <code class="docutils literal"><span class="pre">Float64</span></code>.  For more details, see <a class="reference internal" href="syntax.html#floating-point-constants"><span>Floating-Point Constants</span></a>.</li>
+<li>All of the <a class="reference internal" href="ops-exprs.html#arithmetic-ops"><span>arithmetic</span></a> and <a class="reference internal" href="ops-exprs.html#logical-ops"><span>logical</span></a> operators are valid for floating-point values.  None of the bitwise operators are valid for floating-point values.</li>
+</ul>
+<p>The following example shows the use of floating-point types:</p>
+<div class="highlight-python"><div class="highlight"><pre>operator entry() {
+  Float32 x = 3.141;
+  report(x);
+  Float64 y = 2.718;
+  report(y);
+  Float32 z = x*x + y*y;
+  report(z);
+}
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="mf">3.141</span>
+<span class="mf">2.718</span>
+<span class="mf">17.2534</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-string-type">
+<span id="index-6"></span><h3>The <code class="docutils literal"><span class="pre">String</span></code> Type<a class="headerlink" href="#the-string-type" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>The <code class="docutils literal"><span class="pre">String</span></code> type represents a text string, ie. a sequence of zero or more characters.  A value of type <code class="docutils literal"><span class="pre">String</span></code> is referred to as a <span class="target" id="index-7"></span>string value.</p>
+<p>The semantics of the <code class="docutils literal"><span class="pre">String</span></code> type in KL are important to understand.  Strings have the following key properties:</p>
+<ul class="simple">
+<li>A string is a sequence of zero or more characters.</li>
+<li>The length of a string is value of type <code class="docutils literal"><span class="pre">Size</span></code>, and the maximum length of a string is .</li>
+<li>String constants can be specified inline in KL source files using single- or double-quotation marks, just as in Python and JavaScript.  For more details and examples of string constants, see <a class="reference internal" href="syntax.html#string-constants"><span>String Constants</span></a>.</li>
+<li>Strings support the following operations and properties:<ul>
+<li>They have a <code class="docutils literal"><span class="pre">.length</span></code> property which returns the number of characters in the string</li>
+<li>The <code class="docutils literal"><span class="pre">+=</span></code> assignment operator is used to append another string to a given string</li>
+<li>A new string can be created by concatenating two other strings using the <code class="docutils literal"><span class="pre">+</span></code> binary operation</li>
+<li>Strings can be compared using the usual <code class="docutils literal"><span class="pre">==</span></code>, <code class="docutils literal"><span class="pre">!=</span></code>, <code class="docutils literal"><span class="pre">&lt;</span></code>, <code class="docutils literal"><span class="pre">&lt;=</span></code>, <code class="docutils literal"><span class="pre">&gt;</span></code> and <code class="docutils literal"><span class="pre">&gt;=</span></code> logical operators.  Additionally, they support the <code class="samp docutils literal"><em><span class="pre">string</span></em><span class="pre">.compare(</span><em><span class="pre">otherString</span></em><span class="pre">)</span></code> method that returns -1, 0 or 1 depending on whether <code class="samp docutils literal"><em><span class="pre">string</span></em></code> is less than, equal to or greater than <code class="samp docutils literal"><em><span class="pre">otherString</span></em></code>, respectively.</li>
+<li>Strings can be indexed into using the <code class="samp docutils literal"><em><span class="pre">string</span></em><span class="pre">[</span><em><span class="pre">index</span></em><span class="pre">]</span></code>.  The result is a string containing the single character at the given index.  <code class="samp docutils literal"><em><span class="pre">index</span></em></code> must be in the range .</li>
+<li>A 32-bit hash value for the string can be obtained with the <code class="samp docutils literal"><em><span class="pre">string</span></em><span class="pre">.hash()</span></code> method.</li>
+</ul>
+</li>
+<li>Unlike C or C++, strings can contain the null character (ASCII 0).</li>
+<li>Strings have no notion of encoding; they are just sequences of bytes.  String encodings are determined by the application space where the strings are used.  Note that everything in Fabric itself uses the UTF-8 encoding, but Fabric extensions may need to convert strings into other encodings.</li>
+<li>All other types in KL can be converted to strings through a cast; this conversion simply creates a string that is a human-readable version of the value.  This conversion can be overridden for custom types by writing a custom <code class="samp docutils literal"><span class="pre">function</span> <em><span class="pre">Type</span></em><span class="pre">.appendDesc(io</span> <span class="pre">String</span> <span class="pre">string)</span></code> method; see <a class="reference internal" href="globals.html#conversion-funcs"><span>Conversion Functions</span></a>.</li>
+</ul>
+<p>Example use of the <code class="docutils literal"><span class="pre">String</span></code> type:</p>
+<div class="highlight-python"><div class="highlight"><pre>operator entry() {
+  String a = &quot;A string&quot;;
+  report(a);
+  report(&quot;a has length &quot; + a.length);
+  String b = &quot;Another string&quot;;
+  report(b);
+  String c = a + &quot; and &quot; + b;
+  report(c);
+  b += &quot; now includes &quot; + a;
+  report(b);
+}
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-python"><div class="highlight"><pre>A string
+a has length 8
+Another string
+A string and Another string
+Another string now includes A string
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="derived-types">
+<span id="klpg-types-derived"></span><span id="index-8"></span><h2>Derived Types<a class="headerlink" href="#derived-types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>In addition to the base types, KL supports three classes of derived types: structures, arrays and dictionaries.</p>
+<div class="section" id="structures">
+<span id="klpg-types-structures"></span><span id="index-9"></span><h3>Structures<a class="headerlink" href="#structures" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>A <em class="dfn">structure</em> is a collection of typed values that are placed together in memory.</p>
+<p>Structures are usually defined outside of KL using Fabric&#8217;s <span class="target" id="index-10"></span>registered type system, but they can also be declared in KL source code itself using the <code class="docutils literal"><span class="pre">struct</span></code> keyword:</p>
+<div class="highlight-python"><div class="highlight"><pre>struct NewType {
+  Float32 firstMember;
+  String secondMember;
+  Integer thirdMemberVarArray[], fourthMemberFixedArray[3];
+};
+</pre></div>
+</div>
+<p>Note the use of the variable-size array as the last member; derived types can nest arbitrarily.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">All structure declarations in KL must be in the global scope; it is not possible to declare a structure within a function scope.</p>
+</div>
+<p>More details about structures:</p>
+<ul class="simple">
+<li>Access to structure members is through the <code class="docutils literal"><span class="pre">.</span></code> (dot) operator, as in JavaScript.</li>
+<li>Currently, the structure members are using C-like alignment (see <a class="reference internal" href="#structure-alignment"><span>Structure Member Alignment</span></a>).</li>
+<li>It is possible to overload operators and add <em class="dfn">methods</em> to structures; see <a class="reference internal" href="globals.html#methods"><span>Methods</span></a>.</li>
+<li>It is possible to control access to members and methods of structures using the <code class="docutils literal"><span class="pre">public</span></code>, <code class="docutils literal"><span class="pre">private</span></code>, <code class="docutils literal"><span class="pre">protected</span></code> and <code class="docutils literal"><span class="pre">permits</span></code> keywords; see <a class="reference internal" href="#klpg-types-member-access"><span>Structure, Object and Interface Access Contols</span></a>.</li>
+</ul>
+<p>Example use of structures:</p>
+<div class="highlight-python"><div class="highlight"><pre>struct MyNewType {
+  Integer i;
+  String s, t;
+};
+
+function entry() {
+  MyNewType mnt;
+  mnt.s = &quot;Hello!&quot;;
+  mnt.i = 42;
+  mnt.t = &quot;there!&quot;;
+  report(mnt);
+}
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="n">i</span><span class="p">:</span><span class="mi">42</span><span class="p">,</span><span class="n">s</span><span class="p">:</span><span class="s">&quot;Hello!&quot;</span><span class="p">,</span><span class="n">t</span><span class="p">:</span><span class="s">&quot;there!&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="structure-member-alignment">
+<span id="structure-alignment"></span><span id="index-11"></span><h4>Structure Member Alignment<a class="headerlink" href="#structure-member-alignment" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>The alignment of members of structures is identical to that of the C
+programming language.  Therefore, EDK code that interfaces with the
+Fabric Engine does not need to use any special alignment
+specification to match the KL structure alignment.</p>
+<p>For reference, the rules of KL structure alignment (the same as the C default)
+are:</p>
+<ul class="simple">
+<li>Every type has a size and an alignment</li>
+<li>The alignment of base types is the same as their size</li>
+<li>The alignment of structures (as a whole) is the largest alignment of any of
+its member types</li>
+<li>The byte position of a member within a structure is chosen by rounding up
+the next available offset in the structure to the alignment of the member
+type</li>
+</ul>
+</div>
+<div class="section" id="structure-inheritance">
+<span id="kplg-structure-inheritance"></span><span id="index-12"></span><h4>Structure Inheritance<a class="headerlink" href="#structure-inheritance" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 1.13.0 で追加.</span></p>
+</div>
+<p>A structure can inherit (or <cite>derive</cite>) from a single base structure. The specialized structure then inherits from all members and methods of the base structure.</p>
+<p>The <code class="samp docutils literal"><span class="pre">struct</span> <em><span class="pre">SpecializedType</span></em> <span class="pre">:</span> <em><span class="pre">BaseType</span></em></code> syntax is used to declare the inheritance relationship. A specialized structure can be <cite>cast</cite> to its base structure type at no cost. The <code class="samp docutils literal"><span class="pre">.parent</span></code> accessor allows to perform that cast explicitly.</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kr">struct</span> <span class="nx">Shape</span> <span class="p">{</span>
+  <span class="kr">Float32</span> <span class="nx">centerX</span><span class="p">,</span> <span class="nx">centerY</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kr">struct</span> <span class="nx">Circle</span> <span class="o">:</span> <span class="nx">Shape</span> <span class="p">{</span>
+  <span class="kr">Float32</span> <span class="nx">radius</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">Circle</span> <span class="nx">c</span><span class="p">;</span>
+  <span class="nx">c</span><span class="p">.</span><span class="nx">centerX</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="nx">c</span><span class="p">.</span><span class="nx">centerY</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="nx">c</span><span class="p">.</span><span class="nx">radius</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+
+  <span class="nb">report</span><span class="p">(</span> <span class="nx">c</span> <span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span> <span class="nx">c</span><span class="p">.</span><span class="nx">parent</span> <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">{centerX:+1.0,centerY:+2.0,radius:+3.0}</span>
+<span class="cm">{centerX:+1.0,centerY:+2.0}</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p>When cast to its base type, a structure looses all its specialized behavior, which is different from <a class="reference internal" href="#kplg-object-inheritance"><span>objects</span></a>:</p>
+<div class="last highlight-kl"><div class="highlight"><pre><span class="kr">struct</span> <span class="nx">Shape</span> <span class="p">{</span>
+  <span class="kr">Float32</span> <span class="nx">centerX</span><span class="p">,</span> <span class="nx">centerY</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kr">struct</span> <span class="nx">Circle</span> <span class="o">:</span> <span class="nx">Shape</span> <span class="p">{</span>
+  <span class="kr">Float32</span> <span class="nx">radius</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">printShape</span><span class="p">(</span> <span class="nx">Shape</span> <span class="nx">s</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="nb">report</span><span class="p">(</span> <span class="nx">s</span><span class="p">.</span><span class="nx">type</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="nx">s</span> <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">Circle</span> <span class="nx">c</span><span class="p">;</span>
+  <span class="nx">printShape</span><span class="p">(</span> <span class="nx">c</span> <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">Shape: {centerX:+0.0,centerY:+0.0}</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="objects">
+<span id="klpg-types-objects"></span><span id="index-13"></span><h3>Objects<a class="headerlink" href="#objects" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="versionchanged">
+<p><span class="versionmodified">バージョン 1.12.0 で変更: </span>Can no longer do &#8220;empty construction&#8221; of variables of object type</p>
+</div>
+<p>An <em class="dfn">object</em> is similar to a <a class="reference internal" href="#klpg-types-structures"><span>structure</span></a> in that it is a collection of typed values placed together in memory, except that objects are copy-by-reference rather than copy-by-value; objects must be <em class="dfn">constructed</em> and are internally reference-counted.  Additionally, objects can support <a class="reference internal" href="#klpg-types-interfaces"><span>interfaces</span></a>, which are a collection of methods that the object is guaranteed to support.</p>
+<p>Objects are used in much the same way as structures, with the major difference being that they are copy-by-reference and must be constructed.  KL internally keeps track of the number of references to each object and when the last reference to an object is dropped the memory holding the object is freed.  Objects drop their references when they go out of scope, or when they have <code class="code docutils literal"><span class="pre">null</span></code> assigned to them.</p>
+<p>Objects are defined using the <code class="code docutils literal"><span class="pre">object</span></code> keyword in KL.  The syntax is very similar to the definition of <a class="reference internal" href="#klpg-types-structures"><span>structures</span></a>:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="c1">// An object with two members</span>
+<span class="kr">object</span> <span class="nx">Obj</span> <span class="p">{</span>
+  <span class="kr">String</span> <span class="nx">s</span><span class="p">;</span>
+  <span class="kr">UInt32</span> <span class="nx">n</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Optionally, the object can derive from one base object, and implement one or more <a class="reference internal" href="#klpg-types-interfaces"><span>interfaces</span></a>.  There are indicated after the name of the object:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="c1">// An object with two members that implements two interfaces</span>
+<span class="kr">object</span> <span class="nx">MyObjType</span> <span class="o">:</span> <span class="nx">BaseObjType</span><span class="p">,</span> <span class="nx">IntOne</span><span class="p">,</span> <span class="nx">IntTwo</span> <span class="p">{</span>
+  <span class="kr">String</span> <span class="nx">s</span><span class="p">;</span>
+  <span class="kr">UInt32</span> <span class="nx">n</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Variables whose type is that of a given object are declared with the name of the object.</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="c1">// A variable of type MyObjType</span>
+<span class="nx">MyObjType</span> <span class="nx">obj</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="nb">report</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span> <span class="c1">// reports: null</span>
+</pre></div>
+</div>
+<p>The value <code class="code docutils literal"><span class="pre">null</span></code> refers to a non-existent object.  You can report an object that is <code class="code docutils literal"><span class="pre">null</span></code>, but trying to reference its members or call methods on it will result in a runtime error.</p>
+<p>Any variable of Object type can be set to <code class="code docutils literal"><span class="pre">null</span></code>.  Doing almost anything with a <code class="code docutils literal"><span class="pre">null</span></code> object will result in a runtime error.  To create a valid object it must be constructed.  There are two syntaxes for constructing objects:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="nx">MyObjType</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nx">MyObjType</span><span class="p">();</span> <span class="c1">// calls the default constructor</span>
+<span class="nb">report</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span> <span class="c1">// reports: {s:&quot;&quot;,n:0}</span>
+<span class="nx">MyObjType</span> <span class="nx">obj2</span><span class="p">();</span> <span class="c1">// also calls the default constructor</span>
+<span class="nb">report</span><span class="p">(</span><span class="nx">obj2</span><span class="p">);</span> <span class="c1">// reports: {s:&quot;&quot;,n:0}</span>
+<span class="nx">obj2</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="c1">// releases the object referenced by obj2</span>
+<span class="nb">report</span><span class="p">(</span><span class="nx">obj2</span><span class="p">);</span> <span class="c1">// throws an error</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">Objects cannot be &#8220;empty constructed&#8221;; you must explicitly construct objects or explicitly set their values to <code class="code docutils literal"><span class="pre">null</span></code>.</p>
+</div>
+<p><a class="reference internal" href="globals.html#klpg-constructor"><span>Constructors</span></a> and <a class="reference internal" href="globals.html#klpg-destructor"><span>destructors</span></a> can be specified for objects just as they are for structures:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="c1">// Provide a default constructor</span>
+<span class="kd">function</span> <span class="nx">MyObjType</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">s</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">n</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Provide a constructor that takes parameters</span>
+<span class="kd">function</span> <span class="nx">MyObjType</span><span class="p">(</span><span class="kr">String</span> <span class="nx">s</span><span class="p">,</span> <span class="kr">UInt32</span> <span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">s</span> <span class="o">=</span> <span class="nx">s</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">n</span> <span class="o">=</span> <span class="nx">n</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// later..</span>
+<span class="nx">MyObjType</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nx">MyObjType</span><span class="p">();</span>
+<span class="nb">report</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span> <span class="c1">// reports: {s:&quot;hello&quot;,n:42}</span>
+<span class="nx">obj</span> <span class="o">=</span> <span class="nx">MyObjType</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>
+<span class="nb">report</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span> <span class="c1">// reports: {s:&quot;foo&quot;,n:7}</span>
+</pre></div>
+</div>
+<p>Constructing a specific object from another object of the same type makes the new object a reference to the old object.  In this case, a new object is not created; if the object is modified through one of the references to it then the other see the modifications as well.</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="nx">MyObjType</span> <span class="nx">o1</span><span class="p">(</span><span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+<span class="nx">MyObjType</span> <span class="nx">o2</span> <span class="o">=</span> <span class="nx">o1</span><span class="p">;</span>
+<span class="nx">o2</span><span class="p">.</span><span class="nx">s</span> <span class="o">=</span> <span class="s2">&quot;baz&quot;</span><span class="p">;</span>
+<span class="nb">report</span><span class="p">(</span><span class="nx">o1</span><span class="p">);</span> <span class="c1">// reports: {s:&quot;baz&quot;,n:3}</span>
+</pre></div>
+</div>
+<p>Users cannot define a custom copy constructor for objects for this reason, the copy constructor always only adds a reference to the existing object. If a user wants to instantiate a new object then the <code class="docutils literal"><span class="pre">clone()</span></code> method (see <a class="reference internal" href="#klpg-types-objects-clone"><span>The Object clone() Method</span></a>)
+or a custom method should be used.</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Duplicating an object using a custom method</span>
+<span class="cm">*/</span>
+
+<span class="c1">// not permitted, custom copy constructor invalid for objects</span>
+<span class="c1">// function MyObjType(MyObjType o)</span>
+<span class="c1">// {</span>
+<span class="c1">//   // ...</span>
+<span class="c1">// }</span>
+
+<span class="kr">object</span> <span class="nx">MyObjType</span>
+<span class="p">{</span>
+  <span class="kr">String</span> <span class="nx">s</span><span class="p">;</span>
+  <span class="kr">Integer</span> <span class="nx">n</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// return a new object using a custom method</span>
+<span class="kd">function</span> <span class="nx">MyObjType</span> <span class="nx">MyObjType</span><span class="p">.</span><span class="nx">copy</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="nx">MyObjType</span> <span class="nx">o</span> <span class="o">=</span> <span class="nx">MyObjType</span><span class="p">();</span>
+  <span class="nx">o</span><span class="p">.</span><span class="nx">s</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">s</span><span class="p">;</span>
+  <span class="nx">o</span><span class="p">.</span><span class="nx">n</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">n</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">o</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="nx">MyObjType</span> <span class="nx">o1</span><span class="p">();</span>
+  <span class="nx">o1</span><span class="p">.</span><span class="nx">s</span> <span class="o">=</span> <span class="s2">&quot;foo&quot;</span><span class="p">;</span>
+  <span class="nx">o1</span><span class="p">.</span><span class="nx">n</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+
+  <span class="nx">MyObjType</span> <span class="nx">o2</span> <span class="o">=</span> <span class="nx">o1</span><span class="p">.</span><span class="nx">copy</span><span class="p">();</span>
+
+  <span class="nx">o2</span><span class="p">.</span><span class="nx">s</span> <span class="o">=</span> <span class="s2">&quot;bar&quot;</span><span class="p">;</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;o1 = &quot;</span> <span class="o">+</span> <span class="nx">o1</span><span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;o2 = &quot;</span> <span class="o">+</span> <span class="nx">o2</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">o1 = {s:&quot;foo&quot;,n:42}</span>
+<span class="cm">o2 = {s:&quot;bar&quot;,n:42}</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+<p>Arbitrary methods can be defined on objects just as they are on structures.  These methods are then called using the same <code class="samp docutils literal"><em><span class="pre">object</span></em><span class="pre">.</span><em><span class="pre">methodName</span></em><span class="pre">(</span><em><span class="pre">arg</span></em><span class="pre">,</span><em><span class="pre">arg</span></em><span class="pre">,...)</span></code> syntax as for structures.  Calling a method on a <code class="code docutils literal"><span class="pre">null</span></code> object results in a runtime exception.</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">MyObjType</span><span class="p">.</span><span class="nx">reportMe</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;reportMe: s=&quot;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">s</span><span class="o">+</span><span class="s2">&quot; n=&quot;</span><span class="o">+</span><span class="nx">n</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">MyObjType</span> <span class="nx">obj</span><span class="p">(</span><span class="s2">&quot;Fred&quot;</span><span class="p">,</span> <span class="mi">49</span><span class="p">);</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">reportMe</span><span class="p">();</span> <span class="c1">// reports: reportMe: s=Fred n=49</span>
+</pre></div>
+</div>
+<p>Members of objects are accessed in the same way as members of structures by using the <code class="samp docutils literal"><em><span class="pre">object</span></em><span class="pre">.</span><em><span class="pre">memberName</span></em></code> syntax.  Using the <code class="code docutils literal"><span class="pre">.</span></code> operation on a <code class="code docutils literal"><span class="pre">null</span></code> object will throw a runtime exception.</p>
+<p>Additional properties of objects:</p>
+<ul class="simple">
+<li>If an value of object type is converted to a <code class="code docutils literal"><span class="pre">Boolean</span></code> then its value is <code class="code docutils literal"><span class="pre">true</span></code> if and only if the object is not <code class="code docutils literal"><span class="pre">null</span></code>.</li>
+<li>The <a class="reference internal" href="ops-exprs.html#equality-ops"><span>equality operators</span></a> <code class="samp docutils literal"><em><span class="pre">obj1</span></em> <span class="pre">==</span> <em><span class="pre">obj2</span></em></code> and <code class="samp docutils literal"><em><span class="pre">obj1</span></em> <span class="pre">!=</span> <em><span class="pre">obj2</span></em></code> are only valid for objects when overloaded or when comparing with <code class="code docutils literal"><span class="pre">null</span></code>.  The <a class="reference internal" href="ops-exprs.html#identity-ops"><span>identity operators</span></a> <code class="samp docutils literal"><em><span class="pre">obj1</span></em> <span class="pre">===</span> <em><span class="pre">obj2</span></em></code> and <code class="samp docutils literal"><em><span class="pre">obj1</span></em> <span class="pre">!==</span> <em><span class="pre">obj2</span></em></code> are always valid for objects and compare based on whether the objects are references to the same object (ie. if changing one will change both).</li>
+<li>Values of object type support the method <code class="samp docutils literal"><span class="pre">&lt;objectValue&gt;.uid()</span></code> that returns a unique UInt64 that can be used to identify the object.  The value is the same as it would be if <cite>.uid()</cite> were called on the object casted to any of the interfaces the object supports.</li>
+<li>Assigning <code class="code docutils literal"><span class="pre">null</span></code> to an object drops the reference to whatever the object was previously pointing to.</li>
+<li>It is possible to control access to members and methods of objects using the <code class="docutils literal"><span class="pre">public</span></code>, <code class="docutils literal"><span class="pre">private</span></code>, <code class="docutils literal"><span class="pre">protected</span></code> and <code class="docutils literal"><span class="pre">permits</span></code> keywords; see <a class="reference internal" href="#klpg-types-member-access"><span>Structure, Object and Interface Access Contols</span></a>.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">A variable of whose type is an object cannot point to a structure.  Objects and interfaces are fundamentally different types than structures; see the section <a class="reference internal" href="#klpg-objects-versus-structures"><span>Objects Versus Structures</span></a></p>
+</div>
+<p>The following code provides another example of using object:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Objects</span>
+<span class="cm">*/</span>
+
+<span class="kr">object</span> <span class="nx">Foo</span> <span class="p">{</span>
+  <span class="kr">SInt32</span> <span class="nx">intMember</span><span class="p">;</span>
+  <span class="kr">String</span> <span class="nx">stringMember</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// A non-default constructor for Foo</span>
+<span class="kd">function</span> <span class="nx">Foo</span><span class="p">(</span><span class="kr">SInt32</span> <span class="nx">i</span><span class="p">,</span> <span class="kr">String</span> <span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">intMember</span> <span class="o">=</span> <span class="nx">i</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">stringMember</span> <span class="o">=</span> <span class="nx">s</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">Foo</span> <span class="nx">foo1</span> <span class="o">=</span> <span class="nx">Foo</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="s2">&quot;foo&quot;</span><span class="p">);</span> <span class="c1">// call the non-default constructor</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">foo1</span><span class="p">);</span>
+  <span class="nx">Foo</span> <span class="nx">foo2</span><span class="p">();</span> <span class="c1">// call the default constructor</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">foo2</span><span class="p">);</span>
+  <span class="nx">Foo</span> <span class="nx">foo3</span><span class="p">(</span><span class="nx">foo1</span><span class="p">);</span> <span class="c1">// make foo3 a reference to foo1</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">foo3</span><span class="p">);</span>
+  <span class="nx">foo3</span><span class="p">.</span><span class="nx">intMember</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+  <span class="c1">// since foo1 and foo3 refer to the same object, both change!</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">foo1</span><span class="p">);</span>
+  <span class="nx">Foo</span> <span class="nx">foo4</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="c1">// a null object</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">foo4</span><span class="p">);</span>
+  <span class="nx">foo4</span><span class="p">.</span><span class="nx">intMember</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span> <span class="c1">// throws an exception</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">{intMember:32,stringMember:&quot;foo&quot;}</span>
+<span class="cm">{intMember:0,stringMember:&quot;&quot;}</span>
+<span class="cm">{intMember:32,stringMember:&quot;foo&quot;}</span>
+<span class="cm">{intMember:20,stringMember:&quot;foo&quot;}</span>
+<span class="cm">null</span>
+<span class="cm">Error: (stdin):29:3: dereferenced null object</span>
+<span class="cm">KL stack trace:</span>
+<span class="cm">[ST] 1 kl.internal.String.SetErrorDataPtrAndLength.AS0()</span>
+<span class="cm">[ST] 2 function.setError.R.ST()</span>
+<span class="cm">[ST] 3 operator.entry() (stdin):29</span>
+<span class="cm">[ST] 4 kl.internal.entry.stub.cpu()</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+<div class="section" id="the-object-clone-method">
+<span id="klpg-types-objects-clone"></span><h4>The Object <code class="docutils literal"><span class="pre">clone()</span></code> Method<a class="headerlink" href="#the-object-clone-method" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 1.15.0 で追加.</span></p>
+</div>
+<p>As with most other types in KL object types support a method <code class="docutils literal"><span class="pre">clone()</span></code> that does a deep copy of the object.  Every object has a default <code class="docutils literal"><span class="pre">clone()</span></code> implementation.  It is possible to change the behavior of <code class="docutils literal"><span class="pre">clone()</span></code> for an object by writing a custom method <code class="docutils literal"><span class="pre">&lt;ObjectType&gt;.cloneMembersTo(io</span> <span class="pre">&lt;ObjectType&gt;</span> <span class="pre">that)</span></code>.  This method is automatically called during the process of cloning the object, as shown below:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Object Custom Clone</span>
+<span class="cm">*/</span>
+
+<span class="kr">object</span> <span class="nx">Obj</span>
+<span class="p">{</span>
+  <span class="kr">String</span> <span class="nx">s</span><span class="p">;</span>
+  <span class="kr">Integer</span> <span class="nx">n</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="nx">Obj</span><span class="p">.</span><span class="nx">cloneMembersTo</span><span class="p">(</span><span class="k">io</span> <span class="nx">Obj</span> <span class="nx">that</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="nx">that</span><span class="p">.</span><span class="nx">s</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">s</span> <span class="o">+</span> <span class="s2">&quot; cloned&quot;</span><span class="p">;</span>
+  <span class="nx">that</span><span class="p">.</span><span class="nx">n</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">n</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="nx">Obj</span> <span class="nx">obj1</span><span class="p">();</span>
+  <span class="nx">obj1</span><span class="p">.</span><span class="nx">s</span> <span class="o">=</span> <span class="s2">&quot;string&quot;</span><span class="p">;</span>
+  <span class="nx">obj1</span><span class="p">.</span><span class="nx">n</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;obj1 = &quot;</span> <span class="o">+</span> <span class="nx">obj1</span><span class="p">);</span>
+
+  <span class="nx">Obj</span> <span class="nx">obj2</span> <span class="o">=</span> <span class="nx">obj1</span><span class="p">.</span><span class="nx">clone</span><span class="p">();</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;obj2 = &quot;</span> <span class="o">+</span> <span class="nx">obj2</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">obj1 = {s:&quot;string&quot;,n:42}</span>
+<span class="cm">obj2 = {s:&quot;string cloned&quot;,n:84}</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="object-inheritance">
+<span id="kplg-object-inheritance"></span><h4>Object inheritance<a class="headerlink" href="#object-inheritance" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 1.13.0 で追加.</span></p>
+</div>
+<p>Like structures, an object can inherit (or <cite>derive</cite>) from a single base object. The specialized object then inherits from all members and methods of the base object. The <code class="samp docutils literal"><span class="pre">struct</span> <em><span class="pre">SpecializedType</span></em> <span class="pre">:</span> <em><span class="pre">BaseType</span></em></code> syntax is used to declare the inheritance relationship.</p>
+<p>When inheriting from a base object, the <code class="samp docutils literal"><em><span class="pre">object</span></em><span class="pre">.</span><em><span class="pre">parent</span></em></code> syntax allows to perform an explicit cast to that base type. This can be useful for accessing members or methods that have a different definition for the base and the specialized object type.</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kr">object</span> <span class="nx">MyBaseObject</span> <span class="p">{</span>
+  <span class="kr">Float32</span> <span class="nx">f</span><span class="p">;</span>
+  <span class="nx">Size</span> <span class="nx">s</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kr">object</span> <span class="nx">MyObject</span> <span class="o">:</span> <span class="nx">MyBaseObject</span> <span class="p">{</span>
+  <span class="nx">Size</span> <span class="nx">s</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">MyObject</span> <span class="nx">o</span><span class="p">();</span>
+  <span class="nx">o</span><span class="p">.</span><span class="nx">f</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+  <span class="nx">o</span><span class="p">.</span><span class="nx">s</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="nx">o</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">s</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">o</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">{f:+0.5,s:1,s:2}</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="interfaces">
+<span id="klpg-types-interfaces"></span><span id="index-14"></span><h3>Interfaces<a class="headerlink" href="#interfaces" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="versionchanged">
+<p><span class="versionmodified">バージョン 1.12.0 で変更: </span>Can no longer do &#8220;empty construction&#8221; of variables of interface type</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified">バージョン 1.15.0 で変更: </span>Added support for <code class="docutils literal"><span class="pre">&lt;typeExpr&gt;.createNew()</span></code> method</p>
+</div>
+<p>An <em class="dfn">interface</em> is a set of methods that an object agrees to implement.  Objects implement the interface by declaring the interface name in the object declaration as well as implementing each of the interface&#8217;s methods.  The programmer can then use the interface as a first-class type that refers to any type of object that implements the interface.</p>
+<p>An interface is defined using the <code class="code docutils literal"><span class="pre">interface</span></code> keyword.  An interface definition is similar to a structure or object definition, except that, instead of members, methods are specified.  For example:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kr">interface</span> <span class="nx">MyInt</span> <span class="p">{</span>
+  <span class="kr">UInt32</span> <span class="nx">foo</span><span class="p">();</span>
+  <span class="nx">bar</span><span class="o">?</span><span class="p">(</span><span class="k">io</span> <span class="kr">String</span> <span class="nx">s</span><span class="p">);</span>
+  <span class="kr">Float32</span> <span class="nx">baz</span><span class="o">!</span><span class="p">();</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>This example defines the interface <code class="code docutils literal"><span class="pre">MyInt</span></code> as providing three methods.  The parameter and return types all work the same as for normal structure and object <a class="reference internal" href="globals.html#methods"><span>methods</span></a>; however, the <code class="code docutils literal"><span class="pre">function</span></code> keyword and the typename are omitted.  Notice that the <code class="code docutils literal"><span class="pre">!</span></code> and <code class="code docutils literal"><span class="pre">?</span></code> modifiers for the methods also work, indicating explicitly whether the methods may modify the object they are called on.</p>
+<p>An interface only specifies a set of methods that objects implementing the interface must support.  In order to use interfaces, you must define objects that support them:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="c1">// An object type that implements MyInt</span>
+<span class="kr">object</span> <span class="nx">MyObj</span> <span class="o">:</span> <span class="nx">MyInt</span> <span class="p">{</span>
+  <span class="kr">UInt32</span> <span class="nx">n</span><span class="p">;</span>
+  <span class="kr">String</span> <span class="nx">s</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="kr">UInt32</span> <span class="nx">MyObj</span><span class="p">.</span><span class="nx">foo</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">n</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">MyObj</span><span class="p">.</span><span class="nx">bar</span><span class="o">?</span><span class="p">(</span><span class="k">io</span> <span class="kr">String</span> <span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">s</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">s</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="kr">Float32</span> <span class="nx">MyObj</span><span class="p">.</span><span class="nx">baz</span><span class="o">!</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="mf">3.14</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">n</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Notice that, in order to implement the interface, we both list the interface after the object type name and the provide implementations for each of the methods.</p>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">It is a compile-time error to fail to provide a definition for one or more of the methods required by the interfaces an object implements!</p>
+</div>
+<p>It is possible for an object to implement multiple interfaces:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kr">interface</span> <span class="nx">MyOtherInt</span> <span class="p">{</span>
+  <span class="nx">fred</span><span class="p">();</span>
+  <span class="kr">Float32</span> <span class="nx">baz</span><span class="o">!</span><span class="p">();</span>
+<span class="p">};</span>
+
+<span class="kr">object</span> <span class="nx">MyDoubleObj</span> <span class="o">:</span> <span class="nx">MyInt</span><span class="p">,</span> <span class="nx">MyOtherInt</span> <span class="p">{</span>
+  <span class="kr">Boolean</span> <span class="nx">b</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="kr">UInt32</span> <span class="nx">MyDoubleObj</span><span class="p">.</span><span class="nx">foo</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// ....</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">MyDoubleObj</span><span class="p">.</span><span class="nx">bar</span><span class="o">?</span><span class="p">(</span><span class="k">io</span> <span class="kr">String</span> <span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// ....</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="kr">Float32</span> <span class="nx">MyDoubleObj</span><span class="p">.</span><span class="nx">baz</span><span class="o">!</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">b</span> <span class="o">=</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">b</span><span class="p">;</span>
+  <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">b</span><span class="o">?</span> <span class="o">-</span><span class="mf">7.5</span><span class="o">:</span> <span class="mf">14.5</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">MyDoubleObj</span><span class="p">.</span><span class="nx">fred</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Notice that it&#8217;s possible for an object to support multiple interfaces that share methods.  In this case you only need to implement the method once and that implementation will be shared by all interfaces that include this method.</p>
+<p>Once an interface has been defined, you can declare a variable that points to an object that implements the interface and call its methods using the <code class="samp docutils literal"><em><span class="pre">int</span></em><span class="pre">.</span><em><span class="pre">methodName</span></em><span class="pre">(</span><em><span class="pre">arg</span></em><span class="pre">,</span> <em><span class="pre">arg</span></em><span class="pre">,</span> <span class="pre">...)</span></code> syntax:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="nx">MyInt</span> <span class="nx">myInt</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="c1">// does not refer to an object</span>
+<span class="nx">myInt</span> <span class="o">=</span> <span class="nx">MyObj</span><span class="p">();</span>
+<span class="nb">report</span><span class="p">(</span><span class="nx">myInt</span><span class="p">);</span> <span class="c1">// reports: {n:0, s:&quot;&quot;} since it is a MyObj</span>
+<span class="nb">report</span><span class="p">(</span><span class="nx">myInt</span><span class="p">.</span><span class="nx">baz</span><span class="p">());</span> <span class="nx">reports</span><span class="o">:</span> <span class="mf">0.0</span>
+<span class="nb">report</span><span class="p">(</span><span class="nx">myInt</span><span class="p">.</span><span class="nx">baz</span><span class="p">());</span> <span class="nx">reports</span><span class="o">:</span> <span class="mf">3.14</span>
+<span class="nx">myInt</span> <span class="o">=</span> <span class="nx">MyDoubleObj</span><span class="p">();</span> <span class="c1">// releases old object</span>
+<span class="nb">report</span><span class="p">(</span><span class="nx">myInt</span><span class="p">);</span> <span class="c1">// reports: {b:false}</span>
+<span class="nb">report</span><span class="p">(</span><span class="nx">myInt</span><span class="p">.</span><span class="nx">baz</span><span class="p">());</span> <span class="nx">reports</span><span class="o">:</span> <span class="o">-</span><span class="mf">7.5</span>
+<span class="nb">report</span><span class="p">(</span><span class="nx">myInt</span><span class="p">.</span><span class="nx">baz</span><span class="p">());</span> <span class="nx">reports</span><span class="o">:</span> <span class="mf">14.5</span>
+</pre></div>
+</div>
+<p>Using the <code class="samp docutils literal"><em><span class="pre">interface</span></em><span class="pre">.type()</span></code> method you can determine the type of the object in interface refers to, and through an assignment or a cast you can obtain a specific object.  This allows for a simple form of weak (or runtime) typing in KL:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="nx">myInt</span><span class="p">.</span><span class="nx">type</span><span class="p">()</span> <span class="o">==</span> <span class="nx">MyObj</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">MyObj</span> <span class="nx">myObj</span> <span class="o">=</span> <span class="nx">myInt</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">myInt</span><span class="p">.</span><span class="nx">type</span><span class="p">()</span> <span class="o">==</span> <span class="nx">MyDoubleObj</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">MyDoubleObj</span> <span class="nx">myDoubleObj</span> <span class="o">=</span> <span class="nx">myInt</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In the case that an expression is of type <code class="code docutils literal"><span class="pre">Type</span></code> then calling the <code class="docutils literal"><span class="pre">&lt;typeExpr&gt;.createNew()</span></code> method will create a new instance of the object the interface is an instance of using its empty constructor.  The result is of the <a class="reference internal" href="#klpg-interfaces-object"><span>Object interface</span></a> type:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: &lt;typeExpr&gt;.createNew()</span>
+<span class="cm">*/</span>
+
+<span class="kr">object</span> <span class="nx">Obj</span>
+<span class="p">{</span>
+  <span class="kr">String</span> <span class="nx">s</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="nx">Obj</span> <span class="nx">obj1</span><span class="p">();</span>
+  <span class="nx">obj1</span><span class="p">.</span><span class="nx">s</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span><span class="p">;</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;obj1 = &quot;</span> <span class="o">+</span> <span class="nx">obj1</span><span class="p">);</span>
+
+  <span class="nx">Object</span> <span class="nx">abstractObject</span> <span class="o">=</span> <span class="nx">obj1</span><span class="p">;</span>
+
+  <span class="nx">Obj</span> <span class="nx">obj2</span> <span class="o">=</span> <span class="nx">abstractObject</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">createNew</span><span class="p">();</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;obj2 = &quot;</span> <span class="o">+</span> <span class="nx">obj2</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+<span class="cm">(stdin):19:7: warning: must use parentheses to call methods (deprecation; will become an error in next version)</span>
+
+<span class="cm">obj1 = {s:&quot;hello&quot;}</span>
+<span class="cm">obj2 = {s:&quot;&quot;}</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+<p>Assigning or casting an interface to the wrong object will result in a runtime exception.  You can also assign a value whose types is one interface to a variable whose type is another interface; if the underlying object supports the second interface, you will get a non-<code class="code docutils literal"><span class="pre">null</span></code> reference to the second interface on the object, otherwise a runtime exception will occur.</p>
+<p>Additional properties of interfaces:</p>
+<ul class="simple">
+<li>The cast-to-<code class="code docutils literal"><span class="pre">Boolean</span></code> works exactly as for objects: it checks if the interface referred to is <code class="code docutils literal"><span class="pre">null</span></code>.</li>
+<li>The comparison operators <code class="samp docutils literal"><em><span class="pre">int1</span></em> <span class="pre">==</span> <em><span class="pre">int2</span></em></code> and <code class="samp docutils literal"><em><span class="pre">int1</span></em> <span class="pre">!=</span> <em><span class="pre">int2</span></em></code>, as well as the identity operators <code class="samp docutils literal"><em><span class="pre">int1</span></em> <span class="pre">===</span> <em><span class="pre">int2</span></em></code> and <code class="samp docutils literal"><em><span class="pre">int1</span></em> <span class="pre">!==</span> <em><span class="pre">int2</span></em></code>, test whether two interfaces refer to the same (or different) objects. to whatever object it previously referred to.</li>
+<li>Values of interface type support the method <code class="samp docutils literal"><span class="pre">&lt;interfaceValue&gt;.uid()</span></code> that returns a unique UInt64 that can be used to identify the object the interface refers to.  The value is the same as it would be if <cite>.uid()</cite> were called on the object the interface refers to.</li>
+<li>It is possible to control access to methods of interfaces using the <code class="docutils literal"><span class="pre">public</span></code>, <code class="docutils literal"><span class="pre">private</span></code>, <code class="docutils literal"><span class="pre">protected</span></code> and <code class="docutils literal"><span class="pre">permits</span></code> keywords; see <a class="reference internal" href="#klpg-types-member-access"><span>Structure, Object and Interface Access Contols</span></a>.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">A variable of whose type is an interface cannot point to a structure.  Objects and interfaces are fundamentally different types than structures; see the section <a class="reference internal" href="#klpg-objects-versus-structures"><span>Objects Versus Structures</span></a></p>
+</div>
+<div class="section" id="the-object-interface">
+<span id="klpg-interfaces-object"></span><h4>The <code class="code docutils literal"><span class="pre">Object</span></code> Interface<a class="headerlink" href="#the-object-interface" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>There is a special, predefined interface called <code class="code docutils literal"><span class="pre">Object</span></code> that every object in KL always supports.  This both provides backwards compatibility with older versions of the KL language as well as providing a simple way of passing a reference to an arbitrary object (much like a &#8220;void pointer&#8221; in C).  The <code class="code docutils literal"><span class="pre">Object</span></code> interface does not provide any methods.</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kr">object</span> <span class="nx">MyObj</span> <span class="p">{</span> <span class="c1">// implicitly implements Object</span>
+  <span class="kr">String</span> <span class="nx">s</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">Object</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nx">MyObj</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="structure-object-and-interface-access-contols">
+<span id="klpg-types-member-access"></span><h4>Structure, Object and Interface Access Contols<a class="headerlink" href="#structure-object-and-interface-access-contols" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 1.15.0 で追加.</span></p>
+</div>
+<p>Access to members and methods of structures, objects and interfaces can be controlled through the use of the <code class="docutils literal"><span class="pre">public</span></code>, <code class="docutils literal"><span class="pre">private</span></code> and <code class="docutils literal"><span class="pre">protected</span></code> keywords.  These keywords behave in a similar way to C++:</p>
+<ul class="simple">
+<li>A member or method marked as <code class="docutils literal"><span class="pre">public</span></code> can be accessed by any part of the source code.  This is the behavior when no access is specified.</li>
+<li>A member or method marked as <code class="docutils literal"><span class="pre">private</span></code> can be only be accessed by methods of the structure or object.  Trying to access the member elsewhere will result in an error when the source code is compiled.</li>
+<li>A member or method marked as <code class="docutils literal"><span class="pre">protected</span></code> can be only be accessed by methods of the structure or object as well as structures or objects that inherit from it.  Trying to access the member elsewhere will result in an error when the source code is compiled.</li>
+</ul>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Member and Method Access Controls</span>
+<span class="cm">*/</span>
+
+<span class="kr">struct</span> <span class="nx">A</span>
+<span class="p">{</span>
+  <span class="k">private</span> <span class="kr">UInt32</span> <span class="nx">n</span><span class="p">;</span> <span class="c1">// can only be access by methods of A</span>
+  <span class="k">protected</span> <span class="kr">String</span> <span class="nx">s</span><span class="p">;</span> <span class="c1">// can only be accessed by methods of A and structures that inherit from A</span>
+<span class="p">};</span>
+
+<span class="k">protected</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bar</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="p">}</span>
+
+<span class="kr">struct</span> <span class="nx">B</span> <span class="o">:</span> <span class="nx">A</span>
+<span class="p">{</span>
+<span class="p">};</span>
+
+<span class="k">public</span> <span class="nx">B</span><span class="p">.</span><span class="nx">foo</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="nb">report</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">n</span><span class="p">);</span> <span class="c1">// error since n is private</span>
+  <span class="nb">report</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">s</span><span class="p">);</span> <span class="c1">// ok since n is protected</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">bar</span><span class="p">();</span> <span class="c1">// ok since A.bar() is procted</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="nx">B</span> <span class="nx">b</span><span class="p">;</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">b</span><span class="p">.</span><span class="nx">n</span><span class="p">);</span> <span class="c1">// error since n is private</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">b</span><span class="p">.</span><span class="nx">s</span><span class="p">);</span> <span class="c1">// error since n is protected</span>
+  <span class="nx">b</span><span class="p">.</span><span class="nx">foo</span><span class="p">();</span> <span class="c1">// ok since B.foo() is public</span>
+  <span class="nx">b</span><span class="p">.</span><span class="nx">bar</span><span class="p">();</span> <span class="c1">// error since A.bar() is protected</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+<span class="cm">(stdin):30:3: Calling function &#39;report&#39;:</span>
+<span class="cm">(stdin):30:10:   Parameter 1:</span>
+<span class="cm">(stdin):30:3: error: cannot access private member n</span>
+<span class="cm">(stdin):31:3: Calling function &#39;report&#39;:</span>
+<span class="cm">(stdin):31:10:   Parameter 1:</span>
+<span class="cm">(stdin):31:3: error: cannot access protected member s</span>
+<span class="cm">(stdin):33:3: error: cannot access protected function A.bar?()</span>
+<span class="cm">(stdin):22:3: Calling function &#39;report&#39;:</span>
+<span class="cm">(stdin):22:10:   Parameter 1:</span>
+<span class="cm">(stdin):22:3: error: cannot access private member n</span>
+
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+<p>It is possible to allow a structure or object to bypass this mechanism from within its methods by using the <code class="docutils literal"><span class="pre">permits</span></code> keyword.  If a structure or object is listed in the <code class="docutils literal"><span class="pre">permits</span></code> section of another structure or object, it can access its private and protected members and methods:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Bypassing Acess Controls Using ``permits``</span>
+<span class="cm">*/</span>
+
+<span class="kr">object</span> <span class="nx">A</span><span class="p">;</span>
+
+<span class="kr">object</span> <span class="nx">Base</span> <span class="k">permits</span> <span class="nx">A</span>
+<span class="p">{</span>
+  <span class="k">private</span> <span class="kr">UInt32</span> <span class="nx">n</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kr">object</span> <span class="nx">A</span> <span class="p">{</span> <span class="nx">Base</span> <span class="nx">b</span><span class="p">;</span> <span class="p">};</span>
+<span class="nx">A</span><span class="p">()</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">b</span> <span class="o">=</span> <span class="nx">Base</span><span class="p">();</span> <span class="p">}</span>
+<span class="nx">A</span><span class="p">.</span><span class="nx">foo</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="nb">report</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">b</span><span class="p">.</span><span class="nx">n</span><span class="p">);</span> <span class="c1">// OK since Base permits A</span>
+<span class="p">}</span>
+
+<span class="kr">object</span> <span class="nx">B</span><span class="p">;</span>
+<span class="kr">object</span> <span class="nx">C</span><span class="p">;</span>
+
+<span class="kr">object</span> <span class="nx">Derived</span> <span class="o">:</span> <span class="nx">Base</span> <span class="k">permits</span> <span class="nx">B</span><span class="p">,</span> <span class="nx">C</span>
+<span class="p">{</span>
+<span class="p">};</span>
+
+<span class="k">private</span> <span class="nx">Derived</span><span class="p">.</span><span class="nx">bar</span><span class="p">()</span> <span class="p">{}</span>
+
+<span class="kr">object</span> <span class="nx">B</span> <span class="p">{</span> <span class="nx">Derived</span> <span class="nx">d</span><span class="p">;</span> <span class="p">};</span>
+<span class="nx">B</span><span class="p">()</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">d</span> <span class="o">=</span> <span class="nx">Derived</span><span class="p">();</span> <span class="p">}</span>
+<span class="nx">B</span><span class="p">.</span><span class="nx">baz</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">d</span><span class="p">.</span><span class="nx">bar</span><span class="p">();</span>  <span class="c1">// OK since Derived permits B</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="nx">A</span> <span class="nx">a</span><span class="p">();</span>
+  <span class="nx">a</span><span class="p">.</span><span class="nx">foo</span><span class="p">();</span>
+  <span class="nx">B</span> <span class="nx">b</span><span class="p">();</span>
+  <span class="nx">b</span><span class="p">.</span><span class="nx">baz</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">0</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="interfaces-and-inheritance">
+<span id="klpg-interfaces-inheritance"></span><h4>Interfaces and inheritance<a class="headerlink" href="#interfaces-and-inheritance" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 1.13.0 で追加.</span></p>
+</div>
+<p>In addition to inherit from a <a class="reference internal" href="#kplg-object-inheritance"><span>base object type</span></a>, specialized objects can implement additional interfaces.</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kr">object</span> <span class="nx">MyObj</span> <span class="o">:</span> <span class="nx">MyBaseObj</span><span class="p">,</span> <span class="nx">MyInt</span> <span class="p">{</span>
+  <span class="p">...</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>If a base object implements an interface, the specialized object can provide its own implementation of the interface methods, which will <cite>override</cite> base type&#8217;s implementation. In this situation, special syntax is required to call base class&#8217;s implementation of the same interface method: see <a class="reference internal" href="globals.html#klpg-method-interface-inheritance"><span>Interface methods and inheritance</span></a>.</p>
+</div>
+<div class="section" id="forward-declaration-of-objects-and-interfaces">
+<span id="klpg-forward-declarations"></span><h4>Forward Declaration of Objects and Interfaces<a class="headerlink" href="#forward-declaration-of-objects-and-interfaces" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 1.12.0 で追加: </span>Forward declaration of objects and interfaces</p>
+</div>
+<p>It is possible to declare the existence of an object or interface without actually defining its members; this is useful when you have a set of co-dependent objects or interfaces.  To forward-declare an object or interface, simply omit the members, methods and/or implemented interfaces.</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Forward Declaration of Objects and Interfaces</span>
+<span class="cm">*/</span>
+
+<span class="c1">// Forward delcaration of interface IntTwo</span>
+<span class="kr">interface</span> <span class="nx">IntTwo</span><span class="p">;</span>
+
+<span class="kr">interface</span> <span class="nx">IntOne</span> <span class="p">{</span>
+  <span class="nx">add</span><span class="o">!</span><span class="p">(</span><span class="nx">IntTwo</span> <span class="nx">int</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kr">interface</span> <span class="nx">IntTwo</span> <span class="p">{</span>
+  <span class="nx">sub</span><span class="o">!</span><span class="p">(</span><span class="nx">IntOne</span> <span class="nx">int</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="c1">// Forward delcaration of object ObjTwo</span>
+<span class="kr">object</span> <span class="nx">ObjTwo</span><span class="p">;</span>
+
+<span class="kr">object</span> <span class="nx">ObjOne</span> <span class="o">:</span> <span class="nx">IntOne</span><span class="p">,</span> <span class="nx">IntTwo</span> <span class="p">{</span>
+  <span class="kr">UInt32</span> <span class="nx">a</span><span class="p">;</span>
+  <span class="nx">ObjTwo</span> <span class="nx">objTwo</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kr">object</span> <span class="nx">ObjTwo</span> <span class="p">{</span>
+  <span class="nx">ObjOne</span> <span class="nx">objOne</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">ObjOne</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">ObjOne</span><span class="p">.</span><span class="nx">add</span><span class="o">!</span><span class="p">(</span><span class="nx">IntTwo</span> <span class="nx">intTwo</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">ObjOne</span> <span class="nx">objOne</span> <span class="o">=</span> <span class="nx">ObjOne</span><span class="p">(</span><span class="nx">intTwo</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">a</span> <span class="o">+=</span> <span class="nx">objOne</span><span class="p">.</span><span class="nx">a</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">ObjOne</span><span class="p">.</span><span class="nx">sub</span><span class="o">!</span><span class="p">(</span><span class="nx">IntOne</span> <span class="nx">intOne</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">ObjOne</span> <span class="nx">objOne</span> <span class="o">=</span> <span class="nx">ObjOne</span><span class="p">(</span><span class="nx">intOne</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">a</span> <span class="o">-=</span> <span class="nx">objOne</span><span class="p">.</span><span class="nx">a</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">ObjOne</span> <span class="nx">objOne</span><span class="p">();</span>
+  <span class="nx">objOne</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span> <span class="nx">IntOne</span><span class="p">(</span><span class="nx">objOne</span><span class="p">)</span> <span class="p">);</span>
+  <span class="nx">objOne</span><span class="p">.</span><span class="nx">sub</span><span class="p">(</span> <span class="nx">IntTwo</span><span class="p">(</span><span class="nx">objOne</span><span class="p">)</span> <span class="p">);</span>
+  <span class="nx">objOne</span><span class="p">.</span><span class="nx">objTwo</span> <span class="o">=</span> <span class="nx">ObjTwo</span><span class="p">();</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">objOne</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">{a:0,objTwo:{objOne:null}}</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="unowned-object-and-interface-references">
+<span id="unowned-object-references"></span><h4>Unowned Object and Interface References<a class="headerlink" href="#unowned-object-and-interface-references" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>The runtime cost of tracking all of the references to objects and interfaces can be high.  In certain situations it is desireable to avoid this reference tracking for performance reasons when it is known that there will always be at least one reference to the object in question.  Kl provides the ability to do this using the <code class="samp docutils literal"><span class="pre">Ref&lt;</span><em><span class="pre">ObjectType</span></em><span class="pre">&gt;</span></code> and <code class="samp docutils literal"><span class="pre">Ref&lt;</span><em><span class="pre">InterfaceType</span></em><span class="pre">&gt;</span></code> syntax.  This also provides the ability to create object and interface reference loops that do not leak memory.</p>
+<p>Unowned references behave exactly the same as regular object and interface references; the only difference is that they don&#8217;t track references.</p>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">It is very easy to create subtle bugs and crashes when using unowned references.  Use them at your own risk!  It is your responsibility to ensure that unowned references refer to objects that are owned by something else.  You can leave an unowned reference refering to an object that has been destroyed but if you try to do anything with it your program will probably crash!</p>
+</div>
+<p>Example use of unowned references:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Unowned References</span>
+<span class="cm">*/</span>
+
+<span class="kr">object</span> <span class="nx">Foo</span> <span class="p">{</span>
+  <span class="kr">SInt32</span> <span class="nx">intMember</span><span class="p">;</span>
+  <span class="kr">String</span> <span class="nx">stringMember</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">Foo</span> <span class="nx">foo</span><span class="p">();</span> <span class="c1">// Construct a new specific object</span>
+  <span class="nx">foo</span><span class="p">.</span><span class="nx">stringMember</span> <span class="o">=</span> <span class="s2">&quot;me!&quot;</span><span class="p">;</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;foo = &quot;</span> <span class="o">+</span> <span class="nx">foo</span><span class="p">);</span>
+  <span class="nx">Ref</span><span class="o">&lt;</span><span class="nx">Foo</span><span class="o">&gt;</span> <span class="nx">fooRef</span> <span class="o">=</span> <span class="nx">foo</span><span class="p">;</span> <span class="c1">// fooRef is an unowned reference to foo</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;fooRef = &quot;</span> <span class="o">+</span> <span class="nx">fooRef</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">foo = {intMember:0,stringMember:&quot;me!&quot;}</span>
+<span class="cm">fooRef = {intMember:0,stringMember:&quot;me!&quot;}</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-type-type">
+<span id="klpg-types-type"></span><h4>The <code class="code docutils literal"><span class="pre">Type</span></code> Type<a class="headerlink" href="#the-type-type" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>There is a special type in KL called <code class="code docutils literal"><span class="pre">Type</span></code>.  It represents the type of a
+value in KL.  Every value in KL supports a method <code class="code docutils literal"><span class="pre">{value}.type()</span></code> that can be used
+to obtain the type of the object, which is a value of type <code class="code docutils literal"><span class="pre">Type</span></code>.</p>
+<p>The default value of a variable of type <code class="code docutils literal"><span class="pre">Type</span></code> is the special value <code class="code docutils literal"><span class="pre">None</span></code>.  This is also sometimes the return value of some methods described below.  <code class="code docutils literal"><span class="pre">None</span></code> is not equal to <code class="code docutils literal"><span class="pre">{value}.type()</span></code> for any <code class="code docutils literal"><span class="pre">{value}</span></code>.</p>
+<p>You can only do a few things with values of type <code class="code docutils literal"><span class="pre">Type</span></code>; they are primarily used for runtime type inference with interfaces and objects.</p>
+<ul>
+<li><p class="first">You refer to a value of type <code class="code docutils literal"><span class="pre">Type</span></code> just by refering to the value of the
+type; you can then use this for comparisons:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Type Comparisons</span>
+<span class="cm">*/</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="nx">Type</span> <span class="nx">booleanType</span> <span class="o">=</span> <span class="kr">Boolean</span><span class="p">;</span>
+  <span class="kr">UInt32</span> <span class="nx">uint32</span><span class="p">;</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;booleanType == uint32.type&quot;</span> <span class="o">+</span> <span class="nx">booleanType</span> <span class="o">==</span> <span class="nx">uint32</span><span class="p">.</span><span class="nx">type</span><span class="p">);</span>
+  <span class="kr">Boolean</span> <span class="nx">boolean</span><span class="p">;</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;booleanType == boolean.type&quot;</span> <span class="o">+</span> <span class="nx">booleanType</span> <span class="o">==</span> <span class="nx">boolean</span><span class="p">.</span><span class="nx">type</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+<span class="cm">(stdin):10:3: warning: must use parentheses to call methods (deprecation; will become an error in next version)</span>
+
+<span class="cm">false</span>
+<span class="cm">false</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">For <a class="reference internal" href="#klpg-types-interfaces"><span>interfaces</span></a> the <code class="code docutils literal"><span class="pre">{value}.type()</span></code> method returns the type of the specific object that the generic object refers to; this is how you do runtime type inference on objects.  See <a class="reference internal" href="#klpg-types-interfaces"><span>Interfaces</span></a> for more information.</p>
+</li>
+<li><p class="first">Values of type <code class="code docutils literal"><span class="pre">Type</span></code> support the method <code class="code docutils literal"><span class="pre">{value}.parentType()</span></code>.  In the case that the type of <code class="code docutils literal"><span class="pre">{value}</span></code> is a structure or object type with an inherited parent, <code class="code docutils literal"><span class="pre">parentType()</span></code> returns the type of the parent; otherwise, <code class="code docutils literal"><span class="pre">parentType()</span></code> returns <code class="code docutils literal"><span class="pre">None</span></code>.</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: parentType</span>
+<span class="cm">*/</span>
+
+<span class="kr">object</span> <span class="nx">Obj</span> <span class="p">{</span> <span class="cm">/*...*/</span> <span class="p">};</span>
+<span class="kr">object</span> <span class="nx">SubObj</span> <span class="o">:</span> <span class="nx">Obj</span> <span class="p">{</span> <span class="cm">/*...*/</span> <span class="p">};</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">Type</span> <span class="nx">type</span><span class="p">;</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;type = &quot;</span> <span class="o">+</span> <span class="nx">type</span> <span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;type.parentType() = &quot;</span> <span class="o">+</span> <span class="nx">type</span><span class="p">.</span><span class="nx">parentType</span><span class="p">());</span>
+  <span class="nx">type</span> <span class="o">=</span> <span class="nx">Obj</span><span class="p">;</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;type = &quot;</span> <span class="o">+</span> <span class="nx">type</span> <span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;type.parentType() = &quot;</span> <span class="o">+</span> <span class="nx">type</span><span class="p">.</span><span class="nx">parentType</span><span class="p">());</span>
+  <span class="nx">type</span> <span class="o">=</span> <span class="nx">SubObj</span><span class="p">;</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;type = &quot;</span> <span class="o">+</span> <span class="nx">type</span> <span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;type.parentType() = &quot;</span> <span class="o">+</span> <span class="nx">type</span><span class="p">.</span><span class="nx">parentType</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">type = None</span>
+<span class="cm">type.parentType() = None</span>
+<span class="cm">type = Obj</span>
+<span class="cm">type.parentType() = None</span>
+<span class="cm">type = SubObj</span>
+<span class="cm">type.parentType() = Obj</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Values of type <code class="code docutils literal"><span class="pre">Type</span></code> support the method <code class="code docutils literal"><span class="pre">{value}.isA({interfaceType})</span></code>, which returns <code class="code docutils literal"><span class="pre">true</span></code> if and only if <code class="code docutils literal"><span class="pre">{value}</span></code> supports the interface <code class="code docutils literal"><span class="pre">{interfaceType}</span></code>.</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: isA</span>
+<span class="cm">*/</span>
+
+<span class="kr">interface</span> <span class="nx">Int1</span> <span class="p">{</span> <span class="cm">/*...*/</span> <span class="p">};</span>
+<span class="kr">interface</span> <span class="nx">Int2</span> <span class="p">{</span> <span class="cm">/*...*/</span> <span class="p">};</span>
+<span class="kr">interface</span> <span class="nx">Int3</span> <span class="p">{</span> <span class="cm">/*...*/</span> <span class="p">};</span>
+<span class="kr">object</span> <span class="nx">Obj</span> <span class="o">:</span> <span class="nx">Int1</span><span class="p">,</span> <span class="nx">Int2</span> <span class="p">{</span> <span class="cm">/*...*/</span> <span class="p">};</span>
+<span class="kr">object</span> <span class="nx">SubObj</span> <span class="o">:</span> <span class="nx">Obj</span><span class="p">,</span> <span class="nx">Int3</span> <span class="p">{</span> <span class="cm">/*...*/</span> <span class="p">};</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">Type</span> <span class="nx">nullType</span><span class="p">;</span>
+  <span class="nx">Obj</span> <span class="nx">obj</span><span class="p">();</span>
+  <span class="nx">SubObj</span> <span class="nx">subObj</span><span class="p">();</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;nullType.isA(nullType) = &quot;</span> <span class="o">+</span> <span class="nx">nullType</span><span class="p">.</span><span class="nx">isA</span><span class="p">(</span><span class="nx">nullType</span><span class="p">));</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;nullType.isA(Obj) = &quot;</span> <span class="o">+</span> <span class="nx">nullType</span><span class="p">.</span><span class="nx">isA</span><span class="p">(</span><span class="nx">Obj</span><span class="p">));</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;nullType.isA(SubObj) = &quot;</span> <span class="o">+</span> <span class="nx">nullType</span><span class="p">.</span><span class="nx">isA</span><span class="p">(</span><span class="nx">SubObj</span><span class="p">));</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;nullType.isA(Int1) = &quot;</span> <span class="o">+</span> <span class="nx">nullType</span><span class="p">.</span><span class="nx">isA</span><span class="p">(</span><span class="nx">Int1</span><span class="p">));</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;nullType.isA(Int2) = &quot;</span> <span class="o">+</span> <span class="nx">nullType</span><span class="p">.</span><span class="nx">isA</span><span class="p">(</span><span class="nx">Int2</span><span class="p">));</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;nullType.isA(Int3) = &quot;</span> <span class="o">+</span> <span class="nx">nullType</span><span class="p">.</span><span class="nx">isA</span><span class="p">(</span><span class="nx">Int3</span><span class="p">));</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;obj.type.isA(nullType) = &quot;</span> <span class="o">+</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">isA</span><span class="p">(</span><span class="nx">nullType</span><span class="p">));</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;obj.type.isA(Obj) = &quot;</span> <span class="o">+</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">isA</span><span class="p">(</span><span class="nx">Obj</span><span class="p">));</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;obj.type.isA(SubObj) = &quot;</span> <span class="o">+</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">isA</span><span class="p">(</span><span class="nx">SubObj</span><span class="p">));</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;obj.type.isA(Int1) = &quot;</span> <span class="o">+</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">isA</span><span class="p">(</span><span class="nx">Int1</span><span class="p">));</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;obj.type.isA(Int2) = &quot;</span> <span class="o">+</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">isA</span><span class="p">(</span><span class="nx">Int2</span><span class="p">));</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;obj.type.isA(Int3) = &quot;</span> <span class="o">+</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">isA</span><span class="p">(</span><span class="nx">Int3</span><span class="p">));</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;subObj.type.isA(nullType) = &quot;</span> <span class="o">+</span> <span class="nx">subObj</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">isA</span><span class="p">(</span><span class="nx">nullType</span><span class="p">));</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;subObj.type.isA(Obj) = &quot;</span> <span class="o">+</span> <span class="nx">subObj</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">isA</span><span class="p">(</span><span class="nx">Obj</span><span class="p">));</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;subObj.type.isA(SubObj) = &quot;</span> <span class="o">+</span> <span class="nx">subObj</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">isA</span><span class="p">(</span><span class="nx">SubObj</span><span class="p">));</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;subObj.type.isA(Int1) = &quot;</span> <span class="o">+</span> <span class="nx">subObj</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">isA</span><span class="p">(</span><span class="nx">Int1</span><span class="p">));</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;subObj.type.isA(Int2) = &quot;</span> <span class="o">+</span> <span class="nx">subObj</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">isA</span><span class="p">(</span><span class="nx">Int2</span><span class="p">));</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;subObj.type.isA(Int3) = &quot;</span> <span class="o">+</span> <span class="nx">subObj</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">isA</span><span class="p">(</span><span class="nx">Int3</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+<span class="cm">(stdin):22:3: warning: must use parentheses to call methods (deprecation; will become an error in next version)</span>
+
+<span class="cm">nullType.isA(nullType) = false</span>
+<span class="cm">nullType.isA(Obj) = false</span>
+<span class="cm">nullType.isA(SubObj) = false</span>
+<span class="cm">nullType.isA(Int1) = false</span>
+<span class="cm">nullType.isA(Int2) = false</span>
+<span class="cm">nullType.isA(Int3) = false</span>
+<span class="cm">obj.type.isA(nullType) = false</span>
+<span class="cm">obj.type.isA(Obj) = true</span>
+<span class="cm">obj.type.isA(SubObj) = false</span>
+<span class="cm">obj.type.isA(Int1) = true</span>
+<span class="cm">obj.type.isA(Int2) = true</span>
+<span class="cm">obj.type.isA(Int3) = false</span>
+<span class="cm">subObj.type.isA(nullType) = false</span>
+<span class="cm">subObj.type.isA(Obj) = true</span>
+<span class="cm">subObj.type.isA(SubObj) = true</span>
+<span class="cm">subObj.type.isA(Int1) = true</span>
+<span class="cm">subObj.type.isA(Int2) = true</span>
+<span class="cm">subObj.type.isA(Int3) = true</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">You can obtain a description of the type by calling the method
+<code class="code docutils literal"><span class="pre">{typeValue}.jsonDesc()</span></code>.  You can use this to find out things like the members of
+structures at runtime:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Type Description</span>
+<span class="cm">*/</span>
+
+<span class="kr">struct</span> <span class="nx">S</span>
+<span class="p">{</span>
+  <span class="kr">String</span> <span class="nx">string</span><span class="p">;</span>
+  <span class="kr">UInt32</span> <span class="nx">uint32</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">S</span><span class="p">.</span><span class="nx">jsonDesc</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">{</span>
+<span class="cm">  &quot;name&quot; : &quot;S&quot;,</span>
+<span class="cm">  &quot;size&quot; : 32,</span>
+<span class="cm">  &quot;owningExt&quot; : null,</span>
+<span class="cm">  &quot;members&quot; : [</span>
+<span class="cm">    {</span>
+<span class="cm">      &quot;name&quot; : &quot;string&quot;,</span>
+<span class="cm">      &quot;type&quot; : &quot;String&quot;</span>
+<span class="cm">      },</span>
+<span class="cm">    {</span>
+<span class="cm">      &quot;name&quot; : &quot;uint32&quot;,</span>
+<span class="cm">      &quot;type&quot; : &quot;UInt32&quot;</span>
+<span class="cm">      }</span>
+<span class="cm">    ]</span>
+<span class="cm">  }</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="objects-versus-structures">
+<span id="klpg-objects-versus-structures"></span><span id="index-15"></span><h4>Objects Versus Structures<a class="headerlink" href="#objects-versus-structures" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>The decision to use a structure versus an object for a composite type is an important design decision that affects program design as well as runtime behavior and performance.</p>
+<p>Structures are usually the best choice for small types that are performance-critical.  If you have complex expressions that will create a lot of temporary values of the given type, you probably want to be using a structure and not an object.  One critical performance aspect is that variables whose types are structures are allocated on the program stack; this means that there is virtually no overhead to allocating and freeing the memory associated with the structure.  Examples of types that should usually be structures are mathematical types such as vectors and transforms.</p>
+<p>Objects are usually the best choice for large types that are created and destroyed less significantly less often than they are used.  Objects are allocated on the heap, which is significantly slower than stack allocation.  Additionally, since you can have many different variables point to the same object, objects are a good choice when you want lots of references to the same data.  Hierarchies of data are usually represented with objects.</p>
+</div>
+</div>
+<div class="section" id="arrays">
+<span id="index-16"></span><span id="id1"></span><h3>Arrays<a class="headerlink" href="#arrays" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>An <em class="dfn">array</em> is a sequence of values of the same type (referred to as the array&#8217;s <em class="dfn">element type</em>) that are indexed by integers and placed sequentially in memory.  KL supports three types of arrays: variable-size arrays, fixed-length arrays, and external arrays.  The details of each array type are discussed below.</p>
+<p id="array-properties">Regardless of specific type, arrays in KL have several common behaviors:</p>
+<ul>
+<li><p class="first">Arrays are indexed using the <code class="docutils literal"><span class="pre">[..]</span></code> operator, exactly as in JavaScript and C.  The indexing of arrays is 0-based, again just as in JavaScript and C:</p>
+<div class="highlight-python"><div class="highlight"><pre>Size values[];    // Declare a variable-size array
+values.push(42);  // Push some elements onto the end of the array
+values.push(21);
+values.push(3);
+report(values[1]); // outputs &quot;21&quot;
+</pre></div>
+</div>
+</li>
+<li><p class="first">The size of an array is of type <code class="docutils literal"><span class="pre">Size</span></code> and the indexing operator takes an index of type <code class="docutils literal"><span class="pre">Index</span></code> (which is an alias for <code class="docutils literal"><span class="pre">Size</span></code>).</p>
+</li>
+<li><p class="first">Array declarations can be nested, and can be co-nested with other array types:</p>
+<div class="highlight-python"><div class="highlight"><pre>Integer b[][];  // A variable-size array of variable-size arrays of integers
+Boolean a[2][]; // An array of 2 variable-size arrays of booleans
+String c&lt;&gt;[];   // An external array of variable-size arrays of strings
+</pre></div>
+</div>
+</li>
+<li><p class="first">Arrays are <em class="dfn">passed by reference</em> into functions and operators, ie. they are not copied.  This means that it takes just a long to pass an array with one million elements to a function as it does to pass an array with one element.</p>
+</li>
+<li><p class="first">If running a Fabric client with bounds-checking enabled, indexing into arrays using the indexing operator is bounds-checked; if the index runs off the end of the array an exception is thrown.</p>
+</li>
+</ul>
+<div class="section" id="variable-size-arrays">
+<span id="variable-arrays"></span><span id="index-17"></span><h4>Variable-Size Arrays<a class="headerlink" href="#variable-size-arrays" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>A <em class="dfn">variable-size array</em> is an array whose size can be changed at runtime.  Variable-size arrays are declared by appending <code class="docutils literal"><span class="pre">[]</span></code> to the name of the variable, parameter or structure member where they are declared, eg. <code class="docutils literal"><span class="pre">String</span> <span class="pre">strings[]</span></code>.</p>
+<p>Variable-size arrays have all the <a class="reference internal" href="#array-properties"><span>properties of arrays</span></a> as well as the following additional properties:</p>
+<ul class="simple">
+<li>The maximum size of a variable-size array is .</li>
+<li>Variable-size arrays are <em class="dfn">share-on-assign</em>, meaning that when you assign one variable-size array to another it does not copy the elements but rather copies a reference to the elements; any changes to one of the arrays changes the other as well.  This is sometimes referred to as a shallow copy (as opposed to a deep copy).  In order to obtain a deep copy of an array, use the <code class="docutils literal"><span class="pre">clone()</span></code> method, described below.</li>
+<li>Variable-size arrays support the following methods and functions:<ul>
+<li>By default, a variable array is empty.  If you specify an integer value when it is constructed, the variable array will initially have that many elements.</li>
+<li>The <code class="docutils literal"><span class="pre">push(element)</span></code> method appends an element to the end of the variable-size array.  The size of the array is increased by one.</li>
+<li>The <code class="docutils literal"><span class="pre">pop()</span></code> method removes the last element from the end of the array, and returns that element.  The size of the array is reduced by one.  Calling <code class="docutils literal"><span class="pre">pop()</span></code> on an empty array results in an error.</li>
+<li>The <code class="docutils literal"><span class="pre">size()</span></code> method returns the number of elements in the variable-size array</li>
+<li>The <code class="docutils literal"><span class="pre">resize(newSize)</span></code> method resizes the array.  Any new elements at the end are initialized with the default value for the underlying type.</li>
+<li>The <code class="docutils literal"><span class="pre">reserve(count)</span></code> method ensures that space is allocated for at least <code class="docutils literal"><span class="pre">count</span></code> elements.  If you know the final number of elements in advance, it is much faster to call <code class="docutils literal"><span class="pre">reserve(...)</span></code> before calling <code class="docutils literal"><span class="pre">push(...)</span></code> many times.</li>
+<li>The <code class="docutils literal"><span class="pre">clone()</span></code> method makes a deep copy of the variable-size array.  The resulting copy is initially not shared with any other variable-size array.</li>
+<li>The <code class="docutils literal"><span class="pre">swap(Size</span> <span class="pre">lhsIndex,</span> <span class="pre">Size</span> <span class="pre">rhsIndex)</span></code> method swaps the values of the array at the two given indices.</li>
+<li>The <code class="samp docutils literal"><span class="pre">swap(</span><em><span class="pre">Type</span></em> <span class="pre">lhs[],</span> <em><span class="pre">Type</span></em> <span class="pre">rhs[])</span></code> function swaps the contents of the two variable-size arrays.  This swap is performed in constant time and does not copy any data.</li>
+</ul>
+</li>
+</ul>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Variable-Size Arrays</span>
+<span class="cm">*/</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kr">Integer</span> <span class="nx">a</span><span class="p">[];</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;The array a has size &quot;</span> <span class="o">+</span> <span class="nx">a</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot; and value &quot;</span> <span class="o">+</span> <span class="nx">a</span><span class="p">);</span>
+  <span class="nx">a</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+  <span class="nx">a</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">84</span><span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;The array NOW has size &quot;</span> <span class="o">+</span> <span class="nx">a</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot; and value &quot;</span> <span class="o">+</span> <span class="nx">a</span><span class="p">);</span>
+  <span class="nx">a</span><span class="p">.</span><span class="nx">resize</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;The array NOW has size &quot;</span> <span class="o">+</span> <span class="nx">a</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot; and value &quot;</span> <span class="o">+</span> <span class="nx">a</span><span class="p">);</span>
+  <span class="kr">String</span> <span class="nx">b</span><span class="p">[](</span><span class="mi">4</span><span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;b is initially &quot;</span> <span class="o">+</span> <span class="nx">b</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">The array a has size 0 and value []</span>
+<span class="cm">The array NOW has size 2 and value [42,84]</span>
+<span class="cm">The array NOW has size 4 and value [42,84,0,0]</span>
+<span class="cm">b is initially [&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;]</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fixed-size-arrays">
+<span id="fixed-arrays"></span><span id="index-18"></span><h4>Fixed-Size Arrays<a class="headerlink" href="#fixed-size-arrays" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>A <em class="dfn">fixed-size array</em> is an array whose size is fixed at runtime.  Fixed-size arrays have much faster performance characteristics than variable-size arrays, therefore should be used in place of variable-sized arrays when the size of an array is known at compile time.  Fixed-size arrays are declared by appending <code class="samp docutils literal"><span class="pre">[</span><em><span class="pre">size</span></em><span class="pre">]</span></code> to the name of the variable, parameter or structure member where they are declared, eg. <code class="docutils literal"><span class="pre">String</span> <span class="pre">strings[4]</span></code>.</p>
+<p>Fixed-size arrays have all the <a class="reference internal" href="#array-properties"><span>properties of arrays</span></a> as well as the following additional properties:</p>
+<ul>
+<li><p class="first">The maximum size of a fixed-size array is .</p>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">Since fixed-size arrays are allocated on the stack (instead of the heap), using very large fixed-size arrays may result in a stack overflow.  It is recommended that fixed-size arrays only be used for arrays that are reasonably small.</p>
+</div>
+</li>
+<li><p class="first">Fixed-size arrays are copied when they are assigned, ie. they are <em class="dfn">copy-by-value</em>.</p>
+</li>
+</ul>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Fixed-Size Arrays</span>
+<span class="cm">*/</span>
+
+<span class="kd">function</span> <span class="kr">Float32</span> <span class="nx">det</span><span class="p">(</span><span class="kr">Float32</span> <span class="nx">mat</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nx">mat</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="nx">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nx">mat</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kr">Float32</span> <span class="nx">mat</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">];</span>
+  <span class="nx">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">3.5</span><span class="p">;</span>
+  <span class="nx">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">9.2</span><span class="p">;</span>
+  <span class="nx">mat</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.1</span><span class="p">;</span>
+  <span class="nx">mat</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">8.6</span><span class="p">;</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;The determinant of &quot;</span> <span class="o">+</span> <span class="nx">mat</span> <span class="o">+</span> <span class="s2">&quot; is &quot;</span> <span class="o">+</span> <span class="nx">det</span><span class="p">(</span><span class="nx">mat</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">The determinant of [[+3.5,-9.2],[-2.1,+8.6]] is +10.78</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="external-arrays">
+<span id="index-19"></span><span id="id2"></span><h4>External Arrays<a class="headerlink" href="#external-arrays" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>An <em class="dfn">external array</em> is an array whose size is fixed when it is created and does not own the data is operates on.  External arrays are primarily used for operator parameters bound to sliced data inside a Fabric Engine dependency graph as well as arrays bound to external data within Fabric Engine extensions, but they can also be used on their own within KL.  External arrays are declared by appending <code class="docutils literal"><span class="pre">&lt;&gt;</span></code> to the name of the variable, parameter or structure member where they are declared, eg. <code class="docutils literal"><span class="pre">String</span> <span class="pre">strings&lt;&gt;</span></code>.</p>
+<p>External arrays have all the <a class="reference internal" href="#array-properties"><span>properties of arrays</span></a> as well as the following additional properties:</p>
+<ul>
+<li><p class="first">An external array can be constructed from an existing variable array.  This simply points the external array to the data within the variable array at the time the variable array is constructed.  Note however that there are lots of ways that this usage can break, such as through resizing the variable array.  This usage is primarily meant for testing:</p>
+<div class="highlight-python"><div class="highlight"><pre>String va[];
+va.push(&quot;hello&quot;);
+String ea&lt;&gt;(va);
+report(ea); // prints [&quot;hello&quot;]
+</pre></div>
+</div>
+</li>
+<li><p class="first">External arrays support an empty constructor (which constructs an empty external array):</p>
+<div class="highlight-python"><div class="highlight"><pre>Size ea&lt;&gt;;
+report(ea); // prints []
+</pre></div>
+</div>
+</li>
+<li><p class="first">External arrays support a copy constructor and an assignment operator, both of which simply make one external array refer to the same data as the other:</p>
+<div class="highlight-python"><div class="highlight"><pre>String va[];
+va.push(&quot;hello&quot;);
+String ea1&lt;&gt;(va);
+String ea2&lt;&gt;(ea1);
+report(ea2); // prints [&quot;hello&quot;]
+String ea3&lt;&gt;;
+ea3 = ea2;
+report(ea3); // prints [&quot;hello&quot;]
+</pre></div>
+</div>
+</li>
+<li><p class="first">External arrays support a <code class="docutils literal"><span class="pre">size()</span></code> method that returns the number of elements in the external array.</p>
+</li>
+<li><p class="first">External arrays can be initialized given a <code class="docutils literal"><span class="pre">data</span></code> pointer as well as a <code class="docutils literal"><span class="pre">size</span></code>. This allows you to map arbitrary memory as an array. This is very useful especially when passing data from C++ into KL and back out. You can also use this constructor to reinterpret any memory as an array:</p>
+<div class="highlight-python"><div class="highlight"><pre>Float32 floats[12];
+for(Size i=0; i&lt;floats.size(); i++)
+  floats[i] = Float32(i);
+
+Vec3 vectors&lt;&gt;(floats.data(), floats.size() / 3);
+report(vectors);
+</pre></div>
+</div>
+</li>
+<li><p class="first">As opposed to variable arrays, External arrays are not ref counted objects. This makes them cheaper to pass around, but can&#8217;t be used to manage the lifetime of memory. (See next point)</p>
+</li>
+<li><p class="first">External arrays do not manage the lifetime of the data they operate on. A variable array will free its memory when it is destroyed, but an external array is simply a mapping to memory owned by something else. An external array should never out-live the owner of the data, else it will map to garbage data:</p>
+<div class="highlight-python"><div class="highlight"><pre>String ea&lt;&gt;;
+{
+  String va[];
+  for(Integer i=0; i&lt;2023; i++)
+    va.push(&quot;hello:&quot; + i);
+  String ea1&lt;&gt;(va);
+  ea = ea1;
+  // At the end of this scope, the variable array is freed, along with its data.
+}
+// The memory of the variable array is now garbage because it has been destroyed.
+// Printing the data will return garbage data or crash KL.
+// External arrays must be used with care to avoid mapping to garbage data in this way.
+report(ea);
+</pre></div>
+</div>
+</li>
+</ul>
+<p>The following is an example of using external arrays:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: External Arrays</span>
+<span class="cm">*/</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kr">String</span> <span class="nx">va</span><span class="p">[];</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nx">Size</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span>
+    <span class="nx">va</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&quot;string &quot;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">i</span><span class="o">+</span><span class="mi">1</span><span class="p">));</span>
+
+  <span class="kr">String</span> <span class="nx">strings</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="nx">va</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nx">Size</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span>
+    <span class="nx">strings</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+=</span> <span class="s2">&quot; appended&quot;</span><span class="p">;</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;strings = &quot;</span> <span class="o">+</span> <span class="nx">strings</span><span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;va = &quot;</span> <span class="o">+</span> <span class="nx">va</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">strings = [&quot;string 1 appended&quot;,&quot;string 2 appended&quot;,&quot;string 3 appended&quot;,&quot;string 4 appended&quot;,&quot;string 5 appended&quot;,&quot;string 6 appended&quot;,&quot;string 7 appended&quot;,&quot;string 8 appended&quot;]</span>
+<span class="cm">va = [&quot;string 1 appended&quot;,&quot;string 2 appended&quot;,&quot;string 3 appended&quot;,&quot;string 4 appended&quot;,&quot;string 5 appended&quot;,&quot;string 6 appended&quot;,&quot;string 7 appended&quot;,&quot;string 8 appended&quot;]</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="dictionaries">
+<span id="index-20"></span><span id="id3"></span><h3>Dictionaries<a class="headerlink" href="#dictionaries" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>KL supports key-value pair <em class="dfn">dictionaries</em>.  The type of the key of a dictionary can be any of the KL base types (e.g. <code class="code docutils literal"><span class="pre">Boolean</span></code>, <code class="docutils literal"><span class="pre">String</span></code>, or any integer or floating-point type) as well as custom types for which a special <code class="samp docutils literal"><span class="pre">.hash</span></code> method has been defined (see <a class="reference internal" href="#klpg-dictionaries-custom-key-types"><span>Dictionaries Using Custom Key Types</span></a>) and the type of the value can be any type.  Dictionaries are declared by appending <code class="samp docutils literal"><span class="pre">[</span><em><span class="pre">KeyType</span></em><span class="pre">]</span></code> to the variable, parameter or member name.  For example:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kr">String</span> <span class="nx">scalarToString</span><span class="p">[</span><span class="kr">Float32</span><span class="p">];</span>     <span class="c1">// A Float32-to-String dictionary</span>
+<span class="kr">Boolean</span> <span class="nx">integerToBoolean</span><span class="p">[</span><span class="kr">Integer</span><span class="p">];</span>  <span class="c1">// An Integer-to-Boolean dictionary</span>
+</pre></div>
+</div>
+<p>Dictionaries in KL have the following properties:</p>
+<ul>
+<li><p class="first">Dictionaries are <em class="dfn">share-on-assign</em>, meaning that when you assign one dictionary to another it does not copy the contents but rather copies a reference to the contents; any changes to one of the dictionaries changes the other as well.  This is sometimes referred to as a shallow copy (as opposed to a deep copy).  In order to obtain a deep copy of a dictionary, use the <code class="docutils literal"><span class="pre">clone()</span></code> method, described below.</p>
+</li>
+<li><p class="first">Dictionaries can be nested, and can be co-nested with array types.  For example:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kr">Integer</span> <span class="nx">b</span><span class="p">[</span><span class="kr">String</span><span class="p">][</span><span class="mi">2</span><span class="p">];</span> <span class="c1">// An String-to-Fixed-Length-Integer-Array dictionary</span>
+<span class="kr">Boolean</span> <span class="nx">a</span><span class="p">[][</span><span class="kr">Integer</span><span class="p">];</span> <span class="c1">// A variable array of Integer-to-Boolean dictionaries</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Dictionaries can contain at most  key-value pairs.</p>
+</li>
+<li><p class="first">Dictionaries support the <code class="samp docutils literal"><span class="pre">has(</span><em><span class="pre">key</span></em><span class="pre">)</span></code> method that returns a <code class="code docutils literal"><span class="pre">Boolean</span></code> value indicating whether there is a value in the dictionary for the given key.</p>
+</li>
+<li><p class="first">Dictionaries support the <code class="samp docutils literal"><span class="pre">get(</span><em><span class="pre">key</span></em><span class="pre">)</span></code> method that returns the value associated with the given key.  If there is no value for the given key, an exception is thrown.</p>
+</li>
+<li><p class="first">Dictionaries support the <code class="samp docutils literal"><span class="pre">set(</span><em><span class="pre">key</span></em><span class="pre">,</span> <em><span class="pre">value</span></em><span class="pre">)</span></code> method that sets the value for the key, replacing the existing value if there is already a value for the key.</p>
+</li>
+<li><p class="first">Dictionaries support indexing using the <code class="samp docutils literal"><span class="pre">[</span><em><span class="pre">key</span></em><span class="pre">]</span></code> indexing operator.  When used as the target of an assignment or as an io parameter to a function (eg. <code class="samp docutils literal"><em><span class="pre">dict</span></em><span class="pre">[</span><em><span class="pre">key</span></em><span class="pre">]</span> <span class="pre">=</span> <em><span class="pre">value</span></em></code>), it is equivalent to using the <code class="samp docutils literal"><span class="pre">set(</span><em><span class="pre">key</span></em><span class="pre">,</span> <em><span class="pre">value</span></em><span class="pre">)</span></code> method.  When used as a read-only expression (eg. <code class="samp docutils literal"><em><span class="pre">value</span></em> <span class="pre">=</span> <em><span class="pre">dict</span></em><span class="pre">[</span><em><span class="pre">key</span></em><span class="pre">]</span></code>), it is equivalent to using the <code class="samp docutils literal"><span class="pre">get(</span><em><span class="pre">key</span></em><span class="pre">)</span></code> method.</p>
+</li>
+<li><p class="first">Dictionaries support the <code class="samp docutils literal"><span class="pre">get(</span><em><span class="pre">key</span></em><span class="pre">,</span> <em><span class="pre">defaultValue</span></em><span class="pre">)</span></code> method that returns the value associated with the given key, if it exists, or <code class="samp docutils literal"><em><span class="pre">defaultValue</span></em><span class="pre">`</span></code> if there is no value for the given key.</p>
+</li>
+<li><p class="first">Dictionaries support the <code class="samp docutils literal"><span class="pre">delete(</span><em><span class="pre">key</span></em><span class="pre">)</span></code> method that deletes the value for the given key.  If there is no value for the given key, nothing happens.</p>
+</li>
+<li><p class="first">Dictionaries support the <code class="docutils literal"><span class="pre">clone()</span></code> method which makes a deep copy of the dictionary.  The resulting copy is initially not shared with any other dictionaries.</p>
+</li>
+<li><p class="first">Dictionaries support the <code class="docutils literal"><span class="pre">clear()</span></code> method which removes all keys and values.</p>
+</li>
+<li><p class="first">Dictionaries can be iterated over using JavaScript-like <code class="docutils literal"><span class="pre">in</span></code> iteration:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kr">String</span> <span class="nx">dict</span><span class="p">[</span><span class="kr">String</span><span class="p">];</span>
+<span class="k">for</span> <span class="p">(</span><span class="nx">k</span> <span class="k">in</span> <span class="nx">dict</span><span class="p">)</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;dict[&quot;</span> <span class="o">+</span> <span class="nx">k</span> <span class="o">+</span> <span class="s2">&quot;] = &quot;</span> <span class="o">+</span> <span class="nx">dict</span><span class="p">[</span><span class="nx">k</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>For improved performance, both the key and value can be made available through <code class="docutils literal"><span class="pre">in</span></code> iteration:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kr">String</span> <span class="nx">dict</span><span class="p">[</span><span class="kr">String</span><span class="p">];</span>
+<span class="k">for</span> <span class="p">(</span><span class="nx">k</span><span class="p">,</span> <span class="nx">v</span> <span class="k">in</span> <span class="nx">dict</span><span class="p">)</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;dict[&quot;</span> <span class="o">+</span> <span class="nx">k</span> <span class="o">+</span> <span class="s2">&quot;] = &quot;</span> <span class="o">+</span> <span class="nx">v</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>In a dictionary iteration, the value can be assigned to if and only if the dictionary can be assigned to.  The key, on the other hand, cannot be assigned to.</p>
+</li>
+<li><p class="first">Insertion order (not sort order!) is the iteration order for dictionaries, just as for JavaScript objects:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kr">String</span> <span class="nx">numbers</span><span class="p">[</span><span class="kr">Integer</span><span class="p">];</span>
+  <span class="nx">numbers</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;three&quot;</span><span class="p">;</span>
+  <span class="nx">numbers</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;two&quot;</span><span class="p">;</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">numbers</span><span class="p">);</span>
+  <span class="nx">numbers</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;one&quot;</span><span class="p">;</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">numbers</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">{3:&quot;three&quot;,2:&quot;two&quot;}</span>
+<span class="cm">{3:&quot;three&quot;,2:&quot;two&quot;,1:&quot;one&quot;}</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>The following is an example use of dictionaries:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Dictionaries</span>
+<span class="cm">*/</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kr">Float32</span> <span class="nx">a</span><span class="p">[</span><span class="kr">String</span><span class="p">];</span>
+  <span class="nx">a</span><span class="p">[</span><span class="s1">&#39;pi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">;</span>
+  <span class="nx">a</span><span class="p">[</span><span class="s1">&#39;e&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">2.71</span><span class="p">;</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;a is:&quot;</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span> <span class="nx">k</span><span class="p">,</span> <span class="nx">v</span> <span class="k">in</span> <span class="nx">a</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;a[&#39;&quot;</span> <span class="o">+</span> <span class="nx">k</span> <span class="o">+</span> <span class="s2">&quot;&#39;] = &quot;</span> <span class="o">+</span> <span class="nx">v</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="nx">a</span><span class="p">.</span><span class="nx">delete</span><span class="p">(</span><span class="s1">&#39;pi&#39;</span><span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;a is now:&quot;</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span> <span class="nx">k</span><span class="p">,</span> <span class="nx">v</span> <span class="k">in</span> <span class="nx">a</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;a[&#39;&quot;</span> <span class="o">+</span> <span class="nx">k</span> <span class="o">+</span> <span class="s2">&quot;&#39;] = &quot;</span> <span class="o">+</span> <span class="nx">v</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">a is:</span>
+<span class="cm">a[&#39;pi&#39;] = +3.14</span>
+<span class="cm">a[&#39;e&#39;] = +2.71</span>
+<span class="cm">a is now:</span>
+<span class="cm">a[&#39;e&#39;] = +2.71</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+<div class="section" id="dictionaries-using-custom-key-types">
+<span id="klpg-dictionaries-custom-key-types"></span><span id="index-21"></span><h4>Dictionaries Using Custom Key Types<a class="headerlink" href="#dictionaries-using-custom-key-types" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>You can use a custom <code class="samp docutils literal"><span class="pre">struct</span></code> as a key type for a dictionary by implementing a <code class="samp docutils literal"><span class="pre">.hash</span></code> method for the type as well as a <code class="samp docutils literal"><span class="pre">==</span></code> operator:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Dictionary with Custom Key Type</span>
+<span class="cm">*/</span>
+
+<span class="kr">struct</span> <span class="nx">S</span> <span class="p">{</span>
+  <span class="kr">UInt32</span> <span class="nx">n</span><span class="p">;</span>
+  <span class="kr">Float32</span> <span class="nx">x</span><span class="p">;</span>
+<span class="p">};</span>
+
+
+<span class="kd">function</span> <span class="nx">S</span><span class="p">(</span><span class="kr">UInt32</span> <span class="nx">n</span><span class="p">,</span> <span class="kr">Float32</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">n</span> <span class="o">=</span> <span class="nx">n</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="kr">Boolean</span> <span class="o">==</span><span class="p">(</span><span class="nx">S</span> <span class="nx">lhs</span><span class="p">,</span> <span class="nx">S</span> <span class="nx">rhs</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">lhs</span><span class="p">.</span><span class="nx">n</span> <span class="o">==</span> <span class="nx">rhs</span><span class="p">.</span><span class="nx">n</span> <span class="o">&amp;&amp;</span> <span class="nx">lhs</span><span class="p">.</span><span class="nx">x</span> <span class="o">==</span> <span class="nx">rhs</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="kr">UInt32</span> <span class="nx">S</span><span class="p">.</span><span class="nx">hash</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">n</span><span class="p">.</span><span class="nx">hash</span><span class="p">()</span> <span class="o">^</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="p">.</span><span class="nx">hash</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kr">String</span> <span class="nx">d</span><span class="p">[</span><span class="nx">S</span><span class="p">];</span>
+  <span class="nx">d</span><span class="p">[</span><span class="nx">S</span><span class="p">(</span><span class="mi">56</span><span class="p">,</span><span class="mf">2.4</span><span class="p">)]</span> <span class="o">=</span> <span class="s2">&quot;one&quot;</span><span class="p">;</span>
+  <span class="nx">d</span><span class="p">[</span><span class="nx">S</span><span class="p">(</span><span class="mi">78</span><span class="p">,</span><span class="o">-</span><span class="mf">1.2</span><span class="p">)]</span> <span class="o">=</span> <span class="s2">&quot;two&quot;</span><span class="p">;</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">d</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">{{n:56,x:+2.4}:&quot;one&quot;,{n:78,x:-1.2}:&quot;two&quot;}</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="map-reduce-types">
+<span id="index-22"></span><h3>Map-Reduce Types<a class="headerlink" href="#map-reduce-types" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>There are two additional derived types used exclusively for work within Fabric&#8217;s map-reduce framework, namely:</p>
+<ul class="simple">
+<li><code class="samp docutils literal"><span class="pre">ValueProducer&lt;</span><em><span class="pre">Type</span></em><span class="pre">&gt;</span></code></li>
+<li><code class="samp docutils literal"><span class="pre">ArrayProducer&lt;</span><em><span class="pre">Type</span></em><span class="pre">&gt;</span></code></li>
+</ul>
+<p>For more information, see <a class="reference internal" href="map-reduce.html#map-reduce"><span>Map-Reduce</span></a>.</p>
+</div>
+</div>
+<div class="section" id="implicit-type-casting-rules-in-kl">
+<span id="index-23"></span><h2>Implicit Type Casting Rules in KL<a class="headerlink" href="#implicit-type-casting-rules-in-kl" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>When a function or method is called in KL, but the types of the arguments do not exactly match the types of the parameters for any polymorphic version of the function or method, KL will attempt to find the best match using implicit casts.  The best match is chosen as follows:</p>
+<ul class="simple">
+<li>The number of arguments must exactly match the number of parameters.  Therefore, if there is a mismatch, the polymorphic version is not considered.  For example, if the function call <code class="code docutils literal"><span class="pre">foo(14,</span> <span class="pre">23)</span></code> is made and there is a function <code class="code docutils literal"><span class="pre">foo(Integer)</span></code> available, it will not be considered because it only takes one parameter but two arguments have been given.</li>
+<li>If the number of parameters matches the number of arguments, the &#8220;cost&#8221; of the call is computed as the maximum &#8220;cost&#8221; for each argument.  The cost for each argument is computed as follows:<ul>
+<li>The cost is zero if there is an exact type match</li>
+<li>The cost is very low for inheritance, ie. if the parameter type is <code class="code docutils literal"><span class="pre">A</span></code>, the argument type is <code class="code docutils literal"><span class="pre">B</span></code>, and <code class="code docutils literal"><span class="pre">B</span></code> inherits from <code class="code docutils literal"><span class="pre">A</span></code></li>
+<li>Otherwise, the cost is computed on a per-type basis, and are what would generally be expected.  For instance, casts from smaller integer values to larger ones (eg. <code class="code docutils literal"><span class="pre">UInt16</span></code> to <code class="code docutils literal"><span class="pre">UInt32</span></code>) are very low cost, whereas expensive operations (conversions to strings, numerical conversions that might lose precision) have a high cost.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="type-aliases">
+<h2>Type Aliases<a class="headerlink" href="#type-aliases" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">alias</span></code> statement can be used to alias a type to make code more readable.  Its syntax is the same as a variable declaration:</p>
+<div class="highlight-python"><div class="highlight"><pre>alias Integer Int32;        // Int32 is now an alias for Integer
+alias Float32 float;        // float is now an alias for Float32
+alias Float32 Mat22[2][2];  // Mat22 is now an alias for Float32[2][2], ie. a size-2-array-of-size-2-arrays-of-Float32
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">alias</span></code> statements must appear within the global scope of a KL program.</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Type Aliases</span>
+<span class="cm">*/</span>
+
+<span class="nx">alias</span> <span class="kr">Float32</span> <span class="nx">Mat22</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">];</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">Mat22</span> <span class="nx">mat22</span><span class="p">;</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">mat22</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">[[+0.0,+0.0],[+0.0,+0.0]]</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-data-type-and-the-data-and-datasize-methods">
+<span id="index-24"></span><h2>The <code class="docutils literal"><span class="pre">Data</span></code> Type and the <code class="docutils literal"><span class="pre">data</span></code> and <code class="docutils literal"><span class="pre">dataSize</span></code> Methods<a class="headerlink" href="#the-data-type-and-the-data-and-datasize-methods" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>When interfacing with external libraries such as OpenGL, it is sometimes necessary to get direct access to the data underlying a value.  An example is a library call that takes a pointer to data.  KL itself has no notion of pointers; instead, KL has the concept of the <code class="docutils literal"><span class="pre">Data</span></code> type whose value is a pointer to data which can be passed to an external library call.</p>
+<p>Most values in KL have a built-in method called <code class="docutils literal"><span class="pre">data</span></code> that returns a value of type <code class="docutils literal"><span class="pre">Data</span></code>, and a built-in method called <code class="docutils literal"><span class="pre">dataSize</span></code> that returns a value of type <code class="docutils literal"><span class="pre">Size</span></code>.  The value returned by the <code class="docutils literal"><span class="pre">data</span></code> method is a pointer to the data underlying the value, and the value returned by the <code class="docutils literal"><span class="pre">dataSize</span></code> method is the number of bytes the value occupies in memory.  The only values which do not support the <code class="docutils literal"><span class="pre">data</span></code> and <code class="docutils literal"><span class="pre">dataSize</span></code> methods are dictionaries as well as other derived types that do not lay out their elements or members contiguously in memory:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Valid and Invalid Use of .data() and .dataSize()</span>
+<span class="cm">*/</span>
+
+<span class="kr">Integer</span> <span class="nx">integers</span><span class="p">[];</span>
+<span class="nb">report</span><span class="p">(</span><span class="nx">integers</span><span class="p">.</span><span class="nx">data</span><span class="p">());</span>  <span class="c1">// OK: integers are contiguous in memory</span>
+<span class="kr">String</span> <span class="nx">strings</span><span class="p">[];</span>
+<span class="nb">report</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nx">data</span><span class="p">());</span>   <span class="c1">// ERROR: string data is not contiguous in memory</span>
+</pre></div>
+</div>
+<p>Unlike pointers in C and C++, the values returned by <code class="docutils literal"><span class="pre">data</span></code> methods cannot be inspected or used in any expressions; the only thing which can be done is a cast to <code class="code docutils literal"><span class="pre">Boolean</span></code>, which will be <code class="code docutils literal"><span class="pre">true</span></code> if and only if the <code class="docutils literal"><span class="pre">Data</span></code> value points to a value whose size is greater than zero.  However, these <code class="docutils literal"><span class="pre">Data</span></code> values can be passed directly to external library functions provided by Fabric itself or Fabric extensions, where they are used as pointers to data in memory.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">For values of type <code class="docutils literal"><span class="pre">String</span></code>, the value returned by <code class="docutils literal"><span class="pre">dataSize</span></code> includes a null terminator that is automatically appended to the string by Fabric; this is so that the string data can be directly used in C library calls as a regular C string.  If you want to pass the number of characters in the string, pass <code class="docutils literal"><span class="pre">string.length</span></code> instead.</p>
+</div>
+<p>Example of <code class="docutils literal"><span class="pre">Data</span></code> values and the <code class="docutils literal"><span class="pre">data</span></code> and <code class="docutils literal"><span class="pre">dataSize</span></code> methods:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: .data() and .dataSize()</span>
+<span class="cm">*/</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kr">String</span> <span class="nx">s</span><span class="p">;</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;s = &#39;&quot;</span> <span class="o">+</span> <span class="nx">s</span> <span class="o">+</span> <span class="s2">&quot;&#39;&quot;</span><span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;s.data() = &quot;</span> <span class="o">+</span> <span class="nx">s</span><span class="p">.</span><span class="nx">data</span><span class="p">());</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;Boolean(s.data()) = &quot;</span> <span class="o">+</span> <span class="kr">Boolean</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">data</span><span class="p">()));</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;s.dataSize() = &quot;</span> <span class="o">+</span> <span class="nx">s</span><span class="p">.</span><span class="nx">dataSize</span><span class="p">());</span>
+  <span class="nx">s</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span><span class="p">;</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;s = &#39;&quot;</span> <span class="o">+</span> <span class="nx">s</span> <span class="o">+</span> <span class="s2">&quot;&#39;&quot;</span><span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;s.data() = &quot;</span> <span class="o">+</span> <span class="nx">s</span><span class="p">.</span><span class="nx">data</span><span class="p">());</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;Boolean(s.data()) = &quot;</span> <span class="o">+</span> <span class="kr">Boolean</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">data</span><span class="p">()));</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;s.dataSize() = &quot;</span> <span class="o">+</span> <span class="nx">s</span><span class="p">.</span><span class="nx">dataSize</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">s = &#39;&#39;</span>
+<span class="cm">s.data() = &lt;Opaque&gt;</span>
+<span class="cm">Boolean(s.data()) = true</span>
+<span class="cm">s.dataSize() = 1</span>
+<span class="cm">s = &#39;Hello&#39;</span>
+<span class="cm">s.data() = &lt;Opaque&gt;</span>
+<span class="cm">Boolean(s.data()) = true</span>
+<span class="cm">s.dataSize() = 6</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">The KL Type System</a><ul>
+<li><a class="reference internal" href="#base-types">Base Types</a><ul>
+<li><a class="reference internal" href="#the-boolean-type">The <code class="code docutils literal"><span class="pre">Boolean</span></code> Type</a></li>
+<li><a class="reference internal" href="#integer-types">Integer Types</a><ul>
+<li><a class="reference internal" href="#integer-atomic-methods">Integer Atomic Methods</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#floating-point-types">Floating-Point Types</a></li>
+<li><a class="reference internal" href="#the-string-type">The <code class="docutils literal"><span class="pre">String</span></code> Type</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#derived-types">Derived Types</a><ul>
+<li><a class="reference internal" href="#structures">Structures</a><ul>
+<li><a class="reference internal" href="#structure-member-alignment">Structure Member Alignment</a></li>
+<li><a class="reference internal" href="#structure-inheritance">Structure Inheritance</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#objects">Objects</a><ul>
+<li><a class="reference internal" href="#the-object-clone-method">The Object <code class="docutils literal"><span class="pre">clone()</span></code> Method</a></li>
+<li><a class="reference internal" href="#object-inheritance">Object inheritance</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#interfaces">Interfaces</a><ul>
+<li><a class="reference internal" href="#the-object-interface">The <code class="code docutils literal"><span class="pre">Object</span></code> Interface</a></li>
+<li><a class="reference internal" href="#structure-object-and-interface-access-contols">Structure, Object and Interface Access Contols</a></li>
+<li><a class="reference internal" href="#interfaces-and-inheritance">Interfaces and inheritance</a></li>
+<li><a class="reference internal" href="#forward-declaration-of-objects-and-interfaces">Forward Declaration of Objects and Interfaces</a></li>
+<li><a class="reference internal" href="#unowned-object-and-interface-references">Unowned Object and Interface References</a></li>
+<li><a class="reference internal" href="#the-type-type">The <code class="code docutils literal"><span class="pre">Type</span></code> Type</a></li>
+<li><a class="reference internal" href="#objects-versus-structures">Objects Versus Structures</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#arrays">Arrays</a><ul>
+<li><a class="reference internal" href="#variable-size-arrays">Variable-Size Arrays</a></li>
+<li><a class="reference internal" href="#fixed-size-arrays">Fixed-Size Arrays</a></li>
+<li><a class="reference internal" href="#external-arrays">External Arrays</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#dictionaries">Dictionaries</a><ul>
+<li><a class="reference internal" href="#dictionaries-using-custom-key-types">Dictionaries Using Custom Key Types</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#map-reduce-types">Map-Reduce Types</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#implicit-type-casting-rules-in-kl">Implicit Type Casting Rules in KL</a></li>
+<li><a class="reference internal" href="#type-aliases">Type Aliases</a></li>
+<li><a class="reference internal" href="#the-data-type-and-the-data-and-datasize-methods">The <code class="docutils literal"><span class="pre">Data</span></code> Type and the <code class="docutils literal"><span class="pre">data</span></code> and <code class="docutils literal"><span class="pre">dataSize</span></code> Methods</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="syntax.html"
+                        title="前の章へ">KL Syntax</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="globals.html"
+                        title="次の章へ">Functions and Other Global Declarations</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/KLProgrammingGuide/types.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="globals.html" title="Functions and Other Global Declarations"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="syntax.html" title="KL Syntax"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >KL Programming Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

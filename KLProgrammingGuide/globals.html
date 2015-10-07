@@ -1,0 +1,1912 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Functions and Other Global Declarations &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
+    <link rel="up" title="KL Programming Guide" href="index.html" />
+    <link rel="next" title="Operators and Expressions" href="ops-exprs.html" />
+    <link rel="prev" title="The KL Type System" href="types.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="ops-exprs.html" title="Operators and Expressions"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="types.html" title="The KL Type System"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">KL Programming Guide</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="functions-and-other-global-declarations">
+<span id="globals"></span><h1>Functions and Other Global Declarations<a class="headerlink" href="#functions-and-other-global-declarations" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>In this chapter we detail the different entities that can appear in the global scope of a KL program, including functions and function-like entities, name constants, and instances of the <code class="docutils literal"><span class="pre">require</span></code> statement.  Structure and object definitions can also appear in the global scope and are covered in the section <a class="reference internal" href="types.html#klpg-types"><span>The KL Type System</span></a>.</p>
+<div class="section" id="functions">
+<span id="index-0"></span><span id="id1"></span><h2>Functions<a class="headerlink" href="#functions" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>A function is a collection of program statements that can be called from another part of a program.  A function takes a list of zero or more <em class="dfn">parameters</em> and optionally returns a <em class="dfn">return value</em>.</p>
+<div class="section" id="function-definitions">
+<span id="index-1"></span><h3>Function Definitions<a class="headerlink" href="#function-definitions" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Function definitions in KL are much the same as the &#8220;traditional&#8221; function definition syntax in JavaScript, with the following key differences:</p>
+<ul class="simple">
+<li>The return type and the type of each function parameter must be explicitly declared.  If a function does not return a value, the return type must be omitted.</li>
+<li>The parameter declarations may additionally declare the parameter as input (read-only; the default) by preceding the type by <code class="docutils literal"><span class="pre">in</span></code> or input-output (read-write) by preceding the value by <code class="docutils literal"><span class="pre">io</span></code>.</li>
+<li>Functions can optionally be defined using the <code class="docutils literal"><span class="pre">inline</span></code> keyword in place of <code class="docutils literal"><span class="pre">function</span></code>; see <a class="reference internal" href="#inline"><span>Inline Functions and Methods</span></a>.</li>
+<li>The <code class="docutils literal"><span class="pre">function</span></code> keyword is optional.  If neither <code class="docutils literal"><span class="pre">function</span></code> nor <code class="docutils literal"><span class="pre">inline</span></code> is present then <code class="docutils literal"><span class="pre">function</span></code> is assumed.</li>
+</ul>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Function Definitions</span>
+<span class="cm">*/</span>
+
+<span class="c1">// Function returning a value and using only</span>
+<span class="c1">// input parameters</span>
+
+<span class="kd">function</span> <span class="kr">Float32</span> <span class="nx">add</span><span class="p">(</span><span class="kr">Float32</span> <span class="nx">lhs</span><span class="p">,</span> <span class="kr">Float32</span> <span class="nx">rhs</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">lhs</span> <span class="o">+</span> <span class="nx">rhs</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Function not returning a value and using both</span>
+<span class="c1">// input and input-output parameters</span>
+
+<span class="kd">function</span> <span class="nx">add</span><span class="p">(</span><span class="k">in</span> <span class="kr">Float32</span> <span class="nx">lhs</span><span class="p">,</span> <span class="k">in</span> <span class="kr">Float32</span> <span class="nx">rhs</span><span class="p">,</span> <span class="k">io</span> <span class="kr">Float32</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">result</span> <span class="o">=</span> <span class="nx">lhs</span> <span class="o">+</span> <span class="nx">rhs</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// The &#39;function&#39; keyword is totally optional</span>
+<span class="kr">Float32</span> <span class="nx">double</span><span class="p">(</span><span class="kr">Float32</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="nx">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
+
+  <span class="kr">Float32</span> <span class="nx">addResult</span><span class="p">;</span>
+  <span class="nx">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">addResult</span><span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">addResult</span><span class="p">);</span>
+
+  <span class="nb">report</span><span class="p">(</span><span class="nx">double</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">+4.0</span>
+<span class="cm">+4.0</span>
+<span class="cm">+4.0</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="function-invocations">
+<span id="index-2"></span><h3>Function Invocations<a class="headerlink" href="#function-invocations" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Function invocations (&#8220;calls&#8221;) are made using the same syntax as JavaScript, namely by appending a comma-delimited list of arguments, surrounded by parentheses, to the function name.</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Function Invocation</span>
+<span class="cm">*/</span>
+
+<span class="kd">function</span> <span class="kr">Integer</span> <span class="nx">add</span><span class="p">(</span><span class="kr">Integer</span> <span class="nx">lhs</span><span class="p">,</span> <span class="kr">Integer</span> <span class="nx">rhs</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">lhs</span> <span class="o">+</span> <span class="nx">rhs</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;2 plus 2 is &quot;</span> <span class="o">+</span> <span class="nx">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">2 plus 2 is 4</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="function-prototypes">
+<span id="index-3"></span><h3>Function Prototypes<a class="headerlink" href="#function-prototypes" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>A <em class="dfn">function prototype</em> in KL is a function declaration that is missing a body.  Providing a function prototype allows the function to be called before it is defined.  This is useful under two circumstances:</p>
+<ul>
+<li><p class="first">When two or more functions call each other.  Such functions are sometimes referred to as <em class="dfn">co-recursive</em>:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Co-recursive Functions</span>
+<span class="cm">*/</span>
+
+<span class="c1">// Function prototype for &#39;two&#39;, so that &#39;one&#39; can call it before it is defined</span>
+<span class="kd">function</span> <span class="nx">two</span><span class="p">(</span><span class="kr">Integer</span> <span class="nx">n</span><span class="p">);</span>
+
+<span class="c1">// The function &#39;one&#39; calls &#39;two&#39; even though it is not yet defined</span>
+<span class="kd">function</span> <span class="nx">one</span><span class="p">(</span><span class="kr">Integer</span> <span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;one&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="nx">two</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// The definition of the function &#39;two&#39; comes after its prototype</span>
+<span class="kd">function</span> <span class="nx">two</span><span class="p">(</span><span class="kr">Integer</span> <span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;two&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="nx">one</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">one</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">one</span>
+<span class="cm">two</span>
+<span class="cm">one</span>
+<span class="cm">two</span>
+<span class="cm">one</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">When a function definition is provided by a Fabric extension.  The name of the symbol of the function in the Fabric extension is provided by appending <code class="samp docutils literal"><span class="pre">=</span> <span class="pre">&quot;</span><em><span class="pre">symbol</span> <span class="pre">name</span></em><span class="pre">&quot;</span></code> or <code class="samp docutils literal"><span class="pre">=</span> <span class="pre">'</span><em><span class="pre">symbol</span> <span class="pre">name</span></em><span class="pre">'</span></code> to the function prototype.  These is usually referred to as <a href="#id2"><span class="problematic" id="id3">:defn:`external functions`</span></a>:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: External Functions</span>
+<span class="cm">*/</span>
+
+<span class="c1">// The prototype &#39;libc_perror&#39; is linked to an external function &#39;perror&#39;</span>
+<span class="kd">function</span> <span class="nx">libc_perror</span><span class="p">(</span><span class="nx">Data</span> <span class="nx">cString</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39;perror&#39;</span><span class="p">;</span>
+
+<span class="c1">// The KL function &#39;perror&#39; is what KL functions actually call</span>
+<span class="kd">function</span> <span class="nx">perror</span><span class="p">(</span><span class="kr">String</span> <span class="nx">string</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">libc_perror</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">data</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">perror</span><span class="p">(</span><span class="s2">&quot;something that caused an error&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="polymorphism">
+<span id="id4"></span><h2>Polymorphism<a class="headerlink" href="#polymorphism" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>KL supports <em class="dfn">compile-time function polymorphism</em>.  This means that you can have multiple functions with the same name so long as they have a different number of parameters or those parameters differ by type and/or their input versus input-output qualification.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">It is an error to have two functions with the same name that take exactly the same parameter types but return different types</p>
+</div>
+<p>When a function call is made in KL source, if there are multiple functions with the same name then the KL compiler uses a best-match system to determine which function to call.  Exact parameter type matches are always prioritized over type casts.  If the compiler is unable to choose a unique best match then an error will be reported showing the ambiguity.</p>
+<p>The following example demonstrates a simple use of function polymorphism:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Function Polymorphism</span>
+<span class="cm">*/</span>
+
+<span class="kd">function</span> <span class="nx">display</span><span class="p">(</span><span class="kr">Integer</span> <span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;integer value is &quot;</span> <span class="o">+</span> <span class="nx">a</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">display</span><span class="p">(</span><span class="kr">String</span> <span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;string value is &#39;&quot;</span> <span class="o">+</span> <span class="nx">s</span> <span class="o">+</span> <span class="s2">&quot;&#39;&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kr">Integer</span> <span class="nx">integer</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+  <span class="nx">display</span><span class="p">(</span><span class="nx">integer</span><span class="p">);</span>
+
+  <span class="kr">String</span> <span class="nx">string</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span><span class="p">;</span>
+  <span class="nx">display</span><span class="p">(</span><span class="nx">string</span><span class="p">);</span>
+
+  <span class="kr">Byte</span> <span class="nx">byte</span> <span class="o">=</span> <span class="mi">64</span><span class="p">;</span>
+  <span class="nx">display</span><span class="p">(</span><span class="nx">byte</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">integer value is 42</span>
+<span class="cm">string value is &#39;hello&#39;</span>
+<span class="cm">integer value is 64</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="operators">
+<span id="index-4"></span><span id="id5"></span><h2>Operators<a class="headerlink" href="#operators" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">operator</span></code> keyword in KL is used to mark functions that are to be used as entry points into KL from the Fabric dependency graph.  Operators are declared in the same way as functions except that they must not return a value.  Fabric does special type-checking to ensure that operators are bound properly to nodes in a Fabric dependency graph.</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kd">operator</span> <span class="nx">addElements</span><span class="p">(</span><span class="k">io</span> <span class="kr">Float32</span> <span class="nx">lhs</span><span class="p">,</span> <span class="k">io</span> <span class="kr">Float32</span> <span class="nx">rhs</span><span class="p">,</span> <span class="k">io</span> <span class="kr">Float32</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">result</span> <span class="o">=</span> <span class="nx">lhs</span> <span class="o">+</span> <span class="nx">rhs</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="constructors">
+<span id="klpg-constructor"></span><span id="index-5"></span><h2>Constructors<a class="headerlink" href="#constructors" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>A <em class="dfn">constructor</em> for a user-defined type is a function that initializes a value with the given the type from other values.</p>
+<div class="section" id="constructor-declarations">
+<span id="index-6"></span><h3>Constructor Declarations<a class="headerlink" href="#constructor-declarations" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>A constructor is declared as a function whose name is the name of the user-defined type.  The function can take any number of parameters, all of which must be input parameters; constructors cannot take input-output parameters.  Constructors cannot return values.</p>
+<p>Within the body of a constructor definition, the value being initialized is referred to with the <code class="docutils literal"><span class="pre">this</span></code> keyword; its members are accessed using the <code class="docutils literal"><span class="pre">.</span></code> (dot) operator.  In this context, <code class="docutils literal"><span class="pre">this</span></code> is always read-write, ie. its members can be modified.</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Constructor Declarations</span>
+<span class="cm">*/</span>
+
+<span class="kr">struct</span> <span class="nx">Complex32</span> <span class="p">{</span>
+  <span class="kr">Float32</span> <span class="nx">re</span><span class="p">;</span>
+  <span class="kr">Float32</span> <span class="nx">im</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// The empty constructor;</span>
+<span class="kd">function</span> <span class="nx">Complex32</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">re</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">im</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Construct a Complex from a Float32</span>
+<span class="kd">function</span> <span class="nx">Complex32</span><span class="p">(</span><span class="kr">Float32</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">re</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">im</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Construct a Complex from two Float32s</span>
+<span class="kd">function</span> <span class="nx">Complex32</span><span class="p">(</span><span class="kr">Float32</span> <span class="nx">x</span><span class="p">,</span> <span class="kr">Float32</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">re</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">im</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">Complex32</span><span class="p">());</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">Complex32</span><span class="p">(</span><span class="mf">3.141</span><span class="p">));</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">Complex32</span><span class="p">(</span><span class="mf">3.141</span><span class="p">,</span> <span class="mf">2.718</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">{re:+0.0,im:+0.0}</span>
+<span class="cm">{re:+3.141,im:+0.0}</span>
+<span class="cm">{re:+3.141,im:+2.718}</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+<p>Like functions, constructors can optionally be defined using the <code class="docutils literal"><span class="pre">inline</span></code> keyword in place of <code class="docutils literal"><span class="pre">function</span></code>; see <a class="reference internal" href="#inline"><span>Inline Functions and Methods</span></a>.</p>
+</div>
+<div class="section" id="constructor-invocation">
+<span id="index-7"></span><h3>Constructor Invocation<a class="headerlink" href="#constructor-invocation" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Constructors are invoked in one of several ways.</p>
+<div class="section" id="naked-initialization">
+<h4>Naked Initialization<a class="headerlink" href="#naked-initialization" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>If a variable is declared without any initialization, the <em class="dfn">empty constructor</em> (ie. the constructor that takes no parameters) is invoked to initialize the variable.  This is referred to as <em class="dfn">naked initialization</em>.</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Naked Initialization</span>
+<span class="cm">*/</span>
+
+<span class="kr">struct</span> <span class="nx">MyType</span> <span class="p">{</span>
+  <span class="kr">Integer</span> <span class="nx">n</span><span class="p">;</span>
+  <span class="kr">Float32</span> <span class="nx">x</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// The empty constructor</span>
+<span class="kd">function</span> <span class="nx">MyType</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">n</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="mf">3.141</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">MyType</span> <span class="nx">myType</span><span class="p">;</span> <span class="c1">// invokes the empty constructor</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">myType</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">{n:42,x:+3.141}</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="assignment-initialization">
+<h4>Assignment Initialization<a class="headerlink" href="#assignment-initialization" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>If a variable is assigned to as part of its declaration, a single-parameter constructor is invoked.  This is referred to as <em class="dfn">assignment initialization</em>.  If there isn&#8217;t an exact match for the type of the value assigned, best-match polymorphism rules are used to choose the constructor to invoke.</p>
+<p>Example:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kr">struct</span> <span class="nx">MyType</span> <span class="p">{</span>
+  <span class="kr">String</span> <span class="nx">string</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// Construct from a string</span>
+<span class="kd">function</span> <span class="nx">MyType</span><span class="p">(</span><span class="kr">String</span> <span class="nx">string</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">string</span> <span class="o">=</span> <span class="s2">&quot;The string was &#39;&quot;</span> <span class="o">+</span> <span class="nx">string</span> <span class="o">+</span> <span class="s2">&quot;&#39;&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Construct from a scalar</span>
+<span class="kd">function</span> <span class="nx">MyType</span><span class="p">(</span><span class="kr">Float64</span> <span class="nx">float64</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">string</span> <span class="o">=</span> <span class="s2">&quot;The float64 was &quot;</span> <span class="o">+</span> <span class="nx">float64</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Construct MyType from String value</span>
+  <span class="nx">MyType</span> <span class="nx">myTypeFromString</span> <span class="o">=</span> <span class="s2">&quot;foo&quot;</span><span class="p">;</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">myTypeFromString</span><span class="p">);</span>
+
+  <span class="c1">// Construct MyType from Float64 value</span>
+  <span class="nx">MyType</span> <span class="nx">myTypeFromFloat64</span> <span class="o">=</span> <span class="mf">2.718</span><span class="p">;</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">myTypeFromFloat64</span><span class="p">);</span>
+
+  <span class="c1">// There is no constructor that takes a Boolean but</span>
+  <span class="c1">// there is a cast from Boolean to String</span>
+  <span class="nx">MyType</span> <span class="nx">myTypeFromBoolean</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">myTypeFromBoolean</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-none"><div class="highlight"><pre>{string:&quot;The string was &#39;foo&#39;&quot;}
+{string:&quot;The float64 was 2.718&quot;}
+{string:&quot;The string was &#39;true&#39;&quot;}
+</pre></div>
+</div>
+</div>
+<div class="section" id="invocation-initialization">
+<h4>Invocation Initialization<a class="headerlink" href="#invocation-initialization" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>If a variable is &#8220;called&#8221; (ie. using function call syntax) as part of its declaration, the constructor taking the given arguments is invoked.  This is referred to as <em class="dfn">invocation initialization</em>.  If there isn&#8217;t an exact match for the arguments passed to the call, best-match polymorphism rules are used to choose the constructor to invoke.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>struct Vec2 {
+  Float64 x;
+  Float64 y;
+};
+
+// Construct from two scalars
+function Vec2(Float64 x, Float64 y) {
+  this.x = x;
+  this.y = y;
+}
+
+operator entry() {
+  Vec2 vec2FromFloat64s(3.141, 2.718);
+  report(vec2FromFloat64s);
+  Vec2 vec2FromIntegers(42, -7);  // Uses best-match polymorphism to convert Integer to Float64
+  report(vec2FromIntegers);
+}
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="n">x</span><span class="p">:</span><span class="mf">3.141</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="mf">2.718</span><span class="p">}</span>
+<span class="p">{</span><span class="n">x</span><span class="p">:</span><span class="mi">42</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="o">-</span><span class="mi">7</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="temporary-initialization">
+<span id="klpg-constructor-invocation-temporary"></span><h4>Temporary Initialization<a class="headerlink" href="#temporary-initialization" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>If a function call is performed where the name of the function is the name of the type, the constructor taking the given arguments is invoked to create a temporary value of the named type.  If there isn&#8217;t an exact match for the arguments passed to the call, best-match polymorphism rules are used to choose the constructor to invoke.  This is refered to as <em class="dfn">temporary initialization</em>.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">KL does not distinguish between construction and casting.  Casting a value to a different type is the same as constructing a temporary value of the given type and initializing it, using the appropriate constructor, from the given value.</p>
+</div>
+<p>Example:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kr">struct</span> <span class="nx">Vec2</span> <span class="p">{</span>
+  <span class="kr">Float64</span> <span class="nx">x</span><span class="p">;</span>
+  <span class="kr">Float64</span> <span class="nx">y</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// Construct from two scalars</span>
+<span class="kd">function</span> <span class="nx">Vec2</span><span class="p">(</span><span class="kr">Float64</span> <span class="nx">x</span><span class="p">,</span> <span class="kr">Float64</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">Vec2</span><span class="p">(</span><span class="mf">3.141</span><span class="p">,</span> <span class="mf">2.718</span><span class="p">));</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">Vec2</span><span class="p">(</span><span class="mi">42</span><span class="p">,</span> <span class="o">-</span><span class="mi">7</span><span class="p">));</span>  <span class="c1">// Uses best-match polymorphism to convert Integer to Float64</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="n">x</span><span class="p">:</span><span class="mf">3.141</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="mf">2.718</span><span class="p">}</span>
+<span class="p">{</span><span class="n">x</span><span class="p">:</span><span class="mi">42</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="o">-</span><span class="mi">7</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="base-type-constructors-inheritance">
+<h4>Base type constructors (inheritance)<a class="headerlink" href="#base-type-constructors-inheritance" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 1.13.0 で追加.</span></p>
+</div>
+<p>When a specialized structure or object type <a class="reference internal" href="types.html#kplg-object-inheritance"><span>inherits</span></a> from a base type, the base type&#8217;s default constructor is implicitly called before the specialized type&#8217;s one.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p>It is a current limitation that base type constructors with arguments cannot be called by specialized type constructors. The following example uses an <cite>initialize</cite> method to workaround this issue:</p>
+<div class="last highlight-kl"><div class="highlight"><pre><span class="kr">object</span> <span class="nx">Shape</span> <span class="p">{</span>
+  <span class="kr">Float32</span> <span class="nx">centerX</span><span class="p">,</span> <span class="nx">centerY</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">inline</span> <span class="nx">Shape</span><span class="p">(</span> <span class="kr">Float32</span> <span class="nx">centerX</span><span class="p">,</span> <span class="kr">Float32</span> <span class="nx">centerY</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">initialize</span><span class="p">(</span> <span class="nx">centerX</span><span class="p">,</span> <span class="nx">centerY</span> <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">/// \internal</span>
+<span class="kd">inline</span> <span class="nx">Shape</span><span class="p">.</span><span class="nx">initialize</span><span class="o">!</span><span class="p">(</span> <span class="kr">Float32</span> <span class="nx">centerX</span><span class="p">,</span> <span class="kr">Float32</span> <span class="nx">centerY</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">centerX</span> <span class="o">=</span> <span class="nx">centerX</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">centerY</span> <span class="o">=</span> <span class="nx">centerY</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">object</span> <span class="nx">Circle</span> <span class="o">:</span> <span class="nx">Shape</span> <span class="p">{</span>
+  <span class="kr">Float32</span> <span class="nx">radius</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">inline</span> <span class="nx">Circle</span><span class="p">(</span> <span class="kr">Float32</span> <span class="nx">centerX</span><span class="p">,</span> <span class="kr">Float32</span> <span class="nx">centerY</span><span class="p">,</span> <span class="kr">Float32</span> <span class="nx">radius</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">initialize</span><span class="p">(</span> <span class="nx">centerX</span><span class="p">,</span> <span class="nx">centerY</span> <span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">radius</span> <span class="o">=</span> <span class="nx">radius</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">Circle</span> <span class="nx">c</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span> <span class="nx">c</span> <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">{centerX:+1.0,centerY:+2.0,radius:+3.0}</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="destructors">
+<span id="klpg-destructor"></span><span id="index-8"></span><h2>Destructors<a class="headerlink" href="#destructors" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>A destructor is a function that is called when a variable goes out of scope and its resources are freed.  Destructors are declared by prepending <code class="docutils literal"><span class="pre">~</span></code> (tilde) in front of the name of the type and using it as a function.  Destructors cannot take any parameters or return values.  The destructor is called before the value is freed so that its members are still accessible.  In the body of the destructor the value is referred to using the <code class="docutils literal"><span class="pre">this</span></code> keyword; the value is input-output, ie. it can be modified in the destructor.</p>
+<p>Example use of destructor:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kr">struct</span> <span class="nx">MyType</span> <span class="p">{</span>
+  <span class="kr">String</span> <span class="nx">s</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// Empty constructor</span>
+<span class="kd">function</span> <span class="nx">MyType</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">s</span> <span class="o">=</span> <span class="s2">&quot;foo&quot;</span><span class="p">;</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;Creating MyType: this.s = &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">s</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Destructor</span>
+<span class="kd">function</span> <span class="o">~</span><span class="nx">MyType</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;Destroying MyType: this.s = &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">s</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">MyType</span> <span class="nx">myType</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-python"><div class="highlight"><pre>Creating MyType: this.s = foo
+Destroying MyType: this.s = foo
+</pre></div>
+</div>
+<p>Like functions, destructors can optionally be defined using the <code class="docutils literal"><span class="pre">inline</span></code>
+keyword in place   of <code class="docutils literal"><span class="pre">function</span></code>; see <a class="reference internal" href="#inline"><span>Inline Functions and Methods</span></a>.</p>
+<p>When a specialized structure or object type <a class="reference internal" href="types.html#kplg-object-inheritance"><span>inherits</span></a> from a base type, base type&#8217;s destructor is called after the specialized one.</p>
+</div>
+<div class="section" id="methods">
+<span id="index-9"></span><span id="id6"></span><h2>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>A <em class="dfn">method</em> is a function that operates on a user-defined structure.  It uses a slightly different (and more suggestive) syntax than plain function calls for the case that the method call is strongly tied to a value whose type is a user-defined structure.</p>
+<div class="section" id="method-definitions">
+<span id="index-10"></span><h3>Method Definitions<a class="headerlink" href="#method-definitions" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>If <code class="samp docutils literal"><em><span class="pre">Type</span></em></code> is a structure or alias, then a method named <code class="samp docutils literal"><em><span class="pre">methodName</span></em></code> can be added to the type using the following syntax:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="c1">// A method that returns a value</span>
+<span class="kd">function</span> <span class="o">&lt;</span><span class="nx">ReturnType</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nx">Type</span><span class="o">&gt;</span><span class="p">.</span><span class="o">&lt;</span><span class="nx">methodName</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">parameter</span> <span class="nx">list</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+  <span class="o">&lt;</span><span class="nx">method</span> <span class="nx">body</span><span class="o">&gt;</span>
+<span class="p">}</span>
+
+<span class="c1">// A method that does not return a value</span>
+<span class="kd">function</span> <span class="o">&lt;</span><span class="nx">Type</span><span class="o">&gt;</span><span class="p">.</span><span class="o">&lt;</span><span class="nx">methodName</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">parameter</span> <span class="nx">list</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+  <span class="o">&lt;</span><span class="nx">method</span> <span class="nx">body</span><span class="o">&gt;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Within the method body, <code class="docutils literal"><span class="pre">this</span></code> refers to the value on which the method is called.  <code class="docutils literal"><span class="pre">this</span></code> is read-only if the method returns a value and is read-write if the method does not return a value.</p>
+<p>Like functions, methods can optionally be defined using the <code class="docutils literal"><span class="pre">inline</span></code>
+keyword in place   of <code class="docutils literal"><span class="pre">function</span></code>; see <a class="reference internal" href="#inline"><span>Inline Functions and Methods</span></a>.</p>
+</div>
+<div class="section" id="method-invocation">
+<span id="index-11"></span><h3>Method Invocation<a class="headerlink" href="#method-invocation" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>If <code class="samp docutils literal"><em><span class="pre">value</span></em></code> is a value of type <code class="samp docutils literal"><em><span class="pre">Type</span></em></code> then the method <code class="samp docutils literal"><em><span class="pre">methodName</span></em></code> can be invoked on <code class="samp docutils literal"><em><span class="pre">value</span></em></code> using the expression <code class="samp docutils literal"><em><span class="pre">value</span></em><span class="pre">.</span><em><span class="pre">methodName</span></em><span class="pre">(</span><em><span class="pre">argument</span> <span class="pre">list</span></em><span class="pre">)</span></code>.</p>
+<p>Just as there can be multiple functions with the same name, a given type can have multiple methods with the same name.  When deciding which method to invoke, the usual best-match rules apply.</p>
+<p>Example of method definition and invocation:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Method Definition and Invocation</span>
+<span class="cm">*/</span>
+
+<span class="kr">struct</span> <span class="nx">MyType</span> <span class="p">{</span>
+  <span class="kr">Integer</span> <span class="nx">a</span><span class="p">;</span>
+  <span class="kr">Float32</span> <span class="nx">b</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// Add method desc to MyType</span>
+<span class="kd">function</span> <span class="kr">String</span> <span class="nx">MyType</span><span class="p">.</span><span class="nx">desc</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="s2">&quot;a:&quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">a</span> <span class="o">+</span> <span class="s2">&quot;; b:&quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">b</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">MyType</span> <span class="nx">t</span><span class="p">;</span>
+  <span class="nx">t</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="nx">t</span><span class="p">.</span><span class="nx">b</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">;</span>
+  <span class="c1">// Reports &#39;a:1; b:3.14&#39;</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">desc</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">a:1; b:+3.14</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="methods-taking-read-only-or-read-write-values-for-this">
+<span id="klpg-method-this-type"></span><h3>Methods Taking Read-Only or Read-Write Values for <code class="docutils literal"><span class="pre">this</span></code><a class="headerlink" href="#methods-taking-read-only-or-read-write-values-for-this" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="versionchanged">
+<p><span class="versionmodified">バージョン 1.12.0 で変更: </span><code class="code docutils literal"><span class="pre">this</span></code> now always defaults to read-only in method definitions unless an explicit <code class="code docutils literal"><span class="pre">!</span></code> is specified after method name; the default no longer depends on whether the method returns a value.</p>
+</div>
+<p>Whether <code class="code docutils literal"><span class="pre">this</span></code> is read-only or read-write (in compiler terms, an r-value or an l-value) can be controlled on a per-method basis.  By default, <code class="code docutils literal"><span class="pre">this</span></code> is read-only; <code class="code docutils literal"><span class="pre">this</span></code> can be made read-write by suffixing the method name with <code class="docutils literal"><span class="pre">!</span></code> (exclamation mark).  The method name can be suffixed with <code class="code docutils literal"><span class="pre">?</span></code> (question mark) to explicitly mark read-only methods.</p>
+<p>Example of explicit read-only or read-write <code class="code docutils literal"><span class="pre">this</span></code> in methods:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Explcit read-only or read-write &quot;this&quot; in methods</span>
+<span class="cm">*/</span>
+
+<span class="kr">struct</span> <span class="nx">Vec2</span> <span class="p">{</span>
+  <span class="kr">Float64</span> <span class="nx">x</span><span class="p">;</span>
+  <span class="kr">Float64</span> <span class="nx">y</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">Vec2</span><span class="p">(</span><span class="k">in</span> <span class="kr">Float64</span> <span class="nx">x</span><span class="p">,</span> <span class="k">in</span> <span class="kr">Float64</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Explicitly make &#39;this&#39; read-only</span>
+<span class="kd">function</span> <span class="nx">Vec2</span><span class="p">.</span><span class="nx">getComponents</span><span class="o">?</span><span class="p">(</span><span class="k">io</span> <span class="kr">Float64</span> <span class="nx">x</span><span class="p">,</span> <span class="k">io</span> <span class="kr">Float64</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">x</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
+  <span class="nx">y</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="kr">Float64</span> <span class="nx">Vec2</span><span class="p">.</span><span class="nx">normSq</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="o">*</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="o">*</span><span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="kr">Float64</span> <span class="nx">Vec2</span><span class="p">.</span><span class="nx">norm</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">sqrt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">normSq</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">Vec2</span><span class="p">.</span><span class="o">/=</span><span class="p">(</span><span class="k">in</span> <span class="kr">Float64</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">/=</span> <span class="nx">value</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">/=</span> <span class="nx">value</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Explicitly make &#39;this&#39; read-write</span>
+<span class="kd">function</span> <span class="kr">Float64</span> <span class="nx">Vec2</span><span class="p">.</span><span class="nx">normalizeAndReturnOldNorm</span><span class="o">!</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kr">Float64</span> <span class="nx">oldNorm</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">norm</span><span class="p">();</span>
+  <span class="k">this</span> <span class="o">/=</span> <span class="nx">oldNorm</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">oldNorm</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">Vec2</span> <span class="nx">vec2</span><span class="p">(</span><span class="mf">3.14</span><span class="p">,</span> <span class="mf">2.71</span><span class="p">);</span>
+
+  <span class="kr">Float64</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">;</span>
+  <span class="nx">vec2</span><span class="p">.</span><span class="nx">getComponents</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;vec2.getComponents: x=&quot;</span> <span class="o">+</span> <span class="nx">x</span> <span class="o">+</span> <span class="s2">&quot;, y=&quot;</span> <span class="o">+</span> <span class="nx">y</span><span class="p">);</span>
+
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;vec2.normalizeAndReturnOldNorm returned &quot;</span> <span class="o">+</span> <span class="nx">vec2</span><span class="p">.</span><span class="nx">normalizeAndReturnOldNorm</span><span class="p">());</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;vec2 is now &quot;</span> <span class="o">+</span> <span class="nx">vec2</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">vec2.getComponents: x=+3.14, y=+2.71</span>
+<span class="cm">vec2.normalizeAndReturnOldNorm returned +4.147734321289154</span>
+<span class="cm">vec2 is now {x:+0.757039809392627,y:+0.653368752692363}</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="interface-methods-and-inheritance">
+<span id="klpg-method-interface-inheritance"></span><h3>Interface methods and inheritance<a class="headerlink" href="#interface-methods-and-inheritance" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 1.13.0 で追加.</span></p>
+</div>
+<p>Although it is usually transparent to the KL coder, interface method&#8217;s calling mechanism differs from usual methods, and this requires special care in some situations.</p>
+<p>A specialized object can inherit from a <a class="reference internal" href="types.html#kplg-object-inheritance"><span>base object type</span></a>. If that base type implements an interface, the specialized object can provide its own implementation of the same interface methods. In that case, invoking the interface method will always call the specialized version of the method (the specialized object method <cite>overrides</cite> the base object method). This is always true, and it doesn&#8217;t matter if the method is called in the context of functions, specialized object&#8217;s methods, or base object&#8217;s method.</p>
+<p>However, it is frequent that the specialized implementation of a method needs to invoke its base implementation. The <code class="samp docutils literal"><em><span class="pre">Type</span></em><span class="pre">.parent.</span><em><span class="pre">methodName</span></em></code> syntax allows a specialized class to invoke the base implementation of an interface method, as seen below:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kr">interface</span> <span class="nx">Described</span> <span class="p">{</span>
+  <span class="kr">String</span> <span class="nx">describe</span><span class="p">();</span>
+<span class="p">};</span>
+
+<span class="kr">object</span> <span class="nx">Shape</span> <span class="o">:</span> <span class="nx">Described</span> <span class="p">{</span>
+  <span class="kr">Float32</span> <span class="nx">centerX</span><span class="p">,</span> <span class="nx">centerY</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="kr">String</span> <span class="nx">Shape</span><span class="p">.</span><span class="nx">describe</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="s2">&quot;Center: (&quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">centerX</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">centerY</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">object</span> <span class="nx">Circle</span> <span class="o">:</span> <span class="nx">Shape</span> <span class="p">{</span>
+  <span class="kr">Float32</span> <span class="nx">radius</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">inline</span> <span class="nx">Circle</span><span class="p">.</span><span class="nx">setRadius</span><span class="o">!</span><span class="p">(</span> <span class="kr">Float32</span> <span class="nx">r</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">radius</span> <span class="o">=</span> <span class="nx">r</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="kr">String</span> <span class="nx">Circle</span><span class="p">.</span><span class="nx">describe</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Call Shape.describe and append to it</span>
+  <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">describe</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot; Radius: &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">Circle</span> <span class="nx">c</span><span class="p">();</span>
+  <span class="nx">c</span><span class="p">.</span><span class="nx">centerX</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="nx">c</span><span class="p">.</span><span class="nx">centerY</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="nx">c</span><span class="p">.</span><span class="nx">radius</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+
+  <span class="nx">Described</span> <span class="nx">d</span> <span class="o">=</span> <span class="nx">c</span><span class="p">;</span>
+  <span class="nb">report</span><span class="p">(</span> <span class="nx">d</span><span class="p">.</span><span class="nx">describe</span><span class="p">()</span> <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">Center: (+1.0, +2.0) Radius: +3.0</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="access-to-methods">
+<span id="klpg-methods-access"></span><h3>Access to Methods<a class="headerlink" href="#access-to-methods" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 1.15.0 で追加.</span></p>
+</div>
+<p>Access to methods can be controlled in the same was as <span class="xref std std-ref">access to members</span> using the <code class="docutils literal"><span class="pre">public</span></code>, <code class="docutils literal"><span class="pre">private</span></code> and <code class="docutils literal"><span class="pre">protected</span></code> keywords:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Access to Methods</span>
+<span class="cm">*/</span>
+
+<span class="kr">interface</span> <span class="nx">Int</span>
+<span class="p">{</span>
+  <span class="k">private</span> <span class="nx">int_priv</span><span class="p">();</span>
+  <span class="k">protected</span> <span class="nx">int_prot</span><span class="p">();</span>
+<span class="p">};</span>
+
+<span class="kr">object</span> <span class="nx">A</span> <span class="o">:</span> <span class="nx">Int</span>
+<span class="p">{</span>
+<span class="p">};</span>
+
+<span class="k">public</span> <span class="nx">A</span><span class="p">.</span><span class="nx">a_pub</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">int_priv</span><span class="p">();</span> <span class="c1">// ok since A implements Int</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">int_prot</span><span class="p">();</span> <span class="c1">// ok since A implements Int</span>
+<span class="p">}</span>
+
+<span class="k">protected</span> <span class="nx">A</span><span class="p">.</span><span class="nx">a_prot</span><span class="p">()</span> <span class="p">{}</span>
+<span class="k">private</span> <span class="nx">A</span><span class="p">.</span><span class="nx">a_priv</span><span class="p">()</span> <span class="p">{}</span>
+
+<span class="nx">A</span><span class="p">.</span><span class="nx">int_priv</span><span class="p">()</span> <span class="p">{}</span>
+<span class="nx">A</span><span class="p">.</span><span class="nx">int_prot</span><span class="p">()</span> <span class="p">{}</span>
+
+<span class="kr">object</span> <span class="nx">B</span> <span class="o">:</span> <span class="nx">A</span>
+<span class="p">{</span>
+<span class="p">};</span>
+
+<span class="k">public</span> <span class="nx">A</span><span class="p">.</span><span class="nx">b_pub</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">int_priv</span><span class="p">();</span> <span class="c1">// error since int_priv is private</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">int_prot</span><span class="p">();</span> <span class="c1">// ok since B inherits A</span>
+<span class="p">}</span>
+
+<span class="k">protected</span> <span class="nx">B</span><span class="p">.</span><span class="nx">b_prot</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">a_prot</span><span class="p">();</span> <span class="c1">// ok since B inherits A</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="nx">B</span><span class="p">.</span><span class="nx">b_priv</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">a_priv</span><span class="p">();</span> <span class="c1">// error since a_priv is private</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="nx">A</span> <span class="nx">a</span><span class="p">();</span>
+  <span class="nx">a</span><span class="p">.</span><span class="nx">a_pub</span><span class="p">();</span> <span class="c1">// ok since a_pub is public</span>
+  <span class="nx">a</span><span class="p">.</span><span class="nx">a_prot</span><span class="p">();</span> <span class="c1">// error since a_prot is protected</span>
+  <span class="nx">a</span><span class="p">.</span><span class="nx">a_priv</span><span class="p">();</span> <span class="c1">// error since a_prot is private</span>
+
+  <span class="nx">B</span> <span class="nx">b</span><span class="p">();</span>
+  <span class="nx">b</span><span class="p">.</span><span class="nx">b_pub</span><span class="p">();</span> <span class="c1">// ok since a_pub is public</span>
+  <span class="nx">b</span><span class="p">.</span><span class="nx">b_prot</span><span class="p">();</span> <span class="c1">// error since a_prot is protected</span>
+  <span class="nx">b</span><span class="p">.</span><span class="nx">b_priv</span><span class="p">();</span> <span class="c1">// error since a_prot is private</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+<span class="cm">(stdin):52:3: error: cannot access protected function A.a_prot?()</span>
+<span class="cm">(stdin):53:3: error: cannot access private function A.a_priv?()</span>
+<span class="cm">(stdin):57:3: error: cannot access protected function B.b_prot?()</span>
+<span class="cm">(stdin):58:3: error: cannot access private function B.b_priv?()</span>
+<span class="cm">(stdin):45:3: error: cannot access private function A.a_priv?()</span>
+
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="overloaded-operators">
+<span id="index-12"></span><h2>Overloaded Operators<a class="headerlink" href="#overloaded-operators" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>KL allows overloading of binary operators and compound assignment operators for custom types (ie. specified through <code class="docutils literal"><span class="pre">struct</span></code>).</p>
+<p>Like functions, operator overloads can optionally be defined using the
+<code class="docutils literal"><span class="pre">inline</span></code> keyword in place   of <code class="docutils literal"><span class="pre">function</span></code>; see <a class="reference internal" href="#inline"><span>Inline Functions and Methods</span></a>.</p>
+<div class="section" id="binary-operator-overloads">
+<span id="index-13"></span><h3>Binary Operator Overloads<a class="headerlink" href="#binary-operator-overloads" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Binary operators can be overloaded using the following syntax:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Binary Operator Overloads</span>
+<span class="cm">*/</span>
+
+<span class="kr">struct</span> <span class="nx">MyType</span> <span class="p">{</span>
+  <span class="kr">Integer</span> <span class="nx">a</span><span class="p">;</span>
+  <span class="kr">Float32</span> <span class="nx">b</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">MyType</span> <span class="o">+</span><span class="p">(</span><span class="nx">MyType</span> <span class="nx">lhs</span><span class="p">,</span> <span class="nx">MyType</span> <span class="nx">rhs</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">MyType</span> <span class="nx">result</span><span class="p">;</span>
+  <span class="nx">result</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="nx">lhs</span><span class="p">.</span><span class="nx">a</span> <span class="o">+</span> <span class="nx">rhs</span><span class="p">.</span><span class="nx">a</span><span class="p">;</span>
+  <span class="nx">result</span><span class="p">.</span><span class="nx">b</span> <span class="o">=</span> <span class="nx">lhs</span><span class="p">.</span><span class="nx">b</span> <span class="o">+</span> <span class="nx">rhs</span><span class="p">.</span><span class="nx">b</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">MyType</span> <span class="nx">t1</span><span class="p">;</span> <span class="nx">t1</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span> <span class="nx">t1</span><span class="p">.</span><span class="nx">b</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">;</span> <span class="nb">report</span><span class="p">(</span><span class="nx">t1</span><span class="p">);</span>
+  <span class="nx">MyType</span> <span class="nx">t2</span><span class="p">;</span> <span class="nx">t2</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span> <span class="nx">t2</span><span class="p">.</span><span class="nx">b</span> <span class="o">=</span> <span class="mf">2.72</span><span class="p">;</span> <span class="nb">report</span><span class="p">(</span><span class="nx">t2</span><span class="p">);</span>
+  <span class="nx">MyType</span> <span class="nx">t3</span> <span class="o">=</span> <span class="nx">t1</span> <span class="o">+</span> <span class="nx">t2</span><span class="p">;</span> <span class="nb">report</span><span class="p">(</span><span class="nx">t3</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">{a:42,b:+3.14}</span>
+<span class="cm">{a:7,b:+2.72}</span>
+<span class="cm">{a:49,b:+5.86}</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+<p>Any of the binary arithmetic (<code class="docutils literal"><span class="pre">+</span></code>, <code class="docutils literal"><span class="pre">-</span></code>, <code class="docutils literal"><span class="pre">*</span></code>, <code class="docutils literal"><span class="pre">/</span></code> and <code class="docutils literal"><span class="pre">%</span></code>), bitwise (<code class="docutils literal"><span class="pre">|</span></code>, <code class="docutils literal"><span class="pre">&amp;</span></code>, <code class="docutils literal"><span class="pre">^</span></code>, <code class="docutils literal"><span class="pre">&lt;&lt;</span></code> and <code class="docutils literal"><span class="pre">&gt;&gt;</span></code>) and comparison (<code class="docutils literal"><span class="pre">==</span></code>, <code class="docutils literal"><span class="pre">!=</span></code>, <code class="docutils literal"><span class="pre">&lt;</span></code>, <code class="docutils literal"><span class="pre">&lt;=</span></code>, <code class="docutils literal"><span class="pre">&gt;</span></code> and <code class="docutils literal"><span class="pre">&gt;=</span></code>) operators can be overloaded.</p>
+<p>Binary operator overloads are subject to the following restrictions:</p>
+<ul class="simple">
+<li>They must take exactly two parameters.  The two parameters may be of any type and the two types may be different but they must both be input-only parameters.</li>
+<li>They must return a value.  However, the return type can be any type.</li>
+</ul>
+</div>
+<div class="section" id="unary-operator-overloads">
+<span id="klpg-unary-op-overloads"></span><span id="index-14"></span><h3>Unary Operator Overloads<a class="headerlink" href="#unary-operator-overloads" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 1.12.0 で追加: </span>Unary Operator Overloads</p>
+</div>
+<p>Unary operators can be overloaded using the following syntax:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Binary Operator Overloads</span>
+<span class="cm">*/</span>
+
+<span class="kr">struct</span> <span class="nx">MyType</span> <span class="p">{</span>
+  <span class="kr">Integer</span> <span class="nx">a</span><span class="p">;</span>
+  <span class="kr">Float32</span> <span class="nx">b</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">MyType</span> <span class="o">-</span><span class="nx">MyType</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">MyType</span> <span class="nx">result</span><span class="p">;</span>
+  <span class="nx">result</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="o">-</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">;</span>
+  <span class="nx">result</span><span class="p">.</span><span class="nx">b</span> <span class="o">=</span> <span class="o">-</span><span class="k">this</span><span class="p">.</span><span class="nx">b</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">MyType</span> <span class="nx">t1</span><span class="p">;</span> <span class="nx">t1</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span> <span class="nx">t1</span><span class="p">.</span><span class="nx">b</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">;</span> <span class="nb">report</span><span class="p">(</span><span class="o">-</span><span class="nx">t1</span><span class="p">);</span>
+  <span class="nx">MyType</span> <span class="nx">t2</span><span class="p">;</span> <span class="nx">t2</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span> <span class="nx">t2</span><span class="p">.</span><span class="nx">b</span> <span class="o">=</span> <span class="mf">2.72</span><span class="p">;</span> <span class="nb">report</span><span class="p">(</span><span class="o">-</span><span class="nx">t2</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">{a:-42,b:-3.14}</span>
+<span class="cm">{a:-7,b:-2.72}</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+<p>Only the unary operators <code class="docutils literal"><span class="pre">+</span></code>, <code class="docutils literal"><span class="pre">-</span></code> and <code class="docutils literal"><span class="pre">~</span></code> can be overloaded.</p>
+<p>Unary operator overloads are subject to the following restrictions:</p>
+<ul class="simple">
+<li>They must return a value.  However, the return type can be any type.</li>
+</ul>
+</div>
+<div class="section" id="direct-assignment-overloads">
+<span id="overloading-direct-ass-op"></span><span id="index-15"></span><h3>Direct Assignment Overloads<a class="headerlink" href="#direct-assignment-overloads" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>KL provides a default direct assignment for custom types which simply assigns each of the members.  However, it is also possible to provide an overload for the direct assignment operator as shown in the example below:</p>
+<div class="highlight-python"><div class="highlight"><pre>.. kl-example:: Direct Assignment Overload
+</pre></div>
+</div>
+<blockquote>
+<div><dl class="docutils">
+<dt>struct A {</dt>
+<dd>UInt32 a;</dd>
+</dl>
+<p>};</p>
+<dl class="docutils">
+<dt>A(UInt32 x) {</dt>
+<dd>this.a = x;</dd>
+</dl>
+<p>}</p>
+<dl class="docutils">
+<dt>A.=(A a) {</dt>
+<dd>report(&#8220;Performing assignment&#8221;);
+this.a = 2 * a.a;</dd>
+</dl>
+<p>}</p>
+<dl class="docutils">
+<dt>operator entry() {</dt>
+<dd>A a1(42), a2(56);
+report(&#8220;Before: a1 = &#8221; + a1 + &#8221;, a2 = &#8221; + a2);
+a1 = a2;
+report(&#8220;After: a1 = &#8221; + a1 + &#8221;, a2 = &#8221; + a2);</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p>Compound assignment overloads are subject to the following restrictions:</p>
+<ul class="simple">
+<li>They must take exactly one parameter.  The parameter may be of any type but it must be an input-only parameter.</li>
+<li>They must not return a value.</li>
+</ul>
+</div>
+<div class="section" id="compound-assignment-overloads">
+<span id="overloading-compound-ass-ops"></span><h3>Compound Assignment Overloads<a class="headerlink" href="#compound-assignment-overloads" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>KL provides a default direct assignment for custom types which simply assigns each of the members.  It also provides a default <em class="dfn">compound assignment</em> operator (ie. <code class="docutils literal"><span class="pre">+=</span></code>, <code class="docutils literal"><span class="pre">-=</span></code>, <code class="docutils literal"><span class="pre">*=</span></code>, <code class="docutils literal"><span class="pre">/=</span></code>, <code class="docutils literal"><span class="pre">%=</span></code>, <code class="docutils literal"><span class="pre">|=</span></code>, <code class="docutils literal"><span class="pre">&amp;=</span></code>, <code class="docutils literal"><span class="pre">^=</span></code>, <code class="docutils literal"><span class="pre">&lt;&lt;=</span></code> and <code class="docutils literal"><span class="pre">&gt;&gt;=</span></code>) by composing the associated binary operator, if available, with an assignment.</p>
+<p>However, it is also possible to provide an overload for any of the compound assignment operators using the following syntax:</p>
+<div class="highlight-python"><div class="highlight"><pre>struct Type {
+  Integer a;
+  Float32 b;
+};
+
+function Type.+=(Type that) {
+  this.a += that.a;
+  this.b += that.b;
+}
+
+operator entry() {
+  Type t1; t1.a = 42; t1.b = 3.14; report(&quot;t1 is &quot; + t1);
+  Type t2; t2.a = 7; t2.b = 2.72; report(&quot;t2 is &quot; + t2);
+  t1 += t2; report(&quot;t1 is now &quot; + t1);
+}
+</pre></div>
+</div>
+<p>This produces the following output:</p>
+<div class="highlight-python"><div class="highlight"><pre>t1 is {a:42,b:3.14}
+t2 is {a:7,b:2.72}
+t1 is now {a:49,b:5.86}
+</pre></div>
+</div>
+<p>Compound assignment overloads are subject to the following restrictions:</p>
+<ul class="simple">
+<li>They must take exactly one parameter.  The parameter may be of any type but it must be an input-only parameter.</li>
+<li>They must not return a value.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="inline-functions-and-methods">
+<span id="inline"></span><span id="index-16"></span><h2>Inline Functions and Methods<a class="headerlink" href="#inline-functions-and-methods" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Functions, methods, and so on&#8211;but not operators&#8211;can optionally be declared
+with the <code class="docutils literal"><span class="pre">inline</span></code> keyword in place of the <code class="docutils literal"><span class="pre">function</span></code> keyword, which tells
+KL to try to inline the function  definition wherever it is used. <code class="docutils literal"><span class="pre">inline</span></code>
+should generally only be used on small functions, which this may result in
+improved runtime performance:</p>
+<div class="highlight-python"><div class="highlight"><pre>inline Integer add(Integer lhs, Integer rhs) {
+  return lhs + rhs;
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="built-in-functions-and-methods">
+<span id="index-17"></span><h2>Built-In Functions and Methods<a class="headerlink" href="#built-in-functions-and-methods" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>KL has several built-in functions and methods that are available to all KL programs.</p>
+<div class="section" id="debugging-functions">
+<h3>Debugging Functions<a class="headerlink" href="#debugging-functions" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<dl class="function">
+<dt id="report">
+<em class="property">function </em><code class="descname">report</code><span class="sig-paren">(</span><em>String message</em><span class="sig-paren">)</span><a class="headerlink" href="#report" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Outputs a message to wherever messages are sent from KL; when Fabric Engine is used from the command line or when the KL tool is used the output is sent to standard error and standard output respectively.  A newline is appended to the message when it is sent.</p>
+<p>Within Fabric Engine the report function is primarily used for debugging, whereas it is used for general output from the KL tool.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="dumpstack">
+<em class="property">function </em><code class="descname">dumpstack</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dumpstack" title="この定義へのパーマリンク">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified">バージョン 1.13.0 で追加.</span></p>
+</div>
+</dd></dl>
+
+<p>Outputs the KL function call stack that leads to the calling location, including KL file names and line numbers. For example the following KL code:</p>
+<div class="highlight-python"><div class="highlight"><pre>function func2()
+{
+  dumpstack();
+}
+
+function func1()
+{
+  func2();
+}
+
+operator entry()
+{
+  func1();
+}
+</pre></div>
+</div>
+<p>Will output:</p>
+<div class="highlight-python"><div class="highlight"><pre>1 function.func2() call.kl:4
+2 function.func1() call.kl:9
+3 operator.entry() call.kl:14
+4 kl.internal.entry.stub.cpu()
+</pre></div>
+</div>
+</div>
+<div class="section" id="error-status-functions">
+<h3>Error Status Functions<a class="headerlink" href="#error-status-functions" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>KL maintains a contextual error status which can be set, queried and reset using some built-in functions. This status is restricted to the contextual KL evaluation and thread. Some KL operations such as integer divide-by-zero and array out-of-bounds access (when running KL with bounds checking enabled) will internally call <a class="reference internal" href="#setError" title="setError"><code class="xref kl kl-func docutils literal"><span class="pre">setError</span></code></a>. Fabric Engine extensions typically set the error status as a way to report operation failures.</p>
+<dl class="function">
+<dt id="getLastError">
+<em class="property">function </em><em class="property">String </em><code class="descname">getLastError</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#getLastError" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the last error status that was set.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="clearLastError">
+<em class="property">function </em><code class="descname">clearLastError</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#clearLastError" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Resets the last error status.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="setError">
+<em class="property">function </em><code class="descname">setError</code><span class="sig-paren">(</span><em>String status</em><span class="sig-paren">)</span><a class="headerlink" href="#setError" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Sets a new error status and reports it using the <a class="reference internal" href="#report" title="report"><code class="xref kl kl-func docutils literal"><span class="pre">report</span></code></a> mechanism.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="integer-numerical-functions">
+<span id="id7"></span><h3>Integer Numerical Functions<a class="headerlink" href="#integer-numerical-functions" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>KL has support for several integer numerical functions that are helpful when dealing with integer expressions.  Each of these functions has a version for each of the numerical types (<code class="docutils literal"><span class="pre">UInt8</span></code>, <code class="docutils literal"><span class="pre">SInt8</span></code>; <code class="docutils literal"><span class="pre">UInt16</span></code>, <code class="docutils literal"><span class="pre">SInt16</span></code>; <code class="docutils literal"><span class="pre">UInt32</span></code>, <code class="docutils literal"><span class="pre">SInt32</span></code>; <code class="docutils literal"><span class="pre">UInt64</span></code>, <code class="docutils literal"><span class="pre">SInt64</span></code>). The one that is called is chosen using polymorphism best-match rules; see <a class="reference internal" href="#polymorphism"><span>Polymorphism</span></a>.</p>
+<dl class="function">
+<dt id="abs">
+<em class="property">function </em><em class="property">&lt;SignedIntegerType&gt; </em><code class="descname">abs</code><span class="sig-paren">(</span><em>&lt;IntegerType&gt; n</em><span class="sig-paren">)</span><a class="headerlink" href="#abs" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns the integer absolute value of the argument.</p>
+<p>Regardless of the type of the argument <code class="docutils literal"><span class="pre">n</span></code>, the type of the return value is signed, and is the absolute value of the argument <code class="docutils literal"><span class="pre">n</span></code> interpreted as a signed integer.  This allows the <code class="docutils literal"><span class="pre">abs</span></code> function to be used on expressions involving differences of unsigned integers, eg. <code class="docutils literal"><span class="pre">abs(Size(offset)-Size(index))</span></code></p>
+</dd></dl>
+
+</div>
+<div class="section" id="floating-point-numerical-functions">
+<span id="floatingpoint-numerical-functions"></span><h3>Floating-Point Numerical Functions<a class="headerlink" href="#floating-point-numerical-functions" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>KL has support for many of the &#8220;standard library&#8221; floating-point numerical functions from C.  Each of these functions has a version that takes a parameter or parameters of type <code class="docutils literal"><span class="pre">Float32</span></code>, and another that takes a parameter or parameters of type <code class="docutils literal"><span class="pre">Float64</span></code>.  The one that is called is chosen using polymorphism best-match rules; see <a class="reference internal" href="#polymorphism"><span>Polymorphism</span></a>.</p>
+<div class="section" id="trigonometric-functions">
+<span id="id8"></span><h4>Trigonometric Functions<a class="headerlink" href="#trigonometric-functions" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>Like the C standard library, all trigonometric function use radians for their arguments and return values, where appropriate.</p>
+<dl class="function">
+<dt id="sin">
+<em class="property">function </em><em class="property">Float32 </em><code class="descname">sin</code><span class="sig-paren">(</span><em>Float32 x</em><span class="sig-paren">)</span><a class="headerlink" href="#sin" title="この定義へのパーマリンク">¶</a></dt>
+<dt>
+<em class="property">function </em><em class="property">Float64 </em><code class="descname">sin</code><span class="sig-paren">(</span><em>Float64 x</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns the sine of the angle <code class="samp docutils literal"><em><span class="pre">x</span></em></code>.  <code class="samp docutils literal"><em><span class="pre">x</span></em></code> is measured in radians.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cos">
+<em class="property">function </em><em class="property">Float32 </em><code class="descname">cos</code><span class="sig-paren">(</span><em>Float32 x</em><span class="sig-paren">)</span><a class="headerlink" href="#cos" title="この定義へのパーマリンク">¶</a></dt>
+<dt>
+<em class="property">function </em><em class="property">Float64 </em><code class="descname">cos</code><span class="sig-paren">(</span><em>Float64 x</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns the cosine of the angle <code class="samp docutils literal"><em><span class="pre">x</span></em></code>.  <code class="samp docutils literal"><em><span class="pre">x</span></em></code> is measured in radians.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tan">
+<em class="property">function </em><em class="property">Float32 </em><code class="descname">tan</code><span class="sig-paren">(</span><em>Float32 x</em><span class="sig-paren">)</span><a class="headerlink" href="#tan" title="この定義へのパーマリンク">¶</a></dt>
+<dt>
+<em class="property">function </em><em class="property">Float64 </em><code class="descname">tan</code><span class="sig-paren">(</span><em>Float64 x</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns the tangent of the angle <code class="samp docutils literal"><em><span class="pre">x</span></em></code>.  <code class="samp docutils literal"><em><span class="pre">x</span></em></code> is measured in radians.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="asin">
+<em class="property">function </em><em class="property">Float32 </em><code class="descname">asin</code><span class="sig-paren">(</span><em>Float32 x</em><span class="sig-paren">)</span><a class="headerlink" href="#asin" title="この定義へのパーマリンク">¶</a></dt>
+<dt>
+<em class="property">function </em><em class="property">Float64 </em><code class="descname">asin</code><span class="sig-paren">(</span><em>Float64 x</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns the arcsine of the argument <code class="samp docutils literal"><em><span class="pre">x</span></em></code>.  The return value is measured in radians.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="acos">
+<em class="property">function </em><em class="property">Float32 </em><code class="descname">acos</code><span class="sig-paren">(</span><em>Float32 x</em><span class="sig-paren">)</span><a class="headerlink" href="#acos" title="この定義へのパーマリンク">¶</a></dt>
+<dt>
+<em class="property">function </em><em class="property">Float64 </em><code class="descname">acos</code><span class="sig-paren">(</span><em>Float64 x</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns the arccosine of the argument <code class="samp docutils literal"><em><span class="pre">x</span></em></code>.  The return value is measured in radians.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="atan">
+<em class="property">function </em><em class="property">Float32 </em><code class="descname">atan</code><span class="sig-paren">(</span><em>Float32 x</em><span class="sig-paren">)</span><a class="headerlink" href="#atan" title="この定義へのパーマリンク">¶</a></dt>
+<dt>
+<em class="property">function </em><em class="property">Float64 </em><code class="descname">atan</code><span class="sig-paren">(</span><em>Float64 x</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns the arctangent of the argument <code class="samp docutils literal"><em><span class="pre">x</span></em></code>.  The return value is measured in radians.</p>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">This function doesn&#8217;t work for large <code class="samp docutils literal"><em><span class="pre">x</span></em></code> and can only return values in the range ; use the <a class="reference internal" href="#atan2" title="atan2"><code class="xref kl kl-func docutils literal"><span class="pre">atan2</span></code></a> function instead when possible.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="atan2">
+<em class="property">function </em><em class="property">Float32 </em><code class="descname">atan2</code><span class="sig-paren">(</span><em>Float32 y</em>, <em>Float32 x</em><span class="sig-paren">)</span><a class="headerlink" href="#atan2" title="この定義へのパーマリンク">¶</a></dt>
+<dt>
+<em class="property">function </em><em class="property">Float64 </em><code class="descname">atan2</code><span class="sig-paren">(</span><em>Float64 y</em>, <em>Float64 x</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns the arctangent of the ratio <code class="samp docutils literal"><em><span class="pre">y</span></em><span class="pre">/</span><em><span class="pre">x</span></em></code>; the result is measured in radians and is in the range .</p>
+</dd></dl>
+
+</div>
+<div class="section" id="exponential-and-logarithmic-functions">
+<span id="id9"></span><h4>Exponential and Logarithmic Functions<a class="headerlink" href="#exponential-and-logarithmic-functions" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<dl class="function">
+<dt id="pow">
+<em class="property">function </em><em class="property">Float32 </em><code class="descname">pow</code><span class="sig-paren">(</span><em>Float32 x</em>, <em>Float32 y</em><span class="sig-paren">)</span><a class="headerlink" href="#pow" title="この定義へのパーマリンク">¶</a></dt>
+<dt>
+<em class="property">function </em><em class="property">Float64 </em><code class="descname">pow</code><span class="sig-paren">(</span><em>Float64 x</em>, <em>Float64 y</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns the value of <code class="samp docutils literal"><em><span class="pre">x</span></em></code> raised to the power of <code class="samp docutils literal"><em><span class="pre">y</span></em></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<em class="property">function </em><em class="property">Float32 </em><code class="descname">pow</code><span class="sig-paren">(</span><em>Float32 x</em>, <em>&lt;IntegerType&gt; y</em><span class="sig-paren">)</span></dt>
+<dt>
+<em class="property">function </em><em class="property">Float64 </em><code class="descname">pow</code><span class="sig-paren">(</span><em>Float64 x</em>, <em>&lt;IntegerType&gt; y</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns the value of <code class="samp docutils literal"><em><span class="pre">x</span></em></code> raised to the power of <code class="samp docutils literal"><em><span class="pre">y</span></em></code> where <code class="samp docutils literal"><em><span class="pre">y</span></em></code> is an integer.  Uses exponentiation by squaring for very high performance, and will expand into a fixed operation in the case that <code class="samp docutils literal"><em><span class="pre">y</span></em></code> is a constant integer.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="exp">
+<em class="property">function </em><em class="property">Float32 </em><code class="descname">exp</code><span class="sig-paren">(</span><em>Float32 x</em><span class="sig-paren">)</span><a class="headerlink" href="#exp" title="この定義へのパーマリンク">¶</a></dt>
+<dt>
+<em class="property">function </em><em class="property">Float64 </em><code class="descname">exp</code><span class="sig-paren">(</span><em>Float64 x</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns the value of  raised to the power of <code class="samp docutils literal"><em><span class="pre">x</span></em></code> where  is the base of the natural logarithm (approximately 2.7182818...).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="log">
+<em class="property">function </em><em class="property">Float32 </em><code class="descname">log</code><span class="sig-paren">(</span><em>Float32 x</em><span class="sig-paren">)</span><a class="headerlink" href="#log" title="この定義へのパーマリンク">¶</a></dt>
+<dt>
+<em class="property">function </em><em class="property">Float64 </em><code class="descname">log</code><span class="sig-paren">(</span><em>Float64 x</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns the natural (base ) logarithm of <code class="samp docutils literal"><em><span class="pre">x</span></em></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="log10">
+<em class="property">function </em><em class="property">Float32 </em><code class="descname">log10</code><span class="sig-paren">(</span><em>Float32 x</em><span class="sig-paren">)</span><a class="headerlink" href="#log10" title="この定義へのパーマリンク">¶</a></dt>
+<dt>
+<em class="property">function </em><em class="property">Float64 </em><code class="descname">log10</code><span class="sig-paren">(</span><em>Float64 x</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns the common (base 10) logarithm of <code class="samp docutils literal"><em><span class="pre">x</span></em></code>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="non-transcendental-functions">
+<span id="non-transcendental-functions-functions"></span><h4>Non-Transcendental Functions<a class="headerlink" href="#non-transcendental-functions" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<dl class="function">
+<dt>
+<em class="property">function </em><em class="property">Float32 </em><code class="descname">abs</code><span class="sig-paren">(</span><em>Float32 x</em><span class="sig-paren">)</span></dt>
+<dt>
+<em class="property">function </em><em class="property">Float64 </em><code class="descname">abs</code><span class="sig-paren">(</span><em>Float64 x</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns the absolute value of <code class="samp docutils literal"><em><span class="pre">x</span></em></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="round">
+<em class="property">function </em><em class="property">Float32 </em><code class="descname">round</code><span class="sig-paren">(</span><em>Float32 x</em><span class="sig-paren">)</span><a class="headerlink" href="#round" title="この定義へのパーマリンク">¶</a></dt>
+<dt>
+<em class="property">function </em><em class="property">Float64 </em><code class="descname">round</code><span class="sig-paren">(</span><em>Float64 x</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns the value of <code class="samp docutils literal"><em><span class="pre">x</span></em></code> rounded to the nearest whole (fractional part of zero) floating-point number.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="floor">
+<em class="property">function </em><em class="property">Float32 </em><code class="descname">floor</code><span class="sig-paren">(</span><em>Float32 x</em><span class="sig-paren">)</span><a class="headerlink" href="#floor" title="この定義へのパーマリンク">¶</a></dt>
+<dt>
+<em class="property">function </em><em class="property">Float64 </em><code class="descname">floor</code><span class="sig-paren">(</span><em>Float64 x</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns the greatest whole floating-point number less than or equal to <code class="samp docutils literal"><em><span class="pre">x</span></em></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ceil">
+<em class="property">function </em><em class="property">Float32 </em><code class="descname">ceil</code><span class="sig-paren">(</span><em>Float32 x</em><span class="sig-paren">)</span><a class="headerlink" href="#ceil" title="この定義へのパーマリンク">¶</a></dt>
+<dt>
+<em class="property">function </em><em class="property">Float64 </em><code class="descname">ceil</code><span class="sig-paren">(</span><em>Float64 x</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns the smallest whole floating-point number greater than or equal to <code class="samp docutils literal"><em><span class="pre">x</span></em></code>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="category-functions">
+<h4>Category Functions<a class="headerlink" href="#category-functions" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<dl class="function">
+<dt id="Float32.isReg">
+<em class="property">function </em><em class="property">Boolean </em><code class="descclassname">Float32.</code><code class="descname">isReg</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Float32.isReg" title="この定義へのパーマリンク">¶</a></dt>
+<dt id="Float64.isReg">
+<em class="property">function </em><em class="property">Boolean </em><code class="descclassname">Float64.</code><code class="descname">isReg</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Float64.isReg" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns true if and only if the floating-point number is a regular floating-point number; that is, if it is not infinite and not a NaN (not-a-number) value.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Float32.isInf">
+<em class="property">function </em><em class="property">Boolean </em><code class="descclassname">Float32.</code><code class="descname">isInf</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Float32.isInf" title="この定義へのパーマリンク">¶</a></dt>
+<dt id="Float64.isInf">
+<em class="property">function </em><em class="property">Boolean </em><code class="descclassname">Float64.</code><code class="descname">isInf</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Float64.isInf" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns true if and only if the floating-point number is infinite.  Note that this does not check for NaN values; use the <a class="reference internal" href="#Float32.isNaN" title="Float32.isNaN"><code class="xref kl kl-method docutils literal"><span class="pre">Float32.isNaN()</span></code></a> method for that.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Float32.isNaN">
+<em class="property">function </em><em class="property">Boolean </em><code class="descclassname">Float32.</code><code class="descname">isNaN</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Float32.isNaN" title="この定義へのパーマリンク">¶</a></dt>
+<dt id="Float64.isNaN">
+<em class="property">function </em><em class="property">Boolean </em><code class="descclassname">Float64.</code><code class="descname">isNaN</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Float64.isNaN" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns true if and only if the floating-point number is a not-a-number (NaN) value.  Note that this does not check for infinite values; use the <a class="reference internal" href="#Float32.isInf" title="Float32.isInf"><code class="xref kl kl-method docutils literal"><span class="pre">Float32.isInf()</span></code></a> method for that.</p>
+</dd></dl>
+
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">For a floating-point value <code class="docutils literal"><span class="pre">x</span></code>, the condition <code class="docutils literal"><span class="pre">!x.isReg()</span></code> is equivalent to <code class="docutils literal"><span class="pre">x.isInf()</span> <span class="pre">||</span> <span class="pre">x.isNaN()</span></code></p>
+</div>
+</div>
+</div>
+<div class="section" id="vector-functions">
+<span id="id10"></span><h3>Vector Functions<a class="headerlink" href="#vector-functions" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>KL support a large set of <em class="dfn">vector functions</em> that are automatically made available for structures whose members are all of the same integer or floating-point type (as is usually the case for structures that represent vectors).  The KL compiler automatically reduces the function call to vector intrinsic operation that is optimal for the running architecture; for example, on a modern Intel x86 machine they will be reduced to instructions using the SSE or AVX vector extensions, resulting in improved performance over non-vector code.</p>
+<p>When <code class="samp docutils literal"><em><span class="pre">&lt;V&gt;</span></em></code> is a structure whose members <code class="samp docutils literal"><em><span class="pre">&lt;m1&gt;</span></em><span class="pre">,</span> <em><span class="pre">&lt;m2&gt;</span></em><span class="pre">,</span> <span class="pre">...</span> <em><span class="pre">&lt;mN&gt;</span></em></code> are all of exactly the same integer or floating-point type <code class="samp docutils literal"><em><span class="pre">&lt;T&gt;</span></em></code>, the following functions are made available:</p>
+<dl class="function">
+<dt id="vecAdd">
+<em class="property">function </em><em class="property">&lt;V&gt; </em><code class="descname">vecAdd</code><span class="sig-paren">(</span><em>&lt;V&gt; lhs</em>, <em>&lt;V&gt; rhs</em><span class="sig-paren">)</span><a class="headerlink" href="#vecAdd" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m1</span></em> <span class="pre">+</span> <span class="pre">rhs.</span><em><span class="pre">m1</span></em></code>, <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m2</span></em> <span class="pre">+</span> <span class="pre">rhs.</span><em><span class="pre">m2</span></em></code>, ... <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">mN</span></em> <span class="pre">+</span> <span class="pre">rhs.</span><em><span class="pre">mN</span></em></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<em class="property">function </em><em class="property">&lt;V&gt; </em><code class="descname">vecAdd</code><span class="sig-paren">(</span><em>&lt;T&gt; k</em>, <em>&lt;V&gt; rhs</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns <code class="samp docutils literal"><span class="pre">k</span> <span class="pre">+</span> <span class="pre">rhs.</span><em><span class="pre">m1</span></em></code>, <code class="samp docutils literal"><span class="pre">k</span> <span class="pre">+</span> <span class="pre">rhs.</span><em><span class="pre">m2</span></em></code>, ... <code class="samp docutils literal"><span class="pre">k</span> <span class="pre">+</span> <span class="pre">rhs.</span><em><span class="pre">mN</span></em></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<em class="property">function </em><em class="property">&lt;V&gt; </em><code class="descname">vecAdd</code><span class="sig-paren">(</span><em>&lt;V&gt; lhs</em>, <em>&lt;T&gt; k</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m1</span></em> <span class="pre">+</span> <span class="pre">k</span></code>, <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m2</span></em> <span class="pre">+</span> <span class="pre">k</span></code>, ... <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">mN</span></em> <span class="pre">+</span> <span class="pre">k</span></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="vecSub">
+<em class="property">function </em><em class="property">&lt;V&gt; </em><code class="descname">vecSub</code><span class="sig-paren">(</span><em>&lt;V&gt; lhs</em>, <em>&lt;V&gt; rhs</em><span class="sig-paren">)</span><a class="headerlink" href="#vecSub" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m1</span></em> <span class="pre">-</span> <span class="pre">rhs.</span><em><span class="pre">m1</span></em></code>, <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m2</span></em> <span class="pre">-</span> <span class="pre">rhs.</span><em><span class="pre">m2</span></em></code>, ... <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">mN</span></em> <span class="pre">-</span> <span class="pre">rhs.</span><em><span class="pre">mN</span></em></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<em class="property">function </em><em class="property">&lt;V&gt; </em><code class="descname">vecSub</code><span class="sig-paren">(</span><em>&lt;T&gt; k</em>, <em>&lt;V&gt; rhs</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns <code class="samp docutils literal"><span class="pre">k</span> <span class="pre">-</span> <span class="pre">rhs.</span><em><span class="pre">m1</span></em></code>, <code class="samp docutils literal"><span class="pre">k</span> <span class="pre">-</span> <span class="pre">rhs.</span><em><span class="pre">m2</span></em></code>, ... <code class="samp docutils literal"><span class="pre">k</span> <span class="pre">-</span> <span class="pre">rhs.</span><em><span class="pre">mN</span></em></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<em class="property">function </em><em class="property">&lt;V&gt; </em><code class="descname">vecSub</code><span class="sig-paren">(</span><em>&lt;V&gt; lhs</em>, <em>&lt;T&gt; k</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m1</span></em> <span class="pre">-</span> <span class="pre">k</span></code>, <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m2</span></em> <span class="pre">-</span> <span class="pre">k</span></code>, ... <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">mN</span></em> <span class="pre">-</span> <span class="pre">k</span></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="vecMul">
+<em class="property">function </em><em class="property">&lt;V&gt; </em><code class="descname">vecMul</code><span class="sig-paren">(</span><em>&lt;V&gt; lhs</em>, <em>&lt;V&gt; rhs</em><span class="sig-paren">)</span><a class="headerlink" href="#vecMul" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m1</span></em> <span class="pre">*</span> <span class="pre">rhs.</span><em><span class="pre">m1</span></em></code>, <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m2</span></em> <span class="pre">*</span> <span class="pre">rhs.</span><em><span class="pre">m2</span></em></code>, ... <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">mN</span></em> <span class="pre">*</span> <span class="pre">rhs.</span><em><span class="pre">mN</span></em></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<em class="property">function </em><em class="property">&lt;V&gt; </em><code class="descname">vecMul</code><span class="sig-paren">(</span><em>&lt;T&gt; k</em>, <em>&lt;V&gt; rhs</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns <code class="samp docutils literal"><span class="pre">k</span> <span class="pre">*</span> <span class="pre">rhs.</span><em><span class="pre">m1</span></em></code>, <code class="samp docutils literal"><span class="pre">k</span> <span class="pre">*</span> <span class="pre">rhs.</span><em><span class="pre">m2</span></em></code>, ... <code class="samp docutils literal"><span class="pre">k</span> <span class="pre">*</span> <span class="pre">rhs.</span><em><span class="pre">mN</span></em></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<em class="property">function </em><em class="property">&lt;V&gt; </em><code class="descname">vecMul</code><span class="sig-paren">(</span><em>&lt;V&gt; lhs</em>, <em>&lt;T&gt; k</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m1</span></em> <span class="pre">*</span> <span class="pre">k</span></code>, <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m2</span></em> <span class="pre">*</span> <span class="pre">k</span></code>, ... <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">mN</span></em> <span class="pre">*</span> <span class="pre">k</span></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="vecDiv">
+<em class="property">function </em><em class="property">&lt;V&gt; </em><code class="descname">vecDiv</code><span class="sig-paren">(</span><em>&lt;V&gt; lhs</em>, <em>&lt;V&gt; rhs</em><span class="sig-paren">)</span><a class="headerlink" href="#vecDiv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m1</span></em> <span class="pre">/</span> <span class="pre">rhs.</span><em><span class="pre">m1</span></em></code>, <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m2</span></em> <span class="pre">/</span> <span class="pre">rhs.</span><em><span class="pre">m2</span></em></code>, ... <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">mN</span></em> <span class="pre">/</span> <span class="pre">rhs.</span><em><span class="pre">mN</span></em></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<em class="property">function </em><em class="property">&lt;V&gt; </em><code class="descname">vecDiv</code><span class="sig-paren">(</span><em>&lt;T&gt; k</em>, <em>&lt;V&gt; rhs</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns <code class="samp docutils literal"><span class="pre">k</span> <span class="pre">/</span> <span class="pre">rhs.</span><em><span class="pre">m1</span></em></code>, <code class="samp docutils literal"><span class="pre">k</span> <span class="pre">/</span> <span class="pre">rhs.</span><em><span class="pre">m2</span></em></code>, ... <code class="samp docutils literal"><span class="pre">k</span> <span class="pre">/</span> <span class="pre">rhs.</span><em><span class="pre">mN</span></em></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<em class="property">function </em><em class="property">&lt;V&gt; </em><code class="descname">vecDiv</code><span class="sig-paren">(</span><em>&lt;V&gt; lhs</em>, <em>&lt;T&gt; k</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m1</span></em> <span class="pre">/</span> <span class="pre">k</span></code>, <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m2</span></em> <span class="pre">/</span> <span class="pre">k</span></code>, ... <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">mN</span></em> <span class="pre">/</span> <span class="pre">k</span></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="vecRem">
+<em class="property">function </em><em class="property">&lt;V&gt; </em><code class="descname">vecRem</code><span class="sig-paren">(</span><em>&lt;V&gt; lhs</em>, <em>&lt;V&gt; rhs</em><span class="sig-paren">)</span><a class="headerlink" href="#vecRem" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m1</span></em> <span class="pre">%</span> <span class="pre">rhs.</span><em><span class="pre">m1</span></em></code>, <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m2</span></em> <span class="pre">%</span> <span class="pre">rhs.</span><em><span class="pre">m2</span></em></code>, ... <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">mN</span></em> <span class="pre">%</span> <span class="pre">rhs.</span><em><span class="pre">mN</span></em></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<em class="property">function </em><em class="property">&lt;V&gt; </em><code class="descname">vecRem</code><span class="sig-paren">(</span><em>&lt;T&gt; k</em>, <em>&lt;V&gt; rhs</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns <code class="samp docutils literal"><span class="pre">k</span> <span class="pre">%</span> <span class="pre">rhs.</span><em><span class="pre">m1</span></em></code>, <code class="samp docutils literal"><span class="pre">k</span> <span class="pre">%</span> <span class="pre">rhs.</span><em><span class="pre">m2</span></em></code>, ... <code class="samp docutils literal"><span class="pre">k</span> <span class="pre">%</span> <span class="pre">rhs.</span><em><span class="pre">mN</span></em></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<em class="property">function </em><em class="property">&lt;V&gt; </em><code class="descname">vecRem</code><span class="sig-paren">(</span><em>&lt;V&gt; lhs</em>, <em>&lt;T&gt; k</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m1</span></em> <span class="pre">%</span> <span class="pre">k</span></code>, <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m2</span></em> <span class="pre">%</span> <span class="pre">k</span></code>, ... <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">mN</span></em> <span class="pre">%</span> <span class="pre">k</span></code></p>
+</dd></dl>
+
+<p>When <code class="docutils literal"><span class="pre">&lt;T&gt;</span></code> is an integer type, the following additional function are available:</p>
+<dl class="function">
+<dt id="vecBitOr">
+<em class="property">function </em><em class="property">&lt;V&gt; </em><code class="descname">vecBitOr</code><span class="sig-paren">(</span><em>&lt;V&gt; lhs</em>, <em>&lt;V&gt; rhs</em><span class="sig-paren">)</span><a class="headerlink" href="#vecBitOr" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m1</span></em> <span class="pre">|</span> <span class="pre">rhs.</span><em><span class="pre">m1</span></em></code>, <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m2</span></em> <span class="pre">|</span> <span class="pre">rhs.</span><em><span class="pre">m2</span></em></code>, ... <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">mN</span></em> <span class="pre">|</span> <span class="pre">rhs.</span><em><span class="pre">mN</span></em></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<em class="property">function </em><em class="property">&lt;V&gt; </em><code class="descname">vecBitOr</code><span class="sig-paren">(</span><em>&lt;T&gt; k</em>, <em>&lt;V&gt; rhs</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns <code class="samp docutils literal"><span class="pre">k</span> <span class="pre">|</span> <span class="pre">rhs.</span><em><span class="pre">m1</span></em></code>, <code class="samp docutils literal"><span class="pre">k</span> <span class="pre">|</span> <span class="pre">rhs.</span><em><span class="pre">m2</span></em></code>, ... <code class="samp docutils literal"><span class="pre">k</span> <span class="pre">|</span> <span class="pre">rhs.</span><em><span class="pre">mN</span></em></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<em class="property">function </em><em class="property">&lt;V&gt; </em><code class="descname">vecBitOr</code><span class="sig-paren">(</span><em>&lt;V&gt; lhs</em>, <em>&lt;T&gt; k</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m1</span></em> <span class="pre">|</span> <span class="pre">k</span></code>, <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m2</span></em> <span class="pre">|</span> <span class="pre">k</span></code>, ... <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">mN</span></em> <span class="pre">|</span> <span class="pre">k</span></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="vecBitAnd">
+<em class="property">function </em><em class="property">&lt;V&gt; </em><code class="descname">vecBitAnd</code><span class="sig-paren">(</span><em>&lt;V&gt; lhs</em>, <em>&lt;V&gt; rhs</em><span class="sig-paren">)</span><a class="headerlink" href="#vecBitAnd" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m1</span></em> <span class="pre">&amp;</span> <span class="pre">rhs.</span><em><span class="pre">m1</span></em></code>, <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m2</span></em> <span class="pre">&amp;</span> <span class="pre">rhs.</span><em><span class="pre">m2</span></em></code>, ... <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">mN</span></em> <span class="pre">&amp;</span> <span class="pre">rhs.</span><em><span class="pre">mN</span></em></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<em class="property">function </em><em class="property">&lt;V&gt; </em><code class="descname">vecBitAnd</code><span class="sig-paren">(</span><em>&lt;T&gt; k</em>, <em>&lt;V&gt; rhs</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns <code class="samp docutils literal"><span class="pre">k</span> <span class="pre">&amp;</span> <span class="pre">rhs.</span><em><span class="pre">m1</span></em></code>, <code class="samp docutils literal"><span class="pre">k</span> <span class="pre">&amp;</span> <span class="pre">rhs.</span><em><span class="pre">m2</span></em></code>, ... <code class="samp docutils literal"><span class="pre">k</span> <span class="pre">&amp;</span> <span class="pre">rhs.</span><em><span class="pre">mN</span></em></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<em class="property">function </em><em class="property">&lt;V&gt; </em><code class="descname">vecBitAnd</code><span class="sig-paren">(</span><em>&lt;V&gt; lhs</em>, <em>&lt;T&gt; k</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m1</span></em> <span class="pre">&amp;</span> <span class="pre">k</span></code>, <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m2</span></em> <span class="pre">&amp;</span> <span class="pre">k</span></code>, ... <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">mN</span></em> <span class="pre">&amp;</span> <span class="pre">k</span></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="vecBitXor">
+<em class="property">function </em><em class="property">&lt;V&gt; </em><code class="descname">vecBitXor</code><span class="sig-paren">(</span><em>&lt;V&gt; lhs</em>, <em>&lt;V&gt; rhs</em><span class="sig-paren">)</span><a class="headerlink" href="#vecBitXor" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m1</span></em> <span class="pre">^</span> <span class="pre">rhs.</span><em><span class="pre">m1</span></em></code>, <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m2</span></em> <span class="pre">^</span> <span class="pre">rhs.</span><em><span class="pre">m2</span></em></code>, ... <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">mN</span></em> <span class="pre">^</span> <span class="pre">rhs.</span><em><span class="pre">mN</span></em></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<em class="property">function </em><em class="property">&lt;V&gt; </em><code class="descname">vecBitXor</code><span class="sig-paren">(</span><em>&lt;T&gt; k</em>, <em>&lt;V&gt; rhs</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns <code class="samp docutils literal"><span class="pre">k</span> <span class="pre">^</span> <span class="pre">rhs.</span><em><span class="pre">m1</span></em></code>, <code class="samp docutils literal"><span class="pre">k</span> <span class="pre">^</span> <span class="pre">rhs.</span><em><span class="pre">m2</span></em></code>, ... <code class="samp docutils literal"><span class="pre">k</span> <span class="pre">^</span> <span class="pre">rhs.</span><em><span class="pre">mN</span></em></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<em class="property">function </em><em class="property">&lt;V&gt; </em><code class="descname">vecBitXor</code><span class="sig-paren">(</span><em>&lt;V&gt; lhs</em>, <em>&lt;T&gt; k</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m1</span></em> <span class="pre">^</span> <span class="pre">k</span></code>, <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m2</span></em> <span class="pre">^</span> <span class="pre">k</span></code>, ... <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">mN</span></em> <span class="pre">^</span> <span class="pre">k</span></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="vecShl">
+<em class="property">function </em><em class="property">&lt;V&gt; </em><code class="descname">vecShl</code><span class="sig-paren">(</span><em>&lt;V&gt; lhs</em>, <em>&lt;V&gt; rhs</em><span class="sig-paren">)</span><a class="headerlink" href="#vecShl" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m1</span></em> <span class="pre">&lt;&lt;</span> <span class="pre">rhs.</span><em><span class="pre">m1</span></em></code>, <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m2</span></em> <span class="pre">&lt;&lt;</span> <span class="pre">rhs.</span><em><span class="pre">m2</span></em></code>, ... <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">mN</span></em> <span class="pre">&lt;&lt;</span> <span class="pre">rhs.</span><em><span class="pre">mN</span></em></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<em class="property">function </em><em class="property">&lt;V&gt; </em><code class="descname">vecShl</code><span class="sig-paren">(</span><em>&lt;T&gt; k</em>, <em>&lt;V&gt; rhs</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns <code class="samp docutils literal"><span class="pre">k</span> <span class="pre">&lt;&lt;</span> <span class="pre">rhs.</span><em><span class="pre">m1</span></em></code>, <code class="samp docutils literal"><span class="pre">k</span> <span class="pre">&lt;&lt;</span> <span class="pre">rhs.</span><em><span class="pre">m2</span></em></code>, ... <code class="samp docutils literal"><span class="pre">k</span> <span class="pre">&lt;&lt;</span> <span class="pre">rhs.</span><em><span class="pre">mN</span></em></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<em class="property">function </em><em class="property">&lt;V&gt; </em><code class="descname">vecShl</code><span class="sig-paren">(</span><em>&lt;V&gt; lhs</em>, <em>&lt;T&gt; k</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m1</span></em> <span class="pre">&lt;&lt;</span> <span class="pre">k</span></code>, <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m2</span></em> <span class="pre">&lt;&lt;</span> <span class="pre">k</span></code>, ... <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">mN</span></em> <span class="pre">&lt;&lt;</span> <span class="pre">k</span></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="vecShr">
+<em class="property">function </em><em class="property">&lt;V&gt; </em><code class="descname">vecShr</code><span class="sig-paren">(</span><em>&lt;V&gt; lhs</em>, <em>&lt;V&gt; rhs</em><span class="sig-paren">)</span><a class="headerlink" href="#vecShr" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m1</span></em> <span class="pre">&gt;&gt;</span> <span class="pre">rhs.</span><em><span class="pre">m1</span></em></code>, <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m2</span></em> <span class="pre">&gt;&gt;</span> <span class="pre">rhs.</span><em><span class="pre">m2</span></em></code>, ... <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">mN</span></em> <span class="pre">&gt;&gt;</span> <span class="pre">rhs.</span><em><span class="pre">mN</span></em></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<em class="property">function </em><em class="property">&lt;V&gt; </em><code class="descname">vecShr</code><span class="sig-paren">(</span><em>&lt;T&gt; k</em>, <em>&lt;V&gt; rhs</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns <code class="samp docutils literal"><span class="pre">k</span> <span class="pre">&gt;&gt;</span> <span class="pre">rhs.</span><em><span class="pre">m1</span></em></code>, <code class="samp docutils literal"><span class="pre">k</span> <span class="pre">&gt;&gt;</span> <span class="pre">rhs.</span><em><span class="pre">m2</span></em></code>, ... <code class="samp docutils literal"><span class="pre">k</span> <span class="pre">&gt;&gt;</span> <span class="pre">rhs.</span><em><span class="pre">mN</span></em></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<em class="property">function </em><em class="property">&lt;V&gt; </em><code class="descname">vecShr</code><span class="sig-paren">(</span><em>&lt;V&gt; lhs</em>, <em>&lt;T&gt; k</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m1</span></em> <span class="pre">&gt;&gt;</span> <span class="pre">k</span></code>, <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">m2</span></em> <span class="pre">&gt;&gt;</span> <span class="pre">k</span></code>, ... <code class="samp docutils literal"><span class="pre">lhs.</span><em><span class="pre">mN</span></em> <span class="pre">&gt;&gt;</span> <span class="pre">k</span></code></p>
+</dd></dl>
+
+</div>
+<div class="section" id="conversion-functions">
+<span id="conversion-funcs"></span><h3>Conversion Functions<a class="headerlink" href="#conversion-functions" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<dl class="function">
+<dt>
+<code class="descname">function &lt;Type&gt;.appendDesc(io String string)</code></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified">バージョン 1.12.0 で追加.</span></p>
+</div>
+<p>The <code class="code docutils literal"><span class="pre">appendDesc</span></code> method is called to convert the given type to a <code class="code docutils literal"><span class="pre">String</span></code>.  You can write a custom <code class="code docutils literal"><span class="pre">appendDesc</span></code> method to
+customize this conversion, as shown in the following example:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Custom appendDesc Method</span>
+<span class="cm">*/</span>
+
+<span class="kr">struct</span> <span class="nx">Vec3</span> <span class="p">{</span> <span class="kr">Float32</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">z</span><span class="p">;</span> <span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">Vec3</span><span class="p">(</span><span class="kr">Float32</span> <span class="nx">x</span><span class="p">,</span> <span class="kr">Float32</span> <span class="nx">y</span><span class="p">,</span> <span class="kr">Float32</span> <span class="nx">z</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span> <span class="k">this</span><span class="p">.</span><span class="nx">z</span> <span class="o">=</span> <span class="nx">z</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">Vec3</span><span class="p">.</span><span class="nx">appendDesc</span><span class="p">(</span><span class="k">io</span> <span class="kr">String</span> <span class="nx">string</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">string</span> <span class="o">+=</span> <span class="s2">&quot;vec3:[&quot;</span><span class="p">;</span>
+  <span class="nx">string</span> <span class="o">+=</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
+  <span class="nx">string</span> <span class="o">+=</span> <span class="s2">&quot;:&quot;</span><span class="p">;</span>
+  <span class="nx">string</span> <span class="o">+=</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
+  <span class="nx">string</span> <span class="o">+=</span> <span class="s2">&quot;:&quot;</span><span class="p">;</span>
+  <span class="nx">string</span> <span class="o">+=</span> <span class="k">this</span><span class="p">.</span><span class="nx">z</span><span class="p">;</span>
+  <span class="nx">string</span> <span class="o">+=</span> <span class="s2">&quot;]&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">Vec3</span> <span class="nx">vec3</span><span class="p">(</span><span class="mf">6.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.4</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">vec3</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">vec3:[+6.7:-9.4:+2.3]</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="hex">
+<em class="property">function </em><em class="property">String </em><code class="descname">hex</code><span class="sig-paren">(</span><em>UInt8 n</em><span class="sig-paren">)</span><a class="headerlink" href="#hex" title="この定義へのパーマリンク">¶</a></dt>
+<dt>
+<em class="property">function </em><em class="property">String </em><code class="descname">hex</code><span class="sig-paren">(</span><em>UInt16 n</em><span class="sig-paren">)</span></dt>
+<dt>
+<em class="property">function </em><em class="property">String </em><code class="descname">hex</code><span class="sig-paren">(</span><em>UInt32 n</em><span class="sig-paren">)</span></dt>
+<dt>
+<em class="property">function </em><em class="property">String </em><code class="descname">hex</code><span class="sig-paren">(</span><em>UInt64 n</em><span class="sig-paren">)</span></dt>
+<dd><p>Converts an unsigned integer value into a hexadecimal string representation of the value.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<em class="property">function </em><em class="property">String </em><code class="descname">hex</code><span class="sig-paren">(</span><em>SInt8 n</em><span class="sig-paren">)</span></dt>
+<dt>
+<em class="property">function </em><em class="property">String </em><code class="descname">hex</code><span class="sig-paren">(</span><em>SInt16 n</em><span class="sig-paren">)</span></dt>
+<dt>
+<em class="property">function </em><em class="property">String </em><code class="descname">hex</code><span class="sig-paren">(</span><em>SInt32 n</em><span class="sig-paren">)</span></dt>
+<dt>
+<em class="property">function </em><em class="property">String </em><code class="descname">hex</code><span class="sig-paren">(</span><em>SInt64 n</em><span class="sig-paren">)</span></dt>
+<dd><p>Converts an integer value into a hexadecimal string representation of the value.  The output is as if <code class="docutils literal"><span class="pre">n</span></code> was of the corresponding unsigned integer type; there is no consideration for negative values.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="bitcastUIntToFloat">
+<em class="property">function </em><em class="property">Float32 </em><code class="descname">bitcastUIntToFloat</code><span class="sig-paren">(</span><em>UInt32 n</em><span class="sig-paren">)</span><a class="headerlink" href="#bitcastUIntToFloat" title="この定義へのパーマリンク">¶</a></dt>
+<dt>
+<em class="property">function </em><em class="property">Float64 </em><code class="descname">bitcastUIntToFloat</code><span class="sig-paren">(</span><em>UInt64 n</em><span class="sig-paren">)</span></dt>
+<dd><p>Bitcasts an unsigned integer of the same width to a floating-point number.  This is a non-numerical conversion that is mostly useful for unit testing KL itself.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="bitcastFloatToUInt">
+<em class="property">function </em><em class="property">UInt32 </em><code class="descname">bitcastFloatToUInt</code><span class="sig-paren">(</span><em>Float32 x</em><span class="sig-paren">)</span><a class="headerlink" href="#bitcastFloatToUInt" title="この定義へのパーマリンク">¶</a></dt>
+<dt>
+<em class="property">function </em><em class="property">UInt64 </em><code class="descname">bitcastFloatToUInt</code><span class="sig-paren">(</span><em>Float64 x</em><span class="sig-paren">)</span></dt>
+<dd><p>Bitcasts a floating-point number to an unsigned integer of the same width.  This is a non-numerical conversion that is mostly useful for unit testing KL itself.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="thread-core-related-functions">
+<h3>Thread/Core-related Functions<a class="headerlink" href="#thread-core-related-functions" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<dl class="function">
+<dt id="getThreadIndex">
+<em class="property">function </em><em class="property">UInt16 </em><code class="descname">getThreadIndex</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#getThreadIndex" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns the index of the currently-executing thread.  This number is guaranteed to be in the range 0 to kl:func:<cite>getThreadCount()</cite>-1.</p>
+<p>For a give PEX workload, two concurrently executing threads are guaranteed to return different values for this function.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="getThreadCount">
+<em class="property">function </em><em class="property">UInt16 </em><code class="descname">getThreadCount</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#getThreadCount" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns the upper bound of the <a class="reference internal" href="#getThreadIndex" title="getThreadIndex"><code class="xref kl kl-func docutils literal"><span class="pre">getThreadIndex()</span></code></a> return value.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="getCoreCount">
+<em class="property">function </em><em class="property">UInt16 </em><code class="descname">getCoreCount</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#getCoreCount" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns the number of CPU cores in the machine.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="performance-counter-functions">
+<h3>Performance Counter Functions<a class="headerlink" href="#performance-counter-functions" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>KL provides access to high-performance system timer information that can be used to time operations from within KL code.</p>
+<dl class="function">
+<dt id="getCurrentTicks">
+<em class="property">function </em><em class="property">UInt64 </em><code class="descname">getCurrentTicks</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#getCurrentTicks" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns the current value of the performance counter.  This number has no meaning on its own (ie. its units are undefined) but can be used in calls to <code class="docutils literal"><span class="pre">getSecondsBetweenTicks()</span></code> to measure absolute elapsed time.  Note that the value returned by <code class="docutils literal"><span class="pre">getCurrentTicks()</span></code> is not affected by system (&#8220;wall&#8221;) clock time changes.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="getSecondsBetweenTicks">
+<em class="property">function </em><em class="property">Float64 </em><code class="descname">getSecondsBetweenTicks</code><span class="sig-paren">(</span><em>UInt64 start</em>, <em>UInt64 end</em><span class="sig-paren">)</span><a class="headerlink" href="#getSecondsBetweenTicks" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns the number of seconds between two performance counter values.  The measurable resolution is guaranteed to be at least one million parts per second.</p>
+</dd></dl>
+
+<p>Example usage of the performance counter functions:</p>
+<div class="highlight-python"><div class="highlight"><pre>operator entry() {
+  UInt64 start = getCurrentTicks();
+  // Do nothing...
+  UInt64 end = getCurrentTicks();
+  report(&quot;Elapsed time: &quot; + getSecondsBetweenTicks(start, end) + &quot; seconds&quot;);
+}
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-python"><div class="highlight"><pre>Elapsed time: 4.1e-08 seconds
+</pre></div>
+</div>
+<span class="target" id="index-18"></span></div>
+<div class="section" id="fabric-context-functions">
+<span id="index-19"></span><h3>Fabric Context Functions<a class="headerlink" href="#fabric-context-functions" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>These functions are used to interact with the Fabric Core context.</p>
+<dl class="function">
+<dt id="fabricCoreContextID">
+<em class="property">function </em><em class="property">String </em><code class="descname">fabricCoreContextID</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fabricCoreContextID" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns the Fabric Core context ID as a String.  This context ID can be
+used to bind a new Fabric Core client to an existing context.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="named-constants">
+<span id="klpg-global-named-constants"></span><h2>Named Constants<a class="headerlink" href="#named-constants" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>A <em class="dfn">named constant</em> in KL is a value that can be referred to by name in
+expressions but that cannot be changed at runtime.  Named constants are
+essentially read-only variables; however, since the KL compiler knows that
+their value can never change, it can often produce faster code when named
+constants are used in place of variables.  Both scalar and array named
+constants can be declared.</p>
+<p>Named constants can be declared within any scope (see <a class="reference internal" href="ops-exprs.html#scope"><span>Scoping Rules</span></a>), including
+the global scope.  Named constants are only visible within the scope in which
+they are declared.</p>
+<p>Scalar named constants take the form:</p>
+<pre class="literal-block">
+const <code class="samp docutils literal"><em><span class="pre">Type</span></em></code> <code class="samp docutils literal"><em><span class="pre">name</span></em></code> = <code class="samp docutils literal"><em><span class="pre">expr</span></em></code>;
+</pre>
+<p>and array named constants take the form:</p>
+<pre class="literal-block">
+const <code class="samp docutils literal"><em><span class="pre">Type</span></em></code> <code class="samp docutils literal"><em><span class="pre">name</span></em></code>[] = [
+  <code class="samp docutils literal"><em><span class="pre">expr1</span></em></code>, <code class="samp docutils literal"><em><span class="pre">expr2</span></em></code>, ..., <code class="samp docutils literal"><em><span class="pre">exprN</span></em></code>
+];
+</pre>
+<p>In either case, <code class="samp docutils literal"><em><span class="pre">Type</span></em></code> must be a boolean, integer, floating-point or string type; <code class="samp docutils literal"><em><span class="pre">name</span></em></code> must be an identifier; and <code class="samp docutils literal"><em><span class="pre">expr</span></em></code> must be an expression involving constant(s) that evaluates to a constant of type <cite>{Type}</cite>.  In the case of a scalar named constant, the type of the named constant is <code class="samp docutils literal"><em><span class="pre">Type</span></em></code>.  In the case of an array named constant, the type of the named constant is a fixed array of elements of type <code class="samp docutils literal"><em><span class="pre">Type</span></em></code>; the size of the fixed array is the number of initializing values given within the brackets.</p>
+<p>It is a compile-time error to do any of the following:</p>
+<ul class="simple">
+<li>assign to a named constant</li>
+<li>pass a named constant to a function as an <code class="docutils literal"><span class="pre">io</span></code> parameter</li>
+<li>declare a global named constant with the same name as a function, operator or another global named constant</li>
+<li>declare a non-global named constant with the same name as a variable or another named constant declared in the same scope</li>
+</ul>
+<p>Example usage of named constants:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kr">const</span> <span class="kr">String</span> <span class="nx">MODULE_NAME</span> <span class="o">=</span> <span class="s2">&quot;KL&quot;</span><span class="p">;</span>
+<span class="kr">const</span> <span class="kr">String</span> <span class="nx">PREFIX</span> <span class="o">=</span> <span class="nx">MODULE_NAME</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span><span class="p">;</span>
+<span class="kr">const</span> <span class="kr">UInt32</span> <span class="nx">twoToTheSixteen</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">;</span>
+<span class="kr">const</span> <span class="kr">Float32</span> <span class="nx">familiarValues</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3.141</span><span class="p">,</span> <span class="mf">2.718</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="mf">7.4</span><span class="p">)</span> <span class="o">/</span> <span class="mf">3.4</span><span class="p">];</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">PREFIX</span> <span class="o">+</span> <span class="s2">&quot;twoToTheSixteen = &quot;</span> <span class="o">+</span> <span class="nx">twoToTheSixteen</span><span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span><span class="nx">PREFIX</span> <span class="o">+</span> <span class="s2">&quot;familiarValues = &quot;</span> <span class="o">+</span> <span class="nx">familiarValues</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kr">UInt32</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="kr">UInt32</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="kr">const</span> <span class="kr">UInt32</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="nb">report</span><span class="p">(</span><span class="nx">PREFIX</span> <span class="o">+</span> <span class="s2">&quot;a*&quot;</span><span class="o">+</span><span class="nx">i</span><span class="o">+</span><span class="s2">&quot;+b = &quot;</span><span class="o">+</span><span class="p">(</span><span class="nx">a</span><span class="o">*</span><span class="nx">i</span><span class="o">+</span><span class="nx">b</span><span class="p">));</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-none"><div class="highlight"><pre>KL: twoToTheSixteen = 65536
+KL: familiarValues = [+3.141000,+2.717999,+6.529411]
+KL: a*0+b = 4
+KL: a*1+b = 7
+KL: a*2+b = 10
+KL: a*3+b = 13
+</pre></div>
+</div>
+<span class="target" id="klpg-named-constants-predefined"></span><div class="section" id="predefined-constants">
+<span id="index-20"></span><h3>Predefined Constants<a class="headerlink" href="#predefined-constants" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>There are a variety of predefined constants available to every KL program.</p>
+<div class="section" id="fabric-version-pre-defined-constants">
+<h4>Fabric Version Pre-Defined Constants<a class="headerlink" href="#fabric-version-pre-defined-constants" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>The three constants <code class="docutils literal"><span class="pre">FabricVersionMaj</span></code>, <code class="docutils literal"><span class="pre">FabricVersionMin</span></code> and <code class="docutils literal"><span class="pre">FabricVersionRev</span></code> are three predefined constants of type <code class="docutils literal"><span class="pre">UInt8</span></code> that are the major, minor and revision components of the running Fabric version.  For example, this documentation was built for Fabric version {{FABRIC_VERSION}}, and so KL code executed in this version will have <code class="docutils literal"><span class="pre">FabricVersionMaj</span> <span class="pre">=</span> <span class="pre">{{FABRIC_VERSION_MAJ}}</span></code>, <code class="docutils literal"><span class="pre">FabricVersionMin</span> <span class="pre">=</span> <span class="pre">{{FABRIC_VERSION_MIN}}</span></code> and <code class="docutils literal"><span class="pre">FabricVersionRev</span> <span class="pre">=</span> <span class="pre">{{FABRIC_VERSION_REV}}</span></code>.</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;FabricVersionMaj = &quot;</span> <span class="o">+</span> <span class="nx">FabricVersionMaj</span><span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;FabricVersionMin = &quot;</span> <span class="o">+</span> <span class="nx">FabricVersionMin</span><span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;FabricVersionRev = &quot;</span> <span class="o">+</span> <span class="nx">FabricVersionRev</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="integer-limit-pre-defined-constants">
+<h4>Integer Limit Pre-Defined Constants<a class="headerlink" href="#integer-limit-pre-defined-constants" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>For every integer type <code class="docutils literal"><span class="pre">&lt;IntTy&gt;</span></code> there is a pre-defined integer constant <code class="docutils literal"><span class="pre">&lt;IntTy&gt;Max</span></code> that is the maximum value the integer can attain.  Additionally, for signed integer types there is a pre-defined integer constant <code class="docutils literal"><span class="pre">&lt;IntTy&gt;Min</span></code> that is the minimum value the integer can attain.  In both cases, the type of the integer constant is the type of the integer itself.  For example:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;UInt8Max=&quot;</span> <span class="o">+</span> <span class="nx">UInt8Max</span><span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;UInt16Max=&quot;</span> <span class="o">+</span> <span class="nx">UInt16Max</span><span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;UInt32Max=&quot;</span> <span class="o">+</span> <span class="nx">UInt32Max</span><span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;UInt64Max=&quot;</span> <span class="o">+</span> <span class="nx">UInt64Max</span><span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;SInt8Min=&quot;</span> <span class="o">+</span> <span class="nx">SInt8Min</span><span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;SInt8Max=&quot;</span> <span class="o">+</span> <span class="nx">SInt8Max</span><span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;SInt16Min=&quot;</span> <span class="o">+</span> <span class="nx">SInt16Min</span><span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;SInt16Max=&quot;</span> <span class="o">+</span> <span class="nx">SInt16Max</span><span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;SInt32Min=&quot;</span> <span class="o">+</span> <span class="nx">SInt32Min</span><span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;SInt32Max=&quot;</span> <span class="o">+</span> <span class="nx">SInt32Max</span><span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;SInt64Min=&quot;</span> <span class="o">+</span> <span class="nx">SInt64Min</span><span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;SInt64Max=&quot;</span> <span class="o">+</span> <span class="nx">SInt64Max</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>produces:</p>
+<div class="highlight-none"><div class="highlight"><pre>UInt8Max=255
+UInt16Max=65535
+UInt32Max=4294967295
+UInt64Max=18446744073709551615
+SInt8Min=-128
+SInt8Max=127
+SInt16Min=-32768
+SInt16Max=32767
+SInt32Min=-2147483648
+SInt32Max=2147483647
+SInt64Min=-9223372036854775808
+SInt64Max=9223372036854775807
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-func-pre-defined-constants">
+<h4>The <code class="docutils literal"><span class="pre">FUNC</span></code> Pre-Defined Constants<a class="headerlink" href="#the-func-pre-defined-constants" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>The KL compiler automatically predefines the constant <code class="docutils literal"><span class="pre">FUNC</span></code> at the start of every function as a string constant describing the function.  The following code:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="kr">Float32</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;This function is: &quot;</span> <span class="o">+</span> <span class="kr">FUNC</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">foo</span><span class="p">(</span><span class="mf">3.14</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>produces the output:</p>
+<div class="highlight-none"><div class="highlight"><pre>This function is: function foo(Float32)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="importing-functionality-with-require">
+<span id="klpg-require"></span><span id="index-21"></span><h2>Importing Functionality With <code class="docutils literal"><span class="pre">require</span></code><a class="headerlink" href="#importing-functionality-with-require" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Through integration with Fabric, it is possible for derived KL types and/or
+Fabric extensions to provide KL code that is defined externally to the current
+source file.  To use these types and code within the current source file, the
+<code class="docutils literal"><span class="pre">require</span></code> statement is provided; it is similar to the <code class="docutils literal"><span class="pre">import</span></code> statement
+in Python.</p>
+<p>The <code class="docutils literal"><span class="pre">require</span></code> statement should be followed by the name of the registered
+type or extension.  For example, to include the functionality provided by the
+extension named &#8220;Math&#8221; and the registered type named &#8220;RegType&#8221;, the program
+should start with:</p>
+<div class="highlight-python"><div class="highlight"><pre>require Math, RegType;
+</pre></div>
+</div>
+<p>Any <code class="docutils literal"><span class="pre">require</span></code> statements must appear at the top of the KL program that uses
+the associated functionality.  You can have as many <code class="docutils literal"><span class="pre">require</span></code> statements as
+you would like.</p>
+</div>
+<div class="section" id="using-require-with-version-information">
+<span id="klpg-require-versioning"></span><h2>Using <code class="docutils literal"><span class="pre">require</span></code> with version information<a class="headerlink" href="#using-require-with-version-information" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>By default the <code class="docutils literal"><span class="pre">require</span></code> statement will load the latest version of the extension
+available. So for example given two versions of the <code class="code docutils literal"><span class="pre">ExtensionName</span></code> extension
+with the versions <code class="code docutils literal"><span class="pre">&quot;1.0.0&quot;</span></code> and <code class="code docutils literal"><span class="pre">&quot;1.2.1&quot;</span></code>, doing</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kr">require</span> <span class="nx">ExtensionName</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>will result in the version <code class="code docutils literal"><span class="pre">&quot;1.2.1&quot;</span></code> being loaded. If you want to load a
+specific version, you can use the following syntax</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kr">require</span> <span class="nx">ExtensionName</span><span class="o">:</span><span class="s2">&quot;=1.0.0&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>which will result in loading the specific <code class="code docutils literal"><span class="pre">&quot;1.0.0&quot;</span></code> version of the extension.
+If the specific version cannot be found, an error will be thrown.
+Alternatively, if you just want to make sure an extension version is higher than a
+specific version number, you can use the lesser / greater sign like so:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kr">require</span> <span class="nx">ExtensionName</span><span class="o">:</span><span class="s2">&quot;&gt;1.0.0&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>If the version lesser / greater than what is specified cannot be found, an error will be thrown.
+In this example the <code class="code docutils literal"><span class="pre">&quot;1.2.1&quot;</span></code> version of the extension will be loaded.</p>
+<p>Furthermore you can use preprocessor statements to add optional KL code or to switch
+behaviors based on extension versions. For that you can use the <code class="code docutils literal"><span class="pre">EXT_VER_IF:</span> <span class="pre">and</span>
+<span class="pre">:code:`EXT_VER_ENDIF</span></code> statements. For this you can use the equal, lesser or greater sign.</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kr">require</span> <span class="nx">ExtensionName</span><span class="p">;</span>
+
+<span class="nx">EXT_VER_IF</span> <span class="nx">ExtensionName</span><span class="o">:</span><span class="s2">&quot;&gt;1.0.0&quot;</span>
+
+<span class="kd">function</span> <span class="nx">dummyFunction</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s1">&#39;Found an extension version for &quot;ExtensionName&quot; higher than &quot;1.0.0&quot;&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">EXT_VER_ENDIF</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+
+<span class="nx">EXT_VER_IF</span> <span class="nx">ExtensionName</span><span class="o">:</span><span class="s2">&quot;&gt;1.0.0&quot;</span>
+
+  <span class="nx">dummyFunction</span><span class="p">();</span>
+
+<span class="nx">EXT_VER_ENDIF</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="code docutils literal"><span class="pre">dummy</span></code> function&#8217;s definition and invocation will only happen if the extension version
+of the <code class="code docutils literal"><span class="pre">ExtensionName</span></code> is higher to <code class="code docutils literal"><span class="pre">&quot;1.0.0&quot;</span></code> in the example above.</p>
+<p>For more information on how to embed versioning information in extensions please refer to <a class="reference internal" href="../ExtensionAuthoringGuide/fpm.html#exts-versioning"><span>The version Extension Versioning Specification (optional)</span></a>.</p>
+</div>
+<div class="section" id="extension-versioning-environment-variables">
+<span id="klpg-require-versioning-envvars"></span><h2>Extension versioning environment variables<a class="headerlink" href="#extension-versioning-environment-variables" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Additional to the facilities mentioned above in <a class="reference internal" href="#klpg-require-versioning"><span>Using require with version information</span></a> you can drive the <code class="code docutils literal"><span class="pre">require</span></code> statement
+with a set of environment variables. There are several ways to use environment variables.</p>
+<p>The first approach, which uses a single environment variable for each extension, defines an environment variable like so:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">export </span><span class="nv">FABRIC_EXT_VER_EXTENSIONNAME</span><span class="o">=</span><span class="s2">&quot;=1.0.0&quot;</span>
+</pre></div>
+</div>
+<p>For the second approach, which suits environments better when you have to switch between a large amount of environment variables for a given build set, first you may optionally specify the <span class="target" id="index-22"></span><code class="xref std std-envvar docutils literal"><span class="pre">FABRIC_EXT_VER_PREFIX</span></code> and <span class="target" id="index-23"></span><code class="xref std std-envvar docutils literal"><span class="pre">FABRIC_EXT_VER_SUFFIX</span></code> environment variables, which contain a prefix and a suffix to be used when looking up additional environment variables, or you can use their default values.</p>
+<p>Then for each extension you may specify an environment variable using the prefix and suffix and the extension&#8217;s name, which will then contain the versioning information. For example, using the default prefix and suffix:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">export </span><span class="nv">FABRIC_EXT_VER_EXTENSIONNAME</span><span class="o">=</span><span class="s2">&quot;=1.0.0&quot;</span>
+</pre></div>
+</div>
+<p>Or changing the prefix and suffix:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">export </span><span class="nv">FABRIC_EXT_VER_PREFIX</span><span class="o">=</span><span class="s2">&quot;COMPANY_&quot;</span>
+<span class="nb">export </span><span class="nv">FABRIC_EXT_VER_SUFFIX</span><span class="o">=</span><span class="s2">&quot;_VER_INFO&quot;</span>
+<span class="nb">export </span><span class="nv">COMPANY_EXTENSIONNAME_VER_INFO</span><span class="o">=</span><span class="s2">&quot;=1.0.0&quot;</span>
+</pre></div>
+</div>
+<p>This would resolve in the extension loading mechanism to first resolve the <span class="target" id="index-24"></span><code class="xref std std-envvar docutils literal"><span class="pre">FABRIC_EXT_VER_PREFIX</span></code> and <span class="target" id="index-25"></span><code class="xref std std-envvar docutils literal"><span class="pre">FABRIC_EXT_VER_SUFFIX</span></code>
+environment variables, then will resolve the <span class="target" id="index-26"></span><code class="xref std std-envvar docutils literal"><span class="pre">COMPANY_EXTENSIONNAME_VER_INFO</span></code> based on these and will figure out that version 1.0.0 of the two available versions should be used.</p>
+<p>The third approach uses an auxiliary json file which needs to provide a mapping between the name of the extension and a version to use. The file path of the json file needs to be specified in the <span class="target" id="index-27"></span><code class="xref std std-envvar docutils literal"><span class="pre">FABRIC_EXT_VERFILE</span></code> environment variable. The content of the file needs to look for example like this:</p>
+<div class="highlight-js"><div class="highlight"><pre><span class="p">{</span>
+  <span class="s2">&quot;Alembic&quot;</span><span class="o">:</span> <span class="s2">&quot;&gt;=1.0&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;FBX&quot;</span><span class="o">:</span> <span class="s2">&quot;&gt;=1.1&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In the final approach users may set the <span class="target" id="index-28"></span><code class="xref std std-envvar docutils literal"><span class="pre">FABRIC_EXT_OVERRIDE</span></code> environment variable which can be used to specify sets of extensions that should be loaded together. Each extension may define an override key (see <a class="reference internal" href="../ExtensionAuthoringGuide/fpm.html#exts-versioning"><span>The version Extension Versioning Specification (optional)</span></a>) and if that key matches the value of <span class="target" id="index-29"></span><code class="xref std std-envvar docutils literal"><span class="pre">FABRIC_EXT_OVERRIDE</span></code> then that extension will be loaded before others with a different or missing override key. This may cause lower version numbers of extensions to load. For example:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">export </span><span class="nv">FABRIC_EXT_OVERRIDE</span><span class="o">=</span><span class="s2">&quot;MyOverride&quot;</span>
+</pre></div>
+</div>
+<p>This will cause all extensions with an override key of &#8220;MyOverride&#8221; to be preferred over other versions of the same extension with a different override key.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">All environment variables need to use capital letters throughout.</p>
+</div>
+<p>For more information on how to embed versioning information in extensions please refer to <a class="reference internal" href="../ExtensionAuthoringGuide/fpm.html#exts-versioning"><span>The version Extension Versioning Specification (optional)</span></a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Functions and Other Global Declarations</a><ul>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#function-definitions">Function Definitions</a></li>
+<li><a class="reference internal" href="#function-invocations">Function Invocations</a></li>
+<li><a class="reference internal" href="#function-prototypes">Function Prototypes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#polymorphism">Polymorphism</a></li>
+<li><a class="reference internal" href="#operators">Operators</a></li>
+<li><a class="reference internal" href="#constructors">Constructors</a><ul>
+<li><a class="reference internal" href="#constructor-declarations">Constructor Declarations</a></li>
+<li><a class="reference internal" href="#constructor-invocation">Constructor Invocation</a><ul>
+<li><a class="reference internal" href="#naked-initialization">Naked Initialization</a></li>
+<li><a class="reference internal" href="#assignment-initialization">Assignment Initialization</a></li>
+<li><a class="reference internal" href="#invocation-initialization">Invocation Initialization</a></li>
+<li><a class="reference internal" href="#temporary-initialization">Temporary Initialization</a></li>
+<li><a class="reference internal" href="#base-type-constructors-inheritance">Base type constructors (inheritance)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#destructors">Destructors</a></li>
+<li><a class="reference internal" href="#methods">Methods</a><ul>
+<li><a class="reference internal" href="#method-definitions">Method Definitions</a></li>
+<li><a class="reference internal" href="#method-invocation">Method Invocation</a></li>
+<li><a class="reference internal" href="#methods-taking-read-only-or-read-write-values-for-this">Methods Taking Read-Only or Read-Write Values for <code class="docutils literal"><span class="pre">this</span></code></a></li>
+<li><a class="reference internal" href="#interface-methods-and-inheritance">Interface methods and inheritance</a></li>
+<li><a class="reference internal" href="#access-to-methods">Access to Methods</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#overloaded-operators">Overloaded Operators</a><ul>
+<li><a class="reference internal" href="#binary-operator-overloads">Binary Operator Overloads</a></li>
+<li><a class="reference internal" href="#unary-operator-overloads">Unary Operator Overloads</a></li>
+<li><a class="reference internal" href="#direct-assignment-overloads">Direct Assignment Overloads</a></li>
+<li><a class="reference internal" href="#compound-assignment-overloads">Compound Assignment Overloads</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#inline-functions-and-methods">Inline Functions and Methods</a></li>
+<li><a class="reference internal" href="#built-in-functions-and-methods">Built-In Functions and Methods</a><ul>
+<li><a class="reference internal" href="#debugging-functions">Debugging Functions</a></li>
+<li><a class="reference internal" href="#error-status-functions">Error Status Functions</a></li>
+<li><a class="reference internal" href="#integer-numerical-functions">Integer Numerical Functions</a></li>
+<li><a class="reference internal" href="#floating-point-numerical-functions">Floating-Point Numerical Functions</a><ul>
+<li><a class="reference internal" href="#trigonometric-functions">Trigonometric Functions</a></li>
+<li><a class="reference internal" href="#exponential-and-logarithmic-functions">Exponential and Logarithmic Functions</a></li>
+<li><a class="reference internal" href="#non-transcendental-functions">Non-Transcendental Functions</a></li>
+<li><a class="reference internal" href="#category-functions">Category Functions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#vector-functions">Vector Functions</a></li>
+<li><a class="reference internal" href="#conversion-functions">Conversion Functions</a></li>
+<li><a class="reference internal" href="#thread-core-related-functions">Thread/Core-related Functions</a></li>
+<li><a class="reference internal" href="#performance-counter-functions">Performance Counter Functions</a></li>
+<li><a class="reference internal" href="#fabric-context-functions">Fabric Context Functions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#named-constants">Named Constants</a><ul>
+<li><a class="reference internal" href="#predefined-constants">Predefined Constants</a><ul>
+<li><a class="reference internal" href="#fabric-version-pre-defined-constants">Fabric Version Pre-Defined Constants</a></li>
+<li><a class="reference internal" href="#integer-limit-pre-defined-constants">Integer Limit Pre-Defined Constants</a></li>
+<li><a class="reference internal" href="#the-func-pre-defined-constants">The <code class="docutils literal"><span class="pre">FUNC</span></code> Pre-Defined Constants</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#importing-functionality-with-require">Importing Functionality With <code class="docutils literal"><span class="pre">require</span></code></a></li>
+<li><a class="reference internal" href="#using-require-with-version-information">Using <code class="docutils literal"><span class="pre">require</span></code> with version information</a></li>
+<li><a class="reference internal" href="#extension-versioning-environment-variables">Extension versioning environment variables</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="types.html"
+                        title="前の章へ">The KL Type System</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="ops-exprs.html"
+                        title="次の章へ">Operators and Expressions</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/KLProgrammingGuide/globals.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="ops-exprs.html" title="Operators and Expressions"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="types.html" title="The KL Type System"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >KL Programming Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

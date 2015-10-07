@@ -1,0 +1,347 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Vec4_d.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="Math Extension’s Files" href="files.html" />
+    <link rel="next" title="Vec4_i.kl" href="Vec4_i.kl.html" />
+    <link rel="prev" title="Vec4.kl" href="Vec4.kl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="Vec4_i.kl.html" title="Vec4_i.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="Vec4.kl.html" title="Vec4.kl"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Math Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">Math Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="math-vec4-d-kl">
+<span id="vec4-d-kl"></span><span id="id1"></span><h1>Vec4_d.kl<a class="headerlink" href="#math-vec4-d-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="vec4-d-struct">
+<h3>Vec4_d (struct)<a class="headerlink" href="#vec4-d-struct" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">The <a class="reference internal" href="Vec4_d.html#vec4-d"><span>Vec4_d</span></a> type represents a vector with 4 components. The <a class="reference internal" href="Vec4_d.html#vec4-d"><span>Vec4_d</span></a> is also used as the row type for the <a class="reference internal" href="Mat44.html#mat44"><span>Mat44</span></a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">Vec4_d utilizes the KL <a class="reference internal" href="../../KLProgrammingGuide/globals.html#vector-functions"><span>Vector Functions</span></a></p>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="Vec2.html#vec2"><span>Vec2</span></a>, <a class="reference internal" href="Vec3_d.html#vec3-d"><span>Vec3_d</span></a></p>
+</div>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Vec4_d</span>
+<span class="cm">*/</span>
+
+<span class="nx">Vec4_d</span> <span class="nx">v</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="section" id="members">
+<h4>Members<a class="headerlink" href="#members" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="81%" />
+<col width="9%" />
+<col width="9%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a></td>
+<td>x</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a></td>
+<td>y</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a></td>
+<td>z</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a></td>
+<td>t</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec4_d.html#dbba32f47e59e1f4b41ca73e5e6"><span>Vec4_d</span></a>  ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> value )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec4_d.html#fbe3bcced8453fad0139035424c522"><span>Vec4_d</span></a>  ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> x, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> y, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> z, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> t )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec4_d.html#f5b3b00ffe0c4b409eecdd714100d2d8"><span>Vec4_d</span></a>  ( in <a class="reference internal" href="Vec4_d.html#vec4-d"><span>Vec4_d</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec4_d.html#e761c5a39f847ca9601242c00471daf"><span>Vec4_d</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Vec4_d.html#vec4-d"><span>Vec4_d</span></a></td>
+<td><a class="reference internal" href="Vec4_d.html#d6f74faa183248f4a49d2105166965fd"><span>add</span></a> ? ( in <a class="reference internal" href="Vec4_d.html#vec4-d"><span>Vec4_d</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="Vec4_d.html#c3ad3092942b09545f3678f19f88a"><span>almostEqual</span></a> ? ( in <a class="reference internal" href="Vec4_d.html#vec4-d"><span>Vec4_d</span></a> other )</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="Vec4_d.html#bea80d47c784874b99da5bf8fc"><span>almostEqual</span></a> ? ( in <a class="reference internal" href="Vec4_d.html#vec4-d"><span>Vec4_d</span></a> other, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> precision )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="Vec4_d.html#edd4026e271a4964a78552480cb500f5"><span>angleTo</span></a> ? ( in <a class="reference internal" href="Vec4_d.html#vec4-d"><span>Vec4_d</span></a> other )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Vec4_d.html#vec4-d"><span>Vec4_d</span></a></td>
+<td><a class="reference internal" href="Vec4_d.html#e90000f484f9ac3d9cda1bf544e"><span>clamp</span></a> ? ( in <a class="reference internal" href="Vec4_d.html#vec4-d"><span>Vec4_d</span></a> min, in <a class="reference internal" href="Vec4_d.html#vec4-d"><span>Vec4_d</span></a> max )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Vec4_d.html#vec4-d"><span>Vec4_d</span></a></td>
+<td><a class="reference internal" href="Vec4_d.html#f99cacb8635407bbbb42415a9064534"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="Vec4_d.html#d2cec7558584a2186331f4437dcf6d3"><span>component</span></a> ? ( in Size i )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="Vec4_d.html#a86f97434d134e3192cbdf06cd9e4539"><span>distanceTo</span></a> ? ( in <a class="reference internal" href="Vec4_d.html#vec4-d"><span>Vec4_d</span></a> other )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Vec4_d.html#vec4-d"><span>Vec4_d</span></a></td>
+<td><a class="reference internal" href="Vec4_d.html#bd072017ded4c72ab9c5a84563f54c4"><span>divide</span></a> ? ( in <a class="reference internal" href="Vec4_d.html#vec4-d"><span>Vec4_d</span></a> other )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Vec4_d.html#vec4-d"><span>Vec4_d</span></a></td>
+<td><a class="reference internal" href="Vec4_d.html#d0fecf864b2b4576a88a2a0564c848ee"><span>divideFloat64</span></a> ? ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> other )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="Vec4_d.html#b05d10419241e2b89e4217559222f1"><span>dot</span></a> ? ( in <a class="reference internal" href="Vec4_d.html#vec4-d"><span>Vec4_d</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="Vec4_d.html#c5ba5c79baf470996d2e7ba103e1f31"><span>equal</span></a> ? ( in <a class="reference internal" href="Vec4_d.html#vec4-d"><span>Vec4_d</span></a> other )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec4_d.html#bafb2cca58b349da8d3cda056b7238ac"><span>get</span></a> ? ( io <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> v&lt;&gt; )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec4_d.html#fde94eb475d14b10a9c7f343f94a9d95"><span>get</span></a> ? ( io <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> v&lt;&gt;, in UInt32 o )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec4_d.html#c49ea99c5e24e70b642e7d9553c4223"><span>get</span></a> ? ( io <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> v[] )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec4_d.html#e25bd39b93e443f595eb7ad4ffbfd264"><span>get</span></a> ? ( io <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> v[], in UInt32 o )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec4_d.html#f8c47a8503547b69e568b823e25b445"><span>get</span></a> ? ( io <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> v&lt;&gt; )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec4_d.html#a961f83981484eed8bea2f3512844d1b"><span>get</span></a> ? ( io <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> v&lt;&gt;, in UInt32 o )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec4_d.html#e9215a5712dc4836a6938153dad624b3"><span>get</span></a> ? ( io <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> v[] )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec4_d.html#b7901f50dff84f35b11dbc6b8c4f262e"><span>get</span></a> ? ( io <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> v[], in UInt32 o )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Vec4_d.html#vec4-d"><span>Vec4_d</span></a></td>
+<td><a class="reference internal" href="Vec4_d.html#c66938944ff4913168ed0fda6ea1"><span>inverse</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="Vec4_d.html#d4842cdc18a4ee5980364b48a97254f"><span>length</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="Vec4_d.html#dc74c6e1a643ef90940b334e7973f0"><span>lengthSquared</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Vec4_d.html#vec4-d"><span>Vec4_d</span></a></td>
+<td><a class="reference internal" href="Vec4_d.html#b2b29251ca14876ade15a9058df84bf"><span>linearInterpolate</span></a> ? ( in <a class="reference internal" href="Vec4_d.html#vec4-d"><span>Vec4_d</span></a> other, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> t )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Vec3_d.html#vec3-d"><span>Vec3_d</span></a></td>
+<td><a class="reference internal" href="Vec4_d.html#f85b7a6be6bc4836ae575c33eb1ebfea"><span>makeHomogeneousVec3_d</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Vec4_d.html#vec4-d"><span>Vec4_d</span></a></td>
+<td><a class="reference internal" href="Vec4_d.html#c35108419614497bc1ef80b0a490317"><span>multiply</span></a> ? ( in <a class="reference internal" href="Vec4_d.html#vec4-d"><span>Vec4_d</span></a> other )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Vec4_d.html#vec4-d"><span>Vec4_d</span></a></td>
+<td><a class="reference internal" href="Vec4_d.html#ac2c344c8dae3263f3235f8ec4"><span>multiplyFloat64</span></a> ? ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> other )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Vec4_d.html#vec4-d"><span>Vec4_d</span></a></td>
+<td><a class="reference internal" href="Vec4_d.html#da7863e61474992a9e854f13457a89e"><span>negate</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec4_d.html#e2415180e48beb1b91cd9692ccdd0"><span>normalize</span></a> ! ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec4_d.html#ebea02423e8a36025c62a274c6"><span>set</span></a> ! ( in <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> v&lt;&gt; )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec4_d.html#d00dc9e81ea04dd79bafd1c2b43a94f0"><span>set</span></a> ! ( in <a class="reference internal" href="Float32.html#float32"><span>Float32</span></a> v&lt;&gt;, in UInt32 o )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec4_d.html#deb54537702c469d983c7afa9b393c5a"><span>set</span></a> ! ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> v&lt;&gt; )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec4_d.html#d45a367ca1674d5d9d80aa24b5ca41bf"><span>set</span></a> ! ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> v&lt;&gt;, in UInt32 o )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec4_d.html#b2b455d76a545f28238b4d2d5192189"><span>set</span></a> ! ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> value )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec4_d.html#b604682b33b4e4d0f8f0975"><span>set</span></a> ! ( in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> x, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> y, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> z, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> t )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec4_d.html#ffa97c569746a196ad86b7db0b5712"><span>set</span></a> ! ( in <a class="reference internal" href="Vec3_d.html#vec3-d"><span>Vec3_d</span></a> v )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec4_d.html#f4159d7ad0e240c58d93f1164511e5db"><span>setComponent</span></a> ! ( in Size i, in <a class="reference internal" href="Float64.html#float64"><span>Float64</span></a> v )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Vec4_d.html#c9123fb13bd94ee1937917af574ec0ce"><span>setNull</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="Vec4_d.html#ea0624a51e2d431988b3c2d6f4d141ae"><span>setUnit</span></a> ! ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Vec4_d.html#vec4-d"><span>Vec4_d</span></a></td>
+<td><a class="reference internal" href="Vec4_d.html#c68f01a7d1a7469ea807b2ddf8c27a03"><span>subtract</span></a> ? ( in <a class="reference internal" href="Vec4_d.html#vec4-d"><span>Vec4_d</span></a> other )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Vec3_d.html#vec3-d"><span>Vec3_d</span></a></td>
+<td><a class="reference internal" href="Vec4_d.html#deb47610e61149df926f9fdea03f1ad4"><span>toVec3_d</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Vec4_d.html#vec4-d"><span>Vec4_d</span></a></td>
+<td><a class="reference internal" href="Vec4_d.html#b1136e1499a144e98c8ccf224f075373"><span>unit</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Float64.html#float64"><span>Float64</span></a></td>
+<td><a class="reference internal" href="Vec4_d.html#ece73257fcb4c738b263b408bf294d6"><span>unitsAngleTo</span></a> ? ( in <a class="reference internal" href="Vec4_d.html#vec4-d"><span>Vec4_d</span></a> other )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Vec3_d.html#vec3-d"><span>Vec3_d</span></a></td>
+<td><a class="reference internal" href="Vec4_d.html#fe57784a3f4fd99b7b73e4c62921c0"><span>xyz</span></a> ? ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+<div class="section" id="operators">
+<h4>Operators<a class="headerlink" href="#operators" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="Vec4_d.html#vec4-d"><span>Vec4_d</span></a></td>
+<td><a class="reference internal" href="Vec4_d.html#cff437c17943318b6652b49bd2f35d"><span>=</span></a> ( <a class="reference internal" href="../Parameters/Param.html#param"><span>Param</span></a> other )</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="Vec4.kl.html"
+                        title="前の章へ">Vec4.kl</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="Vec4_i.kl.html"
+                        title="次の章へ">Vec4_i.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/Math/Vec4_d.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="Vec4_i.kl.html" title="Vec4_i.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="Vec4.kl.html" title="Vec4.kl"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Math Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >Math Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

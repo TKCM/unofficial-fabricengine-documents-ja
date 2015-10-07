@@ -1,0 +1,501 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Operators and Expressions &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
+    <link rel="up" title="KL Programming Guide" href="index.html" />
+    <link rel="next" title="Statements" href="statements.html" />
+    <link rel="prev" title="Functions and Other Global Declarations" href="globals.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="statements.html" title="Statements"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="globals.html" title="Functions and Other Global Declarations"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">KL Programming Guide</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="operators-and-expressions">
+<span id="ops-exprs"></span><h1>Operators and Expressions<a class="headerlink" href="#operators-and-expressions" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>This chapter explains the possible operators and resulting expressions in KL.  Generally, KL has the same operator and expression syntax as JavaScript and C, and in particular follows exactly the same precedence and associativity rules.</p>
+<div class="section" id="operators">
+<span id="ops"></span><h2>Operators<a class="headerlink" href="#operators" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>KL supports the same basic set of operators as JavaScript and C.  These operations are broadly categorized as <a class="reference internal" href="#arithmetic-ops"><span>arithmetic operators</span></a>, <a class="reference internal" href="#logical-ops"><span>logical operators</span></a>, <a class="reference internal" href="#bitwise-ops"><span>bitwise operators</span></a> and <a class="reference internal" href="#ass-ops"><span>assignment operators</span></a>.</p>
+<div class="section" id="arithmetic-operators">
+<span id="arithmetic-ops"></span><h3>Arithmetic Operators<a class="headerlink" href="#arithmetic-operators" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="add-and-subtract">
+<h4>Add and Subtract<a class="headerlink" href="#add-and-subtract" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>When <code class="docutils literal"><span class="pre">+</span></code> or <code class="docutils literal"><span class="pre">-</span></code> appear between two expressions they are referred to as the <em class="dfn">add</em> and <em class="dfn">subtract</em> binary operators.  These operators are pre-defined for all integer and floating point types, where they perform the usual arithmetic operations, but they can also be overloaded to apply to user-defined structures or different combinations of types.  For example, it is possible to define an operator that takes a user-defined <code class="docutils literal"><span class="pre">Rect</span></code> on the left and a user-defined <code class="docutils literal"><span class="pre">Point</span></code> on the right.</p>
+<p>In addition to being pre-defined for integer and floating-point types, the <code class="docutils literal"><span class="pre">+</span></code> (add) operator (but not the <code class="docutils literal"><span class="pre">-</span></code> (subtract) operator) is defined for the <code class="docutils literal"><span class="pre">String</span></code> type; the result of adding two strings is the two strings concatenated together.</p>
+</div>
+<div class="section" id="multiply-divide-and-remainder">
+<h4>Multiply, Divide and Remainder<a class="headerlink" href="#multiply-divide-and-remainder" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>When <code class="docutils literal"><span class="pre">*</span></code>, <code class="docutils literal"><span class="pre">/</span></code> or <code class="docutils literal"><span class="pre">%</span></code> appear between two expressions they are referred to as the <em class="dfn">multiply</em>, <em class="dfn">divide</em> and <em class="dfn">remainder</em> binary operators.  These operators are pre-defined for all integer and floating point types, where they perform the usual arithmetic operations, but they can also be overloaded to apply to user-defined structures or different combinations of types.  For example, it is possible to define a multiply operator that takes a <code class="docutils literal"><span class="pre">Float32</span></code> on the left and a user-defined <code class="docutils literal"><span class="pre">Vec3</span></code> on the right.</p>
+</div>
+<div class="section" id="unary-plus-and-minus">
+<h4>Unary Plus and Minus<a class="headerlink" href="#unary-plus-and-minus" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>When <code class="docutils literal"><span class="pre">+</span></code> or <code class="docutils literal"><span class="pre">-</span></code> appears in front of an integer or floating-point expression without an expression to the left they are referred to as the <em class="dfn">unary plus</em> and <em class="dfn">unary minus</em> operators.  The unary plus operator doesn&#8217;t do anything to the value it operates on, but the unary minus operator returns the value that, when added to the original, produces zero (for unsigned integer expressions); for signed integer and floating-point expressions, this is value of the expression with its sign reversed.</p>
+</div>
+<div class="section" id="increment-and-decrement-operators">
+<h4>Increment and Decrement Operators<a class="headerlink" href="#increment-and-decrement-operators" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>The <code class="docutils literal"><span class="pre">++</span></code> (increment) and <code class="docutils literal"><span class="pre">--</span></code> (decrement) operators can be used to add one to or subtract one from a variable.  These operators have the following properties:</p>
+<ul class="simple">
+<li>The operators only work on variables or input-output parameters; then cannot operate on constants or input parameters.  This is because they change the value of the expression.</li>
+<li>They only operate on integer values.</li>
+<li>Each operator can appear either <em>precede</em> or <em>follow</em> the variable it operates on.  When it precedes the variable, the value of the expression is the value of the variable <em>after</em> incrementing; this is referred to as a <em>prefix</em> increment (or decrement).  When it follows the variable, the result is the value of the variable <em>before</em> incrementing; this is referred to as a <em>postfix</em> increment (or decrement).</li>
+<li>They cannot be overloaded.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="logical-operators">
+<span id="logical-ops"></span><h3>Logical Operators<a class="headerlink" href="#logical-operators" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="equality-operators">
+<span id="equality-ops"></span><h4>Equality Operators<a class="headerlink" href="#equality-operators" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>When <code class="docutils literal"><span class="pre">==</span></code> or <code class="docutils literal"><span class="pre">!=</span></code> appear between two expressions they are referred to as the <em class="dfn">equal-to</em> or <em class="dfn">not-equal-to</em> binary operators, respectively; collectively, they are referred to as the <em class="dfn">equality operators</em>.</p>
+<p>The equality operators are pre-defined for all integer and floating-point types as well as the <code class="docutils literal"><span class="pre">Boolean</span></code> and <code class="docutils literal"><span class="pre">String</span></code> types.  They can also be overloaded to apply to user-defined structure and specific object types or combinations of different types.</p>
+</div>
+<div class="section" id="identity-ops">
+<span id="identity-operators"></span><h4>Identity Operators<a class="headerlink" href="#identity-ops" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>When <code class="docutils literal"><span class="pre">===</span></code> or <code class="docutils literal"><span class="pre">!==</span></code> appear between two expressions they are referred to as the <em class="dfn">identical-to</em> or <em class="dfn">not-identical-to</em> binary operators, respectively; collectively, they are referred to as the <em class="dfn">identity operators</em>.</p>
+<p>The identity operators are pre-defined only for <a class="reference internal" href="types.html#klpg-types-objects"><span>object types</span></a> and <a class="reference internal" href="types.html#klpg-types-interfaces"><span>interface types</span></a>.  They test whether two objects or interfaces refer to the same object, ie. whether changing one will change the other.</p>
+</div>
+<div class="section" id="relational-operators">
+<span id="relational-ops"></span><h4>Relational Operators<a class="headerlink" href="#relational-operators" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>When <code class="docutils literal"><span class="pre">&lt;</span></code>, <code class="docutils literal"><span class="pre">&lt;=</span></code>, <code class="docutils literal"><span class="pre">&gt;</span></code> or <code class="docutils literal"><span class="pre">&gt;=</span></code> appear between two expressions they are referred to as the <em class="dfn">less-than</em>, <em class="dfn">less-than-or-equal-to</em>, <em class="dfn">greater-than</em> or <em class="dfn">greater-than-or-equal-to</em> binary operators, respectively; collectively, they are referred to as the <em class="dfn">relational operators</em>.</p>
+<p>The relational operators are pre-defined for all integer and floating-point types as well as the <code class="docutils literal"><span class="pre">String</span></code> type.  They can also be overloaded to apply to user-defined structure types or combinations of different types.</p>
+</div>
+<div class="section" id="logical-and">
+<h4>Logical AND<a class="headerlink" href="#logical-and" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>When <code class="docutils literal"><span class="pre">&amp;&amp;</span></code> appears between two expressions it is referred to as the <em class="dfn">logical AND</em> binary operator.  Logical AND operates as follows: the left operand is cast to a <code class="docutils literal"><span class="pre">Boolean</span></code> (ie. a <code class="docutils literal"><span class="pre">Boolean</span></code> value is constructed from the left hand operand).  If the result is <code class="docutils literal"><span class="pre">true</span></code>, the result is the right operand, otherwise the result is the left operand.</p>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">The behavior of logical AND is the same as in JavaScript but different than C.  In C, the result value of a logical AND is always an integer (bool in C++).</p>
+</div>
+<p>It is not possible to overload the logical AND operator.  However, you can &#8220;enable&#8221; it for custom types (structures) by creating a <code class="docutils literal"><span class="pre">Boolean</span></code> constructor with a single parameter whose type is the type of the left operand.</p>
+</div>
+<div class="section" id="logical-or">
+<h4>Logical OR<a class="headerlink" href="#logical-or" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>When <code class="docutils literal"><span class="pre">||</span></code> appears between two expressions it is referred to as the <em class="dfn">logical OR</em> binary operator.  Logical OR operates as follows: the left operand is cast to a <code class="docutils literal"><span class="pre">Boolean</span></code> (ie. a <code class="docutils literal"><span class="pre">Boolean</span></code> value is constructed from the left hand operand).  If the result is <code class="docutils literal"><span class="pre">true</span></code>, the result is the left operand, otherwise the result is the right operand.</p>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">The behavior of logical OR is the same as in JavaScript but different than C.  In C, the result value of a logical AND is always an integer (bool in C++).</p>
+</div>
+<p>It is not possible to overload the logical OR operator.  However, you can &#8220;enable&#8221; it for custom types (structures) by creating a <code class="docutils literal"><span class="pre">Boolean</span></code> constructor with a single parameter whose type is the type of the left operand.</p>
+</div>
+<div class="section" id="logical-not">
+<h4>Logical NOT<a class="headerlink" href="#logical-not" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>When <code class="docutils literal"><span class="pre">!</span></code> (exclamation mark) appears in front of an expression it is referred to as the <em class="dfn">logical NOT</em> unary operator.  Logical NOT inverts the logical value of expression; more specifically, it constructs a new <code class="docutils literal"><span class="pre">Boolean</span></code> value from the expression and then inverts its logical value.  Therefore, logical not can be applied to any expression that has a <code class="docutils literal"><span class="pre">Boolean</span></code> constructor that takes a single parameter whose types is the type of the expression.</p>
+<p>It is not possible to overload the logical NOT operator.  However, you can &#8220;enable&#8221; it for custom types (structures) by creating a <code class="docutils literal"><span class="pre">Boolean</span></code> constructor with a single parameter whose type is the structure.</p>
+</div>
+<div class="section" id="the-conditional-operator">
+<h4>The Conditional Operator<a class="headerlink" href="#the-conditional-operator" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>When three expressions are separated by <code class="docutils literal"><span class="pre">?</span></code> (question mark) and <code class="docutils literal"><span class="pre">:</span></code> (colon) it is referred to as the <em class="dfn">conditional operator</em> (or <em class="dfn">ternary operator</em>).  The conditional operator constructs a <code class="docutils literal"><span class="pre">Boolean</span></code> from the first operand; if it has value <code class="docutils literal"><span class="pre">true</span></code>, the result is the second operand, otherwise it is the third.</p>
+<p>It is not possible to overload the conditional operator.</p>
+</div>
+<div class="section" id="the-comma-operator">
+<h4>The Comma Operator<a class="headerlink" href="#the-comma-operator" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>When two expressions are separated by <code class="docutils literal"><span class="pre">,</span></code> (comma) it is referred to as the <em class="dfn">comma operator</em>).  The comma operator first evaluates the left-hand expression, throwing away the result, and then evaluates the right-hand expression.  The value of the right-hand expression is the value of the comma operator expression.</p>
+<p>It is not possible to overload the comma operator.</p>
+</div>
+</div>
+<div class="section" id="bitwise-operators">
+<span id="bitwise-ops"></span><h3>Bitwise Operators<a class="headerlink" href="#bitwise-operators" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="bitwise-and-or-and-xor">
+<h4>Bitwise AND, OR and XOR<a class="headerlink" href="#bitwise-and-or-and-xor" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>When <code class="docutils literal"><span class="pre">&amp;</span></code>, <code class="docutils literal"><span class="pre">|</span></code> or <code class="docutils literal"><span class="pre">^</span></code> appear between two expressions they are referred to as <em class="dfn">bitwise AND</em>, <em class="dfn">bitwise OR</em> or <em class="dfn">bitwise XOR</em> binary operators, respectively.</p>
+<p>Bitwise AND, OR and XOR are predefined for all integer types; they perform the usual bitwise operation on the two values.  They are also predefined for the <code class="docutils literal"><span class="pre">Boolean</span></code> type, which is treated as if it was a single bit with value 1 (if true) or 0 (if false).</p>
+<p>Bitwise AND, OR and XOR can be overloaded for user-defined structures or combinations of different types.</p>
+</div>
+<div class="section" id="bitwise-not">
+<h4>Bitwise NOT<a class="headerlink" href="#bitwise-not" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>When <code class="docutils literal"><span class="pre">~</span></code> (tilde) appears in front of an expression it is referred to as the <em class="dfn">bitwise NOT</em> unary operator.</p>
+<p>Bitwise NOT is predefined for all integer types; it inverts the state of the bits of the value.  It is also predefined for the <code class="docutils literal"><span class="pre">Boolean</span></code> type, which is treated as if it was a single bit with value 1 (if true) or 0 (if false).</p>
+</div>
+<div class="section" id="left-and-right-shift">
+<h4>Left and Right Shift<a class="headerlink" href="#left-and-right-shift" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>When <code class="docutils literal"><span class="pre">&lt;&lt;</span></code> or <code class="docutils literal"><span class="pre">&gt;&gt;</span></code> appear between two expressions they are referred to as the <em class="dfn">left shift</em> or <em class="dfn">right shift</em> binary operators, respectively.  These operators are pre-defined for all integer types, where they perform a left or right bit shift of the left operand by the number of bits given in the right operand.</p>
+<p>A right-shift of a signed integer value will fill the left most bits with the sign bit, not with zeros.  Right shifts of unsigned integer values and left shifts of any integer values always fill with zeros.</p>
+<p>It is possible to overload the shift operators for user-defined types, and even provide non-integer types as right-hand operands.</p>
+</div>
+</div>
+<div class="section" id="assignment-operators">
+<span id="ass-ops"></span><h3>Assignment Operators<a class="headerlink" href="#assignment-operators" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="direct-assignment-operator">
+<h4>Direct Assignment Operator<a class="headerlink" href="#direct-assignment-operator" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>When <code class="docutils literal"><span class="pre">=</span></code> appears between two expressions it is referred to as the <em class="dfn">direct assignment operator</em>.  The direct assignment operator is predefined for all types; see <a class="reference internal" href="types.html#klpg-types"><span>The KL Type System</span></a> for details on how direct assignment operates for a given type.  It is also possible to overload the direct assignment operator for any type. See <a class="reference internal" href="globals.html#overloading-direct-ass-op"><span>Direct Assignment Overloads</span></a></p>
+</div>
+<div class="section" id="compound-assignment-operators">
+<h4>Compound Assignment Operators<a class="headerlink" href="#compound-assignment-operators" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>Any of the arithmetic or bitwise (but not logical) binary operators can be combined with <code class="docutils literal"><span class="pre">=</span></code> to form a <em class="dfn">compound assignment operator</em>; these are specifically <code class="docutils literal"><span class="pre">+=</span></code>, <code class="docutils literal"><span class="pre">-=</span></code>, <code class="docutils literal"><span class="pre">*=</span></code>, <code class="docutils literal"><span class="pre">/=</span></code>, <code class="docutils literal"><span class="pre">%=</span></code>, <code class="docutils literal"><span class="pre">&lt;&lt;=</span></code>, <code class="docutils literal"><span class="pre">&gt;&gt;=</span></code>, <code class="docutils literal"><span class="pre">&amp;=</span></code>, <code class="docutils literal"><span class="pre">^=</span></code> and <code class="docutils literal"><span class="pre">|=</span></code>.</p>
+<p>A compound assignment operator is predefined for a given type if and only if the corresponding binary operator is predefined for the type.  It is also possible to overload the compound assignment operator for any type, and it is even possible to have different types for the left and right operands. See <a class="reference internal" href="globals.html#overloading-compound-ass-ops"><span>Compound Assignment Overloads</span></a>.</p>
+</div>
+</div>
+<div class="section" id="operators-and-polymorphism">
+<h3>Operators and Polymorphism<a class="headerlink" href="#operators-and-polymorphism" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Operator invocations are subject to the same rules as function calls with respect to polymorphism.  If an exact match for an operator with the parameter types equal to the operand types is not found, KL will find the best-match among the existing implementations of the operator.  This makes it possible, for instance, to add an integer and a string; the result is that the integer is cast to a string and then the strings are concatenated.</p>
+<p>For more information on polymorphism and best-match rules, see <a class="reference internal" href="globals.html#polymorphism"><span>Polymorphism</span></a>.</p>
+</div>
+</div>
+<div class="section" id="expressions">
+<h2>Expressions<a class="headerlink" href="#expressions" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>There are two types of expressions in KL: simple expressions and compound expressions.</p>
+<div class="section" id="simple-expressions">
+<span id="simple-exprs"></span><h3>Simple Expressions<a class="headerlink" href="#simple-expressions" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><em class="dfn">Simple expressions</em> are the expressions from which more complex expressions are derived.  The simple expressions are:</p>
+<ul class="simple">
+<li>Symbols that refer to variables, function arguments or constants.  The type of the expression is the type of the entity referred to.  Examples: <code class="docutils literal"><span class="pre">foo</span></code>, <code class="docutils literal"><span class="pre">myParam</span></code>, <code class="docutils literal"><span class="pre">mathPI</span></code>.  See <a class="reference internal" href="#scope"><span>Scoping Rules</span></a> for how symbol names are resolved.</li>
+<li>Boolean, integer, floating-point and string constants.  The type of the expression is the type of the constant.  Examples: <code class="docutils literal"><span class="pre">true</span></code>, <code class="docutils literal"><span class="pre">42</span></code>, <code class="docutils literal"><span class="pre">3.14159</span></code>, <code class="docutils literal"><span class="pre">FILE</span></code>, <code class="docutils literal"><span class="pre">LINE</span></code>.  See <a class="reference internal" href="syntax.html#literal-constants"><span>Constants</span></a>.</li>
+</ul>
+</div>
+<div class="section" id="compound-expressions">
+<h3>Compound Expressions<a class="headerlink" href="#compound-expressions" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><em class="dfn">Compound expressions</em> are built from <a class="reference internal" href="#simple-exprs"><span>simple expressions</span></a> and/or other compound expressions using <a class="reference internal" href="#ops"><span>operators</span></a>.</p>
+<p>The following table lists all the different compound expressions in KL.  Compound expressions are grouped by <em class="dfn">type</em>; all expressions of the same type are of the same precedence and share the same associativity.  Compound expression types are listed from highest to lowest precedence.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="17%" />
+<col width="57%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Type</th>
+<th class="head">Associativity</th>
+<th class="head">Expression(s)</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td rowspan="6">Postfix</td>
+<td rowspan="6">left-to-right</td>
+<td><code class="samp docutils literal"><em><span class="pre">functionName</span></em><span class="pre">(</span><em><span class="pre">args</span></em><span class="pre">)</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="samp docutils literal"><em><span class="pre">expr</span></em><span class="pre">[</span><em><span class="pre">expr</span></em><span class="pre">]</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="samp docutils literal"><em><span class="pre">expr</span></em><span class="pre">.</span><em><span class="pre">member</span></em></code></td>
+</tr>
+<tr class="row-odd"><td><code class="samp docutils literal"><em><span class="pre">expr</span></em><span class="pre">.</span><em><span class="pre">method</span></em><span class="pre">(</span><em><span class="pre">args</span></em><span class="pre">)</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="samp docutils literal"><em><span class="pre">expr</span></em><span class="pre">++</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="samp docutils literal"><em><span class="pre">expr</span></em><span class="pre">--</span></code></td>
+</tr>
+<tr class="row-even"><td rowspan="6">Prefix</td>
+<td rowspan="6">right-to-left</td>
+<td><code class="samp docutils literal"><span class="pre">+</span><em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-odd"><td><code class="samp docutils literal"><span class="pre">-</span><em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-even"><td><code class="samp docutils literal"><span class="pre">++</span><em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-odd"><td><code class="samp docutils literal"><span class="pre">--</span><em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-even"><td><code class="samp docutils literal"><span class="pre">!</span><em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-odd"><td><code class="samp docutils literal"><span class="pre">~</span><em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-even"><td rowspan="3">Multiplicative</td>
+<td rowspan="3">left-to-right</td>
+<td><code class="samp docutils literal"><em><span class="pre">expr</span></em> <span class="pre">*</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-odd"><td><code class="samp docutils literal"><em><span class="pre">expr</span></em> <span class="pre">/</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-even"><td><code class="samp docutils literal"><em><span class="pre">expr</span></em> <span class="pre">%</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-odd"><td rowspan="2">Additive</td>
+<td rowspan="2">left-to-right</td>
+<td><code class="samp docutils literal"><em><span class="pre">expr</span></em> <span class="pre">+</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-even"><td><code class="samp docutils literal"><em><span class="pre">expr</span></em> <span class="pre">-</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-odd"><td rowspan="2">Shift</td>
+<td rowspan="2">left-to-right</td>
+<td><code class="samp docutils literal"><em><span class="pre">expr</span></em> <span class="pre">&lt;&lt;</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-even"><td><code class="samp docutils literal"><em><span class="pre">expr</span></em> <span class="pre">&gt;&gt;</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-odd"><td rowspan="4">Relational</td>
+<td rowspan="4">left-to-right</td>
+<td><code class="samp docutils literal"><em><span class="pre">expr</span></em> <span class="pre">&lt;</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-even"><td><code class="samp docutils literal"><em><span class="pre">expr</span></em> <span class="pre">&lt;=</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-odd"><td><code class="samp docutils literal"><em><span class="pre">expr</span></em> <span class="pre">&gt;</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-even"><td><code class="samp docutils literal"><em><span class="pre">expr</span></em> <span class="pre">&gt;=</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-odd"><td rowspan="4">Equality
+Identity</td>
+<td rowspan="4">left-to-right</td>
+<td><code class="samp docutils literal"><em><span class="pre">expr</span></em> <span class="pre">==</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-even"><td><code class="samp docutils literal"><em><span class="pre">expr</span></em> <span class="pre">!=</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-odd"><td><code class="samp docutils literal"><em><span class="pre">expr</span></em> <span class="pre">===</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-even"><td><code class="samp docutils literal"><em><span class="pre">expr</span></em> <span class="pre">!==</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-odd"><td>Bitwise AND</td>
+<td>left-to-right</td>
+<td><code class="samp docutils literal"><em><span class="pre">expr</span></em> <span class="pre">&amp;</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-even"><td>Bitwise XOR</td>
+<td>left-to-right</td>
+<td><code class="samp docutils literal"><em><span class="pre">expr</span></em> <span class="pre">^</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-odd"><td>Bitwise OR</td>
+<td>left-to-right</td>
+<td><code class="samp docutils literal"><em><span class="pre">expr</span></em> <span class="pre">|</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-even"><td>Logical AND</td>
+<td>left-to-right</td>
+<td><code class="samp docutils literal"><em><span class="pre">expr</span></em> <span class="pre">&amp;&amp;</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-odd"><td>Logical OR</td>
+<td>left-to-right</td>
+<td><code class="samp docutils literal"><em><span class="pre">expr</span></em> <span class="pre">||</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-even"><td>Conditional</td>
+<td>right-to-left</td>
+<td><code class="samp docutils literal"><em><span class="pre">expr</span></em><span class="pre">?</span> <em><span class="pre">expr</span></em><span class="pre">:</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-odd"><td rowspan="11">Assignment</td>
+<td rowspan="11">right-to-left</td>
+<td><code class="samp docutils literal"><em><span class="pre">expr</span></em> <span class="pre">=</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-even"><td><code class="samp docutils literal"><em><span class="pre">expr</span></em> <span class="pre">+=</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-odd"><td><code class="samp docutils literal"><em><span class="pre">expr</span></em> <span class="pre">-=</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-even"><td><code class="samp docutils literal"><em><span class="pre">expr</span></em> <span class="pre">*=</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-odd"><td><code class="samp docutils literal"><em><span class="pre">expr</span></em> <span class="pre">/=</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-even"><td><code class="samp docutils literal"><em><span class="pre">expr</span></em> <span class="pre">%=</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-odd"><td><code class="samp docutils literal"><em><span class="pre">expr</span></em> <span class="pre">&lt;&lt;=</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-even"><td><code class="samp docutils literal"><em><span class="pre">expr</span></em> <span class="pre">&gt;&gt;=</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-odd"><td><code class="samp docutils literal"><em><span class="pre">expr</span></em> <span class="pre">&amp;=</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-even"><td><code class="samp docutils literal"><em><span class="pre">expr</span></em> <span class="pre">^=</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-odd"><td><code class="samp docutils literal"><em><span class="pre">expr</span></em> <span class="pre">|=</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+<tr class="row-even"><td>Comma</td>
+<td>left-to-right</td>
+<td><code class="samp docutils literal"><em><span class="pre">expr</span></em> <span class="pre">,</span> <em><span class="pre">expr</span></em></code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="controlling-order-of-operations">
+<h3>Controlling Order of Operations<a class="headerlink" href="#controlling-order-of-operations" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>The order of operations can be explicitly controlled by putting <code class="docutils literal"><span class="pre">(</span></code> and <code class="docutils literal"><span class="pre">)</span></code> (parentheses) around expressions.</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Order of Operations</span>
+<span class="cm">*/</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nb">report</span><span class="p">(</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="mi">5</span> <span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span> <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">11</span>
+<span class="cm">16</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="scoping-rules">
+<span id="scope"></span><h2>Scoping Rules<a class="headerlink" href="#scoping-rules" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The term <em class="dfn">scope</em> in programming languages refers to the parts of a program in which variables, constants and functions are visible; the rules that govern how scopes work are referred to as <em class="dfn">scoping rules</em>.  Scopes are also responsible for managing the &#8220;lifecycle&#8221; of variables; in the case of KL, this refers to when destructors are called for structure values.</p>
+<div class="section" id="types-of-scopes">
+<h3>Types of Scopes<a class="headerlink" href="#types-of-scopes" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>In KL, there are four kinds scopes: the global scope, function scopes, compound statement scopes and temporary scopes.  Scopes <em class="dfn">nest</em> inside each other; when a KL program refers to a variable by name, the compiler determines which variable is being referred to by searching from the current innermost scope outwards through the nested scopes to the outermost scope (which is always the global scope).  Like C, KL is a statically-scoped language, meaning that the exact variable that is being referred to is resolved at compile time (and not at run time).</p>
+<div class="section" id="the-global-scope">
+<span id="index-0"></span><h4>The Global Scope<a class="headerlink" href="#the-global-scope" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>The global scope is the top-level scope of a KL program.  The symbols that are visible in the global scope are global constants as well as functions and operators.  The global scope is always the outermost scope at any point in a KL program.</p>
+</div>
+<div class="section" id="function-scope">
+<span id="index-1"></span><h4>Function Scope<a class="headerlink" href="#function-scope" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>Whenever a function or other function-list entity is defined, a function scope is created that is nested inside the global scope.  The arguments to the function are provided within the function scope.  Within the function scope, a function definition also creates a compound statement scope corresponding to the compound statement that constitutes the body of the function.</p>
+</div>
+<div class="section" id="compound-statement-scope">
+<span id="scope-compound-statement"></span><span id="index-2"></span><h4>Compound Statement Scope<a class="headerlink" href="#compound-statement-scope" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>Any time that a <code class="docutils literal"><span class="pre">{</span></code> followed by zero or more statements followed by <code class="docutils literal"><span class="pre">}</span></code> is used to introduce a compound statement, a new <em class="dfn">compound statement scope</em> is introduced.  Compound statement scopes are nested inside function scopes (when they correspond to the compound statement that constitutes the body of a function) or inside other compound statement scopes.</p>
+<p>When control reaches the end of a compound statement (by executing the last statement or via the <code class="docutils literal"><span class="pre">return</span></code>, <code class="docutils literal"><span class="pre">break</span></code> or <code class="docutils literal"><span class="pre">continue</span></code> statements), any structure values that have corresponding destructors will have those destructors executed.</p>
+<p>Note that declaring a loop index variable inside a loop statement is a special case of a compound statement scope.  In the case that the loop body is a compound statement, the corresponding compound statement scope is nested inside the loop&#8217;s compound statement scope.</p>
+</div>
+<div class="section" id="temporary-scope">
+<span id="index-3"></span><h4>Temporary Scope<a class="headerlink" href="#temporary-scope" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>Any time that a constructor is directly invoked to create a temporary value (see <a class="reference internal" href="globals.html#klpg-constructor-invocation-temporary"><span>Temporary Initialization</span></a>), a scope is created to contain the temporary value.  The scope encloses the surrounding expression of the temporary value; this means that when the surrounding expression is finished execution, the temporary value&#8217;s destructor, if it exists, is executed.</p>
+</div>
+</div>
+<div class="section" id="nested-scopes-example">
+<h3>Nested Scopes Example<a class="headerlink" href="#nested-scopes-example" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>For a precise understanding of the nesting of KL scopes, study the following example carefully.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Operators and Expressions</a><ul>
+<li><a class="reference internal" href="#operators">Operators</a><ul>
+<li><a class="reference internal" href="#arithmetic-operators">Arithmetic Operators</a><ul>
+<li><a class="reference internal" href="#add-and-subtract">Add and Subtract</a></li>
+<li><a class="reference internal" href="#multiply-divide-and-remainder">Multiply, Divide and Remainder</a></li>
+<li><a class="reference internal" href="#unary-plus-and-minus">Unary Plus and Minus</a></li>
+<li><a class="reference internal" href="#increment-and-decrement-operators">Increment and Decrement Operators</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#logical-operators">Logical Operators</a><ul>
+<li><a class="reference internal" href="#equality-operators">Equality Operators</a></li>
+<li><a class="reference internal" href="#identity-ops">Identity Operators</a></li>
+<li><a class="reference internal" href="#relational-operators">Relational Operators</a></li>
+<li><a class="reference internal" href="#logical-and">Logical AND</a></li>
+<li><a class="reference internal" href="#logical-or">Logical OR</a></li>
+<li><a class="reference internal" href="#logical-not">Logical NOT</a></li>
+<li><a class="reference internal" href="#the-conditional-operator">The Conditional Operator</a></li>
+<li><a class="reference internal" href="#the-comma-operator">The Comma Operator</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#bitwise-operators">Bitwise Operators</a><ul>
+<li><a class="reference internal" href="#bitwise-and-or-and-xor">Bitwise AND, OR and XOR</a></li>
+<li><a class="reference internal" href="#bitwise-not">Bitwise NOT</a></li>
+<li><a class="reference internal" href="#left-and-right-shift">Left and Right Shift</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#assignment-operators">Assignment Operators</a><ul>
+<li><a class="reference internal" href="#direct-assignment-operator">Direct Assignment Operator</a></li>
+<li><a class="reference internal" href="#compound-assignment-operators">Compound Assignment Operators</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#operators-and-polymorphism">Operators and Polymorphism</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#expressions">Expressions</a><ul>
+<li><a class="reference internal" href="#simple-expressions">Simple Expressions</a></li>
+<li><a class="reference internal" href="#compound-expressions">Compound Expressions</a></li>
+<li><a class="reference internal" href="#controlling-order-of-operations">Controlling Order of Operations</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#scoping-rules">Scoping Rules</a><ul>
+<li><a class="reference internal" href="#types-of-scopes">Types of Scopes</a><ul>
+<li><a class="reference internal" href="#the-global-scope">The Global Scope</a></li>
+<li><a class="reference internal" href="#function-scope">Function Scope</a></li>
+<li><a class="reference internal" href="#compound-statement-scope">Compound Statement Scope</a></li>
+<li><a class="reference internal" href="#temporary-scope">Temporary Scope</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nested-scopes-example">Nested Scopes Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="globals.html"
+                        title="前の章へ">Functions and Other Global Declarations</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="statements.html"
+                        title="次の章へ">Statements</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/KLProgrammingGuide/ops-exprs.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="statements.html" title="Statements"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="globals.html" title="Functions and Other Global Declarations"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >KL Programming Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

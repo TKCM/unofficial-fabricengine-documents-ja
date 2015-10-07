@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>BooleanArrayParam.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="Parameters Extension’s Files" href="files.html" />
+    <link rel="next" title="BooleanParam.kl" href="BooleanParam.kl.html" />
+    <link rel="prev" title="Parameters Extension’s Files" href="files.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="BooleanParam.kl.html" title="BooleanParam.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="files.html" title="Parameters Extension’s Files"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Parameters Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">Parameters Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="parameters-booleanarrayparam-kl">
+<span id="booleanarrayparam-kl"></span><span id="id1"></span><h1>BooleanArrayParam.kl<a class="headerlink" href="#parameters-booleanarrayparam-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="booleanarrayparam-object">
+<h3>BooleanArrayParam (object)<a class="headerlink" href="#booleanarrayparam-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 1.12.0 で追加.</span></p>
+</div>
+<p class="plaintext">The <a class="reference internal" href="BooleanArrayParam.html#booleanarrayparam"><span>BooleanArrayParam (object)</span></a> implements the <a class="reference internal" href="Param.html#param"><span>Param (interface)</span></a> interface for Boolean array values.</p>
+<div class="plaintext highlight-kl"><div class="highlight"><pre>
+</pre></div>
+</div>
+<p class="plaintext"><a class="reference internal" href="BooleanArrayParam.html#booleanarrayparam"><span>BooleanArrayParam</span></a> param = :ref:<a href="#id2"><span class="problematic" id="id3">`</span></a>BooleanArrayParam &lt;booleanarrayparam&gt;`(&#8216;flag&#8217;);
+param.resize(3);
+param.setValue(0, true);
+param.setValue(1, false);
+param.setValue(2, true);
+report(param.getValue(2));</p>
+<div class="section" id="members">
+<h4>Members<a class="headerlink" href="#members" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="80%" />
+<col width="15%" />
+<col width="5%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
+<td>name</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Boolean[]</td>
+<td>values</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="Param.html#param"><span>Param</span></a>[<a class="reference internal" href="../Util/String.html#string"><span>String</span></a>]</td>
+<td>options</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="28%" />
+<col width="72%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BooleanArrayParam.html#e81e0624f2434601800ed6b18efc2c47"><span>BooleanArrayParam</span></a>  ( in <a class="reference internal" href="BooleanArrayParam.html#booleanarrayparam"><span>BooleanArrayParam</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BooleanArrayParam.html#bdff4eb6534b8eba734c729a48dff4"><span>BooleanArrayParam</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BooleanArrayParam.html#d78709f78c384bc687b283c064be7cd1"><span>BooleanArrayParam</span></a>  ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="BooleanArrayParam.html#booleanarrayparam"><span>BooleanArrayParam</span></a></td>
+<td><a class="reference internal" href="BooleanArrayParam.html#c32a7b246ad641c496dd8fb82e637eaf"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="BooleanArrayParam.html#f5091c027a94ca8b7f6872607cc43d0"><span>getName</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Param.html#param"><span>Param</span></a></td>
+<td><a class="reference internal" href="BooleanArrayParam.html#c2dc5465fa4110a2f360968458ee27"><span>getOption</span></a> ? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="BooleanArrayParam.html#b4a496d50454ea486d7de3bbc7e8a64"><span>getValue</span></a> ? ( in Index index )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="BooleanArrayParam.html#f9304d56346f4a87a5d7400fb73dc198"><span>getValueType</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BooleanArrayParam.html#d3d2271a624045a6b724dba55ba654"><span>resize</span></a> ! ( in Size size )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="BooleanArrayParam.html#c9dc0f9ce747b8a4e1f1bb50df1af7"><span>setOption</span></a> ! ( in <a class="reference internal" href="Param.html#param"><span>Param</span></a> option )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="BooleanArrayParam.html#a5d704e078140f4e2169bf69f"><span>setValue</span></a> ! ( in Index index, in Boolean value )</td>
+</tr>
+<tr class="row-even"><td>Size</td>
+<td><a class="reference internal" href="BooleanArrayParam.html#c8fb9c13f194879a53d2f5ceaba5309"><span>size</span></a> ? ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="files.html"
+                        title="前の章へ">Parameters Extension&#8217;s Files</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="BooleanParam.kl.html"
+                        title="次の章へ">BooleanParam.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/Parameters/BooleanArrayParam.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="BooleanParam.kl.html" title="BooleanParam.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="files.html" title="Parameters Extension’s Files"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Parameters Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >Parameters Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

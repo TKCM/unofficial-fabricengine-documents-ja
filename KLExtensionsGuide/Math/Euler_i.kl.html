@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Euler_i.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="Math Extension’s Files" href="files.html" />
+    <link rel="next" title="Mat22.kl" href="Mat22.kl.html" />
+    <link rel="prev" title="Euler_d.kl" href="Euler_d.kl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="Mat22.kl.html" title="Mat22.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="Euler_d.kl.html" title="Euler_d.kl"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Math Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">Math Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="math-euler-i-kl">
+<span id="euler-i-kl"></span><span id="id1"></span><h1>Euler_i.kl<a class="headerlink" href="#math-euler-i-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="euler-i-struct">
+<h3>Euler_i (struct)<a class="headerlink" href="#euler-i-struct" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">The <a class="reference internal" href="Euler_i.html#euler-i"><span>Euler_i</span></a> type represents a 3D rotation as Euler_i X, Y, and Z angles and a <a class="reference internal" href="RotationOrder.html#rotationorder"><span>RotationOrder</span></a>.
+The X, Y, and Z angles are expressed in radians. The Euler_i type also provides conversion methods to <a class="reference internal" href="Mat33_i.html#mat33-i"><span>Mat33_i</span></a>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参考</p>
+<p class="last"><a class="reference internal" href="Quat.html#quat"><span>Quat</span></a></p>
+</div>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Construct Euler_i</span>
+<span class="cm">*/</span>
+
+<span class="nx">RotationOrder</span> <span class="nx">ro</span><span class="p">(</span><span class="s1">&#39;xyz&#39;</span><span class="p">);</span>
+<span class="nx">Euler_i</span> <span class="nx">euler</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="nx">PI</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="nx">ro</span><span class="p">);</span>
+<span class="nx">Mat33_i</span> <span class="nx">matrix</span> <span class="o">=</span> <span class="nx">euler</span><span class="p">.</span><span class="nx">toMat33_i</span><span class="p">();</span>
+</pre></div>
+</div>
+<div class="section" id="members">
+<h4>Members<a class="headerlink" href="#members" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="84%" />
+<col width="9%" />
+<col width="7%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>SInt32</td>
+<td>x</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>SInt32</td>
+<td>y</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>SInt32</td>
+<td>z</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="RotationOrder.html#rotationorder"><span>RotationOrder</span></a></td>
+<td>ro</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="16%" />
+<col width="84%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Euler_i.html#b421b9aedd7efb3d18f13"><span>Euler_i</span></a>  ( in <a class="reference internal" href="Euler_i.html#euler-i"><span>Euler_i</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Euler_i.html#daf9cc74a1b45fd803b430dd6488387"><span>Euler_i</span></a>  ( in SInt32 x, in SInt32 y, in SInt32 z )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Euler_i.html#ba22e8b6a52a4df592f73d559482e9d5"><span>Euler_i</span></a>  ( in SInt32 x, in SInt32 y, in SInt32 z, in <a class="reference internal" href="RotationOrder.html#rotationorder"><span>RotationOrder</span></a> order )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Euler_i.html#b6cb7479b94ac5a67836534789d4aa"><span>Euler_i</span></a>  ( in <a class="reference internal" href="Vec3_i.html#vec3-i"><span>Vec3_i</span></a> angles )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Euler_i.html#b91b686e4d3943fcbf7da32bd57e8144"><span>Euler_i</span></a>  ( in <a class="reference internal" href="Vec3_i.html#vec3-i"><span>Vec3_i</span></a> angles, in <a class="reference internal" href="RotationOrder.html#rotationorder"><span>RotationOrder</span></a> order )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Euler_i.html#fee33e45f94c67ae50f2ead1bfde09"><span>Euler_i</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="Euler_i.html#cb7334ea193f655afa19f1a67"><span>almostEqual</span></a> ? ( in <a class="reference internal" href="Euler_i.html#euler-i"><span>Euler_i</span></a> other, in SInt32 precision )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Euler_i.html#euler-i"><span>Euler_i</span></a></td>
+<td><a class="reference internal" href="Euler_i.html#dd59fd49deb447b1b40741f34a55dc47"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="Euler_i.html#c661736d6e404780ac2e59213caaa2fc"><span>equal</span></a> ? ( in <a class="reference internal" href="Euler_i.html#euler-i"><span>Euler_i</span></a> other )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Vec3_i.html#vec3-i"><span>Vec3_i</span></a></td>
+<td><a class="reference internal" href="Euler_i.html#e70de23aa5f041c39879baaf30c45da1"><span>getAngles</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Euler_i.html#a20e32a257a40b6b6444664affa52ef"><span>set</span></a> ! ( in SInt32 x, in SInt32 y, in SInt32 z )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Euler_i.html#dad3a25455941bb8360099a1a40616f"><span>set</span></a> ! ( in SInt32 x, in SInt32 y, in SInt32 z, in <a class="reference internal" href="RotationOrder.html#rotationorder"><span>RotationOrder</span></a> order )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Euler_i.html#e47e3d91573d445990dc29d2fc2f46a8"><span>set</span></a> ! ( in <a class="reference internal" href="Vec3_i.html#vec3-i"><span>Vec3_i</span></a> angles )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="Euler_i.html#ea9e349c3a041f0858498847c76278d"><span>set</span></a> ! ( in <a class="reference internal" href="Vec3_i.html#vec3-i"><span>Vec3_i</span></a> angles, in <a class="reference internal" href="RotationOrder.html#rotationorder"><span>RotationOrder</span></a> order )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="Euler_i.html#dfd5c90845af83726966b2b7062d"><span>setAngles</span></a> ! ( in <a class="reference internal" href="Vec3_i.html#vec3-i"><span>Vec3_i</span></a> angles )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="Mat33_i.html#mat33-i"><span>Mat33_i</span></a></td>
+<td><a class="reference internal" href="Euler_i.html#e998981016d40c3bdc1d72c85773b20"><span>toMat33_i</span></a> ? ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="Euler_d.kl.html"
+                        title="前の章へ">Euler_d.kl</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="Mat22.kl.html"
+                        title="次の章へ">Mat22.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/Math/Euler_i.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="Mat22.kl.html" title="Mat22.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="Euler_d.kl.html" title="Euler_d.kl"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Math Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >Math Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

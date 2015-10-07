@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Caches &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
+    <link rel="up" title="Canvas Programmer Guide" href="index.html" />
+    <link rel="next" title="Reference counted data structures" href="referencetypes.html" />
+    <link rel="prev" title="Variables" href="variables.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="referencetypes.html" title="Reference counted data structures"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="variables.html" title="Variables"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Canvas Programmer Guide</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="caches">
+<span id="canvas-programmer-guide-caches"></span><h1>Caches<a class="headerlink" href="#caches" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">If you are looking for a less technical explanation please refer to <a class="reference internal" href="../CanvasUserGuide/caches.html#canvas-user-guide-caches"><span>Caches</span></a> in the user guide.</p>
+</div>
+<p>Caches in Canvas are data points which save a copy of the computed value and refrain from recomputing it if none of the upstream inputs have changed. This is useful for branches in graphs which are expensive to compute.</p>
+<p>Caches return immutable values, since it should not be possible for you to change the content of a reference counted data structure down stream (please see <a class="reference internal" href="referencetypes.html#canvas-programmer-guide-referencetypes"><span>Reference counted data structures</span></a> for more information). If you want to modify the returned value you&#8217;ll have to use a <em class="dfn">Clone</em> node.</p>
+<img alt="../_images/userguide_25.jpg" src="../_images/userguide_25.jpg" />
+<p>Caches are not to be mixed up with <a class="reference internal" href="variables.html#canvas-programmer-guide-variables"><span>Variables</span></a>. Caches are not guaranteed to be kept in memory. A memory manager might decide to clear them. The assumption is that it&#8217;s always possible to recompute the cache deterministically. You can not rely on the cache to always be kept around, if you need a guaranteed container please use a variable.</p>
+<p>Any Canvas node supports caching, however for simplicity and visibility we&#8217;ve chosen to expose it to the user as a special node. Essentially that node is just a pass through node which has caching turned on. You can enable caching on your own presets only through the <a class="reference internal" href="kl2dfg.html#canvas-programmer-guide-kl2dfg"><span>KL2DFG Command line utility</span></a>, using the <em class="dfn">dfgPresetCacheRule</em> doxygen qualifier and choosing <em class="dfn">always</em> as the value.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="variables.html"
+                        title="前の章へ">Variables</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="referencetypes.html"
+                        title="次の章へ">Reference counted data structures</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/CanvasProgrammerGuide/caches.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="referencetypes.html" title="Reference counted data structures"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="variables.html" title="Variables"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Canvas Programmer Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

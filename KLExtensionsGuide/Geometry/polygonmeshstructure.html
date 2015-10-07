@@ -1,0 +1,685 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>PolygonMesh’s structure &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="PolygonMeshTopology (struct)" href="PolygonMeshTopology.html" />
+    <link rel="next" title="QuatAttribute (object)" href="QuatAttribute.html" />
+    <link rel="prev" title="PolygonMeshTopology (struct)" href="PolygonMeshTopology.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="QuatAttribute.html" title="QuatAttribute (object)"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="PolygonMeshTopology.html" title="PolygonMeshTopology (struct)"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Geometry Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="types.html" >Geometry Extension&#8217;s Types</a> &raquo;</li>
+          <li class="nav-item nav-item-4"><a href="PolygonMeshTopology.html" accesskey="U">PolygonMeshTopology (struct)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="polygonmesh-s-structure">
+<span id="polygonmeshstructure"></span><h1>PolygonMesh&#8217;s structure<a class="headerlink" href="#polygonmesh-s-structure" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The <a class="reference internal" href="PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a> represents a geometric surface made of polygons, where each polygon is defined by
+closed loop of 3 or more 3D points. A point can be connected to multiple polygons. Although the
+basic definition of a <a class="reference internal" href="PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a> is pretty standard, the <a class="reference internal" href="PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a> structure contains
+special characteristics that allows it to balance performance with memory consumption:</p>
+<ul class="simple">
+<li>the structure identifies points and polygons with indices, but not edges or polygonPoints (face-vertex).
+See <a class="reference internal" href="utilizinggpucompute.html#polygonmeshcomponents"><span>PolygonMesh</span></a> for more details.</li>
+<li>The <a class="reference internal" href="GeometryAttribute.html#geometryattribute"><span>GeometryAttribute</span></a> elements are all aligned for a direct
+mapping to hardware drawing APIs such as OpenGL. See <a class="reference internal" href="#polygonmeshattributes"><span>PolygonMesh Attributes</span></a> for more details.</li>
+<li>When modifying the mesh structure, some particular rules apply. See <a class="reference internal" href="#modifyingpolygonmeshstructure"><span>Modifying the mesh structure</span></a>
+for more details.</li>
+<li>the <a class="reference internal" href="PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a> structure tries to reduce memory consumption and fragmentation by
+grouping most of its topological data into a few contiguous arrays, which can improve speed, particularly for
+larger meshes. See <a class="reference internal" href="#internalpolygonmeshdata"><span>Internal data organization</span></a> for more details.</li>
+</ul>
+<p><strong>Because the PolygonMesh makes heavy usage of arrays, `unguarded` KL compilation typically provides a 30% speedup
+for most PolygonMesh methods.</strong></p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">Unless stated otherwise, functions that read the mesh are threadsafe only if the mesh structure or attribute sharing
+layout is not modified. Functions that modify the mesh or the attribute sharing layout are not threadsafe.</p>
+</div>
+</div>
+<div class="section" id="polygonmeshtopology">
+<span id="polygonmeshcomponents"></span><h2>PolygonMeshTopology<a class="headerlink" href="#polygonmeshtopology" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The <a class="reference internal" href="PolygonMeshTopology.html#polygonmeshtopology"><span>PolygonMeshTopology</span></a> encapsulates the topological information for a <a class="reference internal" href="PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a>. It
+is mainly composed of two symmetric structures, one storing
+point data and the other storing polygon data. Each point is associated to an index, and has
+a compact array storing references to the neighbor polygons&#8217; corners (polygonPoints).
+Similarly, each polygon is associated to an index, and has a compact array storing references to the connected
+points.</p>
+<p>The following figures illustrate the concepts of points and polygons and their local indices
+(<cite>neighborPolygonIndex</cite>, <cite>neighborPointIndex</cite>):</p>
+<img alt="../../_images/components.png" src="../../_images/components.png" />
+<p>The following table shows a simplified view of the storage and relationship between these components:</p>
+<img alt="../../_images/component_tables.png" src="../../_images/component_tables.png" />
+<p>This example uses the <a class="reference internal" href="PolygonMesh.html#b2c9e63707174645b7f989a0f7c8f970"><span>PolygonMesh.getDesc</span></a> function to report the structure corresponding to the illustrated
+mesh above.</p>
+<div class="highlight-kl" id="griddumpexample"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Structure dump of a 2X2 grid:</span>
+<span class="cm">*/</span>
+
+<span class="kr">require</span> <span class="nx">Geometry</span><span class="p">;</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">//Add a 2X2 grid if size 2.0</span>
+  <span class="nx">PolygonMesh</span> <span class="nx">p</span><span class="p">();</span>
+  <span class="nx">p</span><span class="p">.</span><span class="nx">addPlane</span><span class="p">(</span><span class="nx">Xfo</span><span class="p">(),</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span> <span class="nx">p</span><span class="p">.</span><span class="nx">getDesc</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span> <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">Mesh: pointCount: 9 polygonCount: 4 nbAttributeVectors: 9</span>
+<span class="cm">  Points (adjacent polygons as &#39;polygon.neighborPolygonIndex&#39;, </span>
+<span class="cm">          borders as &#39;|&#39;, closed wing starts as &#39;&lt;&lt;&#39;):</span>
+<span class="cm">    0: 1 polygons:  |0.1</span>
+<span class="cm">    1: 2 polygons:  |0.0, 1.1</span>
+<span class="cm">    2: 1 polygons:  |1.0</span>
+<span class="cm">    3: 2 polygons:  |2.1, 0.2</span>
+<span class="cm">    4: 4 polygons:  &lt;&lt;3.1, 1.2, 0.3, 2.0</span>
+<span class="cm">    5: 2 polygons:  |1.3, 3.0</span>
+<span class="cm">    6: 1 polygons:  |2.2</span>
+<span class="cm">    7: 2 polygons:  |3.2, 2.3</span>
+<span class="cm">    8: 1 polygons:  |3.3</span>
+<span class="cm">  Polygons (connected points as &#39;point.polygonPointIndex&#39;, borders as &#39;|&#39;):</span>
+<span class="cm">    0: 4 points: 1.0 |, 0.0 |, 3.1, 4.2</span>
+<span class="cm">    1: 4 points: 2.0 |, 1.1, 4.1, 5.0 |</span>
+<span class="cm">    2: 4 points: 4.3, 3.0 |, 6.0 |, 7.1</span>
+<span class="cm">    3: 4 points: 5.1, 4.0, 7.0 |, 8.0 |</span>
+
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+<p>More details about the various component types and indices:</p>
+<ul class="simple">
+<li><em class="dfn">point</em>: represented by an index, a point can be connected to a varying number of polygons (or none).
+A polygon mesh point is the same as a <cite>vertex</cite>. <a class="reference internal" href="PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a> methods that get or set point
+specific data usually begin with <cite>.getPoint</cite> or <cite>.setPoint</cite>, respectively.</li>
+<li><em class="dfn">polygon</em>: represented by an index, a polygon is defined as an ordered list of 3 or more points.
+<a class="reference internal" href="PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a> methods that get or set polygon specific data usually begin with <cite>.getPolygon</cite>
+or <cite>.setPolygon</cite>, respectively.</li>
+</ul>
+<ul id="neighborpolygonindex">
+<li><p class="first"><em class="dfn">neighborPolygon</em>: a point-polygon pair, which corresponds to one of the polygons around a point. The
+<cite>neighborPolygon</cite> is represented by a pair of indices formed by the point index and the <cite>neighborPolygonIndex</cite>.
+The <cite>neighborPolygonIndex</cite> is a per point local index that ranges from <cite>0</cite> to
+<a class="reference internal" href="PolygonMesh.html#fd514488b95ae3e43a5d8073e"><span>PolygonMesh.getPointPolygonCount</span></a> <cite>()-1</cite>, where each index corresponds to a polygon connected to that
+point. The <cite>neighborPolygon</cite> and the <cite>polygonPoint</cite> (described below) represent the same location, however
+they are point-relative or polygon-relative, respectively.</p>
+</li>
+<li><p class="first"><em class="dfn">polygonPoint</em>: a polygon-point pair, which corresponds to the polygon corner connecting a point (sometimes
+called a <cite>face-vertex</cite> or <cite>polygonNode</cite> in other software). The <cite>polygonPoint</cite> is represented by a pair of
+indices formed by the polygon index and the <cite>polygonPointIndex</cite>. The <cite>polygonPointIndex</cite> is a per polygon
+local index that ranges from <cite>0</cite> to <a class="reference internal" href="PolygonMesh.html#eb69ccb4399a55eb09c0b03d4b6"><span>PolygonMesh.getPolygonSize</span></a> <cite>()-1</cite>, where each index corresponds to a
+point connected to that polygon. The <cite>neighborPolygon</cite> and the <cite>polygonPoint</cite> (described below) represent
+the same location, however they are point-relative or polygon-relative, respectively.</p>
+</li>
+<li><p class="first"><a class="reference internal" href="PolygonMeshEdge.html#polygonmeshedge"><span>PolygonMeshEdge</span></a>: As opposed to most mesh structures, polygon edges are not first-class
+components, but are rather represented by a structure defined by a pair of polygon index and point index.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">The <a class="reference internal" href="PolygonMesh.html#polygonmesh"><span>PolygonMesh (object)</span></a> structure does not associate edges and polygonPoints (face-vertex) to explicit indices,
+which allows the structure to be more compact by avoiding some redundancy.
+In general, this should not be an issue since edge indices are usually not transfered from/to other mesh representations such as DCC&#8217;s.
+Avoiding to store edge and polygonPoint tables allows the mesh structure to be
+at least 50% smaller than an equivalent half-edge data structure, and is faster for most operations because of memory
+locality.</p>
+</div>
+</li>
+</ul>
+<p>See <a class="reference internal" href="#internalpolygonmeshdata"><span>Internal data organization</span></a> for more details about how the polygon mesh structural data is organized.</p>
+<div class="section" id="bounds-checking">
+<h3>Bounds checking<a class="headerlink" href="#bounds-checking" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>The <a class="reference internal" href="PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a> internal structure stores multiple small arrays in a single memory buffer.
+Because of this, most functions will explicitly do, in KL guarded mode, a check to validate if
+indices respect the bounds (using the <cite>Fabric_Guarded</cite> special KL condition). For example:</p>
+<ul class="simple">
+<li>A function that takes a <cite>point</cite> and a <cite>neighborPolygonIndex</cite> will ensure that the latter is within
+the [0 .. <a class="reference internal" href="PolygonMesh.html#fd514488b95ae3e43a5d8073e"><span>PolygonMesh.getPointPolygonCount</span></a> -1] range</li>
+<li>A function that takes a <cite>polygon</cite> and a <cite>polygonPointIndex</cite> will ensure that the latter is within
+the [0 .. <a class="reference internal" href="PolygonMesh.html#eb69ccb4399a55eb09c0b03d4b6"><span>PolygonMesh.getPolygonSize</span></a> -1] range</li>
+</ul>
+<p>Because of these explicit bound checks, and because the <a class="reference internal" href="PolygonMesh.html#polygonmesh"><span>PolygonMesh (object)</span></a> makes heavy usage of arrays, <cite>unguarded</cite> compilation typically provides a 30% speedup for most PolygonMesh methods.</p>
+</div>
+</div>
+<div class="section" id="polygonmesh-attributes">
+<span id="polygonmeshattributes"></span><h2>PolygonMesh Attributes<a class="headerlink" href="#polygonmesh-attributes" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Like other <a class="reference internal" href="Geometry.html#geometry"><span>Geometry</span></a> types, the <a class="reference internal" href="PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a> stores its attributes in a <a class="reference internal" href="GeometryAttributes.html#geometryattributes"><span>GeometryAttributes</span></a>
+container. This implies that all <a class="reference internal" href="GeometryAttribute.html#geometryattribute"><span>GeometryAttribute</span></a> values are index-aligned
+and have the same size, which allow the attribute value arrays to be mapped directly to hardware drawing buffers
+such as OpenGL&#8217;s. However, maintaining a global value alignment while supporting value sharing around points
+requires additional attribute management for the <a class="reference internal" href="PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a>, and this has some impact on the API.</p>
+<p>In the <a class="reference internal" href="PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a> API, an <em class="dfn">attributeIndex</em> is relative to the <a class="reference internal" href="GeometryAttribute.html#geometryattribute"><span>GeometryAttribute</span></a> value
+arrays (total of <a class="reference internal" href="GeometryAttributes.html#fb975cc5574b3fb4d6543f76895171"><span>GeometryAttributes.size</span></a> elements). The correspondence between a <cite>attributeIndex</cite>
+and a point index is non-trivial, as it depends on the sharing (splitting) layout of attribute values around points.
+If there is an attribute split around a point (even for just one of many attributes), then each <cite>polygonPoint</cite> value combinations
+point will be stored at a different <cite>attributeIndex</cite>. It is guaranteed, however, that an <cite>attributeIndex</cite>
+within the [0 .. <a class="reference internal" href="PolygonMesh.html#d60e006ca44005976a7c33620dcc73"><span>PolygonMesh.pointCount</span></a> () - 1] range is owned by the point of the same
+same index.</p>
+<p>The following figure shows how split attribute values cause additional <cite>attributeIndex</cite>
+to be allocated:</p>
+<img alt="../../_images/attribute_indices.png" src="../../_images/attribute_indices.png" />
+<p>Notice that even the point position values are duplicated in order to ensure global attribute alignment.</p>
+<p>The following example dumps the structure of that same mesh, along with attribute values. The <cite>attributeIndex</cite>
+is only printed for points that have unshared attribute values (splits):</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: dump of the structure of a 2X2 grid:</span>
+<span class="cm">*/</span>
+
+<span class="kr">require</span> <span class="nx">Geometry</span><span class="p">;</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">//Add a 2X2 grid if size 2.0</span>
+  <span class="nx">PolygonMesh</span> <span class="nx">p</span><span class="p">();</span>
+  <span class="nx">p</span><span class="p">.</span><span class="nx">addPlane</span><span class="p">(</span><span class="nx">Xfo</span><span class="p">(),</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+
+  <span class="c1">//Set the weights of polygons 0 and 1 to 1.0, and</span>
+  <span class="c1">//the weiths of polygons 2 and 3 to 0.0.</span>
+  <span class="nx">Ref</span><span class="o">&lt;</span><span class="nx">ScalarAttribute</span><span class="o">&gt;</span> <span class="nx">weights</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">getOrCreateScalarAttribute</span><span class="p">(</span><span class="s1">&#39;weights&#39;</span><span class="p">);</span>
+  <span class="k">for</span><span class="p">(</span> <span class="kr">UInt32</span> <span class="nx">polygon</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">polygon</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="o">++</span><span class="nx">polygon</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span> <span class="kr">UInt32</span> <span class="nx">polygonPointIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">polygonPointIndex</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="o">++</span><span class="nx">polygonPointIndex</span> <span class="p">)</span>
+      <span class="nx">p</span><span class="p">.</span><span class="nx">setPolygonAttribute</span><span class="p">(</span> <span class="nx">polygon</span><span class="p">,</span> <span class="nx">polygonPointIndex</span><span class="p">,</span> <span class="nx">weights</span><span class="p">,</span> <span class="nx">polygon</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="o">?</span> <span class="mf">1.0</span> <span class="o">:</span> <span class="mf">0.0</span> <span class="p">);</span>
+  <span class="p">}</span>
+  <span class="nb">report</span><span class="p">(</span> <span class="nx">p</span><span class="p">.</span><span class="nx">getDesc</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">Mesh: pointCount: 9 polygonCount: 4 nbAttributeVectors: 12</span>
+<span class="cm">  Points (adjacent polygons as &#39;polygon.neighborPolygonIndex&#39;, </span>
+<span class="cm">          borders as &#39;|&#39;, closed wing starts as &#39;&lt;&lt;&#39;,</span>
+<span class="cm">          unshared attribute as value@attributeIndex ):</span>
+<span class="cm">    0: 1 polygons:  |0.1</span>
+<span class="cm">      Attr positions:{x:-1.0,y:+0.0,z:-1.0}</span>
+<span class="cm">      Attr weights:+1.0</span>
+<span class="cm">    1: 2 polygons:  |0.0, 1.1</span>
+<span class="cm">      Attr positions:{x:+0.0,y:+0.0,z:-1.0}</span>
+<span class="cm">      Attr weights:+1.0</span>
+<span class="cm">    2: 1 polygons:  |1.0</span>
+<span class="cm">      Attr positions:{x:+1.0,y:+0.0,z:-1.0}</span>
+<span class="cm">      Attr weights:+1.0</span>
+<span class="cm">    3: 2 polygons:  |2.1, 0.2</span>
+<span class="cm">      Attr positions:{x:-1.0,y:+0.0,z:+0.0}</span>
+<span class="cm">      Attr weights:+0.0@10 +1.0@3 </span>
+<span class="cm">    4: 4 polygons:  &lt;&lt;3.1, 1.2, 0.3, 2.0</span>
+<span class="cm">      Attr positions:{x:+0.0,y:+0.0,z:+0.0}</span>
+<span class="cm">      Attr weights:+0.0@9 +1.0@4 +1.0@4 +0.0@9 </span>
+<span class="cm">    5: 2 polygons:  |1.3, 3.0</span>
+<span class="cm">      Attr positions:{x:+1.0,y:+0.0,z:+0.0}</span>
+<span class="cm">      Attr weights:+1.0@5 +0.0@11 </span>
+<span class="cm">    6: 1 polygons:  |2.2</span>
+<span class="cm">      Attr positions:{x:-1.0,y:+0.0,z:+1.0}</span>
+<span class="cm">      Attr weights:+0.0</span>
+<span class="cm">    7: 2 polygons:  |3.2, 2.3</span>
+<span class="cm">      Attr positions:{x:+0.0,y:+0.0,z:+1.0}</span>
+<span class="cm">      Attr weights:+0.0</span>
+<span class="cm">    8: 1 polygons:  |3.3</span>
+<span class="cm">      Attr positions:{x:+1.0,y:+0.0,z:+1.0}</span>
+<span class="cm">      Attr weights:+0.0</span>
+<span class="cm">  Polygons (connected points as &#39;point.polygonPointIndex&#39;, borders as &#39;|&#39;):</span>
+<span class="cm">    0: 4 points: 1.0 |, 0.0 |, 3.1, 4.2</span>
+<span class="cm">    1: 4 points: 2.0 |, 1.1, 4.1, 5.0 |</span>
+<span class="cm">    2: 4 points: 4.3, 3.0 |, 6.0 |, 7.1</span>
+<span class="cm">    3: 4 points: 5.1, 4.0, 7.0 |, 8.0 |</span>
+
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+<p>The following methods allow to set explicit attribute values:</p>
+<ul>
+<li><p class="first">Point-shared values (uniform values): <a class="reference internal" href="PolygonMesh.html#c602ccff3e41c896e608c4f68cd548"><span>PolygonMesh.setPointAttribute</span></a> <cite>(Size point, io GeometryAttribute attribute, Value value)</cite>:
+these methods will ensure that all values are properly set in case other attributes are unshared around the same point.
+The <a class="reference internal" href="PolygonMesh.html#d4e18d7b0dc4afd994412013021c7d1"><span>PolygonMesh.setPointPosition</span></a> and <a class="reference internal" href="PolygonMesh.html#e47986b2287e4ccfa81aed5d525c0355"><span>PolygonMesh.setPointNormal</span></a> specialized
+methods are similar. These methods don&#8217;t change the attribute sharing layout (<cite>attributeIndex</cite>), and are
+thread-safe if the attribute sharing layout doesn&#8217;t change.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">These methods were defined only for a specific set of GeometryAttribute types (for example <a class="reference internal" href="Vec3Attribute.html#vec3attribute"><span>Vec3Attribute</span></a>).
+For other types, including custom attribute types, simply extend the functionality by defining a similar function
+in your code.</p>
+</div>
+</li>
+<li><p class="first">Values that might be unshared around points:</p>
+<ul class="simple">
+<li>Per point neighbor: <a class="reference internal" href="PolygonMesh.html#c602ccff3e41c896e608c4f68cd548"><span>PolygonMesh.setPointAttribute</span></a> <cite>(Size point, Size neighborPolygonIndex, io GeometryAttribute attribute, Value value)</cite></li>
+<li>Per polygon point: <a class="reference internal" href="PolygonMesh.html#a00c0dd454f01a30e97ab45a7580e"><span>PolygonMesh.setPolygonAttribute</span></a> <cite>(Size polygon, Size polygonPointIndex, io GeometryAttribute attribute, Value value)</cite></li>
+</ul>
+<p>These methods will set the value to a specific neighbor polygon (polygon point). They will check if the point sharing can be maintained by comparing with the previously set values, and will allocate a new <cite>attributeIndex</cite> if this is not possible.
+These methods are <strong>not</strong> thread-safe if they change the attribute sharing layout (<cite>attributeIndex</cite>).</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">These methods were defined only for a specific set of GeometryAttribute types (for example <a class="reference internal" href="Vec3Attribute.html#vec3attribute"><span>Vec3Attribute</span></a>).
+For other types, including custom attribute types, simply extend the functionality by defining a similar function
+in your code.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p>In order to properly manage value sharing, the PolygonMesh internally maintains a <cite>Boolean initialized</cite>
+state per attribute value, so it can distinguish between explicitly set values and default values.</p>
+<p class="last">The <a class="reference internal" href="PolygonMesh.html#cb810c4b6fa4563be0dc02446e9b543"><span>PolygonMesh.resetAttributeAndAvoidSharingChanges</span></a> method can avoid unrequired
+splitting and unsplitting of attribute values by trying to maintain existing attribute sharing layout
+(<cite>attributeIndex</cite>)</p>
+</div>
+</li>
+</ul>
+<p>The <cite>attributeIndex</cite> can be retrieved using either the <a class="reference internal" href="PolygonMesh.html#b3160c68d15f45aea2421961168ee9e7"><span>PolygonMesh.getPointAttributeIndex</span></a> or
+the <a class="reference internal" href="PolygonMesh.html#a116baa86a4b42cead9e46b1528c9ee9"><span>PolygonMesh.getPolygonAttributeIndex</span></a> method.</p>
+<p>The <a class="reference internal" href="PolygonMesh.html#c0cacd0f44dfeadb3cd87da557c03"><span>PolygonMesh.arePointAttributesUniform</span></a>
+and the <a class="reference internal" href="PolygonMesh.html#d032ac953c4494eb9cd7734b0b4cff9"><span>PolygonMesh.isPointAttributeUniform</span></a> will tell if values for all or a specific attribute
+are shared for a point, respectively.</p>
+<p>Since the mesh maintains the attributes values aligned for being draw-API friendly (OpenGL), the triangles
+draw list directly correspond to triplets of <cite>attributeIndex</cite>. The <a class="reference internal" href="PolygonMesh.html#b80cdd6644f408a952a3bb3b4121c2c"><span>PolygonMesh.generateAttributesTriangleList</span></a>
+method returns that list.</p>
+</div>
+<div class="section" id="borders-and-wings">
+<span id="borderandwings"></span><h2>Borders and wings<a class="headerlink" href="#borders-and-wings" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>While most points are usually connected to polygons forming a regular surface (<cite>manifold</cite>), some have special topological
+features such as <cite>borders</cite> and <cite>wings</cite>. If not treated with care, these rare features can be the source of issues
+when walking on the mesh structure.</p>
+<ul>
+<li><p class="first">A <em class="dfn">border</em> is an edge which is adjacent to a single polygon.</p>
+</li>
+<li><p class="first">A <em class="dfn">wing</em> is a set of polygons that are connected to a same point, and form an adjacent group relatively to that point.
+In other words, a <cite>wing</cite> is a suite of polygons that can be traversed by walking on non-border edges around a given point.</p>
+<ul class="simple">
+<li>An <cite>open</cite> wing is a wing delimited by 2 borders. An <cite>open</cite> wing can contain one or more polygons.</li>
+<li>A <cite>closed</cite> wing is formed by a loop of polygons, where all edges of the wing are not border edges. A <cite>closed</cite> wing can</li>
+</ul>
+<p>contain two or more polygons.</p>
+</li>
+</ul>
+<p>When point polygons are ordered (see <a class="reference internal" href="#modifyingpolygonmeshstructure"><span>Modifying the mesh structure</span></a> for point polygon ordering), it is guaranteed that
+the polygons part of a same wing have consecutive <cite>polygonNeighborIndex</cite> for a given point.</p>
+<blockquote>
+<div></div></blockquote>
+<p>The following illustrates the concept of wings and borders:</p>
+<img alt="../../_images/borders_and_wings.png" src="../../_images/borders_and_wings.png" />
+<p>This example gathers wing and border information for point 0 using various methods. The mesh corresponds to the previous illustration:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Getting border and wing information</span>
+<span class="cm">*/</span>
+
+<span class="kr">require</span> <span class="nx">Geometry</span><span class="p">;</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">//Create the 2 wings structure around point 0</span>
+  <span class="nx">PolygonMesh</span> <span class="nx">p</span><span class="p">();</span>
+
+  <span class="nx">p</span><span class="p">.</span><span class="nx">beginStructureChanges</span><span class="p">();</span>
+  <span class="nx">p</span><span class="p">.</span><span class="nx">createPoints</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+
+  <span class="c1">//Open wing: polygons 0 and 1</span>
+  <span class="nx">p</span><span class="p">.</span><span class="nx">addPolygon</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+  <span class="nx">p</span><span class="p">.</span><span class="nx">addPolygon</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+
+  <span class="c1">//Closed wing: polygons 2..5</span>
+  <span class="nx">p</span><span class="p">.</span><span class="nx">addPolygon</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span>
+  <span class="nx">p</span><span class="p">.</span><span class="nx">addPolygon</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">);</span>
+  <span class="nx">p</span><span class="p">.</span><span class="nx">addPolygon</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span>
+  <span class="nx">p</span><span class="p">.</span><span class="nx">addPolygon</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
+
+  <span class="nx">p</span><span class="p">.</span><span class="nx">endStructureChanges</span><span class="p">();</span>
+
+  <span class="c1">//Get border information around point 0</span>
+  <span class="nx">Size</span> <span class="nx">pointPolygonCount</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">getPointPolygonCount</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+  <span class="k">for</span><span class="p">(</span> <span class="nx">Size</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">pointPolygonCount</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span> <span class="p">)</span> <span class="p">{</span>
+
+    <span class="kr">Boolean</span> <span class="nx">precededByBorder</span><span class="p">,</span> <span class="nx">atClosedWingStart</span><span class="p">;</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">getPointBorderInfo</span><span class="p">(</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">precededByBorder</span><span class="p">,</span> <span class="nx">atClosedWingStart</span> <span class="p">);</span>
+
+    <span class="nb">report</span><span class="p">(</span>  <span class="s2">&quot;Point 0, neighbor &quot;</span> <span class="o">+</span> <span class="nx">i</span> <span class="o">+</span> <span class="s2">&quot;: polygon=&quot;</span> <span class="o">+</span> <span class="nx">p</span><span class="p">.</span><span class="nx">getPointPolygon</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+           <span class="o">+</span> <span class="s2">&quot; precededByBorder=&quot;</span> <span class="o">+</span> <span class="nx">precededByBorder</span> <span class="o">+</span> <span class="s2">&quot; atClosedWingStart=&quot;</span> <span class="o">+</span> <span class="nx">atClosedWingStart</span><span class="p">);</span>
+
+    <span class="kr">UInt32</span> <span class="nx">prevPolygonPointIndex</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">getPointPrevNeighborPolygonIndexInWing</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">i</span><span class="p">);</span>
+    <span class="kr">UInt32</span> <span class="nx">nextPolygonPointIndex</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">getPointNextNeighborPolygonIndexInWing</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">i</span><span class="p">);</span>
+
+    <span class="nb">report</span><span class="p">(</span>  <span class="s2">&quot;  Prev polygon: &quot;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">prevPolygonPointIndex</span> <span class="o">==</span> <span class="nx">InvalidIndex</span> <span class="o">?</span> <span class="s2">&quot;(none)&quot;</span> <span class="o">:</span> <span class="kr">String</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">getPointPolygon</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">prevPolygonPointIndex</span><span class="p">)</span> <span class="p">)</span> <span class="p">)</span>
+           <span class="o">+</span> <span class="s2">&quot;, next polygon: &quot;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">nextPolygonPointIndex</span> <span class="o">==</span> <span class="nx">InvalidIndex</span> <span class="o">?</span> <span class="s2">&quot;(none)&quot;</span> <span class="o">:</span> <span class="kr">String</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">getPointPolygon</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">nextPolygonPointIndex</span><span class="p">)</span> <span class="p">)</span> <span class="p">)</span> <span class="p">);</span>
+
+    <span class="nx">Size</span> <span class="nx">wingPolygonPointIndexBegin</span><span class="p">,</span> <span class="nx">wingPolygonPointIndexEnd</span><span class="p">;</span>
+    <span class="kr">Boolean</span> <span class="nx">isClosedWing</span><span class="p">;</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">getPointPolygonFullBorderInfo</span><span class="p">(</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">wingPolygonPointIndexBegin</span><span class="p">,</span> <span class="nx">wingPolygonPointIndexEnd</span><span class="p">,</span> <span class="nx">isClosedWing</span> <span class="p">);</span>
+
+    <span class="kr">String</span> <span class="nx">wingPolygons</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span> <span class="nx">Size</span> <span class="nx">j</span> <span class="o">=</span> <span class="nx">wingPolygonPointIndexBegin</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">wingPolygonPointIndexEnd</span><span class="p">;</span> <span class="o">++</span><span class="nx">j</span> <span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span> <span class="nx">j</span> <span class="o">!=</span> <span class="nx">wingPolygonPointIndexBegin</span> <span class="p">)</span>
+        <span class="nx">wingPolygons</span> <span class="o">+=</span> <span class="s1">&#39;,&#39;</span><span class="p">;</span>
+      <span class="nx">wingPolygons</span> <span class="o">+=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">getPointPolygon</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">j</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nb">report</span><span class="p">(</span>   <span class="s2">&quot;  Part of &quot;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">isClosedWing</span> <span class="o">?</span> <span class="s2">&quot;a closed&quot;</span> <span class="o">:</span> <span class="s2">&quot;an open&quot;</span><span class="p">)</span>
+            <span class="o">+</span> <span class="s2">&quot; wing made of poygons &quot;</span> <span class="o">+</span> <span class="nx">wingPolygons</span> <span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">//Get border information around polygon 0</span>
+  <span class="k">for</span><span class="p">(</span> <span class="nx">Size</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="kr">UInt32</span> <span class="nx">nextI</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">nextPolygonPointIndex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">i</span><span class="p">);</span><span class="c1">//next point of the triangle; same as (i+1)%3</span>
+    <span class="nb">report</span><span class="p">(</span>  <span class="s2">&quot;Polygon 0: edge from point &quot;</span> <span class="o">+</span> <span class="nx">p</span><span class="p">.</span><span class="nx">getPolygonPoint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+           <span class="o">+</span> <span class="s2">&quot; to point &quot;</span> <span class="o">+</span> <span class="nx">p</span><span class="p">.</span><span class="nx">getPolygonPoint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">nextI</span><span class="p">)</span>
+           <span class="o">+</span> <span class="s2">&quot;: border=&quot;</span> <span class="o">+</span> <span class="nx">p</span><span class="p">.</span><span class="nx">isPolygonBorder</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">Point 0, neighbor 0: polygon=0 precededByBorder=true atClosedWingStart=false</span>
+<span class="cm">  Prev polygon: (none), next polygon: 1</span>
+<span class="cm">  Part of an open wing made of poygons 0,1</span>
+<span class="cm">Point 0, neighbor 1: polygon=1 precededByBorder=false atClosedWingStart=false</span>
+<span class="cm">  Prev polygon: 0, next polygon: (none)</span>
+<span class="cm">  Part of an open wing made of poygons 0,1</span>
+<span class="cm">Point 0, neighbor 2: polygon=5 precededByBorder=false atClosedWingStart=true</span>
+<span class="cm">  Prev polygon: 4, next polygon: 2</span>
+<span class="cm">  Part of a closed wing made of poygons 5,2,3,4</span>
+<span class="cm">Point 0, neighbor 3: polygon=2 precededByBorder=false atClosedWingStart=false</span>
+<span class="cm">  Prev polygon: 5, next polygon: 3</span>
+<span class="cm">  Part of a closed wing made of poygons 5,2,3,4</span>
+<span class="cm">Point 0, neighbor 4: polygon=3 precededByBorder=false atClosedWingStart=false</span>
+<span class="cm">  Prev polygon: 2, next polygon: 4</span>
+<span class="cm">  Part of a closed wing made of poygons 5,2,3,4</span>
+<span class="cm">Point 0, neighbor 5: polygon=4 precededByBorder=false atClosedWingStart=false</span>
+<span class="cm">  Prev polygon: 3, next polygon: 5</span>
+<span class="cm">  Part of a closed wing made of poygons 5,2,3,4</span>
+<span class="cm">Polygon 0: edge from point 0 to point 3: border=true</span>
+<span class="cm">Polygon 0: edge from point 3 to point 2: border=true</span>
+<span class="cm">Polygon 0: edge from point 2 to point 0: border=false</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>The point border and wing information can be retrieved with the <a class="reference internal" href="PolygonMesh.html#ce87df81182f497bb6d9a82bc8823578"><span>PolygonMesh.getPointBorderInfo</span></a> and
+<a class="reference internal" href="PolygonMesh.html#bc7c31ce4800b74f29a0cc8833d3"><span>PolygonMesh.getPointPolygonFullBorderInfo</span></a> methods.</li>
+<li>The polygon border information can be retrieved with the <a class="reference internal" href="PolygonMesh.html#d2e9f1bdf23b4fb68c35beb7482d949d"><span>PolygonMesh.isPolygonBorder</span></a> method.</li>
+<li>Given a <cite>neighborPolygonIndex</cite>, the previous and next
+<cite>neighborPolygonIndex</cite> within the wing can be retrieved with the <a class="reference internal" href="PolygonMesh.html#a9fc52ebdcd4e8cbe86cd33e56ed0c8"><span>PolygonMesh.getPointPrevNeighborPolygonIndexInWing</span></a>
+and the <a class="reference internal" href="PolygonMesh.html#d9b036f5a84ef6928b012e78bf1bc5"><span>PolygonMesh.getPointNextNeighborPolygonIndexInWing</span></a>, respectively.</li>
+</ul>
+</div>
+<div class="section" id="modifying-the-mesh-structure">
+<span id="modifyingpolygonmeshstructure"></span><h2>Modifying the mesh structure<a class="headerlink" href="#modifying-the-mesh-structure" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Various methods can modify the mesh structure, such as <a class="reference internal" href="PolygonMesh.html#d8ac19c397a48868afe5b669e1cacfb"><span>PolygonMesh.addPolygon</span></a>, <a class="reference internal" href="PolygonMesh.html#ea3d87aa84138ba479b231ae0293c"><span>PolygonMesh.createPoints</span></a>
+and <a class="reference internal" href="PolygonMesh.html#af6639911ec34f20ae718354c39a15dc"><span>PolygonMesh.deletePolygon</span></a>. All these functions are not threadsafe, and a calls to one of these while another
+thread is accessing the mesh will cause an undefined behavior.</p>
+<p>When mentioned, the changes need to happen between a call to brackets
+<a class="reference internal" href="PolygonMesh.html#db9fa7283be2473c87ed2632274a4739"><span>PolygonMesh.beginStructureChanges</span></a> and <a class="reference internal" href="PolygonMesh.html#accbb34d8bb5417387d27db1f2beaf4d"><span>PolygonMesh.endStructureChanges</span></a>
+(or using <cite>PolygonMeshStructureChangeBracket</cite>). This requirement, along with the point
+ordering notion (presented below), make the mesh API more complex while allowing optimal performance.</p>
+<p>If some specific mesh modeling methods are called outside of structure change brackets, an error message will
+be printed:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Missing :kl-ref:`PolygonMesh.beginStructureChanges` and :kl-ref:`PolygonMesh.endStructureChanges`</span>
+<span class="cm">*/</span>
+
+<span class="kr">require</span> <span class="nx">Geometry</span><span class="p">;</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">PolygonMesh</span> <span class="nx">p</span><span class="p">();</span>
+  <span class="nx">p</span><span class="p">.</span><span class="nx">createPoints</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+  <span class="nx">p</span><span class="p">.</span><span class="nx">addPolygon</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">Error: PolygonMesh.addPolygon: must be called within a begin/endStructureChanges() bracket</span>
+<span class="cm">KL stack trace:</span>
+<span class="cm">[ST] 1 kl.internal.String.SetErrorDataPtrAndLength.AS0()</span>
+<span class="cm">[ST] 2 function.setError.R.ST()</span>
+<span class="cm">[ST] 3 method._addPolygon.L.UO_PolygonMesh.R.S_LocalL8UInt32Array.R.BO() PolygonMeshBase.kl:1076</span>
+<span class="cm">[ST] 4 method.addPolygon.L.UO_PolygonMesh.R.UI32.R.UI32.R.UI32() PolygonMeshBase.kl:1220</span>
+<span class="cm">[ST] 5 operator.entry() (stdin):11</span>
+<span class="cm">[ST] 6 kl.internal.entry.stub.cpu()</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+<p>The structure change bracket calls exist for the performance and practical reasons presented below.</p>
+<div class="section" id="delayed-point-ordering">
+<span id="delayedpointordering"></span><h3>Delayed point ordering<a class="headerlink" href="#delayed-point-ordering" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>A point has <cite>ordered polygons</cite> if all its adjacent neighbor polygons have consecutive
+<cite>polygonPointNeighbor</cite> indices for that point. Additionally to update the polygon
+ordering around the point, the process of point ordering also includes updating wing and border information
+for that point (see <a class="reference internal" href="#borderandwings"><span>Borders and wings</span></a> ).</p>
+<p>For an optimal performance when modifying multiple polygons, some methods such as <a class="reference internal" href="PolygonMesh.html#d8ac19c397a48868afe5b669e1cacfb"><span>PolygonMesh.addPolygon</span></a>
+will not update point ordering until the outer change bracket closes ( <a class="reference internal" href="PolygonMesh.html#accbb34d8bb5417387d27db1f2beaf4d"><span>PolygonMesh.endStructureChanges</span></a> ).
+Using an internal list of the unordered points, the mesh will then update
+only unordered points.</p>
+<p>Delaying point polygons ordering in situations such as adding or deleting multiple polygons allows for these two optimizations:</p>
+<ul class="simple">
+<li>Since a point is typically adjacent to 4 or more polygons, this allows the point ordering to be updated only once instead
+of being updated for each added or removed adjacent polygon.</li>
+<li>Since there might be many unordered polygons to update (particularly after building a full mesh), all points can
+be reordered in batch, taking advantage of multithreading.</li>
+</ul>
+<p>Most methods querying a point that has unordered polygons will report an error (under <cite>guarded</cite> KL compilation only).
+Similarly, methods querying polygon adjacency information might require some connected points to be properly ordered,
+and will report a similar error.</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Missing :kl-ref:`PolygonMesh.beginStructureChanges` and :kl-ref:`PolygonMesh.endStructureChanges`</span>
+<span class="cm">*/</span>
+
+<span class="kr">require</span> <span class="nx">Geometry</span><span class="p">;</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">PolygonMesh</span> <span class="nx">p</span><span class="p">();</span>
+  <span class="nx">p</span><span class="p">.</span><span class="nx">beginStructureChanges</span><span class="p">();</span>
+  <span class="nx">p</span><span class="p">.</span><span class="nx">createPoints</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+  <span class="nx">p</span><span class="p">.</span><span class="nx">addPolygon</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+  <span class="nx">p</span><span class="p">.</span><span class="nx">isPolygonBorder</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+<p>In special situations, it might be required to force a point polygons reordering even within a structure change bracket.
+The following methods allow to perform such an update:</p>
+<ul class="simple">
+<li><a class="reference internal" href="PolygonMesh.html#f971554b93df451a9255182de160bb1c"><span>PolygonMesh.updatePointsPolygonOrder</span></a> : will reorder polygons for all unordered points.</li>
+<li><a class="reference internal" href="PolygonMesh.html#e348cba72b5471c9831a4c8c328a03c"><span>PolygonMesh.updatePointPolygonOrder</span></a> : will reorder polygons for a specific point if unordered.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">The <a class="reference internal" href="PolygonMesh.html#aa4def14e94ab8363bf04405c72"><span>PolygonMesh.addPolygonAndUpdateStructure</span></a> is similar to the <a class="reference internal" href="PolygonMesh.html#d8ac19c397a48868afe5b669e1cacfb"><span>PolygonMesh.addPolygon</span></a> method
+however it will reorder the related points immediately.</p>
+</div>
+</div>
+<div class="section" id="replacement-of-deleted-component-indices">
+<span id="deletedcomponentsreplacement"></span><h3>Replacement of deleted component indices<a class="headerlink" href="#replacement-of-deleted-component-indices" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>In general, the <a class="reference internal" href="PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a> maintains a contiguous range (<cite>0..N-1</cite>) of point and polygon indices. Because of this,
+it is usually safe to iterate over polygons and points using a simple index loop.</p>
+<p>However, when a modeling operation such as <a class="reference internal" href="PolygonMesh.html#af6639911ec34f20ae718354c39a15dc"><span>PolygonMesh.deletePolygon</span></a> removes points or polygons,
+the related indices will remain unused until the outer <a class="reference internal" href="PolygonMesh.html#accbb34d8bb5417387d27db1f2beaf4d"><span>PolygonMesh.endStructureChanges</span></a> bracket is called. The
+goal of this policy is to allow a safe and stable use of polygon and point indices over multiple modeling operations.</p>
+<p>This implies that the code that processing a mesh with removed components needs to be aware
+that some indices can be invalid (deleted components). The <a class="reference internal" href="PolygonMesh.html#bb14bb2ea28049e1bfe6bc8ff0da6bda"><span>PolygonMesh.isPolygonDeleted</span></a> and
+<a class="reference internal" href="PolygonMesh.html#d9cf7047b924b9dbf53a49680350546"><span>PolygonMesh.isPointDeleted</span></a> methods allow to verify if a specific index is valid.</p>
+<p>Once the outer <a class="reference internal" href="PolygonMesh.html#accbb34d8bb5417387d27db1f2beaf4d"><span>PolygonMesh.endStructureChanges</span></a> is reached, the mesh will recompact indices
+by replacing unused indices with the last valid ones and reduce the index range accordingly.
+At this point, it is safe again to iterate over all points or polygons using a simple index loop.</p>
+</div>
+</div>
+<div class="section" id="internal-data-organization">
+<span id="internalpolygonmeshdata"></span><h2>Internal data organization<a class="headerlink" href="#internal-data-organization" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The internal data structure of the <a class="reference internal" href="PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a> is very complex in order to allows both
+a low memory consumption and fast query and modeling operations. In order to achieve this,
+the structure does the following:</p>
+<ul class="simple">
+<li>Minimizes redundancy by avoiding to store edge and polygonPoint (face-vertex) information</li>
+<li>Packs polygon and point data in contiguous memory space, using a special allocators
+(<a class="reference internal" href="ArrayOffsetAllocator.html#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>) which allow to keep these arrays in a single memory buffer.
+This lowers memory fragmentation, which reduces memory usage, but more importantly improves
+the speed of all mesh operations by making a more efficient usage of the CPU memory cache.
+When a certain proportion of the memory buffer is free (eg: after deleting many polygons),
+the mesh will automatically recompact all its internal data to ensure optimal memory usage.</li>
+<li>Uses indices of 32 bits or less for indirections, which reduces memory usage by 50% compared to
+mesh implementations that are based on 64-bit pointers. Another advantage is that the structure
+is memory location independent, making copy operations faster.</li>
+<li>Encodes polygon and point data using special bit packing, which allows to reduce memory
+consumption by another 50%. For example, the &#8220;polygon + pointNeighborIndex&#8221; pair is encoded as a
+single UInt32 in most cases.</li>
+<li>Reduces memory cache misses by reducing the indirections for operations that require
+to jump between point and polygon data (by storing direct data offsets).</li>
+<li>Stores the global <cite>attributeIndex</cite> data (if unshared attributes) into the point data,
+avoiding per-attribute index tables, and maintaining GPU drawing friendly buffers
+(see <a class="reference internal" href="#polygonmeshattributes"><span>PolygonMesh Attributes</span></a>)</li>
+</ul>
+<p>The following figure presents an overview of the mesh internal data structure. The <cite>pointData</cite>
+and <cite>polygonData</cite> are implemented as symmetrical <a class="reference internal" href="ArrayOffsetAllocator.html#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a> structures,
+and their content refer to each others. A <cite>pointIter</cite> and a <cite>polyIter</cite> designate an offset
+(UInt32) within the packed point or data buffer, respectively. The <cite>startIters</cite> array
+simply contains the offsets (<cite>pointIter</cite> or <cite>polyIter</cite>) corresponding to a point or polygon index.
+The <cite>neighbor polygons</cite> and <cite>polygon points</cite> arrays directly contain offsets (<cite>polygonIter</cite> and <cite>pointIter</cite>),
+which allows to access connected point and polygon data directly.</p>
+<img alt="../../_images/internal_structures.png" src="../../_images/internal_structures.png" />
+</div>
+<div class="section" id="current-limitations">
+<span id="polygonmeshlimitations"></span><h2>Current limitations<a class="headerlink" href="#current-limitations" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The <a class="reference internal" href="PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a> structure currently has the following limitations:</p>
+<ul class="simple">
+<li>The mesh polygons are always triangulated as triangle fans, which can produce artifacts
+for concave polygons.</li>
+<li>Polygon holes are not supported.</li>
+<li>There are no per polygon, or polygon-shared attributes.</li>
+<li>The modeling API lacks various base functions, such as collapseEdge or mergePoints, which should be added in the future.</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">PolygonMesh&#8217;s structure</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#polygonmeshtopology">PolygonMeshTopology</a><ul>
+<li><a class="reference internal" href="#bounds-checking">Bounds checking</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#polygonmesh-attributes">PolygonMesh Attributes</a></li>
+<li><a class="reference internal" href="#borders-and-wings">Borders and wings</a></li>
+<li><a class="reference internal" href="#modifying-the-mesh-structure">Modifying the mesh structure</a><ul>
+<li><a class="reference internal" href="#delayed-point-ordering">Delayed point ordering</a></li>
+<li><a class="reference internal" href="#replacement-of-deleted-component-indices">Replacement of deleted component indices</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#internal-data-organization">Internal data organization</a></li>
+<li><a class="reference internal" href="#current-limitations">Current limitations</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="PolygonMeshTopology.html"
+                        title="前の章へ">PolygonMeshTopology (struct)</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="QuatAttribute.html"
+                        title="次の章へ">QuatAttribute (object)</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/Geometry/polygonmeshstructure.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="QuatAttribute.html" title="QuatAttribute (object)"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="PolygonMeshTopology.html" title="PolygonMeshTopology (struct)"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Geometry Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="types.html" >Geometry Extension&#8217;s Types</a> &raquo;</li>
+          <li class="nav-item nav-item-4"><a href="PolygonMeshTopology.html" >PolygonMeshTopology (struct)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

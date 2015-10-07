@@ -1,0 +1,502 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>UInt32Attribute.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="Geometry Extension’s Files" href="files.html" />
+    <link rel="next" title="Vec2Attribute.kl" href="Vec2Attribute.kl.html" />
+    <link rel="prev" title="UInt16ConstantArrayAttribute.kl" href="UInt16ConstantArrayAttribute.kl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="Vec2Attribute.kl.html" title="Vec2Attribute.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="UInt16ConstantArrayAttribute.kl.html" title="UInt16ConstantArrayAttribute.kl"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Geometry Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">Geometry Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="geometry-uint32attribute-kl">
+<span id="uint32attribute-kl"></span><span id="id1"></span><h1>UInt32Attribute.kl<a class="headerlink" href="#geometry-uint32attribute-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="geometryattributes-object">
+<h3>GeometryAttributes (object)<a class="headerlink" href="#geometryattributes-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">The <a class="reference internal" href="GeometryAttributes.html#geometryattributes"><span>GeometryAttributes</span></a> object is a generic container that contains a named set of <a class="reference internal" href="GeometryAttribute.html#geometryattribute"><span>GeometryAttribute</span></a>. Each <a class="reference internal" href="GeometryAttribute.html#geometryattribute"><span>GeometryAttribute</span></a> is
+an array containing values of a specific type. For example, the &#8220;positions&#8221; attribute is typically a <a class="reference internal" href="Vec3Attribute.html#vec3attribute"><span>Vec3Attribute</span></a> containing <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> elements.</p>
+<p class="plaintext">All Geometry types, such as the PolygonMesh, contain a GeometryAttributes container which can be retrieved using the <a class="reference internal" href="Geometry.html#da5624b2c463414b896a1ffa519989ed"><span>Geometry.getAttributes</span></a>
+interface method. However, it is the geometry that controls the order and meaning of the attribute elements within the <a class="reference internal" href="GeometryAttribute.html#geometryattribute"><span>GeometryAttribute</span></a> array.
+For example, the <a class="reference internal" href="PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a> maintains information about how the values are shared.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">Attributes needs to be uniquely identified by a name. The <a class="reference internal" href="GeometryAttributes.html#geometryattributes"><span>GeometryAttributes</span></a> cannot contain multiple attributes with the same name, even if the type differs.</p>
+</div>
+<div class="section" id="attribute-versioning">
+<span id="attributeversioning"></span><h4>Attribute versioning<a class="headerlink" href="#attribute-versioning" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>In order to allow for optimal performance and multithreading, attributes contain a version number (UInt32) which has to be explicitly incremented after 
+value modifications. However, if the size of the attribute array changes, the version will be automatically incremented. Attribute clients, such as
+InlineDrawing, can then detect value changes efficiently in order to update their state.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">This versioning strategy favors performance over simplicity. Another choice could have been to automatically increase the version 
+when detecting a value difference. Another could have been to let the clients compare values to their last state using a copy or 
+a hash of the values. However, these would have caused performance overhead that could be relatively important in some situations.</p>
+</div>
+<p>Similarly, the <cite>GeometryAttributes.keysVersion</cite>  member defines a version for the set of attributes, which will get 
+incremented only if attributes get added or removed from the container, but not upon attribute resize or value changes.</p>
+</div>
+<div class="section" id="members">
+<h4>Members<a class="headerlink" href="#members" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="20%" />
+<col width="9%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>UInt32</td>
+<td>keysVersion</td>
+<td>Version of the attribute set. This is incremented only if attributes are added or removed, and not if values are changed or values array is resized.</td>
+</tr>
+<tr class="row-even"><td>UInt32</td>
+<td>attributesValueVersion</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Ref&lt;<a class="reference internal" href="GeometryAttribute.html#geometryattribute"><span>GeometryAttribute</span></a>&gt;</td>
+<td>positionsAttribute</td>
+<td>Fast access to the positions attribute, if it exists. Note: might be <a class="reference internal" href="Vec3Attribute.html#vec3attribute"><span>Vec3Attribute</span></a> or <a class="reference internal" href="Vec3_dAttribute.html#vec3-dattribute"><span>Vec3_dAttribute</span></a> depending on the precision.</td>
+</tr>
+<tr class="row-even"><td>Ref&lt;<a class="reference internal" href="GeometryAttribute.html#geometryattribute"><span>GeometryAttribute</span></a>&gt;</td>
+<td>normalsAttribute</td>
+<td>Fast access to normals attribute, if it exists.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
+<td>debugName</td>
+<td>Name to be used by descriptions</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: GeometryAttributes</span>
+<span class="cm">*/</span>
+
+<span class="kr">require</span> <span class="nx">Geometry</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">reportAttributes</span><span class="p">(</span> <span class="nx">Geometry</span> <span class="nx">geom</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Get the attributes container from the geometry</span>
+  <span class="nx">Ref</span><span class="o">&lt;</span><span class="nx">GeometryAttributes</span><span class="o">&gt;</span> <span class="nx">attributes</span> <span class="o">=</span> <span class="nx">geom</span><span class="p">.</span><span class="nx">getAttributes</span><span class="p">();</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s1">&#39;Number of attributes: &#39;</span> <span class="o">+</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">attributeCount</span><span class="p">());</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s1">&#39;Number of elements: &#39;</span> <span class="o">+</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">size</span><span class="p">());</span>
+
+  <span class="c1">// Iterate over the attributes</span>
+  <span class="nx">GeometryAttributesIterator</span> <span class="nx">iter</span> <span class="o">=</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">getAttributesIterator</span><span class="p">();</span>
+  <span class="nx">Ref</span><span class="o">&lt;</span><span class="nx">GeometryAttribute</span><span class="o">&gt;</span> <span class="nx">attribute</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="k">while</span><span class="p">(</span> <span class="nx">attribute</span> <span class="o">=</span> <span class="nx">iter</span><span class="p">.</span><span class="nx">getNext</span><span class="p">()</span> <span class="p">)</span>
+   <span class="nb">report</span><span class="p">(</span> <span class="s1">&#39;Attribute &#39;</span> <span class="o">+</span> <span class="nx">attribute</span><span class="p">.</span><span class="nx">getName</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39; of type &#39;</span> <span class="o">+</span> <span class="nx">attribute</span><span class="p">.</span><span class="nx">type</span><span class="p">()</span> <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">PolygonMesh</span> <span class="nx">p</span><span class="p">();</span>
+  <span class="nx">p</span><span class="p">.</span><span class="nx">addSphere</span><span class="p">(</span>  <span class="nx">Xfo</span><span class="p">(),</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">true</span> <span class="p">);</span>
+  <span class="nx">reportAttributes</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">Number of attributes: 3</span>
+<span class="cm">Number of elements: 77</span>
+<span class="cm">Attribute positions of type Vec3Attribute</span>
+<span class="cm">Attribute normals of type Vec3Attribute</span>
+<span class="cm">Attribute uvs0 of type Vec2Attribute</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#c2e2bf9ed1da413ebf0d32b4129ee09c"><span>GeometryAttributes</span></a>  ( in <a class="reference internal" href="GeometryAttributes.html#geometryattributes"><span>GeometryAttributes</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#bf70be8e6b34eecabca1292de9a3103"><span>GeometryAttributes</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#c3208e6981429abf4296fdbc7f4607"><span>attachNewAttribute</span></a> ! ( in Ref&lt;<a class="reference internal" href="GeometryAttribute.html#geometryattribute"><span>GeometryAttribute</span></a>&gt; attribute )</td>
+</tr>
+<tr class="row-even"><td>Size</td>
+<td><a class="reference internal" href="GeometryAttributes.html#db7390f58df14f86952c92ff7281963b"><span>attributeCount</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#c7a463426c748dfa09b9982d372ff4a"><span>clear</span></a> ! ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="GeometryAttributes.html#geometryattributes"><span>GeometryAttributes</span></a></td>
+<td><a class="reference internal" href="GeometryAttributes.html#c5f0638fe424673a8c16961e4099be2"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#c35b177bffd45db9a5112f73a1e29db"><span>cloneMembersTo</span></a> ? ( io <a class="reference internal" href="GeometryAttributes.html#geometryattributes"><span>GeometryAttributes</span></a> that )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#b5ce7d8e1ce4658a078214f925855d8"><span>copy</span></a> ! ( in Ref&lt;<a class="reference internal" href="GeometryAttributes.html#geometryattributes"><span>GeometryAttributes</span></a>&gt; other )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#e9b7e2447218930e6a7801e464f"><span>copyValue</span></a> ? ( in Size sourceIndex, in Size targetIndex )</td>
+</tr>
+<tr class="row-even"><td>Ref&lt;<a class="reference internal" href="GeometryAttribute.html#geometryattribute"><span>GeometryAttribute</span></a>&gt;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#d446f8457f64b2c97251a5154145ec2"><span>getAttribute</span></a> ? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-odd"><td>Ref&lt;<a class="reference internal" href="GeometryAttribute.html#geometryattribute"><span>GeometryAttribute</span></a>&gt;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#a9b451dbc865482aa32cbaedc3762c89"><span>getAttribute</span></a> ? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in Type expectedAttributeType )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="GeometryAttributes.html#f1635f094d2ba9a6caaffcc857d4"><span>getAttributeListDesc</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="GeometryAttributesIterator.html#geometryattributesiterator"><span>GeometryAttributesIterator</span></a></td>
+<td><a class="reference internal" href="GeometryAttributes.html#d70c98b1464aa61d3763be125f06"><span>getAttributesIterator</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="GeometryAttributes.html#a3c59b8f104a3f9735f5c98643b9e9"><span>getDesc</span></a> ? ( in Boolean useUnitTestPrint )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="GeometryAttributes.html#af0297b6b1442a9ffe02effa560e7e"><span>getDesc</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Ref&lt;<a class="reference internal" href="Vec3Attribute.html#vec3attribute"><span>Vec3Attribute</span></a>&gt;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#b4dbcf95d0a441c49141246b0247a1a6"><span>getNormals</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Ref&lt;<a class="reference internal" href="GeometryAttribute.html#geometryattribute"><span>GeometryAttribute</span></a>&gt;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#a41194e21bd94308aabed17324b05fba"><span>getOrCreateAttribute</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in Type attributeType )</td>
+</tr>
+<tr class="row-even"><td>Ref&lt;<a class="reference internal" href="ColorAttribute.html#colorattribute"><span>ColorAttribute</span></a>&gt;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#a7fc855581f41a0b54f0b0237cf6532"><span>getOrCreateColorAttribute</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-odd"><td>Ref&lt;<a class="reference internal" href="IntegerAttribute.html#integerattribute"><span>IntegerAttribute</span></a>&gt;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#fa42924d2eba30a8e2146a68f9"><span>getOrCreateIntegerAttribute</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-even"><td>Ref&lt;<a class="reference internal" href="Mat33Attribute.html#mat33attribute"><span>Mat33Attribute</span></a>&gt;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#f486f604ba84cf58b939d9e1cccac77"><span>getOrCreateMat33Attribute</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-odd"><td>Ref&lt;<a class="reference internal" href="Mat44Attribute.html#mat44attribute"><span>Mat44Attribute</span></a>&gt;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#c8349895c6943eb9c77fc3d905805b4"><span>getOrCreateMat44Attribute</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-even"><td>Ref&lt;<a class="reference internal" href="Vec3Attribute.html#vec3attribute"><span>Vec3Attribute</span></a>&gt;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#c99cce2f4dbea3b69b9cd281baaa"><span>getOrCreateNormals</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td>Ref&lt;<a class="reference internal" href="Vec3Attribute.html#vec3attribute"><span>Vec3Attribute</span></a>&gt;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#f2e7ed1b634240ba09d94a5d5fc7ca"><span>getOrCreatePositions</span></a> ! ()</td>
+</tr>
+<tr class="row-even"><td>Ref&lt;<a class="reference internal" href="Vec3_dAttribute.html#vec3-dattribute"><span>Vec3_dAttribute</span></a>&gt;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#f7640a8264353afdd30db239ead18"><span>getOrCreatePositions_d</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td>Ref&lt;<a class="reference internal" href="QuatAttribute.html#quatattribute"><span>QuatAttribute</span></a>&gt;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#e7f07561d5334eb4994ede7e04675d87"><span>getOrCreateQuatAttribute</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-even"><td>Ref&lt;<a class="reference internal" href="RGBAAttribute.html#rgbaattribute"><span>RGBAAttribute</span></a>&gt;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#f9981e82e44ac39ff5802750ab5956"><span>getOrCreateRGBAAttribute</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-odd"><td>Ref&lt;<a class="reference internal" href="RGBAttribute.html#rgbattribute"><span>RGBAttribute</span></a>&gt;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#fb8edd2c45449e033e8656927b34"><span>getOrCreateRGBAttribute</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-even"><td>Ref&lt;<a class="reference internal" href="ScalarAttribute.html#scalarattribute"><span>ScalarAttribute</span></a>&gt;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#bcf8e980ccfb4d09847c4ae9165af88b"><span>getOrCreateScalarAttribute</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-odd"><td>Ref&lt;<a class="reference internal" href="ScalarConstantArrayAttribute.html#scalarconstantarrayattribute"><span>ScalarConstantArrayAttribute</span></a>&gt;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#b9086d65324847861c7432d4dc0fdd"><span>getOrCreateScalarConstantArrayAttribute</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-even"><td>Ref&lt;<a class="reference internal" href="SkinningAttribute.html#skinningattribute"><span>SkinningAttribute</span></a>&gt;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#ad067237941738b1ca8789e95a424"><span>getOrCreateSkinningAttribute</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-odd"><td>Ref&lt;<a class="reference internal" href="UInt16ConstantArrayAttribute.html#uint16constantarrayattribute"><span>UInt16ConstantArrayAttribute</span></a>&gt;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#d79dcc077d49e590f411796a64df14"><span>getOrCreateUInt16ConstantArrayAttribute</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-even"><td>Ref&lt;<a class="reference internal" href="UInt32Attribute.html#uint32attribute"><span>UInt32Attribute</span></a>&gt;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#e4433b1228b7183077521"><span>getOrCreateUInt32Attribute</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-odd"><td>Ref&lt;<a class="reference internal" href="Vec2Attribute.html#vec2attribute"><span>Vec2Attribute</span></a>&gt;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#bf0de22bacea45759e64d702d8f26645"><span>getOrCreateVec2Attribute</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-even"><td>Ref&lt;<a class="reference internal" href="Vec3Attribute.html#vec3attribute"><span>Vec3Attribute</span></a>&gt;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#f4f4bd887bb94d89a469604fc62c998e"><span>getOrCreateVec3Attribute</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-odd"><td>Ref&lt;<a class="reference internal" href="Vec3_dAttribute.html#vec3-dattribute"><span>Vec3_dAttribute</span></a>&gt;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#afcb3827c1e490c84bcd452f95638e1"><span>getOrCreateVec3_dAttribute</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-even"><td>Ref&lt;<a class="reference internal" href="Vec4Attribute.html#vec4attribute"><span>Vec4Attribute</span></a>&gt;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#af0a09f121774b339906f91476240f90"><span>getOrCreateVec4Attribute</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
+<td><a class="reference internal" href="GeometryAttributes.html#d73ed6a235954431b62b6df5a0f04eb2"><span>getPosition</span></a> ? ( in Size index )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Vec3_d.html#vec3-d"><span>Vec3_d</span></a></td>
+<td><a class="reference internal" href="GeometryAttributes.html#f3a36acfeb6046ab951244a9f192ee28"><span>getPosition_d</span></a> ? ( in Size index )</td>
+</tr>
+<tr class="row-odd"><td>Ref&lt;<a class="reference internal" href="Vec3Attribute.html#vec3attribute"><span>Vec3Attribute</span></a>&gt;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#b953c1d914c80b18d34a4fa30a6f7"><span>getPositions</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Ref&lt;<a class="reference internal" href="Vec3_dAttribute.html#vec3-dattribute"><span>Vec3_dAttribute</span></a>&gt;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#a45334581bfb354229e84f748"><span>getPositions_d</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="GeometryAttributes.html#dc09f7c427da23ef5106299ad07"><span>has</span></a> ? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="GeometryAttributes.html#cf8efde54468aae2ae0e6c3b7ac1"><span>has</span></a> ? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name, in Type attributeType )</td>
+</tr>
+<tr class="row-odd"><td>Boolean</td>
+<td><a class="reference internal" href="GeometryAttributes.html#a3543d5c86bd4d58a5c0b4361bdbeebb"><span>hasFloat64Positions</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#b34ca3590f146f9978ecb9733327c75"><span>incrementAttributesValueVersion</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#c7550d47b438fb9d6a4121bba2fb8"><span>linearCombine</span></a> ? ( in <a class="reference internal" href="../Containers/LocalL16UInt32Array.html#locall16uint32array"><span>LocalL16UInt32Array</span></a> sourceIndices, in <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> sourceWeights, in Size targetIndex )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#d4e0069b213042b8bdc9a0520c4bd1cc"><span>removeAttribute</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#dd559dc504cba8f7d602ccccdea02"><span>resize</span></a> ! ( in Size newCount )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#dbf77c1c34052b49905bef257d875"><span>setPosition</span></a> ? ( in Size index, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> pos )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="GeometryAttributes.html#e56419a4d2ab25142770ba9e5fe"><span>setPosition</span></a> ? ( in Size index, in <a class="reference internal" href="../Math/Vec3_d.html#vec3-d"><span>Vec3_d</span></a> pos )</td>
+</tr>
+<tr class="row-even"><td>Size</td>
+<td><a class="reference internal" href="GeometryAttributes.html#fb975cc5574b3fb4d6543f76895171"><span>size</span></a> ? ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+<p><div class="section" id="uint32attribute-object">
+<h3>UInt32Attribute (object)<a class="headerlink" href="#uint32attribute-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">Specialized <a class="reference internal" href="GeometryAttribute.html#geometryattribute"><span>GeometryAttribute</span></a> containing one UInt32 per element.
+Values can be accessed with the <a class="reference internal" href="UInt32Attribute.html#uint32attribute"><span>UInt32Attribute</span></a>.values array member, but its usage might be restricted by the owner <a class="reference internal" href="Geometry.html#geometry"><span>Geometry</span></a>.</p>
+<div class="section" id="id2">
+<h4>Members<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="23%" />
+<col width="6%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>UInt32</td>
+<td>version</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
+<td>name</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>UInt32</td>
+<td>containerIndex</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../FabricStatistics/StatisticsAutoRegisterMember.html#statisticsautoregistermember"><span>StatisticsAutoRegisterMember</span></a></td>
+<td>autoStats</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Size</td>
+<td>count</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Ref&lt;<a class="reference internal" href="GeometryAttributes.html#geometryattributes"><span>GeometryAttributes</span></a>&gt;</td>
+<td>container</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>UInt32[]</td>
+<td>values</td>
+<td>Values array container</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td>canInterpolate</td>
+<td>If true, <a class="reference internal" href="IntegerAttribute.html#integerattribute"><span>IntegerAttribute</span></a>.linearCombine and <a class="reference internal" href="IntegerAttribute.html#integerattribute"><span>IntegerAttribute</span></a>.getLinearCombination will average the values. Else, an arbitrary source value will be used.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id3">
+<h4>Methods<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="15%" />
+<col width="85%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="UInt32Attribute.html#afdd829460f49d0b6bdbe73f35c0a52"><span>UInt32Attribute</span></a>  ( in <a class="reference internal" href="UInt32Attribute.html#uint32attribute"><span>UInt32Attribute</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="UInt32Attribute.html#ae02b2c4a9a64cd3aa25e5c3a8d70293"><span>UInt32Attribute</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="UInt32Attribute.html#uint32attribute"><span>UInt32Attribute</span></a></td>
+<td><a class="reference internal" href="UInt32Attribute.html#db04d75db0a8423cb2be2c1b6dfd1f97"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="UInt32Attribute.html#f309e4195dce4f91968a34943f85811c"><span>cloneMembersTo</span></a> ? ( io <a class="reference internal" href="UInt32Attribute.html#uint32attribute"><span>UInt32Attribute</span></a> that )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="UInt32Attribute.html#e69605b5d4e098f2874b8f2df7541"><span>convertToCPU</span></a> ! ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="UInt32Attribute.html#b25679cf8e45e9abd4064ec72e4cb7"><span>convertToGPU</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="UInt32Attribute.html#e356159d5c8941b0907b1c80d71553e0"><span>copyValue</span></a> ! ( in Ref&lt;Object&gt; sourceAttr, in Size sourceIndex, in Size targetIndex )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="UInt32Attribute.html#e96643d1407d46a88787d6cc1c6af4f5"><span>copyValue</span></a> ! ( in Size sourceIndex, in Size targetIndex )</td>
+</tr>
+<tr class="row-odd"><td>Data</td>
+<td><a class="reference internal" href="UInt32Attribute.html#c65de2bca043b68ac64056ec70362e"><span>data</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="UInt32Attribute.html#afe48ecfb50740f79110231ad32dc580"><span>equalValues</span></a> ? ( in Size index1, in Size index2 )</td>
+</tr>
+<tr class="row-odd"><td>UInt32</td>
+<td><a class="reference internal" href="UInt32Attribute.html#ffdecbf1817421eab8a9bbcdad1762a"><span>getElementsMemType</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>UInt32</td>
+<td><a class="reference internal" href="UInt32Attribute.html#d5af9ed1fab24e5db1307430f7c1230b"><span>getLinearCombination</span></a> ? ( in <a class="reference internal" href="../Containers/LocalL16UInt32Array.html#locall16uint32array"><span>LocalL16UInt32Array</span></a> sourceIndices, in <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> sourceWeights )</td>
+</tr>
+<tr class="row-odd"><td>Size</td>
+<td><a class="reference internal" href="UInt32Attribute.html#e838f4d0434b41208a63d5f0283315ad"><span>getScalarValueSize</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="UInt32Attribute.html#bbef52f7f5e48b8b63c8c76363d7e56"><span>linearCombine</span></a> ! ( in Ref&lt;Object&gt; sourceAttr, in <a class="reference internal" href="../Containers/LocalL16UInt32Array.html#locall16uint32array"><span>LocalL16UInt32Array</span></a> sourceIndices, in <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> sourceWeights, in Size targetIndex )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="UInt32Attribute.html#ef57102364554912237fb018a1dad"><span>resize</span></a> ! ( in Size count )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="UInt32Attribute.html#b52004be5ac55f2dc6e0aee99"><span>setFromScalar</span></a> ! ( in Size index, in <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> value )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="UInt32Attribute.html#bbecfe70d84c79b04242c68063c7f5"><span>unitTestPrint</span></a> ? ( in Size index )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
+<td><a class="reference internal" href="UInt32Attribute.html#bae905f74dde85ed296b2707b829"><span>valueDesc</span></a> ? ( in Size index )</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="UInt16ConstantArrayAttribute.kl.html"
+                        title="前の章へ">UInt16ConstantArrayAttribute.kl</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="Vec2Attribute.kl.html"
+                        title="次の章へ">Vec2Attribute.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/Geometry/UInt32Attribute.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="Vec2Attribute.kl.html" title="Vec2Attribute.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="UInt16ConstantArrayAttribute.kl.html" title="UInt16ConstantArrayAttribute.kl"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Geometry Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >Geometry Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

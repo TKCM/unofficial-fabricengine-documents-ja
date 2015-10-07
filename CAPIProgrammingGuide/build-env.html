@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The CAPI Build Environment &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
+    <link rel="up" title="CAPI Programming Guide" href="index.html" />
+    <link rel="next" title="The C Language Interface" href="c-interface.html" />
+    <link rel="prev" title="Introduction" href="intro.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="c-interface.html" title="The C Language Interface"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">CAPI Programming Guide</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="the-capi-build-environment">
+<span id="build-env"></span><h1>The CAPI Build Environment<a class="headerlink" href="#the-capi-build-environment" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="capi-prerequisites">
+<h2>CAPI Prerequisites<a class="headerlink" href="#capi-prerequisites" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>In order to use CAPI in your applications, you need a basic build environment.  This build environment is operating system-dependent as follows:</p>
+<dl class="docutils">
+<dt>Windows</dt>
+<dd>You must have Visual Studio 2010 or later installed.  The &#8220;Express&#8221; version will work for building 32-bit CAPI applications and plugins, but the &#8220;Professional&#8221; version is required to build for 64-bit.  It may be possible to make CAPI work with non-Visual Studio compilers for Windows but it is not supported.</dd>
+<dt>Linux</dt>
+<dd>You must have a C and/or C++ compiler installed.  CAPI is built and tested with a gcc version 4.x compiler but should work with any reasonably-modern version of gcc, and may also work with other C and C++ compilers as well, but this is not supported.</dd>
+<dt>Mac OS X</dt>
+<dd>You must have installed Xcode 4.2 or later.</dd>
+</dl>
+<p>In addition, you must have any libraries that CAPI is dependent on installed on your system; however, these libraries are automatically satisfied as part of the Fabric Core installer process.</p>
+<p>Finally, to build the CAPI samples without modification, you will need to have installed version 2.x.x of the <em class="dfn">SCons</em> build tool.  Scons distributions can be found at <a class="reference external" href="http://www.scons.org/">http://www.scons.org/</a>; it can also be installed using your usual package management system for Linux or through MacPorts under Mac OS X (see <a class="reference external" href="http://www.macports.org/">http://www.macports.org/</a>).</p>
+</div>
+<div class="section" id="capi-files-and-the-fabric-dir-environment-variable">
+<h2>CAPI Files and the <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">FABRIC_DIR</span></code> Environment Variable<a class="headerlink" href="#capi-files-and-the-fabric-dir-environment-variable" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>CAPI is installed on your system as part of the Fabric Engine install.  Your scripts should set the environment variable <span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal"><span class="pre">FABRIC_DIR</span></code> to the directory in which Fabric Engine is installed on your system.  During the install process, the CAPI files are copied under subdirectories of <code class="file docutils literal"><span class="pre">$FABRIC_DIR</span></code> (the value of the <span class="target" id="index-2"></span><code class="xref std std-envvar docutils literal"><span class="pre">FABRIC_DIR</span></code> environment variable) as follows:</p>
+<p>The CAPI header files are installed under the <code class="file docutils literal"><span class="pre">$FABRIC_DIR/include</span></code> subdirectory</p>
+<p>The CAPI shared library is stored under the <code class="file docutils literal"><span class="pre">$FABRIC_DIR/lib</span></code> subdirectory</p>
+<p>The CAPI sample source code is installed under the <code class="file docutils literal"><span class="pre">$FABRIC_DIR/CAPI/Samples</span></code> subdirectory</p>
+</div>
+<div class="section" id="capi-library-linking">
+<h2>CAPI Library Linking<a class="headerlink" href="#capi-library-linking" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>When compiling against the CAPI you must define one of <cite>FEC_STATIC</cite> or <cite>FEC_SHARED</cite> depending on the type of CAPI library you will be using. If you will be linking statically with the CAPI library (using a .a file on Linux/OSX or a static .lib file on Windows) you must set <cite>FEC_STATIC</cite>. If you will be linking against a dynamic library (a .so file on Linux, .dylib on OSX or .lib + .dll on Windows) then you will defined FEC_SHARED.</p>
+<p>Use of these defines allows for optimizing the API calls on Windows using dllimport and is maintained across Linux and OSX for consistency and future compatibility.</p>
+</div>
+<div class="section" id="building-the-samples">
+<h2>Building the Samples<a class="headerlink" href="#building-the-samples" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>CAPI is provided with sample code that you can build and run on your system.  They can be found under the <code class="file docutils literal"><span class="pre">$FABRIC_DIR/CAPI/Samples</span></code> directory and currently consist of the following:</p>
+<dl class="docutils">
+<dt><code class="file docutils literal"><span class="pre">C/HelloWorld/...</span></code></dt>
+<dd>The C interface version of the &#8220;HelloWorld&#8221; application</dd>
+<dt><code class="file docutils literal"><span class="pre">CPP/HelloWorld/...</span></code></dt>
+<dd>The C++ interface version of the &#8220;HelloWorld&#8221; application</dd>
+</dl>
+<p>It is recommended to make a copy of the desired source code directory into another location before building a sample rather than building it in place.</p>
+<p>To build a sample, you can simply run the <strong class="command">scons</strong> command from the command line for you platform within the copy of the sample directory.  It will produce an executable that can be run from the sample build directory.</p>
+</div>
+<div class="section" id="using-capi-with-other-build-systems-and-projects">
+<h2>Using CAPI With Other Build Systems and Projects<a class="headerlink" href="#using-capi-with-other-build-systems-and-projects" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>In order to integrate the use of CAPI with another build system or project, you need to set a few options for the C/C++ compiler and linker.  Rather than give operating system- and compiler-specific instructions, we provide high level steps that are will need to be done for every C/C++ project or build system in which you wish to use CAPI.  They are:</p>
+<p>Add the directory <code class="file docutils literal"><span class="pre">$FABRIC_DIR/include</span></code> to the include (header) search path.</p>
+<p>Add the CAPI library (.lib/.so), located in <code class="file docutils literal"><span class="pre">$FABRIC_DIR/lib</span></code>.  The name of the shared library is operating system- and CAPI version-specific, but will generally contain the text <code class="samp docutils literal"><span class="pre">FabricCore-</span><em><span class="pre">X</span></em><span class="pre">.</span><em><span class="pre">Y</span></em></code> where <code class="samp docutils literal"><em><span class="pre">X</span></em></code> and <code class="samp docutils literal"><em><span class="pre">Y</span></em></code> are the major and minor versions of the Fabric Core that are installed (eg. <code class="docutils literal"><span class="pre">1.5</span></code>).</p>
+<p>Be sure to include the CAPI header at the top of any C/C++ source files that use CAPI as follows:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="cp">#include &lt;FabricEngine/FabricCore.h&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">The CAPI Build Environment</a><ul>
+<li><a class="reference internal" href="#capi-prerequisites">CAPI Prerequisites</a></li>
+<li><a class="reference internal" href="#capi-files-and-the-fabric-dir-environment-variable">CAPI Files and the <code class="docutils literal"><span class="pre">FABRIC_DIR</span></code> Environment Variable</a></li>
+<li><a class="reference internal" href="#capi-library-linking">CAPI Library Linking</a></li>
+<li><a class="reference internal" href="#building-the-samples">Building the Samples</a></li>
+<li><a class="reference internal" href="#using-capi-with-other-build-systems-and-projects">Using CAPI With Other Build Systems and Projects</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="intro.html"
+                        title="前の章へ">Introduction</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="c-interface.html"
+                        title="次の章へ">The C Language Interface</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/CAPIProgrammingGuide/build-env.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="c-interface.html" title="The C Language Interface"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >CAPI Programming Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

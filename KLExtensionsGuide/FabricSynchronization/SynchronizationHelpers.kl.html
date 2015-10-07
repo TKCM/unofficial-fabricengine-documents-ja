@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>SynchronizationHelpers.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="FabricSynchronization Extension’s Files" href="files.html" />
+    <link rel="next" title="FabricSynchronization Extension’s Types" href="types.html" />
+    <link rel="prev" title="SimpleLock.kl" href="SimpleLock.kl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="types.html" title="FabricSynchronization Extension’s Types"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="SimpleLock.kl.html" title="SimpleLock.kl"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >FabricSynchronization Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">FabricSynchronization Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="fabricsynchronization-synchronizationhelpers-kl">
+<span id="synchronizationhelpers-kl"></span><span id="id1"></span><h1>SynchronizationHelpers.kl<a class="headerlink" href="#fabricsynchronization-synchronizationhelpers-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="lightlock-struct">
+<h3>LightLock (struct)<a class="headerlink" href="#lightlock-struct" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">Simple, non-reentrant spin lock, which can be bracketed with a <a class="reference internal" href="LightLockBracket.html#lightlockbracket"><span>LightLockBracket</span></a></p>
+<div class="section" id="members">
+<h4>Members<a class="headerlink" href="#members" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="32%" />
+<col width="56%" />
+<col width="12%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>UInt32</td>
+<td>lockVariable</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="LightLock.html#efa2d23a7bb4bd19f42b5429c70d6d0"><span>LightLock</span></a>  ( in <a class="reference internal" href="LightLock.html#lightlock"><span>LightLock</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="LightLock.html#d06d1275384c138c38b6a4145bd01f"><span>LightLock</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="LightLock.html#lightlock"><span>LightLock</span></a></td>
+<td><a class="reference internal" href="LightLock.html#b2c0c60b02f44fbc89e8fc6c6a318b4d"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td><a class="reference internal" href="LightLock.html#e7d378f44774fb082e5be2867939be7"><span>locked</span></a> ? ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+<p><div class="section" id="lightlockbracket-struct">
+<h3>LightLockBracket (struct)<a class="headerlink" href="#lightlockbracket-struct" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">Bracket for a <a class="reference internal" href="LightLock.html#lightlock"><span>LightLock</span></a></p>
+<div class="section" id="id2">
+<h4>Members<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="40%" />
+<col width="40%" />
+<col width="20%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Data</td>
+<td>data</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id3">
+<h4>Methods<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="27%" />
+<col width="73%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="LightLockBracket.html#b240608681d4643b138556cf5435983"><span>LightLockBracket</span></a>  ( in <a class="reference internal" href="LightLockBracket.html#lightlockbracket"><span>LightLockBracket</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="LightLockBracket.html#d92cdca3e16042449b506ed25ad562a7"><span>LightLockBracket</span></a>  ( io <a class="reference internal" href="LightLock.html#lightlock"><span>LightLock</span></a> lightLock )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="LightLockBracket.html#a468df345c5e412081fad4485626bbd2"><span>LightLockBracket</span></a>  ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="LightLockBracket.html#lightlockbracket"><span>LightLockBracket</span></a></td>
+<td><a class="reference internal" href="LightLockBracket.html#d3438eaf9d047d9b777acaffc1b7e17"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="LightLockBracket.html#d34887732d24702a7bf57d7bc84bc67"><span>~LightLockBracket</span></a>  ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="activewait">
+<h3>ActiveWait<a class="headerlink" href="#activewait" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">ActiveWait ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> seconds )</p>
+<p class="plaintext">Helper function for waiting actively during a specific timelapse.</p>
+</div>
+</p>
+<p><div class="section" id="simpleacquire">
+<h3>SimpleAcquire<a class="headerlink" href="#simpleacquire" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">SimpleAcquire ( io UInt32 lockVariable )</p>
+</div>
+</p>
+<p><div class="section" id="simplerelease">
+<h3>SimpleRelease<a class="headerlink" href="#simplerelease" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="klcode">SimpleRelease ( io UInt32 lockVariable )</p>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="SimpleLock.kl.html"
+                        title="前の章へ">SimpleLock.kl</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="types.html"
+                        title="次の章へ">FabricSynchronization Extension&#8217;s Types</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/FabricSynchronization/SynchronizationHelpers.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="types.html" title="FabricSynchronization Extension’s Types"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="SimpleLock.kl.html" title="SimpleLock.kl"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >FabricSynchronization Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >FabricSynchronization Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

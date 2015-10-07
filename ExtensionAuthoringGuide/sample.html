@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Understanding the Sample Extension &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
+    <link rel="up" title="Extension Authoring Guide" href="index.html" />
+    <link rel="next" title="The Extension Manifest File" href="fpm.html" />
+    <link rel="prev" title="Building the Sample Extension" href="build.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="fpm.html" title="The Extension Manifest File"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="build.html" title="Building the Sample Extension"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Extension Authoring Guide</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="understanding-the-sample-extension">
+<span id="eag-sample"></span><h1>Understanding the Sample Extension<a class="headerlink" href="#understanding-the-sample-extension" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>In this section we go through each of the files in the sample extension that you built in the last section.  By understanding how these files work and fit together you will understand the basics of how extensions work in Fabric Engine.</p>
+<div class="section" id="helloworld-fpm-json">
+<h2><code class="file docutils literal"><span class="pre">HelloWorld.fpm.json</span></code><a class="headerlink" href="#helloworld-fpm-json" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The only required file in an extension is the extension manifest file; in the sample extension it is the file <code class="file docutils literal"><span class="pre">HelloWorld.fpm.json</span></code>, and its contents are:</p>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+  <span class="nt">&quot;libs&quot;</span><span class="p">:</span> <span class="s2">&quot;HelloWorld&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;code&quot;</span><span class="p">:</span> <span class="s2">&quot;HelloWorld.kl&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The extension manifest file must end with the <code class="file docutils literal"><span class="pre">.fpm.json</span></code> suffix, and the part of the filename leading up to <code class="file docutils literal"><span class="pre">.fpm.json</span></code> is by definition the name of the extension.  The name of the extension is what is used include the extension using the <code class="samp docutils literal"><span class="pre">require</span> <em><span class="pre">ExtensionName</span></em><span class="pre">;</span></code> statement in KL or using the <code class="code docutils literal"><span class="pre">exts</span></code> parameter when creating a Fabric Engine core client.</p>
+<p>The contents of the manifest file are in JSON format (see <a class="reference external" href="http://json.org/">http://json.org/</a>), and must be a single JSON object.  The two members of the JSON object are <code class="code docutils literal"><span class="pre">libs</span></code> and <code class="code docutils literal"><span class="pre">code</span></code>; both are optional.</p>
+<p>The value of <code class="code docutils literal"><span class="pre">libs</span></code> is either a string or an array of strings.  Each string is the base name of a shared library that is part of the extension.  The actual filename of the shared library depends on the platform; the <code class="file docutils literal"><span class="pre">SConstruct</span></code> file that comes with the sample extension takes care of building a shared library with the right filename for the platform it is built on.  This means that you can (and should) use the same SConstruct file to build the extension on all the platforms the extension supports.</p>
+<p>The value of <code class="code docutils literal"><span class="pre">code</span></code> is a filename of a KL source file (including the <code class="docutils literal"><span class="pre">.kl</span></code> extension), or an array of such filenames.  All of the provided files are compiled and included into KL code wherever the <code class="samp docutils literal"><span class="pre">require</span> <em><span class="pre">ExtensionName</span></em><span class="pre">;</span></code> statement is used to include the extension.</p>
+<p>Fabric Engine detects an extension by finding a <code class="file docutils literal"><span class="pre">.fpm.json</span></code> file somewhere in the extensions path.  The extensions path includes all the directories listed in the <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">FABRIC_EXTS_PATH</span></code> environment variable, if present, as well as several predefined, platform-dependent directories that contain extensions that are included with the base install of Fabric Engine.  Fabric Engine requires that the files referred to by the <code class="code docutils literal"><span class="pre">libs</span></code> and <code class="code docutils literal"><span class="pre">code</span></code> members in the extension manifest be in the same directory as the extension manifest file itself.</p>
+<p>For more information about <code class="file docutils literal"><span class="pre">.fpm.json</span></code> files, see <a class="reference internal" href="fpm.html#eag-fpm"><span>The Extension Manifest File</span></a>.</p>
+</div>
+<div class="section" id="helloworld-kl">
+<h2><code class="file docutils literal"><span class="pre">HelloWorld.kl</span></code><a class="headerlink" href="#helloworld-kl" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The <code class="file docutils literal"><span class="pre">HelloWorld.kl</span></code> source file includes KL source code that is included whenever the <code class="samp docutils literal"><span class="pre">require</span> <em><span class="pre">ExtensionName</span></em><span class="pre">;</span></code> statement includes the extension by name from other KL source.  For instance, if a KL operator wants to use the functionality provided by the <code class="code docutils literal"><span class="pre">HelloWorld</span></code> sample extension, it should include the statement <code class="docutils literal"><span class="pre">require</span> <span class="pre">HelloWorld;</span></code> at the top of the operator code.  The contents of the <code class="file docutils literal"><span class="pre">HelloWorld.kl</span></code> file are simple:</p>
+<div class="highlight-python"><div class="highlight"><pre>function String GetHelloWorldString() = &quot;GetHelloWorldString&quot;;
+</pre></div>
+</div>
+<p>This is a KL statement that refers to a function defined in the native code shared library.  The key element here is the <code class="docutils literal"><span class="pre">=</span> <span class="pre">&quot;GetHelloWorldString&quot;</span></code> part: this tells KL that the function is called <code class="code docutils literal"><span class="pre">GetHelloWorldString</span></code> in the native code shared library.  If this is missing, there will be a linking problem when the library is loaded because by default KL functions have complex internal naming.  The <code class="docutils literal"><span class="pre">=</span> <span class="pre">&quot;GetHelloWorldString&quot;</span></code> notation is simply telling KL the symbol name in the shared library.</p>
+<p>Note that a KL source file can also include type definitions (eg. through the <cite>struct</cite> keyword), method definitions, operator definitions, and everything else available in KL.  You can use the same <code class="docutils literal"><span class="pre">=</span> <span class="pre">&quot;...&quot;</span></code> notation to bind methods to code within the native code shared library.</p>
+</div>
+<div class="section" id="helloworld-cpp">
+<h2><code class="file docutils literal"><span class="pre">HelloWorld.cpp</span></code><a class="headerlink" href="#helloworld-cpp" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The file <code class="file docutils literal"><span class="pre">HelloWorld.cpp</span></code> contains the C++ source code for the native code shared library.  Its contents are:</p>
+<div class="highlight-C++"><div class="highlight"><pre><span class="cp">#include &quot;HelloWorld.h&quot; </span><span class="c1">// Automatically generated by kl2edk</span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">Fabric</span><span class="o">::</span><span class="n">EDK</span><span class="p">;</span>
+<span class="n">IMPLEMENT_FABRIC_EDK_ENTRIES</span><span class="p">(</span> <span class="n">HelloWorld</span> <span class="p">)</span>
+
+<span class="n">FABRIC_EXT_EXPORT</span> <span class="kt">void</span> <span class="n">GetHelloWorldString</span><span class="p">(</span>
+  <span class="n">KL</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">Result</span> <span class="n">result</span>
+  <span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">Fabric</span><span class="o">::</span><span class="n">EDK</span><span class="o">::</span><span class="n">log</span><span class="p">(</span><span class="s">&quot;Extension: Enter GetHelloWorldString&quot;</span><span class="p">);</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="s">&quot;Hello, world!&quot;</span><span class="p">;</span>
+  <span class="n">Fabric</span><span class="o">::</span><span class="n">EDK</span><span class="o">::</span><span class="n">log</span><span class="p">(</span><span class="s">&quot;Extension: Leave GetHelloWorldString&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="code docutils literal"><span class="pre">#include</span> <span class="pre">&quot;HelloWorld.h&quot;</span></code> line includes the C++ header file with all the definitions for the the Fabric Engine EDK (Extension Development Kit).</p>
+<p>The file <code class="file docutils literal"><span class="pre">HelloWorld.h</span></code> is generated from <code class="file docutils literal"><span class="pre">HelloWorld.kl</span></code> using the <strong class="command">kl2edk</strong> utility; this action is automatically performed by the <code class="file docutils literal"><span class="pre">SConstruct</span></code> build script.  The <strong class="command">kl2edk</strong> command generates C++ representations of all custom structure, object and interfaces types used in the KL source files, as well as function prototypes for the required C++ functions.  For more information about <strong class="command">kl2edk</strong>, see <a class="reference internal" href="kl2edk.html#eag-kl2edk"><span>The kl2edk Utility</span></a>.</p>
+<p>The line <code class="code docutils literal"><span class="pre">using</span> <span class="pre">namespace</span> <span class="pre">Fabric::EDK;</span></code> allows us to reference EDK functions and types without prefixing them with the EDK namespace; this is purely a notational convenience.</p>
+<p>The <code class="code docutils literal"><span class="pre">IMPLEMENT_FABRIC_EDK_ENTRIES</span></code> line is required to be present exactly once in ever extension.  It takes a single parameter which must be the name of the extension.  Its purpose is to implement internal functions that are used to load the extension.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">There is a variant of <code class="code docutils literal"><span class="pre">IMPLEMENT_FABRIC_EDK_ENTRIES</span></code> called <code class="code docutils literal"><span class="pre">IMPLEMENT_FABRIC_EDK_ENTRIES_WITH_SETUP_CALLBACK</span></code> that takes a second parameter which is the address of a function to call at the end of the initialization process.  It allows you to inject one-time setup code into extensions.</p>
+</div>
+<p>The remaining code is the definition of a function that is made available to KL.  There are several important points:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Functions made available to KL must be prefixed with the <code class="docutils literal"><span class="pre">FABRIC_EXT_EXPORT</span></code> keyword.  The purpose of the keyword is to ensure that the function has an unmangled symbol name and the right calling convention.</li>
+<li>Note the use of the <code class="code docutils literal"><span class="pre">KL::String</span></code> type for the first parameter, and note that this is the value that is returned from the function with the KL declaration <code class="code docutils literal"><span class="pre">function</span> <span class="pre">String</span> <span class="pre">GetHelloWorldString()</span></code>.  We will talk more about this in the section on calling conventions.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="test-py">
+<h2><code class="file docutils literal"><span class="pre">test.py</span></code><a class="headerlink" href="#test-py" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The <code class="file docutils literal"><span class="pre">test.py</span></code> file is a Python source file that creates a simple Fabric Engine dependency graph and uses it to call the <code class="code docutils literal"><span class="pre">GetHelloWorldString</span></code> function that is provided in the <code class="code docutils literal"><span class="pre">HelloWorld</span></code> extension.</p>
+<p>The first few lines of the file explicitly add the current directory to the <span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal"><span class="pre">FABRIC_EXTS_PATH</span></code> environment variable:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span>
+<span class="k">if</span> <span class="s">&#39;FABRIC_EXTS_PATH&#39;</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">:</span>
+  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;FABRIC_EXTS_PATH&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">pathsep</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">&#39;.&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;FABRIC_EXTS_PATH&#39;</span><span class="p">]])</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;FABRIC_EXTS_PATH&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;.&#39;</span>
+</pre></div>
+</div>
+<p>Usually a custom extension will be installed at a predefined location that is set in advance in the <span class="target" id="index-2"></span><code class="xref std std-envvar docutils literal"><span class="pre">FABRIC_EXTS_PATH</span></code> variable, but it is also possible to set the variable like this.  The value of <span class="target" id="index-3"></span><code class="xref std std-envvar docutils literal"><span class="pre">FABRIC_EXTS_PATH</span></code> must be modified before the core client is created.</p>
+<p>The next two lines create a Fabric Engine client.  We communicate directly with the core of Fabric Engine as it is the easiest way to demonstrate the functionality of an extension:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">FabricEngine.Core</span> <span class="kn">as</span> <span class="nn">fabric</span>
+<span class="n">fabricClient</span> <span class="o">=</span> <span class="n">fabric</span><span class="o">.</span><span class="n">createClient</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>The next several lines create an KL operator.  The KL operator calls the <code class="code docutils literal"><span class="pre">GetHelloWorldString</span></code> provided by the extension and stores the result in an <code class="code docutils literal"><span class="pre">io</span></code> parameter that is later bound to a node member:</p>
+<div class="highlight-python"><div class="highlight"><pre>.. code-block:: python
+</pre></div>
+</div>
+<blockquote>
+<div><dl class="docutils">
+<dt>opSource = [</dt>
+<dd>&#8220;require HelloWorld;&#8221;,
+&#8220;&#8221;,
+&#8220;operator entry(io String string) {&#8221;,
+&#8221;  report(&#8220;KL: Enter entry&#8221;);&#8221;,
+&#8221;  string = GetHelloWorldString();&#8221;,
+&#8221;  report(&#8220;KL: GetHelloWorldString returned: &#8221; + string);&#8221;,
+&#8221;  report(&#8220;KL: Leave entry&#8221;);&#8221;,
+&#8220;}&#8221;</dd>
+</dl>
+<p>]
+op = fabricClient.DG.createOperator(&#8220;op&#8221;)
+op.setSourceCode(&#8220;n&#8221;.join(opSource))
+op.setEntryPoint(&#8220;entry&#8221;)</p>
+</div></blockquote>
+<p>Note the first line <code class="code docutils literal"><span class="pre">require</span> <span class="pre">HelloWorld;</span></code>: this statement is required to make available the declaration of the <code class="code docutils literal"><span class="pre">GetHelloWorldString</span></code> function.  The require statement essentially includes all of the KL source code that is provided in the extension; in this case, the code in <code class="file docutils literal"><span class="pre">HelloWorld.kl</span></code>.</p>
+<p>The next few lines create a node with a member of type <code class="code docutils literal"><span class="pre">String</span></code>, binds the operator to the node and then evaluates the node.  This causes the <code class="code docutils literal"><span class="pre">entry</span></code> operator to run which in turn calls the <code class="code docutils literal"><span class="pre">GetHelloWorldString</span></code> function in the extension:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">b</span> <span class="o">=</span> <span class="n">fabricClient</span><span class="o">.</span><span class="n">DG</span><span class="o">.</span><span class="n">createBinding</span><span class="p">()</span>
+<span class="n">b</span><span class="o">.</span><span class="n">setOperator</span><span class="p">(</span><span class="n">op</span><span class="p">)</span>
+<span class="n">b</span><span class="o">.</span><span class="n">setParameterLayout</span><span class="p">([</span><span class="s">&#39;self.string&#39;</span><span class="p">])</span>
+
+<span class="n">node</span> <span class="o">=</span> <span class="n">fabricClient</span><span class="o">.</span><span class="n">DG</span><span class="o">.</span><span class="n">createNode</span><span class="p">(</span><span class="s">&quot;node&quot;</span><span class="p">)</span>
+<span class="n">node</span><span class="o">.</span><span class="n">addMember</span><span class="p">(</span><span class="s">&quot;string&quot;</span><span class="p">,</span> <span class="s">&quot;String&quot;</span><span class="p">)</span>
+<span class="n">node</span><span class="o">.</span><span class="n">bindings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="n">node</span><span class="o">.</span><span class="n">evaluate</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The next line verifies that the operator did in fact set the member to the right value:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="s">&quot;Python got: &quot;</span> <span class="o">+</span> <span class="n">node</span><span class="o">.</span><span class="n">getData</span><span class="p">(</span><span class="s">&quot;string&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, we close the client so that the script will exit:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">fabricClient</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sconstruct">
+<h2><code class="file docutils literal"><span class="pre">SConstruct</span></code><a class="headerlink" href="#sconstruct" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The <code class="file docutils literal"><span class="pre">SConstruct</span></code> file is used to build the extension.  The only lines of interest are the last ones:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">fabricBuildEnv</span><span class="o">.</span><span class="n">Extension</span><span class="p">(</span>
+  <span class="s">&#39;HelloWorld&#39;</span><span class="p">,</span>
+  <span class="p">[</span><span class="s">&#39;HelloWorld.cpp&#39;</span><span class="p">,</span> <span class="s">&#39;HelloWorld.kl&#39;</span><span class="p">]</span>
+  <span class="p">)</span>
+</pre></div>
+</div>
+<p>This line directs <strong class="command">scons</strong> to build an extension named <code class="code docutils literal"><span class="pre">HelloWorld</span></code> using the native code source file <code class="file docutils literal"><span class="pre">HelloWorld.cpp</span></code> as well as the KL source code file <code class="file docutils literal"><span class="pre">HelloWorld.kl</span></code>.  The build commands cause the header file <code class="file docutils literal"><span class="pre">HelloWorld.h</span></code> to be generated from the input KL source files using the <strong class="command">kl2edk</strong> tool.  The resulting <code class="file docutils literal"><span class="pre">HelloWorld.h</span></code> is then included by <code class="file docutils literal"><span class="pre">HelloWorld.cpp</span></code>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Understanding the Sample Extension</a><ul>
+<li><a class="reference internal" href="#helloworld-fpm-json"><code class="file docutils literal"><span class="pre">HelloWorld.fpm.json</span></code></a></li>
+<li><a class="reference internal" href="#helloworld-kl"><code class="file docutils literal"><span class="pre">HelloWorld.kl</span></code></a></li>
+<li><a class="reference internal" href="#helloworld-cpp"><code class="file docutils literal"><span class="pre">HelloWorld.cpp</span></code></a></li>
+<li><a class="reference internal" href="#test-py"><code class="file docutils literal"><span class="pre">test.py</span></code></a></li>
+<li><a class="reference internal" href="#sconstruct"><code class="file docutils literal"><span class="pre">SConstruct</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="build.html"
+                        title="前の章へ">Building the Sample Extension</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="fpm.html"
+                        title="次の章へ">The Extension Manifest File</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/ExtensionAuthoringGuide/sample.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="fpm.html" title="The Extension Manifest File"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="build.html" title="Building the Sample Extension"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Extension Authoring Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

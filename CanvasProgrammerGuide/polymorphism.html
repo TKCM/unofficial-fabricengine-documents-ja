@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Polymorphic nodes &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
+    <link rel="up" title="Canvas Programmer Guide" href="index.html" />
+    <link rel="next" title="Variables" href="variables.html" />
+    <link rel="prev" title="KL Function Editor" href="klfunctioneditor.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="variables.html" title="Variables"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="klfunctioneditor.html" title="KL Function Editor"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Canvas Programmer Guide</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="polymorphic-nodes">
+<span id="canvas-programmer-guide-polymorphism"></span><h1>Polymorphic nodes<a class="headerlink" href="#polymorphic-nodes" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">If you are looking for a less technical explanation please refer to <a class="reference internal" href="../CanvasUserGuide/polymorphism.html#canvas-user-guide-polymorphism"><span>Polymorphic （多態性）ノード</span></a> in the user guide.</p>
+</div>
+<p>Polymorphism in Canvas is implemented as part of the code generation step. Nodes which have polymorphic types are either a) a KL function node which has a port with a polymorphic type specification or b) a subgraph which in turn uses a polymorphic KL function.
+Polymorphic nodes are versatile utilities which can be used with a variety of data types. It&#8217;s due to the compiler however to validate if the resulting generated code will work. Thus you CAN CREATE ERRONEOUS GRAPHS using polymorphism.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">The KL2DFG command line utility will create polymorphic presets depending on the configuration. Please see <a class="reference internal" href="kl2dfg.html#canvas-programmer-guide-kl2dfg"><span>KL2DFG Command line utility</span></a> for more information.</p>
+</div>
+<p>Type resolution for polymorphic nodes is recursive. Canvas uses a type mapping mechanism for polymorphic KL functions.</p>
+<div class="section" id="polymorphic-type-specification-syntax">
+<h2>Polymorphic type specification syntax<a class="headerlink" href="#polymorphic-type-specification-syntax" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>To define a polymorphic port in a KL function use the following syntax:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="nx">$LABEL$</span>            <span class="c1">// single polymorphic type</span>
+<span class="nx">$LABEL$</span><span class="p">[]</span>          <span class="c1">// array polymorphic type</span>
+<span class="nx">$LABEL1$</span><span class="p">[</span><span class="nx">$LABEL2$</span><span class="p">]</span> <span class="c1">// dictionary polymorphic type</span>
+</pre></div>
+</div>
+<img alt="../_images/userguide_23.jpg" src="../_images/userguide_23.jpg" />
+<p>The example above implements a polymorphic array push node (which is already part of the factory presets, of course). Connecting an array to the array or result port will result in the element port to resolve, and vice versa.</p>
+<img alt="../_images/userguide_24.jpg" src="../_images/userguide_24.jpg" />
+<p>The example above implements a polymorphic dictionary lookup node (which is also of course part of the factory presets). Both element and key polymorphic types will resolve as soon as you connect a dictionary to it.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Polymorphic nodes</a><ul>
+<li><a class="reference internal" href="#polymorphic-type-specification-syntax">Polymorphic type specification syntax</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="klfunctioneditor.html"
+                        title="前の章へ">KL Function Editor</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="variables.html"
+                        title="次の章へ">Variables</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/CanvasProgrammerGuide/polymorphism.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="variables.html" title="Variables"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="klfunctioneditor.html" title="KL Function Editor"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Canvas Programmer Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

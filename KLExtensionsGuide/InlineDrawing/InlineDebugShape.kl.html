@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>InlineDebugShape.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="InlineDrawing Extension’s Files" href="files.html" />
+    <link rel="next" title="InlineDrawing.kl" href="InlineDrawing.kl.html" />
+    <link rel="prev" title="InlineCamera.kl" href="InlineCamera.kl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="InlineDrawing.kl.html" title="InlineDrawing.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="InlineCamera.kl.html" title="InlineCamera.kl"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >InlineDrawing Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">InlineDrawing Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="inlinedrawing-inlinedebugshape-kl">
+<span id="inlinedebugshape-kl"></span><span id="id1"></span><h1>InlineDebugShape.kl<a class="headerlink" href="#inlinedrawing-inlinedebugshape-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="inlinedebugshape-object">
+<h3>InlineDebugShape (object)<a class="headerlink" href="#inlinedebugshape-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">The <a class="reference internal" href="InlineDebugShape.html#inlinedebugshape"><span>InlineDebugShape</span></a> inherits from the <a class="reference internal" href="InlineShape.html#inlineshape"><span>InlineShape</span></a> for debug drawing purposes.</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: InlineDebugShape</span>
+<span class="cm">*/</span>
+
+<span class="kr">require</span> <span class="nx">InlineDrawing</span><span class="p">;</span>
+  
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+
+      <span class="nx">InlineDebugShape</span> <span class="nx">shape</span><span class="p">(</span><span class="s1">&#39;debug&#39;</span><span class="p">);</span>
+      
+      <span class="c1">// draw a couple of points</span>
+      <span class="nx">shape</span><span class="p">.</span><span class="nx">drawPoint</span><span class="p">(</span><span class="nx">Vec3</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+      <span class="nx">shape</span><span class="p">.</span><span class="nx">drawPoint</span><span class="p">(</span><span class="nx">Vec3</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+      <span class="nx">shape</span><span class="p">.</span><span class="nx">drawPoint</span><span class="p">(</span><span class="nx">Vec3</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">));</span>
+      
+      <span class="c1">// draw a couple of lines</span>
+      <span class="nx">shape</span><span class="p">.</span><span class="nx">drawLine</span><span class="p">(</span><span class="nx">Vec3</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="nx">Vec3</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+      <span class="nx">shape</span><span class="p">.</span><span class="nx">drawLine</span><span class="p">(</span><span class="nx">Vec3</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="nx">Vec3</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+      <span class="nx">shape</span><span class="p">.</span><span class="nx">drawLine</span><span class="p">(</span><span class="nx">Vec3</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="nx">Vec3</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">));</span>
+      
+      <span class="c1">// for more methods check the method description below.</span>
+  
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="18%" />
+<col width="82%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="InlineDebugShape.html#e7c682e602540a497d666a14a9c1ad1"><span>InlineDebugShape</span></a>  ( in <a class="reference internal" href="InlineDebugShape.html#inlinedebugshape"><span>InlineDebugShape</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="InlineDebugShape.html#e54ee079d25d43bdaf61d28584e9e5e3"><span>InlineDebugShape</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="InlineDebugShape.html#a511ebe9acab424a99a98c4beb9a9f6b"><span>InlineDebugShape</span></a>  ()</td>
+</tr>
+<tr class="row-even"><td>Index</td>
+<td><a class="reference internal" href="InlineDebugShape.html#d153f47f6b55c70346a1ab1d1"><span>allocateLines</span></a> ! ( in Size nbPoints, in Size nbLines )</td>
+</tr>
+<tr class="row-odd"><td>Index</td>
+<td><a class="reference internal" href="InlineDebugShape.html#eef234afb929f8f6cf95cb6fc"><span>allocatePoints</span></a> ! ( in Size nbPoints )</td>
+</tr>
+<tr class="row-even"><td>Index</td>
+<td><a class="reference internal" href="InlineDebugShape.html#d1509543df240bfa1fffc5453dcddfe"><span>allocateTriangles</span></a> ! ( in Size nbPoints, in Size nbTriangles )</td>
+</tr>
+<tr class="row-odd"><td>Index</td>
+<td><a class="reference internal" href="InlineDebugShape.html#f5e30d694b43aa9ecc4b73fbd7f6dc"><span>allocateVertices</span></a> ! ( in Size nbVertices )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="InlineDebugShape.html#c99979a258ee4952a4d4f9c5198d6ac9"><span>clear</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="InlineDebugShape.html#inlinedebugshape"><span>InlineDebugShape</span></a></td>
+<td><a class="reference internal" href="InlineDebugShape.html#d9846645dc9942d8b6bb6ce3d022aa61"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="InlineDebugShape.html#cc1fad6ba7410dafde822a92f353bd"><span>disablePen</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="InlineDebugShape.html#inlinedebugshape"><span>InlineDebugShape</span></a></td>
+<td><a class="reference internal" href="InlineDebugShape.html#c5949e7274165a54afcbb2d5a6b5b"><span>drawArc</span></a> ! ( in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> xfo, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius, in <a class="reference internal" href="../Math/Vec2.html#vec2"><span>Vec2</span></a> angleMinMax, in Integer detail )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="InlineDebugShape.html#inlinedebugshape"><span>InlineDebugShape</span></a></td>
+<td><a class="reference internal" href="InlineDebugShape.html#e01fc7d02b34007a4000c23eab7952f"><span>drawAxes</span></a> ! ( in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> xfo, in Boolean bothSides )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="InlineDebugShape.html#inlinedebugshape"><span>InlineDebugShape</span></a></td>
+<td><a class="reference internal" href="InlineDebugShape.html#c00df2890554707b11ab71d333a0541"><span>drawBBox</span></a> ! ( in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> xfo, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> bboxmin, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> bboxmax )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="InlineDebugShape.html#inlinedebugshape"><span>InlineDebugShape</span></a></td>
+<td><a class="reference internal" href="InlineDebugShape.html#bc120b3bdd694399a036e5614380787c"><span>drawCapsuleLines</span></a> ! ( in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> xfo, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> height, in Integer detail )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="InlineDebugShape.html#inlinedebugshape"><span>InlineDebugShape</span></a></td>
+<td><a class="reference internal" href="InlineDebugShape.html#ed884b4bbd81ff55776303f8b6"><span>drawCircle</span></a> ! ( in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> xfo, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius, in Integer detail )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="InlineDebugShape.html#inlinedebugshape"><span>InlineDebugShape</span></a></td>
+<td><a class="reference internal" href="InlineDebugShape.html#a409fa59c940ad8d967eb3d639a90a"><span>drawLine</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> from, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> to )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="InlineDebugShape.html#inlinedebugshape"><span>InlineDebugShape</span></a></td>
+<td><a class="reference internal" href="InlineDebugShape.html#b6f91a4d35be4b3fbdff69ac57"><span>drawLineStrip</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> points[] )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="InlineDebugShape.html#inlinedebugshape"><span>InlineDebugShape</span></a></td>
+<td><a class="reference internal" href="InlineDebugShape.html#fad25a3ffd4a4a478b186c5559c14cb7"><span>drawPoint</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> pos )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="InlineDebugShape.html#inlinedebugshape"><span>InlineDebugShape</span></a></td>
+<td><a class="reference internal" href="InlineDebugShape.html#d5e3798a984959a6702d2146414db6"><span>drawPoints</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> pos[] )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="InlineDebugShape.html#inlinedebugshape"><span>InlineDebugShape</span></a></td>
+<td><a class="reference internal" href="InlineDebugShape.html#aea12e3c51485392297d89c6eabd46"><span>drawSegmentedLine</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> from, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> to, in Size numSegments )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="InlineDebugShape.html#inlinedebugshape"><span>InlineDebugShape</span></a></td>
+<td><a class="reference internal" href="InlineDebugShape.html#be7065c4a900445eaed88f09567fa22d"><span>drawSegmentedLine</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> from, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> to, in Size numSegments, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> ratio )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="InlineDebugShape.html#inlinedebugshape"><span>InlineDebugShape</span></a></td>
+<td><a class="reference internal" href="InlineDebugShape.html#e675abdf774658a2941489ac8852ae"><span>drawSphereLines</span></a> ! ( in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> xfo, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius, in Integer detail )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="InlineDebugShape.html#inlinedebugshape"><span>InlineDebugShape</span></a></td>
+<td><a class="reference internal" href="InlineDebugShape.html#ee7c2a3b0a4ced9af44503c440e488"><span>drawSquare</span></a> ! ( in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> xfo, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> length, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> width )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="InlineDebugShape.html#inlinedebugshape"><span>InlineDebugShape</span></a></td>
+<td><a class="reference internal" href="InlineDebugShape.html#fe351d5d9064141bd4063221da851da"><span>drawTriangle</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> p0, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> p1, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> p2 )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="InlineDebugShape.html#inlinedebugshape"><span>InlineDebugShape</span></a></td>
+<td><a class="reference internal" href="InlineDebugShape.html#fe06bf524a2abd8321fb3a5e695f"><span>drawTriangle</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> p0, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> p1, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> p2, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> n )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="InlineDebugShape.html#inlinedebugshape"><span>InlineDebugShape</span></a></td>
+<td><a class="reference internal" href="InlineDebugShape.html#d0f63383fdf4e2380beff2275770208"><span>drawTriangle</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> p0, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> p1, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> p2, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> n0, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> n1, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> n2 )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="InlineDebugShape.html#inlinedebugshape"><span>InlineDebugShape</span></a></td>
+<td><a class="reference internal" href="InlineDebugShape.html#e152ddd842d44dc1b3cb0be2ebb45c29"><span>drawTrianglesCone</span></a> ! ( in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> xfo, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> height, in Integer detail )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="InlineDebugShape.html#inlinedebugshape"><span>InlineDebugShape</span></a></td>
+<td><a class="reference internal" href="InlineDebugShape.html#cc03bbc6c45d680283ac0fd05fd5d"><span>drawTrianglesCube</span></a> ! ( in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> xfo, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> width, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> height, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> length )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="InlineDebugShape.html#inlinedebugshape"><span>InlineDebugShape</span></a></td>
+<td><a class="reference internal" href="InlineDebugShape.html#ac2cf73a8a4df69975856b2f7e892a"><span>drawTrianglesPlane</span></a> ! ( in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> xfo, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> width, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> height )</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="InlineDebugShape.html#inlinedebugshape"><span>InlineDebugShape</span></a></td>
+<td><a class="reference internal" href="InlineDebugShape.html#ee5a6722407e470a96c652ef15b34f36"><span>drawTrianglesSphere</span></a> ! ( in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> xfo, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius, in Integer detail )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Geometry/GeometryAttributes.html#geometryattributes"><span>GeometryAttributes</span></a></td>
+<td><a class="reference internal" href="InlineDebugShape.html#f1fade435f041a6bc0bde78c9573b4e"><span>getAttributes</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="InlineDebugShape.html#f1c0cc444e5b6bbaa16a0323cef"><span>getLineWidth</span></a> ? ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
+<td><a class="reference internal" href="InlineDebugShape.html#da3ccc7f4423091e88664af420524"><span>getPointSize</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="InlineDebugShape.html#af3117350b1f4333b7176cf58e6de636"><span>init</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="InlineDebugShape.html#b3eee514497988ba7140742b433"><span>reset</span></a> ! ()</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="InlineDebugShape.html#b2fff465c14aea8096bda645cd2f9e"><span>setLineWidth</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="InlineDebugShape.html#e7c6f855cc364a04994173e2231eb76f"><span>setPen</span></a> ! ( in <a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a> color )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="InlineDebugShape.html#de8d5dfd615b40edb9c26d47b94aa538"><span>setPointSize</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value )</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="InlineCamera.kl.html"
+                        title="前の章へ">InlineCamera.kl</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="InlineDrawing.kl.html"
+                        title="次の章へ">InlineDrawing.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/InlineDrawing/InlineDebugShape.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="InlineDrawing.kl.html" title="InlineDrawing.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="InlineCamera.kl.html" title="InlineCamera.kl"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >InlineDrawing Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >InlineDrawing Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Using spatial queries with geometries &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="Geometry Extension" href="index.html" />
+    <link rel="next" title="Utilizing GPU commpute with Geometries" href="utilizinggpucompute.html" />
+    <link rel="prev" title="PolygonMesh’s structure" href="polygonmeshstructure.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="utilizinggpucompute.html" title="Utilizing GPU commpute with Geometries"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="polygonmeshstructure.html" title="PolygonMesh’s structure"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Geometry Extension</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="using-spatial-queries-with-geometries">
+<span id="spatialqueriesusage"></span><h1>Using spatial queries with geometries<a class="headerlink" href="#using-spatial-queries-with-geometries" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Spatial queries are a set of operations which perform searches based on geometric
+position. Common spatial queries include finding a ray intersection (<cite>raycast</cite>), finding
+the closest surface (<cite>getClosest</cite>), or searching an intersection with a volume
+like a sphere. The <a class="reference internal" href="SpatialQueryable.html#spatialqueryable"><span>SpatialQueryable</span></a> interface allows to perform various spatial queries on
+<a class="reference internal" href="Geometry.html#geometry"><span>Geometry</span></a> types such as the <a class="reference internal" href="PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a>, the <a class="reference internal" href="Lines.html#lines"><span>Lines</span></a> and
+the <a class="reference internal" href="Points.html#points"><span>Points</span></a>.</p>
+<p>When multiple spatial queries are performed on a same geometry, an acceleration structure
+can greatly improve the performance. The <a class="reference internal" href="SpatialQueryable.html#spatialqueryable"><span>SpatialQueryable</span></a> implementations of
+built-in <a class="reference internal" href="Geometry.html#geometry"><span>Geometry</span></a> types can internally cache an acceleration structure.
+The acceleration structure needs to be properly prepared and updated before performing
+queries; see <a class="reference internal" href="#spatialqueryaccelerationstructures"><span>Acceleration structures</span></a> for more details.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">Performing spatial queries on a geometry is thread safe if the geometry is not modified
+and no calls are made to <a class="reference internal" href="SpatialQueryable.html#dbe80c79984727b253bc56313370d4"><span>SpatialQueryable.prepareForSpatialQueries</span></a> or
+<a class="reference internal" href="SpatialQueryable.html#c91913c967ff471b8a95a26c5f74e1b6"><span>SpatialQueryable.removeSpatialQueryAcceleration</span></a>.</p>
+</div>
+<div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">** Example: Performing a simple shrink wrap deformer using SpatialQueryable</span>
+<span class="cm">*/</span>
+
+<span class="kr">require</span> <span class="nx">Geometry</span><span class="p">;</span>
+
+<span class="kd">operator</span> <span class="nx">ParallelShrinkWrap</span><span class="o">&lt;&lt;&lt;</span><span class="nx">index</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span> <span class="k">io</span> <span class="nx">PolygonMesh</span> <span class="nx">source</span><span class="p">,</span> <span class="nx">SpatialQueryable</span> <span class="nx">target</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="nx">Ray</span> <span class="nx">ray</span><span class="p">;</span>
+  <span class="nx">ray</span><span class="p">.</span><span class="nx">start</span> <span class="o">=</span> <span class="nx">source</span><span class="p">.</span><span class="nx">getPointPosition</span><span class="p">(</span> <span class="nx">index</span> <span class="p">);</span>
+  <span class="nx">ray</span><span class="p">.</span><span class="nx">direction</span> <span class="o">=</span> <span class="o">-</span><span class="nx">ray</span><span class="p">.</span><span class="nx">start</span><span class="p">.</span><span class="nx">unit</span><span class="p">();</span><span class="c1">//Unit vector toward sphere&#39;s center</span>
+
+  <span class="nx">GeometryLocation</span> <span class="nx">location</span> <span class="o">=</span> <span class="nx">target</span><span class="p">.</span><span class="nx">raycast</span><span class="p">(</span><span class="nx">ray</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="nx">SCALAR_INFINITE</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span> <span class="nx">location</span><span class="p">.</span><span class="nx">isValid</span><span class="p">()</span> <span class="p">)</span>
+    <span class="nx">source</span><span class="p">.</span><span class="nx">setPointPosition</span><span class="p">(</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">target</span><span class="p">.</span><span class="nx">getPositionAtLocation</span><span class="p">(</span> <span class="nx">location</span> <span class="p">)</span> <span class="p">);</span>
+  <span class="k">else</span>
+    <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;Unexpected: no hit&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">(){</span>
+  <span class="c1">//Shrink wrap a sphere onto a cylinder</span>
+  <span class="nx">PolygonMesh</span> <span class="nx">source</span><span class="p">(),</span> <span class="nx">target</span><span class="p">();</span>
+  <span class="nx">source</span><span class="p">.</span><span class="nx">addSphere</span><span class="p">(</span><span class="nx">Xfo</span><span class="p">(),</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+
+  <span class="c1">//Cylinder (Y from -2.0 to 2.0)</span>
+  <span class="nx">target</span><span class="p">.</span><span class="nx">addCylinder</span><span class="p">(</span><span class="nx">Xfo</span><span class="p">(),</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+
+  <span class="c1">//Initialize options to use a sparse grid</span>
+  <span class="nx">GenericValueContainer</span> <span class="nx">options</span> <span class="o">=</span> <span class="nx">GenericValueContainer</span><span class="p">();</span>
+  <span class="nx">PrepareForSpatialQueries_setSparseGrid</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
+
+  <span class="c1">//Prepare for one query per source point</span>
+  <span class="nx">target</span><span class="p">.</span><span class="nx">prepareForSpatialQueries</span><span class="p">(</span> <span class="nx">source</span><span class="p">.</span><span class="nx">pointCount</span><span class="p">(),</span> <span class="nx">options</span> <span class="p">);</span>
+
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;Point 0 initial position: &quot;</span> <span class="o">+</span> <span class="nx">source</span><span class="p">.</span><span class="nx">getPointPosition</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+  <span class="nx">ParallelShrinkWrap</span><span class="o">&lt;&lt;&lt;</span><span class="nx">source</span><span class="p">.</span><span class="nx">pointCount</span><span class="p">()</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span> <span class="nx">source</span><span class="p">,</span> <span class="nx">target</span> <span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;Point 0 deformed position: &quot;</span> <span class="o">+</span> <span class="nx">source</span><span class="p">.</span><span class="nx">getPointPosition</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">Point 0 initial position: {x:+0.0,y:+10.0,z:+0.0}</span>
+<span class="cm">Point 0 deformed position: {x:-1.685873e-7,y:+2.0,z:+1.685874e-7}</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+<div class="section" id="using-the-spatialquery-object">
+<span id="spatialqueryobject"></span><h2>Using the SpatialQuery object<a class="headerlink" href="#using-the-spatialquery-object" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Some queries, such as <a class="reference internal" href="SpatialQuery.html#d6674d8c432a4be7992cdbcf2e8653a1"><span>SpatialQuery.getElementsInBBox</span></a>, are only accessible through to
+a <a class="reference internal" href="SpatialQuery.html#spatialquery"><span>SpatialQuery</span></a> object. The <a class="reference internal" href="SpatialQuery.html#spatialquery"><span>SpatialQuery</span></a> object is obtained by calling
+<a class="reference internal" href="SpatialQueryable.html#c44e850f4bb54a2bbe24e760c3d398a8"><span>SpatialQueryable.beginSpatialQuery</span></a>, and needs to be used temporarily until released
+by a call to <a class="reference internal" href="SpatialQueryable.html#c4cc2f86e70a4dec85c2a09d82e4b522"><span>SpatialQueryable.endSpatialQuery</span></a>.</p>
+<p>A <a class="reference internal" href="SpatialQuery.html#spatialquery"><span>SpatialQuery</span></a> object is valid if:</p>
+<ul class="simple">
+<li>it is used in the local scope between <a class="reference internal" href="SpatialQueryable.html#c44e850f4bb54a2bbe24e760c3d398a8"><span>SpatialQueryable.beginSpatialQuery</span></a> and
+<a class="reference internal" href="SpatialQueryable.html#c4cc2f86e70a4dec85c2a09d82e4b522"><span>SpatialQueryable.endSpatialQuery</span></a> (same thread)</li>
+<li>the geometry is not modified</li>
+<li>no calls to <a class="reference internal" href="SpatialQueryable.html#dbe80c79984727b253bc56313370d4"><span>SpatialQueryable.prepareForSpatialQueries</span></a> or
+<a class="reference internal" href="SpatialQueryable.html#c91913c967ff471b8a95a26c5f74e1b6"><span>SpatialQueryable.removeSpatialQueryAcceleration</span></a> are made</li>
+<li>it was not released with a call to <a class="reference internal" href="SpatialQueryable.html#c4cc2f86e70a4dec85c2a09d82e4b522"><span>SpatialQueryable.endSpatialQuery</span></a></li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p>The <a class="reference internal" href="SpatialQuery.html#spatialquery"><span>SpatialQuery</span></a> object holds the thread-specific temporary storage needed for
+efficiently performing one or multiple queries. These objects are recycled internally
+for a better performance.</p>
+<p class="last">A call to <a class="reference internal" href="SpatialQueryable.html#c44e850f4bb54a2bbe24e760c3d398a8"><span>SpatialQueryable.beginSpatialQuery</span></a> is thread-safe, but the returned
+<a class="reference internal" href="SpatialQuery.html#spatialquery"><span>SpatialQuery</span></a> object is not (should only be used locally).</p>
+</div>
+<p>The following example demonstrates proper multithreaded usage of a <a class="reference internal" href="SpatialQuery.html#spatialquery"><span>SpatialQuery</span></a> :</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="kr">require</span> <span class="nx">Geometry</span><span class="p">;</span>
+
+<span class="kd">operator</span> <span class="nx">ParallelBBoxSearch</span><span class="o">&lt;&lt;&lt;</span><span class="nx">index</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span> <span class="nx">Ref</span><span class="o">&lt;</span><span class="nx">SpatialQueryable</span><span class="o">&gt;</span> <span class="nx">target</span><span class="p">,</span> <span class="k">io</span> <span class="kr">Boolean</span> <span class="nx">intersectsElementsBBox</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="c1">//Allocate a temporary query object</span>
+  <span class="nx">Ref</span><span class="o">&lt;</span><span class="nx">SpatialQuery</span><span class="o">&gt;</span> <span class="nx">query</span> <span class="o">=</span> <span class="nx">target</span><span class="p">.</span><span class="nx">beginSpatialQuery</span><span class="p">();</span>
+
+  <span class="nx">Size</span> <span class="nx">elementCount</span> <span class="o">=</span> <span class="nx">query</span><span class="p">.</span><span class="nx">getElementsInBBox</span><span class="p">(</span> <span class="nx">Vec3</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="nx">Vec3</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nx">index</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span> <span class="nx">elementCount</span> <span class="p">)</span>
+    <span class="nx">intersectsElementsBBox</span><span class="p">[</span><span class="nx">index</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">operator</span> <span class="nx">entry</span><span class="p">(){</span>
+  <span class="c1">//Check which unit bboxes with Y = 0..9 intersect the surface of a sphere of radius 5.0</span>
+  <span class="nx">PolygonMesh</span> <span class="nx">target</span><span class="p">();</span>
+  <span class="nx">target</span><span class="p">.</span><span class="nx">addSphere</span><span class="p">(</span><span class="nx">Xfo</span><span class="p">(),</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+
+  <span class="kr">Boolean</span> <span class="nx">intersectsElementsBBox</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+  <span class="nx">target</span><span class="p">.</span><span class="nx">prepareForSpatialQueries</span><span class="p">(</span> <span class="mi">10</span><span class="p">,</span> <span class="kc">null</span> <span class="p">);</span>
+
+  <span class="nx">ParallelBBoxSearch</span><span class="o">&lt;&lt;&lt;</span><span class="mi">10</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span> <span class="nx">target</span><span class="p">,</span> <span class="nx">intersectsElementsBBox</span> <span class="p">);</span>
+  <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;Intersected bounding boxes:\n &quot;</span> <span class="o">+</span> <span class="nx">intersectsElementsBBox</span> <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">** Output:</span>
+
+<span class="cm">Intersected bounding boxes:</span>
+<span class="cm"> [false,false,false,false,true,true,false,false,false,false]</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="geometrylocation-structure">
+<span id="geometrylocationstructure"></span><h2>GeometryLocation structure<a class="headerlink" href="#geometrylocation-structure" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>For methods such as <a class="reference internal" href="SpatialQueryable.html#f62b50dd0f724b7f9378a6f63a9d5ca6"><span>SpatialQueryable.raycast</span></a>, where the result is a specific surface point,
+a <a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a> structure is returned. The content and meaning of the <a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a>
+members is specific to each <a class="reference internal" href="Geometry.html#geometry"><span>Geometry</span></a> type:</p>
+<ul class="simple">
+<li><a class="reference internal" href="PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a>:<ul>
+<li><cite>index</cite> stores the polygon index</li>
+<li><cite>subIndex</cite> stores polygon&#8217;s sub-triangle index. For example, in a quadrilateral with points [4,5,6,7],
+triangulated as [4,5,6] and [4,6,7], the <cite>subIndex</cite> for each triangle is 0 and 1, respectively.</li>
+<li><cite>barycentric</cite> store the barycentric weights relative to a triangle&#8217;s points. For a triangle corresponding to
+attribute values [a,b,c], the resulting attribute value can be computed by the linear combination
+<code class="docutils literal"><span class="pre">(a</span> <span class="pre">*</span> <span class="pre">barycentric.x)</span> <span class="pre">+</span> <span class="pre">(b</span> <span class="pre">*</span> <span class="pre">barycentric.y)</span> <span class="pre">+</span> <span class="pre">(c</span> <span class="pre">*</span> <span class="pre">barycentric.z)</span></code>.</li>
+</ul>
+</li>
+<li><a class="reference internal" href="Lines.html#lines"><span>Lines</span></a>:<ul>
+<li><cite>index</cite> stores the line segment index</li>
+<li><cite>barycentric.xy</cite> stores the weights for the start and the end points of the segment, respectively. For a segment
+where the start and end attribute values are [a,b], the resulting attribute value can be computed by the linear combination <code class="docutils literal"><span class="pre">(a</span> <span class="pre">*</span> <span class="pre">barycentric.x)</span> <span class="pre">+</span> <span class="pre">(b</span> <span class="pre">*</span> <span class="pre">barycentric.y)</span></code>.</li>
+</ul>
+</li>
+<li><a class="reference internal" href="Points.html#points"><span>Points</span></a>:<ul>
+<li><cite>index</cite> stores the point index, which is the same as the attribute index.</li>
+<li><cite>barycentric</cite> might store, when applicable, a <cite>normal</cite> relative to the point.
+This allows to keep the specific surface location when points have a size,
+and are considered as spheres.</li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">A <a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a> is valid only for a specific Geometry, or one with
+an identical structure (<cite>topology</cite>). A <a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a> is stable through deformation
+(animation).</p>
+</div>
+<p>The <a class="reference internal" href="functions.html#dc2d4984738894766e02adabaa1"><span>GetAttributeAtLocation</span></a> helper functions can return the value of an attribute
+corresponding to a <a class="reference internal" href="GeometryLocation.html#geometrylocation"><span>GeometryLocation</span></a>. These are simple
+wrappers around <a class="reference internal" href="SpatialQueryable.html#e2f4d65596042fd90af0804bd0ae4b0"><span>SpatialQueryable.getLocationAttributeIndicesAndWeights</span></a> and
+attributes&#8217; <cite>getLinearCombination</cite> methods.</p>
+</div>
+<div class="section" id="acceleration-structures">
+<span id="spatialqueryaccelerationstructures"></span><h2>Acceleration structures<a class="headerlink" href="#acceleration-structures" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Spatial queries can be performed with an internally cached acceleration structure like
+an <a class="reference internal" href="Octree.html#octree"><span>Octree</span></a> or a <a class="reference internal" href="SparseGrid.html#sparsegrid"><span>SparseGrid</span></a>. Performing multiple queries without a cached
+acceleration structure can be very slow, particularly on complex geometries. A few rules need to be
+followed in order to properly use acceleration structures through the <a class="reference internal" href="SpatialQueryable.html#spatialqueryable"><span>SpatialQueryable</span></a> interface.</p>
+<p>Built-in geometries (<a class="reference internal" href="PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a>, <a class="reference internal" href="Lines.html#lines"><span>Lines</span></a>, <a class="reference internal" href="Points.html#points"><span>Points</span></a>) support
+none, <a class="reference internal" href="Octree.html#octree"><span>Octree</span></a> or <a class="reference internal" href="SparseGrid.html#sparsegrid"><span>SparseGrid</span></a> acceleration structures. These can be specified using the
+<a class="reference internal" href="SpatialQueryable.html#dbe80c79984727b253bc56313370d4"><span>SpatialQueryable.prepareForSpatialQueries</span></a> options.</p>
+<p>The default acceleration structure is the <a class="reference internal" href="Octree.html#octree"><span>Octree</span></a> since it behaves well in all situations.
+Both acceleration structures support incremental updates (small change, small update cost).
+See <a class="reference internal" href="#octreesparsegridcompare"><span>Octree versus SparseGrid</span></a> for a comparison of these acceleration structures.</p>
+<p>The <a class="reference internal" href="SpatialQueryable.html#dbe80c79984727b253bc56313370d4"><span>SpatialQueryable.prepareForSpatialQueries</span></a> method will install or update an
+acceleration structure in order to accelerate subsequent query calls (which can then be multithreaded).
+If <a class="reference internal" href="SpatialQueryable.html#dbe80c79984727b253bc56313370d4"><span>SpatialQueryable.prepareForSpatialQueries</span></a> is not called initially or after geometry changes,
+the geometry will detect it (from attribute and structure versions) and disable acceleration, which can lead
+to poor performance.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">When calling <a class="reference internal" href="SpatialQueryable.html#dbe80c79984727b253bc56313370d4"><span>SpatialQueryable.prepareForSpatialQueries</span></a> again after a <a class="reference internal" href="Geometry.html#geometry"><span>Geometry</span></a> type was
+modified, the acceleration structure will be updated incrementally. This implies that the acceleration structure
+will be only partially modified to match the changes, which improves the performance. This is particularly
+helpful during playback, where the surface deformation is typically small from frame to frame.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">The acceleration structures are internally made of compact arrays. Compiling KL
+in <cite>unguarded</cite> mode will usually speed up spatial queries by 30%.</p>
+</div>
+<p>The <a class="reference internal" href="SpatialQueryable.html#c91913c967ff471b8a95a26c5f74e1b6"><span>SpatialQueryable.removeSpatialQueryAcceleration</span></a> allows to delete the acceleration structure
+and free its memory. However, it is usually not recommended to call this method (see method&#8217;s
+description for more details).</p>
+<div class="section" id="octree-versus-sparsegrid">
+<span id="octreesparsegridcompare"></span><h3>Octree versus SparseGrid<a class="headerlink" href="#octree-versus-sparsegrid" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Here is a quick comparison between the <a class="reference internal" href="Octree.html#octree"><span>Octree</span></a> and the <a class="reference internal" href="SparseGrid.html#sparsegrid"><span>SparseGrid</span></a>:</p>
+<ul class="simple">
+<li>Memory: the Octree takes about twice the memory of a SparseGrid. Even if both structures were optimized for
+a low memory usage, they still require a noticeable amount of memory, which can be comparable to the memory used
+by the structure of a PolygonMesh.</li>
+<li>A SparseGrid builds and updates faster than an Octree, often by a factor of 2 or more.</li>
+<li><a class="reference internal" href="SpatialQuery.html#b96ff0e48549009890bcb397c7b806"><span>SpatialQuery.raycast</span></a>: if geometry elements (polygons, points) are relatively uniformly
+distributed in space, the SparseGrid can be faster by about 30%, but could be slower if the
+geometric elements&#8217; density varies a lot.</li>
+<li><a class="reference internal" href="SpatialQuery.html#e5460e34c9640a3b7e380a964e42911"><span>SpatialQuery.getClosest</span></a>: the Octree is usually much faster than the SparseGrid.
+The SparseGrid is particularly slow if the search point is far from geometry&#8217;s surface.</li>
+<li><a class="reference internal" href="SpatialQuery.html#d6674d8c432a4be7992cdbcf2e8653a1"><span>SpatialQuery.getElementsInBBox</span></a> and <a class="reference internal" href="SpatialQuery.html#ab3167b30847dc8404e30ca92d702a"><span>SpatialQuery.getElementsInBSphere</span></a>: the SparseGrid will
+be faster if the search volume is similar to the distance between geometry elements, and
+if the geometry elements are relatively uniformly distributed in space.</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Using spatial queries with geometries</a><ul>
+<li><a class="reference internal" href="#using-the-spatialquery-object">Using the SpatialQuery object</a></li>
+<li><a class="reference internal" href="#geometrylocation-structure">GeometryLocation structure</a></li>
+<li><a class="reference internal" href="#acceleration-structures">Acceleration structures</a><ul>
+<li><a class="reference internal" href="#octree-versus-sparsegrid">Octree versus SparseGrid</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="polygonmeshstructure.html"
+                        title="前の章へ">PolygonMesh&#8217;s structure</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="utilizinggpucompute.html"
+                        title="次の章へ">Utilizing GPU commpute with Geometries</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/Geometry/spatialqueriesusage.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="utilizinggpucompute.html" title="Utilizing GPU commpute with Geometries"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="polygonmeshstructure.html" title="PolygonMesh’s structure"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Geometry Extension</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>UInt32ArrayNoFree.kl &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="Containers Extension’s Files" href="files.html" />
+    <link rel="next" title="UInt32PackingUtils.kl" href="UInt32PackingUtils.kl.html" />
+    <link rel="prev" title="UInt32ArrayAllocator.kl" href="UInt32ArrayAllocator.kl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="UInt32PackingUtils.kl.html" title="UInt32PackingUtils.kl"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="UInt32ArrayAllocator.kl.html" title="UInt32ArrayAllocator.kl"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Containers Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" accesskey="U">Containers Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="containers-uint32arraynofree-kl">
+<span id="uint32arraynofree-kl"></span><span id="id1"></span><h1>UInt32ArrayNoFree.kl<a class="headerlink" href="#containers-uint32arraynofree-kl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><div class="section" id="uint32arraynofree-struct">
+<h3>UInt32ArrayNoFree (struct)<a class="headerlink" href="#uint32arraynofree-struct" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p class="plaintext">The <a class="reference internal" href="UInt32ArrayNoFree.html#uint32arraynofree"><span>UInt32ArrayNoFree</span></a> can be used to manage an array of
+UInt32 which won&#8217;t deallocate when shrinking, unless <a class="reference internal" href="UInt32ArrayNoFree.html#uint32arraynofree"><span>UInt32ArrayNoFree</span></a>.reset
+is called. The actual size of the internal array might be greater than the used size.</p>
+<div class="section" id="members">
+<h4>Members<a class="headerlink" href="#members" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="paramtable docutils">
+<colgroup>
+<col width="13%" />
+<col width="7%" />
+<col width="80%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>UInt32[]</td>
+<td>data</td>
+<td>The managed UInt32 array (only the beginning of the array might be used)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><table border="1" class="methodtable docutils">
+<colgroup>
+<col width="28%" />
+<col width="72%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="UInt32ArrayNoFree.html#bd271b7ef5224c3182e22205df5492ed"><span>UInt32ArrayNoFree</span></a>  ( in <a class="reference internal" href="UInt32ArrayNoFree.html#uint32arraynofree"><span>UInt32ArrayNoFree</span></a> other )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="UInt32ArrayNoFree.html#c72204fcb4349c28239cee35f7bb10c"><span>UInt32ArrayNoFree</span></a>  ()</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="UInt32ArrayNoFree.html#uint32arraynofree"><span>UInt32ArrayNoFree</span></a></td>
+<td><a class="reference internal" href="UInt32ArrayNoFree.html#b13bc3e63f64566aa67ac9bba4c89ae"><span>clone</span></a> ? ()</td>
+</tr>
+<tr class="row-even"><td>UInt32</td>
+<td><a class="reference internal" href="UInt32ArrayNoFree.html#c2f3246ef3d14a148ad2a98417d2b3bd"><span>get</span></a> ? ( in Size index )</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="UInt32ArrayNoFree.html#a5007b23c544acab4a1e20b99e55173"><span>push</span></a> ! ( in UInt32 value )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="UInt32ArrayNoFree.html#b944c7fa6a245eab39d2ecdf323df99"><span>reset</span></a> ! ()</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><a class="reference internal" href="UInt32ArrayNoFree.html#a1edc1c1fc1b495a919dc97680993f8b"><span>resize</span></a> ! ( in Size newSize )</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><a class="reference internal" href="UInt32ArrayNoFree.html#b81c21884dc0ae6f753dda3b743e"><span>set</span></a> ! ( in Size index, in UInt32 value )</td>
+</tr>
+<tr class="row-odd"><td>Size</td>
+<td><a class="reference internal" href="UInt32ArrayNoFree.html#f1825e686945529521c7178ad7ba5b"><span>size</span></a> ? ()</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="UInt32ArrayAllocator.kl.html"
+                        title="前の章へ">UInt32ArrayAllocator.kl</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="UInt32PackingUtils.kl.html"
+                        title="次の章へ">UInt32PackingUtils.kl</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/Containers/UInt32ArrayNoFree.kl.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="UInt32PackingUtils.kl.html" title="UInt32PackingUtils.kl"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="UInt32ArrayAllocator.kl.html" title="UInt32ArrayAllocator.kl"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Containers Extension</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="files.html" >Containers Extension&#8217;s Files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

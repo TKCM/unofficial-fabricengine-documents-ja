@@ -1,0 +1,285 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Geometry Extension &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="KL Extensions Guide" href="../index.html" />
+    <link rel="next" title="PolygonMesh’s structure" href="polygonmeshstructure.html" />
+    <link rel="prev" title="FileIO Extension’s Free Functions" href="../FileIO/functions.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="polygonmeshstructure.html" title="PolygonMesh’s structure"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="../FileIO/functions.html" title="FileIO Extension’s Free Functions"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">KL Extensions Guide</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="geometry-extension">
+<span id="id1"></span><h1>Geometry Extension<a class="headerlink" href="#geometry-extension" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<a class="reference internal image-reference" href="../../_images/FE_logo_345_60.png"><img alt="../../_images/FE_logo_345_60.png" src="../../_images/FE_logo_345_60.png" style="width: 345px; height: 60px;" /></a>
+<div class="line-block">
+<div class="line">Fabric Engine version 2.0.0</div>
+<div class="line">Copyright 2010-2015 Fabric Software Inc. All rights reserved.</div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">Geometry</span></code> extension provide a KL implementation of common geometry types, such as <a class="reference internal" href="Points.html#points"><span>Points</span></a>, <a class="reference internal" href="Lines.html#lines"><span>Lines</span></a> and <a class="reference internal" href="PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a>.
+The extension additionally defines the various components and interfaces that are common to these geometry types.</p>
+<p>All geometry types implement the <a class="reference internal" href="Geometry.html#geometry"><span>Geometry</span></a> interface. They use the same type of <a class="reference internal" href="GeometryAttributes.html#geometryattributes"><span>GeometryAttributes</span></a>
+container to hold the attribute values that are associated to their components, such as positions, UVs and colors. This extension
+contains the definition of various attribute types, such as the <a class="reference internal" href="Vec3Attribute.html#vec3attribute"><span>Vec3Attribute</span></a> and the <a class="reference internal" href="ColorAttribute.html#colorattribute"><span>ColorAttribute</span></a>. Custom attribute
+types can be attached to a geometry, as long as they define the <a class="reference internal" href="GeometryAttribute.html#geometryattribute"><span>GeometryAttribute</span></a> interface.</p>
+<p>All geometry types implement the <a class="reference internal" href="SpatialQueryable.html#spatialqueryable"><span>SpatialQueryable</span></a> interface, which allows to perform spatial queries such
+as raycast or getClosest. This extension defines two spatial acceleration structures, the <a class="reference internal" href="Octree.html#octree"><span>Octree</span></a> and the <a class="reference internal" href="SparseGrid.html#sparsegrid"><span>SparseGrid</span></a>,
+which are being used internally by the geometries to accelerate the spatial queries. For <a class="reference internal" href="spatialqueriesusage.html#spatialqueriesusage"><span>Using spatial queries with geometries</span></a> for more details about</p>
+<blockquote>
+<div>the spacial query interfaces.</div></blockquote>
+<p>Geometries can be used in GPU compute kernels, enabling high performance geometry processing entirely on the GPU. With minimal changes, existing
+code can be modified to run on the GPU. See <span class="xref std std-ref">utilizinggpucompute</span> for more details about using Geometries in GPU compute kernels.</p>
+<div class="section" id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="polygonmeshstructure.html">PolygonMesh&#8217;s structure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="polygonmeshstructure.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polygonmeshstructure.html#polygonmeshtopology">PolygonMeshTopology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polygonmeshstructure.html#polygonmesh-attributes">PolygonMesh Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polygonmeshstructure.html#borders-and-wings">Borders and wings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polygonmeshstructure.html#modifying-the-mesh-structure">Modifying the mesh structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polygonmeshstructure.html#internal-data-organization">Internal data organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polygonmeshstructure.html#current-limitations">Current limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spatialqueriesusage.html">Using spatial queries with geometries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="spatialqueriesusage.html#using-the-spatialquery-object">Using the SpatialQuery object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spatialqueriesusage.html#geometrylocation-structure">GeometryLocation structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spatialqueriesusage.html#acceleration-structures">Acceleration structures</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="utilizinggpucompute.html">Utilizing GPU commpute with Geometries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="utilizinggpucompute.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utilizinggpucompute.html#polygonmesh">PolygonMesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utilizinggpucompute.html#current-limitations">Current limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">Geometry Extension&#8217;s Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="BaseAttribute.kl.html">BaseAttribute.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BaseGeometry.kl.html">BaseGeometry.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BoundingVolumeHelpers.kl.html">BoundingVolumeHelpers.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ColorAttribute.kl.html">ColorAttribute.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GeometryAttributes.kl.html">GeometryAttributes.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GeometryAttributesHelpers.kl.html">GeometryAttributesHelpers.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GeometryInstancesSpatialQueries.kl.html">GeometryInstancesSpatialQueries.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GeometryInterfaces.kl.html">GeometryInterfaces.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="IntegerAttribute.kl.html">IntegerAttribute.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Lines.kl.html">Lines.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LinesDCCConversion.kl.html">LinesDCCConversion.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LinesLocation.kl.html">LinesLocation.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LinesModeling.kl.html">LinesModeling.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LocalBoundingVolume.kl.html">LocalBoundingVolume.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Mat33Attribute.kl.html">Mat33Attribute.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Mat44Attribute.kl.html">Mat44Attribute.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Octree.kl.html">Octree.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OctreeInternal.kl.html">OctreeInternal.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OctreeQueryInternal.kl.html">OctreeQueryInternal.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Points.kl.html">Points.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PointsDCCConversion.kl.html">PointsDCCConversion.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PointsLocation.kl.html">PointsLocation.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PointsModeling.kl.html">PointsModeling.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PolygonMesh.kl.html">PolygonMesh.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PolygonMeshAttributes.kl.html">PolygonMeshAttributes.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PolygonMeshBase.kl.html">PolygonMeshBase.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PolygonMeshBaseModeling.kl.html">PolygonMeshBaseModeling.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PolygonMeshDCCConversion.kl.html">PolygonMeshDCCConversion.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PolygonMeshInternal.kl.html">PolygonMeshInternal.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PolygonMeshInternalAllocator.kl.html">PolygonMeshInternalAllocator.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PolygonMeshLocation.kl.html">PolygonMeshLocation.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PolygonMeshModeling.kl.html">PolygonMeshModeling.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PolygonMeshPrimitives.kl.html">PolygonMeshPrimitives.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PolygonMeshTopologyAttributes.kl.html">PolygonMeshTopologyAttributes.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QuatAttribute.kl.html">QuatAttribute.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RGBAAttribute.kl.html">RGBAAttribute.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RGBAttribute.kl.html">RGBAttribute.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ScalarAttribute.kl.html">ScalarAttribute.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ScalarConstantArrayAttribute.kl.html">ScalarConstantArrayAttribute.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SkinningAttribute.kl.html">SkinningAttribute.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SparseGrid.kl.html">SparseGrid.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SparseGridInternal.kl.html">SparseGridInternal.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SparseGridQueryInternal.kl.html">SparseGridQueryInternal.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SpatialAccelerationChooser.kl.html">SpatialAccelerationChooser.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SpatialQueryCommon.kl.html">SpatialQueryCommon.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UInt16ConstantArrayAttribute.kl.html">UInt16ConstantArrayAttribute.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UInt32Attribute.kl.html">UInt32Attribute.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Vec2Attribute.kl.html">Vec2Attribute.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Vec3Attribute.kl.html">Vec3Attribute.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Vec3_dAttribute.kl.html">Vec3_dAttribute.kl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Vec4Attribute.kl.html">Vec4Attribute.kl</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="interfaces.html">Geometry Extension&#8217;s Interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ClosestResult.html">ClosestResult (interface)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Geometry.html">Geometry (interface)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GeometryAttribute.html">GeometryAttribute (interface)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RaycastResult.html">RaycastResult (interface)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SpatialQuery.html">SpatialQuery (interface)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SpatialQueryable.html">SpatialQueryable (interface)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">Geometry Extension&#8217;s Types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="BaseAttribute.html">BaseAttribute (object)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BaseGeometry.html">BaseGeometry (object)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ColorAttribute.html">ColorAttribute (object)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GeometryAttributes.html">GeometryAttributes (object)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GeometryAttributesIterator.html">GeometryAttributesIterator (struct)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GeometryInstancesSpatialQueries.html">GeometryInstancesSpatialQueries (object)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GeometryInstancesSpatialQuery.html">GeometryInstancesSpatialQuery (object)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GeometryLocation.html">GeometryLocation (struct)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="IntegerAttribute.html">IntegerAttribute (object)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Lines.html">Lines (object)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LocalBoundingVolume.html">LocalBoundingVolume (struct)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LocalL4UInt32Array.html">LocalL4UInt32Array (struct)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LocalL8UInt32Array.html">LocalL8UInt32Array (struct)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Mat33Attribute.html">Mat33Attribute (object)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Mat44Attribute.html">Mat44Attribute (object)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Octree.html">Octree (object)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Points.html">Points (object)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PolygonMesh.html">PolygonMesh (object)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PolygonMeshEdge.html">PolygonMeshEdge (struct)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PolygonMeshStructureChangeBracket.html">PolygonMeshStructureChangeBracket (struct)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PolygonMeshTopology.html">PolygonMeshTopology (struct)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QuatAttribute.html">QuatAttribute (object)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RGBAAttribute.html">RGBAAttribute (object)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RGBAttribute.html">RGBAttribute (object)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ScalarAttribute.html">ScalarAttribute (object)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ScalarConstantArrayAttribute.html">ScalarConstantArrayAttribute (object)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SkinningAttribute.html">SkinningAttribute (object)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SkinningAttributeData.html">SkinningAttributeData (struct)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SparseGrid.html">SparseGrid (object)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UInt16ConstantArrayAttribute.html">UInt16ConstantArrayAttribute (object)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UInt32Attribute.html">UInt32Attribute (object)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Vec2Attribute.html">Vec2Attribute (object)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Vec3Attribute.html">Vec3Attribute (object)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Vec3_dAttribute.html">Vec3_dAttribute (object)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Vec4Attribute.html">Vec4Attribute (object)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Geometry Extension&#8217;s Free Functions</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h2>Indices and Tables<a class="headerlink" href="#indices-and-tables" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="../../genindex.html"><span>索引</span></a></li>
+<li><a class="reference internal" href="../../search.html"><span>検索ページ</span></a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Geometry Extension</a><ul>
+<li><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and Tables</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="../FileIO/functions.html"
+                        title="前の章へ">FileIO Extension&#8217;s Free Functions</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="polygonmeshstructure.html"
+                        title="次の章へ">PolygonMesh&#8217;s structure</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/Geometry/index.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="polygonmeshstructure.html" title="PolygonMesh’s structure"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="../FileIO/functions.html" title="FileIO Extension’s Free Functions"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>FabricSynchronization Extension’s Free Functions &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
+    <link rel="up" title="FabricSynchronization Extension" href="index.html" />
+    <link rel="next" title="Fbx Extension" href="../Fbx/index.html" />
+    <link rel="prev" title="ThreadSafeAttachedData (struct)" href="ThreadSafeAttachedData.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../Fbx/index.html" title="Fbx Extension"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="ThreadSafeAttachedData.html" title="ThreadSafeAttachedData (struct)"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">FabricSynchronization Extension</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="fabricsynchronization-extension-s-free-functions">
+<span id="fabricsynchronization-extension-functions"></span><h1>FabricSynchronization Extension&#8217;s Free Functions<a class="headerlink" href="#fabricsynchronization-extension-s-free-functions" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><span class="target" id="ca8eab4bcc0c4f9681f63870bb0bf86c"></span><p><p class="klcode">Acquire ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock )</p>
+<p class="plaintext">Acquires a lock. If it takes more than <code class="docutils literal"><span class="pre">lock.maxWaitSeconds</span></code>, an exception is thrown.</p>
+</p>
+<hr class="docutils" />
+<span class="target" id="b626d64329740f383ea5ee7c1611855"></span><p><p class="klcode">Acquire ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxWaitSeconds )</p>
+<p class="plaintext">Acquires a lock. If it takes more than <code class="docutils literal"><span class="pre">maxWaitSeconds</span></code>, an exception is thrown.</p>
+</p>
+<hr class="docutils" />
+<span class="target" id="eeae4e1457c540e08faed1b0a019251c"></span><p><p class="klcode">ActiveWait ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> seconds )</p>
+<p class="plaintext">Helper function for waiting actively during a specific timelapse.</p>
+</p>
+<hr class="docutils" />
+<span class="target" id="fc55d813d4b5ea3fd0be88c4ac1c0"></span><p><p class="klcode">Release ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock )</p>
+<p class="plaintext">Releases a lock.</p>
+</p>
+<hr class="docutils" />
+<span class="target" id="ed3c5b8c64b48008b98be58be34fe52"></span><p><p class="klcode">SimpleAcquire ( io UInt32 lockVariable )</p>
+</p>
+<hr class="docutils" />
+<span class="target" id="fc00bfcf464a7fbe5f85033ea17827"></span><p><p class="klcode">SimpleRelease ( io UInt32 lockVariable )</p>
+</p>
+<hr class="docutils" />
+<span class="target" id="d0c4e64273b7a0a0a833f94a76"></span><p><p class="klcode">Boolean TryAcquire ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock )</p>
+<p class="plaintext">Tries to acquire a lock immediately and will return <code class="docutils literal"><span class="pre">false</span></code> if failed.</p>
+</p>
+<hr class="docutils" />
+<span class="target" id="dc9ab1edd4e48b1ba981a294f3b844f"></span><p><p class="klcode">Boolean TryAcquire ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxWaitSeconds )</p>
+<p class="plaintext">Tries to acquire a lock for <code class="docutils literal"><span class="pre">maxWaitSeconds</span></code> seconds. Will return <code class="docutils literal"><span class="pre">false</span></code> if failed.</p>
+</p>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="ThreadSafeAttachedData.html"
+                        title="前の章へ">ThreadSafeAttachedData (struct)</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="../Fbx/index.html"
+                        title="次の章へ">Fbx Extension</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/KLExtensionsGuide/FabricSynchronization/functions.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../Fbx/index.html" title="Fbx Extension"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="ThreadSafeAttachedData.html" title="ThreadSafeAttachedData (struct)"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >KL Extensions Guide</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >FabricSynchronization Extension</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

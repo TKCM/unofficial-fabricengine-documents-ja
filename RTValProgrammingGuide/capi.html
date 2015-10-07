@@ -1,0 +1,698 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Using RTVals from C++ Applications &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
+    <link rel="up" title="RTVal Programming Guide" href="index.html" />
+    <link rel="next" title="Extension Authoring Guide" href="../ExtensionAuthoringGuide/index.html" />
+    <link rel="prev" title="Using RTVals from Python Applications" href="python.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../ExtensionAuthoringGuide/index.html" title="Extension Authoring Guide"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="python.html" title="Using RTVals from Python Applications"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">RTVal Programming Guide</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="using-rtvals-from-c-applications">
+<h1>Using RTVals from C++ Applications<a class="headerlink" href="#using-rtvals-from-c-applications" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>The section explains how to use RTVals within a Fabric Engine client application written in C++ using the <a class="reference internal" href="../CAPIProgrammingGuide/index.html#capipg"><span>CAPI</span></a> interface.</p>
+<div class="section" id="rtvals-are-copy-by-reference">
+<h2>RTVals are Copy-by-Reference<a class="headerlink" href="#rtvals-are-copy-by-reference" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>RTVals are represented in C++ as instances of the <code class="xref cpp cpp-class docutils literal"><span class="pre">RTVal</span></code> class.  RTVals are copy-by-reference within C++, meaning that if you assign one RTVal another variable of type RTVal they will refer to the same RTVal.  If you wish to copy an RTVal by value, use the <code class="xref cpp cpp-func docutils literal"><span class="pre">RTVal::Construct()</span></code> call.</p>
+</div>
+<div class="section" id="common-tasks">
+<h2>Common Tasks<a class="headerlink" href="#common-tasks" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="constructing-rtvals">
+<h3>Constructing RTVals<a class="headerlink" href="#constructing-rtvals" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>RTVals can be created in one of several ways:</p>
+<blockquote>
+<div><ul class="simple">
+<li>RTVals can be constructed using one of the <code class="code docutils literal"><span class="pre">Construct...</span></code> methods of the <code class="xref cpp cpp-class docutils literal"><span class="pre">RTVal</span></code> class.</li>
+<li>For existing RTVals that are structure, object, array or dictionary type, methods on the <code class="xref cpp cpp-class docutils literal"><span class="pre">RTVal</span></code> class can be called to obtain member or element values.  In most cases the returned RTVal is a copy of the member or element data.</li>
+<li>The value of a member of a DG node (or other DGContainer) can be obtained through the <code class="xref cpp cpp-func docutils literal"><span class="pre">DGContainer::getMemberSliceValue()</span></code> call</li>
+</ul>
+</div></blockquote>
+<p>To construct a copy of an RTVal, use the <a href="#id1"><span class="problematic" id="id2">:cpp:function:`RTVal::Construct`</span></a> method, passing the existing RTVal as the sole argument for the construction call.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">Constructing an RTVal in this way does the same thing as copy-construction in KL; this means that in the case of pass-by-reference types such as variable arrays and dictionaries, even though the RTVal will be a copy it will still refer to the same underlying data.  To duplicate the data you must instead call <code class="xref cpp cpp-func docutils literal"><span class="pre">RTVal::callMethod()</span></code> to invoke the <code class="code docutils literal"><span class="pre">clone</span></code> method.</p>
+</div>
+</div>
+<div class="section" id="obtaining-c-equivalents-for-simple-rtval-data">
+<h3>Obtaining C++ Equivalents for Simple RTVal Data<a class="headerlink" href="#obtaining-c-equivalents-for-simple-rtval-data" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>You can get C++ equivalents of the underlying data in simple RTVals using the <code class="code docutils literal"><span class="pre">get...</span></code> methods of the <code class="xref cpp cpp-class docutils literal"><span class="pre">RTVal</span></code> class.  You should probably use the <code class="code docutils literal"><span class="pre">is....</span></code> methods first to check that the type is as expected, otherwise an exception will be thrown.</p>
+</div>
+<div class="section" id="setting-rtvals-from-simple-c-data">
+<h3>Setting RTVals from Simple C++ Data<a class="headerlink" href="#setting-rtvals-from-simple-c-data" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>You can set members, array elements, and dictionary values using the <code class="code docutils literal"><span class="pre">set...</span></code> methods of the <code class="xref cpp cpp-class docutils literal"><span class="pre">RTVal</span></code> class.</p>
+</div>
+<div class="section" id="describing-an-rtval">
+<h3>Describing an RTVal<a class="headerlink" href="#describing-an-rtval" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Often for debugging it is convenient to obtain a description of an RTVal; use the <code class="xref cpp cpp-func docutils literal"><span class="pre">RTVal::getDesc()</span></code> method for this.</p>
+</div>
+<div class="section" id="calling-methods-on-rtvals">
+<h3>Calling Methods on RTVals<a class="headerlink" href="#calling-methods-on-rtvals" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Use the <code class="xref cpp cpp-func docutils literal"><span class="pre">RTVal::callMethod()</span></code> function to invoke a method on an RTVal.</p>
+</div>
+<div class="section" id="working-with-arrays">
+<h3>Working with Arrays<a class="headerlink" href="#working-with-arrays" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>If an RTVal&#8217;s type is an array type, you can use the array methods to work with it:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="xref cpp cpp-func docutils literal"><span class="pre">RTVal::isArray()</span></code></li>
+<li><code class="xref cpp cpp-func docutils literal"><span class="pre">RTVal::getArraySize()</span></code></li>
+<li><code class="xref cpp cpp-func docutils literal"><span class="pre">RTVal::getArrayElement()</span></code></li>
+<li><code class="xref cpp cpp-func docutils literal"><span class="pre">RTVal::setArrayElement()</span></code></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="working-with-dictionaries">
+<h3>Working with Dictionaries<a class="headerlink" href="#working-with-dictionaries" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>If an RTVal&#8217;s type is a dictionary type, you can use the array methods to work with it:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="xref cpp cpp-func docutils literal"><span class="pre">RTVal::isDict()</span></code></li>
+<li><code class="xref cpp cpp-func docutils literal"><span class="pre">RTVal::getDictSize()</span></code></li>
+<li><code class="xref cpp cpp-func docutils literal"><span class="pre">RTVal::getDictElement()</span></code></li>
+<li><code class="xref cpp cpp-func docutils literal"><span class="pre">RTVal::setDictElement()</span></code></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="working-with-structures-and-objects">
+<h3>Working with Structures and Objects<a class="headerlink" href="#working-with-structures-and-objects" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>If an RTVal&#8217;s type is a structure or an object, you can work with its members:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="xref cpp cpp-func docutils literal"><span class="pre">RTVal::isStruct()</span></code></li>
+<li><code class="xref cpp cpp-func docutils literal"><span class="pre">RTVal::isObject()</span></code></li>
+<li><code class="xref cpp cpp-func docutils literal"><span class="pre">RTVal::maybeGetMember()</span></code></li>
+<li><code class="xref cpp cpp-func docutils literal"><span class="pre">RTVal::maybeGetMemberRef()</span></code></li>
+</ul>
+</div></blockquote>
+<p>For objects, you can use the <code class="xref cpp cpp-func docutils literal"><span class="pre">RTVal::isNullObject()</span></code> to check if the object that is being reference is null.</p>
+</div>
+<div class="section" id="working-with-opaque-data">
+<h3>Working with Opaque Data<a class="headerlink" href="#working-with-opaque-data" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>You can use RTVals of type <code class="code docutils literal"><span class="pre">Data</span></code> to pass opaque data pointers in and out of the core, through to extensions that you use them.</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="xref cpp cpp-func docutils literal"><span class="pre">RTVal::isData()</span></code></li>
+<li><code class="xref cpp cpp-func docutils literal"><span class="pre">RTVal::getData()</span></code></li>
+<li><code class="xref cpp cpp-func docutils literal"><span class="pre">RTVal::setData()</span></code></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="api-reference">
+<h2>API Reference<a class="headerlink" href="#api-reference" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="class">
+<dt id="_CPPv2N10FabricCore5RTValE">
+<span id="FabricCore::RTVal"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">RTVal</code><a class="headerlink" href="#_CPPv2N10FabricCore5RTValE" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>RTVals are represented in C++ as instances of the <code class="code docutils literal"><span class="pre">RTVal</span></code> class.</p>
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal5RTValEv">
+<span id="FabricCore::RTVal::RTVal"></span><code class="descclassname"></code><code class="descname">RTVal</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Creates a new RTVal.  RTVals are copy-by-reference within C++, so this is often used to initialized variables to which RTVals will later be assigned.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal5RTValER5RTVal">
+<span id="FabricCore::RTVal::RTVal__RTValCR"></span><code class="descclassname"></code><code class="descname">RTVal</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <em class="property">const</em> &amp;<em>that</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal5RTValER5RTVal" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>RTVal copy constructor.  RTVals are copy-by-reference within C++, so this simply makes the RTVal reference to the same RTVal as <code class="code docutils literal"><span class="pre">that</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTValaSER5RTVal">
+<span id="FabricCore::RTVal::assign-operator__RTValCR"></span><a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> &amp;<code class="descclassname"></code><code class="descname">operator=</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <em class="property">const</em> &amp;<em>that</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTValaSER5RTVal" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>RTVal assignment operator.  RTVals are copy-by-reference within C++, so this simply makes the RTVal refer to the same RTVal as <code class="code docutils literal"><span class="pre">that</span></code>.  If there are no other RTVals refering to our current RTVal, the current RTVal will be freed.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal9ConstructER7ContextPc8uint32_tP5RTVal">
+<span id="FabricCore::RTVal::Construct__ContextCR.cCP.uint32_t.RTValCP"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">Construct</code><span class="sig-paren">(</span>Context <em class="property">const</em> &amp;<em>context</em>, char <em class="property">const</em> *<em>typeNameCString</em>, uint32_t <em>argCount</em>, <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <em class="property">const</em> *<em>argRTVals</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal9ConstructER7ContextPc8uint32_tP5RTVal" title="この定義へのパーマリンク">¶</a></dt>
+<dt id="_CPPv2N10FabricCore5RTVal9ConstructER6ClientPc8uint32_tP5RTVal">
+<span id="FabricCore::RTVal::Construct__ClientCR.cCP.uint32_t.RTValCP"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">Construct</code><span class="sig-paren">(</span>Client <em class="property">const</em> &amp;<em>client</em>, char <em class="property">const</em> *<em>typeNameCString</em>, uint32_t <em>argCount</em>, <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <em class="property">const</em> *<em>argRTVals</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal9ConstructER6ClientPc8uint32_tP5RTVal" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Construct a new RTVal using the KL copy construction syntax.  This takes the target type as well as a list of zero or more other RTVals, and it trys to invoke a copy construction from those RTVals.</p>
+<p>Note that invoking this method specifying an <code class="code docutils literal"><span class="pre">typeNameCString</span></code> which is an object type will create a null object reference.  In order to create a new object instance you must use the <code class="code docutils literal"><span class="pre">Create</span></code> method instead.</p>
+<p>Internally, this uses the following KL code to construct the RTVal:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="o">&lt;</span><span class="nx">TypeName</span><span class="o">&gt;</span> <span class="nx">resultRTVal</span><span class="p">(</span><span class="nx">arg1RTVal</span><span class="p">,</span> <span class="nx">arg2RTVal</span><span class="p">,</span> <span class="p">...);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal16ConstructBooleanER7Contextb">
+<span id="FabricCore::RTVal::ConstructBoolean__ContextCR.b"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructBoolean</code><span class="sig-paren">(</span>Context <em class="property">const</em> &amp;<em>context</em>, bool <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal16ConstructBooleanER7Contextb" title="この定義へのパーマリンク">¶</a></dt>
+<dt id="_CPPv2N10FabricCore5RTVal16ConstructBooleanER6Clientb">
+<span id="FabricCore::RTVal::ConstructBoolean__ClientCR.b"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructBoolean</code><span class="sig-paren">(</span>Client <em class="property">const</em> &amp;<em>client</em>, bool <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal16ConstructBooleanER6Clientb" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Construct a new RTVal of type <code class="code docutils literal"><span class="pre">Boolean</span></code>, setting the initial value from the value of the parameter <code class="code docutils literal"><span class="pre">value</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal14ConstructSInt8ER7Context6int8_t">
+<span id="FabricCore::RTVal::ConstructSInt8__ContextCR.int8_t"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructSInt8</code><span class="sig-paren">(</span>Context <em class="property">const</em> &amp;<em>context</em>, int8_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal14ConstructSInt8ER7Context6int8_t" title="この定義へのパーマリンク">¶</a></dt>
+<dt id="_CPPv2N10FabricCore5RTVal14ConstructSInt8ER6Client6int8_t">
+<span id="FabricCore::RTVal::ConstructSInt8__ClientCR.int8_t"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructSInt8</code><span class="sig-paren">(</span>Client <em class="property">const</em> &amp;<em>client</em>, int8_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal14ConstructSInt8ER6Client6int8_t" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Construct a new RTVal of type <code class="code docutils literal"><span class="pre">SInt8</span></code>, setting the initial value from the value of the parameter <code class="code docutils literal"><span class="pre">value</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal15ConstructSInt16ER7Context7int16_t">
+<span id="FabricCore::RTVal::ConstructSInt16__ContextCR.int16_t"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructSInt16</code><span class="sig-paren">(</span>Context <em class="property">const</em> &amp;<em>context</em>, int16_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal15ConstructSInt16ER7Context7int16_t" title="この定義へのパーマリンク">¶</a></dt>
+<dt id="_CPPv2N10FabricCore5RTVal15ConstructSInt16ER6Client7int16_t">
+<span id="FabricCore::RTVal::ConstructSInt16__ClientCR.int16_t"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructSInt16</code><span class="sig-paren">(</span>Client <em class="property">const</em> &amp;<em>client</em>, int16_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal15ConstructSInt16ER6Client7int16_t" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Construct a new RTVal of type <code class="code docutils literal"><span class="pre">SInt16</span></code>, setting the initial value from the value of the parameter <code class="code docutils literal"><span class="pre">value</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal15ConstructSInt32ER7Context7int32_t">
+<span id="FabricCore::RTVal::ConstructSInt32__ContextCR.int32_t"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructSInt32</code><span class="sig-paren">(</span>Context <em class="property">const</em> &amp;<em>context</em>, int32_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal15ConstructSInt32ER7Context7int32_t" title="この定義へのパーマリンク">¶</a></dt>
+<dt id="_CPPv2N10FabricCore5RTVal15ConstructSInt32ER6Client7int32_t">
+<span id="FabricCore::RTVal::ConstructSInt32__ClientCR.int32_t"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructSInt32</code><span class="sig-paren">(</span>Client <em class="property">const</em> &amp;<em>client</em>, int32_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal15ConstructSInt32ER6Client7int32_t" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Construct a new RTVal of type <code class="code docutils literal"><span class="pre">SInt32</span></code>, setting the initial value from the value of the parameter <code class="code docutils literal"><span class="pre">value</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal15ConstructSInt64ER7Context7int64_t">
+<span id="FabricCore::RTVal::ConstructSInt64__ContextCR.int64_t"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructSInt64</code><span class="sig-paren">(</span>Context <em class="property">const</em> &amp;<em>context</em>, int64_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal15ConstructSInt64ER7Context7int64_t" title="この定義へのパーマリンク">¶</a></dt>
+<dt id="_CPPv2N10FabricCore5RTVal15ConstructSInt64ER6Client7int64_t">
+<span id="FabricCore::RTVal::ConstructSInt64__ClientCR.int64_t"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructSInt64</code><span class="sig-paren">(</span>Client <em class="property">const</em> &amp;<em>client</em>, int64_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal15ConstructSInt64ER6Client7int64_t" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Construct a new RTVal of type <code class="code docutils literal"><span class="pre">SInt64</span></code>, setting the initial value from the value of the parameter <code class="code docutils literal"><span class="pre">value</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal14ConstructUInt8ER7Context7uint8_t">
+<span id="FabricCore::RTVal::ConstructUInt8__ContextCR.uint8_t"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructUInt8</code><span class="sig-paren">(</span>Context <em class="property">const</em> &amp;<em>context</em>, uint8_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal14ConstructUInt8ER7Context7uint8_t" title="この定義へのパーマリンク">¶</a></dt>
+<dt id="_CPPv2N10FabricCore5RTVal14ConstructUInt8ER6Client7uint8_t">
+<span id="FabricCore::RTVal::ConstructUInt8__ClientCR.uint8_t"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructUInt8</code><span class="sig-paren">(</span>Client <em class="property">const</em> &amp;<em>client</em>, uint8_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal14ConstructUInt8ER6Client7uint8_t" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Construct a new RTVal of type <code class="code docutils literal"><span class="pre">UInt8</span></code>, setting the initial value from the value of the parameter <code class="code docutils literal"><span class="pre">value</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal15ConstructUInt16ER7Context8uint16_t">
+<span id="FabricCore::RTVal::ConstructUInt16__ContextCR.uint16_t"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructUInt16</code><span class="sig-paren">(</span>Context <em class="property">const</em> &amp;<em>context</em>, uint16_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal15ConstructUInt16ER7Context8uint16_t" title="この定義へのパーマリンク">¶</a></dt>
+<dt id="_CPPv2N10FabricCore5RTVal15ConstructUInt16ER6Client8uint16_t">
+<span id="FabricCore::RTVal::ConstructUInt16__ClientCR.uint16_t"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructUInt16</code><span class="sig-paren">(</span>Client <em class="property">const</em> &amp;<em>client</em>, uint16_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal15ConstructUInt16ER6Client8uint16_t" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Construct a new RTVal of type <code class="code docutils literal"><span class="pre">UInt16</span></code>, setting the initial value from the value of the parameter <code class="code docutils literal"><span class="pre">value</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal15ConstructUInt32ER7Context8uint32_t">
+<span id="FabricCore::RTVal::ConstructUInt32__ContextCR.uint32_t"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructUInt32</code><span class="sig-paren">(</span>Context <em class="property">const</em> &amp;<em>context</em>, uint32_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal15ConstructUInt32ER7Context8uint32_t" title="この定義へのパーマリンク">¶</a></dt>
+<dt id="_CPPv2N10FabricCore5RTVal15ConstructUInt32ER6Client8uint32_t">
+<span id="FabricCore::RTVal::ConstructUInt32__ClientCR.uint32_t"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructUInt32</code><span class="sig-paren">(</span>Client <em class="property">const</em> &amp;<em>client</em>, uint32_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal15ConstructUInt32ER6Client8uint32_t" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Construct a new RTVal of type <code class="code docutils literal"><span class="pre">UInt32</span></code>, setting the initial value from the value of the parameter <code class="code docutils literal"><span class="pre">value</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal15ConstructUInt64ER7Context8uint64_t">
+<span id="FabricCore::RTVal::ConstructUInt64__ContextCR.uint64_t"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructUInt64</code><span class="sig-paren">(</span>Context <em class="property">const</em> &amp;<em>context</em>, uint64_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal15ConstructUInt64ER7Context8uint64_t" title="この定義へのパーマリンク">¶</a></dt>
+<dt id="_CPPv2N10FabricCore5RTVal15ConstructUInt64ER6Client8uint64_t">
+<span id="FabricCore::RTVal::ConstructUInt64__ClientCR.uint64_t"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructUInt64</code><span class="sig-paren">(</span>Client <em class="property">const</em> &amp;<em>client</em>, uint64_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal15ConstructUInt64ER6Client8uint64_t" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Construct a new RTVal of type <code class="code docutils literal"><span class="pre">UInt64</span></code>, setting the initial value from the value of the parameter <code class="code docutils literal"><span class="pre">value</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal16ConstructFloat32ER7Contextf">
+<span id="FabricCore::RTVal::ConstructFloat32__ContextCR.float"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructFloat32</code><span class="sig-paren">(</span>Context <em class="property">const</em> &amp;<em>context</em>, float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal16ConstructFloat32ER7Contextf" title="この定義へのパーマリンク">¶</a></dt>
+<dt id="_CPPv2N10FabricCore5RTVal16ConstructFloat32ER6Clientf">
+<span id="FabricCore::RTVal::ConstructFloat32__ClientCR.float"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructFloat32</code><span class="sig-paren">(</span>Client <em class="property">const</em> &amp;<em>client</em>, float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal16ConstructFloat32ER6Clientf" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Construct a new RTVal of type <code class="code docutils literal"><span class="pre">Float32</span></code>, setting the initial value from the value of the parameter <code class="code docutils literal"><span class="pre">value</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal16ConstructFloat64ER7Contextd">
+<span id="FabricCore::RTVal::ConstructFloat64__ContextCR.double"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructFloat64</code><span class="sig-paren">(</span>Context <em class="property">const</em> &amp;<em>context</em>, double <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal16ConstructFloat64ER7Contextd" title="この定義へのパーマリンク">¶</a></dt>
+<dt id="_CPPv2N10FabricCore5RTVal16ConstructFloat64ER6Clientd">
+<span id="FabricCore::RTVal::ConstructFloat64__ClientCR.double"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructFloat64</code><span class="sig-paren">(</span>Client <em class="property">const</em> &amp;<em>client</em>, double <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal16ConstructFloat64ER6Clientd" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Construct a new RTVal of type <code class="code docutils literal"><span class="pre">Float64</span></code>, setting the initial value from the value of the parameter <code class="code docutils literal"><span class="pre">value</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal15ConstructStringER7ContextPc8uint32_t">
+<span id="FabricCore::RTVal::ConstructString__ContextCR.cCP.uint32_t"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructString</code><span class="sig-paren">(</span>Context <em class="property">const</em> &amp;<em>context</em>, char <em class="property">const</em> *<em>data</em>, uint32_t <em>length</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal15ConstructStringER7ContextPc8uint32_t" title="この定義へのパーマリンク">¶</a></dt>
+<dt id="_CPPv2N10FabricCore5RTVal15ConstructStringER6ClientPc8uint32_t">
+<span id="FabricCore::RTVal::ConstructString__ClientCR.cCP.uint32_t"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructString</code><span class="sig-paren">(</span>Client <em class="property">const</em> &amp;<em>client</em>, char <em class="property">const</em> *<em>data</em>, uint32_t <em>length</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal15ConstructStringER6ClientPc8uint32_t" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Construct a new RTVal of type <code class="code docutils literal"><span class="pre">String</span></code>, setting the initial value from the string bytes given by <code class="code docutils literal"><span class="pre">data</span></code> and <code class="code docutils literal"><span class="pre">length</span></code>.  Note that such a string may contain null bytes.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal15ConstructStringER7ContextPc">
+<span id="FabricCore::RTVal::ConstructString__ContextCR.cCP"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructString</code><span class="sig-paren">(</span>Context <em class="property">const</em> &amp;<em>context</em>, char <em class="property">const</em> *<em>cString</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal15ConstructStringER7ContextPc" title="この定義へのパーマリンク">¶</a></dt>
+<dt id="_CPPv2N10FabricCore5RTVal15ConstructStringER6ClientPc">
+<span id="FabricCore::RTVal::ConstructString__ClientCR.cCP"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructString</code><span class="sig-paren">(</span>Client <em class="property">const</em> &amp;<em>client</em>, char <em class="property">const</em> *<em>cString</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal15ConstructStringER6ClientPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Construct a new RTVal of type <code class="code docutils literal"><span class="pre">String</span></code>, setting the initial value from a null-terminated (C-style) string bytes given by <code class="code docutils literal"><span class="pre">cString</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal13ConstructDataER7ContextPv">
+<span id="FabricCore::RTVal::ConstructData__ContextCR.voidP"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructData</code><span class="sig-paren">(</span>Context <em class="property">const</em> &amp;<em>context</em>, void *<em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal13ConstructDataER7ContextPv" title="この定義へのパーマリンク">¶</a></dt>
+<dt id="_CPPv2N10FabricCore5RTVal13ConstructDataER6ClientPv">
+<span id="FabricCore::RTVal::ConstructData__ClientCR.voidP"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructData</code><span class="sig-paren">(</span>Client <em class="property">const</em> &amp;<em>client</em>, void *<em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal13ConstructDataER6ClientPv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Construct a new RTVal of type <code class="code docutils literal"><span class="pre">Data</span></code>, setting the initial value to the given pointer value <code class="code docutils literal"><span class="pre">data</span></code>.  This is a simple way of passing pointers to opaque data through the Fabric core to extensions.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal19ConstructFixedArrayER7ContextPc8uint32_t">
+<span id="FabricCore::RTVal::ConstructFixedArray__ContextCR.cCP.uint32_t"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructFixedArray</code><span class="sig-paren">(</span>Context <em class="property">const</em> &amp;<em>context</em>, char <em class="property">const</em> *<em>elementTypeCString</em>, uint32_t <em>size</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal19ConstructFixedArrayER7ContextPc8uint32_t" title="この定義へのパーマリンク">¶</a></dt>
+<dt id="_CPPv2N10FabricCore5RTVal19ConstructFixedArrayER6ClientPc8uint32_t">
+<span id="FabricCore::RTVal::ConstructFixedArray__ClientCR.cCP.uint32_t"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructFixedArray</code><span class="sig-paren">(</span>Client <em class="property">const</em> &amp;<em>client</em>, char <em class="property">const</em> *<em>elementTypeCString</em>, uint32_t <em>size</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal19ConstructFixedArrayER6ClientPc8uint32_t" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Construct a new RTVal that is a fixed array of the given element type and size.  The elements of the array are initialized to the default value for the element type.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal22ConstructVariableArrayER7ContextPc">
+<span id="FabricCore::RTVal::ConstructVariableArray__ContextCR.cCP"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructVariableArray</code><span class="sig-paren">(</span>Context <em class="property">const</em> &amp;<em>context</em>, char <em class="property">const</em> *<em>elementTypeCString</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal22ConstructVariableArrayER7ContextPc" title="この定義へのパーマリンク">¶</a></dt>
+<dt id="_CPPv2N10FabricCore5RTVal22ConstructVariableArrayER6ClientPc">
+<span id="FabricCore::RTVal::ConstructVariableArray__ClientCR.cCP"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructVariableArray</code><span class="sig-paren">(</span>Client <em class="property">const</em> &amp;<em>client</em>, char <em class="property">const</em> *<em>elementTypeCString</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal22ConstructVariableArrayER6ClientPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Construct a new RTVal that is a variable array of the given element type.  The array is initially empty (length 0).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal22ConstructExternalArrayER7ContextPc8uint32_tPv">
+<span id="FabricCore::RTVal::ConstructExternalArray__ContextCR.cCP.uint32_t.voidP"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructExternalArray</code><span class="sig-paren">(</span>Context <em class="property">const</em> &amp;<em>context</em>, char <em class="property">const</em> *<em>elementTypeCString</em>, uint32_t <em>size</em>, void *<em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal22ConstructExternalArrayER7ContextPc8uint32_tPv" title="この定義へのパーマリンク">¶</a></dt>
+<dt id="_CPPv2N10FabricCore5RTVal22ConstructExternalArrayER6ClientPc8uint32_tPv">
+<span id="FabricCore::RTVal::ConstructExternalArray__ClientCR.cCP.uint32_t.voidP"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructExternalArray</code><span class="sig-paren">(</span>Client <em class="property">const</em> &amp;<em>client</em>, char <em class="property">const</em> *<em>elementTypeCString</em>, uint32_t <em>size</em>, void *<em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal22ConstructExternalArrayER6ClientPc8uint32_tPv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Construct a new RTVal that is an external array referencing data of the given element type.  The <code class="code docutils literal"><span class="pre">size</span></code> and <code class="code docutils literal"><span class="pre">data</span></code> parameters should point to the array data that is being referenced.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal13ConstructDictER7ContextPcPc">
+<span id="FabricCore::RTVal::ConstructDict__ContextCR.cCP.cCP"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructDict</code><span class="sig-paren">(</span>Context <em class="property">const</em> &amp;<em>context</em>, char <em class="property">const</em> *<em>keyTypeCString</em>, char <em class="property">const</em> *<em>valueTypeCString</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal13ConstructDictER7ContextPcPc" title="この定義へのパーマリンク">¶</a></dt>
+<dt id="_CPPv2N10FabricCore5RTVal13ConstructDictER6ClientPcPc">
+<span id="FabricCore::RTVal::ConstructDict__ClientCR.cCP.cCP"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">ConstructDict</code><span class="sig-paren">(</span>Client <em class="property">const</em> &amp;<em>client</em>, char <em class="property">const</em> *<em>keyTypeCString</em>, char <em class="property">const</em> *<em>valueTypeCString</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal13ConstructDictER6ClientPcPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Construct a new RTVal that is a dictionary with the given key and value types.  The dictionary is initially empty.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal6CreateER7ContextPc8uint32_tP5RTVal">
+<span id="FabricCore::RTVal::Create__ContextCR.cCP.uint32_t.RTValCP"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">Create</code><span class="sig-paren">(</span>Context <em class="property">const</em> &amp;<em>context</em>, char <em class="property">const</em> *<em>typeNameCString</em>, uint32_t <em>argCount</em>, <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <em class="property">const</em> *<em>argRTVals</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal6CreateER7ContextPc8uint32_tP5RTVal" title="この定義へのパーマリンク">¶</a></dt>
+<dt id="_CPPv2N10FabricCore5RTVal6CreateER6ClientPc8uint32_tP5RTVal">
+<span id="FabricCore::RTVal::Create__ClientCR.cCP.uint32_t.RTValCP"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">Create</code><span class="sig-paren">(</span>Client <em class="property">const</em> &amp;<em>client</em>, char <em class="property">const</em> *<em>typeNameCString</em>, uint32_t <em>argCount</em>, <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <em class="property">const</em> *<em>argRTVals</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal6CreateER6ClientPc8uint32_tP5RTVal" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Create a new KL Object of the given type and assign the result to a new RTVal.  If <code class="code docutils literal"><span class="pre">typeNameCString</span></code> is not an object type an exception will be thrown.</p>
+<p>Note that invoking the <code class="code docutils literal"><span class="pre">Construct</span></code> method specifying a <code class="code docutils literal"><span class="pre">typeNameCString</span></code> that is an object type will create a null object reference.  In order to create a new object instance you must use this method instead.</p>
+<p>Internally, this uses the following KL code to construct the RTVal:</p>
+<div class="highlight-kl"><div class="highlight"><pre><span class="o">&lt;</span><span class="nx">TypeName</span><span class="o">&gt;</span> <span class="nx">resultRTVal</span> <span class="o">=</span> <span class="nx">TypeName</span><span class="p">(</span><span class="nx">arg1RTVal</span><span class="p">,</span> <span class="nx">arg2RTVal</span><span class="p">,</span> <span class="p">...);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal10getBooleanEv">
+<span id="FabricCore::RTVal::getBoolean"></span>bool <code class="descclassname"></code><code class="descname">getBoolean</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal10getBooleanEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return the value of the RTVal that is of type <code class="code docutils literal"><span class="pre">Boolean</span></code>.  If the RTVal is not of type <code class="code docutils literal"><span class="pre">Boolean</span></code> an exception will be thrown.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal8getUInt8Ev">
+<span id="FabricCore::RTVal::getUInt8"></span>uint8_t <code class="descclassname"></code><code class="descname">getUInt8</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal8getUInt8Ev" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return the value of the RTVal that is of type <code class="code docutils literal"><span class="pre">UInt8</span></code>.  IfIf the RTVal is not of type <code class="code docutils literal"><span class="pre">UInt8</span></code> Exception will be thrown.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal9getUInt16Ev">
+<span id="FabricCore::RTVal::getUInt16"></span>uint16_t <code class="descclassname"></code><code class="descname">getUInt16</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal9getUInt16Ev" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return the value of the RTVal that is of type <code class="code docutils literal"><span class="pre">UInt16</span></code>.  IIf the RTVal is not of type <code class="code docutils literal"><span class="pre">UInt16</span></code> an exception will be thrown.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal9getUInt32Ev">
+<span id="FabricCore::RTVal::getUInt32"></span>uint32_t <code class="descclassname"></code><code class="descname">getUInt32</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal9getUInt32Ev" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return the value of the RTVal that is of type <code class="code docutils literal"><span class="pre">UInt32</span></code>.  IIf the RTVal is not of type <code class="code docutils literal"><span class="pre">UInt32</span></code> an exception will be thrown.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal9getUInt64Ev">
+<span id="FabricCore::RTVal::getUInt64"></span>uint64_t <code class="descclassname"></code><code class="descname">getUInt64</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal9getUInt64Ev" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return the value of the RTVal that is of type <code class="code docutils literal"><span class="pre">UInt64</span></code>.  IIf the RTVal is not of type <code class="code docutils literal"><span class="pre">UInt64</span></code> an exception will be thrown.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal8getSInt8Ev">
+<span id="FabricCore::RTVal::getSInt8"></span>int8_t <code class="descclassname"></code><code class="descname">getSInt8</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal8getSInt8Ev" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return the value of the RTVal that is of type <code class="code docutils literal"><span class="pre">SInt8</span></code>.  IfIf the RTVal is not of type <code class="code docutils literal"><span class="pre">SInt8</span></code> Exception will be thrown.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal9getSInt16Ev">
+<span id="FabricCore::RTVal::getSInt16"></span>int16_t <code class="descclassname"></code><code class="descname">getSInt16</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal9getSInt16Ev" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return the value of the RTVal that is of type <code class="code docutils literal"><span class="pre">SInt16</span></code>.  IIf the RTVal is not of type <code class="code docutils literal"><span class="pre">SInt16</span></code> an exception will be thrown.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal9getSInt32Ev">
+<span id="FabricCore::RTVal::getSInt32"></span>int32_t <code class="descclassname"></code><code class="descname">getSInt32</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal9getSInt32Ev" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return the value of the RTVal that is of type <code class="code docutils literal"><span class="pre">SInt32</span></code>.  IIf the RTVal is not of type <code class="code docutils literal"><span class="pre">SInt32</span></code> an exception will be thrown.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal9getSInt64Ev">
+<span id="FabricCore::RTVal::getSInt64"></span>int64_t <code class="descclassname"></code><code class="descname">getSInt64</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal9getSInt64Ev" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return the value of the RTVal that is of type <code class="code docutils literal"><span class="pre">SInt64</span></code>.  IIf the RTVal is not of type <code class="code docutils literal"><span class="pre">SInt64</span></code> an exception will be thrown.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal10getFloat32Ev">
+<span id="FabricCore::RTVal::getFloat32"></span>float <code class="descclassname"></code><code class="descname">getFloat32</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal10getFloat32Ev" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return the value of the RTVal that is of type <code class="code docutils literal"><span class="pre">Float32</span></code>.  If the RTVal is not of type <code class="code docutils literal"><span class="pre">Float32</span></code> an exception will be thrown.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal10setFloat32Ef">
+<span id="FabricCore::RTVal::setFloat32__float"></span>void <code class="descclassname"></code><code class="descname">setFloat32</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal10setFloat32Ef" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Set the value of the RTVal that is of type <code class="code docutils literal"><span class="pre">Float32</span></code> to <code class="code docutils literal"><span class="pre">value</span></code>.  If the RTVal is not of type <code class="code docutils literal"><span class="pre">Float32</span></code> an exception will be thrown.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal10getFloat64Ev">
+<span id="FabricCore::RTVal::getFloat64"></span>double <code class="descclassname"></code><code class="descname">getFloat64</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal10getFloat64Ev" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return the value of the RTVal that is of type <code class="code docutils literal"><span class="pre">Float64</span></code>.  If the RTVal is not of type <code class="code docutils literal"><span class="pre">Float64</span></code> an exception will be thrown.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal16getStringCStringEv">
+<span id="FabricCore::RTVal::getStringCString"></span>char <em class="property">const</em> *<code class="descclassname"></code><code class="descname">getStringCString</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal16getStringCStringEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return the value of the RTVal that is of type <code class="code docutils literal"><span class="pre">String</span></code> as a C-string.  If the RTVal is not of type <code class="code docutils literal"><span class="pre">String</span></code> an exception will be thrown.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal15getStringLengthEv">
+<span id="FabricCore::RTVal::getStringLength"></span>uint32_t <code class="descclassname"></code><code class="descname">getStringLength</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal15getStringLengthEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return the string length of the RTVal that is of type <code class="code docutils literal"><span class="pre">String</span></code>.  If the RTVal is not of type <code class="code docutils literal"><span class="pre">String</span></code> an exception will be thrown.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal7getDataEv">
+<span id="FabricCore::RTVal::getData"></span>void *<code class="descclassname"></code><code class="descname">getData</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal7getDataEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return the value of the RTVal that is of type <code class="code docutils literal"><span class="pre">Data</span></code> as a void pointer.  If the RTVal is not of type <code class="code docutils literal"><span class="pre">Data</span></code> an exception will be thrown.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal7setDataEPv">
+<span id="FabricCore::RTVal::setData__voidP"></span>void <code class="descclassname"></code><code class="descname">setData</code><span class="sig-paren">(</span>void *<em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal7setDataEPv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Set the value of the RTVal that is of type <code class="code docutils literal"><span class="pre">Data</span></code> to the value of the void pointer <span class="xref std std-ref">data</span>.  If the RTVal is not of type <code class="code docutils literal"><span class="pre">Data</span></code> an exception will be thrown.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore5RTVal12isNullObjectEv">
+<span id="FabricCore::RTVal::isNullObjectC"></span>bool <code class="descclassname"></code><code class="descname">isNullObject</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore5RTVal12isNullObjectEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return whether the RTVal that is of an object type is null.  If the RTVal is not of an object type an exception will be thrown.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore5RTVal7isArrayEv">
+<span id="FabricCore::RTVal::isArrayC"></span>bool <code class="descclassname"></code><code class="descname">isArray</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore5RTVal7isArrayEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return whether the RTVal that is of a type that is a fixed, variable or external array of some other type.  Use this to check if it&#8217;s safe to perform array length and indexing calls.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore5RTVal6isDictEv">
+<span id="FabricCore::RTVal::isDictC"></span>bool <code class="descclassname"></code><code class="descname">isDict</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore5RTVal6isDictEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return whether the RTVal is of a dictionary type.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore5RTVal8isStructEv">
+<span id="FabricCore::RTVal::isStructC"></span>bool <code class="descclassname"></code><code class="descname">isStruct</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore5RTVal8isStructEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return whether the RTVal is of a structure type.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore5RTVal8isObjectEv">
+<span id="FabricCore::RTVal::isObjectC"></span>bool <code class="descclassname"></code><code class="descname">isObject</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore5RTVal8isObjectEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return whether the RTVal is of an object type.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore5RTVal6isDataEv">
+<span id="FabricCore::RTVal::isDataC"></span>bool <code class="descclassname"></code><code class="descname">isData</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore5RTVal6isDataEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return whether the RTVal is of type <code class="code docutils literal"><span class="pre">Data</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore5RTVal11isInterfaceEv">
+<span id="FabricCore::RTVal::isInterfaceC"></span>bool <code class="descclassname"></code><code class="descname">isInterface</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore5RTVal11isInterfaceEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return whether the RTVal is of an interface type.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore5RTVal12getArraySizeEv">
+<span id="FabricCore::RTVal::getArraySizeC"></span>uint32_t <code class="descclassname"></code><code class="descname">getArraySize</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore5RTVal12getArraySizeEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return the length of the RTVal that is of an array type.  If the RTVal is not of an array type, an exception will be thrown.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal12setArraySizeE8uint32_t">
+<span id="FabricCore::RTVal::setArraySize__uint32_t"></span>void <code class="descclassname"></code><code class="descname">setArraySize</code><span class="sig-paren">(</span>uint32_t <em>newSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal12setArraySizeE8uint32_t" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Resize the RTVal that is of a variable array type.  If the RTVal is not of a variable array type, an exception will be thrown.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore5RTVal15getArrayElementE8uint32_t">
+<span id="FabricCore::RTVal::getArrayElement__uint32_tC"></span><a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">getArrayElement</code><span class="sig-paren">(</span>uint32_t <em>index</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore5RTVal15getArrayElementE8uint32_t" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return a new RTVal that is a copy of the element of the array-typed RTVal at the given index.  If the RTVal is not of an array type, or the index is out-of-bounds for the array, an exception will be thrown.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal15setArrayElementE8uint32_tR5RTVal">
+<span id="FabricCore::RTVal::setArrayElement__uint32_t.RTValCR"></span>void <code class="descclassname"></code><code class="descname">setArrayElement</code><span class="sig-paren">(</span>uint32_t <em>index</em>, <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <em class="property">const</em> &amp;<em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal15setArrayElementE8uint32_tR5RTVal" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Set the element of the array-typed RTVal at the given index.  The parameter <code class="code docutils literal"><span class="pre">value</span></code> must be an RTVal whose type can be casted to the element type of the array.  If the RTVal is not of an array type, or the index is out-of-bounds for the array, an exception will be thrown.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore5RTVal11getDictSizeEv">
+<span id="FabricCore::RTVal::getDictSizeC"></span>uint32_t <code class="descclassname"></code><code class="descname">getDictSize</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore5RTVal11getDictSizeEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get the size (number of key-value pairs) of the RTVal that is of dictionary type.  If the RTVal is not of a dictionary type, an exception will be thrown.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore5RTVal14getDictElementER5RTVal">
+<span id="FabricCore::RTVal::getDictElement__RTValCRC"></span><a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">getDictElement</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <em class="property">const</em> &amp;<em>key</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore5RTVal14getDictElementER5RTVal" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return a new RTVal that is a copy of the value in the dictionary-typed RTVal for the given key.  <code class="code docutils literal"><span class="pre">key</span></code> must be an RTVal whose type can be casted to the key type of the dictionary.  If the RTVal is not of a dictionary type, or if there is no element for the given key, an exception will be thrown.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal14setDictElementER5RTValR5RTVal">
+<span id="FabricCore::RTVal::setDictElement__RTValCR.RTValCR"></span>void <code class="descclassname"></code><code class="descname">setDictElement</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <em class="property">const</em> &amp;<em>key</em>, <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <em class="property">const</em> &amp;<em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal14setDictElementER5RTValR5RTVal" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Set the value of the dictionary-typed RTVal for the given key.  <code class="code docutils literal"><span class="pre">key</span></code> must be an RTVal whose type can be casted to the key type of the dictionary.  If the RTVal is not of a dictionary type, an exception will be thrown.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore5RTVal14maybeGetMemberEPc">
+<span id="FabricCore::RTVal::maybeGetMember__cCPC"></span><a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">maybeGetMember</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>memberNameCString</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore5RTVal14maybeGetMemberEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return a new RTVal that is a copy of the named member in the structure- or object-typed RTVal.  If the RTVal is not of a structure nor object type, an exception will be thrown.  If there is no member named <code class="code docutils literal"><span class="pre">memberNameCString</span></code>, a null RTVal will be returned.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore5RTVal17maybeGetMemberRefEPc">
+<span id="FabricCore::RTVal::maybeGetMemberRef__cCPC"></span><a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">maybeGetMemberRef</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>memberNameCString</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore5RTVal17maybeGetMemberRefEPc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return an RTVal that is a reference to the named member in the structure- or object-typed RTVal.  If the RTVal is not of a structure nor object type, or there is no member named <code class="code docutils literal"><span class="pre">memberNameCString</span></code>, an exception will be thrown.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">It is the caller&#8217;s personality to ensure that the result does not outlive the structure that it is referring to!</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal9setMemberEPcR5RTVal">
+<span id="FabricCore::RTVal::setMember__cCP.RTValCR"></span>void <code class="descclassname"></code><code class="descname">setMember</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>memberNameCString</em>, <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <em class="property">const</em> &amp;<em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal9setMemberEPcR5RTVal" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Set the named member in the structure- or object-typed RTVal.  <code class="code docutils literal"><span class="pre">value</span></code> must be an RTVal whose type can be casted to the member type.  If the RTVal is not of a structure nor object type, or there is no member named <code class="code docutils literal"><span class="pre">memberNameCString</span></code>, an exception will be thrown.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal10callMethodEPcPc8uint32_tP5RTVal">
+<span id="FabricCore::RTVal::callMethod__cCP.cCP.uint32_t.RTValP"></span><a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">callMethod</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>resultTypeCString</em>, char <em class="property">const</em> *<em>methodNameCString</em>, uint32_t <em>argCount</em>, <a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> *<em>argRTVals</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal10callMethodEPcPc8uint32_tP5RTVal" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Call a method on an RTVal.  <code class="code docutils literal"><span class="pre">resultTypeCString</span></code> must be the name of the result type of the method call; <code class="code docutils literal"><span class="pre">methodNameCString</span></code> must be the name of the method to call; and <code class="code docutils literal"><span class="pre">argCount</span></code> and <code class="code docutils literal"><span class="pre">argRTVals</span></code> specify the arguments for the call.</p>
+<p>If the method does not return a value, you must specify the empty string for <code class="code docutils literal"><span class="pre">resultTypeCString</span></code>; in this case, a null RTVal will be returned.  Otherwise, the result is a new RTVal that is return value of the method call.</p>
+<p>If no method exists with the given name and that takes the given argument types and whose result type can be casted to the specified type, an exception will be thrown.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore5RTVal7getDescEv">
+<span id="FabricCore::RTVal::getDescC"></span><a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">getDesc</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore5RTVal7getDescEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return a new RTVal of type <code class="code docutils literal"><span class="pre">String</span></code> that is a description of the RTVal.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore5RTVal11getTypeNameEv">
+<span id="FabricCore::RTVal::getTypeNameC"></span><a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">getTypeName</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore5RTVal11getTypeNameEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return a new RTVal of type <code class="code docutils literal"><span class="pre">String</span></code> that is the name of the type of the RTVal.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK10FabricCore5RTVal7getJSONEv">
+<span id="FabricCore::RTVal::getJSONC"></span><a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">getJSON</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK10FabricCore5RTVal7getJSONEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return a new RTVal of type <code class="code docutils literal"><span class="pre">String</span></code> that is JSON-formatted description of the value.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">This may not work for all types!</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore5RTVal7setJSONER5RTVal">
+<span id="FabricCore::RTVal::setJSON__RTValCR"></span>void <code class="descclassname"></code><code class="descname">setJSON</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv2N10FabricCore5RTVal5RTValEv" title="FabricCore::RTVal::RTVal">RTVal</a> <em class="property">const</em> &amp;<em>jsonVal</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore5RTVal7setJSONER5RTVal" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Set the value of the RTVal from a JSON description obtained with the <code class="code docutils literal"><span class="pre">getJSON</span></code> method.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">This may not work for all types!</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="_CPPv2N10FabricCore11DGContainerE">
+<span id="FabricCore::DGContainer"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">DGContainer</code><a class="headerlink" href="#_CPPv2N10FabricCore11DGContainerE" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>There are a few methods on the <code class="code docutils literal"><span class="pre">DGContainer</span></code> class that work with RTVals.  These methods can be used to obtain RTVals that are copies of member value on DGNodes, for example.</p>
+<dl class="function">
+<dt id="_CPPv2N10FabricCore11DGContainer19getMemberSliceValueEPc8uint32_t">
+<span id="FabricCore::DGContainer::getMemberSliceValue__cCP.uint32_t"></span><a class="reference internal" href="#_CPPv2N10FabricCore5RTValE" title="FabricCore::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">getMemberSliceValue</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>memberCString</em>, uint32_t <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore11DGContainer19getMemberSliceValueEPc8uint32_t" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return a copy of the member data for the given slice as an RTVal.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore11DGContainer19setMemberSliceValueEPc8uint32_tR5RTVal">
+<span id="FabricCore::DGContainer::setMemberSliceValue__cCP.uint32_t.RTValCR"></span>void <code class="descclassname"></code><code class="descname">setMemberSliceValue</code><span class="sig-paren">(</span>char <em class="property">const</em> *<em>memberCString</em>, uint32_t <em>index</em>, <a class="reference internal" href="#_CPPv2N10FabricCore5RTValE" title="FabricCore::RTVal">RTVal</a> <em class="property">const</em> &amp;<em>rtVal</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore11DGContainer19setMemberSliceValueEPc8uint32_tR5RTVal" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Set the member data for the given slice from an RTVal.  If the RTVal cannot be casted to the type of the member, an exception will be thrown.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore11DGContainer18getJSONStringValueEv">
+<span id="FabricCore::DGContainer::getJSONStringValue"></span><a class="reference internal" href="#_CPPv2N10FabricCore5RTValE" title="FabricCore::RTVal">RTVal</a> <code class="descclassname"></code><code class="descname">getJSONStringValue</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore11DGContainer18getJSONStringValueEv" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get a JSON description of the container as an RTVal of type <code class="code docutils literal"><span class="pre">String</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10FabricCore11DGContainer18setJSONStringValueER5RTVal">
+<span id="FabricCore::DGContainer::setJSONStringValue__RTValCR"></span>void <code class="descclassname"></code><code class="descname">setJSONStringValue</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv2N10FabricCore5RTValE" title="FabricCore::RTVal">RTVal</a> <em class="property">const</em> &amp;<em>stringRTVal</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10FabricCore11DGContainer18setJSONStringValueER5RTVal" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Set the contents of the container from a JSON-formatted RTVal string obtained with <a class="reference internal" href="#_CPPv2N10FabricCore11DGContainer18getJSONStringValueEv" title="FabricCore::DGContainer::getJSONStringValue"><code class="xref cpp cpp-func docutils literal"><span class="pre">DGContainer::getJSONStringValue()</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Using RTVals from C++ Applications</a><ul>
+<li><a class="reference internal" href="#rtvals-are-copy-by-reference">RTVals are Copy-by-Reference</a></li>
+<li><a class="reference internal" href="#common-tasks">Common Tasks</a><ul>
+<li><a class="reference internal" href="#constructing-rtvals">Constructing RTVals</a></li>
+<li><a class="reference internal" href="#obtaining-c-equivalents-for-simple-rtval-data">Obtaining C++ Equivalents for Simple RTVal Data</a></li>
+<li><a class="reference internal" href="#setting-rtvals-from-simple-c-data">Setting RTVals from Simple C++ Data</a></li>
+<li><a class="reference internal" href="#describing-an-rtval">Describing an RTVal</a></li>
+<li><a class="reference internal" href="#calling-methods-on-rtvals">Calling Methods on RTVals</a></li>
+<li><a class="reference internal" href="#working-with-arrays">Working with Arrays</a></li>
+<li><a class="reference internal" href="#working-with-dictionaries">Working with Dictionaries</a></li>
+<li><a class="reference internal" href="#working-with-structures-and-objects">Working with Structures and Objects</a></li>
+<li><a class="reference internal" href="#working-with-opaque-data">Working with Opaque Data</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#api-reference">API Reference</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="python.html"
+                        title="前の章へ">Using RTVals from Python Applications</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="../ExtensionAuthoringGuide/index.html"
+                        title="次の章へ">Extension Authoring Guide</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/RTValProgrammingGuide/capi.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../ExtensionAuthoringGuide/index.html" title="Extension Authoring Guide"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="python.html" title="Using RTVals from Python Applications"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >RTVal Programming Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>
