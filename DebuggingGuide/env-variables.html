@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Environment Variables &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
+    <link rel="up" title="Debugging Guide" href="index.html" />
+    <link rel="next" title="Source Code and License" href="source.html" />
+    <link rel="prev" title="Using zBug" href="zbug.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="source.html" title="Source Code and License"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="zbug.html" title="Using zBug"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Debugging Guide</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="environment-variables">
+<span id="dg-envvars"></span><h1>Environment Variables<a class="headerlink" href="#environment-variables" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>There are certain environment variables that can affect how Fabric behaves. These are not <strong>all</strong> officially supported.</p>
+<div class="section" id="fabric-core">
+<h2>Fabric Core<a class="headerlink" href="#fabric-core" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="fabric-cuda-log">
+<h3>FABRIC_CUDA_LOG<a class="headerlink" href="#fabric-cuda-log" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>If set, the Core will output verbose logging info whenever a KL operator is passed into the CUDA codegen. In addition it will output cuda.ll and cuda.ptx files containing the IR and PTX of the last KL operator into the current directory. In order to ensure that the CUDA operator is actually compiled this flag also causes the Core to bypass the cache for GPU operators only.</p>
+</div>
+<div class="section" id="fabric-debug">
+<h3>FABRIC_DEBUG<a class="headerlink" href="#fabric-debug" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>This controls whether or not debug info will be output into compiled KL code and can take the following values:</p>
+<blockquote>
+<div><ul class="simple">
+<li>1 (the default): The Core will output Dwarf debug info into all compiled KL code, allowing code debugging with gdb, lldb or tools based on either. This debug info is also consumed by other KL features such as KL stack traces for KL exceptions and in the crash handler.</li>
+<li>2: The same will occur but the Core will also open a control port that will accept connections from our zBug debugger front-end to provide additional debug data such as KL source code. Note that the zBug debugger is currently only supported on Linux.</li>
+<li>0: There is no debug info output into compiled KL code. There should be no reason to use this value unless errors are found in the KL debug info generation that require disabling it temporarily.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="fabric-enable-crash-handler">
+<h3>FABRIC_ENABLE_CRASH_HANDLER<a class="headerlink" href="#fabric-enable-crash-handler" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>When greater than zero, the Core will attempt to catch anything that would normally cause the process to crash and exit (such as a SIGSEGV on Linux or an Access Violation on Windows) in order to provide a stack trace including KL symbols before exiting. If the crash occurs within KL, the crash handler will attempt to use information from LLVM to determine any KL symbol names in the stack trace where possible. If combined with FABRIC_DEBUG above, the crash handler will use the debug info to resolve all KL symbols in the stack trace. The crash handler is currently unsupported on OSX.</p>
+</div>
+<div class="section" id="fabric-exts-path">
+<h3>FABRIC_EXTS_PATH<a class="headerlink" href="#fabric-exts-path" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Specifies a list of folders separated by &#8221;:&#8221; (on POSIX) or &#8221;;&#8221; (on Windows) where the Core should search for extensions.</p>
+</div>
+<div class="section" id="fabric-feature-cuda-compute">
+<h3>FABRIC_FEATURE_CUDA_COMPUTE<a class="headerlink" href="#fabric-feature-cuda-compute" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>If non-zero this will cause the Fabric Core to attempt to load the CUDA and NVVM dynamic libraries on systems with supported Nvidia hardware in order to enable GPU compute. The libraries must be available in default system library paths or provided via the PATH environment variable on Windows or LD_LIBRARY_PATH on Linux. Error information will be printed to the console if the Core is unable to bind to the CUDA libraries when this variable is set.</p>
+</div>
+<div class="section" id="fabric-guarded-gpu">
+<h3>FABRIC_GUARDED_GPU<a class="headerlink" href="#fabric-guarded-gpu" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 1.15.0 で追加: </span>FABRIC_GUARDED_GPU</p>
+</div>
+<p>If non-zero this will enable compiling GPU KL code in guarded mode. By default this is disabled even if normally compiling code in guarded mode as it slows down GPU compilation considerably, however it can be enabled explicitly in cases where extra debuggability of GPU code is required.</p>
+</div>
+<div class="section" id="fabric-cache-dir">
+<h3>FABRIC_CACHE_DIR<a class="headerlink" href="#fabric-cache-dir" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 1.13.0 で追加: </span>FABRIC_CACHE_DIR</p>
+</div>
+<p>This specifies the folder where cached KL code should be stored (LLVM IR, object code and potentially CUDA PTX). The defaults for these are:</p>
+<p>Linux/OSX:</p>
+<ul class="simple">
+<li>~/.fabric-engine/.private</li>
+</ul>
+<p>Windows:</p>
+<ul class="simple">
+<li>%APPDATA%\Fabric Engine\.private</li>
+</ul>
+</div>
+<div class="section" id="fabric-cache-max-age-days">
+<h3>FABRIC_CACHE_MAX_AGE_DAYS<a class="headerlink" href="#fabric-cache-max-age-days" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.0.0 で追加: </span>FABRIC_CACHE_MAX_AGE_DAYS</p>
+</div>
+<p>This specifies the maximum age, in days, of cached KL code that should be stored (LLVM IR, object code and potentially CUDA PTX).  The age is computed based on the last time the cache file was accessed.  The default is 30 days.</p>
+</div>
+<div class="section" id="fabric-cache-max-size-mb">
+<h3>FABRIC_CACHE_MAX_SIZE_MB<a class="headerlink" href="#fabric-cache-max-size-mb" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified">バージョン 2.0.0 で追加: </span>FABRIC_CACHE_MAX_SIZE_MB</p>
+</div>
+<p>This specifies the maximum amount, in megabytes, of cached KL code that should be stored (LLVM IR, object code and potentially CUDA PTX). The default is 250 megabytes.</p>
+</div>
+<div class="section" id="fabric-kl-error-trace">
+<h3>FABRIC_KL_ERROR_TRACE<a class="headerlink" href="#fabric-kl-error-trace" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Setting this to zero tells the Core to not output a KL stack trace whenever a KL exception is encountered (either a KL throw(), setError(), or dumpstack()). The only reason to disable this would be to work around any errors found in the stack generation code.</p>
+</div>
+<div class="section" id="fabric-kl-heap-debug-and-fabric-memory-debug">
+<h3>FABRIC_KL_HEAP_DEBUG and FABRIC_MEMORY_DEBUG<a class="headerlink" href="#fabric-kl-heap-debug-and-fabric-memory-debug" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Setting these to different non-zero values prints different types of detailed internal memory allocation information to the console. This information isn&#8217;t intended for users and is probably not useful to them.</p>
+</div>
+<div class="section" id="fabric-load-all-exts">
+<h3>FABRIC_LOAD_ALL_EXTS<a class="headerlink" href="#fabric-load-all-exts" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>When set to a non-zero value the Fabric Core will bypass the normal extensions mechanism of registering an extension&#8217;s location on startup but only loading each extension when requested and will instead immediately load all extensions that it encounters at startup.</p>
+</div>
+<div class="section" id="fabric-log-file">
+<h3>FABRIC_LOG_FILE<a class="headerlink" href="#fabric-log-file" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>If set, the Core will synchronously log all output to the specified log file. This includes everything that the Core normally outputs to the console such as errors and report() statements.</p>
+</div>
+<div class="section" id="fabric-log-level">
+<h3>FABRIC_LOG_LEVEL<a class="headerlink" href="#fabric-log-level" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>If set the Core will output log messages only at the specified level or below. The default log level is 3, at log level 4 some additional debug information will also be displayed.</p>
+</div>
+<div class="section" id="fabric-no-inline">
+<h3>FABRIC_NO_INLINE<a class="headerlink" href="#fabric-no-inline" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Specifies that the Core should not inline KL functions explicitly marked as &#8216;inline&#8217;. This is useful only for testing purposes.</p>
+</div>
+<div class="section" id="fabric-opt-type">
+<h3>FABRIC_OPT_TYPE<a class="headerlink" href="#fabric-opt-type" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>When specified, KL code optimization will depend on the value of this variable. The values used here are the same as those specified in FabricCore.h:</p>
+<ul class="simple">
+<li>0: KL code will first be compiled unoptimized so that it&#8217;s usable immediately. Optimization will occur on background threads and optimized code will be swapped in to replace the unoptimized code as it becomes ready.</li>
+<li>1: KL code will be optimized synchronously on the main thread before being compiled. Startup will take longer in this case and unoptimized code will never be run.</li>
+<li>2: KL code will not be optimized. This can be useful when combined with FABRIC_DEBUG in order to ensure that all KL function calls exist in the resulting machine code.</li>
+</ul>
+<p>This value does not apply for the KL tool, which has its own command-line options to control this.</p>
+</div>
+<div class="section" id="fabric-trace-operators">
+<h3>FABRIC_TRACE_OPERATORS<a class="headerlink" href="#fabric-trace-operators" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>When greater than zero all operators in KL print an ENTER/LEAVE pair to the console when entering and when leaving the function. This was primarily used in debugging as a coarse means of pinpointing which operator is responsible for a given crash but is becoming less important now that proper debug info exists.</p>
+</div>
+<div class="section" id="fabric-verbose-ir-cache">
+<h3>FABRIC_VERBOSE_IR_CACHE<a class="headerlink" href="#fabric-verbose-ir-cache" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>If non-zero, the Core will output additional information into the IR cache. It will output the source KL, the unoptimized IR for the given KL, and finally the optimized IR once optimization is complete. The files are named by cache key as with the existing cache files.</p>
+</div>
+</div>
+<div class="section" id="splice-api">
+<h2>SPLICE API<a class="headerlink" href="#splice-api" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="fabric-nodes-path">
+<h3>FABRIC_NODES_PATH<a class="headerlink" href="#fabric-nodes-path" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>This is used by the SpliceAPI to resolve file paths. If a file path is provided as a relative path to any of the splice commands, it will try to resolve the filePath based on the list of directories in the FABRIC_NODES_PATH. You can separate directories using a semicolon or a colon.</p>
+</div>
+<div class="section" id="fabric-splice-disable-log">
+<h3>FABRIC_SPLICE_DISABLE_LOG<a class="headerlink" href="#fabric-splice-disable-log" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>If non-zero this will disable printing of ordinary (&#8220;info&#8221;) log messages from the Fabric DCC plugins.  This does not apply to warning and error messages, and does not apply to Fabric Canvas messages of any sort (which use the usual Fabric Core logging mechanism).</p>
+</div>
+<div class="section" id="fabric-splice-unguarded">
+<h3>FABRIC_SPLICE_UNGUARDED<a class="headerlink" href="#fabric-splice-unguarded" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>If non-zero then KL code will be compiled and run in &#8220;unguarded&#8221; mode, meaning that array out-of-bounds accesses and object NULL pointer references will not be checked. This allows for faster code at the expense of potential crashes on programmer error in the KL code.</p>
+</div>
+</div>
+<div class="section" id="fabric-licensing">
+<h2>Fabric Licensing<a class="headerlink" href="#fabric-licensing" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="fabric-license-dir">
+<h3>FABRIC_LICENSE_DIR<a class="headerlink" href="#fabric-license-dir" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Specifies the folder that Fabric will use to search for node-locked .lic license files.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Environment Variables</a><ul>
+<li><a class="reference internal" href="#fabric-core">Fabric Core</a><ul>
+<li><a class="reference internal" href="#fabric-cuda-log">FABRIC_CUDA_LOG</a></li>
+<li><a class="reference internal" href="#fabric-debug">FABRIC_DEBUG</a></li>
+<li><a class="reference internal" href="#fabric-enable-crash-handler">FABRIC_ENABLE_CRASH_HANDLER</a></li>
+<li><a class="reference internal" href="#fabric-exts-path">FABRIC_EXTS_PATH</a></li>
+<li><a class="reference internal" href="#fabric-feature-cuda-compute">FABRIC_FEATURE_CUDA_COMPUTE</a></li>
+<li><a class="reference internal" href="#fabric-guarded-gpu">FABRIC_GUARDED_GPU</a></li>
+<li><a class="reference internal" href="#fabric-cache-dir">FABRIC_CACHE_DIR</a></li>
+<li><a class="reference internal" href="#fabric-cache-max-age-days">FABRIC_CACHE_MAX_AGE_DAYS</a></li>
+<li><a class="reference internal" href="#fabric-cache-max-size-mb">FABRIC_CACHE_MAX_SIZE_MB</a></li>
+<li><a class="reference internal" href="#fabric-kl-error-trace">FABRIC_KL_ERROR_TRACE</a></li>
+<li><a class="reference internal" href="#fabric-kl-heap-debug-and-fabric-memory-debug">FABRIC_KL_HEAP_DEBUG and FABRIC_MEMORY_DEBUG</a></li>
+<li><a class="reference internal" href="#fabric-load-all-exts">FABRIC_LOAD_ALL_EXTS</a></li>
+<li><a class="reference internal" href="#fabric-log-file">FABRIC_LOG_FILE</a></li>
+<li><a class="reference internal" href="#fabric-log-level">FABRIC_LOG_LEVEL</a></li>
+<li><a class="reference internal" href="#fabric-no-inline">FABRIC_NO_INLINE</a></li>
+<li><a class="reference internal" href="#fabric-opt-type">FABRIC_OPT_TYPE</a></li>
+<li><a class="reference internal" href="#fabric-trace-operators">FABRIC_TRACE_OPERATORS</a></li>
+<li><a class="reference internal" href="#fabric-verbose-ir-cache">FABRIC_VERBOSE_IR_CACHE</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#splice-api">SPLICE API</a><ul>
+<li><a class="reference internal" href="#fabric-nodes-path">FABRIC_NODES_PATH</a></li>
+<li><a class="reference internal" href="#fabric-splice-disable-log">FABRIC_SPLICE_DISABLE_LOG</a></li>
+<li><a class="reference internal" href="#fabric-splice-unguarded">FABRIC_SPLICE_UNGUARDED</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#fabric-licensing">Fabric Licensing</a><ul>
+<li><a class="reference internal" href="#fabric-license-dir">FABRIC_LICENSE_DIR</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="zbug.html"
+                        title="前の章へ">Using zBug</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="source.html"
+                        title="次の章へ">Source Code and License</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/DebuggingGuide/env-variables.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    <li><a href="http://docs.fabric-engine.com/FabricEngine/2.0.0/HTML/DebuggingGuide/env-variables.html"
+              rel="nofollow">原文公式ページへ移動</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="source.html" title="Source Code and License"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="zbug.html" title="Using zBug"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Debugging Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

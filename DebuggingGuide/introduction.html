@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Introduction &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
+    <link rel="up" title="Debugging Guide" href="index.html" />
+    <link rel="next" title="Using zBug" href="zbug.html" />
+    <link rel="prev" title="Debugging Guide" href="index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="zbug.html" title="Using zBug"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Debugging Guide"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Debugging Guide</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Fabric Engine provides functionality to aid in debugging applications written using Fabric Engine and KL. The Fabric Engine debugger (called zBug and pronounced zee-bug) is based on <a class="reference external" href="http://lldb.llvm.org/">LLDB</a> and as such aims to provide all of the functionality found in exiting debugging software such as the Visual Studio debugger or gdb while adding support for debugging KL code. With zBug a user should be able to debug the full spectrum of code involved in a KL application, including debugging C/C++ extensions. Because of the support provided by LLDB zBug can also be used to debug pure C or C++ applications or extensions using the same UI.</p>
+<div class="section" id="how-debugging-works">
+<h2>How Debugging Works<a class="headerlink" href="#how-debugging-works" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>In broad strokes debugging a KL application is no different than debugging a compiled C or C++ application. In both cases the compiled code will have some information included in it to pass information to the debugger about file names, line numbers, variable names, types, and other information. The most common open format for this debug info is Dwarf, this is the format used by most open compilers (with Microsoft&#8217;s Visual Studio compiler being the big exception) and this is the debug info format used by KL as well.</p>
+<p>When getting ready to debug a typical C++ application, a developer will usually tell the compiler to include this debug info in the resulting output. Debug info isn&#8217;t included by default in all compiled code because it takes additional time to produce and requires additional memory when running the application.</p>
+<p>A developer will also normally tell the compiler to avoid running optimization passes on the resulting code. Optimizing compiled code can result in much faster execution times, however as the optimizer may change the code significantly in order to achieve this it can make it harder to debug as line numbers may change and variables that the developer wrote into the code may be optimized away and replaced.</p>
+<p>Both of these ideas also hold true when debugging KL code. While a developer can independently choose whether or not to run optimization on their KL code and also whether or not to include debug info, in the general case for debugging you will want to include debug info and disable optimizations. Once your code has been written, debugged, and determined to work correctly though you will usually want to disable debug info output to save on memory and enable optimizations to allow the KL compiler to change your code as necessary in order to make it as fast as possible.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/FE_logo_211_37.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Introduction</a><ul>
+<li><a class="reference internal" href="#how-debugging-works">How Debugging Works</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="index.html"
+                        title="前の章へ">Debugging Guide</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="zbug.html"
+                        title="次の章へ">Using zBug</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/DebuggingGuide/introduction.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    <li><a href="http://docs.fabric-engine.com/FabricEngine/2.0.0/HTML/DebuggingGuide/introduction.html"
+              rel="nofollow">原文公式ページへ移動</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="zbug.html" title="Using zBug"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Debugging Guide"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Debugging Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2010-2015 Fabric Software Inc.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>
