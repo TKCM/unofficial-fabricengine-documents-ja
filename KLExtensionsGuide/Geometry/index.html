@@ -60,21 +60,15 @@
 <div class="line">Fabric Engine version 2.0.0</div>
 <div class="line">Copyright 2010-2015 Fabric Software Inc. All rights reserved.</div>
 </div>
-<p>The <code class="docutils literal"><span class="pre">Geometry</span></code> extension provide a KL implementation of common geometry types, such as <a class="reference internal" href="Points.html#points"><span>Points</span></a>, <a class="reference internal" href="Lines.html#lines"><span>Lines</span></a> and <a class="reference internal" href="PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a>.
-The extension additionally defines the various components and interfaces that are common to these geometry types.</p>
-<p>All geometry types implement the <a class="reference internal" href="Geometry.html#geometry"><span>Geometry</span></a> interface. They use the same type of <a class="reference internal" href="GeometryAttributes.html#geometryattributes"><span>GeometryAttributes</span></a>
-container to hold the attribute values that are associated to their components, such as positions, UVs and colors. This extension
-contains the definition of various attribute types, such as the <a class="reference internal" href="Vec3Attribute.html#vec3attribute"><span>Vec3Attribute</span></a> and the <a class="reference internal" href="ColorAttribute.html#colorattribute"><span>ColorAttribute</span></a>. Custom attribute
-types can be attached to a geometry, as long as they define the <a class="reference internal" href="GeometryAttribute.html#geometryattribute"><span>GeometryAttribute</span></a> interface.</p>
-<p>All geometry types implement the <a class="reference internal" href="SpatialQueryable.html#spatialqueryable"><span>SpatialQueryable</span></a> interface, which allows to perform spatial queries such
-as raycast or getClosest. This extension defines two spatial acceleration structures, the <a class="reference internal" href="Octree.html#octree"><span>Octree</span></a> and the <a class="reference internal" href="SparseGrid.html#sparsegrid"><span>SparseGrid</span></a>,
-which are being used internally by the geometries to accelerate the spatial queries. For <a class="reference internal" href="spatialqueriesusage.html#spatialqueriesusage"><span>Using spatial queries with geometries</span></a> for more details about</p>
+<p><code class="docutils literal"><span class="pre">Geometry</span></code> のエクステンションは、例えば <code class="xref std std-kl-ref docutils literal"><span class="pre">Points</span></code>,や <code class="xref std std-kl-ref docutils literal"><span class="pre">Lines</span></code>, <code class="xref std std-kl-ref docutils literal"><span class="pre">PolygonMesh</span></code> といった一般的なジオメトリ型のKLでの実装を提供します。エクステンションは、これらジオメトリ型に共通する様々なコンポーネントやインターフェースを定義します。</p>
+<p>全てのジオメトリ型は <code class="xref std std-kl-ref docutils literal"><span class="pre">Geometry</span></code> インターフェースを実装しています。それらは、ポジションやUV、カラーといったコンポーネントに関連付けされているアトリビュート値を保持するために、 <code class="xref std std-kl-ref docutils literal"><span class="pre">GeometryAttributes</span></code> という単一のコンテナ（データ型）を使用します。これには、 <code class="xref std std-kl-ref docutils literal"><span class="pre">Vec3Attributes</span></code> や <code class="xref std std-kl-ref docutils literal"><span class="pre">ColorAttributes</span></code> といった様々なアトリビュート型があります。 <code class="xref std std-kl-ref docutils literal"><span class="pre">GeometryAttribute</span></code> インターフェースが定義付けされている限り、カスタムした様々な型のアトリビュートをジオメトリに結合することが可能です。</p>
+<p>全てのジオメトリ型は、レイキャストや最接近点の取得といった空間分析を実行することが可能になる <code class="xref std std-kl-ref docutils literal"><span class="pre">SpatialQueryable</span></code> インターフェースを実装しています。これは空間分析の速度を上げるためのジオメトリを内部で使用した <code class="xref std std-kl-ref docutils literal"><span class="pre">Octree</span></code> と <code class="xref std std-kl-ref docutils literal"><span class="pre">SparseGrid</span></code> という2つの高速化構造を定義します。このインターフェースについての詳細は <a class="reference internal" href="spatialqueriesusage.html#spatialqueriesusage"><span>Using spatial queries with geometries</span></a> を参照してください。</p>
 <blockquote>
-<div>the spacial query interfaces.</div></blockquote>
-<p>Geometries can be used in GPU compute kernels, enabling high performance geometry processing entirely on the GPU. With minimal changes, existing
-code can be modified to run on the GPU. See <span class="xref std std-ref">utilizinggpucompute</span> for more details about using Geometries in GPU compute kernels.</p>
+<div><p>.</p>
+</div></blockquote>
+<p>ジオメトリは、処理をGPU上で行うことで高いパフォーマンスを可能にするGPU コンピュートカーネルを利用することが出来ます。既存のコードは最小限の変更によってGPU 上で実行できるようになります。GPU でジオメトリを使用する方法の詳細については、 <a class="reference internal" href="utilizinggpucompute.html#utilizinggpucompute"><span>Utilizing GPU commpute with Geometries</span></a> を参照してください。</p>
 <div class="section" id="table-of-contents">
-<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>目次<a class="headerlink" href="#table-of-contents" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="polygonmeshstructure.html">PolygonMesh&#8217;s structure</a><ul>
@@ -205,7 +199,7 @@ code can be modified to run on the GPU. See <span class="xref std std-ref">utili
 </div>
 </div>
 <div class="section" id="indices-and-tables">
-<h2>Indices and Tables<a class="headerlink" href="#indices-and-tables" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>インデックスとテーブル<a class="headerlink" href="#indices-and-tables" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><a class="reference internal" href="../../genindex.html"><span>索引</span></a></li>
 <li><a class="reference internal" href="../../search.html"><span>検索ページ</span></a></li>
@@ -225,8 +219,8 @@ code can be modified to run on the GPU. See <span class="xref std std-ref">utili
   <h3><a href="../../index.html">目次</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Geometry Extension</a><ul>
-<li><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
-<li><a class="reference internal" href="#indices-and-tables">Indices and Tables</a></li>
+<li><a class="reference internal" href="#table-of-contents">目次</a></li>
+<li><a class="reference internal" href="#indices-and-tables">インデックスとテーブル</a></li>
 </ul>
 </li>
 </ul>

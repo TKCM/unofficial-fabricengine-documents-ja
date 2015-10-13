@@ -55,7 +55,7 @@
           <div class="body" role="main">
             
   <div class="section" id="utilizing-gpu-commpute-with-geometries">
-<span id="polygonmeshstructure"></span><h1>Utilizing GPU commpute with Geometries<a class="headerlink" href="#utilizing-gpu-commpute-with-geometries" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<span id="utilizinggpucompute"></span><h1>Utilizing GPU commpute with Geometries<a class="headerlink" href="#utilizing-gpu-commpute-with-geometries" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>GPU Compute can now be used to compute Geometry deformations with relative ease.</p>
@@ -64,11 +64,11 @@
 </div>
 <div class="section" id="polygonmesh">
 <span id="polygonmeshcomponents"></span><h2>PolygonMesh<a class="headerlink" href="#polygonmesh" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>The <a class="reference internal" href="PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a> owns a member called &#8216;topology&#8217; of type <a class="reference internal" href="PolygonMeshTopology.html#polygonmeshtopology"><span>PolygonMeshTopology</span></a> that can be moved onto the GPU and passed into GPU compute kernels.</p>
-<p>Before a <a class="reference internal" href="PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a> can be used in a GPU kernel, its topology data must be moved to the GPU. Each
+<p>The <code class="xref std std-kl-ref docutils literal"><span class="pre">PolygonMesh</span></code> owns a member called &#8216;topology&#8217; of type <code class="xref std std-kl-ref docutils literal"><span class="pre">PolygonMeshTopology</span></code> that can be moved onto the GPU and passed into GPU compute kernels.</p>
+<p>Before a <code class="xref std std-kl-ref docutils literal"><span class="pre">PolygonMesh</span></code> can be used in a GPU kernel, its topology data must be moved to the GPU. Each
 :kl-ref:<a href="#id1"><span class="problematic" id="id2">`</span></a>GeometryAttribute&#8217; owned by a Geometry must also be individually moved to the GPU before it can be used.</p>
 <p>GPU Compute kernels do not support objects, meaning that it is not possible to pass into a GPU kernel the PolygonMesh, Lines, Points, or any of the various attribute types. Instead, the data contained within these object can be passed into GPU kernels.</p>
-<p>Each of the GeometryAttrbiutes owns data that can be passed into GPU Compute kernels. Most attributes have a member called &#8216;values&#8217; which is an array of the data type supported by the <a class="reference internal" href="GeometryAttribute.html#geometryattribute"><span>GeometryAttribute</span></a>.</p>
+<p>Each of the GeometryAttrbiutes owns data that can be passed into GPU Compute kernels. Most attributes have a member called &#8216;values&#8217; which is an array of the data type supported by the <code class="xref std std-kl-ref docutils literal"><span class="pre">GeometryAttribute</span></code>.</p>
 <div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
 <span class="cm">** Example: Moving a polygonMesh to the GPU</span>
 <span class="cm">*/</span>
@@ -194,8 +194,8 @@ report(mesh.getDesc(true, true));</p>
 <span class="cm">** Output:</span>
 <span class="cm">(stdin):49:5: warning: must use parentheses to call methods (deprecation; will become an error in next version)</span>
 
-<span class="cm">pointCount: 1262301 CPU Time: +16.90411772298954</span>
-<span class="cm">pointCount: 1262301 GPU Time: +16.43161884120184</span>
+<span class="cm">pointCount: 1262301 CPU Time: +17.45353250020262</span>
+<span class="cm">pointCount: 1262301 GPU Time: +17.03103316812809</span>
 
 <span class="cm">*/</span>
 </pre></div>
@@ -245,7 +245,7 @@ of the attribute.</p>
 </div>
 <div class="section" id="skinning-attribute">
 <h3>Skinning Attribute<a class="headerlink" href="#skinning-attribute" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>The <a class="reference internal" href="SkinningAttribute.html#skinningattribute"><span>SkinningAttribute</span></a> has a member struct called &#8216;data&#8217; or type <a class="reference internal" href="SkinningAttributeData.html#skinningattributedata"><span>SkinningAttributeData</span></a> that is passed into GPU compute kernels.</p>
+<p>The <code class="xref std std-kl-ref docutils literal"><span class="pre">SkinningAttribute</span></code> has a member struct called &#8216;data&#8217; or type <code class="xref std std-kl-ref docutils literal"><span class="pre">SkinningAttributeData</span></code> that is passed into GPU compute kernels.</p>
 <div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
 <span class="cm">** Example: Using the SkinningAttribute in a GPU compute kernel.</span>
 <span class="cm">*/</span>

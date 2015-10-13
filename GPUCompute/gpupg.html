@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>GPU Compute Programming Guide &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    <title>GPU Compute プログラミングガイド &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
     
     <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -44,12 +44,12 @@
           <div class="body" role="main">
             
   <div class="section" id="gpu-compute-programming-guide">
-<span id="gpupg"></span><h1>GPU Compute Programming Guide<a class="headerlink" href="#gpu-compute-programming-guide" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<span id="gpupg"></span><h1>GPU Compute プログラミングガイド<a class="headerlink" href="#gpu-compute-programming-guide" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="contents local topic" id="table-of-contents">
-<p class="topic-title first">Table of Contents</p>
+<p class="topic-title first">目次</p>
 <ul class="simple">
 <li><a class="reference internal" href="#kl-example" id="id1">KL Example</a></li>
-<li><a class="reference internal" href="#invoking-a-gpu-operator" id="id2">Invoking a GPU Operator</a></li>
+<li><a class="reference internal" href="#invoking-a-gpu-operator" id="id2">GPU Operator の呼び出し</a></li>
 <li><a class="reference internal" href="#type-support" id="id3">Type Support</a></li>
 <li><a class="reference internal" href="#memory-management" id="id4">Memory Management</a><ul>
 <li><a class="reference internal" href="#changing-memory-backing" id="id5">Changing Memory Backing</a></li>
@@ -62,11 +62,11 @@
 <li><a class="reference internal" href="#parameter-passing" id="id10">Parameter Passing</a></li>
 </ul>
 </div>
-<p>This document provides an outline of KL programing with GPU Compute (currently for Nvidia CUDA hardware) covering some details of its implementation in addition to explaining how it can be used in KL code. Everything in this document assumes that the user has correctly enabled CUDA GPU compute support as outlined in the <a class="reference internal" href="index.html#gpucompute"><span>GPU Compute Guide</span></a>.</p>
-<p>As GPU compute is still a relatively new feature there may be additional changes in its API as it evolves and we are always interested in feedback and suggestions from end users.</p>
+<p>この文書では KLで GPU Compute を行うための ―現在NVIDIAデバイスのみで動作します― 実装の詳細についてと、それらをどのようにKLから使用するか、概要を示します。以下に書かれる全ては <a class="reference internal" href="index.html#gpucompute"><span>GPU Compute Guide</span></a> で示したように CUDA GPU サポート機能を正しく有効にしたものとします。</p>
+<p>GPU コンピュートは比較的に新しい機能であり、APIの追加や進化がこれからもやってくる可能性があります。私たちは、エンドユーザからのフィードバックや提案に常に耳を傾けます。</p>
 <div class="section" id="kl-example">
 <span id="gpupg-example"></span><h2><a class="toc-backref" href="#id1">KL Example</a><a class="headerlink" href="#kl-example" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>The following is an example of KL code using GPU compute and is provided as a starting point to further discussion. This particular code shows the syntax used to invoke an operator on the GPU but is not an example of an algorithm that is particularly well-suited to GPU execution.</p>
+<p>以下に、GPUコンピューティング使用するKLコードを示し、さらなる議論の礎とします。ただし以下に示すコードはGPU上で実行可能ではありますが、とくにGPUに適したアルゴリズムの例というわけではありません。</p>
 <div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
 <span class="cm">** Example: GPU Compute</span>
 <span class="cm">*/</span>
@@ -97,7 +97,7 @@
 </div>
 </div>
 <div class="section" id="invoking-a-gpu-operator">
-<h2><a class="toc-backref" href="#id2">Invoking a GPU Operator</a><a class="headerlink" href="#invoking-a-gpu-operator" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id2">GPU Operator の呼び出し</a><a class="headerlink" href="#invoking-a-gpu-operator" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>GPU compute functionality is accessed in KL via the standard <a class="reference internal" href="../KLProgrammingGuide/statements.html#klpg-parallel-execution-statement"><span>Parallel Execution Statement</span></a> syntax on an operator plus an &#64; followed by a Boolean that evaluates to <code class="docutils literal"><span class="pre">true</span></code>. Passing no parameter or <code class="docutils literal"><span class="pre">false</span></code> after the &#64; symbol will invoke the operator on the CPU.</p>
 <p>On machines with no CUDA support, or where CUDA support has not been enabled or failed to load, passing an &#64;true parameter to a <a class="reference internal" href="../KLProgrammingGuide/statements.html#klpg-parallel-execution-statement"><span>Parallel Execution Statement</span></a> call will invoke the operator in a simulated GPU environment on the CPU, which can sometimes be useful for testing. A message will be printed each time an operator is invoked in this way to ensure that the user is aware that this code is not running on the GPU despite the &#64;true PEX call:</p>
 <div class="highlight-none"><div class="highlight"><pre>[FABRIC:MT] Falling back to running GPU operator on CPU
@@ -269,9 +269,9 @@
             </a></p>
   <h3><a href="../index.html">目次</a></h3>
   <ul>
-<li><a class="reference internal" href="#">GPU Compute Programming Guide</a><ul>
+<li><a class="reference internal" href="#">GPU Compute プログラミングガイド</a><ul>
 <li><a class="reference internal" href="#kl-example">KL Example</a></li>
-<li><a class="reference internal" href="#invoking-a-gpu-operator">Invoking a GPU Operator</a></li>
+<li><a class="reference internal" href="#invoking-a-gpu-operator">GPU Operator の呼び出し</a></li>
 <li><a class="reference internal" href="#type-support">Type Support</a></li>
 <li><a class="reference internal" href="#memory-management">Memory Management</a><ul>
 <li><a class="reference internal" href="#changing-memory-backing">Changing Memory Backing</a></li>
