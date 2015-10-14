@@ -63,7 +63,7 @@
 <ul class="simple">
 <li><a class="reference internal" href="#important-read-me-first" id="id1"><strong>重要 - はじめにお読みください</strong></a></li>
 <li><a class="reference internal" href="#installation" id="id2">インストール</a><ul>
-<li><a class="reference internal" href="#nvidia-hardware-support" id="id3">対応 Nvidia ハードウェア</a></li>
+<li><a class="reference internal" href="#nvidia-hardware-support" id="id3">対応 NVIDIA ハードウェア</a></li>
 <li><a class="reference internal" href="#enabling-gpu-compute" id="id4">GPU Compute を有効にする</a></li>
 <li><a class="reference internal" href="#testing-gpu-compute" id="id5">GPU Compute を試す</a></li>
 </ul>
@@ -75,18 +75,18 @@
 <div class="section" id="important-read-me-first">
 <h2><a class="toc-backref" href="#id1"><strong>重要 - はじめにお読みください</strong></a><a class="headerlink" href="#important-read-me-first" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul>
-<li><p class="first">GPUコンピュート機能はFabric Engineのアプリケーションからはディフォルトで無効となっています。使用するには環境に応じ有効化する必要があります。</p>
+<li><p class="first">GPUコンピューティング機能はFabric Engineのアプリケーションからはディフォルトで無効となっています。使用するには環境に応じ有効化する必要があります。</p>
 </li>
-<li><p class="first"><a class="reference internal" href="gpupg.html#gpupg"><span>GPU Compute Programming Guide</span></a> に GPU処理に適したKLコードの記述についての情報があります。</p>
+<li><p class="first"><a class="reference internal" href="gpupg.html#gpupg"><span>GPU Compute プログラミングガイド</span></a> に GPU処理に適したKLコードの記述についての情報があります。</p>
 </li>
 <li><p class="first"><a class="reference internal" href="#gpu-known-issues"><span>既知の不具合</span></a> をご覧ください</p>
 </li>
-<li><p class="first">GPUでコードを実行する際、guardedモードと unguardedモードの違いはCPU上での違いより明確に重要な意味を持ちます。コードをデバッグし、使用するようなると、unduardedモードで実行すると極めて大きいパフォーマンスメリットを受ける場合がある事がわかります。</p>
+<li><p class="first">GPUでコードを実行する際、guardedモードと unguardedモードの違いは、CPU上実行する場合より極めて重要な意味を持ちます。コードをデバッグし、実戦投入するようになると、unduardedモードで実行すると極めて大きいパフォーマンスメリットを受ける場合がある事に気づくでしょう。</p>
 </li>
-<li><p class="first">GPUコンピューティングは現在 Windows 7（以降）と Linux(CentOS 6.x) 64-bit プラットフォームで nVidiaの対応デバイス（後述）を使用している場合に利用できます。</p>
+<li><p class="first">GPUコンピューティングは現在 Windows 7（以降）と Linux(CentOS 6.x) 64-bit プラットフォームで NVIDIAの対応デバイス（後述）を使用している場合に利用できます。</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p class="last">Windows 10のプレリリース版にはバグがあり、Fabric Engine のGPUコンピュートに必要な CUDA Unified Memoryが正常に動作しません。このバグの回避策については後述します。</p>
+<p class="last">Windows 10のプレリリース版にはバグがあり、Fabric Engine のGPUコンピューティングに必要な CUDA Unified Memoryが正常に動作しません。このバグの回避策については後述します。</p>
 </div>
 </li>
 </ul>
@@ -94,25 +94,25 @@
 <div class="section" id="installation">
 <h2><a class="toc-backref" href="#id2">インストール</a><a class="headerlink" href="#installation" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="nvidia-hardware-support">
-<h3><a class="toc-backref" href="#id3">対応 Nvidia ハードウェア</a><a class="headerlink" href="#nvidia-hardware-support" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>KLのGPUコンピュートには対応する Nvidiaデバイスが必要です。手持ちの機器が対応しているか、以下に従い確認しましょう。</p>
+<h3><a class="toc-backref" href="#id3">対応 NVIDIA ハードウェア</a><a class="headerlink" href="#nvidia-hardware-support" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>KLのGPUコンピューティングには対応する NVIDIAデバイスが必要です。手持ちの機器が対応しているか、以下に従い確認しましょう。</p>
 <ul class="simple">
 <li><p class="first">グラフィックカードの CUDAバージョン 3.0以上必要です。GPUの一覧は: <a class="reference external" href="https://developer.nvidia.com/cuda-gpus">https://developer.nvidia.com/cuda-gpus</a></p>
 </li>
-<li><p class="first">さらに Nvidia の stableドライバのインストールが必要です: <a class="reference external" href="http://www.nvidia.com/Download/index.aspx?lang=en-us">http://www.nvidia.com/Download/index.aspx?lang=en-us</a></p>
+<li><p class="first">さらに NVIDIA の stableドライバのインストールが必要です: <a class="reference external" href="http://www.nvidia.com/Download/index.aspx?lang=en-us">http://www.nvidia.com/Download/index.aspx?lang=en-us</a></p>
 </li>
 <li><p class="first">CUDA 6 toolkit のインストールが必要です： <a class="reference external" href="https://developer.nvidia.com/cuda-downloads">https://developer.nvidia.com/cuda-downloads</a> 現在のバージョンは CUDA 6.0 向けにビルドされており CUDA 6.5 や CUDA 7.0 では動作しません。今後のバージョンにおいてサポートされる予定です。</p>
 </li>
 </ul>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p class="last">Windows 10の最初のリリースin July 2015にはバグがあり、Fabric Engine のGPUコンピュートに必要な CUDA Unified Memoryが正常に動作しません。Windows 10自体が修正されるまでの回避策は、古いドライバである NVIDIA 349 driverを使用することです。</p>
+<p class="last">Windows 10の最初のリリースin July 2015にはバグがあり、Fabric Engine のGPUコンピューティングに必要な CUDA Unified Memoryが正常に動作しません。Windows 10自体が修正されるまでの回避策は、古いドライバである NVIDIA 349 driverを使用することです。</p>
 </div>
 </div>
 <div class="section" id="enabling-gpu-compute">
 <h3><a class="toc-backref" href="#id4">GPU Compute を有効にする</a><a class="headerlink" href="#enabling-gpu-compute" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>Fabricはディフォルトで Nvidiaのライブラリを読み込みには行きません。環境変数 <code class="docutils literal"><span class="pre">FABRIC_FEATURE_CUDA_COMPUTE=1</span></code> を設定するとGPUコンピュートが有効になり、Fabric起動時に関連ライブラリが読み込まれるようになります。エラーがあればコンソールに出力されます。</p>
-<p>GPUコンピュートには、Nvidiaのライブラリ群を動作システムのグローバル設定に置く ―もしくはPATH や LD_LIBRARY_PATHに明示的に追加する必要があります。</p>
+<p>Fabricはディフォルトで Nvidiaのライブラリを読み込みには行きません。環境変数 <code class="docutils literal"><span class="pre">FABRIC_FEATURE_CUDA_COMPUTE=1</span></code> を設定するとGPUコンピューティングが有効になり、Fabric起動時に関連ライブラリが読み込まれるようになります。エラーがあればコンソールに出力されます。</p>
+<p>GPUコンピューティングには、Nvidiaのライブラリ群を動作システムのグローバル設定に置く ―もしくはPATH や LD_LIBRARY_PATHに明示的に追加する必要があります。</p>
 <p>Windows では必要なライブラリは <code class="docutils literal"><span class="pre">nvvm64_20_0.dll</span></code> と <code class="docutils literal"><span class="pre">nvcuda.dll</span></code> です。ディフォルトで <code class="docutils literal"><span class="pre">C:\Program</span> <span class="pre">Files\NVIDIA</span> <span class="pre">GPU</span> <span class="pre">Computing</span> <span class="pre">Toolkit\CUDA\v6.0\bin</span></code> と <code class="docutils literal"><span class="pre">C:\Program</span> <span class="pre">Files\NVIDIA</span> <span class="pre">GPU</span> <span class="pre">Computing</span> <span class="pre">Toolkit\CUDA\v6.0\nvvm\bin</span></code> にインストールされます。これらのディレクトリを PATH に通すと良いでしょう:</p>
 <blockquote>
 <div><code class="docutils literal"><span class="pre">PATH=C:\Program</span> <span class="pre">Files\NVIDIA</span> <span class="pre">GPU</span> <span class="pre">Computing</span> <span class="pre">Toolkit\CUDA\v6.0\bin;C:\Program</span> <span class="pre">Files\NVIDIA</span> <span class="pre">GPU</span> <span class="pre">Computing</span> <span class="pre">Toolkit\CUDA\v6.0\nvvm\bin;%PATH%</span></code></div></blockquote>
@@ -134,7 +134,7 @@ export LD_LIBRARY_PATH=$CUDA_PATH/lib64:$CUDA_PATH/nvvm/lib64:$LD_LIBRARY_PATH
 </div>
 <div class="section" id="kl-programming">
 <h2><a class="toc-backref" href="#id6">KLプログラミング</a><a class="headerlink" href="#kl-programming" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><a class="reference internal" href="gpupg.html#gpupg"><span>GPU Compute Programming Guide</span></a> にKLからのGPU処理についてより詳しい情報があります。</p>
+<p><a class="reference internal" href="gpupg.html#gpupg"><span>GPU Compute プログラミングガイド</span></a> にKLからのGPU処理についてより詳しい情報があります。</p>
 </div>
 <div class="section" id="known-issues">
 <span id="gpu-known-issues"></span><h2><a class="toc-backref" href="#id7">既知の不具合</a><a class="headerlink" href="#known-issues" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -165,7 +165,7 @@ export LD_LIBRARY_PATH=$CUDA_PATH/lib64:$CUDA_PATH/nvvm/lib64:$LD_LIBRARY_PATH
 <li><a class="reference internal" href="#">GPU Compute Guide</a><ul>
 <li><a class="reference internal" href="#important-read-me-first"><strong>重要 - はじめにお読みください</strong></a></li>
 <li><a class="reference internal" href="#installation">インストール</a><ul>
-<li><a class="reference internal" href="#nvidia-hardware-support">対応 Nvidia ハードウェア</a></li>
+<li><a class="reference internal" href="#nvidia-hardware-support">対応 NVIDIA ハードウェア</a></li>
 <li><a class="reference internal" href="#enabling-gpu-compute">GPU Compute を有効にする</a></li>
 <li><a class="reference internal" href="#testing-gpu-compute">GPU Compute を試す</a></li>
 </ul>

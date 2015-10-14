@@ -50,11 +50,11 @@
 <ul class="simple">
 <li><a class="reference internal" href="#kl-example" id="id1">KL Example</a></li>
 <li><a class="reference internal" href="#invoking-a-gpu-operator" id="id2">GPU Operator の呼び出し</a></li>
-<li><a class="reference internal" href="#type-support" id="id3">Type Support</a></li>
-<li><a class="reference internal" href="#memory-management" id="id4">Memory Management</a><ul>
-<li><a class="reference internal" href="#changing-memory-backing" id="id5">Changing Memory Backing</a></li>
+<li><a class="reference internal" href="#type-support" id="id3">型のサポート</a></li>
+<li><a class="reference internal" href="#memory-management" id="id4">Memory マネジメント</a><ul>
+<li><a class="reference internal" href="#changing-memory-backing" id="id5">Memory 確保先の変更</a></li>
 <li><a class="reference internal" href="#gl-binding" id="id6">GL Binding</a></li>
-<li><a class="reference internal" href="#determining-array-memory-location" id="id7">Determining Array Memory Location</a></li>
+<li><a class="reference internal" href="#determining-array-memory-location" id="id7">Array Memory の確保先の決定</a></li>
 <li><a class="reference internal" href="#memory-and-resizing-arrays" id="id8">Memory and Resizing Arrays</a></li>
 <li><a class="reference internal" href="#the-copyto-array-method" id="id9">The copyTo() Array Method</a></li>
 </ul>
@@ -63,10 +63,10 @@
 </ul>
 </div>
 <p>この文書では KLで GPU Compute を行うための ―現在NVIDIAデバイスのみで動作します― 実装の詳細についてと、それらをどのようにKLから使用するか、概要を示します。以下に書かれる全ては <a class="reference internal" href="index.html#gpucompute"><span>GPU Compute Guide</span></a> で示したように CUDA GPU サポート機能を正しく有効にしたものとします。</p>
-<p>GPU コンピュートは比較的に新しい機能であり、APIの追加や進化がこれからもやってくる可能性があります。私たちは、エンドユーザからのフィードバックや提案に常に耳を傾けます。</p>
+<p>GPUコンピューティングは比較的に新しい機能であり、APIの追加や進化がこれからもやってくる可能性があります。私たちは、エンドユーザからのフィードバックや提案に常に耳を傾けます。</p>
 <div class="section" id="kl-example">
 <span id="gpupg-example"></span><h2><a class="toc-backref" href="#id1">KL Example</a><a class="headerlink" href="#kl-example" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>以下に、GPUコンピューティング使用するKLコードを示し、さらなる議論の礎とします。ただし以下に示すコードはGPU上で実行可能ではありますが、とくにGPUに適したアルゴリズムの例というわけではありません。</p>
+<p>以下に、GPUコンピューティングを使用するKLコードを示し、さらなる議論の土台とします。ただし以下に示すコードはGPU上で実行可能ではありますが、とくにGPUに適したアルゴリズムの例というわけではありません。</p>
 <div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
 <span class="cm">** Example: GPU Compute</span>
 <span class="cm">*/</span>
@@ -98,43 +98,47 @@
 </div>
 <div class="section" id="invoking-a-gpu-operator">
 <h2><a class="toc-backref" href="#id2">GPU Operator の呼び出し</a><a class="headerlink" href="#invoking-a-gpu-operator" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>GPU compute functionality is accessed in KL via the standard <a class="reference internal" href="../KLProgrammingGuide/statements.html#klpg-parallel-execution-statement"><span>Parallel Execution Statement</span></a> syntax on an operator plus an &#64; followed by a Boolean that evaluates to <code class="docutils literal"><span class="pre">true</span></code>. Passing no parameter or <code class="docutils literal"><span class="pre">false</span></code> after the &#64; symbol will invoke the operator on the CPU.</p>
-<p>On machines with no CUDA support, or where CUDA support has not been enabled or failed to load, passing an &#64;true parameter to a <a class="reference internal" href="../KLProgrammingGuide/statements.html#klpg-parallel-execution-statement"><span>Parallel Execution Statement</span></a> call will invoke the operator in a simulated GPU environment on the CPU, which can sometimes be useful for testing. A message will be printed each time an operator is invoked in this way to ensure that the user is aware that this code is not running on the GPU despite the &#64;true PEX call:</p>
+<p>GPUコンピューティング機能は、KLの標準的な並列実行記法 <a class="reference internal" href="../KLProgrammingGuide/statements.html#klpg-parallel-execution-statement"><span>Parallel Execution Statement</span></a> のオペレーターに &#64;真偽値 <code class="docutils literal"><span class="pre">true</span></code> を後置することで有効となります。 &#64;パラメータを指定しないか、&#64;パラメータ直後に <code class="docutils literal"><span class="pre">false</span></code> と評価されるものを置くと、オペレータはGPUではなくCPUでの呼び出しとなります。</p>
+<p>CUDAをサポートしない機器、もしくはCUDAを無効としたか、読み込みに失敗した環境で、並列実行記法に &#64;true パラメータを与え実行すると、GPUでの実行とはならず、CPU上でGPU環境をシミュレートしてのオペレータ呼び出しとなる。これは特にテストに有用である。この擬似環境での実行では、operatorを &#64;true で呼び出したにもかかわらず、コードがGPUで実行されていないことのユーザーへの告知としては以下のメッセージが表示されます：</p>
 <div class="highlight-none"><div class="highlight"><pre>[FABRIC:MT] Falling back to running GPU operator on CPU
 </pre></div>
 </div>
 </div>
 <div class="section" id="type-support">
-<h2><a class="toc-backref" href="#id3">Type Support</a><a class="headerlink" href="#type-support" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Not all KL types are supported on the GPU and in particular <code class="docutils literal"><span class="pre">object</span></code>, <code class="docutils literal"><span class="pre">interface</span></code>, and <code class="docutils literal"><span class="pre">MapReduce</span></code> operators are currently unsupported. KL will output an error if a user tries to run an operator that uses one of these types on the GPU. In addition <code class="docutils literal"><span class="pre">Dict</span></code> and <code class="docutils literal"><span class="pre">String</span></code> types cannot currently be passed as parameters to a GPU operator, though a GPU operator may make use of them internally. These limitations around types may be removed in an upcoming version based on feedback and relevant use cases.</p>
-<p>The KL type that is most relevant to running operators on the GPU is the Variable Array as this maps most directly to use cases where the GPU operates in parallel on a large set (or sets) of input data. These variable arrays will often contain elements of a complex struct type, such as a <code class="xref std std-kl-ref docutils literal"><span class="pre">Vec3</span></code> or an <code class="xref std std-kl-ref docutils literal"><span class="pre">Xfo</span></code>. See the <code class="docutils literal"><span class="pre">input</span></code> and <code class="docutils literal"><span class="pre">output</span></code> arrays in the <a class="reference internal" href="#gpupg-example"><span>KL Example</span></a>.</p>
+<h2><a class="toc-backref" href="#id3">型のサポート</a><a class="headerlink" href="#type-support" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>KLの型全てがGPU上で使用可能なわけではありません。とくに <code class="docutils literal"><span class="pre">object</span></code>、 <code class="docutils literal"><span class="pre">interface</span></code> そして <code class="docutils literal"><span class="pre">MapReduce</span></code> は現在サポートされません。GPU上ではサポートされない型を走らせようとすると、KLはエラーを出力します。ただし、<code class="docutils literal"><span class="pre">Dict</span></code> や <code class="docutils literal"><span class="pre">String</span></code> はGPUオペレータに対しパラメータとして受け渡す事はできないが、オペレータ内部で使用することはできます。これらの型についての制約は、使用実態のフィードバックや、妥当性によって今後のバージョンで撤廃されえます。</p>
+<p>GPUで実行するオペレータにとって、最適な型は、可変長配列（Variable Array）です。GPUオペレータを並列実行する際、大規模な入力データ（または複数のデータ群）を、直接可変長配列としてマップし、使用する。これらの可変長配列には、より複雑な型 ― <code class="xref std std-kl-ref docutils literal"><span class="pre">Vec3</span></code> や <code class="xref std std-kl-ref docutils literal"><span class="pre">Xfo</span></code> を含むことが多いでしょう。配列中の <code class="docutils literal"><span class="pre">input</span></code> と <code class="docutils literal"><span class="pre">output</span></code> については <a class="reference internal" href="#gpupg-example"><span>KL Example</span></a> を参照してください。</p>
 </div>
 <div class="section" id="memory-management">
-<h2><a class="toc-backref" href="#id4">Memory Management</a><a class="headerlink" href="#memory-management" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>There are four types of memory made available in GPU compute so that the user can choose the type most suited to their needs. The three types are:</p>
+<h2><a class="toc-backref" href="#id4">Memory マネジメント</a><a class="headerlink" href="#memory-management" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>GPUコンピューティングでは、4つのメモリー利用モードがある。ユーザーは必要に応じ、最適なものを選択できる。このうち3つのモードは：</p>
 <ul class="simple">
-<li><em>CPU</em>: Standard CPU memory, allocated on the heap via malloc(). This is the default backing memory for all types created on the CPU.</li>
-<li><em>GPU</em>: Standard GPU-allocated memory. This type of memory is accessible only on the GPU and attempting to access it on the CPU will result in an error (in <code class="docutils literal"><span class="pre">guarded</span></code> mode) or a crash (in <code class="docutils literal"><span class="pre">unguarded</span></code> mode).</li>
-<li><em>SVM</em>: SVM stands for Shared Virtual Memory and in the CUDA case represents what is referred to as CUDA Managed Memory. This type of memory is accessible both on the CPU and the GPU and data transfers are managed transparently by the Nvidia driver. This type of memory is easiest for new users as it does not require the user to track where memory lives. More experienced users however may require more fine-grained control.</li>
-<li><em>GLBuffer</em>: GLBuffer is memory that was loaded into an OpenGL buffer and then bound for use in GPU compute operators. This type of memory will be discussed further in the &#8220;GL Binding&#8221; section.</li>
+<li><p class="first"><em>CPU</em>: 標準的なCPUメモリ。malloc() より heap 領域に確保される。CPU上に作成される全ての型のメモリ確保先のディフォルトです。</p>
+</li>
+<li><p class="first"><em>GPU</em>: 標準的なGPUに確保されるメモリ。GPUのみからアクセスが可能であり、CPUからアクセスを行うと、 <code class="docutils literal"><span class="pre">guarded</span></code> モードではエラーが返り <code class="docutils literal"><span class="pre">unguarded</span></code> モードではクラッシュする。</p>
+</li>
+<li><p class="first"><em>SVM</em>: Shared Virtual Memory を意味する。CUDAでは、CUDA Managed Memory と呼ばれるものを指す。この種のメモリは、CPUからもGPUからもアクセスが可能である。NVIDIAのドライバによりデータは透過的に転送される。このため、メモリが実際にはどこに存在すべきか知るひつようのないような新参利用者にとって、一番簡単なメモリモードとなる。ただし、経験豊富なユーザーにとっては、よりきめ細やかな制御を必要とする可能性がある。</p>
+</li>
+<li><p class="first"><em>GLBuffer</em>: OpenGLバッファーとして読み込まれ、GPUオペレータでの処理に費やされるメモリ。この種のメモリーについては、以下の &#8220;GL Binding&#8221; セクションで詳述する。</p>
+</li>
 </ul>
 <div class="section" id="changing-memory-backing">
-<h3><a class="toc-backref" href="#id5">Changing Memory Backing</a><a class="headerlink" href="#changing-memory-backing" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>All KL types support several methods to change where their backing memory lives. For most types (including all shallow types) these methods are a no-op as their backing memory is not owned by them. However in the case of Variable Arrays these methods change where the member elements of the Variable Array are stored. The three relevant methods are:</p>
+<h3><a class="toc-backref" href="#id5">Memory 確保先の変更</a><a class="headerlink" href="#changing-memory-backing" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>KLの全ての型はメモリの確保先を変更するため、いくつかの関数（method）をサポートしている。多くの型 ― shallow type を含む ― ではこれらの変更メソッドはその型自体が、メモリを所持している訳ではないので実際には操作が実行されない。しかし、可変長配列の場合では、これらの変更のためのメソッドは、その配列の要素が格納されている場所を、変更する。関連する３つのメッドは次の通り：</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">myVar.convertToCPU()</span></code></li>
 <li><code class="docutils literal"><span class="pre">myVar.convertToGPU()</span></code></li>
 <li><code class="docutils literal"><span class="pre">myVar.convertToSVM()</span></code></li>
 </ul>
-<p>These methods convert the backing memory of the type to one of the three types of memory discussed above.</p>
+<p>これらのメソッドは、メモリ確保先をあるモードから他の3つのモードに変換します。</p>
 </div>
 <div class="section" id="gl-binding">
 <h3><a class="toc-backref" href="#id6">GL Binding</a><a class="headerlink" href="#gl-binding" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>There is an additional conversion method convertToGLBuffer() on Variable Arrays that allows converting their backing memory into a GL buffer which can be used in rendering in addition to GPU compute. This method requires that a valid GL context be bound at the time it&#8217;s called and will otherwise result in an exception:</p>
+<p>さらに可変長配列には convertToGLBuffer() メソッドによる変換ができる。GPUコンピューティングだけではなくさらに描画に使用かのうな GL バッファとして格納される。このメソッドは、呼ばれる際、有効なGLコンテキストにバインドされ必要があります。そうでない場合、以下の例外が発生します：</p>
 <div class="highlight-none"><div class="highlight"><pre>Exception: glewInit() call failed; is there a valid GL context bound?
 </pre></div>
 </div>
-<p>A short example of using GL binding is provided here:</p>
+<p>GL binding の短いですが利用例：</p>
 <div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
 <span class="cm">** Example: GL binding in KL</span>
 <span class="cm">*/</span>
@@ -160,8 +164,8 @@
 <p>The parameters passed to convertToGLBuffer() are the same as the <cite>target</cite> and <cite>usage</cite> parameters normally passed to a <cite>glBufferData()</cite> call and can have the same values.</p>
 </div>
 <div class="section" id="determining-array-memory-location">
-<h3><a class="toc-backref" href="#id7">Determining Array Memory Location</a><a class="headerlink" href="#determining-array-memory-location" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>KL provides a mechanism to determine where a given Variable Array&#8217;s elements currently live using the getElementsMemType() method. A short example of its use is outlined here:</p>
+<h3><a class="toc-backref" href="#id7">Array Memory の確保先の決定</a><a class="headerlink" href="#determining-array-memory-location" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>KLでは、可変長配列の要素が現在どこに存在するのかについて、 getElementsMemType() メソッドを使い、明らかにすることができます。ここでは簡単な使用例で説明します：</p>
 <div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
 <span class="cm">** Example: Variable Array Memory Types in KL</span>
 <span class="cm">*/</span>
@@ -182,8 +186,8 @@
 </div>
 <div class="section" id="memory-and-resizing-arrays">
 <h3><a class="toc-backref" href="#id8">Memory and Resizing Arrays</a><a class="headerlink" href="#memory-and-resizing-arrays" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>When using GPU compute the array resize() method resizes the allocated memory on the device where the memory resides. GL buffer-bound arrays can not be resized via the resize() method and will throw an error.</p>
-<p>For memory types that are accessible on the CPU (CPU and SVM), the elements in a newly-resized array will be initialized using the default constructor for the element type of the array (for example initialized with the Vec3() constructor). For GPU memory the elements in a newly-resized array will be initialized to zeros. This is an important distinction to be aware of as it represents a difference in behavior between CPU and GPU arrays.</p>
+<p>GPUコンピューティングを使用する際、配列の resize() メソッドを使用するとメモリが存在するGPUデバイス上の確保されたメモリがリサイズされます。GL buffer にバインドされた配列では、 resize() メソッドを使用することはできません。エラーが投げられます。</p>
+<p>CPUからアクセス可能なメモリ―つまり CPU, SVM メモリでは、新規にサイズ変更された配列は、その配列の要素をその要素のディフォルトコンストラクタに使用し初期化する。（例： Vec3() コンストラクタによる初期化）GPUメモリでは、新規にサイズ変更された配列では、ゼロに初期化される。これは、CPUとGPUでの配列の動作の違いを示すものとして、極めて重要な差異となります。</p>
 <div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
 <span class="cm">** Example: The resize() method</span>
 <span class="cm">*/</span>
@@ -208,7 +212,7 @@
 </div>
 <div class="section" id="the-copyto-array-method">
 <h3><a class="toc-backref" href="#id9">The copyTo() Array Method</a><a class="headerlink" href="#the-copyto-array-method" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>The copyTo() method can be used to transfer data between arrays, regardless of where their memory is located. The method will resize the destination array to be of the same size as the source array. Memory location for the destination array will remain unchanged.</p>
+<p>copyTo() メソッドは、メモリ確保先に関係なく配列間でデータを転送に使用することができます。このメソッドは、転送先配列を転送元配列と同じサイズになるようリサイズします。転送先配列のメモリ確保先は不変なママです。</p>
 <div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
 <span class="cm">** Example: The copyTo() method</span>
 <span class="cm">*/</span>
@@ -233,8 +237,8 @@
 </div>
 <div class="section" id="parameter-passing">
 <h2><a class="toc-backref" href="#id10">Parameter Passing</a><a class="headerlink" href="#parameter-passing" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Parameters to a KL GPU operator can be of any supported type and as with any normal KL operator they can be passed as <code class="docutils literal"><span class="pre">in</span></code> (the default) or <code class="docutils literal"><span class="pre">io</span></code> parameters. Shallow type parameters (such as an <code class="docutils literal"><span class="pre">Integer</span></code> or a <code class="docutils literal"><span class="pre">struct</span></code>) will have their values copied to and from the GPU before and after each parallel operator invocation. Variable Arrays on the other hand will only have a pointer to their values passed into the operator. The backing memory for the Variable Array elements must live in memory accessible to the target device.</p>
-<p>In <code class="docutils literal"><span class="pre">guarded</span></code> mode, KL will perform checks on Variable Array parameters to ensure that their backing memory currently lives in an accessible memory space. If not a KL exception will be thrown to inform the user. As an example, the following KL code:</p>
+<p>KLのGPUオペレータへのパラメータは、サポートされている全ての型を、通常のKLオペレータ同様、<code class="docutils literal"><span class="pre">in</span></code> （ディフォルト）あるいは <code class="docutils literal"><span class="pre">io</span></code> として受け渡すことができます。例えば、 <code class="docutils literal"><span class="pre">Integer</span></code> や <code class="docutils literal"><span class="pre">struct</span></code> のような shallow type では、各並列実行の呼び出し毎にGPUへの入出力に値のコピーが行われます。一方可変長配列では、オペレータへの受け渡しには、ただ値のポインターを使用するだけとなります。可変長配列の要素のメモリ確保先は、ターゲットとなるデバイス上からアクセス可能な場所に存在する必要があります。</p>
+<p><code class="docutils literal"><span class="pre">guarded</span></code> モードでは KL は可変長配列パラメータの確保先が、メモリ空間からアクセス可能であるか確認します。もし不可能であれば、そのことをユーザに例外の送信を通じてしらせます。例えば、以下のKLコードのように：</p>
 <div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
 <span class="cm">** Example: GPU Compute - Memory</span>
 <span class="cm">*/</span>
@@ -249,12 +253,12 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Will result in the error message:</p>
+<p>これはエラーメッセージに：</p>
 <div class="highlight-none"><div class="highlight"><pre>Error: input: data not available in GPU memory
 </pre></div>
 </div>
-<p>Adding a <code class="docutils literal"><span class="pre">convertToGPU()</span></code> or <code class="docutils literal"><span class="pre">convertToSVM()</span></code> method call to the <code class="docutils literal"><span class="pre">input</span></code> and <code class="docutils literal"><span class="pre">output</span></code> parameters will resolve the error, as seen in the <a class="reference internal" href="#gpupg-example"><span>KL Example</span></a>.</p>
-<p>In <code class="docutils literal"><span class="pre">unguarded</span></code> mode KL code that uses device and CPU memory incorrectly will crash.</p>
+<p>付け加えると、 <code class="docutils literal"><span class="pre">input</span></code> や <code class="docutils literal"><span class="pre">output</span></code> を <code class="docutils literal"><span class="pre">convertToGPU()</span></code> や <code class="docutils literal"><span class="pre">convertToSVM()</span></code> メソッドを呼びこのエラーを解決することができます <a class="reference internal" href="#gpupg-example"><span>KL Example</span></a> を参照してください。</p>
+<p><code class="docutils literal"><span class="pre">unguarded</span></code> モードでは、デバイスや、CPUメモリを正しく使わないとクラッシュを引き起こします。</p>
 </div>
 </div>
 
@@ -272,11 +276,11 @@
 <li><a class="reference internal" href="#">GPU Compute プログラミングガイド</a><ul>
 <li><a class="reference internal" href="#kl-example">KL Example</a></li>
 <li><a class="reference internal" href="#invoking-a-gpu-operator">GPU Operator の呼び出し</a></li>
-<li><a class="reference internal" href="#type-support">Type Support</a></li>
-<li><a class="reference internal" href="#memory-management">Memory Management</a><ul>
-<li><a class="reference internal" href="#changing-memory-backing">Changing Memory Backing</a></li>
+<li><a class="reference internal" href="#type-support">型のサポート</a></li>
+<li><a class="reference internal" href="#memory-management">Memory マネジメント</a><ul>
+<li><a class="reference internal" href="#changing-memory-backing">Memory 確保先の変更</a></li>
 <li><a class="reference internal" href="#gl-binding">GL Binding</a></li>
-<li><a class="reference internal" href="#determining-array-memory-location">Determining Array Memory Location</a></li>
+<li><a class="reference internal" href="#determining-array-memory-location">Array Memory の確保先の決定</a></li>
 <li><a class="reference internal" href="#memory-and-resizing-arrays">Memory and Resizing Arrays</a></li>
 <li><a class="reference internal" href="#the-copyto-array-method">The copyTo() Array Method</a></li>
 </ul>
