@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Canvas inside of Maya &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    <title>Maya内部のCanvas &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
     
     <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -44,16 +44,16 @@
           <div class="body" role="main">
             
   <div class="section" id="canvas-inside-of-maya">
-<span id="fabricformaya-canvas"></span><h1>Canvas inside of Maya<a class="headerlink" href="#canvas-inside-of-maya" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<span id="fabricformaya-canvas"></span><h1>Maya内部のCanvas<a class="headerlink" href="#canvas-inside-of-maya" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <img alt="../../_images/userguide_29.jpg" src="../../_images/userguide_29.jpg" />
 <div class="section" id="the-canvasnode">
-<h2>The CanvasNode<a class="headerlink" href="#the-canvasnode" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Canvas is integrated inside of maya as a maya hypergraph node. You can instantiate the canvasNode in the node editor hitting <em class="dfn">TAB</em> and typing <em class="dfn">canvas</em> or through the Fabric top level menu and choosing <em class="dfn">Create graph</em>. You can then open up the Canvas user interface through the <em class="dfn">Open Canvas</em> button on the Maya Attribute editor.</p>
+<h2>CanvasNode<a class="headerlink" href="#the-canvasnode" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>CanvasはMayaのハイパーグラフノードのように、Maya内部に統合されています。あなたはノードエディターで、 <em class="dfn">TAB</em> キーを押して、 <em class="dfn">canvas</em> とタイプするか、Fabricトップレベルメニューから <em class="dfn">Create graph</em> を選ぶことで、CanvasNodeを作成することができます。さらに、Mayaのアトリビュートエディターの <em class="dfn">Open Canvas</em> ボタンを押すことで、Canvasユーザーインターフェース開くことができます。</p>
 <img alt="../../_images/userguide_30.jpg" src="../../_images/userguide_30.jpg" />
 </div>
 <div class="section" id="adding-ports-attributes">
-<h2>Adding ports / attributes<a class="headerlink" href="#adding-ports-attributes" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>The CanvasNode inside of Maya doesn&#8217;t come with any attributes by default. It&#8217;s so to say a generic node for any purpose. After opening up the Canvas user interface you can expose ports the normal way. Doing that will also add matching attributes to the Maya node, which allow you to connect data between the two worlds. The supported data types are;</p>
+<h2>ポートまたはアトリビュートの追加<a class="headerlink" href="#adding-ports-attributes" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Maya内部のCanvasNodeは標準では何のアトリビュートも持ちません。そのため、任意の目的のための汎用的なノードといえるのです。Canvasユーザーインターフェースを開いた後で、あなたは通常の方法でポートを解放することができます。そうすることは、Mayaノードに対応するアトリビュートを加えることにもなります。それによって、あなたは２つの世界の間とデータをつなぐことができるのです。サポートされているデータ型は;</p>
 <blockquote>
 <div><ul class="simple">
 <li>Boolean</li>
@@ -68,53 +68,55 @@
 <li>PolygonMesh</li>
 </ul>
 </div></blockquote>
-<p>When using the dialog to create a port there are a couple of extra features within Maya.</p>
+<p>ポートを作成するためのダイアログを使っているとき、Mayaにおいてはいくつかの拡張機能があります。</p>
 <img alt="../../_images/userguide_31.jpg" src="../../_images/userguide_31.jpg" />
 </div>
 <div class="section" id="native-vs-multi-arrays">
-<h2>Native vs. multi arrays<a class="headerlink" href="#native-vs-multi-arrays" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Maya supports two types of arrays</p>
+<h2>ネイティブ対マルチ配列(multi arrays)<a class="headerlink" href="#native-vs-multi-arrays" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Mayaは２つのタイプの配列をサポートしています。</p>
 <blockquote>
 <div><ul class="simple">
-<li>Native: Maya has a way of representing a IntArray, DoubleArray or VectorArray as a single attribute. This is very efficient for large arrays and is much faster than using multi arrays.</li>
-<li>Multi: Each element of the array has its own single plug, you can connect them to different things in the hyper graph and you can build up arrays interactively. This is very flexible, but much slower than native arrays.</li>
+<li><p class="first">ネイティブ：MayaはIntArray, DoubleArray, またはVectorArrayを単一のアトリビュートとして表現する手段を持っています。これは大きな配列を扱う際は非常に効率的で、マルチ配列を使うよりもずっと高速です。</p>
+</li>
+<li><p class="first">マルチ：配列の各要素が各々の単一のプラグを持っています。あなたはそれらをハイパーグラフの異なるものに繋げることができ、配列を対話的に構築することができます。これはとても柔軟性がありますが、ネイティブ配列よりもずっと低速です。</p>
+</li>
 </ul>
 </div></blockquote>
-<p>Within Canvas you can choose which type of array you want - depending on your needs.</p>
+<p>Canvas内部では、（あなたが何を必要とするかによりますが）あなたが望む型の配列を選ぶことができます。</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p class="last">Native arrays are only support for these types: <code class="code docutils literal"><span class="pre">Scalar[]</span></code>, <code class="code docutils literal"><span class="pre">Float32[]</span></code>, <code class="code docutils literal"><span class="pre">Integer[]</span></code>, <code class="code docutils literal"><span class="pre">SInt32[]</span></code>, <code class="code docutils literal"><span class="pre">Vec3[]</span></code>.</p>
+<p class="last">ネイティブ配列は次の型のみサポートしています： <code class="code docutils literal"><span class="pre">Scalar[]</span></code>、 <code class="code docutils literal"><span class="pre">Float32[]</span></code>、 <code class="code docutils literal"><span class="pre">Integer[]</span></code>、 <code class="code docutils literal"><span class="pre">SInt32[]</span></code>、 <code class="code docutils literal"><span class="pre">Vec3[]</span></code>。</p>
 </div>
 </div>
 <div class="section" id="opaque-data">
-<h2>Opaque data<a class="headerlink" href="#opaque-data" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>By checking the <em class="dfn">opaque in DCC</em> checkbox causes Maya to use a special data type for the Maya attribute instead of reflecting it as a native type. These attributes can be connected between each other (from one Maya node to the next) without Maya interpreting the data. This is very useful when passing heavy data around which you don&#8217;t need access to outside of Canvas, but you still want to pass it between Maya nodes. This is also very useful for passing data between Canvas Maya nodes which Maya is not able to reflect at all (for example a custom KL datastructure).</p>
+<h2>不透明なデータ<a class="headerlink" href="#opaque-data" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><em class="dfn">opaque in DCC</em> チェックボックスをオンにすることにより、Mayaは特別なデータ型を、（ネイティブ型として表現することなく）Mayaアトリビュートとして使うことができるようになります。これらのアトリビュートはお互いに接続することができます（例えば、あるMayaノードから隣のMayaノードへ）。Mayaはその接続間のデータを解釈することはしません。これは、あなたがCanvasの外ではアクセスする必要を感じていないものの、しかしそのデータをMayaノード間で渡したいと思っている場合にとても便利です。また、これは、（例えばカスタムのKLデータ構造など）Mayaがまったく表現できないCanvas Mayaノード間でデータを渡すためにも、とても便利なのです。</p>
 </div>
 <div class="section" id="port-metadata">
-<h2>Port metadata<a class="headerlink" href="#port-metadata" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>To drive some of the user interface features you can set metadata on the port. This will be picked up by Maya when creating attribute. Open the meta data section of the dialog when creating a port. Right now Maya supports only the <em class="dfn">range</em> settings.</p>
+<h2>ポートのメタデータ<a class="headerlink" href="#port-metadata" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ユーザーインターフェース機能のいくつかを使うために、あなたはポートに対してメタデータを設定できます。このメタデータは、アトリビュートを作成するときに、Mayaによって取得されます。ポートを作成するときのダイアログのメタデータセクションを開いてください。現時点では、Mayaは <em class="dfn">range</em> 設定のみサポートしています。</p>
 <img alt="../../_images/userguide_32.jpg" src="../../_images/userguide_32.jpg" />
 </div>
 <div class="section" id="loading-saving-of-canvas-graphs">
-<h2>Loading / saving of Canvas graphs<a class="headerlink" href="#loading-saving-of-canvas-graphs" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>You can save out Canvas graphs from Maya to disk and also load them back. To do this select the Canvas Maya node of choice and pick <em class="dfn">Load graph</em> or <em class="dfn">Save graph</em>.</p>
+<h2>Canvasグラフのロードとセーブ<a class="headerlink" href="#loading-saving-of-canvas-graphs" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>あなたはCanvasグラフをMayaからディスクにセーブし、またそれらをロードし直すことができます。これをするためには、Canvas Mayaノードを選択し、 <em class="dfn">Load graph</em> または <em class="dfn">Save graph</em> を実行します。</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p class="last">You can only load graphs into a Canvas Maya node which is empty.</p>
+<p class="last">あなたがグラフをロードできるのは、空のCanvas Mayaノードに対してだけです。</p>
 </div>
 </div>
 <div class="section" id="realtime-rendering">
-<h2>Realtime Rendering<a class="headerlink" href="#realtime-rendering" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>You can draw into Maya&#8217;s viewport directly from Canvas. For this you can use the <em class="dfn">EmptyDrawingHandle</em> node and consecutive nodes such as <em class="dfn">DrawingHandle.DrawPolygonMesh</em>. Please see the <code class="code docutils literal"><span class="pre">InlineDrawing</span></code> Canvas sample scenes for examples of this.</p>
+<h2>リアルタイムレンダリング<a class="headerlink" href="#realtime-rendering" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>あなたはCanvasから直接Mayaのビューポートに描画することができます。そのためには、 <em class="dfn">EmptyDrawingHandle</em> と、それに連続させることのできる ―例え <em class="dfn">DrawingHandle.DrawPolygonMesh のような― ノード群を使用します。これの例として、 :code:`InlineDrawing</em> Canvasサンプルシーンを見てください。</p>
 <img alt="../../_images/userguide_33.jpg" src="../../_images/userguide_33.jpg" />
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p class="last">You need to provide a proper name (for the name port) for each of the drawing nodes when using multiple nodes consecutively.</p>
+<p class="last">複数のノードを連続して（カスケードして）使うときには、各描画ノードに対して、（ <cite>name</cite> ポートに）適切な名前を設定する必要があります。</p>
 </div>
 </div>
 <div class="section" id="keyboard-shortcuts">
-<h2>Keyboard shortcuts<a class="headerlink" href="#keyboard-shortcuts" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Canvas for Maya implements all standard <a class="reference internal" href="../../CanvasUserGuide/shortcuts.html#canvas-user-guide-shortcuts"><span>キーボードショートカット</span></a>.</p>
+<h2>キーボードショートカット<a class="headerlink" href="#keyboard-shortcuts" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Maya向けのCanvasでは、全ての標準的な <a class="reference internal" href="../../CanvasUserGuide/shortcuts.html#canvas-user-guide-shortcuts"><span>キーボードショートカット</span></a> を実装しています。</p>
 </div>
 </div>
 
@@ -129,15 +131,15 @@
             </a></p>
   <h3><a href="../../index.html">目次</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Canvas inside of Maya</a><ul>
-<li><a class="reference internal" href="#the-canvasnode">The CanvasNode</a></li>
-<li><a class="reference internal" href="#adding-ports-attributes">Adding ports / attributes</a></li>
-<li><a class="reference internal" href="#native-vs-multi-arrays">Native vs. multi arrays</a></li>
-<li><a class="reference internal" href="#opaque-data">Opaque data</a></li>
-<li><a class="reference internal" href="#port-metadata">Port metadata</a></li>
-<li><a class="reference internal" href="#loading-saving-of-canvas-graphs">Loading / saving of Canvas graphs</a></li>
-<li><a class="reference internal" href="#realtime-rendering">Realtime Rendering</a></li>
-<li><a class="reference internal" href="#keyboard-shortcuts">Keyboard shortcuts</a></li>
+<li><a class="reference internal" href="#">Maya内部のCanvas</a><ul>
+<li><a class="reference internal" href="#the-canvasnode">CanvasNode</a></li>
+<li><a class="reference internal" href="#adding-ports-attributes">ポートまたはアトリビュートの追加</a></li>
+<li><a class="reference internal" href="#native-vs-multi-arrays">ネイティブ対マルチ配列(multi arrays)</a></li>
+<li><a class="reference internal" href="#opaque-data">不透明なデータ</a></li>
+<li><a class="reference internal" href="#port-metadata">ポートのメタデータ</a></li>
+<li><a class="reference internal" href="#loading-saving-of-canvas-graphs">Canvasグラフのロードとセーブ</a></li>
+<li><a class="reference internal" href="#realtime-rendering">リアルタイムレンダリング</a></li>
+<li><a class="reference internal" href="#keyboard-shortcuts">キーボードショートカット</a></li>
 </ul>
 </li>
 </ul>

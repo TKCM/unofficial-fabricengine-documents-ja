@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Canvas scripting interface &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    <title>Canvasスクリプティング・インターフェース &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
     
     <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -44,9 +44,9 @@
           <div class="body" role="main">
             
   <div class="section" id="canvas-scripting-interface">
-<span id="fabricformaya-canvasscripting"></span><h1>Canvas scripting interface<a class="headerlink" href="#canvas-scripting-interface" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>Fabric for Maya comes with a rich scripting interface which allows you to author graphs from MEL. Script commands are logged automatically when working with the UI, so most of the time you won&#8217;t need the reference below. You can just perform the work interactively and investigate the logged script steps.</p>
-<p>For example this was copied out of the Maya script editor for creating a small graph:</p>
+<span id="fabricformaya-canvasscripting"></span><h1>Canvasスクリプティング・インターフェース<a class="headerlink" href="#canvas-scripting-interface" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Fabric for Mayaは、リッチなスクリプティング・インターフェースを持っており、これによりあなたはMELからグラフを作ることできます。スクリプトコマンドがUIをともなって動作する時、自動的にロギングが行われます。そのため、ほとんどの時間、あなたは下を見る必要はないでしょう。あなたは、ただ仕事を対話的に行い、ログに出されたスクリプトのステップを調べればよいのです。</p>
+<p>例えば、これは小さなグラフを作る際にMayaのスクリプトエディターに出力される内容をコピーしたものです。</p>
 <div class="highlight-kl"><div class="highlight"><pre><span class="nx">FabricCanvasInstPreset</span> <span class="o">-</span><span class="nx">m</span> <span class="s2">&quot;canvasNode1&quot;</span> <span class="o">-</span><span class="nx">e</span> <span class="s2">&quot;&quot;</span> <span class="o">-</span><span class="nx">p</span> <span class="s2">&quot;Fabric.Exts.Math.Vec3.Vec3&quot;</span> <span class="o">-</span><span class="nx">x</span> <span class="s2">&quot;345&quot;</span> <span class="o">-</span><span class="nx">y</span> <span class="s2">&quot;85&quot;</span><span class="p">;</span>
 <span class="nx">FabricCanvasAddPort</span> <span class="o">-</span><span class="nx">m</span> <span class="s2">&quot;canvasNode1&quot;</span> <span class="o">-</span><span class="nx">e</span> <span class="s2">&quot;&quot;</span> <span class="o">-</span><span class="nx">d</span> <span class="s2">&quot;x&quot;</span> <span class="o">-</span><span class="nx">p</span> <span class="s2">&quot;In&quot;</span> <span class="o">-</span><span class="nx">t</span> <span class="s2">&quot;Scalar&quot;</span> <span class="o">-</span><span class="nx">c</span> <span class="s2">&quot;Vec3.x&quot;</span><span class="p">;</span>
 <span class="nx">FabricCanvasAddPort</span> <span class="o">-</span><span class="nx">m</span> <span class="s2">&quot;canvasNode1&quot;</span> <span class="o">-</span><span class="nx">e</span> <span class="s2">&quot;&quot;</span> <span class="o">-</span><span class="nx">d</span> <span class="s2">&quot;y&quot;</span> <span class="o">-</span><span class="nx">p</span> <span class="s2">&quot;In&quot;</span> <span class="o">-</span><span class="nx">t</span> <span class="s2">&quot;Scalar&quot;</span> <span class="o">-</span><span class="nx">c</span> <span class="s2">&quot;Vec3.y&quot;</span><span class="p">;</span>
@@ -56,14 +56,19 @@
 </div>
 <div class="section" id="fabriccanvasaddbackdrop">
 <h2>FabricCanvasAddBackDrop<a class="headerlink" href="#fabriccanvasaddbackdrop" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Adds a new backdrop node to the Canvas graph.</p>
+<p>キャンバスグラフに新しい BackDropノードを加えます。</p>
 <blockquote>
 <div><ul class="simple">
-<li>-m, -mayaNode: The name of the Canvas maya node</li>
-<li>-e, -execPath: The path of the node inside of Canvas to operate on</li>
-<li>-x, -xPos: The x coordinate for placing the new node</li>
-<li>-y, -yPos: The y coordinate for placing the new node</li>
-<li>-t, -title: The name of the new node</li>
+<li><p class="first">-m, -mayaNode: Canvas maya ノードの名前</p>
+</li>
+<li><p class="first">-e, -execPath: 操作の対象となるCanvas内のノードのパス</p>
+</li>
+<li><p class="first">-x, -xPos: 新しいノードを配置するx座標</p>
+</li>
+<li><p class="first">-y, -yPos: 新しいノードを配置するy座標</p>
+</li>
+<li><p class="first">-t, -title: 新しいノードの名前</p>
+</li>
 </ul>
 </div></blockquote>
 <div class="highlight-KL"><div class="highlight"><pre>FabricCanvasAddBackDrop -m &quot;canvasNode1&quot; -e &quot;&quot; -t &quot;MathNodes&quot; -x &quot;265&quot; -y &quot;132&quot;;
@@ -72,15 +77,21 @@
 </div>
 <div class="section" id="fabriccanvasaddfunc">
 <h2>FabricCanvasAddFunc<a class="headerlink" href="#fabriccanvasaddfunc" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Adds a new KL function node to the Canvas graph.</p>
+<p>Canvasグラフに新しいKL関数グラフを追加します。</p>
 <blockquote>
 <div><ul class="simple">
-<li>-m, -mayaNode: The name of the Canvas maya node</li>
-<li>-e, -execPath: The path of the node inside of Canvas to operate on</li>
-<li>-x, -xPos: The x coordinate for placing the new node</li>
-<li>-y, -yPos: The y coordinate for placing the new node</li>
-<li>-t, -title: The name of the new node</li>
-<li>-c, -code: The KL code for the new node</li>
+<li><p class="first">-m, -mayaNode: Canvas maya ノードの名前</p>
+</li>
+<li><p class="first">-e, -execPath: 操作の対象となるCanvas内のノードのパス</p>
+</li>
+<li><p class="first">-x, -xPos: 新しいノードを配置するx座標</p>
+</li>
+<li><p class="first">-y, -yPos: 新しいノードを配置するy座標</p>
+</li>
+<li><p class="first">-t, -title: 新しいノードの名前</p>
+</li>
+<li><p class="first">-c, -code: 新しいノードに対するKLコード</p>
+</li>
 </ul>
 </div></blockquote>
 <div class="highlight-KL"><div class="highlight"><pre>FabricCanvasAddFunc -m &quot;canvasNode1&quot; -e &quot;&quot; -t &quot;func&quot; -c &quot;dfgEntry {\n  // result = a + b;\n}\n&quot; -x &quot;549&quot; -y &quot;63&quot;;
@@ -89,15 +100,21 @@
 </div>
 <div class="section" id="fabriccanvasaddget">
 <h2>FabricCanvasAddGet<a class="headerlink" href="#fabriccanvasaddget" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Adds a new variable getter node to the Canvas graph.</p>
+<p>Canvasグラフに新しい変数のgetterノードを追加します。</p>
 <blockquote>
 <div><ul class="simple">
-<li>-m, -mayaNode: The name of the Canvas maya node</li>
-<li>-e, -execPath: The path of the node inside of Canvas to operate on</li>
-<li>-x, -xPos: The x coordinate for placing the new node</li>
-<li>-y, -yPos: The y coordinate for placing the new node</li>
-<li>-d, -desiredNodeName: The desired name for the new node</li>
-<li>-p, -varPath: The path to the variable</li>
+<li><p class="first">-m, -mayaNode: Canvas maya ノードの名前</p>
+</li>
+<li><p class="first">-e, -execPath: 操作の対象となるCanvas内のノードのパス</p>
+</li>
+<li><p class="first">-x, -xPos: 新しいノードを配置するx座標</p>
+</li>
+<li><p class="first">-y, -yPos: 新しいノードを配置するy座標</p>
+</li>
+<li><p class="first">-d, -desiredNodeName: 新しいノードにつける任意の名前</p>
+</li>
+<li><p class="first">-p, -varPath: 変数のパス</p>
+</li>
 </ul>
 </div></blockquote>
 <div class="highlight-KL"><div class="highlight"><pre>FabricCanvasAddGet -m &quot;canvasNode1&quot; -e &quot;&quot; -d &quot;get&quot; -p &quot;factor&quot; -x &quot;293&quot; -y &quot;370&quot;;
@@ -106,14 +123,19 @@
 </div>
 <div class="section" id="fabriccanvasaddgraph">
 <h2>FabricCanvasAddGraph<a class="headerlink" href="#fabriccanvasaddgraph" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Adds a new sub graph node to the Canvas graph.</p>
+<p>Canvasグラフに新しいサブグラフノードを追加します。</p>
 <blockquote>
 <div><ul class="simple">
-<li>-m, -mayaNode: The name of the Canvas maya node</li>
-<li>-e, -execPath: The path of the node inside of Canvas to operate on</li>
-<li>-x, -xPos: The x coordinate for placing the new node</li>
-<li>-y, -yPos: The y coordinate for placing the new node</li>
-<li>-t, -title: The name of the new graph</li>
+<li><p class="first">-m, -mayaNode: Canvas maya ノードの名前</p>
+</li>
+<li><p class="first">-e, -execPath: 操作の対象となるCanvas内のノードのパス</p>
+</li>
+<li><p class="first">-x, -xPos: 新しいノードを配置するx座標</p>
+</li>
+<li><p class="first">-y, -yPos: 新しいノードを配置するy座標</p>
+</li>
+<li><p class="first">-t, -title: 新しいグラフの名前</p>
+</li>
 </ul>
 </div></blockquote>
 <div class="highlight-KL"><div class="highlight"><pre>FabricCanvasAddGraph -m &quot;canvasNode1&quot; -e &quot;&quot; -t &quot;MySubGraph&quot; -x &quot;265&quot; -y &quot;132&quot;;
@@ -122,15 +144,21 @@
 </div>
 <div class="section" id="fabriccanvasaddport">
 <h2>FabricCanvasAddPort<a class="headerlink" href="#fabriccanvasaddport" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Adds a new port to a given node.</p>
+<p>与えられたグラフに新しいポートを追加します。</p>
 <blockquote>
 <div><ul class="simple">
-<li>-d, -desiredPortName: The desired name of the new port</li>
-<li>-p, -portType: The type, can be &#8220;In&#8221;, &#8220;Out&#8221; or &#8220;IO&#8221;</li>
-<li>-t, -typeSpec: The data type for the new port</li>
-<li>-c, -connectToPortPath: An optional argument to describe it&#8217;s initial connection</li>
-<li>-xd, -extDep: An optional extension dependency for the port</li>
-<li>-ui, -uiMetadata: Additional metadata, for example UI ranges or combo lists</li>
+<li><p class="first">-d, -desiredPortName: 新しいポートにつける任意の名前</p>
+</li>
+<li><p class="first">-p, -portType: ポートの型。 &#8220;In&#8221;, &#8220;Out&#8221; or &#8220;IO&#8221; のいずれか。</p>
+</li>
+<li><p class="first">-t, -typeSpec: 新しいポートのデータ型</p>
+</li>
+<li><p class="first">-c, -connectToPortPath: ポートの初期接続を説明するためのオプションの引数</p>
+</li>
+<li><p class="first">-xd, -extDep: ポートのオプションの依存エクステンション</p>
+</li>
+<li><p class="first">-ui, -uiMetadata: 追加のメタデータ。例えばUIの範囲やコンボリストなど。</p>
+</li>
 </ul>
 </div></blockquote>
 <div class="highlight-KL"><div class="highlight"><pre>FabricCanvasAddPort -m &quot;canvasNode1&quot; -e &quot;&quot; -d &quot;factor&quot; -p &quot;In&quot; -t &quot;Float32&quot;;
@@ -139,15 +167,21 @@
 </div>
 <div class="section" id="fabriccanvasaddset">
 <h2>FabricCanvasAddSet<a class="headerlink" href="#fabriccanvasaddset" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Adds a new variable setter node to the Canvas graph.</p>
+<p>Canvasグラフに新しい変数のsetterノードを追加します。</p>
 <blockquote>
 <div><ul class="simple">
-<li>-m, -mayaNode: The name of the Canvas maya node</li>
-<li>-e, -execPath: The path of the node inside of Canvas to operate on</li>
-<li>-x, -xPos: The x coordinate for placing the new node</li>
-<li>-y, -yPos: The y coordinate for placing the new node</li>
-<li>-d, -desiredNodeName: The desired name for the new node</li>
-<li>-p, -varPath: The path to the variable</li>
+<li><p class="first">-m, -mayaNode: Canvas maya ノードの名前</p>
+</li>
+<li><p class="first">-e, -execPath: 操作の対象となるCanvas内のノードのパス</p>
+</li>
+<li><p class="first">-x, -xPos: 新しいノードを配置するx座標</p>
+</li>
+<li><p class="first">-y, -yPos: 新しいノードを配置するy座標</p>
+</li>
+<li><p class="first">-d, -desiredNodeName: 新しいノードにつける任意の名前</p>
+</li>
+<li><p class="first">-p, -varPath: 変数のパス</p>
+</li>
 </ul>
 </div></blockquote>
 <div class="highlight-KL"><div class="highlight"><pre>FabricCanvasAddSet -m &quot;canvasNode1&quot; -e &quot;&quot; -d &quot;get&quot; -p &quot;factor&quot; -x &quot;293&quot; -y &quot;370&quot;;
@@ -156,16 +190,23 @@
 </div>
 <div class="section" id="fabriccanvasaddvar">
 <h2>FabricCanvasAddVar<a class="headerlink" href="#fabriccanvasaddvar" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Adds a new variable node to the Canvas graph.</p>
+<p>Canvasグラフに新しい変数ノードを追加します。</p>
 <blockquote>
 <div><ul class="simple">
-<li>-m, -mayaNode: The name of the Canvas maya node</li>
-<li>-e, -execPath: The path of the node inside of Canvas to operate on</li>
-<li>-x, -xPos: The x coordinate for placing the new node</li>
-<li>-y, -yPos: The y coordinate for placing the new node</li>
-<li>-d, -desiredNodeName: The desired name for the new variable</li>
-<li>-t, -type: The data type for the variable</li>
-<li>-xd, -extDep: An [optional] extension dependency</li>
+<li><p class="first">-m, -mayaNode: Canvas maya ノードの名前</p>
+</li>
+<li><p class="first">-e, -execPath: 操作の対象となるCanvas内のノードのパス</p>
+</li>
+<li><p class="first">-x, -xPos: 新しいノードを配置するx座標</p>
+</li>
+<li><p class="first">-y, -yPos: 新しいノードを配置するy座標</p>
+</li>
+<li><p class="first">-d, -desiredNodeName: 新しい変数につける任意の名前</p>
+</li>
+<li><p class="first">-t, -type: 変数のデータ型</p>
+</li>
+<li><p class="first">-xd, -extDep: （オプションの）依存エクステンション</p>
+</li>
 </ul>
 </div></blockquote>
 <div class="highlight-KL"><div class="highlight"><pre>FabricCanvasAddVar -m &quot;canvasNode1&quot; -e &quot;&quot; -d &quot;factor&quot; -t &quot;Float32&quot; -xd &quot;&quot; -x &quot;51&quot; -y &quot;64&quot;;
@@ -174,13 +215,17 @@
 </div>
 <div class="section" id="fabriccanvasconnect">
 <h2>FabricCanvasConnect<a class="headerlink" href="#fabriccanvasconnect" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Connects two pins / ports inside a Canvas graph.</p>
+<p>Canvasグラフ内の２つのピンまたはポートを接続します。</p>
 <blockquote>
 <div><ul class="simple">
-<li>-m, -mayaNode: The name of the Canvas maya node</li>
-<li>-e, -execPath: The path of the node inside of Canvas to operate on</li>
-<li>-s, -srcPortPath: The path to the source (left) port / pin</li>
-<li>-d, -dstPortPath: The path to the destination (left) port / pin</li>
+<li><p class="first">-m, -mayaNode: Canvas maya ノードの名前</p>
+</li>
+<li><p class="first">-e, -execPath: 操作の対象となるCanvas内のノードのパス</p>
+</li>
+<li><p class="first">-s, -srcPortPath: 接続元（左）のポート/ピンのパス</p>
+</li>
+<li><p class="first">-d, -dstPortPath: 接続先（左）のポート/ピンのパス</p>
+</li>
 </ul>
 </div></blockquote>
 <div class="highlight-KL"><div class="highlight"><pre>FabricCanvasConnect -m &quot;canvasNode1&quot; -e &quot;&quot; -s &quot;Scalar.value&quot; -d &quot;Vec3.z&quot;;
@@ -189,13 +234,17 @@
 </div>
 <div class="section" id="fabriccanvasdisconnect">
 <h2>FabricCanvasDisconnect<a class="headerlink" href="#fabriccanvasdisconnect" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Disconnects two pins / ports inside a Canvas graph.</p>
+<p>Canvasグラフ内の２つのピンまたはポート間の接続を解除します。</p>
 <blockquote>
 <div><ul class="simple">
-<li>-m, -mayaNode: The name of the Canvas maya node</li>
-<li>-e, -execPath: The path of the node inside of Canvas to operate on</li>
-<li>-s, -srcPortPath: The path to the source (left) port / pin</li>
-<li>-d, -dstPortPath: The path to the destination (left) port / pin</li>
+<li><p class="first">-m, -mayaNode: Canvas maya ノードの名前</p>
+</li>
+<li><p class="first">-e, -execPath: 操作の対象となるCanvas内のノードのパス</p>
+</li>
+<li><p class="first">-s, -srcPortPath: 接続元（左）のポート/ピンのパス</p>
+</li>
+<li><p class="first">-d, -dstPortPath: 接続先（左）のポート/ピンのパス</p>
+</li>
 </ul>
 </div></blockquote>
 <div class="highlight-KL"><div class="highlight"><pre>FabricCanvasDisconnect -m &quot;canvasNode1&quot; -e &quot;&quot; -s &quot;Scalar.value&quot; -d &quot;Vec3.z&quot;;
@@ -204,14 +253,19 @@
 </div>
 <div class="section" id="fabriccanvaseditport">
 <h2>FabricCanvasEditPort<a class="headerlink" href="#fabriccanvaseditport" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Disconnects two pins / ports inside a Canvas graph.</p>
+<p>Canvasグラフ内の２つのピンまたはポート間の接続を解除します。</p>
 <blockquote>
 <div><ul class="simple">
-<li>-n, -oldPortName: The old name of the port</li>
-<li>-d, -desiredNewPortName: The desired new name of the port</li>
-<li>-t, -typeSpec: The wanted datatype of the port</li>
-<li>-xd, -extDep: An additional extension dependency of the port</li>
-<li>-ui, -uiMetadata: Additional metadata, such as UI ranges and combos.</li>
+<li><p class="first">-n, -oldPortName: ポートの古い名前</p>
+</li>
+<li><p class="first">-d, -desiredNewPortName: ポートの任意の新しい名前</p>
+</li>
+<li><p class="first">-t, -typeSpec: ポートの期待されるデータ型</p>
+</li>
+<li><p class="first">-xd, -extDep: ポートの追加の依存エクステンション</p>
+</li>
+<li><p class="first">-ui, -uiMetadata: UIの範囲やコンボといった、追加のメタデータ。</p>
+</li>
 </ul>
 </div></blockquote>
 <div class="highlight-KL"><div class="highlight"><pre>FabricCanvasEditPort -m &quot;canvasNode1&quot; -e &quot;&quot; -n &quot;x&quot; -d &quot;factor&quot; -t &quot;Scalar&quot; -ui &quot;&quot;;
@@ -220,12 +274,15 @@
 </div>
 <div class="section" id="fabriccanvasexplodenode">
 <h2>FabricCanvasExplodeNode<a class="headerlink" href="#fabriccanvasexplodenode" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Explodes a sub graph node and moves all of the contains nodes into the parent graph.</p>
+<p>サブグラフノードを展開し、中に含まれる全てのノードを親のグラフに移動します。</p>
 <blockquote>
 <div><ul class="simple">
-<li>-m, -mayaNode: The name of the Canvas maya node</li>
-<li>-e, -execPath: The path of the node inside of Canvas to operate on</li>
-<li>-n, -nodeName: The name of the subgraph node to explode</li>
+<li><p class="first">-m, -mayaNode: Canvas maya ノードの名前</p>
+</li>
+<li><p class="first">-e, -execPath: 操作の対象となるCanvas内のノードのパス</p>
+</li>
+<li><p class="first">-n, -nodeName: 展開したいサブグラフノードの名前</p>
+</li>
 </ul>
 </div></blockquote>
 <div class="highlight-KL"><div class="highlight"><pre>FabricCanvasExplodeNode -m &quot;canvasNode1&quot; -e &quot;&quot; -n &quot;graph_2&quot;;
@@ -234,10 +291,11 @@
 </div>
 <div class="section" id="fabriccanvasgetcontextid">
 <h2>FabricCanvasGetContextID<a class="headerlink" href="#fabriccanvasgetcontextid" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Returns the FabricCore client contextID used by a specified Canvas Maya node. This is useful if you want to create a python FabricCore client, for example, to access the same data.</p>
+<p>指定されたCanvas Mayaノードで使われているFabricCoreクライアントのコンテキストIDを返します。これは例えば、あなたがPython FabricCoreクライアントを作成し、同じデータにアクセスしたい場合などに便利です。</p>
 <blockquote>
 <div><ul class="simple">
-<li>-n, -node: The name of the Canvas maya node</li>
+<li><p class="first">-n, -node: Canvas Mayaノードの名前</p>
+</li>
 </ul>
 </div></blockquote>
 <div class="highlight-kl"><div class="highlight"><pre><span class="nx">FabricCanvasGetContextID</span> <span class="o">-</span><span class="nx">n</span> <span class="s2">&quot;canvasNode1&quot;</span><span class="p">;</span>
@@ -247,10 +305,11 @@
 </div>
 <div class="section" id="fabriccanvasgetbindingid">
 <h2>FabricCanvasGetBindingID<a class="headerlink" href="#fabriccanvasgetbindingid" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Returns the ID of the FabricCore DFGBinding used by a specified Canvas Maya node. This is useful if you want to create a python FabricCore client, for example, to access the same data.</p>
+<p>指定されたCanvas Mayaノードで使われているFabricCore DFGBindingのIDを返します。これは例えば、あなたがPython FabricCoreクライアントを作成し、同じデータにアクセスしたい場合などに便利です。</p>
 <blockquote>
 <div><ul class="simple">
-<li>-n, -node: The name of the Canvas maya node</li>
+<li><p class="first">-n, -node: Canvas Mayaノードの名前</p>
+</li>
 </ul>
 </div></blockquote>
 <div class="highlight-kl"><div class="highlight"><pre><span class="nx">FabricCanvasGetBindingID</span> <span class="o">-</span><span class="nx">n</span> <span class="s2">&quot;canvasNode1&quot;</span><span class="p">;</span>
@@ -260,13 +319,17 @@
 </div>
 <div class="section" id="fabriccanvasimplodenodes">
 <h2>FabricCanvasImplodeNodes<a class="headerlink" href="#fabriccanvasimplodenodes" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Implodes a selection of nodes and create a new subgraph node containing them.</p>
+<p>選択されたノードを集め、それらを含む新しいサブグラフノードを作成します。</p>
 <blockquote>
 <div><ul class="simple">
-<li>-m, -mayaNode: The name of the Canvas maya node</li>
-<li>-e, -execPath: The path of the node inside of Canvas to operate on</li>
-<li>-n, -nodeName: The names of all of the nodes to implode. Separated by the pipe character.</li>
-<li>-d, -desiredNodeName: The desired name of the new subgraph node</li>
+<li><p class="first">-m, -mayaNode: Canvas maya ノードの名前</p>
+</li>
+<li><p class="first">-e, -execPath: 操作の対象となるCanvas内のノードのパス</p>
+</li>
+<li><p class="first">-n, -nodeName: 対象にしたいすべてのノードの名前。パイプ文字（|）で区切ります。</p>
+</li>
+<li><p class="first">-d, -desiredNodeName: 新しいサブグラフノードにつける任意の名前</p>
+</li>
 </ul>
 </div></blockquote>
 <div class="highlight-KL"><div class="highlight"><pre>FabricCanvasImplodeNodes -m &quot;canvasNode1&quot; -e &quot;&quot; -n &quot;Vec3|Scalar|Report&quot; -d &quot;implodedGraph&quot;;
@@ -275,14 +338,19 @@
 </div>
 <div class="section" id="fabriccanvasinstpreset">
 <h2>FabricCanvasInstPreset<a class="headerlink" href="#fabriccanvasinstpreset" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Creates a new node by instantiating an existing Canvas preset.</p>
+<p>既存のCanvasプリセットをインスタンス化し、それを使って新しいノードを作ります。</p>
 <blockquote>
 <div><ul class="simple">
-<li>-m, -mayaNode: The name of the Canvas maya node</li>
-<li>-e, -execPath: The path of the node inside of Canvas to operate on</li>
-<li>-x, -xPos: The x coordinate for placing the new node</li>
-<li>-y, -yPos: The y coordinate for placing the new node</li>
-<li>-p, -presetPath: The path for the preset to instantiate</li>
+<li><p class="first">-m, -mayaNode: Canvas maya ノードの名前</p>
+</li>
+<li><p class="first">-e, -execPath: 操作の対象となるCanvas内のノードのパス</p>
+</li>
+<li><p class="first">-x, -xPos: 新しいノードを配置するx座標</p>
+</li>
+<li><p class="first">-y, -yPos: 新しいノードを配置するy座標</p>
+</li>
+<li><p class="first">-p, -presetPath: インスタンス化するプリセットへのパス</p>
+</li>
 </ul>
 </div></blockquote>
 <div class="highlight-KL"><div class="highlight"><pre>FabricCanvasInstPreset -m &quot;canvasNode1&quot; -e &quot;&quot; -p &quot;Fabric.Exts.Math.Vec3.Vec3&quot; -x &quot;162&quot; -y &quot;62&quot;;
@@ -291,14 +359,19 @@
 </div>
 <div class="section" id="fabriccanvasmovenodes">
 <h2>FabricCanvasMoveNodes<a class="headerlink" href="#fabriccanvasmovenodes" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Moves a single or multiple nodes in the Canvas graph.</p>
+<p>Canvasグラフの中で、一つまたは複数のノードを移動します。</p>
 <blockquote>
 <div><ul class="simple">
-<li>-m, -mayaNode: The name of the Canvas maya node</li>
-<li>-e, -execPath: The path of the node inside of Canvas to operate on</li>
-<li>-n, -nodeName: The name(s) of the node(s) to move</li>
-<li>-x, -xPos: The x coordinate(s) for moving the node(s)</li>
-<li>-y, -yPos: The y coordinate(s) for moving the node(s)</li>
+<li><p class="first">-m, -mayaNode: Canvas maya ノードの名前</p>
+</li>
+<li><p class="first">-e, -execPath: 操作の対象となるCanvas内のノードのパス</p>
+</li>
+<li><p class="first">-n, -nodeName: 移動したいノードの名前</p>
+</li>
+<li><p class="first">-x, -xPos: 移動するノードのx座標</p>
+</li>
+<li><p class="first">-y, -yPos: 移動するノードのy座標</p>
+</li>
 </ul>
 </div></blockquote>
 <div class="highlight-KL"><div class="highlight"><pre>FabricCanvasMoveNodes -m &quot;canvasNode1&quot; -e &quot;&quot; -n &quot;Vec3_2&quot; -x &quot;215&quot; -y &quot;23&quot;;
@@ -308,14 +381,19 @@ FabricCanvasMoveNodes -m &quot;canvasNode1&quot; -e &quot;&quot; -n &quot;Scalar
 </div>
 <div class="section" id="fabriccanvaspaste">
 <h2>FabricCanvasPaste<a class="headerlink" href="#fabriccanvaspaste" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Creates nodes in the Canvas graph based on a JSON text</p>
+<p>JSONテキストを元に、Canvasグラフの中でノードを作ります。</p>
 <blockquote>
 <div><ul class="simple">
-<li>-m, -mayaNode: The name of the Canvas maya node</li>
-<li>-e, -execPath: The path of the node inside of Canvas to operate on</li>
-<li>-t, -text: The JSON content for the nodes to paste</li>
-<li>-x, -xPos: The x coordinate of the center of the freshly pasted nodes</li>
-<li>-y, -yPos: The y coordinate of the center of the freshly pasted nodes</li>
+<li><p class="first">-m, -mayaNode: Canvas maya ノードの名前</p>
+</li>
+<li><p class="first">-e, -execPath: 操作の対象となるCanvas内のノードのパス</p>
+</li>
+<li><p class="first">-t, -text: 新しく作成するノードのJSONの内容</p>
+</li>
+<li><p class="first">-x, -xPos: 新しく作成されるノードの中心のx座標</p>
+</li>
+<li><p class="first">-y, -yPos: 新しく作成されるノードの中心のy座標</p>
+</li>
 </ul>
 </div></blockquote>
 <div class="highlight-KL"><div class="highlight"><pre>FabricCanvasPaste -m &quot;canvasNode1&quot; -e &quot;&quot; -t &quot;{\n  \&quot;nodes\&quot; : [\n    {\n      \&quot;objectType\&quot; : \&quot;Inst\&quot;,\n      \&quot;name\&quot; : \&quot;func\&quot;,\n      \&quot;ports\&quot; : [],\n      \&quot;definition\&quot; : {\n        \&quot;objectType\&quot; : \&quot;Func\&quot;,\n        \&quot;title\&quot; : \&quot;func\&quot;,\n        \&quot;ports\&quot; : [],\n        \&quot;extDeps\&quot; : {},\n        \&quot;code\&quot; : \&quot;\&quot;\n        }\n      }\n    ],\n  \&quot;connections\&quot; : []\n  }&quot; -x &quot;680&quot; -y &quot;80&quot;;
@@ -324,12 +402,15 @@ FabricCanvasMoveNodes -m &quot;canvasNode1&quot; -e &quot;&quot; -n &quot;Scalar
 </div>
 <div class="section" id="fabriccanvasremovenodes">
 <h2>FabricCanvasRemoveNodes<a class="headerlink" href="#fabriccanvasremovenodes" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Removes a single or multiple nodes from the Canvas graph.</p>
+<p>Canvasグラフから一つまたは複数のノードを削除します。</p>
 <blockquote>
 <div><ul class="simple">
-<li>-m, -mayaNode: The name of the Canvas maya node</li>
-<li>-e, -execPath: The path of the node inside of Canvas to operate on</li>
-<li>-n, -nodeName: The name(s) of the node(s) to move</li>
+<li><p class="first">-m, -mayaNode: Canvas maya ノードの名前</p>
+</li>
+<li><p class="first">-e, -execPath: 操作の対象となるCanvas内のノードのパス</p>
+</li>
+<li><p class="first">-n, -nodeName: 移動したいノードの名前</p>
+</li>
 </ul>
 </div></blockquote>
 <div class="highlight-KL"><div class="highlight"><pre>FabricCanvasRemoveNodes -m &quot;canvasNode1&quot; -e &quot;&quot; -n &quot;Vec3&quot;;
@@ -339,12 +420,15 @@ FabricCanvasRemoveNodes -m &quot;canvasNode1&quot; -e &quot;&quot; -n &quot;Scal
 </div>
 <div class="section" id="fabriccanvasremoveport">
 <h2>FabricCanvasRemovePort<a class="headerlink" href="#fabriccanvasremoveport" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Removes a port from the Canvas graph.</p>
+<p>Canvasグラフからポートを削除します。</p>
 <blockquote>
 <div><ul class="simple">
-<li>-m, -mayaNode: The name of the Canvas maya node</li>
-<li>-e, -execPath: The path of the node inside of Canvas to operate on</li>
-<li>-n, -name: The name of the port to remove</li>
+<li><p class="first">-m, -mayaNode: Canvas maya ノードの名前</p>
+</li>
+<li><p class="first">-e, -execPath: 操作の対象となるCanvas内のノードのパス</p>
+</li>
+<li><p class="first">-n, -name: 削除したいポートの名前</p>
+</li>
 </ul>
 </div></blockquote>
 <div class="highlight-KL"><div class="highlight"><pre>FabricCanvasRemovePort -m &quot;canvasNode1&quot; -e &quot;&quot; -n &quot;factor&quot;;
@@ -353,13 +437,17 @@ FabricCanvasRemoveNodes -m &quot;canvasNode1&quot; -e &quot;&quot; -n &quot;Scal
 </div>
 <div class="section" id="fabriccanvasrenameport">
 <h2>FabricCanvasRenamePort<a class="headerlink" href="#fabriccanvasrenameport" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Renames a port in the Canvas graph.</p>
+<p>Canvasグラフのポートの名前を変更します。</p>
 <blockquote>
 <div><ul class="simple">
-<li>-m, -mayaNode: The name of the Canvas maya node</li>
-<li>-e, -execPath: The path of the node inside of Canvas to operate on</li>
-<li>-n, -name: The name of the port to rename</li>
-<li>-d, -desiredName: The desired new name for the port</li>
+<li><p class="first">-m, -mayaNode: Canvas maya ノードの名前</p>
+</li>
+<li><p class="first">-e, -execPath: 操作の対象となるCanvas内のノードのパス</p>
+</li>
+<li><p class="first">-n, -name: リネームしたいポートの変更前の名前</p>
+</li>
+<li><p class="first">-d, -desiredName: リネームしたいポートの新しい名前</p>
+</li>
 </ul>
 </div></blockquote>
 <div class="highlight-KL"><div class="highlight"><pre>FabricCanvasRenamePort -m &quot;canvasNode1&quot; -e &quot;&quot; -n &quot;factor&quot; -d &quot;strength&quot;;
@@ -368,12 +456,15 @@ FabricCanvasRemoveNodes -m &quot;canvasNode1&quot; -e &quot;&quot; -n &quot;Scal
 </div>
 <div class="section" id="fabriccanvasreorderports">
 <h2>FabricCanvasReorderPorts<a class="headerlink" href="#fabriccanvasreorderports" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Reorders the ports of a Canvas graph or sub graph</p>
+<p>Canvasグラフまたはサブグラフのポートの順番を変更します。</p>
 <blockquote>
 <div><ul class="simple">
-<li>-m, -mayaNode: The name of the Canvas maya node</li>
-<li>-e, -execPath: The path of the node inside of Canvas to operate on</li>
-<li>-i, -indices: The new index order for the ports</li>
+<li><p class="first">-m, -mayaNode: Canvas maya ノードの名前</p>
+</li>
+<li><p class="first">-e, -execPath: 操作の対象となるCanvas内のノードのパス</p>
+</li>
+<li><p class="first">-i, -indices: ポートの新しい順番のインデックス</p>
+</li>
 </ul>
 </div></blockquote>
 <div class="highlight-KL"><div class="highlight"><pre>FabricCanvasReorderPorts -m &quot;canvasNode1&quot; -e &quot;&quot; -i &quot;[1, 0, 2]&quot;;
@@ -382,15 +473,21 @@ FabricCanvasRemoveNodes -m &quot;canvasNode1&quot; -e &quot;&quot; -n &quot;Scal
 </div>
 <div class="section" id="fabriccanvasresizebackdrop">
 <h2>FabricCanvasResizeBackDrop<a class="headerlink" href="#fabriccanvasresizebackdrop" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Resizes a backdrop inside of a Canvas graph</p>
+<p>Canvasグラフ内部のBackDropをリサイズします。</p>
 <blockquote>
 <div><ul class="simple">
-<li>-m, -mayaNode: The name of the Canvas maya node</li>
-<li>-e, -execPath: The path of the node inside of Canvas to operate on</li>
-<li>-x, -xPos: The x coordinate for the backdrop</li>
-<li>-y, -yPos: The y coordinate for the backdrop</li>
-<li>-w, -width: The new width for the backdrop</li>
-<li>-h, -height: The new height for the backdrop</li>
+<li><p class="first">-m, -mayaNode: Canvas maya ノードの名前</p>
+</li>
+<li><p class="first">-e, -execPath: 操作の対象となるCanvas内のノードのパス</p>
+</li>
+<li><p class="first">-x, -xPos: BackDropのx座標</p>
+</li>
+<li><p class="first">-y, -yPos: BackDropのy座標</p>
+</li>
+<li><p class="first">-w, -width: BackDropの新しい幅</p>
+</li>
+<li><p class="first">-h, -height: BackDropの新しい高さ</p>
+</li>
 </ul>
 </div></blockquote>
 <div class="highlight-KL"><div class="highlight"><pre>FabricCanvasResizeBackDrop -m &quot;canvasNode1&quot; -e &quot;&quot; -n &quot;backdrop&quot; -x &quot;248&quot; -y &quot;280&quot; -w &quot;401&quot; -h &quot;131&quot;;
@@ -399,13 +496,17 @@ FabricCanvasRemoveNodes -m &quot;canvasNode1&quot; -e &quot;&quot; -n &quot;Scal
 </div>
 <div class="section" id="fabriccanvassetargtype">
 <h2>FabricCanvasSetArgType<a class="headerlink" href="#fabriccanvassetargtype" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Changes the data type for an argument of the Canvas graph.</p>
+<p>Canvasグラフの引数のデータ型を変更します。</p>
 <blockquote>
 <div><ul class="simple">
-<li>-m, -mayaNode: The name of the Canvas maya node</li>
-<li>-e, -execPath: The path of the node inside of Canvas to operate on</li>
-<li>-n, -name: The name of the argument</li>
-<li>-t, -type: The new data type for the argument</li>
+<li><p class="first">-m, -mayaNode: Canvas maya ノードの名前</p>
+</li>
+<li><p class="first">-e, -execPath: 操作の対象となるCanvas内のノードのパス</p>
+</li>
+<li><p class="first">-n, -name: 引数の名前</p>
+</li>
+<li><p class="first">-t, -type: 引数の新しいデータ型</p>
+</li>
 </ul>
 </div></blockquote>
 <div class="highlight-KL"><div class="highlight"><pre>FabricCanvasSetArgType -m &quot;canvasNode1&quot; -e &quot;&quot; -n &quot;factor&quot; -t &quot;Float32&quot;;
@@ -414,14 +515,19 @@ FabricCanvasRemoveNodes -m &quot;canvasNode1&quot; -e &quot;&quot; -n &quot;Scal
 </div>
 <div class="section" id="fabriccanvassetargvalue">
 <h2>FabricCanvasSetArgValue<a class="headerlink" href="#fabriccanvassetargvalue" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Sets the value of an argument in a Canvas graph.</p>
+<p>Canvasグラフ内の引数に値をセットします。</p>
 <blockquote>
 <div><ul class="simple">
-<li>-m, -mayaNode: The name of the Canvas maya node</li>
-<li>-e, -execPath: The path of the node inside of Canvas to operate on</li>
-<li>-n, -name: The name of the argument</li>
-<li>-t, -type: The new data type for the argument</li>
-<li>-v, -value: The JSON encoding the value</li>
+<li><p class="first">-m, -mayaNode: Canvas maya ノードの名前</p>
+</li>
+<li><p class="first">-e, -execPath: 操作の対象となるCanvas内のノードのパス</p>
+</li>
+<li><p class="first">-n, -name: 引数の名前</p>
+</li>
+<li><p class="first">-t, -type: 引数の新しいデータ型</p>
+</li>
+<li><p class="first">-v, -value: JSONエンコードされた値</p>
+</li>
 </ul>
 </div></blockquote>
 <div class="highlight-KL"><div class="highlight"><pre>FabricCanvasSetArgValue -m &quot;canvasNode1&quot; -e &quot;&quot; -p &quot;Vec3.x&quot; -t &quot;Float32&quot; -v &quot;1&quot;;
@@ -430,12 +536,15 @@ FabricCanvasRemoveNodes -m &quot;canvasNode1&quot; -e &quot;&quot; -n &quot;Scal
 </div>
 <div class="section" id="fabriccanvassetcode">
 <h2>FabricCanvasSetCode<a class="headerlink" href="#fabriccanvassetcode" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Sets the KL code for a KL function node inside a Canvas graph.</p>
+<p>Canvasグラフ内部のKL関数ノードにKLコードをセットします。</p>
 <blockquote>
 <div><ul class="simple">
-<li>-m, -mayaNode: The name of the Canvas maya node</li>
-<li>-e, -execPath: The path of the node inside of Canvas to operate on</li>
-<li>-c, -code: The new KL code for the KL function node</li>
+<li><p class="first">-m, -mayaNode: Canvas maya ノードの名前</p>
+</li>
+<li><p class="first">-e, -execPath: 操作の対象となるCanvas内のノードのパス</p>
+</li>
+<li><p class="first">-c, -code: KL関数ノードに対する新しいKLコード</p>
+</li>
 </ul>
 </div></blockquote>
 <div class="highlight-KL"><div class="highlight"><pre>FabricCanvasSetCode -m &quot;canvasNode1&quot; -e &quot;func&quot; -c &quot;dfgEntry {\n  //result = lhs + rhs;\n \n}\n&quot;;
@@ -444,12 +553,15 @@ FabricCanvasRemoveNodes -m &quot;canvasNode1&quot; -e &quot;&quot; -n &quot;Scal
 </div>
 <div class="section" id="fabriccanvassetextdeps">
 <h2>FabricCanvasSetExtDeps<a class="headerlink" href="#fabriccanvassetextdeps" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Sets the extension dependencies of a KL function node in a Canvas graph</p>
+<p>Canvasグラフ内のKL関数ノードに依存エクステンションをセットします</p>
 <blockquote>
 <div><ul class="simple">
-<li>-m, -mayaNode: The name of the Canvas maya node</li>
-<li>-e, -execPath: The path of the node inside of Canvas to operate on</li>
-<li>-xd, -extDep: The list of extension dependencies</li>
+<li><p class="first">-m, -mayaNode: Canvas maya ノードの名前</p>
+</li>
+<li><p class="first">-e, -execPath: 操作の対象となるCanvas内のノードのパス</p>
+</li>
+<li><p class="first">-xd, -extDep: 依存エクステンションのリスト</p>
+</li>
 </ul>
 </div></blockquote>
 <div class="highlight-KL"><div class="highlight"><pre>FabricCanvasSetExtDeps -m &quot;canvasNode1&quot; -e &quot;func&quot; -xd &quot;Math:*&quot;;
@@ -458,13 +570,17 @@ FabricCanvasRemoveNodes -m &quot;canvasNode1&quot; -e &quot;&quot; -n &quot;Scal
 </div>
 <div class="section" id="fabriccanvassetnodecomment">
 <h2>FabricCanvasSetNodeComment<a class="headerlink" href="#fabriccanvassetnodecomment" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Sets the content of a node comment in a Canvas graph</p>
+<p>Canvasグラフ内のノードにコメントをセットします。</p>
 <blockquote>
 <div><ul class="simple">
-<li>-m, -mayaNode: The name of the Canvas maya node</li>
-<li>-e, -execPath: The path of the node inside of Canvas to operate on</li>
-<li>-n, -nodeName: The name of the node</li>
-<li>-c, -comment: The text for the comment</li>
+<li><p class="first">-m, -mayaNode: Canvas maya ノードの名前</p>
+</li>
+<li><p class="first">-e, -execPath: 操作の対象となるCanvas内のノードのパス</p>
+</li>
+<li><p class="first">-n, -nodeName: ノードの名前</p>
+</li>
+<li><p class="first">-c, -comment: コメントのテキスト</p>
+</li>
 </ul>
 </div></blockquote>
 <div class="highlight-KL"><div class="highlight"><pre>FabricCanvasSetNodeComment -m &quot;canvasNode1&quot; -e &quot;&quot; -n &quot;Vec3&quot; -c &quot;My useful information&quot;;
@@ -473,13 +589,17 @@ FabricCanvasRemoveNodes -m &quot;canvasNode1&quot; -e &quot;&quot; -n &quot;Scal
 </div>
 <div class="section" id="fabriccanvassetnodetitle">
 <h2>FabricCanvasSetNodeTitle<a class="headerlink" href="#fabriccanvassetnodetitle" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Sets the title of a node in a Canvas graph</p>
+<p>Canvasグラフ内のノードのタイトルをセットします。</p>
 <blockquote>
 <div><ul class="simple">
-<li>-m, -mayaNode: The name of the Canvas maya node</li>
-<li>-e, -execPath: The path of the node inside of Canvas to operate on</li>
-<li>-n, -nodeName: The name of the node</li>
-<li>-t, -title: The new title for the node</li>
+<li><p class="first">-m, -mayaNode: Canvas maya ノードの名前</p>
+</li>
+<li><p class="first">-e, -execPath: 操作の対象となるCanvas内のノードのパス</p>
+</li>
+<li><p class="first">-n, -nodeName: ノードの名前</p>
+</li>
+<li><p class="first">-t, -title: ノードの新しいタイトル</p>
+</li>
 </ul>
 </div></blockquote>
 <div class="highlight-KL"><div class="highlight"><pre>FabricCanvasSetNodeTitle -m &quot;canvasNode1&quot; -e &quot;&quot; -n &quot;Vec3&quot; -t &quot;MyTitle&quot;;
@@ -488,14 +608,19 @@ FabricCanvasRemoveNodes -m &quot;canvasNode1&quot; -e &quot;&quot; -n &quot;Scal
 </div>
 <div class="section" id="fabriccanvassetportdefaultvalue">
 <h2>FabricCanvasSetPortDefaultValue<a class="headerlink" href="#fabriccanvassetportdefaultvalue" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Sets the default value of a port on a node in a Canvas graph</p>
+<p>Canvasグラフ内のノードのポートにデフォルト値をセットします。</p>
 <blockquote>
 <div><ul class="simple">
-<li>-m, -mayaNode: The name of the Canvas maya node</li>
-<li>-e, -execPath: The path of the node inside of Canvas to operate on</li>
-<li>-p, -portPath: The path to the port below the execPath</li>
-<li>-t, -type: The type of the new default value</li>
-<li>-v, -value: The JSON encoding the default value for the port</li>
+<li><p class="first">-m, -mayaNode: Canvas maya ノードの名前</p>
+</li>
+<li><p class="first">-e, -execPath: 操作の対象となるCanvas内のノードのパス</p>
+</li>
+<li><p class="first">-p, -portPath: execPathの下のポートへのパス</p>
+</li>
+<li><p class="first">-t, -type: 新しいデフォルト値の型</p>
+</li>
+<li><p class="first">-v, -value: JSONエンコードされたポートのデフォルト値</p>
+</li>
 </ul>
 </div></blockquote>
 <div class="highlight-KL"><div class="highlight"><pre>FabricCanvasSetPortDefaultValue -m &quot;canvasNode1&quot; -e &quot;&quot; -p &quot;Vec3.x&quot; -t &quot;Float32&quot; -v &quot;1&quot;;
@@ -504,13 +629,17 @@ FabricCanvasRemoveNodes -m &quot;canvasNode1&quot; -e &quot;&quot; -n &quot;Scal
 </div>
 <div class="section" id="fabriccanvassetrefvarpath">
 <h2>FabricCanvasSetRefVarPath<a class="headerlink" href="#fabriccanvassetrefvarpath" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Sets the reference variable path on a Canvas get or set node</p>
+<p>Canvasのgetまたはsetノードに参照変数のパスをセットします。</p>
 <blockquote>
 <div><ul class="simple">
-<li>-m, -mayaNode: The name of the Canvas maya node</li>
-<li>-e, -execPath: The path of the node inside of Canvas to operate on</li>
-<li>-n, -refName: The name of the get or set node to operate on</li>
-<li>-p, -varPath: The new path of a variable to reference</li>
+<li><p class="first">-m, -mayaNode: Canvas maya ノードの名前</p>
+</li>
+<li><p class="first">-e, -execPath: 操作の対象となるCanvas内のノードのパス</p>
+</li>
+<li><p class="first">-n, -refName: 捜査対象のgetまたはsetノードの名前</p>
+</li>
+<li><p class="first">-p, -varPath: 参照したい変数の新しいパス</p>
+</li>
 </ul>
 </div></blockquote>
 <div class="highlight-KL"><div class="highlight"><pre>FabricCanvasSetRefVarPath -m &quot;canvasNode1&quot; -e &quot;&quot; -n &quot;get&quot; -p &quot;factor&quot;;
@@ -519,11 +648,13 @@ FabricCanvasRemoveNodes -m &quot;canvasNode1&quot; -e &quot;&quot; -n &quot;Scal
 </div>
 <div class="section" id="fabriccanvassplitfrompreset">
 <h2>FabricCanvasSplitFromPreset<a class="headerlink" href="#fabriccanvassplitfrompreset" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Splits an executable (graph or function) from the preset it references</p>
+<p>実行可能なオブジェクト（つまり、グラフまたは関数）を、それらが参照しているプリセットから切り離します。</p>
 <blockquote>
 <div><ul class="simple">
-<li>-m, -mayaNode: The name of the Canvas maya node</li>
-<li>-e, -execPath: The path of the node inside of Canvas to operate on</li>
+<li><p class="first">-m, -mayaNode: Canvas maya ノードの名前</p>
+</li>
+<li><p class="first">-e, -execPath: 操作の対象となるCanvas内のノードのパス</p>
+</li>
 </ul>
 </div></blockquote>
 <div class="highlight-KL"><div class="highlight"><pre>FabricCanvasSplitFromPreset -m &quot;canvasNode1&quot; -e &quot;DrawMesh&quot;;
@@ -543,7 +674,7 @@ FabricCanvasRemoveNodes -m &quot;canvasNode1&quot; -e &quot;&quot; -n &quot;Scal
             </a></p>
   <h3><a href="../../index.html">目次</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Canvas scripting interface</a><ul>
+<li><a class="reference internal" href="#">Canvasスクリプティング・インターフェース</a><ul>
 <li><a class="reference internal" href="#fabriccanvasaddbackdrop">FabricCanvasAddBackDrop</a></li>
 <li><a class="reference internal" href="#fabriccanvasaddfunc">FabricCanvasAddFunc</a></li>
 <li><a class="reference internal" href="#fabriccanvasaddget">FabricCanvasAddGet</a></li>
