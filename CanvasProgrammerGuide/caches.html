@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Caches &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    <title>キャッシュ &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
     
     <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -26,9 +26,9 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
-    <link rel="up" title="Canvas Programmer Guide" href="index.html" />
-    <link rel="next" title="Reference counted data structures" href="referencetypes.html" />
-    <link rel="prev" title="Variables" href="variables.html" /> 
+    <link rel="up" title="Canvas プログラマーガイド" href="index.html" />
+    <link rel="next" title="参照カウントされたデータ構造（Reference counted data structures）" href="referencetypes.html" />
+    <link rel="prev" title="変数（Variable）" href="variables.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -38,13 +38,13 @@
           <a href="../genindex.html" title="総合索引"
              accesskey="I">索引</a></li>
         <li class="right" >
-          <a href="referencetypes.html" title="Reference counted data structures"
+          <a href="referencetypes.html" title="参照カウントされたデータ構造（Reference counted data structures）"
              accesskey="N">次へ</a> |</li>
         <li class="right" >
-          <a href="variables.html" title="Variables"
+          <a href="variables.html" title="変数（Variable）"
              accesskey="P">前へ</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Canvas Programmer Guide</a> &raquo;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Canvas プログラマーガイド</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -54,16 +54,16 @@
           <div class="body" role="main">
             
   <div class="section" id="caches">
-<span id="canvas-programmer-guide-caches"></span><h1>Caches<a class="headerlink" href="#caches" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<span id="canvas-programmer-guide-caches"></span><h1>キャッシュ<a class="headerlink" href="#caches" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p class="last">If you are looking for a less technical explanation please refer to <a class="reference internal" href="../CanvasUserGuide/caches.html#canvas-user-guide-caches"><span>Caches</span></a> in the user guide.</p>
+<p class="last">ユーザガイド内 <a class="reference internal" href="../CanvasUserGuide/caches.html#canvas-user-guide-caches"><span>Caches</span></a> により平易な説明があります。</p>
 </div>
-<p>Caches in Canvas are data points which save a copy of the computed value and refrain from recomputing it if none of the upstream inputs have changed. This is useful for branches in graphs which are expensive to compute.</p>
-<p>Caches return immutable values, since it should not be possible for you to change the content of a reference counted data structure down stream (please see <a class="reference internal" href="referencetypes.html#canvas-programmer-guide-referencetypes"><span>Reference counted data structures</span></a> for more information). If you want to modify the returned value you&#8217;ll have to use a <em class="dfn">Clone</em> node.</p>
+<p>Canvas においてキャッシュとは、処理結果の値のコピーを保存し、上流の入力に変更がない場合に不要な再計算を省くようなデータの集まりを意味します。計算が非常に高価なグラフ中の枝に対し、非常に有用となります。</p>
+<p>キャッシュは、変更不変な値（immutable values）を返します。したがい、参照カウントされたデータ構造（reference counted data structure）の内容を下流から変更することはできません。（ <a class="reference internal" href="referencetypes.html#canvas-programmer-guide-referencetypes"><span>参照カウントされたデータ構造（Reference counted data structures）</span></a> により詳しい解説があります。）返り値を編集する場合には、 <em class="dfn">Clone</em> ノードを使用します。</p>
 <img alt="../_images/userguide_25.jpg" src="../_images/userguide_25.jpg" />
-<p>Caches are not to be mixed up with <a class="reference internal" href="variables.html#canvas-programmer-guide-variables"><span>Variables</span></a>. Caches are not guaranteed to be kept in memory. A memory manager might decide to clear them. The assumption is that it&#8217;s always possible to recompute the cache deterministically. You can not rely on the cache to always be kept around, if you need a guaranteed container please use a variable.</p>
-<p>Any Canvas node supports caching, however for simplicity and visibility we&#8217;ve chosen to expose it to the user as a special node. Essentially that node is just a pass through node which has caching turned on. You can enable caching on your own presets only through the <a class="reference internal" href="kl2dfg.html#canvas-programmer-guide-kl2dfg"><span>KL2DFG Command line utility</span></a>, using the <em class="dfn">dfgPresetCacheRule</em> doxygen qualifier and choosing <em class="dfn">always</em> as the value.</p>
+<p>キャッシュは <a class="reference internal" href="variables.html#canvas-programmer-guide-variables"><span>変数（Variable）</span></a> と混在させることはできません。キャッシュはメモリ内に保存されている保証はありません。メモリーマネージャがキャッシュを破棄する可能性があるからです。つまりキャッシュは常に決定論的に一意に再計算可能であるべきとみなされます。キャッシュが、「常に存在すること」を期待してはいけません。そのようなコンテナとしての保証が必要な場合は変数を使用してください。</p>
+<p>すべての Canvas ノードはキャッシュをサポートしています。が、単純化と見通しのため、特別なノードとしてユーザに公開しています。そのようなノードは、キャッシュが有効に設定された場合基本的に、パススルーノードとして振る舞います。任意のプリセットに対しキャッシュを有効にするには <a class="reference internal" href="kl2dfg.html#canvas-programmer-guide-kl2dfg"><span>KL2DFG コマンドラインユーティリティ</span></a> の <em class="dfn">dfgPresetCacheRule</em> doxygen 修飾子を使用するか <em class="dfn">always</em> を設定するかします。</p>
 </div>
 
 
@@ -77,10 +77,10 @@
             </a></p>
   <h4>前のトピックへ</h4>
   <p class="topless"><a href="variables.html"
-                        title="前の章へ">Variables</a></p>
+                        title="前の章へ">変数（Variable）</a></p>
   <h4>次のトピックへ</h4>
   <p class="topless"><a href="referencetypes.html"
-                        title="次の章へ">Reference counted data structures</a></p>
+                        title="次の章へ">参照カウントされたデータ構造（Reference counted data structures）</a></p>
   <div role="note" aria-label="source link">
     <h3>このページ</h3>
     <ul class="this-page-menu">
@@ -114,13 +114,13 @@
           <a href="../genindex.html" title="総合索引"
              >索引</a></li>
         <li class="right" >
-          <a href="referencetypes.html" title="Reference counted data structures"
+          <a href="referencetypes.html" title="参照カウントされたデータ構造（Reference counted data structures）"
              >次へ</a> |</li>
         <li class="right" >
-          <a href="variables.html" title="Variables"
+          <a href="variables.html" title="変数（Variable）"
              >前へ</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >Canvas Programmer Guide</a> &raquo;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" >Canvas プログラマーガイド</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

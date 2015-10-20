@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>KL Function Editor &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    <title>KL Function エディタ &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
     
     <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -26,9 +26,9 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
-    <link rel="up" title="Canvas Programmer Guide" href="index.html" />
-    <link rel="next" title="Polymorphic nodes" href="polymorphism.html" />
-    <link rel="prev" title="Canvas Programmer Guide" href="index.html" /> 
+    <link rel="up" title="Canvas プログラマーガイド" href="index.html" />
+    <link rel="next" title="多態性を持つノード（Polymorphic nodes）" href="polymorphism.html" />
+    <link rel="prev" title="Canvas プログラマーガイド" href="index.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -38,13 +38,13 @@
           <a href="../genindex.html" title="総合索引"
              accesskey="I">索引</a></li>
         <li class="right" >
-          <a href="polymorphism.html" title="Polymorphic nodes"
+          <a href="polymorphism.html" title="多態性を持つノード（Polymorphic nodes）"
              accesskey="N">次へ</a> |</li>
         <li class="right" >
-          <a href="index.html" title="Canvas Programmer Guide"
+          <a href="index.html" title="Canvas プログラマーガイド"
              accesskey="P">前へ</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Canvas Programmer Guide</a> &raquo;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Canvas プログラマーガイド</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -54,32 +54,32 @@
           <div class="body" role="main">
             
   <div class="section" id="kl-function-editor">
-<span id="canvas-programmer-guide-klfunctioneditor"></span><h1>KL Function Editor<a class="headerlink" href="#kl-function-editor" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>Within Canvas you can directly create custom KL function nodes. These nodes run through the same just-in-time compilation process utilizing LLVM as do graphs.</p>
-<p>To create custom KL functions, right click the empty space in a graph view and choose <em class="dfn">New empty function</em>. This will create the function. To edit it, double shift-click the new node or open the context menu by right-clicking the node and choose <em class="dfn">Edit</em>. This will open the KL function editor.</p>
+<span id="canvas-programmer-guide-klfunctioneditor"></span><h1>KL Function エディタ<a class="headerlink" href="#kl-function-editor" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Canvas 内に独自のKL関数ノードを作成できます。これらのノードは LLVMを使用した、グラフに対する just-in-time （JIT）コンパイルと同じ処理過程を経て実行されます。</p>
+<p>独自のKL関数の作成には、グラフ内カラの空間を右クリックし、 <em class="dfn">New empty function</em> を選択します。関数が作成されます。編集するには、ノードをシフトキーを押しながらダブルクリックするか、ノードを右クリックしコンテキストメニューより <em class="dfn">Edit</em> を選び KL function エディタを開きます。</p>
 <img alt="../_images/userguide_19.jpg" src="../_images/userguide_19.jpg" />
-<p>The KL function editor essentially contains two sections: The port list and the code window.</p>
+<p>KL function エディタは２つの基礎要素 ―portリストと、codeウィンド から成ります。</p>
 <div class="section" id="kl-function-ports">
-<h2>KL function ports<a class="headerlink" href="#kl-function-ports" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>You can add and remove ports by defining their port type, name as well as data type. By default port types are polymorphic, but you can pick fixed types. If you want to know more about KL function polymorphism, please see <a class="reference internal" href="polymorphism.html#canvas-programmer-guide-polymorphism"><span>Polymorphic nodes</span></a>. Alternatively you can also add a port by right clicking any entry in the port list and choose <em class="dfn">Add new port</em>.</p>
-<p>To remove a port, right click it and choose <em class="dfn">Delete port</em> in the context menu.</p>
+<h2>KL関数ポート<a class="headerlink" href="#kl-function-ports" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ポートの型、名前、データ型を定義しポートを追加、削除できます。ディフォルトでポートの方は多態性（polymorphic）を持ちます。特定の型を指定することも可能です。多態性についてのより詳しい説明は <a class="reference internal" href="polymorphism.html#canvas-programmer-guide-polymorphism"><span>多態性を持つノード（Polymorphic nodes）</span></a> を参照してください。単にポートリスト内を右クリックし、 <em class="dfn">Add new port</em> を選ぶことでポートを追加することもできます。</p>
+<p>ポートの削除は、右クリックのコンテキストメニューから <em class="dfn">Delete port</em> を選びます。</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p class="last">The KL function editor port list also supports the Ctrl-Enter (Add new port) and Ctrl-Backspace (Delete port) keyboard shortcuts.</p>
+<p class="last">KL関数エディタでは、 Ctrl-Enter で新規ポート追加、 Ctrl-Backspace でポートの削除 のキーボードショートカットが使えます。</p>
 </div>
-<p>Ports can be referenced by name in the KL code below.</p>
+<p>ポートはKLコード内より、そのポート名で参照できます。</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p class="last">If you add a port with a data type which is implemented in a KL extension you have to add that extension to the <em class="dfn">Required Extensions</em> field on the top left.</p>
+<p class="last">KLエクステンションに実装された型を、ポートに使用する際は、そのエクステンションをエディタウィンド左上 <em class="dfn">Required Extensions</em> 欄に記入します。</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p class="last">Reordering of ports in the KL function editor is not yet supported, but will be added in a future version.</p>
+<p class="last">KL関数エディタ内でのポートの並び順変更は未対応です。将来のバージョンにより対応される予定です。</p>
 </div>
 </div>
 <div class="section" id="kl-code-window">
-<h2>KL code window<a class="headerlink" href="#kl-code-window" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>The main entry point for the KL function node is the dfgEntry block. The Canvas compiler will replace the dfgEntry with the appropriate function declaration, containing all of the ports and features. Defining three <em class="dfn">Float32</em> ports as in image above, you can define an entry point like this:</p>
+<h2>KL code ウィンド<a class="headerlink" href="#kl-code-window" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>KL関数ノードのエントリポイントは dfgEntry ブロックになります。Canvasコンパイラは dfgEntry を適切な関数宣言 ―つまり必要なポートや機能の定義― に置き換えます。以下の例では３つの <em class="dfn">Float32</em> ポートがあり、エントリポイントの定義はこのようになります。</p>
 <div class="highlight-kl"><div class="highlight"><pre><span class="nx">dfgEntry</span> <span class="p">{</span>
 
   <span class="nx">result</span> <span class="o">=</span> <span class="nx">cos</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="o">*</span> <span class="nx">b</span><span class="p">;</span>
@@ -87,7 +87,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Of course you can also implement operators directly within the KL function editor. So given you have two ports of type <em class="dfn">Float32[]</em>, for example, you can implement a task using PEX like this:</p>
+<p>もちろん、KL関数エディタ内ではオペレータを直接定義できます。例えば２つの <em class="dfn">Float32[]</em> ポートをもつ、PEX（並列実行）オペレータ使用例は：</p>
 <div class="highlight-kl"><div class="highlight"><pre><span class="kd">operator</span> <span class="nx">task</span><span class="o">&lt;&lt;&lt;</span><span class="nx">index</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="kr">Float32</span> <span class="nx">values</span><span class="p">[],</span> <span class="k">io</span> <span class="kr">Float32</span> <span class="nx">result</span><span class="p">[])</span> <span class="p">{</span>
   <span class="nx">result</span><span class="p">[</span><span class="nx">index</span><span class="p">]</span> <span class="o">=</span> <span class="nx">cos</span><span class="p">(</span><span class="nx">values</span><span class="p">[</span><span class="nx">index</span><span class="p">]);</span>
 <span class="p">}</span>
@@ -98,11 +98,11 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>To compile the KL function click on the <em class="dfn">Save</em> button on the top left. You can also reload the KL code for KL functions referencing an external preset file using the <em class="dfn">Reload</em> button. When leaving the KL function editor the UI will warn you in case you have unsaved changes.</p>
-<p>For more information on KL&#8217;s features, please see the <a class="reference internal" href="../KLProgrammingGuide/index.html#klpg"><span>KL Programming Guide</span></a>.</p>
+<p>ウィンド左上の <em class="dfn">Save</em> を押しKL関数をコンパイルします。 <em class="dfn">Reload</em> ボタンを押すと、KL関数で使用する外部プリセットファイル中のKLコードを読み込み直します。KL関数エディタから抜ける際、未保存の変更がある場合には警告UIが表示されます。</p>
+<p>より詳しい KL の機能については <a class="reference internal" href="../KLProgrammingGuide/index.html#klpg"><span>KL Programming Guide</span></a> を参照してください。</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p class="last">Even though it&#8217;s possible to define data types within a KL function node, we highly recommend to implement KL types in a KL extension instead. This makes it much easier to track changes within the type for the Canvas compiler. You can ensure that the KL function loads the extension by adding the extension to the <em class="dfn">Required extensions</em> text field on the top left of the window.</p>
+<p class="last">KL関数ノード内であらたにデータ型を定義することも可能です。ただしデータ型の実装はKLエクステンション内で行うことを強くお薦めします。Canvasコンパイラより変更を追跡させやすくするためです。エディタウィンド左上の  <em class="dfn">Required extensions</em> 欄に使用するKLエクステンションを追記し、KL関数がそのエクステンションを確実に読み込むようにします。</p>
 </div>
 </div>
 </div>
@@ -118,19 +118,19 @@
             </a></p>
   <h3><a href="../index.html">目次</a></h3>
   <ul>
-<li><a class="reference internal" href="#">KL Function Editor</a><ul>
-<li><a class="reference internal" href="#kl-function-ports">KL function ports</a></li>
-<li><a class="reference internal" href="#kl-code-window">KL code window</a></li>
+<li><a class="reference internal" href="#">KL Function エディタ</a><ul>
+<li><a class="reference internal" href="#kl-function-ports">KL関数ポート</a></li>
+<li><a class="reference internal" href="#kl-code-window">KL code ウィンド</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>前のトピックへ</h4>
   <p class="topless"><a href="index.html"
-                        title="前の章へ">Canvas Programmer Guide</a></p>
+                        title="前の章へ">Canvas プログラマーガイド</a></p>
   <h4>次のトピックへ</h4>
   <p class="topless"><a href="polymorphism.html"
-                        title="次の章へ">Polymorphic nodes</a></p>
+                        title="次の章へ">多態性を持つノード（Polymorphic nodes）</a></p>
   <div role="note" aria-label="source link">
     <h3>このページ</h3>
     <ul class="this-page-menu">
@@ -164,13 +164,13 @@
           <a href="../genindex.html" title="総合索引"
              >索引</a></li>
         <li class="right" >
-          <a href="polymorphism.html" title="Polymorphic nodes"
+          <a href="polymorphism.html" title="多態性を持つノード（Polymorphic nodes）"
              >次へ</a> |</li>
         <li class="right" >
-          <a href="index.html" title="Canvas Programmer Guide"
+          <a href="index.html" title="Canvas プログラマーガイド"
              >前へ</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >Canvas Programmer Guide</a> &raquo;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" >Canvas プログラマーガイド</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

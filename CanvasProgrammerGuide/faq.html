@@ -26,9 +26,9 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
-    <link rel="up" title="Canvas Programmer Guide" href="index.html" />
+    <link rel="up" title="Canvas プログラマーガイド" href="index.html" />
     <link rel="next" title="KL Programming Guide" href="../KLProgrammingGuide/index.html" />
-    <link rel="prev" title="KL2DFG Command line utility" href="kl2dfg.html" /> 
+    <link rel="prev" title="KL2DFG コマンドラインユーティリティ" href="kl2dfg.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -41,10 +41,10 @@
           <a href="../KLProgrammingGuide/index.html" title="KL Programming Guide"
              accesskey="N">次へ</a> |</li>
         <li class="right" >
-          <a href="kl2dfg.html" title="KL2DFG Command line utility"
+          <a href="kl2dfg.html" title="KL2DFG コマンドラインユーティリティ"
              accesskey="P">前へ</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Canvas Programmer Guide</a> &raquo;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Canvas プログラマーガイド</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -55,28 +55,22 @@
             
   <div class="section" id="frequently-asked-questions">
 <span id="canvas-programmer-guide-faq"></span><h1>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>This is a list of Frequently Asked Questions about Canvas.  Suggestions for
-new entries are welcome!</p>
+<p>Canvas についてよくある質問と回答です。さらなる質問の提案も歓迎！</p>
 <div class="section" id="in-canvas-how-do-i">
-<h2>In Canvas, how do I...<a class="headerlink" href="#in-canvas-how-do-i" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>Canvas ではこれどうやるの？<a class="headerlink" href="#in-canvas-how-do-i" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <dl class="docutils">
-<dt>... serialize execution of nodes?</dt>
-<dd><p class="first">In Canvas there is no guarantee of order of execution of nodes unless it
-is explicit.  In version 2.0.x, nodes can be guaranteed to execute one
-after another by piping them through a serialization Canvas function, such as:</p>
+<dt>ノードの実行のシリアライズは？</dt>
+<dd><p class="first">Canvas 中では明示的に指定しない場合、ノード実行順の保証はありません。Fabricバージョン 2.0.x では、Canvas 直列化機能を介しパイプすることで、ノードの実行順を次から次へと保証することができます。例：</p>
 <div class="highlight-python"><div class="highlight"><pre>dfgEntry {
   port1Out = port1In;
   port2Out = port2In;
 }
 </pre></div>
 </div>
-<p>Such a function will be guaranteed to &#8220;pull&#8221; its ports in the order given,
-which allows control over the seralization of execution.</p>
+<p>このような関数では、そのポートを定められた順に  &#8220;pull&#8221; することが保証され、実行順のシリアライズを通じ制御が可能になります。</p>
 <div class="last admonition note">
 <p class="first admonition-title">注釈</p>
-<p class="last">This way of forcing serialization is likely to change in a future version
-in which input values may be precomputed in parallel in cases where they
-are all known to be needed.</p>
+<p class="last">このようなシリアライズの強制は、入力された値が並列化された事前処理が必要であると判明している場合、将来のバージョンにおいて変更される可能性があります。</p>
 </div>
 </dd>
 </dl>
@@ -95,14 +89,14 @@ are all known to be needed.</p>
   <h3><a href="../index.html">目次</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Frequently Asked Questions</a><ul>
-<li><a class="reference internal" href="#in-canvas-how-do-i">In Canvas, how do I...</a></li>
+<li><a class="reference internal" href="#in-canvas-how-do-i">Canvas ではこれどうやるの？</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>前のトピックへ</h4>
   <p class="topless"><a href="kl2dfg.html"
-                        title="前の章へ">KL2DFG Command line utility</a></p>
+                        title="前の章へ">KL2DFG コマンドラインユーティリティ</a></p>
   <h4>次のトピックへ</h4>
   <p class="topless"><a href="../KLProgrammingGuide/index.html"
                         title="次の章へ">KL Programming Guide</a></p>
@@ -142,10 +136,10 @@ are all known to be needed.</p>
           <a href="../KLProgrammingGuide/index.html" title="KL Programming Guide"
              >次へ</a> |</li>
         <li class="right" >
-          <a href="kl2dfg.html" title="KL2DFG Command line utility"
+          <a href="kl2dfg.html" title="KL2DFG コマンドラインユーティリティ"
              >前へ</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >Canvas Programmer Guide</a> &raquo;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" >Canvas プログラマーガイド</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

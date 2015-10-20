@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>KL2DFG Command line utility &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    <title>KL2DFG コマンドラインユーティリティ &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
     
     <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -26,9 +26,9 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
-    <link rel="up" title="Canvas Programmer Guide" href="index.html" />
+    <link rel="up" title="Canvas プログラマーガイド" href="index.html" />
     <link rel="next" title="Frequently Asked Questions" href="faq.html" />
-    <link rel="prev" title="Port value persistance" href="valuepersistance.html" /> 
+    <link rel="prev" title="ポートの値の永続化（Port value persistance）" href="valuepersistance.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -41,10 +41,10 @@
           <a href="faq.html" title="Frequently Asked Questions"
              accesskey="N">次へ</a> |</li>
         <li class="right" >
-          <a href="valuepersistance.html" title="Port value persistance"
+          <a href="valuepersistance.html" title="ポートの値の永続化（Port value persistance）"
              accesskey="P">前へ</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Canvas Programmer Guide</a> &raquo;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Canvas プログラマーガイド</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -54,9 +54,9 @@
           <div class="body" role="main">
             
   <div class="section" id="kl2dfg-command-line-utility">
-<span id="canvas-programmer-guide-kl2dfg"></span><h1>KL2DFG Command line utility<a class="headerlink" href="#kl2dfg-command-line-utility" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>kl2dfg is a command line executable which allows to generate Canvas preset files for a given KL extension. If successful, it creates a log file called <em class="dfn">kl2dfg.log</em> in the destination folder which lists the complete process. To use the resulting presets in Canvas the target folder has to be on the <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">FABRIC_DFG_PATH</span></code> environment variable. Alternatively you can also specify a subfolder for an extension to provide Canvas presets using the <code class="code docutils literal"><span class="pre">dfgPresets</span></code> member. Please see <a class="reference internal" href="../ExtensionAuthoringGuide/fpm.html#eag-fpm"><span>The Extension Manifest File</span></a> for more information.</p>
-<p>To try out KL2DFG, simply open a shell using the Fabric environment variables (see <a class="reference internal" href="../GettingStartedGuide/licensing.html#gettingstarted-baseinstallation"><span>Fabric Engine ライセンスのインストール</span></a>), and type</p>
+<span id="canvas-programmer-guide-kl2dfg"></span><h1>KL2DFG コマンドラインユーティリティ<a class="headerlink" href="#kl2dfg-command-line-utility" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>kl2dfg はコマンドラインEXEです。与えられた KL エクステンションから Canvas プリセットファイルを生成します。生成に成功すると <em class="dfn">kl2dfg.log</em> という名の処理結果を記載したファイルが出力先のフォルダに作成されます。成果物のプリセットを Canvas で使用するには  <span class="target" id="index-2"></span><code class="xref std std-envvar docutils literal"><span class="pre">FABRIC_DFG_PATH</span></code> 環境変数に指定したフォルダに配置します。もしくは、エクステンションフォルダ直下に <code class="code docutils literal"><span class="pre">dfgPresets</span></code> サブフォルダを用意しCanvasプリセットファイルをおきます。 <a class="reference internal" href="../ExtensionAuthoringGuide/fpm.html#eag-fpm"><span>The Extension Manifest File</span></a> により詳しい情報があります。</p>
+<p>KL2DFGを試すには、Favric環境変数が設定されたシェル（ <a class="reference internal" href="../GettingStartedGuide/licensing.html#gettingstarted-baseinstallation"><span>Fabric Engine ライセンスのインストール</span></a> 参照）を開き、以下をタイプします。</p>
 <p><div class="highlight-bash"><div class="highlight"><pre>kl2dfg
 </pre></div>
 </div>
@@ -66,7 +66,7 @@ For more options use kl2dfg --help
 </pre></div>
 </div>
 </p>
-<p>kl2dfg supports a series of options, which can be obtained by running kl2dfg with the <em class="dfn">help</em> flag</p>
+<p>kl2dfg はいくつかのオプションをサポートします。kl2dfg に <em class="dfn">help</em> フラグを追加し一覧を表示します。</p>
 <p><div class="highlight-bash"><div class="highlight"><pre>kl2dfg --help
 </pre></div>
 </div>
@@ -85,15 +85,15 @@ Valid options:
 </pre></div>
 </div>
 </p>
-<p>Available options:</p>
+<p>利用可能なオプション：</p>
 <div class="section" id="list">
-<h2>list<a class="headerlink" href="#list" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Presents the user with a list of doxygen modifiers which can be used to drive kl2dfg&#8217;s behavior. Doxygen qualifiers can be used inside the doxygen style comments of a function. For example:</p>
+<h2>リスト（list）<a class="headerlink" href="#list" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>kl2dfg での振舞を指定する事のできる doxygen モディファイアのリストを提示します。関数内のに doxygenスタイルのコメントとして Doxygen 修飾子を使用できます。以下に例を示します：</p>
 <div class="highlight-kl"><div class="highlight"><pre><span class="c1">/// \dfgPresetTitle MyPresetName</span>
 <span class="kd">function</span> <span class="kr">Boolean</span> <span class="nx">someFunction</span><span class="p">(</span><span class="nx">Scalar</span> <span class="nx">a</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Will cause kl2dfg to pick a different name for the preset than the name of the function. For a full list of qualifiers please use the <em class="dfn">list</em> flag.</p>
+<p>このようにすると、kl2dfgはその関数の名前ではなく、異なる別名をプリセットの名としてつかえます。修飾子の完全なリストを確認するには <em class="dfn">list</em> をたて実行してください。</p>
 <p><div class="highlight-bash"><div class="highlight"><pre>kl2dfg -list
 </pre></div>
 </div>
@@ -176,22 +176,22 @@ Exts/Geometry/PolygonMesh/AddTeapot.canvas
 </p>
 </div>
 <div class="section" id="polymorphism">
-<h2>polymorphism<a class="headerlink" href="#polymorphism" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>kl2dfg will generate only one preset for methods with the same notation within an extension. For example:</p>
+<h2>多態性（polymorphism）<a class="headerlink" href="#polymorphism" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>kl2dfg では、エクステンション内の同じ表記をもつメソッドを１つのプリセットとして生成します。</p>
 <div class="highlight-kl"><div class="highlight"><pre><span class="kd">function</span> <span class="kr">SInt32</span> <span class="nx">Vec3</span><span class="p">.</span><span class="nx">getMySum</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
 
 <span class="kd">function</span> <span class="kr">SInt32</span> <span class="nx">Vec4</span><span class="p">.</span><span class="nx">getMySum</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
 </pre></div>
 </div>
-<p>Would result in only one Canvas preset file, called <em class="dfn">Func.getMySum</em> instead of two separate presets for <em class="dfn">Vec3</em> and <em class="dfn">Vec4</em>.</p>
+<p>この例では１つの Canvas プリセットファイル、 <em class="dfn">Func.getMySum</em> が出力されます。 <em class="dfn">Vec3</em> と :dfn:<a href="#id1"><span class="problematic" id="id2">`</span></a>Vec4`２つに別れたプリセットではありません。</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p class="last">You can find more information about the consequences of polymorphism here: <a class="reference internal" href="polymorphism.html#canvas-programmer-guide-polymorphism"><span>Polymorphic nodes</span></a>.</p>
+<p class="last"><a class="reference internal" href="polymorphism.html#canvas-programmer-guide-polymorphism"><span>多態性を持つノード（Polymorphic nodes）</span></a> に多態性の及ぼす重大性についての情報があります。</p>
 </div>
 </div>
 <div class="section" id="inheritance">
-<h2>inheritance<a class="headerlink" href="#inheritance" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Enables the generation of presets for inherited methods. For example:</p>
+<h2>継承（inheritance）<a class="headerlink" href="#inheritance" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>メソッドの継承を伴うプリセットの生成を有効にする例：</p>
 <div class="highlight-kl"><div class="highlight"><pre><span class="kr">interface</span> <span class="nx">i</span> <span class="p">{</span>
   <span class="kr">String</span> <span class="nx">getName</span><span class="p">();</span>
 <span class="p">};</span>
@@ -212,51 +212,50 @@ Exts/Geometry/PolygonMesh/AddTeapot.canvas
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Without inheritance the presets generated would be:</p>
+<p>継承を無効にしたプリセットの生成結果：</p>
 <div class="highlight-bash"><div class="highlight"><pre>a.getName
 b.reportSomething
 </pre></div>
 </div>
-<p>With inheritance enabled the presets generated would be:</p>
+<p>継承を有効にしたプリセットの生成結果：</p>
 <div class="highlight-bash"><div class="highlight"><pre>a.getName
 b.getName
 b.reportSomething
 </pre></div>
 </div>
-<p>can also enable this functionality on a per preset basis by using the <em class="dfn">dfgUseInheritance</em> doxygen qualifier.</p>
+<p>プリセット毎にこの機能を有効にするには、 <em class="dfn">dfgUseInheritance</em> doxygen 修飾子を使用します。</p>
 </div>
 <div class="section" id="genallarrays">
 <h2>genAllArrays<a class="headerlink" href="#genallarrays" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Enables the generation of array presets for given methods. This makes working with arrays inside of Canvas much easier. You can also enable this functionality on a per preset basis by using the <em class="dfn">dfgCreateArrayPreset</em> doxygen qualifier.</p>
+<p>与えられたメソッドの、配列プリセットの生成を有効にします。これにより Canvas 内部で配列をより容易に扱えるようになります。この機能を各プリセット毎に有効にするには <em class="dfn">dfgCreateArrayPreset</em> doxygen 修飾子を使用します。</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p class="last">This functionality might be deprecated in future version of kl2dfg.</p>
+<p class="last">この機能は将来の kl2dfg バージョンでは非推奨となる予定です。</p>
 </div>
 </div>
 <div class="section" id="addexecuteport">
 <h2>addExecutePort<a class="headerlink" href="#addexecuteport" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>For easier daisy chaining of Canvas presets kl2dfg supports to add an extra port as the first port of any Canvas preset.
-You can also enable this functionality on a per preset basis by using the <em class="dfn">dfgAddExecutePort</em> doxygen qualifier.</p>
+<p>Canvas プリセットでのデイジーチェーン（カスケード）を容易にするため、kl2dfg は Canvas プリセットの第一ポートとなるエクストラポートの追加をサポートしています。この機能をプリセット毎に使用するには <em class="dfn">dfgAddExecutePort</em> doxygen 修飾子を使用します。</p>
 </div>
 <div class="section" id="example">
-<h2>Example<a class="headerlink" href="#example" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Generating all math presets in a temporary location:</p>
+<h2>例<a class="headerlink" href="#example" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>全ての math プリセットを一時的な場所に生成します：</p>
 <p><div class="highlight-bash"><div class="highlight"><pre>kl2dfg <span class="nv">$FABRIC_DIR</span>/Exts/Builtin/Math/Math.fpm.json <span class="nv">$TEMP</span>
 </pre></div>
 </div>
 <p>Result:</p>
 <div class="highlight-bash"><div class="highlight"><pre>[FABRIC:MT] Fabric Engine version 2.0.0
-[FABRIC:MT] Loading DFG presets from D:\fabric\Presets\DFG
-[FABRIC:MT] Registered extensions {Alembic:1.0.0,AlembicWrapper:1.2.0,Animation:1.1.0,Bullet:1.0.1,BulletHelpers:1.0.0,Characters:1.1.0,Containers:1.1.0,DFGHelpers,FabricInterfaces:1.0.1,FabricSynchronization:1.1.0,Fbx:1.1.0,FbxHelpers:1.0.2,FileIO:1.2.0,Geometry:1.2.0,Images:1.0.2,InlineDrawing:1.2.0,JSON:1.0.0,Manipulation:1.1.0,Math:1.2.0,FabricOBJ:1.1.0,FabricOGL:1.0.0,OpenImageIO:1.0.2,OSOGL:1.1.0,Parameters:1.0.0,Singletons:1.1.0,FabricStatistics:1.1.0,Util:1.1.0} in directory: D:\fabric\Exts
-[FABRIC:MT] Registered extensions {FESRetopo,FABRIK,Kraken,ParticleSystem,Constrains,Scatter:0.1.0,RiggingToolbox,Vegetation:1.0.0} in directory: D:\fabric\ThirdParty\Exts
+[FABRIC:MT] Loading DFG presets from d:\fabric\Presets\DFG
+[FABRIC:MT] Registered extensions {Alembic:1.0.0,AlembicWrapper:1.2.0,Animation:1.1.0,Bullet:1.0.1,BulletHelpers:1.0.0,Characters:1.1.0,Containers:1.1.0,DFGHelpers,FabricInterfaces:1.0.1,FabricSynchronization:1.1.0,Fbx:1.1.0,FbxHelpers:1.0.2,FileIO:1.2.0,Geometry:1.2.0,Images:1.0.2,InlineDrawing:1.2.0,JSON:1.0.0,Manipulation:1.1.0,Math:1.2.0,FabricOBJ:1.1.0,FabricOGL:1.0.0,OpenImageIO:1.0.2,OSOGL:1.1.0,Parameters:1.0.0,Singletons:1.1.0,FabricStatistics:1.1.0,Util:1.1.0} in directory: d:\fabric\\Exts
+[FABRIC:MT] Registered extensions {BadCode:2.0.0,BadInline:2.0.0,BadPrototype:2.0.0,BadVersion:2.0.0,CircularA:2.0.0,CircularB:2.0.0,FwdDeclare:2.0.0,FwdDeclNoDef:2.0.0,SetupCallback:2.0.0,UnitTest:2.0.0,VersionTest:1.0.0,VersionTest:1.1.1,VersionTest:1.2.1} in directory: d:\fabric\\Tests\Exts
+[FABRIC:MT] Ignored extensions {Alembic:1.0.0,AlembicWrapper:1.2.0,Animation:1.1.0,Bullet:1.0.1,BulletHelpers:1.0.0,Characters:1.1.0,Containers:1.1.0,DFGHelpers,FabricInterfaces:1.0.1,FabricSynchronization:1.1.0,Fbx:1.1.0,FbxHelpers:1.0.2,FileIO:1.2.0,Geometry:1.2.0,Images:1.0.2,InlineDrawing:1.2.0,JSON:1.0.0,Manipulation:1.1.0,Math:1.2.0,FabricOBJ:1.1.0,FabricOGL:1.0.0,OpenImageIO:1.0.2,OSOGL:1.1.0,Parameters:1.0.0,Singletons:1.1.0,FabricStatistics:1.1.0,Util:1.1.0} in directory: D:\fabric\Exts
+[FABRIC:MT] [RT] Extension manifest is &#39;D:\fabric\Exts\RT\RT.fpm.json&#39;
+[FABRIC:MT] Registered extensions {Concord:1.0.0,ConcordTests:1.0.0,FESRetopo,FABRIK,Kraken,ParticleSystem,Constrains,Scatter:0.1.0,RiggingToolbox,Vegetation:1.0.0} in directory: D:\fabric\Exts
 [FABRIC:MT] IRCache: Not pruning since last prune was less than 24 hours ago
-[FABRIC:MT] No licenses of type &#39;Interactive&#39; found.
-[FABRIC:MT] THIS PRODUCT IS CURRENTLY UNLICENSED. PLEASE VISIT FABRICENGINE.COM FOR INFORMATION ON LICENSING.
-[FABRIC:MT] Fabric execution will now pause for 15 seconds...
-[FABRIC:MT] Resuming execution.
-[FABRIC:MT] Loaded extension Math in 139.993ms (cached)
-[FABRIC:MT] Loaded extension Singletons in 5.781ms (cached)
-[FABRIC:MT] Loaded extension FabricInterfaces in 13.975ms (cached)
+[FABRIC:MT] THIS PRODUCT IS APPROACHING ITS LICENSE LIMIT. PLEASE CONTACT SALES@FABRICENGINE.COM
+[FABRIC:MT] Loaded extension Math in 123.200ms (cached)
+[FABRIC:MT] Loaded extension Singletons in 5.380ms (cached)
+[FABRIC:MT] Loaded extension FabricInterfaces in 12.699ms (cached)
 782 preset files generated in &#39;R:\Temp&#39;
 LogFile was saved to R:\Temp\kl2dfg.log
 </pre></div>
@@ -276,20 +275,20 @@ LogFile was saved to R:\Temp\kl2dfg.log
             </a></p>
   <h3><a href="../index.html">目次</a></h3>
   <ul>
-<li><a class="reference internal" href="#">KL2DFG Command line utility</a><ul>
-<li><a class="reference internal" href="#list">list</a></li>
-<li><a class="reference internal" href="#polymorphism">polymorphism</a></li>
-<li><a class="reference internal" href="#inheritance">inheritance</a></li>
+<li><a class="reference internal" href="#">KL2DFG コマンドラインユーティリティ</a><ul>
+<li><a class="reference internal" href="#list">リスト（list）</a></li>
+<li><a class="reference internal" href="#polymorphism">多態性（polymorphism）</a></li>
+<li><a class="reference internal" href="#inheritance">継承（inheritance）</a></li>
 <li><a class="reference internal" href="#genallarrays">genAllArrays</a></li>
 <li><a class="reference internal" href="#addexecuteport">addExecutePort</a></li>
-<li><a class="reference internal" href="#example">Example</a></li>
+<li><a class="reference internal" href="#example">例</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>前のトピックへ</h4>
   <p class="topless"><a href="valuepersistance.html"
-                        title="前の章へ">Port value persistance</a></p>
+                        title="前の章へ">ポートの値の永続化（Port value persistance）</a></p>
   <h4>次のトピックへ</h4>
   <p class="topless"><a href="faq.html"
                         title="次の章へ">Frequently Asked Questions</a></p>
@@ -329,10 +328,10 @@ LogFile was saved to R:\Temp\kl2dfg.log
           <a href="faq.html" title="Frequently Asked Questions"
              >次へ</a> |</li>
         <li class="right" >
-          <a href="valuepersistance.html" title="Port value persistance"
+          <a href="valuepersistance.html" title="ポートの値の永続化（Port value persistance）"
              >前へ</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >Canvas Programmer Guide</a> &raquo;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" >Canvas プログラマーガイド</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

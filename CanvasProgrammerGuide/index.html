@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Canvas Programmer Guide &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    <title>Canvas プログラマーガイド &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
     
     <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
-    <link rel="next" title="KL Function Editor" href="klfunctioneditor.html" />
+    <link rel="next" title="KL Function エディタ" href="klfunctioneditor.html" />
     <link rel="prev" title="キーボードショートカット" href="../CanvasUserGuide/shortcuts.html" /> 
   </head>
   <body role="document">
@@ -37,7 +37,7 @@
           <a href="../genindex.html" title="総合索引"
              accesskey="I">索引</a></li>
         <li class="right" >
-          <a href="klfunctioneditor.html" title="KL Function Editor"
+          <a href="klfunctioneditor.html" title="KL Function エディタ"
              accesskey="N">次へ</a> |</li>
         <li class="right" >
           <a href="../CanvasUserGuide/shortcuts.html" title="キーボードショートカット"
@@ -52,58 +52,56 @@
           <div class="body" role="main">
             
   <div class="section" id="canvas-programmer-guide">
-<span id="canvasprogrammerguide"></span><h1>Canvas Programmer Guide<a class="headerlink" href="#canvas-programmer-guide" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<span id="canvasprogrammerguide"></span><h1>Canvas プログラマーガイド<a class="headerlink" href="#canvas-programmer-guide" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <a class="reference internal image-reference" href="../_images/FE_logo_345_60.png"><img alt="../_images/FE_logo_345_60.png" src="../_images/FE_logo_345_60.png" style="width: 345px; height: 60px;" /></a>
 <div class="line-block">
 <div class="line">Fabric Engine version 2.0.0</div>
 <div class="line">Copyright 2010-2015 Fabric Software Inc. All rights reserved.</div>
 </div>
-<p>This document provides information for Programmer level users to get started
-with Canvas, the visual programming system.</p>
-<p>Before reading this guide make sure to also cover the <a class="reference internal" href="../CanvasUserGuide/index.html#canvasuserguide"><span>Canvas ユーザガイド</span></a>,
-which provides the basics and aims at less technical users.</p>
+<p>この文書ではプログラマーレベルのユーザがビジュアルプログラミングシステムである Canvas を始めるに当たっての情報を提供します。</p>
+<p>このガイドを読み込むまえに準備として <a class="reference internal" href="../CanvasUserGuide/index.html#canvasuserguide"><span>Canvas ユーザガイド</span></a> があります。基本が記述され、より技術的な詳細を求めないユーザのためのものです。</p>
 <div class="section" id="table-of-contents">
-<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>目次<a class="headerlink" href="#table-of-contents" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="klfunctioneditor.html">KL Function Editor</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="klfunctioneditor.html#kl-function-ports">KL function ports</a></li>
-<li class="toctree-l2"><a class="reference internal" href="klfunctioneditor.html#kl-code-window">KL code window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="klfunctioneditor.html">KL Function エディタ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="klfunctioneditor.html#kl-function-ports">KL関数ポート</a></li>
+<li class="toctree-l2"><a class="reference internal" href="klfunctioneditor.html#kl-code-window">KL code ウィンド</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="polymorphism.html">Polymorphic nodes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="polymorphism.html#polymorphic-type-specification-syntax">Polymorphic type specification syntax</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polymorphism.html">多態性を持つノード（Polymorphic nodes）</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="polymorphism.html#polymorphic-type-specification-syntax">多態な型の構文</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="variables.html">Variables</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="variables.html#variable-nodes">Variable nodes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="variables.html#creating-variable-nodes">Creating variable nodes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="variables.html#variable-scope">Variable scope</a></li>
-<li class="toctree-l2"><a class="reference internal" href="variables.html#variable-versus-cache">Variable versus Cache</a></li>
-<li class="toctree-l2"><a class="reference internal" href="variables.html#example">Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variables.html">変数（Variable）</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="variables.html#variable-nodes">変数ノード（Variable nodes）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variables.html#creating-variable-nodes">変数ノードの作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variables.html#variable-scope">変数のスコープ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variables.html#variable-versus-cache">変数 vs キャッシュ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variables.html#example">例</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="caches.html">Caches</a></li>
-<li class="toctree-l1"><a class="reference internal" href="referencetypes.html">Reference counted data structures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="valuepersistance.html">Port value persistance</a></li>
-<li class="toctree-l1"><a class="reference internal" href="kl2dfg.html">KL2DFG Command line utility</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="kl2dfg.html#list">list</a></li>
-<li class="toctree-l2"><a class="reference internal" href="kl2dfg.html#polymorphism">polymorphism</a></li>
-<li class="toctree-l2"><a class="reference internal" href="kl2dfg.html#inheritance">inheritance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="caches.html">キャッシュ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencetypes.html">参照カウントされたデータ構造（Reference counted data structures）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="valuepersistance.html">ポートの値の永続化（Port value persistance）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kl2dfg.html">KL2DFG コマンドラインユーティリティ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="kl2dfg.html#list">リスト（list）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kl2dfg.html#polymorphism">多態性（polymorphism）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kl2dfg.html#inheritance">継承（inheritance）</a></li>
 <li class="toctree-l2"><a class="reference internal" href="kl2dfg.html#genallarrays">genAllArrays</a></li>
 <li class="toctree-l2"><a class="reference internal" href="kl2dfg.html#addexecuteport">addExecutePort</a></li>
-<li class="toctree-l2"><a class="reference internal" href="kl2dfg.html#example">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kl2dfg.html#example">例</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="faq.html#in-canvas-how-do-i">In Canvas, how do I...</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#in-canvas-how-do-i">Canvas ではこれどうやるの？</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 <div class="section" id="indices-and-tables">
-<h2>Indices and Tables<a class="headerlink" href="#indices-and-tables" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>索引<a class="headerlink" href="#indices-and-tables" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><a class="reference internal" href="../genindex.html"><span>索引</span></a></li>
 <li><a class="reference internal" href="../search.html"><span>検索ページ</span></a></li>
@@ -122,9 +120,9 @@ which provides the basics and aims at less technical users.</p>
             </a></p>
   <h3><a href="../index.html">目次</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Canvas Programmer Guide</a><ul>
-<li><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
-<li><a class="reference internal" href="#indices-and-tables">Indices and Tables</a></li>
+<li><a class="reference internal" href="#">Canvas プログラマーガイド</a><ul>
+<li><a class="reference internal" href="#table-of-contents">目次</a></li>
+<li><a class="reference internal" href="#indices-and-tables">索引</a></li>
 </ul>
 </li>
 </ul>
@@ -134,7 +132,7 @@ which provides the basics and aims at less technical users.</p>
                         title="前の章へ">キーボードショートカット</a></p>
   <h4>次のトピックへ</h4>
   <p class="topless"><a href="klfunctioneditor.html"
-                        title="次の章へ">KL Function Editor</a></p>
+                        title="次の章へ">KL Function エディタ</a></p>
   <div role="note" aria-label="source link">
     <h3>このページ</h3>
     <ul class="this-page-menu">
@@ -168,7 +166,7 @@ which provides the basics and aims at less technical users.</p>
           <a href="../genindex.html" title="総合索引"
              >索引</a></li>
         <li class="right" >
-          <a href="klfunctioneditor.html" title="KL Function Editor"
+          <a href="klfunctioneditor.html" title="KL Function エディタ"
              >次へ</a> |</li>
         <li class="right" >
           <a href="../CanvasUserGuide/shortcuts.html" title="キーボードショートカット"
