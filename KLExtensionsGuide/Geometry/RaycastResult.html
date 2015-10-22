@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
     <link rel="up" title="Geometry Extension’s Interfaces" href="interfaces.html" />
     <link rel="next" title="SpatialQuery (interface)" href="SpatialQuery.html" />
@@ -140,13 +141,13 @@ enabling for specialization of its content (eg: polygons, geometries).</p>
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>Boolean</td>
-<td><a class="reference internal" href="#f1c860e504b60a22414b9f19e4ed9"><span>compareAndUpdate</span></a> ! ( in Size objectIndex, out <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxDistance )</td>
+<td><a class="reference internal" href="#ecb5aaf5a949cbb943657f8414fe6c"><span>compareAndUpdate</span></a> ! ( in Size objectIndex, out <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxDistance )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#f1e457f74144557af4c88f919e4fd16"><span>copyResultFrom</span></a> ! ( in Ref&lt;<a class="reference internal" href="#raycastresult"><span>RaycastResult</span></a>&gt; other )</td>
+<td><a class="reference internal" href="#def9f555b44f3b98c3c14877e15667"><span>copyResultFrom</span></a> ! ( in Ref&lt;<a class="reference internal" href="#raycastresult"><span>RaycastResult</span></a>&gt; other )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#b8af7b364a69b8b140cce53cb1b6"><span>reset</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> start, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> unitDir, in Boolean doubleSided, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> coneThreshold )</td>
+<td><a class="reference internal" href="#c5b10b8e484552bdad636191c535dc"><span>reset</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> start, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> unitDir, in Boolean doubleSided, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> coneThreshold )</td>
 </tr>
 </tbody>
 </table>
@@ -154,16 +155,16 @@ enabling for specialization of its content (eg: polygons, geometries).</p>
 </div>
 <div class="section" id="functions-in-detail">
 <h2>Functions in detail<a class="headerlink" href="#functions-in-detail" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><span class="target" id="f1c860e504b60a22414b9f19e4ed9"></span><p><p class="klcode">Boolean <a class="reference internal" href="#raycastresult"><span>RaycastResult</span></a>.compareAndUpdate! ( in Size objectIndex, out <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxDistance )</p>
+<p><span class="target" id="ecb5aaf5a949cbb943657f8414fe6c"></span><p><p class="klcode">Boolean <a class="reference internal" href="#raycastresult"><span>RaycastResult</span></a>.compareAndUpdate! ( in Size objectIndex, out <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxDistance )</p>
 <p class="plaintext">If the raycast resulting distance is &lt;= maxDistance, returns &#8216;true&#8217;
 and the object should preserve location information for that best candidate.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f1e457f74144557af4c88f919e4fd16"></span><p><p class="klcode"><a class="reference internal" href="#raycastresult"><span>RaycastResult</span></a>.copyResultFrom! ( in Ref&lt;<a class="reference internal" href="#raycastresult"><span>RaycastResult</span></a>&gt; other )</p>
+<span class="target" id="def9f555b44f3b98c3c14877e15667"></span><p><p class="klcode"><a class="reference internal" href="#raycastresult"><span>RaycastResult</span></a>.copyResultFrom! ( in Ref&lt;<a class="reference internal" href="#raycastresult"><span>RaycastResult</span></a>&gt; other )</p>
 <p class="plaintext">Sets the resulting raycast location from the other <a class="reference internal" href="#raycastresult"><span>RaycastResult</span></a> (same type)</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b8af7b364a69b8b140cce53cb1b6"></span><p><p class="klcode"><a class="reference internal" href="#raycastresult"><span>RaycastResult</span></a>.reset! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> start, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> unitDir, in Boolean doubleSided, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> coneThreshold )</p>
+<span class="target" id="c5b10b8e484552bdad636191c535dc"></span><p><p class="klcode"><a class="reference internal" href="#raycastresult"><span>RaycastResult</span></a>.reset! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> start, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> unitDir, in Boolean doubleSided, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> coneThreshold )</p>
 <p class="plaintext">Resets the content of the query (new raycast beginning)</p>
 </p>
 </p>

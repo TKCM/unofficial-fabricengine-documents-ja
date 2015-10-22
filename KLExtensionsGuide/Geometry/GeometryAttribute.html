@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
     <link rel="up" title="Geometry Extension’s Interfaces" href="interfaces.html" />
     <link rel="next" title="RaycastResult (interface)" href="RaycastResult.html" />
@@ -61,7 +62,7 @@
 <p class="plaintext">The <a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a> interface contains the methods required by the <a class="reference internal" href="GeometryAttributes.html#geometryattributes"><span>GeometryAttributes</span></a> container for
 managing the attribute values. By abstracting the attribute content, <a class="reference internal" href="Geometry.html#geometry"><span>Geometry</span></a> types can resize, duplicate or
 compare values without having a specific knowledge of the various attribute types. For example, this allows
-the PolygonMesh to manage attribute sharing, and it allows the <a class="reference internal" href="functions.html#c36bd555c634fb8bb90ee317d0c6d6a"><span>GetAttributeAtLocation</span></a> helper function to
+the PolygonMesh to manage attribute sharing, and it allows the <a class="reference internal" href="functions.html#e97d1a46d781ec750325637f71"><span>GetAttributeAtLocation</span></a> helper function to
 interpolate surface attribute values.</p>
 <p class="plaintext">While various type implementations are provided, such as <a class="reference internal" href="Vec3Attribute.html#vec3attribute"><span>Vec3Attribute</span></a> and <a class="reference internal" href="ColorAttribute.html#colorattribute"><span>ColorAttribute</span></a>, this interface
 allows to add other custom attribute types to a <a class="reference internal" href="GeometryAttributes.html#geometryattributes"><span>GeometryAttributes</span></a> container.</p>
@@ -304,64 +305,64 @@ containerIndex.</p>
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#ed575aad108b4068aa04675fd343d528"><span>convertToCPU</span></a> ! ()</td>
+<td><a class="reference internal" href="#f0b2f48611864290a2fa58c7e09b42d2"><span>convertToCPU</span></a> ! ()</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#b6dbb612f07049ec8ccbe836093f5238"><span>convertToGPU</span></a> ! ()</td>
+<td><a class="reference internal" href="#d1c434bd7e4ac9addfa9347fe26416"><span>convertToGPU</span></a> ! ()</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#d9014e3881c00622503d689c"><span>copyFrom</span></a> ! ( in Ref&lt;Object&gt; otherAttr )</td>
+<td><a class="reference internal" href="#ba2821806478391386ca403d59909"><span>copyFrom</span></a> ! ( in Ref&lt;Object&gt; otherAttr )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#c33dc42d77c410584a1d187cbd979c9"><span>copyValue</span></a> ! ( in Ref&lt;Object&gt; sourceAttr, in Size sourceIndex, in Size targetIndex )</td>
+<td><a class="reference internal" href="#a191216c18614d94a175f759ce210d5c"><span>copyValue</span></a> ! ( in Ref&lt;Object&gt; sourceAttr, in Size sourceIndex, in Size targetIndex )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#dc01f256424a1e8b92a91262d68e1c"><span>copyValue</span></a> ! ( in Size sourceIndex, in Size targetIndex )</td>
+<td><a class="reference internal" href="#f718f6168fef49aeb9dfdfee1e676537"><span>copyValue</span></a> ! ( in Size sourceIndex, in Size targetIndex )</td>
 </tr>
 <tr class="row-even"><td>Data</td>
-<td><a class="reference internal" href="#d6bf96f0ea48a5b97e641f041d5507"><span>data</span></a> ? ()</td>
+<td><a class="reference internal" href="#cd9edf7bb5483b9f0614c8b48f84b4"><span>data</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td>Boolean</td>
-<td><a class="reference internal" href="#d39a40847fda9fa0c37c8ca205d"><span>equalValues</span></a> ? ( in Size index1, in Size index2 )</td>
+<td><a class="reference internal" href="#d4502c70daea440ea098369b182dd9a7"><span>equalValues</span></a> ? ( in Size index1, in Size index2 )</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
-<td><a class="reference internal" href="#bf4d9a6154a4082979454c1107691"><span>getDesc</span></a> ? ( in Boolean useUnitTestPrint )</td>
+<td><a class="reference internal" href="#bba9fe56e862494bb65aee8dd279aee6"><span>getDesc</span></a> ? ( in Boolean useUnitTestPrint )</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
-<td><a class="reference internal" href="#e59cff19b84c7ea4289bdcfd17a647"><span>getDesc</span></a> ? ()</td>
+<td><a class="reference internal" href="#b421899fc6244a909efe46d59f24631b"><span>getDesc</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td>UInt32</td>
-<td><a class="reference internal" href="#a95bab71e741e8921d67162fb6533c"><span>getElementsMemType</span></a> ? ()</td>
+<td><a class="reference internal" href="#c8eceffae34eaea135bd523009f235"><span>getElementsMemType</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
-<td><a class="reference internal" href="#d31def2769d7405d9ead10441824ee36"><span>getName</span></a> ? ()</td>
+<td><a class="reference internal" href="#afb44df955720073b975c6d"><span>getName</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td>Size</td>
-<td><a class="reference internal" href="#e462d2493e244ad6b00722e0ec87b90f"><span>getScalarValueSize</span></a> ? ()</td>
+<td><a class="reference internal" href="#fde3086ecb94fbea73d8f1ee4dc76e3"><span>getScalarValueSize</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td>UInt32</td>
-<td><a class="reference internal" href="#c6082e0054427bf4b18d9ad814a07"><span>getVersion</span></a> ? ()</td>
+<td><a class="reference internal" href="#e00004646248a38c1df2eacddbdb03"><span>getVersion</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#cc6ac532540cf93180d03a4d91b41"><span>incrementVersion</span></a> ! ()</td>
+<td><a class="reference internal" href="#a741d671f15a412099ba888d124cc573"><span>incrementVersion</span></a> ! ()</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#f6ed64bc4c1c80a21fb3025a82df"><span>linearCombine</span></a> ! ( in Ref&lt;Object&gt; sourceAttr, in <a class="reference internal" href="../Containers/LocalL16UInt32Array.html#locall16uint32array"><span>LocalL16UInt32Array</span></a> sourceIndices, in <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> sourceWeights, in Size targetIndex )</td>
+<td><a class="reference internal" href="#b47f05a4aef64a958e0995f8e1e4343c"><span>linearCombine</span></a> ! ( in Ref&lt;Object&gt; sourceAttr, in <a class="reference internal" href="../Containers/LocalL16UInt32Array.html#locall16uint32array"><span>LocalL16UInt32Array</span></a> sourceIndices, in <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> sourceWeights, in Size targetIndex )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#f1f4bd088526d7f613cf13c"><span>resize</span></a> ! ( in Size count )</td>
+<td><a class="reference internal" href="#ee5eef87ce1a4dfc9afa086c5e517cf6"><span>resize</span></a> ! ( in Size count )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#f1575eea43f895580ff1901b94ab"><span>setFromScalar</span></a> ! ( in Size index, in <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> value )</td>
+<td><a class="reference internal" href="#f22dd04c4c9042866fb62ca5e1"><span>setFromScalar</span></a> ! ( in Size index, in <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> value )</td>
 </tr>
 <tr class="row-even"><td>Size</td>
-<td><a class="reference internal" href="#dd9359079a34deead713e7eb4808a48"><span>size</span></a> ? ()</td>
+<td><a class="reference internal" href="#cfe76591f4183a34184950dc19f75"><span>size</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
-<td><a class="reference internal" href="#bb3cb81b5d047e98372ae024c5c1f3a"><span>unitTestPrint</span></a> ? ( in Size index )</td>
+<td><a class="reference internal" href="#c06cc7e7d8024f979b30d5d8448cc6fd"><span>unitTestPrint</span></a> ? ( in Size index )</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
-<td><a class="reference internal" href="#aa9fc3fe04954ce7a424bdb437582925"><span>valueDesc</span></a> ? ( in Size index )</td>
+<td><a class="reference internal" href="#d3e9ea90f843c280d22a2ed4bf5a85"><span>valueDesc</span></a> ? ( in Size index )</td>
 </tr>
 </tbody>
 </table>
@@ -369,35 +370,35 @@ containerIndex.</p>
 </div>
 <div class="section" id="functions-in-detail">
 <h2>Functions in detail<a class="headerlink" href="#functions-in-detail" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><span class="target" id="ed575aad108b4068aa04675fd343d528"></span><p><p class="klcode"><a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.convertToCPU! ()</p>
+<p><span class="target" id="f0b2f48611864290a2fa58c7e09b42d2"></span><p><p class="klcode"><a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.convertToCPU! ()</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b6dbb612f07049ec8ccbe836093f5238"></span><p><p class="klcode"><a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.convertToGPU! ()</p>
+<span class="target" id="d1c434bd7e4ac9addfa9347fe26416"></span><p><p class="klcode"><a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.convertToGPU! ()</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d9014e3881c00622503d689c"></span><p><p class="klcode"><a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.copyFrom! ( in Ref&lt;Object&gt; otherAttr )</p>
+<span class="target" id="ba2821806478391386ca403d59909"></span><p><p class="klcode"><a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.copyFrom! ( in Ref&lt;Object&gt; otherAttr )</p>
 <p class="plaintext">Sets the whole content of the attribute from the other attribute.
 The other attribute will be of the same type.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c33dc42d77c410584a1d187cbd979c9"></span><p><p class="klcode"><a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.copyValue! ( in Ref&lt;Object&gt; sourceAttr, in Size sourceIndex, in Size targetIndex )</p>
+<span class="target" id="a191216c18614d94a175f759ce210d5c"></span><p><p class="klcode"><a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.copyValue! ( in Ref&lt;Object&gt; sourceAttr, in Size sourceIndex, in Size targetIndex )</p>
 <p class="plaintext">Replaces the value located at targetIndex with source attribute&#8217;s value located at sourceIndex.
 The source attribute will be of the same type.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="dc01f256424a1e8b92a91262d68e1c"></span><p><p class="klcode"><a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.copyValue! ( in Size sourceIndex, in Size targetIndex )</p>
+<span class="target" id="f718f6168fef49aeb9dfdfee1e676537"></span><p><p class="klcode"><a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.copyValue! ( in Size sourceIndex, in Size targetIndex )</p>
 <p class="plaintext">Replaces the value located at targetIndex with the value located at sourceIndex</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d6bf96f0ea48a5b97e641f041d5507"></span><p><p class="klcode">Data <a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.data? ()</p>
+<span class="target" id="cd9edf7bb5483b9f0614c8b48f84b4"></span><p><p class="klcode">Data <a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.data? ()</p>
 <p class="plaintext">Returns a raw pointer to contiguous attribute data, if applicable, and an uninitialized Data otherwise.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d39a40847fda9fa0c37c8ca205d"></span><p><p class="klcode">Boolean <a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.equalValues? ( in Size index1, in Size index2 )</p>
+<span class="target" id="d4502c70daea440ea098369b182dd9a7"></span><p><p class="klcode">Boolean <a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.equalValues? ( in Size index1, in Size index2 )</p>
 <p class="plaintext">Return true if two values are logically equal.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="bf4d9a6154a4082979454c1107691"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.getDesc? ( in Boolean useUnitTestPrint )</p>
+<span class="target" id="bba9fe56e862494bb65aee8dd279aee6"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.getDesc? ( in Boolean useUnitTestPrint )</p>
 <p class="plaintext">Returns a description of the attribute, including all values.</p>
 <table border="1" class="paramtable docutils">
 <colgroup>
@@ -412,37 +413,37 @@ The source attribute will be of the same type.</p>
 </table>
 </p>
 <hr class="docutils" />
-<span class="target" id="e59cff19b84c7ea4289bdcfd17a647"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.getDesc? ()</p>
+<span class="target" id="b421899fc6244a909efe46d59f24631b"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.getDesc? ()</p>
 <p class="plaintext">Returns a description of the attribute, including all values.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a95bab71e741e8921d67162fb6533c"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.getElementsMemType? ()</p>
+<span class="target" id="c8eceffae34eaea135bd523009f235"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.getElementsMemType? ()</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d31def2769d7405d9ead10441824ee36"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.getName? ()</p>
+<span class="target" id="afb44df955720073b975c6d"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.getName? ()</p>
 <p class="plaintext">Returns the name of the attribute.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="e462d2493e244ad6b00722e0ec87b90f"></span><p><p class="klcode">Size <a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.getScalarValueSize? ()</p>
+<span class="target" id="fde3086ecb94fbea73d8f1ee4dc76e3"></span><p><p class="klcode">Size <a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.getScalarValueSize? ()</p>
 <p class="plaintext">If all attribute values can be expressed as a constant <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> array, returns the constant number of elements, 0 otherwise.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last"><a class="reference internal" href="#f1575eea43f895580ff1901b94ab"><span>GeometryAttribute.setFromScalar</span></a></p>
+<p class="last"><a class="reference internal" href="#f22dd04c4c9042866fb62ca5e1"><span>GeometryAttribute.setFromScalar</span></a></p>
 </div>
 </p>
 <hr class="docutils" />
-<span class="target" id="c6082e0054427bf4b18d9ad814a07"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.getVersion? ()</p>
+<span class="target" id="e00004646248a38c1df2eacddbdb03"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.getVersion? ()</p>
 <p class="plaintext">Returns the attribute values version. See <a class="reference internal" href="Vec4Attribute.kl.html#attributeversioning"><span>Attribute versioning</span></a> for more information.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="cc6ac532540cf93180d03a4d91b41"></span><p><p class="klcode"><a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.incrementVersion! ()</p>
+<span class="target" id="a741d671f15a412099ba888d124cc573"></span><p><p class="klcode"><a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.incrementVersion! ()</p>
 <p class="klbrief">Increment attribute values&#8217; version.</p>
 <p class="plaintext">This must be called after value(s) have been modified. For
 better performance, it can be called only after all changes are finished.
 See <a class="reference internal" href="Vec4Attribute.kl.html#attributeversioning"><span>Attribute versioning</span></a> for more information.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f6ed64bc4c1c80a21fb3025a82df"></span><p><p class="klcode"><a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.linearCombine! ( in Ref&lt;Object&gt; sourceAttr, in <a class="reference internal" href="../Containers/LocalL16UInt32Array.html#locall16uint32array"><span>LocalL16UInt32Array</span></a> sourceIndices, in <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> sourceWeights, in Size targetIndex )</p>
+<span class="target" id="b47f05a4aef64a958e0995f8e1e4343c"></span><p><p class="klcode"><a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.linearCombine! ( in Ref&lt;Object&gt; sourceAttr, in <a class="reference internal" href="../Containers/LocalL16UInt32Array.html#locall16uint32array"><span>LocalL16UInt32Array</span></a> sourceIndices, in <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> sourceWeights, in Size targetIndex )</p>
 <p class="plaintext">Sets the value located at targetIndex as a linear combination of other values.</p>
 <table border="1" class="paramtable docutils">
 <colgroup>
@@ -466,23 +467,23 @@ See <a class="reference internal" href="Vec4Attribute.kl.html#attributeversionin
 </table>
 </p>
 <hr class="docutils" />
-<span class="target" id="f1f4bd088526d7f613cf13c"></span><p><p class="klcode"><a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.resize! ( in Size count )</p>
+<span class="target" id="ee5eef87ce1a4dfc9afa086c5e517cf6"></span><p><p class="klcode"><a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.resize! ( in Size count )</p>
 <p class="plaintext">Resizes the attribute array.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f1575eea43f895580ff1901b94ab"></span><p><p class="klcode"><a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.setFromScalar! ( in Size index, in <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> value )</p>
-<p class="plaintext">If applicable, sets an attribute value from an array of Scalars. This array must have a size of <a class="reference internal" href="#e462d2493e244ad6b00722e0ec87b90f"><span>GeometryAttribute.getScalarValueSize</span></a> .</p>
+<span class="target" id="f22dd04c4c9042866fb62ca5e1"></span><p><p class="klcode"><a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.setFromScalar! ( in Size index, in <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> value )</p>
+<p class="plaintext">If applicable, sets an attribute value from an array of Scalars. This array must have a size of <a class="reference internal" href="#fde3086ecb94fbea73d8f1ee4dc76e3"><span>GeometryAttribute.getScalarValueSize</span></a> .</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="dd9359079a34deead713e7eb4808a48"></span><p><p class="klcode">Size <a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.size? ()</p>
+<span class="target" id="cfe76591f4183a34184950dc19f75"></span><p><p class="klcode">Size <a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.size? ()</p>
 <p class="plaintext">Returns the size of the attribute array.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="bb3cb81b5d047e98372ae024c5c1f3a"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.unitTestPrint? ( in Size index )</p>
+<span class="target" id="c06cc7e7d8024f979b30d5d8448cc6fd"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.unitTestPrint? ( in Size index )</p>
 <p class="plaintext">Returns a numerically stable description of the value</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="aa9fc3fe04954ce7a424bdb437582925"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.valueDesc? ( in Size index )</p>
+<span class="target" id="d3e9ea90f843c280d22a2ed4bf5a85"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#geometryattribute"><span>GeometryAttribute</span></a>.valueDesc? ( in Size index )</p>
 <p class="plaintext">Returns a description of the value</p>
 </p>
 </p>

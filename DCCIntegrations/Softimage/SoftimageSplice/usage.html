@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../../index.html" /> 
   </head>
   <body role="document">
@@ -55,7 +56,7 @@
 <p class="first admonition-title">注釈</p>
 <p class="last">KL Operators are global to the scope of Splice, they don&#8217;t belong exclusively to the node they&#8217;ve been created for and they can be applied to every SpliceOp that has a compatible interface. This means you should choose the name fo the KL operators consciously. If all KL operators are called &#8216;testOp&#8217;, this will create conflicts.</p>
 </div>
-<p>That&#8217;s it for the SpliceOp overview. If you are new to the KL language please refer to the <a class="reference internal" href="../../../KLProgrammingGuide/index.html#klpg"><span>KL Programming Guide</span></a>.</p>
+<p>That&#8217;s it for the SpliceOp overview. If you are new to the KL language please refer to the <a class="reference internal" href="../../../KLProgrammingGuide/index.html#klpg"><span>KL プログラミングガイド</span></a>.</p>
 <div class="section" id="scripting-a-spliceop-and-referencing-kl-files">
 <h2>Scripting a SpliceOp and Referencing KL Files<a class="headerlink" href="#scripting-a-spliceop-and-referencing-kl-files" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>Anything done with the Splice Editor graphical interface can also be automated through scripting via the fabricSplice command, thus offering the possibility to include SpliceOp in scripted procedural rigs or other kind of automated scene setups. Referencing external KL files is also possible via the fabricSplice command, this could be useful to have KL operators under source control or share them with other people or simply to take advantage of external code editors. Once a scene is saved the code of eachKL operator is also stored along with the path to the KL file, on scene loading the code of the operator will be used if the specified KL file is not found anymore.</p>

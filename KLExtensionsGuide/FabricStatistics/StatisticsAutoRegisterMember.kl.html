@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
     <link rel="up" title="FabricStatistics Extension’s Files" href="files.html" />
     <link rel="next" title="FabricStatistics Extension’s Interfaces" href="interfaces.html" />
@@ -65,7 +66,7 @@
 while delegating most implementation details to a member of type <a class="reference internal" href="StatisticsAutoRegisterMember.html#statisticsautoregistermember"><span>StatisticsAutoRegisterMember</span></a>.
 The <a class="reference internal" href="StatisticsAutoRegisterMember.html#statisticsautoregistermember"><span>StatisticsAutoRegisterMember</span></a> member then manages the registration and unregistration, and the storage of the private key.</p>
 <p class="plaintext">An object implementing the <a class="reference internal" href="StatisticSourceWithAutoRegisterMember.html#statisticsourcewithautoregistermember"><span>StatisticSourceWithAutoRegisterMember (interface)</span></a> interface must have a StatisticsAutoRegisterMember member,
-and must construct it in its constructor if <a class="reference internal" href="functions.html#f09cf374e74299bd701a46a3dd2636"><span>FabricStatisticsEnabled</span></a> (passing <cite>this</cite> as construction argument).
+and must construct it in its constructor if <a class="reference internal" href="functions.html#b3f609428e404a2c81abc1f258049869"><span>FabricStatisticsEnabled</span></a> (passing <cite>this</cite> as construction argument).
 The object then only needs to implement the <a class="reference internal" href="StatisticSourceWithAutoRegisterMember.html#statisticsourcewithautoregistermember"><span>StatisticSourceWithAutoRegisterMember</span></a> simplified interface.</p>
 <p class="plaintext">Important: for a good behavior, the <a class="reference internal" href="StatisticsAutoRegisterMember.html#statisticsautoregistermember"><span>StatisticsAutoRegisterMember</span></a> member should not be cloned, which requires a custom implementation of .clone() by owner objects.</p>
 <p class="plaintext">See <a class="reference internal" href="index.html#fabricstatistics"><span>Statistics</span></a> for an example of usage.</p>
@@ -482,7 +483,7 @@ The object then only needs to implement the <a class="reference internal" href="
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="StatisticRecord.html#statisticrecord"><span>StatisticRecord</span></a>[]</td>
-<td><a class="reference internal" href="StatisticSourceWithAutoRegisterMember.html#e2e198124f994685a311db0083b1f571"><span>getStatistics</span></a> ? ()</td>
+<td><a class="reference internal" href="StatisticSourceWithAutoRegisterMember.html#cde5d22771e94d018d44cad8ca131b89"><span>getStatistics</span></a> ? ()</td>
 </tr>
 </tbody>
 </table>
@@ -512,16 +513,16 @@ See <a class="reference internal" href="StatisticSourceWithAutoRegisterMember.ht
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="StatisticsAutoRegisterMember.html#f8e09c422e044910973df6ea1397a0dd"><span>StatisticsAutoRegisterMember</span></a>  ( in Ref&lt;<a class="reference internal" href="StatisticSourceWithAutoRegisterMember.html#statisticsourcewithautoregistermember"><span>StatisticSourceWithAutoRegisterMember</span></a>&gt; source )</td>
+<td><a class="reference internal" href="StatisticsAutoRegisterMember.html#f207a5f1fd504c2e99bd4297ed6a4a9a"><span>StatisticsAutoRegisterMember</span></a>  ( in Ref&lt;<a class="reference internal" href="StatisticSourceWithAutoRegisterMember.html#statisticsourcewithautoregistermember"><span>StatisticSourceWithAutoRegisterMember</span></a>&gt; source )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="StatisticsAutoRegisterMember.html#a6aeb9440c4e3caa0731dc9a1d1f55"><span>StatisticsAutoRegisterMember</span></a>  ( in <a class="reference internal" href="StatisticsAutoRegisterMember.html#statisticsautoregistermember"><span>StatisticsAutoRegisterMember</span></a> other )</td>
+<td><a class="reference internal" href="StatisticsAutoRegisterMember.html#c567488966547d2bb738ab6f868a1f6"><span>StatisticsAutoRegisterMember</span></a>  ( in <a class="reference internal" href="StatisticsAutoRegisterMember.html#statisticsautoregistermember"><span>StatisticsAutoRegisterMember</span></a> other )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="StatisticsAutoRegisterMember.html#d880944fa96d487c8543f294d8d7d95e"><span>StatisticsAutoRegisterMember</span></a>  ()</td>
+<td><a class="reference internal" href="StatisticsAutoRegisterMember.html#b174563e94c7441abeae0bedc5ae549e"><span>StatisticsAutoRegisterMember</span></a>  ()</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="StatisticsAutoRegisterMember.html#statisticsautoregistermember"><span>StatisticsAutoRegisterMember</span></a></td>
-<td><a class="reference internal" href="StatisticsAutoRegisterMember.html#f92215a8fd704d76bca726326d8ecb0d"><span>clone</span></a> ? ()</td>
+<td><a class="reference internal" href="StatisticsAutoRegisterMember.html#c379440784f624d276dcee91"><span>clone</span></a> ? ()</td>
 </tr>
 </tbody>
 </table>

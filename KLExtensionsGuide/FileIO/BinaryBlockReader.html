@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
     <link rel="up" title="FileIO Extension’s Types" href="types.html" />
     <link rel="next" title="BinaryBlockWriter (object)" href="BinaryBlockWriter.html" />
@@ -206,37 +207,37 @@ It should be used to read files written using the <a class="reference internal" 
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#af4a4c55f81c49e392a38ae9e333cfd1"><span>BinaryBlockReader</span></a>  ( in <a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a> other )</td>
+<td><a class="reference internal" href="#e6ce369883a24f6ea502a01e3a7c675c"><span>BinaryBlockReader</span></a>  ( in <a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a> other )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#c387052b55d7476e9375876091759361"><span>BinaryBlockReader</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> filePath )</td>
+<td><a class="reference internal" href="#eb4bbd57cb774071827953635663dca5"><span>BinaryBlockReader</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> filePath )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#ff5baffc914628a44dfd3e78a2d8d8"><span>BinaryBlockReader</span></a>  ( out <a class="reference internal" href="BinaryReader.html#binaryreader"><span>BinaryReader</span></a> reader )</td>
+<td><a class="reference internal" href="#c70290d7ef949cd8ea6c237799ac24a"><span>BinaryBlockReader</span></a>  ( out <a class="reference internal" href="BinaryReader.html#binaryreader"><span>BinaryReader</span></a> reader )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#c9f6434ba88e0819ca0d4a78e1"><span>BinaryBlockReader</span></a>  ()</td>
+<td><a class="reference internal" href="#e5886e367910422aa5fe91797f1f5ba0"><span>BinaryBlockReader</span></a>  ()</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a></td>
-<td><a class="reference internal" href="#c9b3949bcce4b87967f021d9f80e968"><span>beginReadBlock</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
+<td><a class="reference internal" href="#cdd3819550624060a24f5bdec6a0f4a8"><span>beginReadBlock</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a></td>
-<td><a class="reference internal" href="#c2672760c4192a2f55ee6f8a4e4cc"><span>clone</span></a> ? ()</td>
+<td><a class="reference internal" href="#c9dca4764ac1f722383b2066a"><span>clone</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#c774f488f4ca395df9dc26ed39062"><span>close</span></a> ! ()</td>
+<td><a class="reference internal" href="#e729a209d59461abb07feb0d791830b"><span>close</span></a> ! ()</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a>[]</td>
-<td><a class="reference internal" href="#eb41870a331425ab8d232ca7a10fd69"><span>getBlockNames</span></a> ? ()</td>
+<td><a class="reference internal" href="#fabb3d46af8f481389dfae9de3f3ee7e"><span>getBlockNames</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td>UInt64</td>
-<td><a class="reference internal" href="#ec526da2d781465c907a55e423014d30"><span>getNumBlocks</span></a> ? ()</td>
+<td><a class="reference internal" href="#f520c30928400db63edd29d504987b"><span>getNumBlocks</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="BinaryReader.html#binaryreader"><span>BinaryReader</span></a></td>
-<td><a class="reference internal" href="#e46022d93410b887f039e633012e4"><span>getReader</span></a> ? ()</td>
+<td><a class="reference internal" href="#acb8e0dd7c9843bbbbbac0eb61ab50c3"><span>getReader</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#f9a60621fc4f1fac18871736bde825"><span>read</span></a> ! ( in Data data, in UInt64 dataSize )</td>
+<td><a class="reference internal" href="#c7ba094ab9a482ca09d851a7d451784"><span>read</span></a> ! ( in Data data, in UInt64 dataSize )</td>
 </tr>
 </tbody>
 </table>
@@ -244,47 +245,47 @@ It should be used to read files written using the <a class="reference internal" 
 </div>
 <div class="section" id="methods-in-detail">
 <h2>Methods in detail<a class="headerlink" href="#methods-in-detail" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><span class="target" id="af4a4c55f81c49e392a38ae9e333cfd1"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a> ( in <a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a> other )</p>
+<p><span class="target" id="e6ce369883a24f6ea502a01e3a7c675c"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a> ( in <a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a> other )</p>
 <p class="plaintext">copy constructor</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c387052b55d7476e9375876091759361"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a> ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> filePath )</p>
+<span class="target" id="eb4bbd57cb774071827953635663dca5"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a> ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> filePath )</p>
 <p class="plaintext">standard constructor from filePath</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ff5baffc914628a44dfd3e78a2d8d8"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a> ( out <a class="reference internal" href="BinaryReader.html#binaryreader"><span>BinaryReader</span></a> reader )</p>
+<span class="target" id="c70290d7ef949cd8ea6c237799ac24a"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a> ( out <a class="reference internal" href="BinaryReader.html#binaryreader"><span>BinaryReader</span></a> reader )</p>
 <p class="plaintext">constructor taking an existing <a class="reference internal" href="BinaryReader.html#binaryreader"><span>BinaryReader</span></a></p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c9f6434ba88e0819ca0d4a78e1"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a> ()</p>
+<span class="target" id="e5886e367910422aa5fe91797f1f5ba0"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a> ()</p>
 <p class="plaintext">default constructor</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c9b3949bcce4b87967f021d9f80e968"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a> <a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a>.beginReadBlock! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</p>
+<span class="target" id="cdd3819550624060a24f5bdec6a0f4a8"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a> <a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a>.beginReadBlock! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> name )</p>
 <p class="plaintext">returns a new <a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a> which is initialized at the right place for a given block.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c2672760c4192a2f55ee6f8a4e4cc"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a> <a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a>.clone? ()</p>
+<span class="target" id="c9dca4764ac1f722383b2066a"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a> <a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a>.clone? ()</p>
 <p class="plaintext">clone method</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c774f488f4ca395df9dc26ed39062"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a>.close! ()</p>
+<span class="target" id="e729a209d59461abb07feb0d791830b"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a>.close! ()</p>
 <p class="plaintext">closes the <a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a> and releases the file handle</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="eb41870a331425ab8d232ca7a10fd69"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a>[] <a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a>.getBlockNames? ()</p>
+<span class="target" id="fabb3d46af8f481389dfae9de3f3ee7e"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a>[] <a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a>.getBlockNames? ()</p>
 <p class="plaintext">returns all of the binary block names</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ec526da2d781465c907a55e423014d30"></span><p><p class="klcode">UInt64 <a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a>.getNumBlocks? ()</p>
+<span class="target" id="f520c30928400db63edd29d504987b"></span><p><p class="klcode">UInt64 <a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a>.getNumBlocks? ()</p>
 <p class="plaintext">returns the numbers of blocks this reader contains</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="e46022d93410b887f039e633012e4"></span><p><p class="klcode"><a class="reference internal" href="BinaryReader.html#binaryreader"><span>BinaryReader</span></a> <a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a>.getReader? ()</p>
+<span class="target" id="acb8e0dd7c9843bbbbbac0eb61ab50c3"></span><p><p class="klcode"><a class="reference internal" href="BinaryReader.html#binaryreader"><span>BinaryReader</span></a> <a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a>.getReader? ()</p>
 <p class="plaintext">returns the wrapped <a class="reference internal" href="BinaryReader.html#binaryreader"><span>BinaryReader</span></a></p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f9a60621fc4f1fac18871736bde825"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a>.read! ( in Data data, in UInt64 dataSize )</p>
+<span class="target" id="c7ba094ab9a482ca09d851a7d451784"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockreader"><span>BinaryBlockReader</span></a>.read! ( in Data data, in UInt64 dataSize )</p>
 <p class="plaintext">reads all of the binary content of a block into a prepared array</p>
 <table border="1" class="paramtable docutils">
 <colgroup>

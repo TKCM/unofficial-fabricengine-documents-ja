@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" /> 
   </head>
   <body role="document">
@@ -123,19 +124,19 @@ that can be overridden in specialized painting tools.</p>
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#b798d4b839684a63819ec3a1f4459ba4"><span>onPaint</span></a> ! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent, in <a class="reference internal" href="SurfacePaintManipulator_PointCollection.html#surfacepaintmanipulator-pointcollection"><span>SurfacePaintManipulator_PointCollection</span></a> collectedPoints )</td>
+<td><a class="reference internal" href="#b0c7a42e1abb143c67f40d4ad"><span>onPaint</span></a> ! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent, in <a class="reference internal" href="SurfacePaintManipulator_PointCollection.html#surfacepaintmanipulator-pointcollection"><span>SurfacePaintManipulator_PointCollection</span></a> collectedPoints )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#ee23ef9369da468b9f3b2c774166da36"><span>onStrokeBegin</span></a> ! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent )</td>
+<td><a class="reference internal" href="#daf72184f4b8735a2f329f29806"><span>onStrokeBegin</span></a> ! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#bb4a495c466da788c182d1292358"><span>onStrokeEnd</span></a> ! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent )</td>
+<td><a class="reference internal" href="#dad44353e6242c3aa8f3d253a25f709"><span>onStrokeEnd</span></a> ! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#a5bc960a9d2a4e69828a2614f488d776"><span>setHostAndGraph</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> hostName, in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> graphName )</td>
+<td><a class="reference internal" href="#a42bd8427fb74531a37089ee96573f18"><span>setHostAndGraph</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> hostName, in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> graphName )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#b9420c2f5de4fb9bdceb42b386c5295"><span>setPortToDrive</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> portName )</td>
+<td><a class="reference internal" href="#faad7074ca1a8db6eef3cbd41fc"><span>setPortToDrive</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> portName )</td>
 </tr>
 </tbody>
 </table>
@@ -143,27 +144,27 @@ that can be overridden in specialized painting tools.</p>
 </div>
 <div class="section" id="functions-in-detail">
 <h2>Functions in detail<a class="headerlink" href="#functions-in-detail" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><span class="target" id="b798d4b839684a63819ec3a1f4459ba4"></span><p><p class="klcode"><a class="reference internal" href="#isurfacepaintmanipulator"><span>ISurfacePaintManipulator</span></a>.onPaint! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent, in <a class="reference internal" href="SurfacePaintManipulator_PointCollection.html#surfacepaintmanipulator-pointcollection"><span>SurfacePaintManipulator_PointCollection</span></a> collectedPoints )</p>
+<p><span class="target" id="b0c7a42e1abb143c67f40d4ad"></span><p><p class="klcode"><a class="reference internal" href="#isurfacepaintmanipulator"><span>ISurfacePaintManipulator</span></a>.onPaint! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent, in <a class="reference internal" href="SurfacePaintManipulator_PointCollection.html#surfacepaintmanipulator-pointcollection"><span>SurfacePaintManipulator_PointCollection</span></a> collectedPoints )</p>
 <p class="plaintext">Invoked by the <a class="reference internal" href="SurfacePaintManipulator.html#surfacepaintmanipulator"><span>SurfacePaintManipulator</span></a> during painting for each mouse move event.
 the collectedPoints struct contains the points, distances and weights
 of the points in the geometry that are within the volume of the paint brush.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ee23ef9369da468b9f3b2c774166da36"></span><p><p class="klcode"><a class="reference internal" href="#isurfacepaintmanipulator"><span>ISurfacePaintManipulator</span></a>.onStrokeBegin! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent )</p>
+<span class="target" id="daf72184f4b8735a2f329f29806"></span><p><p class="klcode"><a class="reference internal" href="#isurfacepaintmanipulator"><span>ISurfacePaintManipulator</span></a>.onStrokeBegin! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent )</p>
 <p class="plaintext">Invoked by the <a class="reference internal" href="SurfacePaintManipulator.html#surfacepaintmanipulator"><span>SurfacePaintManipulator</span></a> when the paint stroke begins.
 The event passed in is the mouse down event.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="bb4a495c466da788c182d1292358"></span><p><p class="klcode"><a class="reference internal" href="#isurfacepaintmanipulator"><span>ISurfacePaintManipulator</span></a>.onStrokeEnd! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent )</p>
+<span class="target" id="dad44353e6242c3aa8f3d253a25f709"></span><p><p class="klcode"><a class="reference internal" href="#isurfacepaintmanipulator"><span>ISurfacePaintManipulator</span></a>.onStrokeEnd! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent )</p>
 <p class="plaintext">Invoked by the <a class="reference internal" href="SurfacePaintManipulator.html#surfacepaintmanipulator"><span>SurfacePaintManipulator</span></a> when the paint stroke ends.
 The event passed in is the mouse up event.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a5bc960a9d2a4e69828a2614f488d776"></span><p><p class="klcode"><a class="reference internal" href="#isurfacepaintmanipulator"><span>ISurfacePaintManipulator</span></a>.setHostAndGraph! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> hostName, in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> graphName )</p>
+<span class="target" id="a42bd8427fb74531a37089ee96573f18"></span><p><p class="klcode"><a class="reference internal" href="#isurfacepaintmanipulator"><span>ISurfacePaintManipulator</span></a>.setHostAndGraph! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> hostName, in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> graphName )</p>
 <p class="plaintext">Sets the host name and graph name within the DCC</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b9420c2f5de4fb9bdceb42b386c5295"></span><p><p class="klcode"><a class="reference internal" href="#isurfacepaintmanipulator"><span>ISurfacePaintManipulator</span></a>.setPortToDrive! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> portName )</p>
+<span class="target" id="faad7074ca1a8db6eef3cbd41fc"></span><p><p class="klcode"><a class="reference internal" href="#isurfacepaintmanipulator"><span>ISurfacePaintManipulator</span></a>.setPortToDrive! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> portName )</p>
 <p class="plaintext">Sets the port to drive. This by default is set to the evalID,
 which forces a refresh of the execution of the DCC node, so for example
 a deformer will be reexecuted.</p>

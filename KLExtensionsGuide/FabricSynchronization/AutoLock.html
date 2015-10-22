@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
     <link rel="up" title="FabricSynchronization Extension’s Types" href="types.html" />
     <link rel="next" title="FewObjectsRecyclingAllocator (object)" href="FewObjectsRecyclingAllocator.html" />
@@ -113,19 +114,19 @@ The <a class="reference internal" href="#autolock"><span>AutoLock</span></a> is 
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#b931c0f54b24ba4cc2221f37c961"><span>AutoLock</span></a>  ( in <a class="reference internal" href="#autolock"><span>AutoLock</span></a> other )</td>
+<td><a class="reference internal" href="#b9076f221b664febb2d5ce043e2a2b45"><span>AutoLock</span></a>  ( in <a class="reference internal" href="#autolock"><span>AutoLock</span></a> other )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#faddf24bee1d4d0fa8d5268c3eb1b1df"><span>AutoLock</span></a>  ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock )</td>
+<td><a class="reference internal" href="#b20c22d0267b491a869a34006ca14248"><span>AutoLock</span></a>  ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#f9da36a4c04a5280b05ca97ad3dc91"><span>AutoLock</span></a>  ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxWaitSeconds )</td>
+<td><a class="reference internal" href="#ee313abc63f46ae8df57ef03142841b"><span>AutoLock</span></a>  ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxWaitSeconds )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#df5be318960b4354ad603d5cc4c4151e"><span>AutoLock</span></a>  ()</td>
+<td><a class="reference internal" href="#e9623a02e51f4b7597da651ee565da5f"><span>AutoLock</span></a>  ()</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#autolock"><span>AutoLock</span></a></td>
-<td><a class="reference internal" href="#fe0eb397fafd4404949004b47e2c22f7"><span>clone</span></a> ? ()</td>
+<td><a class="reference internal" href="#b4e970bb60485cb261253ab6627f5d"><span>clone</span></a> ? ()</td>
 </tr>
 </tbody>
 </table>
@@ -140,7 +141,7 @@ The <a class="reference internal" href="#autolock"><span>AutoLock</span></a> is 
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="#autolock"><span>AutoLock</span></a></td>
-<td><a class="reference internal" href="#a86b8ed163584360b98b0e169589fcf3"><span>=</span></a> ( <a class="reference internal" href="../Parameters/Param.html#param"><span>Param</span></a> other )</td>
+<td><a class="reference internal" href="#bbc70cf0f4041978894507b495e31"><span>=</span></a> ( <a class="reference internal" href="../Parameters/Param.html#param"><span>Param</span></a> other )</td>
 </tr>
 </tbody>
 </table>
@@ -148,32 +149,32 @@ The <a class="reference internal" href="#autolock"><span>AutoLock</span></a> is 
 </div>
 <div class="section" id="methods-in-detail">
 <h2>Methods in detail<a class="headerlink" href="#methods-in-detail" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><span class="target" id="b931c0f54b24ba4cc2221f37c961"></span><p><p class="klcode"><a class="reference internal" href="#autolock"><span>AutoLock</span></a> ( in <a class="reference internal" href="#autolock"><span>AutoLock</span></a> other )</p>
+<p><span class="target" id="b9076f221b664febb2d5ce043e2a2b45"></span><p><p class="klcode"><a class="reference internal" href="#autolock"><span>AutoLock</span></a> ( in <a class="reference internal" href="#autolock"><span>AutoLock</span></a> other )</p>
 <p class="plaintext">copy constructor</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="faddf24bee1d4d0fa8d5268c3eb1b1df"></span><p><p class="klcode"><a class="reference internal" href="#autolock"><span>AutoLock</span></a> ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock )</p>
+<span class="target" id="b20c22d0267b491a869a34006ca14248"></span><p><p class="klcode"><a class="reference internal" href="#autolock"><span>AutoLock</span></a> ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock )</p>
 <p class="plaintext">Acquires the <cite>lock</cite>.
 The lock will be released at the destruction of the <a class="reference internal" href="#autolock"><span>AutoLock</span></a>.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f9da36a4c04a5280b05ca97ad3dc91"></span><p><p class="klcode"><a class="reference internal" href="#autolock"><span>AutoLock</span></a> ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxWaitSeconds )</p>
+<span class="target" id="ee313abc63f46ae8df57ef03142841b"></span><p><p class="klcode"><a class="reference internal" href="#autolock"><span>AutoLock</span></a> ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxWaitSeconds )</p>
 <p class="plaintext">Acquires the <cite>lock</cite> with a specific maximum delay (overrides lock&#8217;s default)
 The lock will be released at the destruction of the <a class="reference internal" href="#autolock"><span>AutoLock</span></a>.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="df5be318960b4354ad603d5cc4c4151e"></span><p><p class="klcode"><a class="reference internal" href="#autolock"><span>AutoLock</span></a> ()</p>
+<span class="target" id="e9623a02e51f4b7597da651ee565da5f"></span><p><p class="klcode"><a class="reference internal" href="#autolock"><span>AutoLock</span></a> ()</p>
 <p class="plaintext">default constructor</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="fe0eb397fafd4404949004b47e2c22f7"></span><p><p class="klcode"><a class="reference internal" href="#autolock"><span>AutoLock</span></a> <a class="reference internal" href="#autolock"><span>AutoLock</span></a>.clone? ()</p>
+<span class="target" id="b4e970bb60485cb261253ab6627f5d"></span><p><p class="klcode"><a class="reference internal" href="#autolock"><span>AutoLock</span></a> <a class="reference internal" href="#autolock"><span>AutoLock</span></a>.clone? ()</p>
 <p class="plaintext">clone method</p>
 </p>
 </p>
 </div>
 <div class="section" id="operators-in-detail">
 <h2>Operators in detail<a class="headerlink" href="#operators-in-detail" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><span class="target" id="a86b8ed163584360b98b0e169589fcf3"></span><p class="klcode"><a class="reference internal" href="#autolock"><span>AutoLock</span></a> = ( <a class="reference internal" href="../Parameters/Param.html#param"><span>Param</span></a> other )</p>
+<p><span class="target" id="bbc70cf0f4041978894507b495e31"></span><p class="klcode"><a class="reference internal" href="#autolock"><span>AutoLock</span></a> = ( <a class="reference internal" href="../Parameters/Param.html#param"><span>Param</span></a> other )</p>
 </p>
 </div>
 </p>

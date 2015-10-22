@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" /> 
   </head>
   <body role="document">
@@ -95,13 +96,13 @@ the GizmoHandlers to apply the manipulation data to the scene.</p>
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#a7f5d4dfcc0241989d3c0b22c90a3391"><span>onDrag</span></a> ! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> space, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> delta, in UInt32 flags )</td>
+<td><a class="reference internal" href="#d11fbc21e334eaf905f2ce708ed768e"><span>onDrag</span></a> ! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> space, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> delta, in UInt32 flags )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#e83d94fc798443f8b42b76ffbb26f8ce"><span>onDragBegin</span></a> ! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent )</td>
+<td><a class="reference internal" href="#e2519e9527a84e1494066cb7d41b73e2"><span>onDragBegin</span></a> ! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#cb4d64059c4ba2832ad4a8446effe4"><span>onDragEnd</span></a> ! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent )</td>
+<td><a class="reference internal" href="#a5481146954821a88a0ac0a79c631e"><span>onDragEnd</span></a> ! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent )</td>
 </tr>
 </tbody>
 </table>
@@ -109,7 +110,7 @@ the GizmoHandlers to apply the manipulation data to the scene.</p>
 </div>
 <div class="section" id="functions-in-detail">
 <h2>Functions in detail<a class="headerlink" href="#functions-in-detail" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><span class="target" id="a7f5d4dfcc0241989d3c0b22c90a3391"></span><p><p class="klcode"><a class="reference internal" href="#gizmomanipulationcallback"><span>GizmoManipulationCallback</span></a>.onDrag! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> space, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> delta, in UInt32 flags )</p>
+<p><span class="target" id="d11fbc21e334eaf905f2ce708ed768e"></span><p><p class="klcode"><a class="reference internal" href="#gizmomanipulationcallback"><span>GizmoManipulationCallback</span></a>.onDrag! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> space, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> delta, in UInt32 flags )</p>
 <p class="plaintext">Invoked during a drag on a gizmo.</p>
 <table border="1" class="paramtable docutils">
 <colgroup>
@@ -133,7 +134,7 @@ the GizmoHandlers to apply the manipulation data to the scene.</p>
 </table>
 </p>
 <hr class="docutils" />
-<span class="target" id="e83d94fc798443f8b42b76ffbb26f8ce"></span><p><p class="klcode"><a class="reference internal" href="#gizmomanipulationcallback"><span>GizmoManipulationCallback</span></a>.onDragBegin! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent )</p>
+<span class="target" id="e2519e9527a84e1494066cb7d41b73e2"></span><p><p class="klcode"><a class="reference internal" href="#gizmomanipulationcallback"><span>GizmoManipulationCallback</span></a>.onDragBegin! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent )</p>
 <p class="plaintext">Invoked by the <a class="reference internal" href="GizmoHandler.html#gizmohandler"><span>GizmoHandler</span></a> when the mouse drag is starting</p>
 <table border="1" class="paramtable docutils">
 <colgroup>
@@ -148,7 +149,7 @@ the GizmoHandlers to apply the manipulation data to the scene.</p>
 </table>
 </p>
 <hr class="docutils" />
-<span class="target" id="cb4d64059c4ba2832ad4a8446effe4"></span><p><p class="klcode"><a class="reference internal" href="#gizmomanipulationcallback"><span>GizmoManipulationCallback</span></a>.onDragEnd! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent )</p>
+<span class="target" id="a5481146954821a88a0ac0a79c631e"></span><p><p class="klcode"><a class="reference internal" href="#gizmomanipulationcallback"><span>GizmoManipulationCallback</span></a>.onDragEnd! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent )</p>
 <p class="plaintext">Invoked by the <a class="reference internal" href="GizmoHandler.html#gizmohandler"><span>GizmoHandler</span></a> when the mouse drag is ending</p>
 <table border="1" class="paramtable docutils">
 <colgroup>

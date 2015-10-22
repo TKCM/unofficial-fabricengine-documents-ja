@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" /> 
   </head>
   <body role="document">
@@ -51,7 +52,7 @@
 <p>To register a new type, call the <code class="docutils literal"><span class="pre">fabricClient.RT.registerType</span></code> function with the name of the type as the first parameter and the <em class="dfn">specification</em> object as the second parameter.  The specification object has the following members:</p>
 <p><code class="docutils literal"><span class="pre">members</span></code></p>
 <blockquote>
-<div><p>An object containing the members to be contained in the type.  The key names are the member names for the type and the key values are the names of already-registered types or built-in KL types (see the <a class="reference internal" href="../KLProgrammingGuide/index.html#klpg"><span>KL Programming Guide</span></a> for more information on atomic types).</p>
+<div><p>An object containing the members to be contained in the type.  The key names are the member names for the type and the key values are the names of already-registered types or built-in KL types (see the <a class="reference internal" href="../KLProgrammingGuide/index.html#klpg"><span>KL プログラミングガイド</span></a> for more information on atomic types).</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
 <p class="last">It is possible to append brackets to obtain variable- or fixed-length arrays as members, eg. <code class="docutils literal"><span class="pre">Scalar[2][2]</span></code>, <code class="docutils literal"><span class="pre">Scalar[][]</span></code> and <code class="docutils literal"><span class="pre">Scalar[2][][4]</span></code>.</p>

@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
     <link rel="up" title="FabricStatistics Extension’s Interfaces" href="interfaces.html" />
     <link rel="next" title="FabricStatistics Extension’s Types" href="types.html" />
@@ -61,7 +62,7 @@
 while delegating most implementation details to a member of type <a class="reference internal" href="StatisticsAutoRegisterMember.html#statisticsautoregistermember"><span>StatisticsAutoRegisterMember</span></a>.
 The <a class="reference internal" href="StatisticsAutoRegisterMember.html#statisticsautoregistermember"><span>StatisticsAutoRegisterMember</span></a> member then manages the registration and unregistration, and the storage of the private key.</p>
 <p class="plaintext">An object implementing the <a class="reference internal" href="#statisticsourcewithautoregistermember"><span>StatisticSourceWithAutoRegisterMember (interface)</span></a> interface must have a StatisticsAutoRegisterMember member,
-and must construct it in its constructor if <a class="reference internal" href="functions.html#f09cf374e74299bd701a46a3dd2636"><span>FabricStatisticsEnabled</span></a> (passing <cite>this</cite> as construction argument).
+and must construct it in its constructor if <a class="reference internal" href="functions.html#b3f609428e404a2c81abc1f258049869"><span>FabricStatisticsEnabled</span></a> (passing <cite>this</cite> as construction argument).
 The object then only needs to implement the <a class="reference internal" href="#statisticsourcewithautoregistermember"><span>StatisticSourceWithAutoRegisterMember</span></a> simplified interface.</p>
 <p class="plaintext">Important: for a good behavior, the <a class="reference internal" href="StatisticsAutoRegisterMember.html#statisticsautoregistermember"><span>StatisticsAutoRegisterMember</span></a> member should not be cloned, which requires a custom implementation of .clone() by owner objects.</p>
 <p class="plaintext">See <a class="reference internal" href="index.html#fabricstatistics"><span>Statistics</span></a> for an example of usage.</p>
@@ -478,7 +479,7 @@ The object then only needs to implement the <a class="reference internal" href="
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="StatisticRecord.html#statisticrecord"><span>StatisticRecord</span></a>[]</td>
-<td><a class="reference internal" href="#e2e198124f994685a311db0083b1f571"><span>getStatistics</span></a> ? ()</td>
+<td><a class="reference internal" href="#cde5d22771e94d018d44cad8ca131b89"><span>getStatistics</span></a> ? ()</td>
 </tr>
 </tbody>
 </table>
@@ -486,7 +487,7 @@ The object then only needs to implement the <a class="reference internal" href="
 </div>
 <div class="section" id="functions-in-detail">
 <h2>Functions in detail<a class="headerlink" href="#functions-in-detail" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><span class="target" id="e2e198124f994685a311db0083b1f571"></span><p class="klcode"><a class="reference internal" href="StatisticRecord.html#statisticrecord"><span>StatisticRecord</span></a>[] <a class="reference internal" href="#statisticsourcewithautoregistermember"><span>StatisticSourceWithAutoRegisterMember</span></a>.getStatistics? ()</p>
+<p><span class="target" id="cde5d22771e94d018d44cad8ca131b89"></span><p class="klcode"><a class="reference internal" href="StatisticRecord.html#statisticrecord"><span>StatisticRecord</span></a>[] <a class="reference internal" href="#statisticsourcewithautoregistermember"><span>StatisticSourceWithAutoRegisterMember</span></a>.getStatistics? ()</p>
 <p class="plaintext">Returns statistics related to this object. The <cite>Name</cite> should be included, but the <cite>Type</cite> will be automatically generated.</p>
 </p>
 </div>

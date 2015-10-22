@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
     <link rel="up" title="JSON Extension’s Types" href="types.html" />
     <link rel="next" title="JSONNumberValue (object)" href="JSONNumberValue.html" />
@@ -63,7 +64,7 @@
 <p class="plaintext">The main JSON document. It provides functionality for encoding and parsing of JSON strings.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last"><a class="reference internal" href="#b6cb4c0184073009add1e6f2"><span>JSONDoc.write</span></a>, <a class="reference internal" href="#e4f67329fa7b411cb4e0790d41688141"><span>JSONDoc.parse</span></a></p>
+<p class="last"><a class="reference internal" href="#b42dd2d1af342e1ad8338fa5e397123"><span>JSONDoc.write</span></a>, <a class="reference internal" href="#bb0ef4f1dbc48fdbdc0d679c93596ca"><span>JSONDoc.parse</span></a></p>
 </div>
 <p><?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
@@ -114,25 +115,25 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#e8a5d2cec5ea4f53a1985347c099d3dd"><span>JSONDoc</span></a>  ( in <a class="reference internal" href="#jsondoc"><span>JSONDoc</span></a> other )</td>
+<td><a class="reference internal" href="#d0e294b5845d46f4ab8f171df981f2df"><span>JSONDoc</span></a>  ( in <a class="reference internal" href="#jsondoc"><span>JSONDoc</span></a> other )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
 <td><span class="xref std std-ref">JSONDoc</span>  ()</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#jsondoc"><span>JSONDoc</span></a></td>
-<td><a class="reference internal" href="#f3374735c495092a0f2f9f84fa89f"><span>clone</span></a> ? ()</td>
+<td><a class="reference internal" href="#a58db07dece477e8b1df9c9a8a2c8af"><span>clone</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#b9a96fdc7fec4eefbbf073931ce752ab"><span>merge</span></a> ! ( in <a class="reference internal" href="#jsondoc"><span>JSONDoc</span></a> other )</td>
+<td><a class="reference internal" href="#e3ef1b4042bc059e694e4b46a1"><span>merge</span></a> ! ( in <a class="reference internal" href="#jsondoc"><span>JSONDoc</span></a> other )</td>
 </tr>
 <tr class="row-odd"><td>Boolean</td>
-<td><a class="reference internal" href="#e4f67329fa7b411cb4e0790d41688141"><span>parse</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> json )</td>
+<td><a class="reference internal" href="#bb0ef4f1dbc48fdbdc0d679c93596ca"><span>parse</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> json )</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
-<td><a class="reference internal" href="#ad9c0944354afc763e71dc46aa5"><span>write</span></a> ! ( in Integer indentation )</td>
+<td><a class="reference internal" href="#b42dd2d1af342e1ad8338fa5e397123"><span>write</span></a> ! ( in Integer indentation )</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
-<td><a class="reference internal" href="#b6cb4c0184073009add1e6f2"><span>write</span></a> ! ()</td>
+<td><a class="reference internal" href="#f39dacdfaa44ed96e67b92ba666dba"><span>write</span></a> ! ()</td>
 </tr>
 </tbody>
 </table>
@@ -140,31 +141,31 @@
 </div>
 <div class="section" id="methods-in-detail">
 <h2>Methods in detail<a class="headerlink" href="#methods-in-detail" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><span class="target" id="e8a5d2cec5ea4f53a1985347c099d3dd"></span><p><p class="klcode"><a class="reference internal" href="#jsondoc"><span>JSONDoc</span></a> ( in <a class="reference internal" href="#jsondoc"><span>JSONDoc</span></a> other )</p>
+<p><span class="target" id="d0e294b5845d46f4ab8f171df981f2df"></span><p><p class="klcode"><a class="reference internal" href="#jsondoc"><span>JSONDoc</span></a> ( in <a class="reference internal" href="#jsondoc"><span>JSONDoc</span></a> other )</p>
 <p class="plaintext">copy constructor</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ca129934a541c8a90dc4ee5552b423"></span><hr class="docutils" />
-<span class="target" id="f3374735c495092a0f2f9f84fa89f"></span><p><p class="klcode"><a class="reference internal" href="#jsondoc"><span>JSONDoc</span></a> <a class="reference internal" href="#jsondoc"><span>JSONDoc</span></a>.clone? ()</p>
+<span class="target" id="bcd58f581acd47adb81773d8002c399c"></span><hr class="docutils" />
+<span class="target" id="a58db07dece477e8b1df9c9a8a2c8af"></span><p><p class="klcode"><a class="reference internal" href="#jsondoc"><span>JSONDoc</span></a> <a class="reference internal" href="#jsondoc"><span>JSONDoc</span></a>.clone? ()</p>
 <p class="plaintext">clone method</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b9a96fdc7fec4eefbbf073931ce752ab"></span><p><p class="klcode"><a class="reference internal" href="#jsondoc"><span>JSONDoc</span></a>.merge! ( in <a class="reference internal" href="#jsondoc"><span>JSONDoc</span></a> other )</p>
+<span class="target" id="e3ef1b4042bc059e694e4b46a1"></span><p><p class="klcode"><a class="reference internal" href="#jsondoc"><span>JSONDoc</span></a>.merge! ( in <a class="reference internal" href="#jsondoc"><span>JSONDoc</span></a> other )</p>
 <p class="plaintext">Merges a second provided <a class="reference internal" href="#jsondoc"><span>JSONDoc</span></a> into this one.
 Please see the <a class="reference internal" href="index.html#json-extension"><span>JSON Extension</span></a> for a code example.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="e4f67329fa7b411cb4e0790d41688141"></span><p><p class="klcode">Boolean <a class="reference internal" href="#jsondoc"><span>JSONDoc</span></a>.parse! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> json )</p>
+<span class="target" id="bb0ef4f1dbc48fdbdc0d679c93596ca"></span><p><p class="klcode">Boolean <a class="reference internal" href="#jsondoc"><span>JSONDoc</span></a>.parse! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> json )</p>
 <p class="plaintext">parses a provided JSON <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> into the <a class="reference internal" href="#jsondoc"><span>JSONDoc</span></a>. The valid member will be set after that and can be checked by the user.
 Please see the <a class="reference internal" href="index.html#json-extension"><span>JSON Extension</span></a> for a code example.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ad9c0944354afc763e71dc46aa5"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#jsondoc"><span>JSONDoc</span></a>.write! ( in Integer indentation )</p>
+<span class="target" id="b42dd2d1af342e1ad8338fa5e397123"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#jsondoc"><span>JSONDoc</span></a>.write! ( in Integer indentation )</p>
 <p class="plaintext">Encodes the documents content into a <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> using a provided indentation setting.
 Please see the <a class="reference internal" href="index.html#json-extension"><span>JSON Extension</span></a> for a code example.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b6cb4c0184073009add1e6f2"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#jsondoc"><span>JSONDoc</span></a>.write! ()</p>
+<span class="target" id="f39dacdfaa44ed96e67b92ba666dba"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#jsondoc"><span>JSONDoc</span></a>.write! ()</p>
 <p class="plaintext">Encodes the documents content into a <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> using an indentation of 0.
 Please see the <a class="reference internal" href="index.html#json-extension"><span>JSON Extension</span></a> for a code example.</p>
 </p>

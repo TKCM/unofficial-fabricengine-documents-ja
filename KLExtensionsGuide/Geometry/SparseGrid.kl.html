@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
     <link rel="up" title="Geometry Extension’s Files" href="files.html" />
     <link rel="next" title="SparseGridInternal.kl" href="SparseGridInternal.kl.html" />
@@ -65,14 +66,14 @@
 The <a class="reference internal" href="SparseGrid.html#sparsegrid"><span>SparseGrid</span></a> object can hold objects that are described as points, or as a bounding volume (box or sphere).</p>
 <p class="plaintext">The grid is sparse because, similarly to a hash table, only cells that contain some objects are allocated.
 In order to offer a good performance, the <a class="reference internal" href="SparseGrid.html#sparsegrid"><span>SparseGrid</span></a> offers:
-Before issuing queries, the <a class="reference internal" href="SparseGrid.html#fb39d1278d49db87f698b365d85a11"><span>SparseGrid.updateGrid</span></a> method must be called
-if grid objects were modified (<a class="reference internal" href="SparseGrid.html#cef9fb32b2aa410895670218956a2ecf"><span>SparseGrid.updatePointObject</span></a>, <a class="reference internal" href="SparseGrid.html#ecf55d640148238a1887671ab0f792"><span>SparseGrid.updateBBoxObject</span></a>,
-<a class="reference internal" href="SparseGrid.html#f53f206b7cb455bbac78f964ea87d63"><span>SparseGrid.updateBSphereObject</span></a>, <a class="reference internal" href="SparseGrid.html#da4484914cdab050ad2d360ae87d"><span>SparseGrid.removeObject</span></a>).</p>
+Before issuing queries, the <a class="reference internal" href="SparseGrid.html#a82c4615c934889982c683f07a4a217"><span>SparseGrid.updateGrid</span></a> method must be called
+if grid objects were modified (<a class="reference internal" href="SparseGrid.html#f527e08958ff4facb06baf019f43d1f0"><span>SparseGrid.updatePointObject</span></a>, <a class="reference internal" href="SparseGrid.html#c323fb1cf84a2fb7e07d1839a0f381"><span>SparseGrid.updateBBoxObject</span></a>,
+<a class="reference internal" href="SparseGrid.html#c371c11b74a4da3c63cd9be00987a"><span>SparseGrid.updateBSphereObject</span></a>, <a class="reference internal" href="SparseGrid.html#f974f596e7244be1a4299931a859c60b"><span>SparseGrid.removeObject</span></a>).</p>
 <p class="plaintext">By default, the cell size will be adjusted automatically based on the number of objects and
 their volume. However it is possible to adjust the cell size
-using a multiplication factor (see <a class="reference internal" href="SparseGrid.html#b25808f5212477fae069b5bbb453ba5"><span>SparseGrid.setAutoCellSize</span></a>) or an
-explicit size (see <a class="reference internal" href="SparseGrid.html#b856897ec94eeb990cf77f6370ee22"><span>SparseGrid.setExplicitCellSize</span></a>).</p>
-<p class="plaintext">Because <a class="reference internal" href="SparseGrid.html#f26af1cf4f5ca34d9e652175bc85"><span>SparseGrid.raycast</span></a> and <a class="reference internal" href="SparseGrid.html#a0d7aef54c87ad734167e6fca7ed"><span>SparseGrid.getClosest</span></a> need to be more precise
+using a multiplication factor (see <a class="reference internal" href="SparseGrid.html#a815a6205b401a9227ca8900532546"><span>SparseGrid.setAutoCellSize</span></a>) or an
+explicit size (see <a class="reference internal" href="SparseGrid.html#c73fca5392a4d60ba55c072cdf5b7ab"><span>SparseGrid.setExplicitCellSize</span></a>).</p>
+<p class="plaintext">Because <a class="reference internal" href="SparseGrid.html#e5af7b00cd53487db599e96fd151144d"><span>SparseGrid.raycast</span></a> and <a class="reference internal" href="SparseGrid.html#a5599021746d3b26cf492c7333547"><span>SparseGrid.getClosest</span></a> need to be more precise
 than simple bounding volume intersection, these require specialized object intersections
 for the actual geometry (polygon, edge, geometry) to be implemented through the <a class="reference internal" href="RaycastResult.html#raycastresult"><span>RaycastResult</span></a> and
 <a class="reference internal" href="ClosestResult.html#closestresult"><span>ClosestResult</span></a> interfaces.</p>
@@ -94,58 +95,58 @@ conditions change too much.</li>
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="SparseGrid.html#fa3f32816ede451380ed25149b456740"><span>SparseGrid</span></a>  ( in <a class="reference internal" href="SparseGrid.html#sparsegrid"><span>SparseGrid</span></a> other )</td>
+<td><a class="reference internal" href="SparseGrid.html#d02220f496e4706b1bdf9a3028a1f03"><span>SparseGrid</span></a>  ( in <a class="reference internal" href="SparseGrid.html#sparsegrid"><span>SparseGrid</span></a> other )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="SparseGrid.html#a8017224aab34461bdb1f2c7b1df4013"><span>SparseGrid</span></a>  ()</td>
+<td><a class="reference internal" href="SparseGrid.html#f18feff6864a089a3d47055ed0946e"><span>SparseGrid</span></a>  ()</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="SparseGrid.html#a94e44c0b4b008f9fe9fdb39aa49d"><span>bBoxQuery</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result )</td>
+<td><a class="reference internal" href="SparseGrid.html#b4ba57a745d40b081a468ca2ec8a6b4"><span>bBoxQuery</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="SparseGrid.html#da193a42bdaf759bd13b3100f8"><span>bSphereQuery</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> center, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result )</td>
+<td><a class="reference internal" href="SparseGrid.html#b23615f1c441ba103e07667a1e6ea"><span>bSphereQuery</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> center, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result )</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="SparseGrid.html#sparsegrid"><span>SparseGrid</span></a></td>
-<td><a class="reference internal" href="SparseGrid.html#ed674f9e65ea432b948bce62a96160e2"><span>clone</span></a> ? ()</td>
+<td><a class="reference internal" href="SparseGrid.html#ef720e2b26d84b45a3b20622a3c1164f"><span>clone</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="SparseGrid.html#a0d7aef54c87ad734167e6fca7ed"><span>getClosest</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> position, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> scaling, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxUnscaledDistance, io <a class="reference internal" href="SpatialQueryData.html#spatialquerydata"><span>SpatialQueryData</span></a> data, io Ref&lt;<a class="reference internal" href="ClosestResult.html#closestresult"><span>ClosestResult</span></a>&gt; result )</td>
+<td><a class="reference internal" href="SparseGrid.html#a5599021746d3b26cf492c7333547"><span>getClosest</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> position, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> scaling, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxUnscaledDistance, io <a class="reference internal" href="SpatialQueryData.html#spatialquerydata"><span>SpatialQueryData</span></a> data, io Ref&lt;<a class="reference internal" href="ClosestResult.html#closestresult"><span>ClosestResult</span></a>&gt; result )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="SparseGrid.html#b422e94f0893abdf4d0fcdbee8"><span>getLineIntersectedObjects</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> start, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> end, in UInt8 intersectionLineTypeEnum, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result )</td>
+<td><a class="reference internal" href="SparseGrid.html#ae887dd5be44e64bd12deea1817f77f"><span>getLineIntersectedObjects</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> start, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> end, in UInt8 intersectionLineTypeEnum, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result )</td>
 </tr>
 <tr class="row-even"><td>Size</td>
-<td><a class="reference internal" href="SparseGrid.html#e82f0e619421eacba51ff6388e221"><span>getObjectCount</span></a> ? ()</td>
+<td><a class="reference internal" href="SparseGrid.html#b264c4630fe4d9180028bef9896d5f6"><span>getObjectCount</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="SparseGrid.html#d4c0580b59757e0680770"><span>incrementalUpdateObjectCount</span></a> ! ( in Size objectCount )</td>
+<td><a class="reference internal" href="SparseGrid.html#d3c16c8f4fd0b33eadab3d5d49ff"><span>incrementalUpdateObjectCount</span></a> ! ( in Size objectCount )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="SparseGrid.html#f26af1cf4f5ca34d9e652175bc85"><span>raycast</span></a> ? ( in <a class="reference internal" href="../Math/Ray.html#ray"><span>Ray</span></a> ray, in Boolean doubleSided, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxDistance, io <a class="reference internal" href="SpatialQueryData.html#spatialquerydata"><span>SpatialQueryData</span></a> data, io Ref&lt;<a class="reference internal" href="RaycastResult.html#raycastresult"><span>RaycastResult</span></a>&gt; result )</td>
+<td><a class="reference internal" href="SparseGrid.html#e5af7b00cd53487db599e96fd151144d"><span>raycast</span></a> ? ( in <a class="reference internal" href="../Math/Ray.html#ray"><span>Ray</span></a> ray, in Boolean doubleSided, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxDistance, io <a class="reference internal" href="SpatialQueryData.html#spatialquerydata"><span>SpatialQueryData</span></a> data, io Ref&lt;<a class="reference internal" href="RaycastResult.html#raycastresult"><span>RaycastResult</span></a>&gt; result )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="SparseGrid.html#da4484914cdab050ad2d360ae87d"><span>removeObject</span></a> ! ( in UInt32 objectIndex )</td>
+<td><a class="reference internal" href="SparseGrid.html#f974f596e7244be1a4299931a859c60b"><span>removeObject</span></a> ! ( in UInt32 objectIndex )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="SparseGrid.html#b25808f5212477fae069b5bbb453ba5"><span>setAutoCellSize</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> autoCellSizeMultiplierHint )</td>
+<td><a class="reference internal" href="SparseGrid.html#b068c7d45b68789b539a6aa7a1f"><span>setAutoCellSize</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> autoCellSizeMultiplierHint )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="SparseGrid.html#b53a768924b76bcb808e4569f427d"><span>setAutoCellSize</span></a> ! ()</td>
+<td><a class="reference internal" href="SparseGrid.html#a815a6205b401a9227ca8900532546"><span>setAutoCellSize</span></a> ! ()</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="SparseGrid.html#b856897ec94eeb990cf77f6370ee22"><span>setExplicitCellSize</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> cellSize )</td>
+<td><a class="reference internal" href="SparseGrid.html#c73fca5392a4d60ba55c072cdf5b7ab"><span>setExplicitCellSize</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> cellSize )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="SparseGrid.html#ecf55d640148238a1887671ab0f792"><span>updateBBoxObject</span></a> ! ( in UInt32 objectIndex, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max )</td>
+<td><a class="reference internal" href="SparseGrid.html#c323fb1cf84a2fb7e07d1839a0f381"><span>updateBBoxObject</span></a> ! ( in UInt32 objectIndex, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="SparseGrid.html#f53f206b7cb455bbac78f964ea87d63"><span>updateBSphereObject</span></a> ! ( in UInt32 objectIndex, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> center, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius )</td>
+<td><a class="reference internal" href="SparseGrid.html#c371c11b74a4da3c63cd9be00987a"><span>updateBSphereObject</span></a> ! ( in UInt32 objectIndex, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> center, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="SparseGrid.html#fb39d1278d49db87f698b365d85a11"><span>updateGrid</span></a> ! ()</td>
+<td><a class="reference internal" href="SparseGrid.html#a82c4615c934889982c683f07a4a217"><span>updateGrid</span></a> ! ()</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="SparseGrid.html#cef9fb32b2aa410895670218956a2ecf"><span>updatePointObject</span></a> ! ( in UInt32 objectIndex, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> position )</td>
+<td><a class="reference internal" href="SparseGrid.html#f527e08958ff4facb06baf019f43d1f0"><span>updatePointObject</span></a> ! ( in UInt32 objectIndex, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> position )</td>
 </tr>
 </tbody>
 </table>

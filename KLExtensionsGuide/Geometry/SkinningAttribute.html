@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
     <link rel="up" title="Geometry Extension’s Types" href="types.html" />
     <link rel="next" title="SkinningAttributeData (struct)" href="SkinningAttributeData.html" />
@@ -255,91 +256,91 @@ For an index, id-weight pairs can be set one by one or in batch. It provides, to
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#aef71ee94b2f8b741a580c658bdd"><span>SkinningAttribute</span></a>  ( in <a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a> other )</td>
+<td><a class="reference internal" href="#a4ab84c1cd2c47f5bcf900c930a59d38"><span>SkinningAttribute</span></a>  ( in <a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a> other )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#c3a9fecb010f4f0ea806c98ba4cfb164"><span>SkinningAttribute</span></a>  ()</td>
+<td><a class="reference internal" href="#a97f729c2054c05a9d63304dea464d9"><span>SkinningAttribute</span></a>  ()</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a></td>
-<td><a class="reference internal" href="#b031c7d24d4c1abcf41fb2d19314b3"><span>clone</span></a> ? ()</td>
+<td><a class="reference internal" href="#a2fdf3340c5403a9636d57c648c3663"><span>clone</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#c93aebd1ec44bfc925a7b7c8789a870"><span>cloneMembersTo</span></a> ? ( io <a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a> that )</td>
+<td><a class="reference internal" href="#d6ebbd1cb3bd4acd9f0d0986fa6c49f9"><span>cloneMembersTo</span></a> ? ( io <a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a> that )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#b2845869ec1b48ecacf66e2d2976cb60"><span>convertToCPU</span></a> ! ()</td>
+<td><a class="reference internal" href="#e985ba3ef8ad4a5386a0b04d95a455de"><span>convertToCPU</span></a> ! ()</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#a853215d6646efa32063f4a519d5a2"><span>convertToGPU</span></a> ! ()</td>
+<td><a class="reference internal" href="#c6406885f45af9de0aa2edf347342"><span>convertToGPU</span></a> ! ()</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#ec795b46aa8344cbb49de759aa64e9dc"><span>copyValue</span></a> ! ( in Ref&lt;Object&gt; sourceAttr, in Size sourceIndex, in Size targetIndex )</td>
+<td><a class="reference internal" href="#c457e46d50418ebab80d5a216213cf"><span>copyValue</span></a> ! ( in Ref&lt;Object&gt; sourceAttr, in Size sourceIndex, in Size targetIndex )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#cacf20949fe8ca8ffe1d29baca0"><span>copyValue</span></a> ! ( in Size sourceIndex, in Size targetIndex )</td>
+<td><a class="reference internal" href="#f3bc1d305a184a878162c179cf5f5477"><span>copyValue</span></a> ! ( in Size sourceIndex, in Size targetIndex )</td>
 </tr>
 <tr class="row-odd"><td>UInt16[]</td>
-<td><a class="reference internal" href="#e0c79769539d4f9781cf80117ee385d8"><span>counts</span></a> ? ()</td>
+<td><a class="reference internal" href="#e6c5e8d3622843319f8068377a346f1c"><span>counts</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td>Data</td>
-<td><a class="reference internal" href="#e94d7112659d47e3bec95b0c3f57c499"><span>data</span></a> ? ()</td>
+<td><a class="reference internal" href="#ee65b3f551488aab8b44ebb098f6f9"><span>data</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td>Boolean</td>
-<td><a class="reference internal" href="#b4bafec1d4c42936de1812bd55dd5"><span>equalValues</span></a> ? ( in Size index1, in Size index2 )</td>
+<td><a class="reference internal" href="#f290a14fe249df8f602995e1ee00e9"><span>equalValues</span></a> ? ( in Size index1, in Size index2 )</td>
 </tr>
 <tr class="row-even"><td>UInt32</td>
-<td><a class="reference internal" href="#c3683f2d484d44e9b936c8dfd84d47e7"><span>getElementsMemType</span></a> ? ()</td>
+<td><a class="reference internal" href="#da449a04340b40636287aaaf91d"><span>getElementsMemType</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#c128723038df4f42909885fd0189e67c"><span>getLinearCombination</span></a> ? ( in <a class="reference internal" href="../Containers/LocalL16UInt32Array.html#locall16uint32array"><span>LocalL16UInt32Array</span></a> sourceIndices, in <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> sourceWeights, out <a class="reference internal" href="../Containers/LocalL16UInt32Array.html#locall16uint32array"><span>LocalL16UInt32Array</span></a> skinIds, out <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> skinWeights )</td>
+<td><a class="reference internal" href="#dacafd95e64e4da992e2eeb0bcb063b7"><span>getLinearCombination</span></a> ? ( in <a class="reference internal" href="../Containers/LocalL16UInt32Array.html#locall16uint32array"><span>LocalL16UInt32Array</span></a> sourceIndices, in <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> sourceWeights, out <a class="reference internal" href="../Containers/LocalL16UInt32Array.html#locall16uint32array"><span>LocalL16UInt32Array</span></a> skinIds, out <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> skinWeights )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#e6e0b3de4383bed1e14057ed14f4"><span>getPair</span></a> ? ( in UInt32 index, in UInt32 offset, out UInt16 id, out <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> weight )</td>
+<td><a class="reference internal" href="#f50ff36084d949d85d72e196373f4"><span>getPair</span></a> ? ( in UInt32 index, in UInt32 offset, out UInt16 id, out <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> weight )</td>
 </tr>
 <tr class="row-odd"><td>UInt16</td>
-<td><a class="reference internal" href="#ecb306f5fb184a68b74b19277fa95a00"><span>getPairCount</span></a> ? ( in UInt32 index )</td>
+<td><a class="reference internal" href="#ea8571b812b8495590a3558d7e641fbb"><span>getPairCount</span></a> ? ( in UInt32 index )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#ce2b18225a64fcca061824ef1b8418a"><span>getPairs</span></a> ? ( in UInt32 index, out <a class="reference internal" href="../Containers/LocalL16UInt32Array.html#locall16uint32array"><span>LocalL16UInt32Array</span></a> skinIds, out <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> skinWeights )</td>
+<td><a class="reference internal" href="#f69e58c249738a960184f52443a5"><span>getPairs</span></a> ? ( in UInt32 index, out <a class="reference internal" href="../Containers/LocalL16UInt32Array.html#locall16uint32array"><span>LocalL16UInt32Array</span></a> skinIds, out <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> skinWeights )</td>
 </tr>
 <tr class="row-odd"><td>Size</td>
-<td><a class="reference internal" href="#dbf366234df580700889493f96bc"><span>getScalarValueSize</span></a> ? ()</td>
+<td><a class="reference internal" href="#f00202c4c0f88b139e3e8993587"><span>getScalarValueSize</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td>UInt16[]</td>
-<td><a class="reference internal" href="#d7a4fbe6f67a4d46bc583d688e6faf0f"><span>ids</span></a> ? ()</td>
+<td><a class="reference internal" href="#c3d4f1180616fa13fa80caa"><span>ids</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#b73c12a3e4a71b702cbbb9d852463"><span>linearCombine</span></a> ! ( in Ref&lt;Object&gt; sourceAttr, in <a class="reference internal" href="../Containers/LocalL16UInt32Array.html#locall16uint32array"><span>LocalL16UInt32Array</span></a> sourceIndices, in <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> sourceWeights, in Size targetIndex )</td>
+<td><a class="reference internal" href="#a6b78e1624757b11cffe53e9d8820"><span>linearCombine</span></a> ! ( in Ref&lt;Object&gt; sourceAttr, in <a class="reference internal" href="../Containers/LocalL16UInt32Array.html#locall16uint32array"><span>LocalL16UInt32Array</span></a> sourceIndices, in <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> sourceWeights, in Size targetIndex )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#f448298c06f2ea098e7ff5"><span>normalize</span></a> ! ( in Size index )</td>
+<td><a class="reference internal" href="#cf259e216e924af5b8d0248a47ebfe6a"><span>normalize</span></a> ! ( in Size index )</td>
 </tr>
 <tr class="row-odd"><td>UInt32[]</td>
-<td><a class="reference internal" href="#aefd9cc89e47ecb21c01356e59e094"><span>offsets</span></a> ? ()</td>
+<td><a class="reference internal" href="#aa9e94b55a552eaf5f3f859fd"><span>offsets</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#b86e58b46e34779ae196c04d42e550e"><span>resize</span></a> ! ( in Size count )</td>
+<td><a class="reference internal" href="#db96fb11d9469f98d2a4fb5b03b0b7"><span>resize</span></a> ! ( in Size count )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#a9b59f898a4d348fde4315a275045b"><span>setFromScalar</span></a> ! ( in Size index, in <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> value )</td>
+<td><a class="reference internal" href="#fb726535496a9b7d9495f87ed025"><span>setFromScalar</span></a> ! ( in Size index, in <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> value )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#d39077021744145a110933dc6a908d7"><span>setPair</span></a> ! ( in UInt32 index, in UInt32 offset, in UInt16 id, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> weight )</td>
+<td><a class="reference internal" href="#fd04fd797b8d94e470372cf"><span>setPair</span></a> ! ( in UInt32 index, in UInt32 offset, in UInt16 id, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> weight )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#e8ff3d897459ca199c2fe595e6ffa"><span>setPairCount</span></a> ! ( in UInt32 index, in UInt16 pairCount )</td>
+<td><a class="reference internal" href="#e498a66d29ff46939701c7809974843b"><span>setPairCount</span></a> ! ( in UInt32 index, in UInt16 pairCount )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#c1d0b9e87440ba083cc2a0015ca98"><span>setPairs</span></a> ! ( in UInt32 index, in <a class="reference internal" href="../Containers/LocalL16UInt32Array.html#locall16uint32array"><span>LocalL16UInt32Array</span></a> skinIds, in <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> skinWeights )</td>
+<td><a class="reference internal" href="#ffab460b4e4a9ca7d7301979868871"><span>setPairs</span></a> ! ( in UInt32 index, in <a class="reference internal" href="../Containers/LocalL16UInt32Array.html#locall16uint32array"><span>LocalL16UInt32Array</span></a> skinIds, in <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> skinWeights )</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
-<td><a class="reference internal" href="#eeaec3a16554e9f938c33026e644d8f"><span>unitTestPrint</span></a> ? ( in Size index )</td>
+<td><a class="reference internal" href="#cd8ba555e0b3a5e08e"><span>unitTestPrint</span></a> ? ( in Size index )</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
-<td><a class="reference internal" href="#b7ba613c3d1f497290274f70d406b708"><span>valueDesc</span></a> ? ( in Size index )</td>
+<td><a class="reference internal" href="#abba57bc25aa400181df03459021f0cb"><span>valueDesc</span></a> ? ( in Size index )</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="../Containers/UInt32ArrayAllocator.html#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a></td>
-<td><a class="reference internal" href="#ab138e86ffe34d1bb3230d8724e7acff"><span>weightsAllocator</span></a> ? ()</td>
+<td><a class="reference internal" href="#fffb05007470c8157629297b5afb6"><span>weightsAllocator</span></a> ? ()</td>
 </tr>
 </tbody>
 </table>
@@ -347,70 +348,70 @@ For an index, id-weight pairs can be set one by one or in batch. It provides, to
 </div>
 <div class="section" id="methods-in-detail">
 <h2>Methods in detail<a class="headerlink" href="#methods-in-detail" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><span class="target" id="aef71ee94b2f8b741a580c658bdd"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a> ( in <a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a> other )</p>
+<p><span class="target" id="a4ab84c1cd2c47f5bcf900c930a59d38"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a> ( in <a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a> other )</p>
 <p class="plaintext">copy constructor</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c3a9fecb010f4f0ea806c98ba4cfb164"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a> ()</p>
+<span class="target" id="a97f729c2054c05a9d63304dea464d9"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a> ()</p>
 <p class="plaintext">default constructor</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b031c7d24d4c1abcf41fb2d19314b3"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a> <a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.clone? ()</p>
+<span class="target" id="a2fdf3340c5403a9636d57c648c3663"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a> <a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.clone? ()</p>
 <p class="plaintext">clone method</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c93aebd1ec44bfc925a7b7c8789a870"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.cloneMembersTo? ( io <a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a> that )</p>
+<span class="target" id="d6ebbd1cb3bd4acd9f0d0986fa6c49f9"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.cloneMembersTo? ( io <a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a> that )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b2845869ec1b48ecacf66e2d2976cb60"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.convertToCPU! ()</p>
+<span class="target" id="e985ba3ef8ad4a5386a0b04d95a455de"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.convertToCPU! ()</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a853215d6646efa32063f4a519d5a2"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.convertToGPU! ()</p>
+<span class="target" id="c6406885f45af9de0aa2edf347342"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.convertToGPU! ()</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ec795b46aa8344cbb49de759aa64e9dc"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.copyValue! ( in Ref&lt;Object&gt; sourceAttr, in Size sourceIndex, in Size targetIndex )</p>
+<span class="target" id="c457e46d50418ebab80d5a216213cf"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.copyValue! ( in Ref&lt;Object&gt; sourceAttr, in Size sourceIndex, in Size targetIndex )</p>
 <p class="plaintext">Replaces the value located at targetIndex with source attribute&#8217;s value located at sourceIndex.
 The source attribute will be of the same type.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="cacf20949fe8ca8ffe1d29baca0"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.copyValue! ( in Size sourceIndex, in Size targetIndex )</p>
+<span class="target" id="f3bc1d305a184a878162c179cf5f5477"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.copyValue! ( in Size sourceIndex, in Size targetIndex )</p>
 <p class="plaintext">Replaces the value located at targetIndex with the value located at sourceIndex</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="e0c79769539d4f9781cf80117ee385d8"></span><p><p class="klcode">UInt16[] <a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.counts? ()</p>
+<span class="target" id="e6c5e8d3622843319f8068377a346f1c"></span><p><p class="klcode">UInt16[] <a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.counts? ()</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="e94d7112659d47e3bec95b0c3f57c499"></span><p><p class="klcode">Data <a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.data? ()</p>
+<span class="target" id="ee65b3f551488aab8b44ebb098f6f9"></span><p><p class="klcode">Data <a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.data? ()</p>
 <p class="plaintext">Returns a raw pointer to contiguous attribute data, if applicable, and an uninitialized Data otherwise.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b4bafec1d4c42936de1812bd55dd5"></span><p><p class="klcode">Boolean <a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.equalValues? ( in Size index1, in Size index2 )</p>
+<span class="target" id="f290a14fe249df8f602995e1ee00e9"></span><p><p class="klcode">Boolean <a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.equalValues? ( in Size index1, in Size index2 )</p>
 <p class="plaintext">Return true if two values are logically equal.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c3683f2d484d44e9b936c8dfd84d47e7"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.getElementsMemType? ()</p>
+<span class="target" id="da449a04340b40636287aaaf91d"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.getElementsMemType? ()</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c128723038df4f42909885fd0189e67c"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.getLinearCombination? ( in <a class="reference internal" href="../Containers/LocalL16UInt32Array.html#locall16uint32array"><span>LocalL16UInt32Array</span></a> sourceIndices, in <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> sourceWeights, out <a class="reference internal" href="../Containers/LocalL16UInt32Array.html#locall16uint32array"><span>LocalL16UInt32Array</span></a> skinIds, out <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> skinWeights )</p>
+<span class="target" id="dacafd95e64e4da992e2eeb0bcb063b7"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.getLinearCombination? ( in <a class="reference internal" href="../Containers/LocalL16UInt32Array.html#locall16uint32array"><span>LocalL16UInt32Array</span></a> sourceIndices, in <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> sourceWeights, out <a class="reference internal" href="../Containers/LocalL16UInt32Array.html#locall16uint32array"><span>LocalL16UInt32Array</span></a> skinIds, out <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> skinWeights )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="e6e0b3de4383bed1e14057ed14f4"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.getPair? ( in UInt32 index, in UInt32 offset, out UInt16 id, out <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> weight )</p>
+<span class="target" id="f50ff36084d949d85d72e196373f4"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.getPair? ( in UInt32 index, in UInt32 offset, out UInt16 id, out <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> weight )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ecb306f5fb184a68b74b19277fa95a00"></span><p><p class="klcode">UInt16 <a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.getPairCount? ( in UInt32 index )</p>
+<span class="target" id="ea8571b812b8495590a3558d7e641fbb"></span><p><p class="klcode">UInt16 <a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.getPairCount? ( in UInt32 index )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ce2b18225a64fcca061824ef1b8418a"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.getPairs? ( in UInt32 index, out <a class="reference internal" href="../Containers/LocalL16UInt32Array.html#locall16uint32array"><span>LocalL16UInt32Array</span></a> skinIds, out <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> skinWeights )</p>
+<span class="target" id="f69e58c249738a960184f52443a5"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.getPairs? ( in UInt32 index, out <a class="reference internal" href="../Containers/LocalL16UInt32Array.html#locall16uint32array"><span>LocalL16UInt32Array</span></a> skinIds, out <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> skinWeights )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="dbf366234df580700889493f96bc"></span><p><p class="klcode">Size <a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.getScalarValueSize? ()</p>
+<span class="target" id="f00202c4c0f88b139e3e8993587"></span><p><p class="klcode">Size <a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.getScalarValueSize? ()</p>
 <p class="plaintext">Unsupported since we have a variable size per item</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d7a4fbe6f67a4d46bc583d688e6faf0f"></span><p><p class="klcode">UInt16[] <a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.ids? ()</p>
+<span class="target" id="c3d4f1180616fa13fa80caa"></span><p><p class="klcode">UInt16[] <a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.ids? ()</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b73c12a3e4a71b702cbbb9d852463"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.linearCombine! ( in Ref&lt;Object&gt; sourceAttr, in <a class="reference internal" href="../Containers/LocalL16UInt32Array.html#locall16uint32array"><span>LocalL16UInt32Array</span></a> sourceIndices, in <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> sourceWeights, in Size targetIndex )</p>
+<span class="target" id="a6b78e1624757b11cffe53e9d8820"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.linearCombine! ( in Ref&lt;Object&gt; sourceAttr, in <a class="reference internal" href="../Containers/LocalL16UInt32Array.html#locall16uint32array"><span>LocalL16UInt32Array</span></a> sourceIndices, in <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> sourceWeights, in Size targetIndex )</p>
 <p class="plaintext">Sets the value located at targetIndex as a linear combination of other values.</p>
 <table border="1" class="paramtable docutils">
 <colgroup>
@@ -434,38 +435,38 @@ The source attribute will be of the same type.</p>
 </table>
 </p>
 <hr class="docutils" />
-<span class="target" id="f448298c06f2ea098e7ff5"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.normalize! ( in Size index )</p>
+<span class="target" id="cf259e216e924af5b8d0248a47ebfe6a"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.normalize! ( in Size index )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="aefd9cc89e47ecb21c01356e59e094"></span><p><p class="klcode">UInt32[] <a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.offsets? ()</p>
+<span class="target" id="aa9e94b55a552eaf5f3f859fd"></span><p><p class="klcode">UInt32[] <a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.offsets? ()</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b86e58b46e34779ae196c04d42e550e"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.resize! ( in Size count )</p>
+<span class="target" id="db96fb11d9469f98d2a4fb5b03b0b7"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.resize! ( in Size count )</p>
 <p class="plaintext">Resizes the attribute array.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a9b59f898a4d348fde4315a275045b"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.setFromScalar! ( in Size index, in <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> value )</p>
+<span class="target" id="fb726535496a9b7d9495f87ed025"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.setFromScalar! ( in Size index, in <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> value )</p>
 <p class="plaintext">Unsupported since we have a variable size per item</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d39077021744145a110933dc6a908d7"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.setPair! ( in UInt32 index, in UInt32 offset, in UInt16 id, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> weight )</p>
+<span class="target" id="fd04fd797b8d94e470372cf"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.setPair! ( in UInt32 index, in UInt32 offset, in UInt16 id, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> weight )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="e8ff3d897459ca199c2fe595e6ffa"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.setPairCount! ( in UInt32 index, in UInt16 pairCount )</p>
+<span class="target" id="e498a66d29ff46939701c7809974843b"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.setPairCount! ( in UInt32 index, in UInt16 pairCount )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c1d0b9e87440ba083cc2a0015ca98"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.setPairs! ( in UInt32 index, in <a class="reference internal" href="../Containers/LocalL16UInt32Array.html#locall16uint32array"><span>LocalL16UInt32Array</span></a> skinIds, in <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> skinWeights )</p>
+<span class="target" id="ffab460b4e4a9ca7d7301979868871"></span><p><p class="klcode"><a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.setPairs! ( in UInt32 index, in <a class="reference internal" href="../Containers/LocalL16UInt32Array.html#locall16uint32array"><span>LocalL16UInt32Array</span></a> skinIds, in <a class="reference internal" href="../Containers/LocalL16ScalarArray.html#locall16scalararray"><span>LocalL16ScalarArray</span></a> skinWeights )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="eeaec3a16554e9f938c33026e644d8f"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.unitTestPrint? ( in Size index )</p>
+<span class="target" id="cd8ba555e0b3a5e08e"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.unitTestPrint? ( in Size index )</p>
 <p class="plaintext">Returns a numerically stable description of the value</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b7ba613c3d1f497290274f70d406b708"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.valueDesc? ( in Size index )</p>
+<span class="target" id="abba57bc25aa400181df03459021f0cb"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.valueDesc? ( in Size index )</p>
 <p class="plaintext">Returns a description of the value</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ab138e86ffe34d1bb3230d8724e7acff"></span><p><p class="klcode"><a class="reference internal" href="../Containers/UInt32ArrayAllocator.html#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a> <a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.weightsAllocator? ()</p>
+<span class="target" id="fffb05007470c8157629297b5afb6"></span><p><p class="klcode"><a class="reference internal" href="../Containers/UInt32ArrayAllocator.html#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a> <a class="reference internal" href="#skinningattribute"><span>SkinningAttribute</span></a>.weightsAllocator? ()</p>
 </p>
 </p>
 </div>

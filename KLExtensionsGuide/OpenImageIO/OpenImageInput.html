@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
     <link rel="up" title="OpenImageIO Extension’s Types" href="types.html" />
     <link rel="next" title="OpenImageOutput (object)" href="OpenImageOutput.html" />
@@ -166,109 +167,109 @@ The main relevant method on the OpenImageInput is the <code class="docutils lite
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#ecf79921a64d4c17b67e96b4b0bbf253"><span>OpenImageInput</span></a>  ( in <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a> other )</td>
+<td><a class="reference internal" href="#b846c49ab5a8c4edd00e0f"><span>OpenImageInput</span></a>  ( in <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a> other )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#f7a3d2a93861463388e6515a1380f6e7"><span>OpenImageInput</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> fileName )</td>
+<td><a class="reference internal" href="#ef4a1c45bd0945ab974c12361b322e26"><span>OpenImageInput</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> fileName )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#a5b493ecbd40e7b838872182bb9436"><span>OpenImageInput</span></a>  ()</td>
+<td><a class="reference internal" href="#aed0b5c8cba744d1a9b3322e91dfc000"><span>OpenImageInput</span></a>  ()</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a></td>
-<td><a class="reference internal" href="#f3ff26da3cee42209bb26fe2fa8885d0"><span>clone</span></a> ? ()</td>
+<td><a class="reference internal" href="#f05f0db8b6d64f9bb43ec6fd8784eb08"><span>clone</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td>Boolean</td>
-<td><a class="reference internal" href="#a6022de6ecda4ab890821b6095325d4b"><span>close</span></a> ! ()</td>
+<td><a class="reference internal" href="#a225f453db934591a3e48166272cef94"><span>close</span></a> ! ()</td>
 </tr>
 <tr class="row-even"><td>SInt32</td>
-<td><a class="reference internal" href="#ae02e58d39ff4af6897668da7c5873de"><span>current_miplevel</span></a> ? ()</td>
+<td><a class="reference internal" href="#d75e302c40ad404fb47d5919be9c85e0"><span>current_miplevel</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td>SInt32</td>
-<td><a class="reference internal" href="#cea607ba3943407188b1fba42fae307a"><span>current_subimage</span></a> ? ()</td>
+<td><a class="reference internal" href="#db06c0e3a8734ac19258baf15b584dc2"><span>current_subimage</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
-<td><a class="reference internal" href="#e97416054444309bfb323d563042e23"><span>geterror</span></a> ? ()</td>
+<td><a class="reference internal" href="#ae402b8fb9346b9ad509be6cddff2d7"><span>geterror</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#bd324ee9a4d5717e1c7cce97"><span>open</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> fileName )</td>
+<td><a class="reference internal" href="#ec459e2f18b4fa3b9b278fc6cff2a27"><span>open</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> fileName )</td>
 </tr>
 <tr class="row-even"><td>Boolean</td>
-<td><a class="reference internal" href="#ff2cbc64cb0c436998e0752384141901"><span>read_image</span></a> ! ( in <a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a> format, io Data data, in SInt64 xstride, in SInt64 ystride, in SInt64 zstride )</td>
+<td><a class="reference internal" href="#a5b799b3b848ec81b879f893851b7d"><span>read_image</span></a> ! ( in <a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a> format, io Data data, in SInt64 xstride, in SInt64 ystride, in SInt64 zstride )</td>
 </tr>
 <tr class="row-odd"><td>Boolean</td>
-<td><a class="reference internal" href="#cf83b81754921a7436226e43bfe52"><span>read_image</span></a> ! ( out <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> data[] )</td>
+<td><a class="reference internal" href="#e1186db69e441c8ba2225a542f7de49"><span>read_image</span></a> ! ( out <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> data[] )</td>
 </tr>
 <tr class="row-even"><td>Boolean</td>
-<td><a class="reference internal" href="#a36c0ebda85492d9822a6ad3698f7d2"><span>read_native_deep_image</span></a> ! ( io <a class="reference internal" href="OpenImageDeepData.html#openimagedeepdata"><span>OpenImageDeepData</span></a> deepdata )</td>
+<td><a class="reference internal" href="#d8c775377eb4e9ba934d57138e374e1"><span>read_native_deep_image</span></a> ! ( io <a class="reference internal" href="OpenImageDeepData.html#openimagedeepdata"><span>OpenImageDeepData</span></a> deepdata )</td>
 </tr>
 <tr class="row-odd"><td>Boolean</td>
-<td><a class="reference internal" href="#c931237a01f48fd9a6f8a309d624f53"><span>read_native_deep_scanlines</span></a> ! ( in SInt32 ybegin, in SInt32 yend, in SInt32 z, in SInt32 chbegin, in SInt32 chend, io <a class="reference internal" href="OpenImageDeepData.html#openimagedeepdata"><span>OpenImageDeepData</span></a> deepdata )</td>
+<td><a class="reference internal" href="#e07143e023034e90828b5a682f37a0d4"><span>read_native_deep_scanlines</span></a> ! ( in SInt32 ybegin, in SInt32 yend, in SInt32 z, in SInt32 chbegin, in SInt32 chend, io <a class="reference internal" href="OpenImageDeepData.html#openimagedeepdata"><span>OpenImageDeepData</span></a> deepdata )</td>
 </tr>
 <tr class="row-even"><td>Boolean</td>
-<td><a class="reference internal" href="#d38717b17d44858b3a59eb5be22599b"><span>read_native_deep_tiles</span></a> ! ( in SInt32 xbegin, in SInt32 xend, in SInt32 ybegin, in SInt32 yend, in SInt32 zbegin, in SInt32 zend, in SInt32 chbegin, in SInt32 chend, io <a class="reference internal" href="OpenImageDeepData.html#openimagedeepdata"><span>OpenImageDeepData</span></a> deepdata )</td>
+<td><a class="reference internal" href="#a702e48d693b452cb61129a7335959bc"><span>read_native_deep_tiles</span></a> ! ( in SInt32 xbegin, in SInt32 xend, in SInt32 ybegin, in SInt32 yend, in SInt32 zbegin, in SInt32 zend, in SInt32 chbegin, in SInt32 chend, io <a class="reference internal" href="OpenImageDeepData.html#openimagedeepdata"><span>OpenImageDeepData</span></a> deepdata )</td>
 </tr>
 <tr class="row-odd"><td>Boolean</td>
-<td><a class="reference internal" href="#fe81a90b184e7a8830328c95c38df3"><span>read_native_scanline</span></a> ! ( in SInt32 y, in SInt32 z, io Data data )</td>
+<td><a class="reference internal" href="#b12ef9a156a54bb98ba1112936aadd0b"><span>read_native_scanline</span></a> ! ( in SInt32 y, in SInt32 z, io Data data )</td>
 </tr>
 <tr class="row-even"><td>Boolean</td>
-<td><a class="reference internal" href="#b1191f79ec4d77a928fb3f00939963"><span>read_native_scanlines</span></a> ! ( in SInt32 ybegin, in SInt32 yend, in SInt32 z, in SInt32 chbegin, in SInt32 chend, io Data data )</td>
+<td><a class="reference internal" href="#cd3685c47a44efa74597c41ad45eab"><span>read_native_scanlines</span></a> ! ( in SInt32 ybegin, in SInt32 yend, in SInt32 z, in SInt32 chbegin, in SInt32 chend, io Data data )</td>
 </tr>
 <tr class="row-odd"><td>Boolean</td>
-<td><a class="reference internal" href="#d9af8b667417292bf5f9466061e2d"><span>read_native_scanlines</span></a> ! ( in SInt32 ybegin, in SInt32 yend, in SInt32 z, io Data data )</td>
+<td><a class="reference internal" href="#e0182eb615e04b56ae018144cf82b906"><span>read_native_scanlines</span></a> ! ( in SInt32 ybegin, in SInt32 yend, in SInt32 z, io Data data )</td>
 </tr>
 <tr class="row-even"><td>Boolean</td>
-<td><a class="reference internal" href="#a4340294ca44f0add46ec6eca2ee8e"><span>read_native_tile</span></a> ! ( in SInt32 x, in SInt32 y, in SInt32 z, io Data data )</td>
+<td><a class="reference internal" href="#c581dff614316b8fd1f38a2486321"><span>read_native_tile</span></a> ! ( in SInt32 x, in SInt32 y, in SInt32 z, io Data data )</td>
 </tr>
 <tr class="row-odd"><td>Boolean</td>
-<td><a class="reference internal" href="#a1d0d104653b4699ed475aec380"><span>read_native_tiles</span></a> ! ( in SInt32 xbegin, in SInt32 xend, in SInt32 ybegin, in SInt32 yend, in SInt32 zbegin, in SInt32 zend, in SInt32 chbegin, in SInt32 chend, io Data data )</td>
+<td><a class="reference internal" href="#a0172727d6c1487c817a86b18492e02b"><span>read_native_tiles</span></a> ! ( in SInt32 xbegin, in SInt32 xend, in SInt32 ybegin, in SInt32 yend, in SInt32 zbegin, in SInt32 zend, in SInt32 chbegin, in SInt32 chend, io Data data )</td>
 </tr>
 <tr class="row-even"><td>Boolean</td>
-<td><a class="reference internal" href="#fc79384f2a64b3aa8e81add749a51ff"><span>read_native_tiles</span></a> ! ( in SInt32 xbegin, in SInt32 xend, in SInt32 ybegin, in SInt32 yend, in SInt32 zbegin, in SInt32 zend, io Data data )</td>
+<td><a class="reference internal" href="#c28952cbfc44f539aca708ee6cab8a4"><span>read_native_tiles</span></a> ! ( in SInt32 xbegin, in SInt32 xend, in SInt32 ybegin, in SInt32 yend, in SInt32 zbegin, in SInt32 zend, io Data data )</td>
 </tr>
 <tr class="row-odd"><td>Boolean</td>
-<td><a class="reference internal" href="#cd3ab27f8e429290a5373eb99c615d"><span>read_scanline</span></a> ! ( in SInt32 y, in SInt32 z, in <a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a> format, io Data data, in SInt64 xstride )</td>
+<td><a class="reference internal" href="#c8d1b51bf54dccacb95494d180e4fe"><span>read_scanline</span></a> ! ( in SInt32 y, in SInt32 z, in <a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a> format, io Data data, in SInt64 xstride )</td>
 </tr>
 <tr class="row-even"><td>Boolean</td>
-<td><a class="reference internal" href="#bd5772eec46098b77406d5ef36874"><span>read_scanline</span></a> ! ( in SInt32 y, in SInt32 z, out <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> data[] )</td>
+<td><a class="reference internal" href="#cd56b6d3b42a4ba78aba2f7218b24d98"><span>read_scanline</span></a> ! ( in SInt32 y, in SInt32 z, out <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> data[] )</td>
 </tr>
 <tr class="row-odd"><td>Boolean</td>
-<td><a class="reference internal" href="#fa159f9501944588e8c4c8a441fd39d"><span>read_scanlines</span></a> ! ( in SInt32 ybegin, in SInt32 yend, in SInt32 z, in <a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a> format, io Data data, in SInt64 xstride, in SInt64 ystride )</td>
+<td><a class="reference internal" href="#d12fd7116e1343bf9f7cbd4c3080b8d4"><span>read_scanlines</span></a> ! ( in SInt32 ybegin, in SInt32 yend, in SInt32 z, in <a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a> format, io Data data, in SInt64 xstride, in SInt64 ystride )</td>
 </tr>
 <tr class="row-even"><td>Boolean</td>
-<td><a class="reference internal" href="#f6b9e82d4ffca32b3aa889c13d5e"><span>read_scanlines</span></a> ! ( in SInt32 ybegin, in SInt32 yend, in SInt32 z, in SInt32 chbegin, in SInt32 chend, in <a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a> format, io Data data, in SInt64 xstride, in SInt64 ystride )</td>
+<td><a class="reference internal" href="#ef88e471490389583b36e1b7c728"><span>read_scanlines</span></a> ! ( in SInt32 ybegin, in SInt32 yend, in SInt32 z, in SInt32 chbegin, in SInt32 chend, in <a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a> format, io Data data, in SInt64 xstride, in SInt64 ystride )</td>
 </tr>
 <tr class="row-odd"><td>Boolean</td>
-<td><a class="reference internal" href="#ca545108968228f8f16d311"><span>read_tile</span></a> ! ( in SInt32 x, in SInt32 y, in SInt32 z, in <a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a> format, io Data data, in SInt64 xstride, in SInt64 ystride, in SInt64 zstride )</td>
+<td><a class="reference internal" href="#edf91a09ed3498faa35ac9945241a0b"><span>read_tile</span></a> ! ( in SInt32 x, in SInt32 y, in SInt32 z, in <a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a> format, io Data data, in SInt64 xstride, in SInt64 ystride, in SInt64 zstride )</td>
 </tr>
 <tr class="row-even"><td>Boolean</td>
-<td><a class="reference internal" href="#be240874d3e46ae823f3b9de7503262"><span>read_tile</span></a> ! ( in SInt32 x, in SInt32 y, in SInt32 z, out <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> data[] )</td>
+<td><a class="reference internal" href="#a6ba5545f28803dd41c918b261"><span>read_tile</span></a> ! ( in SInt32 x, in SInt32 y, in SInt32 z, out <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> data[] )</td>
 </tr>
 <tr class="row-odd"><td>Boolean</td>
-<td><a class="reference internal" href="#d88b26f9ce94e1bae3f04c2f28491ed"><span>read_tiles</span></a> ! ( in SInt32 xbegin, in SInt32 xend, in SInt32 ybegin, in SInt32 yend, in SInt32 zbegin, in SInt32 zend, in <a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a> format, io Data data, in SInt64 xstride, in SInt64 ystride, in SInt64 zstride )</td>
+<td><a class="reference internal" href="#dc7e079b4639b0e14100fc5cadff"><span>read_tiles</span></a> ! ( in SInt32 xbegin, in SInt32 xend, in SInt32 ybegin, in SInt32 yend, in SInt32 zbegin, in SInt32 zend, in <a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a> format, io Data data, in SInt64 xstride, in SInt64 ystride, in SInt64 zstride )</td>
 </tr>
 <tr class="row-even"><td>Boolean</td>
-<td><a class="reference internal" href="#c352db9fae74448bbf79d45a7bbcb0a4"><span>read_tiles</span></a> ! ( in SInt32 xbegin, in SInt32 xend, in SInt32 ybegin, in SInt32 yend, in SInt32 zbegin, in SInt32 zend, in SInt32 chbegin, in SInt32 chend, in <a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a> format, io Data data, in SInt64 xstride, in SInt64 ystride, in SInt64 zstride )</td>
+<td><a class="reference internal" href="#fbfb84461674c9fd5da"><span>read_tiles</span></a> ! ( in SInt32 xbegin, in SInt32 xend, in SInt32 ybegin, in SInt32 yend, in SInt32 zbegin, in SInt32 zend, in SInt32 chbegin, in SInt32 chend, in <a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a> format, io Data data, in SInt64 xstride, in SInt64 ystride, in SInt64 zstride )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#e8aec467d8ea2aa10e171e4d8"><span>reset</span></a> ! ()</td>
+<td><a class="reference internal" href="#aacaccd910be44fd93b84964606b9c30"><span>reset</span></a> ! ()</td>
 </tr>
 <tr class="row-even"><td>Boolean</td>
-<td><a class="reference internal" href="#a681de8a084fe9ac131bb37e890ba4"><span>seek_subimage</span></a> ! ( in SInt32 subimage, in SInt32 miplevel, io <a class="reference internal" href="OpenImageSpec.html#openimagespec"><span>OpenImageSpec</span></a> newspec )</td>
+<td><a class="reference internal" href="#b4a6311b294193b9334ff454c0d362"><span>seek_subimage</span></a> ! ( in SInt32 subimage, in SInt32 miplevel, io <a class="reference internal" href="OpenImageSpec.html#openimagespec"><span>OpenImageSpec</span></a> newspec )</td>
 </tr>
 <tr class="row-odd"><td>Boolean</td>
-<td><a class="reference internal" href="#dd80eba7f404d93205b9655989536"><span>seek_subimage</span></a> ! ( in SInt32 subimage, io <a class="reference internal" href="OpenImageSpec.html#openimagespec"><span>OpenImageSpec</span></a> newspec )</td>
+<td><a class="reference internal" href="#e4d355814ef4b3a30f3a51bffc04"><span>seek_subimage</span></a> ! ( in SInt32 subimage, io <a class="reference internal" href="OpenImageSpec.html#openimagespec"><span>OpenImageSpec</span></a> newspec )</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="OpenImageSpec.html#openimagespec"><span>OpenImageSpec</span></a></td>
-<td><a class="reference internal" href="#c04878314e058e9661f509d7c837"><span>spec</span></a> ? ()</td>
+<td><a class="reference internal" href="#f702af9c3ef4bc7b0527444e984c808"><span>spec</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td>Boolean</td>
-<td><a class="reference internal" href="#fe7a428bc87d4cadb1bbe30904819a4e"><span>supports</span></a> ? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> feature )</td>
+<td><a class="reference internal" href="#fcceb2b8fa403bbe4b0312ba5cdb1f"><span>supports</span></a> ? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> feature )</td>
 </tr>
 <tr class="row-even"><td>Boolean</td>
-<td><a class="reference internal" href="#d2930c3ec3e44c5dad94da014c5931ea"><span>valid</span></a> ? ()</td>
+<td><a class="reference internal" href="#b10a1a7fe843f1b12064dee6d22645"><span>valid</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#b8cf7f3054cbcae9fd6a4da2e9cf6"><span>~OpenImageInput</span></a>  ()</td>
+<td><a class="reference internal" href="#ae694d1eb0054f028598ef42b206233f"><span>~OpenImageInput</span></a>  ()</td>
 </tr>
 </tbody>
 </table>
@@ -276,111 +277,111 @@ The main relevant method on the OpenImageInput is the <code class="docutils lite
 </div>
 <div class="section" id="methods-in-detail">
 <h2>Methods in detail<a class="headerlink" href="#methods-in-detail" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><span class="target" id="ecf79921a64d4c17b67e96b4b0bbf253"></span><p><p class="klcode"><a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a> ( in <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a> other )</p>
+<p><span class="target" id="b846c49ab5a8c4edd00e0f"></span><p><p class="klcode"><a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a> ( in <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a> other )</p>
 <p class="plaintext">copy constructor</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f7a3d2a93861463388e6515a1380f6e7"></span><p><p class="klcode"><a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a> ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> fileName )</p>
+<span class="target" id="ef4a1c45bd0945ab974c12361b322e26"></span><p><p class="klcode"><a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a> ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> fileName )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a5b493ecbd40e7b838872182bb9436"></span><p><p class="klcode"><a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a> ()</p>
+<span class="target" id="aed0b5c8cba744d1a9b3322e91dfc000"></span><p><p class="klcode"><a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a> ()</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f3ff26da3cee42209bb26fe2fa8885d0"></span><p><p class="klcode"><a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a> <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.clone? ()</p>
+<span class="target" id="f05f0db8b6d64f9bb43ec6fd8784eb08"></span><p><p class="klcode"><a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a> <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.clone? ()</p>
 <p class="plaintext">clone method</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a6022de6ecda4ab890821b6095325d4b"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.close! ()</p>
+<span class="target" id="a225f453db934591a3e48166272cef94"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.close! ()</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ae02e58d39ff4af6897668da7c5873de"></span><p><p class="klcode">SInt32 <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.current_miplevel? ()</p>
+<span class="target" id="d75e302c40ad404fb47d5919be9c85e0"></span><p><p class="klcode">SInt32 <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.current_miplevel? ()</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="cea607ba3943407188b1fba42fae307a"></span><p><p class="klcode">SInt32 <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.current_subimage? ()</p>
+<span class="target" id="db06c0e3a8734ac19258baf15b584dc2"></span><p><p class="klcode">SInt32 <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.current_subimage? ()</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="e97416054444309bfb323d563042e23"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.geterror? ()</p>
+<span class="target" id="ae402b8fb9346b9ad509be6cddff2d7"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.geterror? ()</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="bd324ee9a4d5717e1c7cce97"></span><p><p class="klcode"><a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.open! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> fileName )</p>
+<span class="target" id="ec459e2f18b4fa3b9b278fc6cff2a27"></span><p><p class="klcode"><a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.open! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> fileName )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ff2cbc64cb0c436998e0752384141901"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_image! ( in <a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a> format, io Data data, in SInt64 xstride, in SInt64 ystride, in SInt64 zstride )</p>
+<span class="target" id="a5b799b3b848ec81b879f893851b7d"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_image! ( in <a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a> format, io Data data, in SInt64 xstride, in SInt64 ystride, in SInt64 zstride )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="cf83b81754921a7436226e43bfe52"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_image! ( out <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> data[] )</p>
+<span class="target" id="e1186db69e441c8ba2225a542f7de49"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_image! ( out <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> data[] )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a36c0ebda85492d9822a6ad3698f7d2"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_native_deep_image! ( io <a class="reference internal" href="OpenImageDeepData.html#openimagedeepdata"><span>OpenImageDeepData</span></a> deepdata )</p>
+<span class="target" id="d8c775377eb4e9ba934d57138e374e1"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_native_deep_image! ( io <a class="reference internal" href="OpenImageDeepData.html#openimagedeepdata"><span>OpenImageDeepData</span></a> deepdata )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c931237a01f48fd9a6f8a309d624f53"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_native_deep_scanlines! ( in SInt32 ybegin, in SInt32 yend, in SInt32 z, in SInt32 chbegin, in SInt32 chend, io <a class="reference internal" href="OpenImageDeepData.html#openimagedeepdata"><span>OpenImageDeepData</span></a> deepdata )</p>
+<span class="target" id="e07143e023034e90828b5a682f37a0d4"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_native_deep_scanlines! ( in SInt32 ybegin, in SInt32 yend, in SInt32 z, in SInt32 chbegin, in SInt32 chend, io <a class="reference internal" href="OpenImageDeepData.html#openimagedeepdata"><span>OpenImageDeepData</span></a> deepdata )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d38717b17d44858b3a59eb5be22599b"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_native_deep_tiles! ( in SInt32 xbegin, in SInt32 xend, in SInt32 ybegin, in SInt32 yend, in SInt32 zbegin, in SInt32 zend, in SInt32 chbegin, in SInt32 chend, io <a class="reference internal" href="OpenImageDeepData.html#openimagedeepdata"><span>OpenImageDeepData</span></a> deepdata )</p>
+<span class="target" id="a702e48d693b452cb61129a7335959bc"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_native_deep_tiles! ( in SInt32 xbegin, in SInt32 xend, in SInt32 ybegin, in SInt32 yend, in SInt32 zbegin, in SInt32 zend, in SInt32 chbegin, in SInt32 chend, io <a class="reference internal" href="OpenImageDeepData.html#openimagedeepdata"><span>OpenImageDeepData</span></a> deepdata )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="fe81a90b184e7a8830328c95c38df3"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_native_scanline! ( in SInt32 y, in SInt32 z, io Data data )</p>
+<span class="target" id="b12ef9a156a54bb98ba1112936aadd0b"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_native_scanline! ( in SInt32 y, in SInt32 z, io Data data )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b1191f79ec4d77a928fb3f00939963"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_native_scanlines! ( in SInt32 ybegin, in SInt32 yend, in SInt32 z, in SInt32 chbegin, in SInt32 chend, io Data data )</p>
+<span class="target" id="cd3685c47a44efa74597c41ad45eab"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_native_scanlines! ( in SInt32 ybegin, in SInt32 yend, in SInt32 z, in SInt32 chbegin, in SInt32 chend, io Data data )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d9af8b667417292bf5f9466061e2d"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_native_scanlines! ( in SInt32 ybegin, in SInt32 yend, in SInt32 z, io Data data )</p>
+<span class="target" id="e0182eb615e04b56ae018144cf82b906"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_native_scanlines! ( in SInt32 ybegin, in SInt32 yend, in SInt32 z, io Data data )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a4340294ca44f0add46ec6eca2ee8e"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_native_tile! ( in SInt32 x, in SInt32 y, in SInt32 z, io Data data )</p>
+<span class="target" id="c581dff614316b8fd1f38a2486321"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_native_tile! ( in SInt32 x, in SInt32 y, in SInt32 z, io Data data )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a1d0d104653b4699ed475aec380"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_native_tiles! ( in SInt32 xbegin, in SInt32 xend, in SInt32 ybegin, in SInt32 yend, in SInt32 zbegin, in SInt32 zend, in SInt32 chbegin, in SInt32 chend, io Data data )</p>
+<span class="target" id="a0172727d6c1487c817a86b18492e02b"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_native_tiles! ( in SInt32 xbegin, in SInt32 xend, in SInt32 ybegin, in SInt32 yend, in SInt32 zbegin, in SInt32 zend, in SInt32 chbegin, in SInt32 chend, io Data data )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="fc79384f2a64b3aa8e81add749a51ff"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_native_tiles! ( in SInt32 xbegin, in SInt32 xend, in SInt32 ybegin, in SInt32 yend, in SInt32 zbegin, in SInt32 zend, io Data data )</p>
+<span class="target" id="c28952cbfc44f539aca708ee6cab8a4"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_native_tiles! ( in SInt32 xbegin, in SInt32 xend, in SInt32 ybegin, in SInt32 yend, in SInt32 zbegin, in SInt32 zend, io Data data )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="cd3ab27f8e429290a5373eb99c615d"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_scanline! ( in SInt32 y, in SInt32 z, in <a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a> format, io Data data, in SInt64 xstride )</p>
+<span class="target" id="c8d1b51bf54dccacb95494d180e4fe"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_scanline! ( in SInt32 y, in SInt32 z, in <a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a> format, io Data data, in SInt64 xstride )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="bd5772eec46098b77406d5ef36874"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_scanline! ( in SInt32 y, in SInt32 z, out <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> data[] )</p>
+<span class="target" id="cd56b6d3b42a4ba78aba2f7218b24d98"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_scanline! ( in SInt32 y, in SInt32 z, out <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> data[] )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="fa159f9501944588e8c4c8a441fd39d"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_scanlines! ( in SInt32 ybegin, in SInt32 yend, in SInt32 z, in <a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a> format, io Data data, in SInt64 xstride, in SInt64 ystride )</p>
+<span class="target" id="d12fd7116e1343bf9f7cbd4c3080b8d4"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_scanlines! ( in SInt32 ybegin, in SInt32 yend, in SInt32 z, in <a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a> format, io Data data, in SInt64 xstride, in SInt64 ystride )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f6b9e82d4ffca32b3aa889c13d5e"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_scanlines! ( in SInt32 ybegin, in SInt32 yend, in SInt32 z, in SInt32 chbegin, in SInt32 chend, in <a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a> format, io Data data, in SInt64 xstride, in SInt64 ystride )</p>
+<span class="target" id="ef88e471490389583b36e1b7c728"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_scanlines! ( in SInt32 ybegin, in SInt32 yend, in SInt32 z, in SInt32 chbegin, in SInt32 chend, in <a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a> format, io Data data, in SInt64 xstride, in SInt64 ystride )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ca545108968228f8f16d311"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_tile! ( in SInt32 x, in SInt32 y, in SInt32 z, in <a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a> format, io Data data, in SInt64 xstride, in SInt64 ystride, in SInt64 zstride )</p>
+<span class="target" id="edf91a09ed3498faa35ac9945241a0b"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_tile! ( in SInt32 x, in SInt32 y, in SInt32 z, in <a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a> format, io Data data, in SInt64 xstride, in SInt64 ystride, in SInt64 zstride )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="be240874d3e46ae823f3b9de7503262"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_tile! ( in SInt32 x, in SInt32 y, in SInt32 z, out <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> data[] )</p>
+<span class="target" id="a6ba5545f28803dd41c918b261"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_tile! ( in SInt32 x, in SInt32 y, in SInt32 z, out <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> data[] )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d88b26f9ce94e1bae3f04c2f28491ed"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_tiles! ( in SInt32 xbegin, in SInt32 xend, in SInt32 ybegin, in SInt32 yend, in SInt32 zbegin, in SInt32 zend, in <a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a> format, io Data data, in SInt64 xstride, in SInt64 ystride, in SInt64 zstride )</p>
+<span class="target" id="dc7e079b4639b0e14100fc5cadff"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_tiles! ( in SInt32 xbegin, in SInt32 xend, in SInt32 ybegin, in SInt32 yend, in SInt32 zbegin, in SInt32 zend, in <a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a> format, io Data data, in SInt64 xstride, in SInt64 ystride, in SInt64 zstride )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c352db9fae74448bbf79d45a7bbcb0a4"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_tiles! ( in SInt32 xbegin, in SInt32 xend, in SInt32 ybegin, in SInt32 yend, in SInt32 zbegin, in SInt32 zend, in SInt32 chbegin, in SInt32 chend, in <a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a> format, io Data data, in SInt64 xstride, in SInt64 ystride, in SInt64 zstride )</p>
+<span class="target" id="fbfb84461674c9fd5da"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.read_tiles! ( in SInt32 xbegin, in SInt32 xend, in SInt32 ybegin, in SInt32 yend, in SInt32 zbegin, in SInt32 zend, in SInt32 chbegin, in SInt32 chend, in <a class="reference internal" href="OpenImageTypeDesc.html#openimagetypedesc"><span>OpenImageTypeDesc</span></a> format, io Data data, in SInt64 xstride, in SInt64 ystride, in SInt64 zstride )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="e8aec467d8ea2aa10e171e4d8"></span><p><p class="klcode"><a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.reset! ()</p>
+<span class="target" id="aacaccd910be44fd93b84964606b9c30"></span><p><p class="klcode"><a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.reset! ()</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a681de8a084fe9ac131bb37e890ba4"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.seek_subimage! ( in SInt32 subimage, in SInt32 miplevel, io <a class="reference internal" href="OpenImageSpec.html#openimagespec"><span>OpenImageSpec</span></a> newspec )</p>
+<span class="target" id="b4a6311b294193b9334ff454c0d362"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.seek_subimage! ( in SInt32 subimage, in SInt32 miplevel, io <a class="reference internal" href="OpenImageSpec.html#openimagespec"><span>OpenImageSpec</span></a> newspec )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="dd80eba7f404d93205b9655989536"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.seek_subimage! ( in SInt32 subimage, io <a class="reference internal" href="OpenImageSpec.html#openimagespec"><span>OpenImageSpec</span></a> newspec )</p>
+<span class="target" id="e4d355814ef4b3a30f3a51bffc04"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.seek_subimage! ( in SInt32 subimage, io <a class="reference internal" href="OpenImageSpec.html#openimagespec"><span>OpenImageSpec</span></a> newspec )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c04878314e058e9661f509d7c837"></span><p><p class="klcode"><a class="reference internal" href="OpenImageSpec.html#openimagespec"><span>OpenImageSpec</span></a> <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.spec? ()</p>
+<span class="target" id="f702af9c3ef4bc7b0527444e984c808"></span><p><p class="klcode"><a class="reference internal" href="OpenImageSpec.html#openimagespec"><span>OpenImageSpec</span></a> <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.spec? ()</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="fe7a428bc87d4cadb1bbe30904819a4e"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.supports? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> feature )</p>
+<span class="target" id="fcceb2b8fa403bbe4b0312ba5cdb1f"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.supports? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> feature )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d2930c3ec3e44c5dad94da014c5931ea"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.valid? ()</p>
+<span class="target" id="b10a1a7fe843f1b12064dee6d22645"></span><p><p class="klcode">Boolean <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a>.valid? ()</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b8cf7f3054cbcae9fd6a4da2e9cf6"></span><p><p class="klcode">~ <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a> ()</p>
+<span class="target" id="ae694d1eb0054f028598ef42b206233f"></span><p><p class="klcode">~ <a class="reference internal" href="#openimageinput"><span>OpenImageInput</span></a> ()</p>
 </p>
 </p>
 </div>

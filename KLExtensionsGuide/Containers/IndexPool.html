@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
     <link rel="up" title="Containers Extension’s Types" href="types.html" />
     <link rel="next" title="IndexSet (struct)" href="IndexSet.html" />
@@ -146,37 +147,37 @@ and by making a better use of CPU memory cache. This class helps to write such c
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#d6943688cda74c0cb86e8aa8ef3d6442"><span>IndexPool</span></a>  ( in <a class="reference internal" href="#indexpool"><span>IndexPool</span></a> other )</td>
+<td><a class="reference internal" href="#bdc309ee8741d994cef865fcb2df65"><span>IndexPool</span></a>  ( in <a class="reference internal" href="#indexpool"><span>IndexPool</span></a> other )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#fdd09fea93047a7a83e3287f6aaef6d"><span>IndexPool</span></a>  ()</td>
+<td><a class="reference internal" href="#f7ea91355136474d9631437b62d75899"><span>IndexPool</span></a>  ()</td>
 </tr>
 <tr class="row-odd"><td>Boolean</td>
-<td><a class="reference internal" href="#ee87858df194f4ab9dc66a29527a186"><span>allAllocated</span></a> ? ()</td>
+<td><a class="reference internal" href="#fddeeb814f468ac0f1bc0f863803"><span>allAllocated</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td>Boolean</td>
-<td><a class="reference internal" href="#c45670fc91314060bbb43dc30651235c"><span>allFree</span></a> ? ()</td>
+<td><a class="reference internal" href="#c1964527ade647208a6c8ebba4ceb6db"><span>allFree</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#indexpool"><span>IndexPool</span></a></td>
-<td><a class="reference internal" href="#a57b6aed19b49c78889623013b32594"><span>clone</span></a> ? ()</td>
+<td><a class="reference internal" href="#de8ec0500aa54951813086ab8b197448"><span>clone</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td>Boolean</td>
-<td><a class="reference internal" href="#d8c8c8549ee40a1ad22915e72c0bc52"><span>getFreeIndex</span></a> ! ( out UInt32 index )</td>
+<td><a class="reference internal" href="#c8b6be41ceaf948e13ab78c49b"><span>getFreeIndex</span></a> ! ( out UInt32 index )</td>
 </tr>
 <tr class="row-odd"><td>UInt32</td>
-<td><a class="reference internal" href="#bec2d5f8cd42b6bb6fb1a2fa99bdac"><span>getIndexEnd</span></a> ? ()</td>
+<td><a class="reference internal" href="#b5447894d1f40f3de893f8"><span>getIndexEnd</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td>Size</td>
-<td><a class="reference internal" href="#ff75bdc7d4fbd87841735da1ed99a"><span>getNumUsed</span></a> ? ()</td>
+<td><a class="reference internal" href="#e64935d0654a1795929d3545727d38"><span>getNumUsed</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#b0a9d21774c819cd03ccd14a55108"><span>reset</span></a> ! ()</td>
+<td><a class="reference internal" href="#ad226f1bf4f91978012cc4e924d84"><span>reset</span></a> ! ()</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#ce4b323fe26a444b91e703e0420c0eb1"><span>setAllAsUnused</span></a> ! ( in Boolean entry0IsReserved )</td>
+<td><a class="reference internal" href="#fcf778cd2546ba9e626d775a9db350"><span>setAllAsUnused</span></a> ! ( in Boolean entry0IsReserved )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#cc74c7e89f4c12816d99fe12d9022d"><span>unusedIndex</span></a> ! ( in UInt32 index )</td>
+<td><a class="reference internal" href="#f806fe44578cd5b6f02f85a076"><span>unusedIndex</span></a> ! ( in UInt32 index )</td>
 </tr>
 </tbody>
 </table>
@@ -184,46 +185,46 @@ and by making a better use of CPU memory cache. This class helps to write such c
 </div>
 <div class="section" id="methods-in-detail">
 <h2>Methods in detail<a class="headerlink" href="#methods-in-detail" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><span class="target" id="d6943688cda74c0cb86e8aa8ef3d6442"></span><p><p class="klcode"><a class="reference internal" href="#indexpool"><span>IndexPool</span></a> ( in <a class="reference internal" href="#indexpool"><span>IndexPool</span></a> other )</p>
+<p><span class="target" id="bdc309ee8741d994cef865fcb2df65"></span><p><p class="klcode"><a class="reference internal" href="#indexpool"><span>IndexPool</span></a> ( in <a class="reference internal" href="#indexpool"><span>IndexPool</span></a> other )</p>
 <p class="plaintext">copy constructor</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="fdd09fea93047a7a83e3287f6aaef6d"></span><p><p class="klcode"><a class="reference internal" href="#indexpool"><span>IndexPool</span></a> ()</p>
+<span class="target" id="f7ea91355136474d9631437b62d75899"></span><p><p class="klcode"><a class="reference internal" href="#indexpool"><span>IndexPool</span></a> ()</p>
 <p class="plaintext">default constructor</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ee87858df194f4ab9dc66a29527a186"></span><p><p class="klcode">Boolean <a class="reference internal" href="#indexpool"><span>IndexPool</span></a>.allAllocated? ()</p>
+<span class="target" id="fddeeb814f468ac0f1bc0f863803"></span><p><p class="klcode">Boolean <a class="reference internal" href="#indexpool"><span>IndexPool</span></a>.allAllocated? ()</p>
 <p class="plaintext">returns true if all indices are in use</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c45670fc91314060bbb43dc30651235c"></span><p><p class="klcode">Boolean <a class="reference internal" href="#indexpool"><span>IndexPool</span></a>.allFree? ()</p>
+<span class="target" id="c1964527ade647208a6c8ebba4ceb6db"></span><p><p class="klcode">Boolean <a class="reference internal" href="#indexpool"><span>IndexPool</span></a>.allFree? ()</p>
 <p class="plaintext">returns true if no indices are in use</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a57b6aed19b49c78889623013b32594"></span><p><p class="klcode"><a class="reference internal" href="#indexpool"><span>IndexPool</span></a> <a class="reference internal" href="#indexpool"><span>IndexPool</span></a>.clone? ()</p>
+<span class="target" id="de8ec0500aa54951813086ab8b197448"></span><p><p class="klcode"><a class="reference internal" href="#indexpool"><span>IndexPool</span></a> <a class="reference internal" href="#indexpool"><span>IndexPool</span></a>.clone? ()</p>
 <p class="plaintext">clone method</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d8c8c8549ee40a1ad22915e72c0bc52"></span><p><p class="klcode">Boolean <a class="reference internal" href="#indexpool"><span>IndexPool</span></a>.getFreeIndex! ( out UInt32 index )</p>
+<span class="target" id="c8b6be41ceaf948e13ab78c49b"></span><p><p class="klcode">Boolean <a class="reference internal" href="#indexpool"><span>IndexPool</span></a>.getFreeIndex! ( out UInt32 index )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="bec2d5f8cd42b6bb6fb1a2fa99bdac"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#indexpool"><span>IndexPool</span></a>.getIndexEnd? ()</p>
+<span class="target" id="b5447894d1f40f3de893f8"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#indexpool"><span>IndexPool</span></a>.getIndexEnd? ()</p>
 <p class="plaintext">returns the last index</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ff75bdc7d4fbd87841735da1ed99a"></span><p><p class="klcode">Size <a class="reference internal" href="#indexpool"><span>IndexPool</span></a>.getNumUsed? ()</p>
+<span class="target" id="e64935d0654a1795929d3545727d38"></span><p><p class="klcode">Size <a class="reference internal" href="#indexpool"><span>IndexPool</span></a>.getNumUsed? ()</p>
 <p class="plaintext">returns the number of used indices</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b0a9d21774c819cd03ccd14a55108"></span><p><p class="klcode"><a class="reference internal" href="#indexpool"><span>IndexPool</span></a>.reset! ()</p>
+<span class="target" id="ad226f1bf4f91978012cc4e924d84"></span><p><p class="klcode"><a class="reference internal" href="#indexpool"><span>IndexPool</span></a>.reset! ()</p>
 <p class="plaintext">resets the contents of the <a class="reference internal" href="#indexpool"><span>IndexPool</span></a></p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ce4b323fe26a444b91e703e0420c0eb1"></span><p><p class="klcode"><a class="reference internal" href="#indexpool"><span>IndexPool</span></a>.setAllAsUnused! ( in Boolean entry0IsReserved )</p>
+<span class="target" id="fcf778cd2546ba9e626d775a9db350"></span><p><p class="klcode"><a class="reference internal" href="#indexpool"><span>IndexPool</span></a>.setAllAsUnused! ( in Boolean entry0IsReserved )</p>
 <p class="plaintext">frees all indices, but optionally keeps the first one</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="cc74c7e89f4c12816d99fe12d9022d"></span><p><p class="klcode"><a class="reference internal" href="#indexpool"><span>IndexPool</span></a>.unusedIndex! ( in UInt32 index )</p>
+<span class="target" id="f806fe44578cd5b6f02f85a076"></span><p><p class="klcode"><a class="reference internal" href="#indexpool"><span>IndexPool</span></a>.unusedIndex! ( in UInt32 index )</p>
 <p class="plaintext">pushes an unused index on the stack</p>
 </p>
 </p>

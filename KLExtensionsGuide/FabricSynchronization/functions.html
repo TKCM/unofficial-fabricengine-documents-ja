@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
     <link rel="up" title="FabricSynchronization Extension" href="index.html" />
     <link rel="next" title="Fbx Extension" href="../Fbx/index.html" />
@@ -56,33 +57,33 @@
             
   <div class="section" id="fabricsynchronization-extension-s-free-functions">
 <span id="fabricsynchronization-extension-functions"></span><h1>FabricSynchronization Extension&#8217;s Free Functions<a class="headerlink" href="#fabricsynchronization-extension-s-free-functions" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p><span class="target" id="ad2ce383c86f4a3f81a7352ec56479c0"></span><p><p class="klcode">Acquire ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock )</p>
+<p><span class="target" id="c1b71fe9c4126841c459792f417fb"></span><p><p class="klcode">Acquire ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock )</p>
 <p class="plaintext">Acquires a lock. If it takes more than <code class="docutils literal"><span class="pre">lock.maxWaitSeconds</span></code>, an exception is thrown.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a3d371955d2e4176945731287fb8bdd5"></span><p><p class="klcode">Acquire ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxWaitSeconds )</p>
+<span class="target" id="fdfa9eeb694c43dd8ff476f1a02a816d"></span><p><p class="klcode">Acquire ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxWaitSeconds )</p>
 <p class="plaintext">Acquires a lock. If it takes more than <code class="docutils literal"><span class="pre">maxWaitSeconds</span></code>, an exception is thrown.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="cbc670d1e4fc0bfc9691dc0d73ec0"></span><p><p class="klcode">ActiveWait ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> seconds )</p>
+<span class="target" id="a16bcc842fc641abb297ca27a5f91cae"></span><p><p class="klcode">ActiveWait ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> seconds )</p>
 <p class="plaintext">Helper function for waiting actively during a specific timelapse.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="bc3162fbce45c1962482810fd4d24f"></span><p><p class="klcode">Release ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock )</p>
+<span class="target" id="f77c1ca345ba468dadb80bd62b930e77"></span><p><p class="klcode">Release ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock )</p>
 <p class="plaintext">Releases a lock.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ff53ccf842e091a94931d2b84c16"></span><p><p class="klcode">SimpleAcquire ( io UInt32 lockVariable )</p>
+<span class="target" id="eba02d3653614292aff44291fe1925eb"></span><p><p class="klcode">SimpleAcquire ( io UInt32 lockVariable )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c57086cfdd4a403faed1b8dc674e9c0a"></span><p><p class="klcode">SimpleRelease ( io UInt32 lockVariable )</p>
+<span class="target" id="bfe5ca0d24d9c82bb289672a1acb5"></span><p><p class="klcode">SimpleRelease ( io UInt32 lockVariable )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a09e42a533e463aaea7047579d734a8"></span><p><p class="klcode">Boolean TryAcquire ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock )</p>
+<span class="target" id="e5460643cf184505969d7b272300aac0"></span><p><p class="klcode">Boolean TryAcquire ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock )</p>
 <p class="plaintext">Tries to acquire a lock immediately and will return <code class="docutils literal"><span class="pre">false</span></code> if failed.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="bd74902b7c4be7b0ba9a7f16553fa9"></span><p><p class="klcode">Boolean TryAcquire ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxWaitSeconds )</p>
+<span class="target" id="a15209bb7d1846e2aa9301f305571e68"></span><p><p class="klcode">Boolean TryAcquire ( in Ref&lt;<a class="reference internal" href="SimpleLock.html#simplelock"><span>SimpleLock</span></a>&gt; simpleLock, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxWaitSeconds )</p>
 <p class="plaintext">Tries to acquire a lock for <code class="docutils literal"><span class="pre">maxWaitSeconds</span></code> seconds. Will return <code class="docutils literal"><span class="pre">false</span></code> if failed.</p>
 </p>
 </p>

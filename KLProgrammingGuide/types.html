@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>The KL Type System &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
+    <title>KLの型システム &mdash; Fabric Engine 2.0.0 Unofficial Documentation (ja)</title>
     
     <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -25,10 +25,11 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
-    <link rel="up" title="KL Programming Guide" href="index.html" />
+    <link rel="up" title="KL プログラミングガイド" href="index.html" />
     <link rel="next" title="Functions and Other Global Declarations" href="globals.html" />
-    <link rel="prev" title="KL Syntax" href="syntax.html" /> 
+    <link rel="prev" title="KLの文法" href="syntax.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -41,10 +42,10 @@
           <a href="globals.html" title="Functions and Other Global Declarations"
              accesskey="N">次へ</a> |</li>
         <li class="right" >
-          <a href="syntax.html" title="KL Syntax"
+          <a href="syntax.html" title="KLの文法"
              accesskey="P">前へ</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">KL Programming Guide</a> &raquo;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">KL プログラミングガイド</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -54,73 +55,103 @@
           <div class="body" role="main">
             
   <div class="section" id="the-kl-type-system">
-<span id="klpg-types"></span><h1>The KL Type System<a class="headerlink" href="#the-kl-type-system" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>Unlike most languages, KL has a dynamic type system that is inherited from the Fabric environment.  In most cases, compound types are registered from the Fabric environment running in a dynamic language (eg. JavaScript or Python); those types are then automatically made available to KL programs running in that environment.  This does not, however, affect the semantics of the language; the KL type system can still be explained purely from the point of view of the language itself.</p>
-<p>Like most programming languages, KL has support for both a fixed set of base types from which other types are derived as well as different kinds of derived types.</p>
+<span id="klpg-types"></span><h1>KLの型システム<a class="headerlink" href="#the-kl-type-system" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>大部分の言語と異なり、KLは型について、Fabricの環境から引き継ぐ動的なシステムを持ちます。多くの場合、動的言語（例えば JavaScriptや Python）で実行されているFabric環境より、複合型が登録されます。これらの型は自動的にその実行環境においてKLプログラムから利用可能となります。ただし、このことは言語のセマンティクス（プログラム意味論）に影響をあたえるものでは「ありません」。つまりKLの型システムは依然として、言語自体の観点から説明されます。</p>
+<p>多くの他のプログラミング言語同様にKLには、他の型へと継承できる定められた数の基本型だけでなく、異なる種の派生型の数々もサポートします。</p>
 <div class="section" id="base-types">
-<span id="index-0"></span><h2>Base Types<a class="headerlink" href="#base-types" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>The base types in KL are the following:</p>
+<span id="index-0"></span><h2>基本型（Base Types）<a class="headerlink" href="#base-types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>KLでの基本型は以下：</p>
 <dl class="docutils">
 <dt><code class="code docutils literal"><span class="pre">Boolean</span></code></dt>
-<dd>can be either <code class="code docutils literal"><span class="pre">true</span></code> or <code class="code docutils literal"><span class="pre">false</span></code></dd>
+<dd><p class="first last"><code class="code docutils literal"><span class="pre">true</span></code> もしくは <code class="code docutils literal"><span class="pre">false</span></code> のいずれかをとる</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">UInt8</span></code></dt>
-<dd>an 8-bit unsigned integer</dd>
+<dd><p class="first last">8-bit 符号なし整数（unsigned integer）</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">Byte</span></code></dt>
-<dd>an alias for <code class="docutils literal"><span class="pre">UInt8</span></code></dd>
+<dd><p class="first last"><code class="docutils literal"><span class="pre">UInt8</span></code> のエイリアス（別名）</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">SInt8</span></code></dt>
-<dd>an 8-bit signed integer</dd>
+<dd><p class="first last">8-bit 符号つき整数（signed integer）</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">UInt16</span></code></dt>
-<dd>a 16-bit unsigned integer</dd>
+<dd><p class="first last">16-bit 符号なし整数</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">SInt16</span></code></dt>
-<dd>a 16-bit signed integer</dd>
+<dd><p class="first last">16-bit 符号つき整数</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">UInt32</span></code></dt>
-<dd>a 32-bit unsigned integer</dd>
+<dd><p class="first last">32-bit 符号なし整数</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">Count</span></code></dt>
-<dd>an alias for <code class="docutils literal"><span class="pre">UInt32</span></code>; used to represent cardinal numbers</dd>
+<dd><p class="first last"><code class="docutils literal"><span class="pre">UInt32</span></code> へのエイリアス。基数を表すために使用される。</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">Index</span></code></dt>
-<dd>an alias for <code class="docutils literal"><span class="pre">UInt32</span></code>; used to represent ordinal numbers</dd>
+<dd><p class="first last"><code class="docutils literal"><span class="pre">UInt32</span></code> へのエイリアス。序数を表すために使用される。</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">Size</span></code></dt>
-<dd>an alias for <code class="docutils literal"><span class="pre">UInt32</span></code></dd>
+<dd><p class="first last"><code class="docutils literal"><span class="pre">UInt32</span></code> へのエイリアス</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">SInt32</span></code></dt>
-<dd>a 32-bit signed integer</dd>
+<dd><p class="first last">32-bit 符号つき整数</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">Integer</span></code></dt>
-<dd>an alias for <code class="docutils literal"><span class="pre">SInt32</span></code></dd>
+<dd><p class="first last"><code class="docutils literal"><span class="pre">SInt32</span></code> へのエイリアス</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">UInt64</span></code></dt>
-<dd>a 64-bit unsigned integer</dd>
+<dd><p class="first last">64-bit 符号なし整数</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">DataSize</span></code></dt>
-<dd>an alias for <code class="docutils literal"><span class="pre">UInt64</span></code>; used to represent sizes of blocks of memory</dd>
+<dd><p class="first last"><code class="docutils literal"><span class="pre">UInt64</span></code> へのエイリアス。メモリブロックのサイズを表すために使用される</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">SInt64</span></code></dt>
-<dd>a 64-bit signed integer</dd>
+<dd><p class="first last">64-bit 符号つき整数</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">Float32</span></code></dt>
-<dd>a 32-bit IEEE floating point</dd>
+<dd><p class="first last">32-bit IEEE浮動小数点数</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">Scalar</span></code></dt>
-<dd>an alias for <code class="docutils literal"><span class="pre">Float32</span></code></dd>
+<dd><p class="first last"><code class="docutils literal"><span class="pre">Float32</span></code> へのエイリアス</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">Float64</span></code></dt>
-<dd>a 64-bit IEEE floating point</dd>
+<dd><p class="first last">64-bit IEEE浮動小数点数</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">String</span></code></dt>
-<dd>a sequence of zero or more characters</dd>
+<dd><p class="first last">ゼロ個以上の文字の連なり</p>
+</dd>
 </dl>
 <div class="section" id="the-boolean-type">
-<span id="index-1"></span><h3>The <code class="code docutils literal"><span class="pre">Boolean</span></code> Type<a class="headerlink" href="#the-boolean-type" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>The value of an expression of <code class="code docutils literal"><span class="pre">Boolean</span></code> type is either logical true or logical false.  The type has the following properties:</p>
+<span id="index-1"></span><h3>論理型（ <code class="code docutils literal"><span class="pre">Boolean</span></code> Type）<a class="headerlink" href="#the-boolean-type" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><code class="code docutils literal"><span class="pre">Boolean</span></code> 型の式の値は、論理真もしくは論理偽です。以下の特徴を持ちます：</p>
 <ul class="simple">
-<li>The constants <code class="code docutils literal"><span class="pre">true</span></code> and <code class="code docutils literal"><span class="pre">false</span></code> are <code class="code docutils literal"><span class="pre">Boolean</span></code> values with logical values true and false, respectively.</li>
-<li>All other base types cast to Boolean as follows:<ul>
-<li>All values of integer type (eg. <code class="docutils literal"><span class="pre">UInt32</span></code>, <code class="docutils literal"><span class="pre">Byte</span></code>) cast to true if and only if the value is non-zero</li>
-<li>All values of floating-point type (ie. <code class="docutils literal"><span class="pre">Float32</span></code> and <code class="docutils literal"><span class="pre">Float64</span></code>) cast true if and only if the value is not equal to <code class="docutils literal"><span class="pre">0.0</span></code> or <code class="docutils literal"><span class="pre">-0.0</span></code></li>
-<li><code class="docutils literal"><span class="pre">String</span></code> values cast to true if and only if their length is greater than zero</li>
-<li>Arrays and dictionaries cast to true if and only if they are non-empty</li>
-<li>By default, structures do not cast to <code class="code docutils literal"><span class="pre">Boolean</span></code>, but you can implement the cast if desired by creating a <code class="code docutils literal"><span class="pre">Boolean</span></code> constructor that takes the structure as a parameter; see <a class="reference internal" href="globals.html#klpg-constructor"><span>Constructors</span></a></li>
+<li><p class="first">定数 <code class="code docutils literal"><span class="pre">true</span></code> 及び <code class="code docutils literal"><span class="pre">false</span></code> はそれぞれ論理値である真、偽の <code class="code docutils literal"><span class="pre">Boolean</span></code> です。</p>
+</li>
+<li><p class="first">他の型から Boolean 型へのキャスト：</p>
+<ul>
+<li><p class="first">全整数型（例えば <code class="docutils literal"><span class="pre">UInt32</span></code>, <code class="docutils literal"><span class="pre">Byte</span></code>)は値が 0 ではない時のみ true となります。</p>
+</li>
+<li><p class="first">全浮動小数点数型（すなわち <code class="docutils literal"><span class="pre">Float32</span></code> and <code class="docutils literal"><span class="pre">Float64</span></code>）は値が  <code class="docutils literal"><span class="pre">0.0</span></code> もしくは <code class="docutils literal"><span class="pre">-0.0</span></code> と等しくない場合にのみ true となります。</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">String</span></code> の値はその長さが 0以上 の場合のみ true となります。</p>
+</li>
+<li><p class="first">配列と辞書型はカラでない場合のみ true となります。</p>
+</li>
+<li><p class="first">構造体はそのままでは  <code class="code docutils literal"><span class="pre">Boolean</span></code> 型へキャストできません。キャスト可能にするには引数パラメータにキャストを行いたい構造体をとる <code class="code docutils literal"><span class="pre">Boolean</span></code> コンストラクタを実装します。 <a class="reference internal" href="globals.html#klpg-constructor"><span>Constructors</span></a> を参照してください。</p>
+</li>
 </ul>
 </li>
-<li>For operators:<ul>
-<li>None of the arithmetic operators (binary <code class="docutils literal"><span class="pre">+</span></code>, <code class="docutils literal"><span class="pre">-</span></code>, <code class="docutils literal"><span class="pre">*</span></code>, <code class="docutils literal"><span class="pre">/</span></code>, <code class="docutils literal"><span class="pre">%</span></code> as well as unary <code class="docutils literal"><span class="pre">-</span></code> and <code class="docutils literal"><span class="pre">+</span></code>) are valid for <code class="code docutils literal"><span class="pre">Boolean</span></code> values</li>
-<li>Only the <code class="docutils literal"><span class="pre">==</span></code> and <code class="docutils literal"><span class="pre">!=</span></code> comparison operators are valid for <code class="code docutils literal"><span class="pre">Boolean</span></code> values</li>
-<li>All of the bitwise binary operators (<code class="docutils literal"><span class="pre">|</span></code>, <code class="docutils literal"><span class="pre">&amp;amp;</span></code>, <code class="docutils literal"><span class="pre">^</span></code> and <code class="docutils literal"><span class="pre">~</span></code>) are valid for <code class="code docutils literal"><span class="pre">Boolean</span></code> values and treat the value as if it were a single bit</li>
+<li><p class="first">演算子</p>
+<ul>
+<li><p class="first">算術演算子 (2項演算子 <code class="docutils literal"><span class="pre">+</span></code>, <code class="docutils literal"><span class="pre">-</span></code>, <code class="docutils literal"><span class="pre">*</span></code>, <code class="docutils literal"><span class="pre">/</span></code>, <code class="docutils literal"><span class="pre">%</span></code> だけでなく 単独の <code class="docutils literal"><span class="pre">-</span></code> and <code class="docutils literal"><span class="pre">+</span></code>) はいずれも <code class="code docutils literal"><span class="pre">Boolean</span></code> の値には無効です。</p>
+</li>
+<li><p class="first"><code class="code docutils literal"><span class="pre">Boolean</span></code> の値には比較演算子 <code class="docutils literal"><span class="pre">==</span></code> と <code class="docutils literal"><span class="pre">!=</span></code> のみ有効です。</p>
+</li>
+<li><p class="first">全2項論理演算子(<code class="docutils literal"><span class="pre">|</span></code>, <code class="docutils literal"><span class="pre">&amp;amp;</span></code>, <code class="docutils literal"><span class="pre">^</span></code> and <code class="docutils literal"><span class="pre">~</span></code>) は <code class="code docutils literal"><span class="pre">Boolean</span></code> 値で有効です。値を単一のビットであるかのように扱います。</p>
+</li>
 </ul>
 </li>
 </ul>
-<p>The following example shows the use of the <code class="code docutils literal"><span class="pre">Boolean</span></code> type:</p>
+<p>以下に <code class="code docutils literal"><span class="pre">Boolean</span></code> 型の使用例を示します:</p>
 <div class="highlight-python"><div class="highlight"><pre>operator entry() {
   Boolean a = true;
   report(a);
@@ -130,7 +161,7 @@
 }
 </pre></div>
 </div>
-<p>Output:</p>
+<p>出力:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">true</span>
 <span class="n">false</span>
 <span class="n">true</span>
@@ -138,44 +169,60 @@
 </div>
 </div>
 <div class="section" id="integer-types">
-<span id="index-2"></span><h3>Integer Types<a class="headerlink" href="#integer-types" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>The <code class="docutils literal"><span class="pre">UInt8</span></code>, <code class="docutils literal"><span class="pre">SInt8</span></code>, <code class="docutils literal"><span class="pre">UInt16</span></code>, <code class="docutils literal"><span class="pre">SInt16</span></code>, <code class="docutils literal"><span class="pre">UInt32</span></code>, <code class="docutils literal"><span class="pre">SInt32</span></code>, <code class="docutils literal"><span class="pre">UInt64</span></code> and <code class="docutils literal"><span class="pre">SInt64</span></code> types, as well as their aliases (<code class="docutils literal"><span class="pre">Byte</span></code>, <code class="docutils literal"><span class="pre">Integer</span></code>, <code class="docutils literal"><span class="pre">Size</span></code>, <code class="docutils literal"><span class="pre">Count</span></code>, <code class="docutils literal"><span class="pre">Index</span></code> and <code class="docutils literal"><span class="pre">DataSize</span></code>), are collectively known as the <span class="target" id="index-3"></span>integer types and represent whole integers.  These types differ only in their bit width and whether they are signed or unsigned, as follows:</p>
+<span id="index-2"></span><h3>整数型（Integer Types）<a class="headerlink" href="#integer-types" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">UInt8</span></code>, <code class="docutils literal"><span class="pre">SInt8</span></code>, <code class="docutils literal"><span class="pre">UInt16</span></code>, <code class="docutils literal"><span class="pre">SInt16</span></code>, <code class="docutils literal"><span class="pre">UInt32</span></code>, <code class="docutils literal"><span class="pre">SInt32</span></code>, <code class="docutils literal"><span class="pre">UInt64</span></code>, <code class="docutils literal"><span class="pre">SInt64</span></code> 型、そしてエイリアス (<code class="docutils literal"><span class="pre">Byte</span></code>, <code class="docutils literal"><span class="pre">Integer</span></code>, <code class="docutils literal"><span class="pre">Size</span></code>, <code class="docutils literal"><span class="pre">Count</span></code>, <code class="docutils literal"><span class="pre">Index</span></code>, <code class="docutils literal"><span class="pre">DataSize</span></code>), は総称して <span class="target" id="index-28"></span>integer types として知られ、全ての整数を表現します。</p>
 <dl class="docutils">
 <dt><code class="docutils literal"><span class="pre">UInt8</span></code></dt>
-<dd>an 8-bit unsigned integer</dd>
+<dd><p class="first last">8-bit 符号なし整数（unsigned integer）</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">Byte</span></code></dt>
-<dd>an alias for <code class="docutils literal"><span class="pre">UInt8</span></code></dd>
+<dd><p class="first last"><code class="docutils literal"><span class="pre">UInt8</span></code> のエイリアス（別名）</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">SInt8</span></code></dt>
-<dd>an 8-bit signed integer</dd>
+<dd><p class="first last">8-bit 符号つき整数（signed integer）</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">UInt16</span></code></dt>
-<dd>a 16-bit unsigned integer</dd>
+<dd><p class="first last">16-bit 符号なし整数</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">SInt16</span></code></dt>
-<dd>a 16-bit signed integer</dd>
+<dd><p class="first last">16-bit 符号つき整数</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">UInt32</span></code></dt>
-<dd>a 32-bit unsigned integer</dd>
+<dd><p class="first last">32-bit 符号なし整数</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">SInt32</span></code></dt>
-<dd>a 32-bit signed integer</dd>
+<dd><p class="first last">32-bit 符号つき整数</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">Integer</span></code></dt>
-<dd>an alias for <code class="docutils literal"><span class="pre">SInt32</span></code></dd>
+<dd><p class="first last"><code class="docutils literal"><span class="pre">SInt32</span></code> へのエイリアス</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">UInt64</span></code></dt>
-<dd>a 64-bit unsigned integer</dd>
+<dd><p class="first last">64-bit 符号なし整数</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">SInt64</span></code></dt>
-<dd>a 64-bit signed integer</dd>
+<dd><p class="first last">64-bit 符号つき整数</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">Count</span></code></dt>
-<dd>an alias for <code class="docutils literal"><span class="pre">UInt32</span></code>.  <code class="docutils literal"><span class="pre">Size</span></code> is usually used to count the number of elements in an array</dd>
+<dd><p class="first last"><code class="docutils literal"><span class="pre">UInt32</span></code> へのエイリアス。通常 <code class="docutils literal"><span class="pre">Size</span></code> は配列中の要素の数量の数え上げにしようされる。</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">Index</span></code></dt>
-<dd>an alias for <code class="docutils literal"><span class="pre">UInt32</span></code>.  <code class="docutils literal"><span class="pre">Index</span></code> is usually used to index into an array</dd>
+<dd><p class="first last"><code class="docutils literal"><span class="pre">UInt32</span></code> へのエイリアス。通常  <code class="docutils literal"><span class="pre">Index</span></code> は配列のインデックスに使用される。</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">DataSize</span></code></dt>
-<dd>an alias for <code class="docutils literal"><span class="pre">UInt64</span></code>.  <code class="docutils literal"><span class="pre">DataSize</span></code> is used to represent the size of a block of memory and is the return type for the <code class="docutils literal"><span class="pre">dataSize</span></code> method of types.</dd>
+<dd><p class="first last"><code class="docutils literal"><span class="pre">UInt64</span></code> へのエイリアス。メモリブロックのサイズを表すために使用され、 <code class="docutils literal"><span class="pre">dataSize</span></code> メッソドの返り値の型として使用される。</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">Size</span></code></dt>
-<dd>an alias for <code class="docutils literal"><span class="pre">UInt32</span></code>.</dd>
+<dd><p class="first last"><code class="docutils literal"><span class="pre">UInt32</span></code> へのエイリアス。</p>
+</dd>
 </dl>
-<p>Integer types behave as follows:</p>
+<p>整数型の振る舞い：</p>
 <ul class="simple">
-<li>All of the <a class="reference internal" href="ops-exprs.html#arithmetic-ops"><span>arithmetic</span></a>, <a class="reference internal" href="ops-exprs.html#logical-ops"><span>logical</span></a> and <a class="reference internal" href="ops-exprs.html#bitwise-ops"><span>bitwise</span></a> operators work as expected for all integer types.</li>
-<li>Integer constants are typed using the suffixes <code class="docutils literal"><span class="pre">s32</span></code> for <code class="docutils literal"><span class="pre">SInt32</span></code>, <code class="docutils literal"><span class="pre">u64</span></code> for <code class="docutils literal"><span class="pre">UInt64</span></code>, and so on; if a suffix is omitted, the type is <code class="docutils literal"><span class="pre">SInt32</span></code>.  For more details, see <a class="reference internal" href="syntax.html#integer-constants"><span>Integer Constants</span></a>.</li>
+<li><p class="first">全 <a class="reference internal" href="ops-exprs.html#arithmetic-ops"><span>arithmetic</span></a>, <a class="reference internal" href="ops-exprs.html#logical-ops"><span>logical</span></a>, <a class="reference internal" href="ops-exprs.html#bitwise-ops"><span>bitwise</span></a> 演算子は整数型に対し期待通り動作します。</p>
+</li>
+<li><p class="first">整数型の定数は <code class="docutils literal"><span class="pre">s32</span></code> が <code class="docutils literal"><span class="pre">SInt32</span></code>, <code class="docutils literal"><span class="pre">u64</span></code> が <code class="docutils literal"><span class="pre">UInt64</span></code>, などのように接尾語をともない型付けされます。接尾語を付さない場合、 <code class="docutils literal"><span class="pre">SInt32</span></code> となります。参照 <a class="reference internal" href="syntax.html#integer-constants"><span>整数定数</span></a>.</p>
+</li>
 </ul>
-<p>The following shows the use of integer types:</p>
+<p>整数型の使用例:</p>
 <div class="highlight-python"><div class="highlight"><pre>operator entry() {
   Byte b = 64;
   report(b);
@@ -186,18 +233,15 @@
 }
 </pre></div>
 </div>
-<p>Output:</p>
+<p>出力:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="mi">64</span>
 <span class="mi">2912</span>
 <span class="o">-</span><span class="mi">218382</span>
 </pre></div>
 </div>
 <div class="section" id="integer-atomic-methods">
-<span id="index-4"></span><h4>Integer Atomic Methods<a class="headerlink" href="#integer-atomic-methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>The integer types have a set of built-in <a class="reference internal" href="globals.html#methods"><span>Methods</span></a> that perform atomic
-operations on a value of the type.  Atomic operations are used to implement
-lock-free algorithms; for more information on atomic operations, see
-<a class="reference external" href="http://en.wikipedia.org/wiki/Linearizability">http://en.wikipedia.org/wiki/Linearizability</a>.</p>
+<span id="index-4"></span><h4>整数型のアトミックメソッド<a class="headerlink" href="#integer-atomic-methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>整数型は組み込み <a class="reference internal" href="globals.html#methods"><span>Methods</span></a> を持ちます。整数型の値に対しアトミックな操作（不可分操作、atomic operation）をおこないます。アトミックな操作は、ロックフリーなアルゴリズムで実装されています。アトミックな操作については <a class="reference external" href="http://en.wikipedia.org/wiki/Linearizability">http://en.wikipedia.org/wiki/Linearizability</a> を参照してください。</p>
 <dl class="function">
 <dt>
 <code class="descname">UInt8 UInt8.atomicAdd(UInt8 val)</code></dt>
@@ -215,17 +259,17 @@ lock-free algorithms; for more information on atomic operations, see
 <code class="descname">UInt64 UInt64.atomicAdd(UInt64 val)</code></dt>
 <dt>
 <code class="descname">SInt64 SInt64.atomicAdd(SInt64 val)</code></dt>
-<dd><p>Atomically add a value to the integer</p>
+<dd><p>整数型の値にアトミックな加算</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
-<li><strong>val</strong> &#8211; The value to add</li>
+<li><strong>val</strong> &#8211; 加算する値</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">the old value of the integer</p>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">操作前の古い整数型の値</p>
 </td>
 </tr>
 </tbody>
@@ -249,12 +293,12 @@ lock-free algorithms; for more information on atomic operations, see
 <code class="descname">UInt64 UInt64.atomicInc()</code></dt>
 <dt>
 <code class="descname">SInt64 SInt64.atomicInc()</code></dt>
-<dd><p>Atomically increments the integer</p>
+<dd><p>整数型のアトミックなインクリメント</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">戻り値:</th><td class="field-body">the old value of the integer</td>
+<tr class="field-odd field"><th class="field-name">戻り値:</th><td class="field-body">操作前の古い整数型の値</td>
 </tr>
 </tbody>
 </table>
@@ -277,17 +321,17 @@ lock-free algorithms; for more information on atomic operations, see
 <code class="descname">UInt64 UInt64.atomicSub(UInt64 val)</code></dt>
 <dt>
 <code class="descname">SInt64 SInt64.atomicSub(SInt64 val)</code></dt>
-<dd><p>Atomically subtracts a value from the integer</p>
+<dd><p>整数型からアトミックな減算</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
-<li><strong>val</strong> &#8211; The value to add</li>
+<li><strong>val</strong> &#8211; 加算する値</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">the old value of the integer</p>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">操作前の古い整数型の値</p>
 </td>
 </tr>
 </tbody>
@@ -311,12 +355,12 @@ lock-free algorithms; for more information on atomic operations, see
 <code class="descname">UInt64 UInt64.atomicDec()</code></dt>
 <dt>
 <code class="descname">SInt64 SInt64.atomicDec()</code></dt>
-<dd><p>Atomically decrements the integer</p>
+<dd><p>整数型のアトミックなデクリメント</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">戻り値:</th><td class="field-body">the old value of the integer</td>
+<tr class="field-odd field"><th class="field-name">戻り値:</th><td class="field-body">操作前の古い整数型の値</td>
 </tr>
 </tbody>
 </table>
@@ -339,17 +383,17 @@ lock-free algorithms; for more information on atomic operations, see
 <code class="descname">UInt64 UInt64.atomicOr(UInt64 val)</code></dt>
 <dt>
 <code class="descname">SInt64 SInt64.atomicOr(SInt64 val)</code></dt>
-<dd><p>Atomically perform a bitwise or on the integer</p>
+<dd><p>整数型のアトミックなビット演算「or」</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
-<li><strong>val</strong> &#8211; The value to or with the integer</li>
+<li><strong>val</strong> &#8211; 「or」する整数型の値</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">the old value of the integer</p>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">操作前の古い整数型の値</p>
 </td>
 </tr>
 </tbody>
@@ -373,17 +417,17 @@ lock-free algorithms; for more information on atomic operations, see
 <code class="descname">UInt64 UInt64.atomicAnd(UInt64 val)</code></dt>
 <dt>
 <code class="descname">SInt64 SInt64.atomicAnd(SInt64 val)</code></dt>
-<dd><p>Atomically perform a bitwise and on the integer</p>
+<dd><p>整数型のアトミックなビット演算「and」</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
-<li><strong>val</strong> &#8211; The value to and with the integer</li>
+<li><strong>val</strong> &#8211; 「and」する整数型の値</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">the old value of the integer</p>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">操作前の古い整数型の値</p>
 </td>
 </tr>
 </tbody>
@@ -407,17 +451,17 @@ lock-free algorithms; for more information on atomic operations, see
 <code class="descname">UInt64 UInt64.atomicXor(UInt64 val)</code></dt>
 <dt>
 <code class="descname">SInt64 SInt64.atomicXor(SInt64 val)</code></dt>
-<dd><p>Atomically perform a bitwise xor on the integer</p>
+<dd><p>整数型のアトミックなビット演算「xor」</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
-<li><strong>val</strong> &#8211; The value to xor with the integer</li>
+<li><strong>val</strong> &#8211; 「xor」する整数型の値</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">the old value of the integer</p>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">操作前の古い整数型の値</p>
 </td>
 </tr>
 </tbody>
@@ -441,20 +485,18 @@ lock-free algorithms; for more information on atomic operations, see
 <code class="descname">UInt64 UInt64.atomicCAS(UInt64 oldVal, UInt64 newVal)</code></dt>
 <dt>
 <code class="descname">SInt64 SInt64.atomicCAS(SInt64 oldVal, SInt64 newVal)</code></dt>
-<dd><p>Atomically perform a compare-and-swap operation: if the integer&#8217;s value
-is <code class="docutils literal"><span class="pre">oldVal</span></code>, change it to <code class="docutils literal"><span class="pre">newVal</span></code>.  Returns <code class="docutils literal"><span class="pre">oldVal</span></code> if and only
-if the value was changed.</p>
+<dd><p>アトミックな、compare-and-swap 操作を行います ―例えば、整数型の値 <code class="docutils literal"><span class="pre">oldVal</span></code> を <code class="docutils literal"><span class="pre">newVal</span></code> に変更し、値が変更された場合のみ <code class="docutils literal"><span class="pre">oldVal</span></code> を返します。</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
-<li><strong>oldVal</strong> &#8211; The value to compare with the integer</li>
-<li><strong>newVal</strong> &#8211; The value to set the integer to if the comparison succeeds</li>
+<li><strong>oldVal</strong> &#8211; 整数型と比較する値</li>
+<li><strong>newVal</strong> &#8211; 整数型の値、比較が成功した場合に設定される</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">the old value of the integer</p>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first last">操作前の古い整数型の値</p>
 </td>
 </tr>
 </tbody>
@@ -464,22 +506,27 @@ if the value was changed.</p>
 </div>
 </div>
 <div class="section" id="floating-point-types">
-<span id="index-5"></span><h3>Floating-Point Types<a class="headerlink" href="#floating-point-types" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>The <code class="docutils literal"><span class="pre">Float32</span></code> and <code class="docutils literal"><span class="pre">Float64</span></code> types (as well as <code class="docutils literal"><span class="pre">Scalar</span></code>, an alias for <code class="docutils literal"><span class="pre">Float32</span></code>) are collectively known as <em class="dfn">floating-point types</em> and represent <abbr>IEEE</abbr> floating-point numbers.  These types differ only in their bit width, as follows:</p>
+<span id="index-5"></span><h3>浮動小数点数型（Floating-Point Types）<a class="headerlink" href="#floating-point-types" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">Float32</span></code> と <code class="docutils literal"><span class="pre">Float64</span></code> 型 ( <code class="docutils literal"><span class="pre">Float32</span></code> のエイリアスである <code class="docutils literal"><span class="pre">Scalar</span></code> も) は総称して浮動小数点数型（ <em class="dfn">floating-point types</em> ）として知られ、 <abbr>IEEE</abbr> 浮動小数点数を表現する。これらの型はビット幅が異なる：:</p>
 <dl class="docutils">
 <dt><code class="docutils literal"><span class="pre">Float32</span></code></dt>
-<dd>a 32-bit <abbr>IEEE</abbr> floating-point number</dd>
+<dd><p class="first last">32-bit <abbr>IEEE</abbr> 浮動小数点数</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">Float64</span></code></dt>
-<dd>a 64-bit <abbr>IEEE</abbr> floating-point number</dd>
+<dd><p class="first last">64-bit <abbr>IEEE</abbr> 浮動小数点数</p>
+</dd>
 <dt><code class="docutils literal"><span class="pre">Scalar</span></code></dt>
-<dd>an alias for <code class="docutils literal"><span class="pre">Float32</span></code></dd>
+<dd><p class="first last"><code class="docutils literal"><span class="pre">Float32</span></code> へのエイリアス</p>
+</dd>
 </dl>
-<p>Floating-point types behave as follows:</p>
+<p>浮動小数点数型の振る舞い</p>
 <ul class="simple">
-<li>Floating-point constants have the same syntax as in JavaScript and C, and are of type <code class="docutils literal"><span class="pre">Float64</span></code>.  For more details, see <a class="reference internal" href="syntax.html#floating-point-constants"><span>Floating-Point Constants</span></a>.</li>
-<li>All of the <a class="reference internal" href="ops-exprs.html#arithmetic-ops"><span>arithmetic</span></a> and <a class="reference internal" href="ops-exprs.html#logical-ops"><span>logical</span></a> operators are valid for floating-point values.  None of the bitwise operators are valid for floating-point values.</li>
+<li><p class="first">浮動小数点数の定数は JavaScript や C言語と同じ文法を持ち、 <code class="docutils literal"><span class="pre">Float64</span></code> 型になる。詳細は  <a class="reference internal" href="syntax.html#floating-point-constants"><span>浮動小数点数定数</span></a> を参照。</p>
+</li>
+<li><p class="first">全算術演算子（ <a class="reference internal" href="ops-exprs.html#arithmetic-ops"><span>arithmetic</span></a> ）、論理演算子（ <a class="reference internal" href="ops-exprs.html#logical-ops"><span>logical</span></a> ）が浮動小数点数の値に対して使用できる。ビット演算子は使用不可能です。</p>
+</li>
 </ul>
-<p>The following example shows the use of floating-point types:</p>
+<p>以下に浮動小数点数型の使用例を示します:</p>
 <div class="highlight-python"><div class="highlight"><pre>operator entry() {
   Float32 x = 3.141;
   report(x);
@@ -490,7 +537,7 @@ if the value was changed.</p>
 }
 </pre></div>
 </div>
-<p>Output:</p>
+<p>出力:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="mf">3.141</span>
 <span class="mf">2.718</span>
 <span class="mf">17.2534</span>
@@ -498,27 +545,40 @@ if the value was changed.</p>
 </div>
 </div>
 <div class="section" id="the-string-type">
-<span id="index-6"></span><h3>The <code class="docutils literal"><span class="pre">String</span></code> Type<a class="headerlink" href="#the-string-type" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>The <code class="docutils literal"><span class="pre">String</span></code> type represents a text string, ie. a sequence of zero or more characters.  A value of type <code class="docutils literal"><span class="pre">String</span></code> is referred to as a <span class="target" id="index-7"></span>string value.</p>
-<p>The semantics of the <code class="docutils literal"><span class="pre">String</span></code> type in KL are important to understand.  Strings have the following key properties:</p>
+<span id="index-6"></span><h3>文字列型（<code class="docutils literal"><span class="pre">String</span></code> Type）<a class="headerlink" href="#the-string-type" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">文字列</span></code> 型はテキスト文字列 ―すなわちゼロ個以上の文字の連なりを表します。 <code class="docutils literal"><span class="pre">文字列</span></code> 型の値は <span class="target" id="index-29"></span>string value として参照されます。</p>
+<p><code class="docutils literal"><span class="pre">文字列</span></code> 型のセマンティクスの理解は重要です。文字列の特徴：</p>
 <ul class="simple">
-<li>A string is a sequence of zero or more characters.</li>
-<li>The length of a string is value of type <code class="docutils literal"><span class="pre">Size</span></code>, and the maximum length of a string is .</li>
-<li>String constants can be specified inline in KL source files using single- or double-quotation marks, just as in Python and JavaScript.  For more details and examples of string constants, see <a class="reference internal" href="syntax.html#string-constants"><span>String Constants</span></a>.</li>
-<li>Strings support the following operations and properties:<ul>
-<li>They have a <code class="docutils literal"><span class="pre">.length</span></code> property which returns the number of characters in the string</li>
-<li>The <code class="docutils literal"><span class="pre">+=</span></code> assignment operator is used to append another string to a given string</li>
-<li>A new string can be created by concatenating two other strings using the <code class="docutils literal"><span class="pre">+</span></code> binary operation</li>
-<li>Strings can be compared using the usual <code class="docutils literal"><span class="pre">==</span></code>, <code class="docutils literal"><span class="pre">!=</span></code>, <code class="docutils literal"><span class="pre">&lt;</span></code>, <code class="docutils literal"><span class="pre">&lt;=</span></code>, <code class="docutils literal"><span class="pre">&gt;</span></code> and <code class="docutils literal"><span class="pre">&gt;=</span></code> logical operators.  Additionally, they support the <code class="samp docutils literal"><em><span class="pre">string</span></em><span class="pre">.compare(</span><em><span class="pre">otherString</span></em><span class="pre">)</span></code> method that returns -1, 0 or 1 depending on whether <code class="samp docutils literal"><em><span class="pre">string</span></em></code> is less than, equal to or greater than <code class="samp docutils literal"><em><span class="pre">otherString</span></em></code>, respectively.</li>
-<li>Strings can be indexed into using the <code class="samp docutils literal"><em><span class="pre">string</span></em><span class="pre">[</span><em><span class="pre">index</span></em><span class="pre">]</span></code>.  The result is a string containing the single character at the given index.  <code class="samp docutils literal"><em><span class="pre">index</span></em></code> must be in the range .</li>
-<li>A 32-bit hash value for the string can be obtained with the <code class="samp docutils literal"><em><span class="pre">string</span></em><span class="pre">.hash()</span></code> method.</li>
+<li><p class="first">文字列とはゼロ個以上の文字の連なり</p>
+</li>
+<li><p class="first">文字列の長さは、 <code class="docutils literal"><span class="pre">Size</span></code> 型であり、最大長は <span class="math">\(2^{31}-1\)</span></p>
+</li>
+<li><p class="first">文字列定数はKLソースコード中にインライン指定可能です。JavaScript や Python 同様シングルクォーテーションもしくはダブルクォーテーションマークを使用します。文字列定数に関する詳細は <a class="reference internal" href="syntax.html#string-constants"><span>文字列定数</span></a> を参照してください。</p>
+</li>
+<li><p class="first">文字列は以下の操作とプロパティを持ちます。</p>
+<ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">.length</span></code> プロパティをもち、文字列中の文字数を返します。</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">+=</span></code> 代入演算子により他の文字列を所定の文字列に追記します。</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">+</span></code> 2項演算子を使用し、2つの文字列をつなぎ合わせ、新たな文字列を作成します。</p>
+</li>
+<li><p class="first">論理演算子 <code class="docutils literal"><span class="pre">==</span></code>, <code class="docutils literal"><span class="pre">!=</span></code>, <code class="docutils literal"><span class="pre">&lt;</span></code>, <code class="docutils literal"><span class="pre">&lt;=</span></code>, <code class="docutils literal"><span class="pre">&gt;</span></code>, <code class="docutils literal"><span class="pre">&gt;=</span></code> により比較します。 さらに <code class="samp docutils literal"><em><span class="pre">string</span></em><span class="pre">.compare(</span><em><span class="pre">otherString</span></em><span class="pre">)</span></code> メソッでは -1, 0, 1 いずれかを返します。それぞれ <code class="samp docutils literal"><em><span class="pre">string</span></em></code> が <code class="samp docutils literal"><em><span class="pre">otherString</span></em></code> より 未満、等しい、超 に応じます。</p>
+</li>
+<li><p class="first"><code class="samp docutils literal"><em><span class="pre">string</span></em><span class="pre">[</span><em><span class="pre">index</span></em><span class="pre">]</span></code> を使用し、インデックスによるアクセスが可能です。与えられたインデックスに該当する1文字の文字列を結果として返します。 <code class="samp docutils literal"><em><span class="pre">index</span></em></code> は <span class="math">\([0...2^{31}-1]\)</span> の範囲である必要があります。</p>
+</li>
+<li><p class="first"><code class="samp docutils literal"><em><span class="pre">string</span></em><span class="pre">.hash()</span></code> メソッドにより、文字列の32-bit のハッシュ値を得ます。</p>
+</li>
 </ul>
 </li>
-<li>Unlike C or C++, strings can contain the null character (ASCII 0).</li>
-<li>Strings have no notion of encoding; they are just sequences of bytes.  String encodings are determined by the application space where the strings are used.  Note that everything in Fabric itself uses the UTF-8 encoding, but Fabric extensions may need to convert strings into other encodings.</li>
-<li>All other types in KL can be converted to strings through a cast; this conversion simply creates a string that is a human-readable version of the value.  This conversion can be overridden for custom types by writing a custom <code class="samp docutils literal"><span class="pre">function</span> <em><span class="pre">Type</span></em><span class="pre">.appendDesc(io</span> <span class="pre">String</span> <span class="pre">string)</span></code> method; see <a class="reference internal" href="globals.html#conversion-funcs"><span>Conversion Functions</span></a>.</li>
+<li><p class="first">C/C++言語と異なり、文字列にはヌル文字(ASCII 0)を許容します。</p>
+</li>
+<li><p class="first">文字列はそれ自体にエンコーディング（符号化）の概念を持ちません。つまりただの連続したバイトにすぎません。その文字列が使用されるアプリケーション空間において、文字列エンコーディングが決定されます。Fabric自体ではUTF-8エンコーディングを使用しますが、Fabricエクステンションでは、文字列をそれぞれ別のエンコーディングに変換する必要がある場合があります。</p>
+</li>
+<li><p class="first">KLの他の全ての型は、キャストし文字列へ変換することができます。この変換によりある値を人間可読な文字列とすることができます。カスタム型においてこの変換 ―  <code class="samp docutils literal"><span class="pre">function</span> <em><span class="pre">Type</span></em><span class="pre">.appendDesc(io</span> <span class="pre">String</span> <span class="pre">string)</span></code> メソッド ― はオーバーライド可能です。 see <a class="reference internal" href="globals.html#conversion-funcs"><span>Conversion Functions</span></a> を参照してください。</p>
+</li>
 </ul>
-<p>Example use of the <code class="docutils literal"><span class="pre">String</span></code> type:</p>
+<p><code class="docutils literal"><span class="pre">String</span></code> 型の使用例:</p>
 <div class="highlight-python"><div class="highlight"><pre>operator entry() {
   String a = &quot;A string&quot;;
   report(a);
@@ -532,7 +592,7 @@ if the value was changed.</p>
 }
 </pre></div>
 </div>
-<p>Output:</p>
+<p>出力:</p>
 <div class="highlight-python"><div class="highlight"><pre>A string
 a has length 8
 Another string
@@ -543,12 +603,12 @@ Another string now includes A string
 </div>
 </div>
 <div class="section" id="derived-types">
-<span id="klpg-types-derived"></span><span id="index-8"></span><h2>Derived Types<a class="headerlink" href="#derived-types" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>In addition to the base types, KL supports three classes of derived types: structures, arrays and dictionaries.</p>
+<span id="klpg-types-derived"></span><span id="index-8"></span><h2>派生型（Derived Types）<a class="headerlink" href="#derived-types" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>基本型に加え、KLは３つの派生型をサポートします。構造体（structures）配列（arrays）辞書（dictionaries）です。</p>
 <div class="section" id="structures">
-<span id="klpg-types-structures"></span><span id="index-9"></span><h3>Structures<a class="headerlink" href="#structures" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>A <em class="dfn">structure</em> is a collection of typed values that are placed together in memory.</p>
-<p>Structures are usually defined outside of KL using Fabric&#8217;s <span class="target" id="index-10"></span>registered type system, but they can also be declared in KL source code itself using the <code class="docutils literal"><span class="pre">struct</span></code> keyword:</p>
+<span id="klpg-types-structures"></span><span id="index-9"></span><h3>構造体（Structures）<a class="headerlink" href="#structures" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>構造体（ <em class="dfn">structure</em> ）ではいくつかの型の値がメモリ上に一緒に配置されます。</p>
+<p>構造体は通常、Fabric&#8217;s <span class="target" id="index-30"></span>registered type system を使いKL外に定義されますが、KLソースコード内に直接 <code class="docutils literal"><span class="pre">struct</span></code> キーワードを使い宣言することもできます。</p>
 <div class="highlight-python"><div class="highlight"><pre>struct NewType {
   Float32 firstMember;
   String secondMember;
@@ -556,19 +616,23 @@ Another string now includes A string
 };
 </pre></div>
 </div>
-<p>Note the use of the variable-size array as the last member; derived types can nest arbitrarily.</p>
+<p>注意：可変長配列は一番最後のメンバとして宣言します。派生型は任意にネストすることが可能です。</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p class="last">All structure declarations in KL must be in the global scope; it is not possible to declare a structure within a function scope.</p>
+<p class="last">全ての構造体の宣言は、グローバルスコープに置かれます。関数スコープ内での宣言は不可能です。</p>
 </div>
-<p>More details about structures:</p>
+<p>構造体に関する詳細：</p>
 <ul class="simple">
-<li>Access to structure members is through the <code class="docutils literal"><span class="pre">.</span></code> (dot) operator, as in JavaScript.</li>
-<li>Currently, the structure members are using C-like alignment (see <a class="reference internal" href="#structure-alignment"><span>Structure Member Alignment</span></a>).</li>
-<li>It is possible to overload operators and add <em class="dfn">methods</em> to structures; see <a class="reference internal" href="globals.html#methods"><span>Methods</span></a>.</li>
-<li>It is possible to control access to members and methods of structures using the <code class="docutils literal"><span class="pre">public</span></code>, <code class="docutils literal"><span class="pre">private</span></code>, <code class="docutils literal"><span class="pre">protected</span></code> and <code class="docutils literal"><span class="pre">permits</span></code> keywords; see <a class="reference internal" href="#klpg-types-member-access"><span>Structure, Object and Interface Access Contols</span></a>.</li>
+<li><p class="first">構造体のメンバに対するアクセスには <code class="docutils literal"><span class="pre">.</span></code> (ドット) 演算子をJavaScript同様、使用します。</p>
+</li>
+<li><p class="first">現状、構造体メンバは C言語ライクなアライメントを使用します。 <a class="reference internal" href="#structure-alignment"><span>構造体メンバのアライメント</span></a> 参照).</p>
+</li>
+<li><p class="first">演算子オーバーロードが可能で、メソッド <em class="dfn">methods</em> を構造体に追加できます。 <a class="reference internal" href="globals.html#methods"><span>Methods</span></a> 参照</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">public</span></code>, <code class="docutils literal"><span class="pre">private</span></code>, <code class="docutils literal"><span class="pre">protected</span></code>, <code class="docutils literal"><span class="pre">permits</span></code> キーワードを使用し、構造体メンバ、メソッドに対するアクセス制御が可能です。 <a class="reference internal" href="#klpg-types-member-access"><span>Structure, Object and Interface Access Contols</span></a> 参照</p>
+</li>
 </ul>
-<p>Example use of structures:</p>
+<p>構造体の使用例:</p>
 <div class="highlight-python"><div class="highlight"><pre>struct MyNewType {
   Integer i;
   String s, t;
@@ -583,35 +647,32 @@ function entry() {
 }
 </pre></div>
 </div>
-<p>Output:</p>
+<p>出力:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="n">i</span><span class="p">:</span><span class="mi">42</span><span class="p">,</span><span class="n">s</span><span class="p">:</span><span class="s">&quot;Hello!&quot;</span><span class="p">,</span><span class="n">t</span><span class="p">:</span><span class="s">&quot;there!&quot;</span><span class="p">}</span>
 </pre></div>
 </div>
 <div class="section" id="structure-member-alignment">
-<span id="structure-alignment"></span><span id="index-11"></span><h4>Structure Member Alignment<a class="headerlink" href="#structure-member-alignment" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>The alignment of members of structures is identical to that of the C
-programming language.  Therefore, EDK code that interfaces with the
-Fabric Engine does not need to use any special alignment
-specification to match the KL structure alignment.</p>
-<p>For reference, the rules of KL structure alignment (the same as the C default)
-are:</p>
+<span id="structure-alignment"></span><span id="index-11"></span><h4>構造体メンバのアライメント<a class="headerlink" href="#structure-member-alignment" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>構造体メンバのアライメントは、C言語でのそれと同一です。従い、 Fabric Engine の EDK コードとのインタフェースでは、KLでの構造体に合わせた特別なアライメントの指定は必要ありません。</p>
+<p>参考までに、KLの構造体のアライメントに関するルール（つまりC言語のディフォルトと一緒）は：</p>
 <ul class="simple">
-<li>Every type has a size and an alignment</li>
-<li>The alignment of base types is the same as their size</li>
-<li>The alignment of structures (as a whole) is the largest alignment of any of
-its member types</li>
-<li>The byte position of a member within a structure is chosen by rounding up
-the next available offset in the structure to the alignment of the member
-type</li>
+<li><p class="first">全ての型は、サイズとアライメントを持つ</p>
+</li>
+<li><p class="first">基本型のアライメントは、その型のサイズと同一</p>
+</li>
+<li><p class="first">構造体（全体）のアライメントはその構造体のメンバの型のうち一番大きい物</p>
+</li>
+<li><p class="first">メンバの構造体内でのバイト位置は、次に利用可能な構造体のオフセットからメンバの型のアライメントへ切り上げ選択されます。</p>
+</li>
 </ul>
 </div>
 <div class="section" id="structure-inheritance">
-<span id="kplg-structure-inheritance"></span><span id="index-12"></span><h4>Structure Inheritance<a class="headerlink" href="#structure-inheritance" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<span id="kplg-structure-inheritance"></span><span id="index-12"></span><h4>構造体の継承<a class="headerlink" href="#structure-inheritance" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <div class="versionadded">
 <p><span class="versionmodified">バージョン 1.13.0 で追加.</span></p>
 </div>
-<p>A structure can inherit (or <cite>derive</cite>) from a single base structure. The specialized structure then inherits from all members and methods of the base structure.</p>
-<p>The <code class="samp docutils literal"><span class="pre">struct</span> <em><span class="pre">SpecializedType</span></em> <span class="pre">:</span> <em><span class="pre">BaseType</span></em></code> syntax is used to declare the inheritance relationship. A specialized structure can be <cite>cast</cite> to its base structure type at no cost. The <code class="samp docutils literal"><span class="pre">.parent</span></code> accessor allows to perform that cast explicitly.</p>
+<p>ある構造体は基となる一つの構造体を継承（ <cite>inherit</cite> もしくは <cite>derive</cite> ）できます。特殊化した構造体は、基底構造体より全てのメンバとメソッドを継承します。</p>
+<p><code class="samp docutils literal"><span class="pre">struct</span> <em><span class="pre">SpecializedType</span></em> <span class="pre">:</span> <em><span class="pre">BaseType</span></em></code> 構文を使用し継承関係の宣言をします。特殊化した構造体は基底構造体へとノーコストで <cite>cast</cite> が可能です。 <code class="samp docutils literal"><span class="pre">.parent</span></code> アクセッサにより、明示的にキャストします。</p>
 <div class="highlight-kl"><div class="highlight"><pre><span class="kr">struct</span> <span class="nx">Shape</span> <span class="p">{</span>
   <span class="kr">Float32</span> <span class="nx">centerX</span><span class="p">,</span> <span class="nx">centerY</span><span class="p">;</span>
 <span class="p">};</span>
@@ -641,7 +702,7 @@ type</li>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p>When cast to its base type, a structure looses all its specialized behavior, which is different from <a class="reference internal" href="#kplg-object-inheritance"><span>objects</span></a>:</p>
+<p>基底型へとキャストすると、その構造体は特殊化した振舞を全て失います。オブジェクト（ <a class="reference internal" href="#kplg-object-inheritance"><span>objects</span></a> ）との違いです。</p>
 <div class="last highlight-kl"><div class="highlight"><pre><span class="kr">struct</span> <span class="nx">Shape</span> <span class="p">{</span>
   <span class="kr">Float32</span> <span class="nx">centerX</span><span class="p">,</span> <span class="nx">centerY</span><span class="p">;</span>
 <span class="p">};</span>
@@ -671,13 +732,13 @@ type</li>
 </div>
 </div>
 <div class="section" id="objects">
-<span id="klpg-types-objects"></span><span id="index-13"></span><h3>Objects<a class="headerlink" href="#objects" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="klpg-types-objects"></span><span id="index-13"></span><h3>オブジェクト（Objects）<a class="headerlink" href="#objects" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="versionchanged">
-<p><span class="versionmodified">バージョン 1.12.0 で変更: </span>Can no longer do &#8220;empty construction&#8221; of variables of object type</p>
+<p><span class="versionmodified">バージョン 1.12.0 で変更: </span>オブジェクト型変数の &#8220;empty construction&#8221; は不可能になりました</p>
 </div>
-<p>An <em class="dfn">object</em> is similar to a <a class="reference internal" href="#klpg-types-structures"><span>structure</span></a> in that it is a collection of typed values placed together in memory, except that objects are copy-by-reference rather than copy-by-value; objects must be <em class="dfn">constructed</em> and are internally reference-counted.  Additionally, objects can support <a class="reference internal" href="#klpg-types-interfaces"><span>interfaces</span></a>, which are a collection of methods that the object is guaranteed to support.</p>
-<p>Objects are used in much the same way as structures, with the major difference being that they are copy-by-reference and must be constructed.  KL internally keeps track of the number of references to each object and when the last reference to an object is dropped the memory holding the object is freed.  Objects drop their references when they go out of scope, or when they have <code class="code docutils literal"><span class="pre">null</span></code> assigned to them.</p>
-<p>Objects are defined using the <code class="code docutils literal"><span class="pre">object</span></code> keyword in KL.  The syntax is very similar to the definition of <a class="reference internal" href="#klpg-types-structures"><span>structures</span></a>:</p>
+<p>オブジェクト（ <em class="dfn">object</em> ）は、メモリ内に幾つかの型の値を一緒に保持するという点において構造体（ <a class="reference internal" href="#klpg-types-structures"><span>structure</span></a> ）に似ています。違いは、オブジェクトが「参照によるコピー（copy-by-reference）」であるのに対し、構造体では「値によるコピー（copy-by-value）」な点です。オブジェクトは <em class="dfn">constructed</em> され内部において参照カウントされます。さらにオブジェクトでは、そのオブジェクトでのサポートが保証されるメソッドの集合の <a class="reference internal" href="#klpg-types-interfaces"><span>interfaces</span></a> をサポートします。</p>
+<p>オブジェクトは構造体とほぼ同じように使用できます。おおきな違いは、copy-by-referenceな点、コンストラクトされなくてはいけない点です。KLは内部に各オブジェクトの参照番号のトラックを保持し、そのオブジェクトの最後の参照が破棄された際、オブジェクトは開放されます。スコープから外れるか、オブジェクトに  <code class="code docutils literal"><span class="pre">null</span></code>  が割り当てられると、オブジェクトは参照を落とします。</p>
+<p>KLコード中、 <code class="code docutils literal"><span class="pre">object</span></code> キーワードを使用しオブジェクトを定義します。このシンタックスは構造体とほぼ一緒です。 <a class="reference internal" href="#klpg-types-structures"><span>structures</span></a> 参照</p>
 <div class="highlight-kl"><div class="highlight"><pre><span class="c1">// An object with two members</span>
 <span class="kr">object</span> <span class="nx">Obj</span> <span class="p">{</span>
   <span class="kr">String</span> <span class="nx">s</span><span class="p">;</span>
@@ -685,7 +746,7 @@ type</li>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>Optionally, the object can derive from one base object, and implement one or more <a class="reference internal" href="#klpg-types-interfaces"><span>interfaces</span></a>.  There are indicated after the name of the object:</p>
+<p>必要に応じ、オブジェクトはある1つの基底オブジェクトを継承し、さらに1つ以上の <a class="reference internal" href="#klpg-types-interfaces"><span>interfaces</span></a> を実装することができます。オブジェクトの名前の後に、継承するオブジェクト、実装するインターフェースを示します。</p>
 <div class="highlight-kl"><div class="highlight"><pre><span class="c1">// An object with two members that implements two interfaces</span>
 <span class="kr">object</span> <span class="nx">MyObjType</span> <span class="o">:</span> <span class="nx">BaseObjType</span><span class="p">,</span> <span class="nx">IntOne</span><span class="p">,</span> <span class="nx">IntTwo</span> <span class="p">{</span>
   <span class="kr">String</span> <span class="nx">s</span><span class="p">;</span>
@@ -693,14 +754,14 @@ type</li>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>Variables whose type is that of a given object are declared with the name of the object.</p>
+<p>型にオブジェクトを与えた変数は、そのオブジェクトの名とともに宣言します。</p>
 <div class="highlight-kl"><div class="highlight"><pre><span class="c1">// A variable of type MyObjType</span>
 <span class="nx">MyObjType</span> <span class="nx">obj</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 <span class="nb">report</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span> <span class="c1">// reports: null</span>
 </pre></div>
 </div>
-<p>The value <code class="code docutils literal"><span class="pre">null</span></code> refers to a non-existent object.  You can report an object that is <code class="code docutils literal"><span class="pre">null</span></code>, but trying to reference its members or call methods on it will result in a runtime error.</p>
-<p>Any variable of Object type can be set to <code class="code docutils literal"><span class="pre">null</span></code>.  Doing almost anything with a <code class="code docutils literal"><span class="pre">null</span></code> object will result in a runtime error.  To create a valid object it must be constructed.  There are two syntaxes for constructing objects:</p>
+<p>値 <code class="code docutils literal"><span class="pre">null</span></code> は存在しないオブジェクトを参照します。オブジェクトが <code class="code docutils literal"><span class="pre">null</span></code> であると、report可能ですが、実行時にそのオブジェクトのメンバを参照したり、メソッドを呼び出すと、ランタイムエラーとなります。</p>
+<p>どのオブジェクト型の変数も <code class="code docutils literal"><span class="pre">null</span></code> に設定可能です。 <code class="code docutils literal"><span class="pre">null</span></code> オブジェクトに対するほとんど操作は、実行時エラーとなります。正常なオブジェクトの作成には、コンストラクトします。コンストラクトする2種類の文法：</p>
 <div class="highlight-kl"><div class="highlight"><pre><span class="nx">MyObjType</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nx">MyObjType</span><span class="p">();</span> <span class="c1">// calls the default constructor</span>
 <span class="nb">report</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span> <span class="c1">// reports: {s:&quot;&quot;,n:0}</span>
 <span class="nx">MyObjType</span> <span class="nx">obj2</span><span class="p">();</span> <span class="c1">// also calls the default constructor</span>
@@ -711,9 +772,9 @@ type</li>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p class="last">Objects cannot be &#8220;empty constructed&#8221;; you must explicitly construct objects or explicitly set their values to <code class="code docutils literal"><span class="pre">null</span></code>.</p>
+<p class="last">オブジェクトは&#8221;empty constructed&#8221;不可能です。明示的にコンストラクトするか、明示的に <code class="code docutils literal"><span class="pre">null</span></code> に設定します。</p>
 </div>
-<p><a class="reference internal" href="globals.html#klpg-constructor"><span>Constructors</span></a> and <a class="reference internal" href="globals.html#klpg-destructor"><span>destructors</span></a> can be specified for objects just as they are for structures:</p>
+<p><a class="reference internal" href="globals.html#klpg-constructor"><span>Constructors</span></a> と <a class="reference internal" href="globals.html#klpg-destructor"><span>destructors</span></a> を構造体同様、オブジェクトでも指定することができます</p>
 <div class="highlight-kl"><div class="highlight"><pre><span class="c1">// Provide a default constructor</span>
 <span class="kd">function</span> <span class="nx">MyObjType</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">s</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span><span class="p">;</span>
@@ -733,15 +794,14 @@ type</li>
 <span class="nb">report</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span> <span class="c1">// reports: {s:&quot;foo&quot;,n:7}</span>
 </pre></div>
 </div>
-<p>Constructing a specific object from another object of the same type makes the new object a reference to the old object.  In this case, a new object is not created; if the object is modified through one of the references to it then the other see the modifications as well.</p>
+<p>他の同型オブジェクトから特定のオブジェクトをコンストラクトすると、新しいオブジェクトは古いオブジェクトを参照します。この場合、新しいオブジェクトは実際には作られていません。つまり参照を通し、そのうちの1つのオブジェクトに変更が加わると、もう片方のオブジェクトも同様、変更されます。</p>
 <div class="highlight-kl"><div class="highlight"><pre><span class="nx">MyObjType</span> <span class="nx">o1</span><span class="p">(</span><span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
 <span class="nx">MyObjType</span> <span class="nx">o2</span> <span class="o">=</span> <span class="nx">o1</span><span class="p">;</span>
 <span class="nx">o2</span><span class="p">.</span><span class="nx">s</span> <span class="o">=</span> <span class="s2">&quot;baz&quot;</span><span class="p">;</span>
 <span class="nb">report</span><span class="p">(</span><span class="nx">o1</span><span class="p">);</span> <span class="c1">// reports: {s:&quot;baz&quot;,n:3}</span>
 </pre></div>
 </div>
-<p>Users cannot define a custom copy constructor for objects for this reason, the copy constructor always only adds a reference to the existing object. If a user wants to instantiate a new object then the <code class="docutils literal"><span class="pre">clone()</span></code> method (see <a class="reference internal" href="#klpg-types-objects-clone"><span>The Object clone() Method</span></a>)
-or a custom method should be used.</p>
+<p>ユーザ独自のコピーコンストラクタを定義することはできません。以下の理由のためです。コピーコンストラクタは既存のオブジェクトに対し、参照を常に１つ加算します。かりに新規オブジェクトをインスタンス化したいのであれば、 <code class="docutils literal"><span class="pre">clone()</span></code> メソッド（ <a class="reference internal" href="#klpg-types-objects-clone"><span>The Object clone() Method</span></a> 参照）か、カスタムメソッドを使用します。</p>
 <div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
 <span class="cm">** Example: Duplicating an object using a custom method</span>
 <span class="cm">*/</span>
@@ -789,7 +849,7 @@ or a custom method should be used.</p>
 <span class="cm">*/</span>
 </pre></div>
 </div>
-<p>Arbitrary methods can be defined on objects just as they are on structures.  These methods are then called using the same <code class="samp docutils literal"><em><span class="pre">object</span></em><span class="pre">.</span><em><span class="pre">methodName</span></em><span class="pre">(</span><em><span class="pre">arg</span></em><span class="pre">,</span><em><span class="pre">arg</span></em><span class="pre">,...)</span></code> syntax as for structures.  Calling a method on a <code class="code docutils literal"><span class="pre">null</span></code> object results in a runtime exception.</p>
+<p>構造体同様、オブジェクトには任意のメソッドを定義できます。これらのメソッドは <code class="samp docutils literal"><em><span class="pre">object</span></em><span class="pre">.</span><em><span class="pre">methodName</span></em><span class="pre">(</span><em><span class="pre">arg</span></em><span class="pre">,</span><em><span class="pre">arg</span></em><span class="pre">,...)</span></code> 構文を使用し呼び出します。 <code class="code docutils literal"><span class="pre">null</span></code> に対するメソッドの呼び出しは実行時例外を引き起こします。</p>
 <div class="highlight-kl"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">MyObjType</span><span class="p">.</span><span class="nx">reportMe</span><span class="p">()</span> <span class="p">{</span>
   <span class="nb">report</span><span class="p">(</span><span class="s2">&quot;reportMe: s=&quot;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">s</span><span class="o">+</span><span class="s2">&quot; n=&quot;</span><span class="o">+</span><span class="nx">n</span><span class="p">);</span>
 <span class="p">}</span>
@@ -798,14 +858,19 @@ or a custom method should be used.</p>
 <span class="nx">obj</span><span class="p">.</span><span class="nx">reportMe</span><span class="p">();</span> <span class="c1">// reports: reportMe: s=Fred n=49</span>
 </pre></div>
 </div>
-<p>Members of objects are accessed in the same way as members of structures by using the <code class="samp docutils literal"><em><span class="pre">object</span></em><span class="pre">.</span><em><span class="pre">memberName</span></em></code> syntax.  Using the <code class="code docutils literal"><span class="pre">.</span></code> operation on a <code class="code docutils literal"><span class="pre">null</span></code> object will throw a runtime exception.</p>
-<p>Additional properties of objects:</p>
+<p>構造体同様、オブジェクトのメンバへのアクセスには <code class="samp docutils literal"><em><span class="pre">object</span></em><span class="pre">.</span><em><span class="pre">memberName</span></em></code> 構文を使用します。<code class="code docutils literal"><span class="pre">null</span></code> オブジェクトに対する <code class="code docutils literal"><span class="pre">.</span></code> （ドット）の使用も実行時例外となります。</p>
+<p>オブジェクトのさらなる特徴:</p>
 <ul class="simple">
-<li>If an value of object type is converted to a <code class="code docutils literal"><span class="pre">Boolean</span></code> then its value is <code class="code docutils literal"><span class="pre">true</span></code> if and only if the object is not <code class="code docutils literal"><span class="pre">null</span></code>.</li>
-<li>The <a class="reference internal" href="ops-exprs.html#equality-ops"><span>equality operators</span></a> <code class="samp docutils literal"><em><span class="pre">obj1</span></em> <span class="pre">==</span> <em><span class="pre">obj2</span></em></code> and <code class="samp docutils literal"><em><span class="pre">obj1</span></em> <span class="pre">!=</span> <em><span class="pre">obj2</span></em></code> are only valid for objects when overloaded or when comparing with <code class="code docutils literal"><span class="pre">null</span></code>.  The <a class="reference internal" href="ops-exprs.html#identity-ops"><span>identity operators</span></a> <code class="samp docutils literal"><em><span class="pre">obj1</span></em> <span class="pre">===</span> <em><span class="pre">obj2</span></em></code> and <code class="samp docutils literal"><em><span class="pre">obj1</span></em> <span class="pre">!==</span> <em><span class="pre">obj2</span></em></code> are always valid for objects and compare based on whether the objects are references to the same object (ie. if changing one will change both).</li>
-<li>Values of object type support the method <code class="samp docutils literal"><span class="pre">&lt;objectValue&gt;.uid()</span></code> that returns a unique UInt64 that can be used to identify the object.  The value is the same as it would be if <cite>.uid()</cite> were called on the object casted to any of the interfaces the object supports.</li>
-<li>Assigning <code class="code docutils literal"><span class="pre">null</span></code> to an object drops the reference to whatever the object was previously pointing to.</li>
-<li>It is possible to control access to members and methods of objects using the <code class="docutils literal"><span class="pre">public</span></code>, <code class="docutils literal"><span class="pre">private</span></code>, <code class="docutils literal"><span class="pre">protected</span></code> and <code class="docutils literal"><span class="pre">permits</span></code> keywords; see <a class="reference internal" href="#klpg-types-member-access"><span>Structure, Object and Interface Access Contols</span></a>.</li>
+<li><p class="first">オブジェクト型の値が <code class="code docutils literal"><span class="pre">Boolean</span></code> に変換されると、そのオブジェクトが <code class="code docutils literal"><span class="pre">null</span></code> ではない場合 <code class="code docutils literal"><span class="pre">true</span></code> となる</p>
+</li>
+<li><p class="first"><a class="reference internal" href="ops-exprs.html#equality-ops"><span>equality operators</span></a> <code class="samp docutils literal"><em><span class="pre">obj1</span></em> <span class="pre">==</span> <em><span class="pre">obj2</span></em></code> and <code class="samp docutils literal"><em><span class="pre">obj1</span></em> <span class="pre">!=</span> <em><span class="pre">obj2</span></em></code> はオブジェクトがオーバーロドされているか、 <code class="code docutils literal"><span class="pre">null</span></code> と比較されている場合のみ、有効です。 <a class="reference internal" href="ops-exprs.html#identity-ops"><span>identity operators</span></a> <code class="samp docutils literal"><em><span class="pre">obj1</span></em> <span class="pre">===</span> <em><span class="pre">obj2</span></em></code> and <code class="samp docutils literal"><em><span class="pre">obj1</span></em> <span class="pre">!==</span> <em><span class="pre">obj2</span></em></code> は常に有効で、同一のオブジェクトを参照してりうかどうかに依って比較されます。 (すなわち変更が双方に影響します)</p>
+</li>
+<li><p class="first">オブジェクト型の値は、 <code class="samp docutils literal"><span class="pre">&lt;objectValue&gt;.uid()</span></code> をサポートしユニークな UInt64 を返します。オブジェクトの同定に使用できます。この値は、そのオブジェクトをそれがサポートするどのようなインターフェースにキャストしたものに対し <cite>.uid()</cite> を呼び出した結果と同一です。</p>
+</li>
+<li><p class="first">オブジェクトに <code class="code docutils literal"><span class="pre">null</span></code> を代入するとそのオブジェクトが過去に示した参照全てをドロップします。</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">public</span></code>, <code class="docutils literal"><span class="pre">private</span></code>, <code class="docutils literal"><span class="pre">protected</span></code>, <code class="docutils literal"><span class="pre">permits</span></code> キーワードにより、オブジェクトのメンバ、メソッドに対するアクセス制御が可能です。 <a class="reference internal" href="#klpg-types-member-access"><span>Structure, Object and Interface Access Contols</span></a> 参照</p>
+</li>
 </ul>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
@@ -1530,7 +1595,7 @@ String c&lt;&gt;[];   // An external array of variable-size arrays of strings
 <p>A <em class="dfn">variable-size array</em> is an array whose size can be changed at runtime.  Variable-size arrays are declared by appending <code class="docutils literal"><span class="pre">[]</span></code> to the name of the variable, parameter or structure member where they are declared, eg. <code class="docutils literal"><span class="pre">String</span> <span class="pre">strings[]</span></code>.</p>
 <p>Variable-size arrays have all the <a class="reference internal" href="#array-properties"><span>properties of arrays</span></a> as well as the following additional properties:</p>
 <ul class="simple">
-<li>The maximum size of a variable-size array is .</li>
+<li>The maximum size of a variable-size array is <span class="math">\(2^31-1\)</span>.</li>
 <li>Variable-size arrays are <em class="dfn">share-on-assign</em>, meaning that when you assign one variable-size array to another it does not copy the elements but rather copies a reference to the elements; any changes to one of the arrays changes the other as well.  This is sometimes referred to as a shallow copy (as opposed to a deep copy).  In order to obtain a deep copy of an array, use the <code class="docutils literal"><span class="pre">clone()</span></code> method, described below.</li>
 <li>Variable-size arrays support the following methods and functions:<ul>
 <li>By default, a variable array is empty.  If you specify an integer value when it is constructed, the variable array will initially have that many elements.</li>
@@ -1578,7 +1643,7 @@ String c&lt;&gt;[];   // An external array of variable-size arrays of strings
 <p>A <em class="dfn">fixed-size array</em> is an array whose size is fixed at runtime.  Fixed-size arrays have much faster performance characteristics than variable-size arrays, therefore should be used in place of variable-sized arrays when the size of an array is known at compile time.  Fixed-size arrays are declared by appending <code class="samp docutils literal"><span class="pre">[</span><em><span class="pre">size</span></em><span class="pre">]</span></code> to the name of the variable, parameter or structure member where they are declared, eg. <code class="docutils literal"><span class="pre">String</span> <span class="pre">strings[4]</span></code>.</p>
 <p>Fixed-size arrays have all the <a class="reference internal" href="#array-properties"><span>properties of arrays</span></a> as well as the following additional properties:</p>
 <ul>
-<li><p class="first">The maximum size of a fixed-size array is .</p>
+<li><p class="first">The maximum size of a fixed-size array is <span class="math">\(2^31-1\)</span>.</p>
 <div class="admonition warning">
 <p class="first admonition-title">警告</p>
 <p class="last">Since fixed-size arrays are allocated on the stack (instead of the heap), using very large fixed-size arrays may result in a stack overflow.  It is recommended that fixed-size arrays only be used for arrays that are reasonably small.</p>
@@ -1721,7 +1786,7 @@ report(ea);
 </pre></div>
 </div>
 </li>
-<li><p class="first">Dictionaries can contain at most  key-value pairs.</p>
+<li><p class="first">Dictionaries can contain at most <span class="math">\(2^32-1\)</span> key-value pairs.</p>
 </li>
 <li><p class="first">Dictionaries support the <code class="samp docutils literal"><span class="pre">has(</span><em><span class="pre">key</span></em><span class="pre">)</span></code> method that returns a <code class="code docutils literal"><span class="pre">Boolean</span></code> value indicating whether there is a value in the dictionary for the given key.</p>
 </li>
@@ -1967,24 +2032,24 @@ alias Float32 Mat22[2][2];  // Mat22 is now an alias for Float32[2][2], ie. a si
             </a></p>
   <h3><a href="../index.html">目次</a></h3>
   <ul>
-<li><a class="reference internal" href="#">The KL Type System</a><ul>
-<li><a class="reference internal" href="#base-types">Base Types</a><ul>
-<li><a class="reference internal" href="#the-boolean-type">The <code class="code docutils literal"><span class="pre">Boolean</span></code> Type</a></li>
-<li><a class="reference internal" href="#integer-types">Integer Types</a><ul>
-<li><a class="reference internal" href="#integer-atomic-methods">Integer Atomic Methods</a></li>
+<li><a class="reference internal" href="#">KLの型システム</a><ul>
+<li><a class="reference internal" href="#base-types">基本型（Base Types）</a><ul>
+<li><a class="reference internal" href="#the-boolean-type">論理型（ <code class="code docutils literal"><span class="pre">Boolean</span></code> Type）</a></li>
+<li><a class="reference internal" href="#integer-types">整数型（Integer Types）</a><ul>
+<li><a class="reference internal" href="#integer-atomic-methods">整数型のアトミックメソッド</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#floating-point-types">Floating-Point Types</a></li>
-<li><a class="reference internal" href="#the-string-type">The <code class="docutils literal"><span class="pre">String</span></code> Type</a></li>
+<li><a class="reference internal" href="#floating-point-types">浮動小数点数型（Floating-Point Types）</a></li>
+<li><a class="reference internal" href="#the-string-type">文字列型（<code class="docutils literal"><span class="pre">String</span></code> Type）</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#derived-types">Derived Types</a><ul>
-<li><a class="reference internal" href="#structures">Structures</a><ul>
-<li><a class="reference internal" href="#structure-member-alignment">Structure Member Alignment</a></li>
-<li><a class="reference internal" href="#structure-inheritance">Structure Inheritance</a></li>
+<li><a class="reference internal" href="#derived-types">派生型（Derived Types）</a><ul>
+<li><a class="reference internal" href="#structures">構造体（Structures）</a><ul>
+<li><a class="reference internal" href="#structure-member-alignment">構造体メンバのアライメント</a></li>
+<li><a class="reference internal" href="#structure-inheritance">構造体の継承</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#objects">Objects</a><ul>
+<li><a class="reference internal" href="#objects">オブジェクト（Objects）</a><ul>
 <li><a class="reference internal" href="#the-object-clone-method">The Object <code class="docutils literal"><span class="pre">clone()</span></code> Method</a></li>
 <li><a class="reference internal" href="#object-inheritance">Object inheritance</a></li>
 </ul>
@@ -2021,7 +2086,7 @@ alias Float32 Mat22[2][2];  // Mat22 is now an alias for Float32[2][2], ie. a si
 
   <h4>前のトピックへ</h4>
   <p class="topless"><a href="syntax.html"
-                        title="前の章へ">KL Syntax</a></p>
+                        title="前の章へ">KLの文法</a></p>
   <h4>次のトピックへ</h4>
   <p class="topless"><a href="globals.html"
                         title="次の章へ">Functions and Other Global Declarations</a></p>
@@ -2061,10 +2126,10 @@ alias Float32 Mat22[2][2];  // Mat22 is now an alias for Float32[2][2], ie. a si
           <a href="globals.html" title="Functions and Other Global Declarations"
              >次へ</a> |</li>
         <li class="right" >
-          <a href="syntax.html" title="KL Syntax"
+          <a href="syntax.html" title="KLの文法"
              >前へ</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >KL Programming Guide</a> &raquo;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" >KL プログラミングガイド</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

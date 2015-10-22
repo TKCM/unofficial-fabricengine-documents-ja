@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" /> 
   </head>
   <body role="document">
@@ -182,178 +183,178 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#cce50a114684a8699c467173c50a"><span>OctreeStruct</span></a>  ( in <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a> other )</td>
+<td><a class="reference internal" href="#ef16d21076242f49722ac23c38f79b8"><span>OctreeStruct</span></a>  ( in <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a> other )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#d02c408f8f46318522d5692efbbd09"><span>OctreeStruct</span></a>  ( in UInt8 maxDepth, in Boolean keepSubCellObjectList, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> smallestWorldCellSize )</td>
+<td><a class="reference internal" href="#db80334aa3487ea9aa910b7b2e36b3"><span>OctreeStruct</span></a>  ( in UInt8 maxDepth, in Boolean keepSubCellObjectList, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> smallestWorldCellSize )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#d2adb13847274fc7933eaf55b42a9ef0"><span>OctreeStruct</span></a>  ()</td>
+<td><a class="reference internal" href="#d67a1651ef14c45b2ba161a85411a1b"><span>OctreeStruct</span></a>  ()</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#af1d7b42681427a80b4d98d156fa2d5"><span>_validateInternalStructureConsistency</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> label )</td>
+<td><a class="reference internal" href="#aef912c9a429992879c5b287e57e4"><span>_validateInternalStructureConsistency</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> label )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#c5bcff0433da466b8e5c8fd988586569"><span>addCellObjects</span></a> ? ( in <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in Boolean includeSubCells )</td>
+<td><a class="reference internal" href="#dfd28e7c3264818b061b8e9c9a8e2d7"><span>addCellObjects</span></a> ? ( in <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in Boolean includeSubCells )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#f877fce7a1d64f818be430d23cea2c18"><span>addMemberToSubCells</span></a> ! ( in Size parentCellIndex, in <a class="reference internal" href="OctCellPath.html#octcellpath"><span>OctCellPath</span></a> parentCenterPath, in Size objectIndex, io <a class="reference internal" href="OctObjectData.html#octobjectdata"><span>OctObjectData</span></a> objectData, in Byte cellBits, in Size numSubMembersToReserve[8] )</td>
+<td><a class="reference internal" href="#a1a32913432ab346c9bb455a1960"><span>addMemberToSubCells</span></a> ! ( in Size parentCellIndex, in <a class="reference internal" href="OctCellPath.html#octcellpath"><span>OctCellPath</span></a> parentCenterPath, in Size objectIndex, io <a class="reference internal" href="OctObjectData.html#octobjectdata"><span>OctObjectData</span></a> objectData, in Byte cellBits, in Size numSubMembersToReserve[8] )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#bdbd8d7dbaf468f84601d9fa5ef2ddc"><span>addObjectToCell</span></a> ! ( in Size objectIndex, io <a class="reference internal" href="OctObjectData.html#octobjectdata"><span>OctObjectData</span></a> objectData, in Size cellIndex, io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in Boolean addCellToDirtyList, in Boolean unSplitting )</td>
+<td><a class="reference internal" href="#f9c2fef9f8344707b09531a77068ba0e"><span>addObjectToCell</span></a> ! ( in Size objectIndex, io <a class="reference internal" href="OctObjectData.html#octobjectdata"><span>OctObjectData</span></a> objectData, in Size cellIndex, io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in Boolean addCellToDirtyList, in Boolean unSplitting )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#eceb7660dbe64f08978a19920575417b"><span>addObjectToCell</span></a> ! ( in Size objectIndex, io <a class="reference internal" href="OctObjectData.html#octobjectdata"><span>OctObjectData</span></a> objectData, in Size objectCellCount, in Size cellIndex, io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in Boolean addCellToDirtyList, in Boolean unSplitting )</td>
+<td><a class="reference internal" href="#a71984ef37b6443d9c762625c3aad0eb"><span>addObjectToCell</span></a> ! ( in Size objectIndex, io <a class="reference internal" href="OctObjectData.html#octobjectdata"><span>OctObjectData</span></a> objectData, in Size objectCellCount, in Size cellIndex, io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in Boolean addCellToDirtyList, in Boolean unSplitting )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#d845ea6e47cdba01ddb7265cb1a1"><span>addObjectToCellInternal</span></a> ! ( in UInt32 objectIndex, io <a class="reference internal" href="OctObjectData.html#octobjectdata"><span>OctObjectData</span></a> objectData, in Size objectCellsCount, in UInt32 cellIndex, io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in UInt32 membershipType )</td>
+<td><a class="reference internal" href="#b4344eb44e1bc479c13301d1d2e"><span>addObjectToCellInternal</span></a> ! ( in UInt32 objectIndex, io <a class="reference internal" href="OctObjectData.html#octobjectdata"><span>OctObjectData</span></a> objectData, in Size objectCellsCount, in UInt32 cellIndex, io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in UInt32 membershipType )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#c8187f20443b784839b81b5084bd7"><span>bBoxQuery</span></a> ? ( in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> transform, in <a class="reference internal" href="LocalBoundingVolume.html#localboundingvolume"><span>LocalBoundingVolume</span></a> localBBox, io <a class="reference internal" href="OctreeQueryTraverseData.html#octreequerytraversedata"><span>OctreeQueryTraverseData</span></a> tempTraverseData, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask )</td>
+<td><a class="reference internal" href="#fb7ca98e28fa459da94843783437777d"><span>bBoxQuery</span></a> ? ( in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> transform, in <a class="reference internal" href="LocalBoundingVolume.html#localboundingvolume"><span>LocalBoundingVolume</span></a> localBBox, io <a class="reference internal" href="OctreeQueryTraverseData.html#octreequerytraversedata"><span>OctreeQueryTraverseData</span></a> tempTraverseData, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#a90bb5b1416c8c721fa304963a1f"><span>bConeQuery</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> origin, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> unitDir, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> length, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> tanHalfAngle, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> cosHalfAngle, io <a class="reference internal" href="OctreeQueryTraverseData.html#octreequerytraversedata"><span>OctreeQueryTraverseData</span></a> tempTraverseData, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask )</td>
+<td><a class="reference internal" href="#eed45ebe94bcf97391263954cab4a"><span>bConeQuery</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> origin, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> unitDir, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> length, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> tanHalfAngle, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> cosHalfAngle, io <a class="reference internal" href="OctreeQueryTraverseData.html#octreequerytraversedata"><span>OctreeQueryTraverseData</span></a> tempTraverseData, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#af28f2295ab422c81a844fc0b6ed41d"><span>bPyramidQuery</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> origin, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> unitDir, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> near, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> far, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> nearRightVec, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> nearUpVec, io <a class="reference internal" href="OctreeQueryTraverseData.html#octreequerytraversedata"><span>OctreeQueryTraverseData</span></a> tempTraverseData, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask )</td>
+<td><a class="reference internal" href="#ac3b2da79ab4cdbb981ab0e66ba1d64"><span>bPyramidQuery</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> origin, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> unitDir, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> near, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> far, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> nearRightVec, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> nearUpVec, io <a class="reference internal" href="OctreeQueryTraverseData.html#octreequerytraversedata"><span>OctreeQueryTraverseData</span></a> tempTraverseData, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#b727e64ffa8f462dad3a9159ff847c52"><span>bSphereQuery</span></a> ? ( in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> transform, in <a class="reference internal" href="LocalBoundingVolume.html#localboundingvolume"><span>LocalBoundingVolume</span></a> localBSphere, io <a class="reference internal" href="OctreeQueryTraverseData.html#octreequerytraversedata"><span>OctreeQueryTraverseData</span></a> tempTraverseData, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask )</td>
+<td><a class="reference internal" href="#ac59fff35a4e80bdc84079e00c7c20"><span>bSphereQuery</span></a> ? ( in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> transform, in <a class="reference internal" href="LocalBoundingVolume.html#localboundingvolume"><span>LocalBoundingVolume</span></a> localBSphere, io <a class="reference internal" href="OctreeQueryTraverseData.html#octreequerytraversedata"><span>OctreeQueryTraverseData</span></a> tempTraverseData, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#c0fc07864100a6fab4cb19601b6c"><span>changeMembershipType</span></a> ! ( in UInt32 cellIndex, io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in UInt32 prevMembershipType, in UInt32 membershipType )</td>
+<td><a class="reference internal" href="#c976a18428e85e03dc6d3229840"><span>changeMembershipType</span></a> ! ( in UInt32 cellIndex, io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in UInt32 prevMembershipType, in UInt32 membershipType )</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a></td>
-<td><a class="reference internal" href="#e734216c2f0417cbc9537a6c0bad85d"><span>clone</span></a> ? ()</td>
+<td><a class="reference internal" href="#ddd25abecf464313b14c924c2487d0ec"><span>clone</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td>Size</td>
-<td><a class="reference internal" href="#cf1f56e159c428e9c04c582bf4cae4d"><span>createCell</span></a> ! ( in Size depth )</td>
+<td><a class="reference internal" href="#ee6a13788cb24eb18cebe8b505c34273"><span>createCell</span></a> ! ( in Size depth )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#e89488c5c68c464fa483e9d3ad9112d0"><span>freeCell</span></a> ! ( io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in Size index )</td>
+<td><a class="reference internal" href="#baa68032774249ec9abf3857f0ccdd90"><span>freeCell</span></a> ! ( io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in Size index )</td>
 </tr>
 <tr class="row-even"><td>UInt8</td>
-<td><a class="reference internal" href="#eb259fc79f4391a5f270ae2ae7d601"><span>getActualDepth_slow</span></a> ? ()</td>
+<td><a class="reference internal" href="#e4a2296cd80a48b4ac475a3eaa0c1320"><span>getActualDepth_slow</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
-<td><a class="reference internal" href="#ab9721aa14b94abd91598cf94d1732e7"><span>getAverageObjectsPerCell</span></a> ? ()</td>
+<td><a class="reference internal" href="#ec56367ebd543359ddc8abbd8ba0be3"><span>getAverageObjectsPerCell</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#b1aff838b712498abdd8568ca5b4b2c5"><span>getBBox</span></a> ? ( in <a class="reference internal" href="OctCellBBox.html#octcellbbox"><span>OctCellBBox</span></a> octBBox, io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max )</td>
+<td><a class="reference internal" href="#c50c35bb44ef2b5da30d02dff40bf"><span>getBBox</span></a> ? ( in <a class="reference internal" href="OctCellBBox.html#octcellbbox"><span>OctCellBBox</span></a> octBBox, io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max )</td>
 </tr>
 <tr class="row-odd"><td>Size</td>
-<td><a class="reference internal" href="#d130ca5f7b4047698c3ac8feee1588a3"><span>getCellCount</span></a> ? ()</td>
+<td><a class="reference internal" href="#e7dba391bf4544e29b6bb1e5b84994f6"><span>getCellCount</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
-<td><a class="reference internal" href="#ba9a812789d44b8b4cf5c0473de8dd6"><span>getCellDesc</span></a> ? ( in UInt8 gridDepth, in Size c, in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> indent, in Boolean printObjectMembers, in Boolean recursive )</td>
+<td><a class="reference internal" href="#cabc0bbb514e329b63890b42e36969"><span>getCellDesc</span></a> ? ( in UInt8 gridDepth, in Size c, in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> indent, in Boolean printObjectMembers, in Boolean recursive )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#e5a98cd20a4dfd850c080151d76f71"><span>getClosest</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> position, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> scaling, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxUnscaledDistance, io <a class="reference internal" href="SpatialQueryData.html#spatialquerydata"><span>SpatialQueryData</span></a> tempData, io Ref&lt;<a class="reference internal" href="ClosestResult.html#closestresult"><span>ClosestResult</span></a>&gt; result )</td>
+<td><a class="reference internal" href="#c46e5dc4bd7a45dbb0917424fabb326d"><span>getClosest</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> position, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> scaling, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxUnscaledDistance, io <a class="reference internal" href="SpatialQueryData.html#spatialquerydata"><span>SpatialQueryData</span></a> tempData, io Ref&lt;<a class="reference internal" href="ClosestResult.html#closestresult"><span>ClosestResult</span></a>&gt; result )</td>
 </tr>
 <tr class="row-even"><td>UInt32</td>
-<td><a class="reference internal" href="#c66977f7f6047759478a9bcc4c43988"><span>getInfiniteBVolList</span></a> ? ()</td>
+<td><a class="reference internal" href="#a523ac72aea64578bc394f90730eb506"><span>getInfiniteBVolList</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td>Size</td>
-<td><a class="reference internal" href="#f99729948e684fe98c0be846fc5a221f"><span>getMemUsage</span></a> ? ()</td>
+<td><a class="reference internal" href="#fc293437b10b44ab8175353bd430c46d"><span>getMemUsage</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#c9ff0592a4a638f6200a794d89863"><span>getObjectBBox</span></a> ! ( in Size index, io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max )</td>
+<td><a class="reference internal" href="#b3a0edd041f3bdc0132e51408459"><span>getObjectBBox</span></a> ! ( in Size index, io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max )</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="../Math/Box3.html#box3"><span>Box3</span></a></td>
-<td><a class="reference internal" href="#dd3a2641a847f28b76822a69c6ce96"><span>getObjectBBox</span></a> ? ( in Size index )</td>
+<td><a class="reference internal" href="#df1864b86b342460764af6a51"><span>getObjectBBox</span></a> ? ( in Size index )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#a60e560fcab4be2b0b10d2f23b1ea04"><span>getObjectBSphere</span></a> ? ( in Size index, io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> center, io <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius )</td>
+<td><a class="reference internal" href="#de14864ec8b7410b9ade7f61794c4ec4"><span>getObjectBSphere</span></a> ? ( in Size index, io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> center, io <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius )</td>
 </tr>
 <tr class="row-odd"><td>Size</td>
-<td><a class="reference internal" href="#e1c5a151b4c478287f3ca497fa5c6a1"><span>getObjectCount</span></a> ? ()</td>
+<td><a class="reference internal" href="#d54a4c42998c466c97f33a572f4634db"><span>getObjectCount</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
-<td><a class="reference internal" href="#cbc3dd69015a4caaa73fa6bcfeec34d9"><span>getObjectDesc</span></a> ? ( in Size index, in UInt8 bboxPrintDepth, in Boolean printDetails )</td>
+<td><a class="reference internal" href="#c38ac517ce1e4d76a4b2c99c435407ea"><span>getObjectDesc</span></a> ? ( in Size index, in UInt8 bboxPrintDepth, in Boolean printDetails )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#ff52906cae4b1f9eb51c889fe0a2aa"><span>getOctBBox</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max, in Boolean clamp, io <a class="reference internal" href="OctCellBBox.html#octcellbbox"><span>OctCellBBox</span></a> octBBox )</td>
+<td><a class="reference internal" href="#c4d7f16134a0459e8f62c5eb1f997aff"><span>getOctBBox</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max, in Boolean clamp, io <a class="reference internal" href="OctCellBBox.html#octcellbbox"><span>OctCellBBox</span></a> octBBox )</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="OctCellBBox.html#octcellbbox"><span>OctCellBBox</span></a></td>
-<td><a class="reference internal" href="#ff4fd17bef2044ca8be9e5712c89146e"><span>getOctBBoxAndMaxSearchDepth</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max, io UInt8 maxSearchDepth )</td>
+<td><a class="reference internal" href="#ddb46b307605475ab6d6579dfbd2e27f"><span>getOctBBoxAndMaxSearchDepth</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max, io UInt8 maxSearchDepth )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#f4718c5a4e1452095f571e010eebf8e"><span>getOctCoord</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> pos, io <a class="reference internal" href="OctCellPath.html#octcellpath"><span>OctCellPath</span></a> coord )</td>
+<td><a class="reference internal" href="#e7642149e267ec8ba0fb8b2"><span>getOctCoord</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> pos, io <a class="reference internal" href="OctCellPath.html#octcellpath"><span>OctCellPath</span></a> coord )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#e134cdffc1847d0b7bea84be6d8c00a"><span>init</span></a> ! ( in UInt8 maxDepth, in Boolean keepSubCellObjectList, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> smallestWorldCellSize )</td>
+<td><a class="reference internal" href="#ad81d06ff5475ca216a8fbca983f88"><span>init</span></a> ! ( in UInt8 maxDepth, in Boolean keepSubCellObjectList, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> smallestWorldCellSize )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#bbc3353a0542f398960a401722ef96"><span>initCell</span></a> ! ( in Size depth, io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell )</td>
+<td><a class="reference internal" href="#d7b599c36e14bc5889e53197392c535"><span>initCell</span></a> ! ( in Size depth, io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#ef045bcc2f4202957fb4eb6b4d7f78"><span>lineQuery</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> start, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> end, in UInt8 intersectionLineTypeEnum, io <a class="reference internal" href="OctreeQueryTraverseData.html#octreequerytraversedata"><span>OctreeQueryTraverseData</span></a> tempTraverseData, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask )</td>
+<td><a class="reference internal" href="#cd6eb9dfc645b494734f63e276c956"><span>lineQuery</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> start, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> end, in UInt8 intersectionLineTypeEnum, io <a class="reference internal" href="OctreeQueryTraverseData.html#octreequerytraversedata"><span>OctreeQueryTraverseData</span></a> tempTraverseData, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#a9747d4758ac62819c441fdfec"><span>localBBoxQuery</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max, io <a class="reference internal" href="OctreeQueryTraverseData.html#octreequerytraversedata"><span>OctreeQueryTraverseData</span></a> tempTraverseData, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask )</td>
+<td><a class="reference internal" href="#eca40dfd1cea49889f7cb9a1018408a8"><span>localBBoxQuery</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max, io <a class="reference internal" href="OctreeQueryTraverseData.html#octreequerytraversedata"><span>OctreeQueryTraverseData</span></a> tempTraverseData, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#cdb5cd3eb40b68a0b31f68660c103"><span>localBSphereQuery</span></a> ? ( in <a class="reference internal" href="LocalBoundingVolume.html#localboundingvolume"><span>LocalBoundingVolume</span></a> bSphere, io <a class="reference internal" href="OctreeQueryTraverseData.html#octreequerytraversedata"><span>OctreeQueryTraverseData</span></a> tempTraverseData, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask )</td>
+<td><a class="reference internal" href="#fbf8405015f468e97b87d1552f73f80"><span>localBSphereQuery</span></a> ? ( in <a class="reference internal" href="LocalBoundingVolume.html#localboundingvolume"><span>LocalBoundingVolume</span></a> bSphere, io <a class="reference internal" href="OctreeQueryTraverseData.html#octreequerytraversedata"><span>OctreeQueryTraverseData</span></a> tempTraverseData, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#a18d422d502846eba8836196c9670311"><span>processQueriedIntersectedCell</span></a> ? ( in UInt8 intersectionType, in <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> currCellCenter, in UInt8 currDepth, in UInt8 maxSearchDepth, in <a class="reference internal" href="OctCellBBox.html#octcellbbox"><span>OctCellBBox</span></a> octBBox, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> subCellDeltaCenters[8], io <a class="reference internal" href="OctreeQueryTraverseData.html#octreequerytraversedata"><span>OctreeQueryTraverseData</span></a> tempTraverseData, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result )</td>
+<td><a class="reference internal" href="#cae383259864c71a61358f2bf7d57da"><span>processQueriedIntersectedCell</span></a> ? ( in UInt8 intersectionType, in <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> currCellCenter, in UInt8 currDepth, in UInt8 maxSearchDepth, in <a class="reference internal" href="OctCellBBox.html#octcellbbox"><span>OctCellBBox</span></a> octBBox, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> subCellDeltaCenters[8], io <a class="reference internal" href="OctreeQueryTraverseData.html#octreequerytraversedata"><span>OctreeQueryTraverseData</span></a> tempTraverseData, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#d52b3df2424443486cddb8fd7c3e80b"><span>raycast</span></a> ? ( in <a class="reference internal" href="../Math/Ray.html#ray"><span>Ray</span></a> ray, in Boolean doubleSided, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxDistance, io <a class="reference internal" href="SpatialQueryData.html#spatialquerydata"><span>SpatialQueryData</span></a> tempData, io Ref&lt;<a class="reference internal" href="RaycastResult.html#raycastresult"><span>RaycastResult</span></a>&gt; result )</td>
+<td><a class="reference internal" href="#b88bf11034b1b895b8a56d45341f8"><span>raycast</span></a> ? ( in <a class="reference internal" href="../Math/Ray.html#ray"><span>Ray</span></a> ray, in Boolean doubleSided, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxDistance, io <a class="reference internal" href="SpatialQueryData.html#spatialquerydata"><span>SpatialQueryData</span></a> tempData, io Ref&lt;<a class="reference internal" href="RaycastResult.html#raycastresult"><span>RaycastResult</span></a>&gt; result )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#f80ba4e7fb28429abce381a32fe3187a"><span>recompactData</span></a> ! ()</td>
+<td><a class="reference internal" href="#c5641205994b4c8f494108f160035e"><span>recompactData</span></a> ! ()</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#b8869415d594999ab9d71ee9dd0ca1c"><span>releaseObjectCellMembersUpToDepth</span></a> ! ( in Size objectIndex, io <a class="reference internal" href="OctObjectData.html#octobjectdata"><span>OctObjectData</span></a> objectData, in Size lastDirtyDepth, in Boolean unsplitting )</td>
+<td><a class="reference internal" href="#c83fd460aa68cd4c94f6ea4fe"><span>releaseObjectCellMembersUpToDepth</span></a> ! ( in Size objectIndex, io <a class="reference internal" href="OctObjectData.html#octobjectdata"><span>OctObjectData</span></a> objectData, in Size lastDirtyDepth, in Boolean unsplitting )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#aa873f337f14dfe8fb8cbe4667b156b"><span>removeCellFromObjects</span></a> ! ( in UInt32 cellIndex, io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in UInt32 membershipType )</td>
+<td><a class="reference internal" href="#d28cf3dafbd046c09c8db209725465a8"><span>removeCellFromObjects</span></a> ! ( in UInt32 cellIndex, io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in UInt32 membershipType )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#bc5b444b03ba3aca03dbdd22f3"><span>removeCellObjectInternal</span></a> ! ( in UInt32 cellIndex, io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cellData, in UInt32 cellOffset, in UInt32 membershipType )</td>
+<td><a class="reference internal" href="#ddb0b76436a54098842b230edfeb2886"><span>removeCellObjectInternal</span></a> ! ( in UInt32 cellIndex, io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cellData, in UInt32 cellOffset, in UInt32 membershipType )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#a0680a7c4ed7abd15c6a2bcd9dcd"><span>removeObject</span></a> ! ( in UInt32 index )</td>
+<td><a class="reference internal" href="#c7e70adf1d423f800a1b091ee16239"><span>removeObject</span></a> ! ( in UInt32 index )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#bb7847c88aae804793201658"><span>removeObjectCellInternal</span></a> ! ( in UInt32 objectIndex, io <a class="reference internal" href="OctObjectData.html#octobjectdata"><span>OctObjectData</span></a> objectData, in UInt32 objectOffset, in Boolean recompactIfPossible )</td>
+<td><a class="reference internal" href="#cefbd388d5495fb767fc5aa092bd11"><span>removeObjectCellInternal</span></a> ! ( in UInt32 objectIndex, io <a class="reference internal" href="OctObjectData.html#octobjectdata"><span>OctObjectData</span></a> objectData, in UInt32 objectOffset, in Boolean recompactIfPossible )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#a16d9a4a4d539158cba592f7c68f"><span>removeObjectCellMembership</span></a> ! ( in Size objectIndex, io <a class="reference internal" href="OctObjectData.html#octobjectdata"><span>OctObjectData</span></a> objectData, in UInt32 cellIndex, io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cellData, in UInt32 cellOffset, in UInt32 membershipType, in Boolean addCellToDirtyList )</td>
+<td><a class="reference internal" href="#c68109b06334546a0e495dddb489149"><span>removeObjectCellMembership</span></a> ! ( in Size objectIndex, io <a class="reference internal" href="OctObjectData.html#octobjectdata"><span>OctObjectData</span></a> objectData, in UInt32 cellIndex, io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cellData, in UInt32 cellOffset, in UInt32 membershipType, in Boolean addCellToDirtyList )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#efa06d52f37421895a016f87b52a92e"><span>report</span></a> ? ( in Boolean printDetails )</td>
+<td><a class="reference internal" href="#ec54f3f3e4af2a0829c5fcf43cbef"><span>report</span></a> ? ( in Boolean printDetails )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#c2da700489884d3ba38e48a84a205fe4"><span>reportObjects</span></a> ? ( in Boolean printDetails )</td>
+<td><a class="reference internal" href="#b1c92963bbf447b2b4ecaccf60c9698d"><span>reportObjects</span></a> ? ( in Boolean printDetails )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#fe99e40c6ba29cf183680afa1"><span>setCellDirty</span></a> ! ( in Size cellIndex, in Boolean addToDirtyList )</td>
+<td><a class="reference internal" href="#a2775d3412dbbdd2141ad81f46b"><span>setCellDirty</span></a> ! ( in Size cellIndex, in Boolean addToDirtyList )</td>
 </tr>
 <tr class="row-odd"><td>Size</td>
-<td><a class="reference internal" href="#b7e6d3baf7df49b78a74c2f2a4519d41"><span>update</span></a> ! ( in Integer numAllowedCellUpdates )</td>
+<td><a class="reference internal" href="#fe3897965a8e4b9e9f5735874121ef65"><span>update</span></a> ! ( in Integer numAllowedCellUpdates )</td>
 </tr>
 <tr class="row-even"><td>Size</td>
-<td><a class="reference internal" href="#d4a95c450a43dd90b7455b945088ef"><span>updateCell</span></a> ! ( io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in Size cellIndex )</td>
+<td><a class="reference internal" href="#a8b92242cebb4a6ca54c9419e5ca3984"><span>updateCell</span></a> ! ( io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in Size cellIndex )</td>
 </tr>
 <tr class="row-odd"><td>Boolean</td>
-<td><a class="reference internal" href="#ce5065c843ca8408726f94b9852e"><span>updateObjectAsInfiniteVolume</span></a> ! ( in UInt32 index )</td>
+<td><a class="reference internal" href="#c5b69ff2351245a0a2078c223379601b"><span>updateObjectAsInfiniteVolume</span></a> ! ( in UInt32 index )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#b6239a8f233941279e4260263b2f1467"><span>updateObjectPath</span></a> ! ( in Size objectIndex, io <a class="reference internal" href="OctObjectData.html#octobjectdata"><span>OctObjectData</span></a> objectData )</td>
+<td><a class="reference internal" href="#b0c70594098acea4c29eeb79e8d"><span>updateObjectPath</span></a> ! ( in Size objectIndex, io <a class="reference internal" href="OctObjectData.html#octobjectdata"><span>OctObjectData</span></a> objectData )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#d111e2d0544718acd2473276a0b744"><span>updateObjectVolume</span></a> ! ( in UInt32 index, in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> transform, in <a class="reference internal" href="LocalBoundingVolume.html#localboundingvolume"><span>LocalBoundingVolume</span></a> localBVol )</td>
+<td><a class="reference internal" href="#bddb7ab6714cf8b9c8a970831aef9b"><span>updateObjectVolume</span></a> ! ( in UInt32 index, in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> transform, in <a class="reference internal" href="LocalBoundingVolume.html#localboundingvolume"><span>LocalBoundingVolume</span></a> localBVol )</td>
 </tr>
 <tr class="row-even"><td>Boolean</td>
-<td><a class="reference internal" href="#b9170213532461480addede6d56479b"><span>updateObjectVolume</span></a> ! ( in UInt32 index, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> center, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius )</td>
+<td><a class="reference internal" href="#ddf7fa5774e6b8bc4d37e02ea9931"><span>updateObjectVolume</span></a> ! ( in UInt32 index, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> center, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius )</td>
 </tr>
 <tr class="row-odd"><td>Boolean</td>
-<td><a class="reference internal" href="#dba9b8066b141e1be4c1caed15940d9"><span>updateObjectVolume</span></a> ! ( in UInt32 index, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max )</td>
+<td><a class="reference internal" href="#f18d0b7998a8468c8cf07adf1341f01c"><span>updateObjectVolume</span></a> ! ( in UInt32 index, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#be778521e4f14b7790c8e244c11caba4"><span>validateInternalStructureConsistency</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> label )</td>
+<td><a class="reference internal" href="#d89c15074febaaa122b92c254b9c"><span>validateInternalStructureConsistency</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> label )</td>
 </tr>
 </tbody>
 </table>
@@ -361,182 +362,182 @@
 </div>
 <div class="section" id="methods-in-detail">
 <h2>Methods in detail<a class="headerlink" href="#methods-in-detail" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><span class="target" id="cce50a114684a8699c467173c50a"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a> ( in <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a> other )</p>
+<p><span class="target" id="ef16d21076242f49722ac23c38f79b8"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a> ( in <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a> other )</p>
 <p class="plaintext">copy constructor</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d02c408f8f46318522d5692efbbd09"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a> ( in UInt8 maxDepth, in Boolean keepSubCellObjectList, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> smallestWorldCellSize )</p>
+<span class="target" id="db80334aa3487ea9aa910b7b2e36b3"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a> ( in UInt8 maxDepth, in Boolean keepSubCellObjectList, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> smallestWorldCellSize )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d2adb13847274fc7933eaf55b42a9ef0"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a> ()</p>
+<span class="target" id="d67a1651ef14c45b2ba161a85411a1b"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a> ()</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="af1d7b42681427a80b4d98d156fa2d5"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>._validateInternalStructureConsistency! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> label )</p>
+<span class="target" id="aef912c9a429992879c5b287e57e4"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>._validateInternalStructureConsistency! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> label )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c5bcff0433da466b8e5c8fd988586569"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.addCellObjects? ( in <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in Boolean includeSubCells )</p>
+<span class="target" id="dfd28e7c3264818b061b8e9c9a8e2d7"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.addCellObjects? ( in <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in Boolean includeSubCells )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f877fce7a1d64f818be430d23cea2c18"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.addMemberToSubCells! ( in Size parentCellIndex, in <a class="reference internal" href="OctCellPath.html#octcellpath"><span>OctCellPath</span></a> parentCenterPath, in Size objectIndex, io <a class="reference internal" href="OctObjectData.html#octobjectdata"><span>OctObjectData</span></a> objectData, in Byte cellBits, in Size numSubMembersToReserve[8] )</p>
+<span class="target" id="a1a32913432ab346c9bb455a1960"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.addMemberToSubCells! ( in Size parentCellIndex, in <a class="reference internal" href="OctCellPath.html#octcellpath"><span>OctCellPath</span></a> parentCenterPath, in Size objectIndex, io <a class="reference internal" href="OctObjectData.html#octobjectdata"><span>OctObjectData</span></a> objectData, in Byte cellBits, in Size numSubMembersToReserve[8] )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="bdbd8d7dbaf468f84601d9fa5ef2ddc"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.addObjectToCell! ( in Size objectIndex, io <a class="reference internal" href="OctObjectData.html#octobjectdata"><span>OctObjectData</span></a> objectData, in Size cellIndex, io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in Boolean addCellToDirtyList, in Boolean unSplitting )</p>
+<span class="target" id="f9c2fef9f8344707b09531a77068ba0e"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.addObjectToCell! ( in Size objectIndex, io <a class="reference internal" href="OctObjectData.html#octobjectdata"><span>OctObjectData</span></a> objectData, in Size cellIndex, io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in Boolean addCellToDirtyList, in Boolean unSplitting )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="eceb7660dbe64f08978a19920575417b"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.addObjectToCell! ( in Size objectIndex, io <a class="reference internal" href="OctObjectData.html#octobjectdata"><span>OctObjectData</span></a> objectData, in Size objectCellCount, in Size cellIndex, io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in Boolean addCellToDirtyList, in Boolean unSplitting )</p>
+<span class="target" id="a71984ef37b6443d9c762625c3aad0eb"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.addObjectToCell! ( in Size objectIndex, io <a class="reference internal" href="OctObjectData.html#octobjectdata"><span>OctObjectData</span></a> objectData, in Size objectCellCount, in Size cellIndex, io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in Boolean addCellToDirtyList, in Boolean unSplitting )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d845ea6e47cdba01ddb7265cb1a1"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.addObjectToCellInternal! ( in UInt32 objectIndex, io <a class="reference internal" href="OctObjectData.html#octobjectdata"><span>OctObjectData</span></a> objectData, in Size objectCellsCount, in UInt32 cellIndex, io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in UInt32 membershipType )</p>
+<span class="target" id="b4344eb44e1bc479c13301d1d2e"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.addObjectToCellInternal! ( in UInt32 objectIndex, io <a class="reference internal" href="OctObjectData.html#octobjectdata"><span>OctObjectData</span></a> objectData, in Size objectCellsCount, in UInt32 cellIndex, io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in UInt32 membershipType )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c8187f20443b784839b81b5084bd7"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.bBoxQuery? ( in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> transform, in <a class="reference internal" href="LocalBoundingVolume.html#localboundingvolume"><span>LocalBoundingVolume</span></a> localBBox, io <a class="reference internal" href="OctreeQueryTraverseData.html#octreequerytraversedata"><span>OctreeQueryTraverseData</span></a> tempTraverseData, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask )</p>
+<span class="target" id="fb7ca98e28fa459da94843783437777d"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.bBoxQuery? ( in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> transform, in <a class="reference internal" href="LocalBoundingVolume.html#localboundingvolume"><span>LocalBoundingVolume</span></a> localBBox, io <a class="reference internal" href="OctreeQueryTraverseData.html#octreequerytraversedata"><span>OctreeQueryTraverseData</span></a> tempTraverseData, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a90bb5b1416c8c721fa304963a1f"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.bConeQuery? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> origin, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> unitDir, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> length, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> tanHalfAngle, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> cosHalfAngle, io <a class="reference internal" href="OctreeQueryTraverseData.html#octreequerytraversedata"><span>OctreeQueryTraverseData</span></a> tempTraverseData, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask )</p>
+<span class="target" id="eed45ebe94bcf97391263954cab4a"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.bConeQuery? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> origin, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> unitDir, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> length, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> tanHalfAngle, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> cosHalfAngle, io <a class="reference internal" href="OctreeQueryTraverseData.html#octreequerytraversedata"><span>OctreeQueryTraverseData</span></a> tempTraverseData, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="af28f2295ab422c81a844fc0b6ed41d"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.bPyramidQuery? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> origin, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> unitDir, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> near, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> far, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> nearRightVec, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> nearUpVec, io <a class="reference internal" href="OctreeQueryTraverseData.html#octreequerytraversedata"><span>OctreeQueryTraverseData</span></a> tempTraverseData, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask )</p>
+<span class="target" id="ac3b2da79ab4cdbb981ab0e66ba1d64"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.bPyramidQuery? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> origin, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> unitDir, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> near, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> far, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> nearRightVec, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> nearUpVec, io <a class="reference internal" href="OctreeQueryTraverseData.html#octreequerytraversedata"><span>OctreeQueryTraverseData</span></a> tempTraverseData, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b727e64ffa8f462dad3a9159ff847c52"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.bSphereQuery? ( in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> transform, in <a class="reference internal" href="LocalBoundingVolume.html#localboundingvolume"><span>LocalBoundingVolume</span></a> localBSphere, io <a class="reference internal" href="OctreeQueryTraverseData.html#octreequerytraversedata"><span>OctreeQueryTraverseData</span></a> tempTraverseData, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask )</p>
+<span class="target" id="ac59fff35a4e80bdc84079e00c7c20"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.bSphereQuery? ( in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> transform, in <a class="reference internal" href="LocalBoundingVolume.html#localboundingvolume"><span>LocalBoundingVolume</span></a> localBSphere, io <a class="reference internal" href="OctreeQueryTraverseData.html#octreequerytraversedata"><span>OctreeQueryTraverseData</span></a> tempTraverseData, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c0fc07864100a6fab4cb19601b6c"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.changeMembershipType! ( in UInt32 cellIndex, io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in UInt32 prevMembershipType, in UInt32 membershipType )</p>
+<span class="target" id="c976a18428e85e03dc6d3229840"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.changeMembershipType! ( in UInt32 cellIndex, io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in UInt32 prevMembershipType, in UInt32 membershipType )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="e734216c2f0417cbc9537a6c0bad85d"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a> <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.clone? ()</p>
+<span class="target" id="ddd25abecf464313b14c924c2487d0ec"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a> <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.clone? ()</p>
 <p class="plaintext">clone method</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="cf1f56e159c428e9c04c582bf4cae4d"></span><p><p class="klcode">Size <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.createCell! ( in Size depth )</p>
+<span class="target" id="ee6a13788cb24eb18cebe8b505c34273"></span><p><p class="klcode">Size <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.createCell! ( in Size depth )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="e89488c5c68c464fa483e9d3ad9112d0"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.freeCell! ( io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in Size index )</p>
+<span class="target" id="baa68032774249ec9abf3857f0ccdd90"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.freeCell! ( io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in Size index )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="eb259fc79f4391a5f270ae2ae7d601"></span><p><p class="klcode">UInt8 <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.getActualDepth_slow? ()</p>
+<span class="target" id="e4a2296cd80a48b4ac475a3eaa0c1320"></span><p><p class="klcode">UInt8 <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.getActualDepth_slow? ()</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ab9721aa14b94abd91598cf94d1732e7"></span><p><p class="klcode"><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.getAverageObjectsPerCell? ()</p>
+<span class="target" id="ec56367ebd543359ddc8abbd8ba0be3"></span><p><p class="klcode"><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.getAverageObjectsPerCell? ()</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b1aff838b712498abdd8568ca5b4b2c5"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.getBBox? ( in <a class="reference internal" href="OctCellBBox.html#octcellbbox"><span>OctCellBBox</span></a> octBBox, io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max )</p>
+<span class="target" id="c50c35bb44ef2b5da30d02dff40bf"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.getBBox? ( in <a class="reference internal" href="OctCellBBox.html#octcellbbox"><span>OctCellBBox</span></a> octBBox, io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d130ca5f7b4047698c3ac8feee1588a3"></span><p><p class="klcode">Size <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.getCellCount? ()</p>
+<span class="target" id="e7dba391bf4544e29b6bb1e5b84994f6"></span><p><p class="klcode">Size <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.getCellCount? ()</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ba9a812789d44b8b4cf5c0473de8dd6"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.getCellDesc? ( in UInt8 gridDepth, in Size c, in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> indent, in Boolean printObjectMembers, in Boolean recursive )</p>
+<span class="target" id="cabc0bbb514e329b63890b42e36969"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.getCellDesc? ( in UInt8 gridDepth, in Size c, in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> indent, in Boolean printObjectMembers, in Boolean recursive )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="e5a98cd20a4dfd850c080151d76f71"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.getClosest? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> position, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> scaling, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxUnscaledDistance, io <a class="reference internal" href="SpatialQueryData.html#spatialquerydata"><span>SpatialQueryData</span></a> tempData, io Ref&lt;<a class="reference internal" href="ClosestResult.html#closestresult"><span>ClosestResult</span></a>&gt; result )</p>
+<span class="target" id="c46e5dc4bd7a45dbb0917424fabb326d"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.getClosest? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> position, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> scaling, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxUnscaledDistance, io <a class="reference internal" href="SpatialQueryData.html#spatialquerydata"><span>SpatialQueryData</span></a> tempData, io Ref&lt;<a class="reference internal" href="ClosestResult.html#closestresult"><span>ClosestResult</span></a>&gt; result )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c66977f7f6047759478a9bcc4c43988"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.getInfiniteBVolList? ()</p>
+<span class="target" id="a523ac72aea64578bc394f90730eb506"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.getInfiniteBVolList? ()</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f99729948e684fe98c0be846fc5a221f"></span><p><p class="klcode">Size <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.getMemUsage? ()</p>
+<span class="target" id="fc293437b10b44ab8175353bd430c46d"></span><p><p class="klcode">Size <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.getMemUsage? ()</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c9ff0592a4a638f6200a794d89863"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.getObjectBBox! ( in Size index, io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max )</p>
+<span class="target" id="b3a0edd041f3bdc0132e51408459"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.getObjectBBox! ( in Size index, io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="dd3a2641a847f28b76822a69c6ce96"></span><p><p class="klcode"><a class="reference internal" href="../Math/Box3.html#box3"><span>Box3</span></a> <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.getObjectBBox? ( in Size index )</p>
+<span class="target" id="df1864b86b342460764af6a51"></span><p><p class="klcode"><a class="reference internal" href="../Math/Box3.html#box3"><span>Box3</span></a> <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.getObjectBBox? ( in Size index )</p>
 <p class="plaintext">Returns the bounding box of an Object.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a60e560fcab4be2b0b10d2f23b1ea04"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.getObjectBSphere? ( in Size index, io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> center, io <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius )</p>
+<span class="target" id="de14864ec8b7410b9ade7f61794c4ec4"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.getObjectBSphere? ( in Size index, io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> center, io <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius )</p>
 <p class="plaintext">Returns the bounding sphere of an Object.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="e1c5a151b4c478287f3ca497fa5c6a1"></span><p><p class="klcode">Size <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.getObjectCount? ()</p>
+<span class="target" id="d54a4c42998c466c97f33a572f4634db"></span><p><p class="klcode">Size <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.getObjectCount? ()</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="cbc3dd69015a4caaa73fa6bcfeec34d9"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.getObjectDesc? ( in Size index, in UInt8 bboxPrintDepth, in Boolean printDetails )</p>
+<span class="target" id="c38ac517ce1e4d76a4b2c99c435407ea"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.getObjectDesc? ( in Size index, in UInt8 bboxPrintDepth, in Boolean printDetails )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ff52906cae4b1f9eb51c889fe0a2aa"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.getOctBBox? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max, in Boolean clamp, io <a class="reference internal" href="OctCellBBox.html#octcellbbox"><span>OctCellBBox</span></a> octBBox )</p>
+<span class="target" id="c4d7f16134a0459e8f62c5eb1f997aff"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.getOctBBox? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max, in Boolean clamp, io <a class="reference internal" href="OctCellBBox.html#octcellbbox"><span>OctCellBBox</span></a> octBBox )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ff4fd17bef2044ca8be9e5712c89146e"></span><p><p class="klcode"><a class="reference internal" href="OctCellBBox.html#octcellbbox"><span>OctCellBBox</span></a> <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.getOctBBoxAndMaxSearchDepth? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max, io UInt8 maxSearchDepth )</p>
+<span class="target" id="ddb46b307605475ab6d6579dfbd2e27f"></span><p><p class="klcode"><a class="reference internal" href="OctCellBBox.html#octcellbbox"><span>OctCellBBox</span></a> <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.getOctBBoxAndMaxSearchDepth? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max, io UInt8 maxSearchDepth )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f4718c5a4e1452095f571e010eebf8e"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.getOctCoord? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> pos, io <a class="reference internal" href="OctCellPath.html#octcellpath"><span>OctCellPath</span></a> coord )</p>
+<span class="target" id="e7642149e267ec8ba0fb8b2"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.getOctCoord? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> pos, io <a class="reference internal" href="OctCellPath.html#octcellpath"><span>OctCellPath</span></a> coord )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="e134cdffc1847d0b7bea84be6d8c00a"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.init! ( in UInt8 maxDepth, in Boolean keepSubCellObjectList, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> smallestWorldCellSize )</p>
+<span class="target" id="ad81d06ff5475ca216a8fbca983f88"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.init! ( in UInt8 maxDepth, in Boolean keepSubCellObjectList, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> smallestWorldCellSize )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="bbc3353a0542f398960a401722ef96"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.initCell! ( in Size depth, io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell )</p>
+<span class="target" id="d7b599c36e14bc5889e53197392c535"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.initCell! ( in Size depth, io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ef045bcc2f4202957fb4eb6b4d7f78"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.lineQuery? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> start, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> end, in UInt8 intersectionLineTypeEnum, io <a class="reference internal" href="OctreeQueryTraverseData.html#octreequerytraversedata"><span>OctreeQueryTraverseData</span></a> tempTraverseData, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask )</p>
+<span class="target" id="cd6eb9dfc645b494734f63e276c956"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.lineQuery? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> start, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> end, in UInt8 intersectionLineTypeEnum, io <a class="reference internal" href="OctreeQueryTraverseData.html#octreequerytraversedata"><span>OctreeQueryTraverseData</span></a> tempTraverseData, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a9747d4758ac62819c441fdfec"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.localBBoxQuery? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max, io <a class="reference internal" href="OctreeQueryTraverseData.html#octreequerytraversedata"><span>OctreeQueryTraverseData</span></a> tempTraverseData, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask )</p>
+<span class="target" id="eca40dfd1cea49889f7cb9a1018408a8"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.localBBoxQuery? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max, io <a class="reference internal" href="OctreeQueryTraverseData.html#octreequerytraversedata"><span>OctreeQueryTraverseData</span></a> tempTraverseData, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="cdb5cd3eb40b68a0b31f68660c103"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.localBSphereQuery? ( in <a class="reference internal" href="LocalBoundingVolume.html#localboundingvolume"><span>LocalBoundingVolume</span></a> bSphere, io <a class="reference internal" href="OctreeQueryTraverseData.html#octreequerytraversedata"><span>OctreeQueryTraverseData</span></a> tempTraverseData, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask )</p>
+<span class="target" id="fbf8405015f468e97b87d1552f73f80"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.localBSphereQuery? ( in <a class="reference internal" href="LocalBoundingVolume.html#localboundingvolume"><span>LocalBoundingVolume</span></a> bSphere, io <a class="reference internal" href="OctreeQueryTraverseData.html#octreequerytraversedata"><span>OctreeQueryTraverseData</span></a> tempTraverseData, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a18d422d502846eba8836196c9670311"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.processQueriedIntersectedCell? ( in UInt8 intersectionType, in <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> currCellCenter, in UInt8 currDepth, in UInt8 maxSearchDepth, in <a class="reference internal" href="OctCellBBox.html#octcellbbox"><span>OctCellBBox</span></a> octBBox, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> subCellDeltaCenters[8], io <a class="reference internal" href="OctreeQueryTraverseData.html#octreequerytraversedata"><span>OctreeQueryTraverseData</span></a> tempTraverseData, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result )</p>
+<span class="target" id="cae383259864c71a61358f2bf7d57da"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.processQueriedIntersectedCell? ( in UInt8 intersectionType, in <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> currCellCenter, in UInt8 currDepth, in UInt8 maxSearchDepth, in <a class="reference internal" href="OctCellBBox.html#octcellbbox"><span>OctCellBBox</span></a> octBBox, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> subCellDeltaCenters[8], io <a class="reference internal" href="OctreeQueryTraverseData.html#octreequerytraversedata"><span>OctreeQueryTraverseData</span></a> tempTraverseData, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask, io <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d52b3df2424443486cddb8fd7c3e80b"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.raycast? ( in <a class="reference internal" href="../Math/Ray.html#ray"><span>Ray</span></a> ray, in Boolean doubleSided, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxDistance, io <a class="reference internal" href="SpatialQueryData.html#spatialquerydata"><span>SpatialQueryData</span></a> tempData, io Ref&lt;<a class="reference internal" href="RaycastResult.html#raycastresult"><span>RaycastResult</span></a>&gt; result )</p>
+<span class="target" id="b88bf11034b1b895b8a56d45341f8"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.raycast? ( in <a class="reference internal" href="../Math/Ray.html#ray"><span>Ray</span></a> ray, in Boolean doubleSided, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxDistance, io <a class="reference internal" href="SpatialQueryData.html#spatialquerydata"><span>SpatialQueryData</span></a> tempData, io Ref&lt;<a class="reference internal" href="RaycastResult.html#raycastresult"><span>RaycastResult</span></a>&gt; result )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f80ba4e7fb28429abce381a32fe3187a"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.recompactData! ()</p>
+<span class="target" id="c5641205994b4c8f494108f160035e"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.recompactData! ()</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b8869415d594999ab9d71ee9dd0ca1c"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.releaseObjectCellMembersUpToDepth! ( in Size objectIndex, io <a class="reference internal" href="OctObjectData.html#octobjectdata"><span>OctObjectData</span></a> objectData, in Size lastDirtyDepth, in Boolean unsplitting )</p>
+<span class="target" id="c83fd460aa68cd4c94f6ea4fe"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.releaseObjectCellMembersUpToDepth! ( in Size objectIndex, io <a class="reference internal" href="OctObjectData.html#octobjectdata"><span>OctObjectData</span></a> objectData, in Size lastDirtyDepth, in Boolean unsplitting )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="aa873f337f14dfe8fb8cbe4667b156b"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.removeCellFromObjects! ( in UInt32 cellIndex, io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in UInt32 membershipType )</p>
+<span class="target" id="d28cf3dafbd046c09c8db209725465a8"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.removeCellFromObjects! ( in UInt32 cellIndex, io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in UInt32 membershipType )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="bc5b444b03ba3aca03dbdd22f3"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.removeCellObjectInternal! ( in UInt32 cellIndex, io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cellData, in UInt32 cellOffset, in UInt32 membershipType )</p>
+<span class="target" id="ddb0b76436a54098842b230edfeb2886"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.removeCellObjectInternal! ( in UInt32 cellIndex, io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cellData, in UInt32 cellOffset, in UInt32 membershipType )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a0680a7c4ed7abd15c6a2bcd9dcd"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.removeObject! ( in UInt32 index )</p>
+<span class="target" id="c7e70adf1d423f800a1b091ee16239"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.removeObject! ( in UInt32 index )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="bb7847c88aae804793201658"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.removeObjectCellInternal! ( in UInt32 objectIndex, io <a class="reference internal" href="OctObjectData.html#octobjectdata"><span>OctObjectData</span></a> objectData, in UInt32 objectOffset, in Boolean recompactIfPossible )</p>
+<span class="target" id="cefbd388d5495fb767fc5aa092bd11"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.removeObjectCellInternal! ( in UInt32 objectIndex, io <a class="reference internal" href="OctObjectData.html#octobjectdata"><span>OctObjectData</span></a> objectData, in UInt32 objectOffset, in Boolean recompactIfPossible )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a16d9a4a4d539158cba592f7c68f"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.removeObjectCellMembership! ( in Size objectIndex, io <a class="reference internal" href="OctObjectData.html#octobjectdata"><span>OctObjectData</span></a> objectData, in UInt32 cellIndex, io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cellData, in UInt32 cellOffset, in UInt32 membershipType, in Boolean addCellToDirtyList )</p>
+<span class="target" id="c68109b06334546a0e495dddb489149"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.removeObjectCellMembership! ( in Size objectIndex, io <a class="reference internal" href="OctObjectData.html#octobjectdata"><span>OctObjectData</span></a> objectData, in UInt32 cellIndex, io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cellData, in UInt32 cellOffset, in UInt32 membershipType, in Boolean addCellToDirtyList )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="efa06d52f37421895a016f87b52a92e"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.report? ( in Boolean printDetails )</p>
+<span class="target" id="ec54f3f3e4af2a0829c5fcf43cbef"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.report? ( in Boolean printDetails )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c2da700489884d3ba38e48a84a205fe4"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.reportObjects? ( in Boolean printDetails )</p>
+<span class="target" id="b1c92963bbf447b2b4ecaccf60c9698d"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.reportObjects? ( in Boolean printDetails )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="fe99e40c6ba29cf183680afa1"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.setCellDirty! ( in Size cellIndex, in Boolean addToDirtyList )</p>
+<span class="target" id="a2775d3412dbbdd2141ad81f46b"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.setCellDirty! ( in Size cellIndex, in Boolean addToDirtyList )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b7e6d3baf7df49b78a74c2f2a4519d41"></span><p><p class="klcode">Size <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.update! ( in Integer numAllowedCellUpdates )</p>
+<span class="target" id="fe3897965a8e4b9e9f5735874121ef65"></span><p><p class="klcode">Size <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.update! ( in Integer numAllowedCellUpdates )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d4a95c450a43dd90b7455b945088ef"></span><p><p class="klcode">Size <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.updateCell! ( io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in Size cellIndex )</p>
+<span class="target" id="a8b92242cebb4a6ca54c9419e5ca3984"></span><p><p class="klcode">Size <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.updateCell! ( io <a class="reference internal" href="OctCellData.html#octcelldata"><span>OctCellData</span></a> cell, in Size cellIndex )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ce5065c843ca8408726f94b9852e"></span><p><p class="klcode">Boolean <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.updateObjectAsInfiniteVolume! ( in UInt32 index )</p>
+<span class="target" id="c5b69ff2351245a0a2078c223379601b"></span><p><p class="klcode">Boolean <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.updateObjectAsInfiniteVolume! ( in UInt32 index )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b6239a8f233941279e4260263b2f1467"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.updateObjectPath! ( in Size objectIndex, io <a class="reference internal" href="OctObjectData.html#octobjectdata"><span>OctObjectData</span></a> objectData )</p>
+<span class="target" id="b0c70594098acea4c29eeb79e8d"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.updateObjectPath! ( in Size objectIndex, io <a class="reference internal" href="OctObjectData.html#octobjectdata"><span>OctObjectData</span></a> objectData )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d111e2d0544718acd2473276a0b744"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.updateObjectVolume! ( in UInt32 index, in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> transform, in <a class="reference internal" href="LocalBoundingVolume.html#localboundingvolume"><span>LocalBoundingVolume</span></a> localBVol )</p>
+<span class="target" id="bddb7ab6714cf8b9c8a970831aef9b"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.updateObjectVolume! ( in UInt32 index, in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> transform, in <a class="reference internal" href="LocalBoundingVolume.html#localboundingvolume"><span>LocalBoundingVolume</span></a> localBVol )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b9170213532461480addede6d56479b"></span><p><p class="klcode">Boolean <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.updateObjectVolume! ( in UInt32 index, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> center, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius )</p>
+<span class="target" id="ddf7fa5774e6b8bc4d37e02ea9931"></span><p><p class="klcode">Boolean <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.updateObjectVolume! ( in UInt32 index, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> center, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="dba9b8066b141e1be4c1caed15940d9"></span><p><p class="klcode">Boolean <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.updateObjectVolume! ( in UInt32 index, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max )</p>
+<span class="target" id="f18d0b7998a8468c8cf07adf1341f01c"></span><p><p class="klcode">Boolean <a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.updateObjectVolume! ( in UInt32 index, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="be778521e4f14b7790c8e244c11caba4"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.validateInternalStructureConsistency! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> label )</p>
+<span class="target" id="d89c15074febaaa122b92c254b9c"></span><p><p class="klcode"><a class="reference internal" href="#octreestruct"><span>OctreeStruct</span></a>.validateInternalStructureConsistency! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> label )</p>
 </p>
 </p>
 </div>

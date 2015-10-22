@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
     <link rel="up" title="Geometry Extension’s Files" href="files.html" />
     <link rel="next" title="OctreeInternal.kl" href="OctreeInternal.kl.html" />
@@ -71,12 +72,12 @@ and the ability to update incrementally. The ability to update incrementally imp
 that the octree has the ability to update only objects that changed. Additionally,
 octree&#8217;s construction can be done only partially while maintaining its valid state,
 which allows for a balance between construction and query time.</p>
-<p class="plaintext">Because <a class="reference internal" href="Octree.html#dbcc24f84f1398864f846e4fa391"><span>Octree.raycast</span></a> and <a class="reference internal" href="Octree.html#f79b6eedac5a4611bb6145348e43ed73"><span>Octree.getClosest</span></a> need to be more precise
+<p class="plaintext">Because <a class="reference internal" href="Octree.html#c4c77d14db14a1fbc758155c5846289"><span>Octree.raycast</span></a> and <a class="reference internal" href="Octree.html#b5d1fede7af4f1db84738c368692c72"><span>Octree.getClosest</span></a> need to be more precise
 than simple bounding volume intersection, these require specialized object intersections
 for the actual geometry (polygon, edge, geometry) to be implemented through the <a class="reference internal" href="RaycastResult.html#raycastresult"><span>RaycastResult</span></a> and
 <a class="reference internal" href="ClosestResult.html#closestresult"><span>ClosestResult</span></a> interfaces.</p>
-<p class="plaintext">All query (read) methods are thread-safe as long as the Octree is not modified (<a class="reference internal" href="Octree.html#d0e99aa2c7846439b342bdd9a3abfad"><span>Octree.updateObjectVolume</span></a>,
-<a class="reference internal" href="Octree.html#d60b1eb627a4e9ba372ceca476e12a2"><span>Octree.removeObject</span></a> and <a class="reference internal" href="Octree.html#e9e247a2fbe4467a7adb375daafded3"><span>Octree.prepare</span></a>).</p>
+<p class="plaintext">All query (read) methods are thread-safe as long as the Octree is not modified (<a class="reference internal" href="Octree.html#f089e34b78bfc0ea7fada9bf71"><span>Octree.updateObjectVolume</span></a>,
+<a class="reference internal" href="Octree.html#b1cf86fbd64875a2b3c7a845210a87"><span>Octree.removeObject</span></a> and <a class="reference internal" href="Octree.html#f17f60eae15c4df0bb5859664fea7280"><span>Octree.prepare</span></a>).</p>
 <div class="section" id="methods">
 <h4>Methods<a class="headerlink" href="#methods" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p><table border="1" class="methodtable docutils">
@@ -86,67 +87,67 @@ for the actual geometry (polygon, edge, geometry) to be implemented through the 
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="Octree.html#debfc76836e44ad2a95a210ceed2ea96"><span>Octree</span></a>  ( in <a class="reference internal" href="Octree.html#octree"><span>Octree</span></a> other )</td>
+<td><a class="reference internal" href="Octree.html#a07bf3eb1a4da9a07cb7efbb7c4f33"><span>Octree</span></a>  ( in <a class="reference internal" href="Octree.html#octree"><span>Octree</span></a> other )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="Octree.html#afd2974b9907403f9a3fb2da72b3d493"><span>Octree</span></a>  ( in UInt8 maxDepth, in Boolean keepSubCellObjectList, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> smallestWorldCellSize )</td>
+<td><a class="reference internal" href="Octree.html#fa882a0d4218418b875917dbe0acf8e1"><span>Octree</span></a>  ( in UInt8 maxDepth, in Boolean keepSubCellObjectList, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> smallestWorldCellSize )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="Octree.html#eefed8ee12141809d01fbe0c09cc25a"><span>Octree</span></a>  ()</td>
+<td><a class="reference internal" href="Octree.html#f2b495345dba03eb202eb91206b"><span>Octree</span></a>  ()</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="Octree.html#octree"><span>Octree</span></a></td>
-<td><a class="reference internal" href="Octree.html#af4582be6ea245f183fb400ea0a6fd12"><span>clone</span></a> ? ()</td>
+<td><a class="reference internal" href="Octree.html#e370c1ce78e64e2d8c780c8e683b6492"><span>clone</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="Octree.html#f79b6eedac5a4611bb6145348e43ed73"><span>getClosest</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> position, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> scaling, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxUnscaledDistance, io <a class="reference internal" href="SpatialQueryData.html#spatialquerydata"><span>SpatialQueryData</span></a> data, io Ref&lt;<a class="reference internal" href="ClosestResult.html#closestresult"><span>ClosestResult</span></a>&gt; result )</td>
+<td><a class="reference internal" href="Octree.html#b5d1fede7af4f1db84738c368692c72"><span>getClosest</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> position, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> scaling, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxUnscaledDistance, io <a class="reference internal" href="SpatialQueryData.html#spatialquerydata"><span>SpatialQueryData</span></a> data, io Ref&lt;<a class="reference internal" href="ClosestResult.html#closestresult"><span>ClosestResult</span></a>&gt; result )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="Octree.html#db101f0141eda5a93e708d476e24"><span>getLineIntersectedObjects</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> start, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> end, in UInt8 intersectionLineTypeEnum, io <a class="reference internal" href="SpatialQueryData.html#spatialquerydata"><span>SpatialQueryData</span></a> data )</td>
+<td><a class="reference internal" href="Octree.html#dd87734773819d510c706bf003"><span>getLineIntersectedObjects</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> start, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> end, in UInt8 intersectionLineTypeEnum, io <a class="reference internal" href="SpatialQueryData.html#spatialquerydata"><span>SpatialQueryData</span></a> data )</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="../Math/Box3.html#box3"><span>Box3</span></a></td>
-<td><a class="reference internal" href="Octree.html#cf7f402939d949679c69b3c70a7b228d"><span>getObjectBBox</span></a> ? ( in Size index )</td>
+<td><a class="reference internal" href="Octree.html#c536c1b1a034c8c8f457ceca09130be"><span>getObjectBBox</span></a> ? ( in Size index )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="Octree.html#dc35d087a1c452ca927938e4cc653e8"><span>getObjectBSphere</span></a> ? ( in Size index, io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> center, io <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius )</td>
+<td><a class="reference internal" href="Octree.html#aa6ac2dd39ff4a998e9706be929c1857"><span>getObjectBSphere</span></a> ? ( in Size index, io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> center, io <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius )</td>
 </tr>
 <tr class="row-odd"><td>Size</td>
-<td><a class="reference internal" href="Octree.html#a731c5025f3f4d00b158a67b843e489e"><span>getObjectCount</span></a> ? ()</td>
+<td><a class="reference internal" href="Octree.html#f2595cce3f10438c865e71ab67658891"><span>getObjectCount</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="Octree.html#ae14077f3484497a882bd0771411ebc6"><span>getObjectsInBBox</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max, io <a class="reference internal" href="SpatialQueryData.html#spatialquerydata"><span>SpatialQueryData</span></a> data )</td>
+<td><a class="reference internal" href="Octree.html#f2ebd52af84b7abe9f132d72cc1b79"><span>getObjectsInBBox</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max, io <a class="reference internal" href="SpatialQueryData.html#spatialquerydata"><span>SpatialQueryData</span></a> data )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="Octree.html#b524f8287fa4259b74530087157c256"><span>getObjectsInBSphere</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> center, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius, io <a class="reference internal" href="SpatialQueryData.html#spatialquerydata"><span>SpatialQueryData</span></a> data )</td>
+<td><a class="reference internal" href="Octree.html#c2e2c96e2aa45539ebfbf85e6a3c9c2"><span>getObjectsInBSphere</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> center, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius, io <a class="reference internal" href="SpatialQueryData.html#spatialquerydata"><span>SpatialQueryData</span></a> data )</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="../Math/Box3.html#box3"><span>Box3</span></a></td>
-<td><a class="reference internal" href="Octree.html#d980811c639a46ef98f3dc561b387e5f"><span>getWorldBBox</span></a> ! ()</td>
+<td><a class="reference internal" href="Octree.html#a83e8d6ab905417ba0deadf5a47e26c3"><span>getWorldBBox</span></a> ! ()</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="Octree.html#e0a2c4550e544847bbf5a96ca33797de"><span>incrementalUpdateObjectCount</span></a> ! ( in Size objectCount )</td>
+<td><a class="reference internal" href="Octree.html#b63eb714f5242bba96e98186df8f31b"><span>incrementalUpdateObjectCount</span></a> ! ( in Size objectCount )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="Octree.html#a75a7f25f403698e6bae5d8447aa2"><span>localBVolQuery</span></a> ? ( in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> transform, in <a class="reference internal" href="LocalBoundingVolume.html#localboundingvolume"><span>LocalBoundingVolume</span></a> localBVol, out <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result )</td>
+<td><a class="reference internal" href="Octree.html#d7ec3efc28e04451adbcf2ac4af0cde1"><span>localBVolQuery</span></a> ? ( in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> transform, in <a class="reference internal" href="LocalBoundingVolume.html#localboundingvolume"><span>LocalBoundingVolume</span></a> localBVol, out <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="Octree.html#d58cd663c5bc43c081e09cc623b9c5c6"><span>localBVolQuery</span></a> ? ( in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> transform, in <a class="reference internal" href="LocalBoundingVolume.html#localboundingvolume"><span>LocalBoundingVolume</span></a> localBVol, out <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask )</td>
+<td><a class="reference internal" href="Octree.html#cf166e78aa4395a93a663c6968dbaa"><span>localBVolQuery</span></a> ? ( in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> transform, in <a class="reference internal" href="LocalBoundingVolume.html#localboundingvolume"><span>LocalBoundingVolume</span></a> localBVol, out <a class="reference internal" href="../Containers/IndexSet.html#indexset"><span>IndexSet</span></a> result, in <a class="reference internal" href="../Containers/BitVector.html#bitvector"><span>BitVector</span></a> objectMask )</td>
 </tr>
 <tr class="row-even"><td>Boolean</td>
-<td><a class="reference internal" href="Octree.html#e9e247a2fbe4467a7adb375daafded3"><span>prepare</span></a> ! ( in Size approximateNumberOfQueries )</td>
+<td><a class="reference internal" href="Octree.html#f17f60eae15c4df0bb5859664fea7280"><span>prepare</span></a> ! ( in Size approximateNumberOfQueries )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="Octree.html#dbcc24f84f1398864f846e4fa391"><span>raycast</span></a> ? ( in <a class="reference internal" href="../Math/Ray.html#ray"><span>Ray</span></a> ray, in Boolean doubleSided, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxDistance, io <a class="reference internal" href="SpatialQueryData.html#spatialquerydata"><span>SpatialQueryData</span></a> data, io Ref&lt;<a class="reference internal" href="RaycastResult.html#raycastresult"><span>RaycastResult</span></a>&gt; result )</td>
+<td><a class="reference internal" href="Octree.html#c4c77d14db14a1fbc758155c5846289"><span>raycast</span></a> ? ( in <a class="reference internal" href="../Math/Ray.html#ray"><span>Ray</span></a> ray, in Boolean doubleSided, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> maxDistance, io <a class="reference internal" href="SpatialQueryData.html#spatialquerydata"><span>SpatialQueryData</span></a> data, io Ref&lt;<a class="reference internal" href="RaycastResult.html#raycastresult"><span>RaycastResult</span></a>&gt; result )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="Octree.html#d60b1eb627a4e9ba372ceca476e12a2"><span>removeObject</span></a> ! ( in UInt32 index )</td>
+<td><a class="reference internal" href="Octree.html#b1cf86fbd64875a2b3c7a845210a87"><span>removeObject</span></a> ! ( in UInt32 index )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="Octree.html#d0e99aa2c7846439b342bdd9a3abfad"><span>updateObjectVolume</span></a> ! ( in UInt32 index, in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> transform, in <a class="reference internal" href="LocalBoundingVolume.html#localboundingvolume"><span>LocalBoundingVolume</span></a> localBVol )</td>
+<td><a class="reference internal" href="Octree.html#f089e34b78bfc0ea7fada9bf71"><span>updateObjectVolume</span></a> ! ( in UInt32 index, in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> transform, in <a class="reference internal" href="LocalBoundingVolume.html#localboundingvolume"><span>LocalBoundingVolume</span></a> localBVol )</td>
 </tr>
 <tr class="row-even"><td>Boolean</td>
-<td><a class="reference internal" href="Octree.html#ddd74312a01b4254a981bca51b05e6cd"><span>updateObjectVolume</span></a> ! ( in UInt32 index, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> center, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius )</td>
+<td><a class="reference internal" href="Octree.html#c731ba3564b24a36a7fe40de4f2015aa"><span>updateObjectVolume</span></a> ! ( in UInt32 index, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> center, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="Octree.html#a4f194212a324b06be7a736ac92ed069"><span>updateObjectVolume</span></a> ! ( in UInt32 index, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max )</td>
+<td><a class="reference internal" href="Octree.html#cfc5762bd44eb484e2877ef458dc00"><span>updateObjectVolume</span></a> ! ( in UInt32 index, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max )</td>
 </tr>
 </tbody>
 </table>

@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
     <link rel="up" title="Characters Extension’s Types" href="types.html" />
     <link rel="next" title="Skeleton (object)" href="Skeleton.html" />
@@ -297,37 +298,37 @@ from a cache file, or compute it using a simulation algorithm.</p>
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#c2f7d6521394ed4b417897322169502"><span>Pose</span></a>  ( in <a class="reference internal" href="#pose"><span>Pose</span></a> other )</td>
+<td><a class="reference internal" href="#da8661ac5a4e3cb238b92f3c508ca2"><span>Pose</span></a>  ( in <a class="reference internal" href="#pose"><span>Pose</span></a> other )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#ff35039fbbc7495f8fa95af2ef294100"><span>Pose</span></a>  ( in <a class="reference internal" href="Skeleton.html#skeleton"><span>Skeleton</span></a> skeleton )</td>
+<td><a class="reference internal" href="#ca3988dec084e468010889553e0f27c"><span>Pose</span></a>  ( in <a class="reference internal" href="Skeleton.html#skeleton"><span>Skeleton</span></a> skeleton )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#fa9e108abaf43878fce140823b9e974"><span>Pose</span></a>  ()</td>
+<td><a class="reference internal" href="#a1591db30d0f4aa3b534a34f7c2062d8"><span>Pose</span></a>  ()</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#pose"><span>Pose</span></a></td>
-<td><a class="reference internal" href="#a900cb14e640638fb26187df433413"><span>clone</span></a> ? ()</td>
+<td><a class="reference internal" href="#d428b18fbf4af68815b54781045a92"><span>clone</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a></td>
-<td><a class="reference internal" href="#bda1867d7ae494d989dd14e2c56148a"><span>getBoneXfo</span></a> ! ( in Index index )</td>
+<td><a class="reference internal" href="#a70b16e6b2724739aef7ed55ce1a098b"><span>getBoneXfo</span></a> ! ( in Index index )</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
-<td><a class="reference internal" href="#e1ed688ab16b41469131f74122e7663d"><span>getDesc</span></a> ? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> indent, in Boolean includeXfos )</td>
+<td><a class="reference internal" href="#f42ee4185b64c22addbbc7b6bb81859"><span>getDesc</span></a> ? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> indent, in Boolean includeXfos )</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
-<td><a class="reference internal" href="#f7033d2051c542c1a180aa96edbf2fd0"><span>getDesc</span></a> ? ()</td>
+<td><a class="reference internal" href="#acc096b6febd407a94741d625d4cd408"><span>getDesc</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td>UInt64</td>
-<td><a class="reference internal" href="#ddfb48dcd08d4e808f7fb5badf9aba63"><span>getVersion</span></a> ? ()</td>
+<td><a class="reference internal" href="#d79272f3de43ebaac19f02ad3e98d6"><span>getVersion</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#d0f18d4b50544c6fbd660f3d4138695b"><span>incrementVersion</span></a> ! ()</td>
+<td><a class="reference internal" href="#f464392a83a7b9f8376e3a0"><span>incrementVersion</span></a> ! ()</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#cdf4747b66af4e1ea2661db66b934c0d"><span>reset</span></a> ! ()</td>
+<td><a class="reference internal" href="#fa3db45947934e6c829102bf51230a5b"><span>reset</span></a> ! ()</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#d535eb691132473a8c7561fbb26a3653"><span>setBoneXfo</span></a> ! ( in Index index, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> xfo )</td>
+<td><a class="reference internal" href="#a56c8d59241c401481211c3bf9b942bc"><span>setBoneXfo</span></a> ! ( in Index index, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> xfo )</td>
 </tr>
 </tbody>
 </table>
@@ -335,11 +336,11 @@ from a cache file, or compute it using a simulation algorithm.</p>
 </div>
 <div class="section" id="methods-in-detail">
 <h2>Methods in detail<a class="headerlink" href="#methods-in-detail" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><span class="target" id="c2f7d6521394ed4b417897322169502"></span><p><p class="klcode"><a class="reference internal" href="#pose"><span>Pose</span></a> ( in <a class="reference internal" href="#pose"><span>Pose</span></a> other )</p>
+<p><span class="target" id="da8661ac5a4e3cb238b92f3c508ca2"></span><p><p class="klcode"><a class="reference internal" href="#pose"><span>Pose</span></a> ( in <a class="reference internal" href="#pose"><span>Pose</span></a> other )</p>
 <p class="plaintext">copy constructor</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ff35039fbbc7495f8fa95af2ef294100"></span><p><p class="klcode"><a class="reference internal" href="#pose"><span>Pose</span></a> ( in <a class="reference internal" href="Skeleton.html#skeleton"><span>Skeleton</span></a> skeleton )</p>
+<span class="target" id="ca3988dec084e468010889553e0f27c"></span><p><p class="klcode"><a class="reference internal" href="#pose"><span>Pose</span></a> ( in <a class="reference internal" href="Skeleton.html#skeleton"><span>Skeleton</span></a> skeleton )</p>
 <p class="plaintext">Standard constructor taking a skeleton</p>
 <table border="1" class="paramtable docutils">
 <colgroup>
@@ -354,15 +355,15 @@ from a cache file, or compute it using a simulation algorithm.</p>
 </table>
 </p>
 <hr class="docutils" />
-<span class="target" id="fa9e108abaf43878fce140823b9e974"></span><p><p class="klcode"><a class="reference internal" href="#pose"><span>Pose</span></a> ()</p>
+<span class="target" id="a1591db30d0f4aa3b534a34f7c2062d8"></span><p><p class="klcode"><a class="reference internal" href="#pose"><span>Pose</span></a> ()</p>
 <p class="plaintext">default constructor</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a900cb14e640638fb26187df433413"></span><p><p class="klcode"><a class="reference internal" href="#pose"><span>Pose</span></a> <a class="reference internal" href="#pose"><span>Pose</span></a>.clone? ()</p>
+<span class="target" id="d428b18fbf4af68815b54781045a92"></span><p><p class="klcode"><a class="reference internal" href="#pose"><span>Pose</span></a> <a class="reference internal" href="#pose"><span>Pose</span></a>.clone? ()</p>
 <p class="plaintext">clone method</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="bda1867d7ae494d989dd14e2c56148a"></span><p><p class="klcode"><a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> <a class="reference internal" href="#pose"><span>Pose</span></a>.getBoneXfo! ( in Index index )</p>
+<span class="target" id="a70b16e6b2724739aef7ed55ce1a098b"></span><p><p class="klcode"><a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> <a class="reference internal" href="#pose"><span>Pose</span></a>.getBoneXfo! ( in Index index )</p>
 <p class="plaintext">Get the pose of a bone in the skeleton using its index.</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
@@ -370,7 +371,7 @@ from a cache file, or compute it using a simulation algorithm.</p>
 </div>
 </p>
 <hr class="docutils" />
-<span class="target" id="e1ed688ab16b41469131f74122e7663d"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#pose"><span>Pose</span></a>.getDesc? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> indent, in Boolean includeXfos )</p>
+<span class="target" id="f42ee4185b64c22addbbc7b6bb81859"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#pose"><span>Pose</span></a>.getDesc? ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> indent, in Boolean includeXfos )</p>
 <p class="plaintext">Generates a Description string of this pose.</p>
 <table border="1" class="paramtable docutils">
 <colgroup>
@@ -385,23 +386,23 @@ from a cache file, or compute it using a simulation algorithm.</p>
 </table>
 </p>
 <hr class="docutils" />
-<span class="target" id="f7033d2051c542c1a180aa96edbf2fd0"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#pose"><span>Pose</span></a>.getDesc? ()</p>
+<span class="target" id="acc096b6febd407a94741d625d4cd408"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#pose"><span>Pose</span></a>.getDesc? ()</p>
 <p class="plaintext">Generates a Description string of this <a class="reference internal" href="#pose"><span>Pose</span></a>.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ddfb48dcd08d4e808f7fb5badf9aba63"></span><p><p class="klcode">UInt64 <a class="reference internal" href="#pose"><span>Pose</span></a>.getVersion? ()</p>
+<span class="target" id="d79272f3de43ebaac19f02ad3e98d6"></span><p><p class="klcode">UInt64 <a class="reference internal" href="#pose"><span>Pose</span></a>.getVersion? ()</p>
 <p class="plaintext">Returns the internal version counter.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d0f18d4b50544c6fbd660f3d4138695b"></span><p><p class="klcode"><a class="reference internal" href="#pose"><span>Pose</span></a>.incrementVersion! ()</p>
+<span class="target" id="f464392a83a7b9f8376e3a0"></span><p><p class="klcode"><a class="reference internal" href="#pose"><span>Pose</span></a>.incrementVersion! ()</p>
 <p class="plaintext">Increments the internal version counter.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="cdf4747b66af4e1ea2661db66b934c0d"></span><p><p class="klcode"><a class="reference internal" href="#pose"><span>Pose</span></a>.reset! ()</p>
+<span class="target" id="fa3db45947934e6c829102bf51230a5b"></span><p><p class="klcode"><a class="reference internal" href="#pose"><span>Pose</span></a>.reset! ()</p>
 <p class="plaintext">Reset the pose back to the reference pose stored in the skeleton.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d535eb691132473a8c7561fbb26a3653"></span><p><p class="klcode"><a class="reference internal" href="#pose"><span>Pose</span></a>.setBoneXfo! ( in Index index, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> xfo )</p>
+<span class="target" id="a56c8d59241c401481211c3bf9b942bc"></span><p><p class="klcode"><a class="reference internal" href="#pose"><span>Pose</span></a>.setBoneXfo! ( in Index index, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> xfo )</p>
 <p class="plaintext">Set the pose of a bone in the skeleton using its index.</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>

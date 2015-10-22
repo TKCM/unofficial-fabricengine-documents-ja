@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
     <link rel="up" title="Geometry Extension’s Files" href="files.html" />
     <link rel="next" title="Mat33Attribute.kl" href="Mat33Attribute.kl.html" />
@@ -112,19 +113,19 @@ a box, a sphere, a cone, a pyramid and infinite.</p>
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#da5737b603e45e188498db8686fe377"><span>LocalBoundingVolume</span></a>  ( in <a class="reference internal" href="LocalBoundingVolume.html#localboundingvolume"><span>LocalBoundingVolume</span></a> other )</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#e85daa18c8f64a23ba337f76c2c86908"><span>LocalBoundingVolume</span></a>  ( in <a class="reference internal" href="LocalBoundingVolume.html#localboundingvolume"><span>LocalBoundingVolume</span></a> other )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#e03187594f479a97c1e245ef2404bf"><span>LocalBoundingVolume</span></a>  ()</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#b22ad2e69c4c07a0974f41c550b4d0"><span>LocalBoundingVolume</span></a>  ()</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="LocalBoundingVolume.html#localboundingvolume"><span>LocalBoundingVolume</span></a></td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#eb81536f40419f609ce9eeb17cd7"><span>clone</span></a> ? ()</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#bc8ce875084cb2b6d8f6160eb6bc84"><span>clone</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#c39904fc854f02873a59655b6d42e7"><span>getDesc</span></a> ? ()</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#fa5233fe624fe59cfd6230c94a4f68"><span>getDesc</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td>Boolean</td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#a5eee1b45e6f46e9bfa304834a009a29"><span>pyramidNearPlaneIntersectsBVol</span></a> ? ( in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> pyrTransform, in <a class="reference internal" href="LocalBoundingVolume.html#localboundingvolume"><span>LocalBoundingVolume</span></a> localBVol, in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> transform )</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#e3acbca3d36"><span>pyramidNearPlaneIntersectsBVol</span></a> ? ( in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> pyrTransform, in <a class="reference internal" href="LocalBoundingVolume.html#localboundingvolume"><span>LocalBoundingVolume</span></a> localBVol, in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> transform )</td>
 </tr>
 </tbody>
 </table>
@@ -137,40 +138,40 @@ a box, a sphere, a cone, a pyramid and infinite.</p>
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#f722164441b2253dd414de298a"><span>bBoxAdd</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> pt )</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#d25b9e44b84db2acc6c95ba41f8bab"><span>bBoxAdd</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> pt )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#a76bafe0037431ca779c0fa9b3a16e9"><span>bBoxAddBBox</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max )</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#c01a164a83f84125b44b790ee7d1a706"><span>bBoxAddBBox</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#c398947facb44d3c9ed5895635671d31"><span>bBoxAddTransformedBBox</span></a> ! ( in <a class="reference internal" href="LocalBoundingVolume.html#localboundingvolume"><span>LocalBoundingVolume</span></a> other, in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> transform )</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#c530dcf9b954ccfae654c0a40cbe00a"><span>bBoxAddTransformedBBox</span></a> ! ( in <a class="reference internal" href="LocalBoundingVolume.html#localboundingvolume"><span>LocalBoundingVolume</span></a> other, in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> transform )</td>
 </tr>
 <tr class="row-even"><td>Boolean</td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#bdb703beb2f546ff8b0a2ccafba02e57"><span>bBoxContains</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> point )</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#b8f98d76349fda812f2168d6b9923"><span>bBoxContains</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> point )</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#f69e1b6c2b334e568fa53e6df8ca31eb"><span>bBoxGetMax</span></a> ? ()</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#c5ac8d39884abea030151186ccd8c9"><span>bBoxGetMax</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#e6ff77e5b2e45deb7b6e8847390bd36"><span>bBoxGetMin</span></a> ? ()</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#aa45c474de786d50c40e42030eb"><span>bBoxGetMin</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a></td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#d997360ea514fc39976554ab2eaa3d2"><span>bBoxGetOrthographicMat44</span></a> ? ()</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#b8406eaedbb4531a2e6b8d042a33b57"><span>bBoxGetOrthographicMat44</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#b32b6442f4888aabc831b383db303"><span>bBoxGetVolume</span></a> ? ()</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#bb0b4c46298b4f69805742b9acec2257"><span>bBoxGetVolume</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#a59a5117344d398ff31c114a4e1a57"><span>bBoxInit</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max )</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#d94fca534ee585a3d410edf2da6d"><span>bBoxInit</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#e34ce0f159e446a391aed9d0fb2a56e8"><span>bBoxInit</span></a> ! ()</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#f8d61061f84403b85641e565d29445"><span>bBoxInit</span></a> ! ()</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#b86041df918abad0a855838b"><span>bBoxSetMax</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max )</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#d8aac4854e7e9a3522c9b2576105"><span>bBoxSetMax</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> max )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#ec6b8dfd07804c1fb1be7960e79f3e8b"><span>bBoxSetMin</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min )</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#d4c024d5dc49be90f7e054ed93d862"><span>bBoxSetMin</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> min )</td>
 </tr>
 </tbody>
 </table>
@@ -184,28 +185,28 @@ a box, a sphere, a cone, a pyramid and infinite.</p>
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#a97e4356f8e04c3a9b7a9ecb215eccf4"><span>bConeGetCosHalfAngle</span></a> ? ()</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#d15bf9f084caf9c9ecba34c7e3925"><span>bConeGetCosHalfAngle</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#bfca20f5464470ebff76288d2563319"><span>bConeGetCutoff</span></a> ? ()</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#fcb52f66b384739a059435541c6ce61"><span>bConeGetCutoff</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#a9d6939769794366949912c153a21fdf"><span>bConeGetLocalDistanceVector</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> point )</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#a80c187b9e14ab1955dbb03228ec0e5"><span>bConeGetLocalDistanceVector</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> point )</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#cd6573d48f8b414b90d7eaf10489b544"><span>bConeGetRadAngle</span></a> ? ()</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#ab18bf009c8e45d183212936c776969a"><span>bConeGetRadAngle</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#d247133aaad846e0b4cdb2098c26e831"><span>bConeGetTanHalfAngle</span></a> ? ()</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#bd8bc473499be9268ad4635df"><span>bConeGetTanHalfAngle</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#c93f894fce91e251359bd110d1"><span>bConeInit</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radAngle, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> cutoff )</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#d2a3fa6fa7f64e03a1bd930858f84a5e"><span>bConeInit</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radAngle, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> cutoff )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#e1a4e27198c48deb30244f26afa176c"><span>bConeSetCutoff</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> cutoff )</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#c1ab39b661d40d18b39a83ad89defa3"><span>bConeSetCutoff</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> cutoff )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#a6158957984448d8b9bd6c690ffbfbd5"><span>bConeSetRadAngle</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radAngle )</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#d343647db9f48e3b32b590d32297bf1"><span>bConeSetRadAngle</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radAngle )</td>
 </tr>
 </tbody>
 </table>
@@ -219,34 +220,34 @@ a box, a sphere, a cone, a pyramid and infinite.</p>
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#acb377cb4fe297445a6b739f3ed1"><span>bPyramidGetFar</span></a> ? ()</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#b65dc1edbbd4f8dabae52c70db67658"><span>bPyramidGetFar</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#afb591d4d95342fca477a5bd204a9938"><span>bPyramidGetNear</span></a> ? ()</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#cbbd7fe8a554066843f8e86e69231d6"><span>bPyramidGetNear</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#b8f77987a4dc4802e6a5f3037be29"><span>bPyramidGetNearHeight</span></a> ? ()</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#ddfc1e8b5944a059e34d1deb5725884"><span>bPyramidGetNearHeight</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#b3513170e5f448f95d6e9c94fbf8e96"><span>bPyramidGetNearWidth</span></a> ? ()</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#e46fb9c744814dccb1d1f0def64322a2"><span>bPyramidGetNearWidth</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a></td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#fb6c591274b60acd8129f1e7a7ed5"><span>bPyramidGetPerspectiveMat44</span></a> ? ()</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#b2af9a309e594adc8cee9e78c6046b6e"><span>bPyramidGetPerspectiveMat44</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#fcf88c3e6b4245a2133e1a55cc8cdc"><span>bPyramidInit</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> nearWidth, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> nearHeight, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> near, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> far )</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#dd76b9bb4b5891efec6824a3fe8f"><span>bPyramidInit</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> nearWidth, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> nearHeight, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> near, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> far )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#f67d2fc6f2b4879ab5aad4d017b7c25"><span>bPyramidSetFar</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> far )</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#edcf9d12729342239f1d812c6e810886"><span>bPyramidSetFar</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> far )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#fa9ee33f2ba46998cbb1db3b7c03dc2"><span>bPyramidSetNear</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> near )</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#bb65c967a98d4356b8825b1bdb85ffac"><span>bPyramidSetNear</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> near )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#ac134f9ac04857a635ec836ad68076"><span>bPyramidSetNearHeight</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> nearHeight )</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#ba5140e5e44f4b6972408a930015a"><span>bPyramidSetNearHeight</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> nearHeight )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#d00ea22210345d8a76d852b7c0bc6c6"><span>bPyramidSetNearWidth</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> nearWidth )</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#d8ddb840c7d47d89917cf33d4c4b780"><span>bPyramidSetNearWidth</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> nearWidth )</td>
 </tr>
 </tbody>
 </table>
@@ -260,31 +261,31 @@ a box, a sphere, a cone, a pyramid and infinite.</p>
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>Boolean</td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#ce4ad4b4141840e1a425a2c64342cea9"><span>bSphereContains</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> point )</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#ff6a7448a6e43cc9c9de282d0efefac"><span>bSphereContains</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> point )</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#b93442c6a844964b0e706d945a57aa6"><span>bSphereGetCenter</span></a> ? ()</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#cab7fde06f4ab985750416d901f73f"><span>bSphereGetCenter</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#b472645266f431c94f55375c47d5ee1"><span>bSphereGetLocalDistanceVector</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> point )</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#fc5badd4cc4a430a9da77a4185742def"><span>bSphereGetLocalDistanceVector</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> point )</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#a42bd40aac4f3a9579b3d4b8f17a31"><span>bSphereGetRadius</span></a> ? ()</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#cd469992869444cb9f120061f6c6317c"><span>bSphereGetRadius</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#e55814f7e72d44bb9a519524a21e08ca"><span>bSphereGetSquaredRadius</span></a> ? ()</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#d7b143ad843c89ccb6bee40ea9d10"><span>bSphereGetSquaredRadius</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#cd572b868b8c42a2bd35e55f389025d6"><span>bSphereInit</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> center, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius )</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#fb28d5b349a7802d9acb44993ffd"><span>bSphereInit</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> center, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius )</td>
 </tr>
 <tr class="row-odd"><td>Boolean</td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#de9268aeb50441edb5d870e9683ebf32"><span>bSphereIntersectsBSphere</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> center, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius )</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#e04a4659a4c745f89471b923c19316f0"><span>bSphereIntersectsBSphere</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> center, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#c466baff404b6ebeea4e88d3e15592"><span>bSphereSetCenter</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> center )</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#eff660df614e9f93616d7a31486700"><span>bSphereSetCenter</span></a> ! ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> center )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="LocalBoundingVolume.html#d920f164c74d93ad37ef12c22668dc"><span>bSphereSetRadius</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius )</td>
+<td><a class="reference internal" href="LocalBoundingVolume.html#bd7dec6a53d4bd1a2ae63d35b0b7572"><span>bSphereSetRadius</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> radius )</td>
 </tr>
 </tbody>
 </table>

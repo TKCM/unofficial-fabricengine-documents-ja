@@ -25,10 +25,11 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
-    <link rel="up" title="KL Programming Guide" href="index.html" />
+    <link rel="up" title="KL プログラミングガイド" href="index.html" />
     <link rel="next" title="Operators and Expressions" href="ops-exprs.html" />
-    <link rel="prev" title="The KL Type System" href="types.html" /> 
+    <link rel="prev" title="KLの型システム" href="types.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -41,10 +42,10 @@
           <a href="ops-exprs.html" title="Operators and Expressions"
              accesskey="N">次へ</a> |</li>
         <li class="right" >
-          <a href="types.html" title="The KL Type System"
+          <a href="types.html" title="KLの型システム"
              accesskey="P">前へ</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">KL Programming Guide</a> &raquo;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">KL プログラミングガイド</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -55,7 +56,7 @@
             
   <div class="section" id="functions-and-other-global-declarations">
 <span id="globals"></span><h1>Functions and Other Global Declarations<a class="headerlink" href="#functions-and-other-global-declarations" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>In this chapter we detail the different entities that can appear in the global scope of a KL program, including functions and function-like entities, name constants, and instances of the <code class="docutils literal"><span class="pre">require</span></code> statement.  Structure and object definitions can also appear in the global scope and are covered in the section <a class="reference internal" href="types.html#klpg-types"><span>The KL Type System</span></a>.</p>
+<p>In this chapter we detail the different entities that can appear in the global scope of a KL program, including functions and function-like entities, name constants, and instances of the <code class="docutils literal"><span class="pre">require</span></code> statement.  Structure and object definitions can also appear in the global scope and are covered in the section <a class="reference internal" href="types.html#klpg-types"><span>KLの型システム</span></a>.</p>
 <div class="section" id="functions">
 <span id="index-0"></span><span id="id1"></span><h2>Functions<a class="headerlink" href="#functions" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>A function is a collection of program statements that can be called from another part of a program.  A function takes a list of zero or more <em class="dfn">parameters</em> and optionally returns a <em class="dfn">return value</em>.</p>
@@ -1085,7 +1086,7 @@ operator entry()
 <dd><p>Returns the arctangent of the argument <code class="samp docutils literal"><em><span class="pre">x</span></em></code>.  The return value is measured in radians.</p>
 <div class="admonition warning">
 <p class="first admonition-title">警告</p>
-<p class="last">This function doesn&#8217;t work for large <code class="samp docutils literal"><em><span class="pre">x</span></em></code> and can only return values in the range ; use the <a class="reference internal" href="#atan2" title="atan2"><code class="xref kl kl-func docutils literal"><span class="pre">atan2</span></code></a> function instead when possible.</p>
+<p class="last">This function doesn&#8217;t work for large <code class="samp docutils literal"><em><span class="pre">x</span></em></code> and can only return values in the range <span class="math">\((-\pi/2,\pi/2]\)</span>; use the <a class="reference internal" href="#atan2" title="atan2"><code class="xref kl kl-func docutils literal"><span class="pre">atan2</span></code></a> function instead when possible.</p>
 </div>
 </dd></dl>
 
@@ -1094,7 +1095,7 @@ operator entry()
 <em class="property">function </em><em class="property">Float32 </em><code class="descname">atan2</code><span class="sig-paren">(</span><em>Float32 y</em>, <em>Float32 x</em><span class="sig-paren">)</span><a class="headerlink" href="#atan2" title="この定義へのパーマリンク">¶</a></dt>
 <dt>
 <em class="property">function </em><em class="property">Float64 </em><code class="descname">atan2</code><span class="sig-paren">(</span><em>Float64 y</em>, <em>Float64 x</em><span class="sig-paren">)</span></dt>
-<dd><p>Returns the arctangent of the ratio <code class="samp docutils literal"><em><span class="pre">y</span></em><span class="pre">/</span><em><span class="pre">x</span></em></code>; the result is measured in radians and is in the range .</p>
+<dd><p>Returns the arctangent of the ratio <code class="samp docutils literal"><em><span class="pre">y</span></em><span class="pre">/</span><em><span class="pre">x</span></em></code>; the result is measured in radians and is in the range <span class="math">\((-\pi,\pi]\)</span>.</p>
 </dd></dl>
 
 </div>
@@ -1121,7 +1122,7 @@ operator entry()
 <em class="property">function </em><em class="property">Float32 </em><code class="descname">exp</code><span class="sig-paren">(</span><em>Float32 x</em><span class="sig-paren">)</span><a class="headerlink" href="#exp" title="この定義へのパーマリンク">¶</a></dt>
 <dt>
 <em class="property">function </em><em class="property">Float64 </em><code class="descname">exp</code><span class="sig-paren">(</span><em>Float64 x</em><span class="sig-paren">)</span></dt>
-<dd><p>Returns the value of  raised to the power of <code class="samp docutils literal"><em><span class="pre">x</span></em></code> where  is the base of the natural logarithm (approximately 2.7182818...).</p>
+<dd><p>Returns the value of <span class="math">\(e\)</span> raised to the power of <code class="samp docutils literal"><em><span class="pre">x</span></em></code> where <span class="math">\(e\)</span> is the base of the natural logarithm (approximately 2.7182818...).</p>
 </dd></dl>
 
 <dl class="function">
@@ -1129,7 +1130,7 @@ operator entry()
 <em class="property">function </em><em class="property">Float32 </em><code class="descname">log</code><span class="sig-paren">(</span><em>Float32 x</em><span class="sig-paren">)</span><a class="headerlink" href="#log" title="この定義へのパーマリンク">¶</a></dt>
 <dt>
 <em class="property">function </em><em class="property">Float64 </em><code class="descname">log</code><span class="sig-paren">(</span><em>Float64 x</em><span class="sig-paren">)</span></dt>
-<dd><p>Returns the natural (base ) logarithm of <code class="samp docutils literal"><em><span class="pre">x</span></em></code>.</p>
+<dd><p>Returns the natural (base <span class="math">\(e\)</span>) logarithm of <code class="samp docutils literal"><em><span class="pre">x</span></em></code>.</p>
 </dd></dl>
 
 <dl class="function">
@@ -1860,7 +1861,7 @@ environment variables, then will resolve the <span class="target" id="index-26">
 
   <h4>前のトピックへ</h4>
   <p class="topless"><a href="types.html"
-                        title="前の章へ">The KL Type System</a></p>
+                        title="前の章へ">KLの型システム</a></p>
   <h4>次のトピックへ</h4>
   <p class="topless"><a href="ops-exprs.html"
                         title="次の章へ">Operators and Expressions</a></p>
@@ -1900,10 +1901,10 @@ environment variables, then will resolve the <span class="target" id="index-26">
           <a href="ops-exprs.html" title="Operators and Expressions"
              >次へ</a> |</li>
         <li class="right" >
-          <a href="types.html" title="The KL Type System"
+          <a href="types.html" title="KLの型システム"
              >前へ</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Fabric Engine 2.0.0 Unofficial Documentation (ja)</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >KL Programming Guide</a> &raquo;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" >KL プログラミングガイド</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

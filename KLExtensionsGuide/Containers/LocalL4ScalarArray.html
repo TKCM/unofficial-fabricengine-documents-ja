@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
     <link rel="up" title="Containers Extension’s Types" href="types.html" />
     <link rel="next" title="LocalL4UInt16Array (struct)" href="LocalL4UInt16Array.html" />
@@ -118,31 +119,31 @@ contain array of values, where arrays are usually smaller than 4.</p>
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#d19c5a09d618442596f3c58f9455eccf"><span>LocalL4ScalarArray</span></a>  ( in <a class="reference internal" href="#locall4scalararray"><span>LocalL4ScalarArray</span></a> other )</td>
+<td><a class="reference internal" href="#a9328ba203344d0ebd960f4ed9063f43"><span>LocalL4ScalarArray</span></a>  ( in <a class="reference internal" href="#locall4scalararray"><span>LocalL4ScalarArray</span></a> other )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#d7a0feba214598bec1de7847fb8a82"><span>LocalL4ScalarArray</span></a>  ()</td>
+<td><a class="reference internal" href="#a5d14bd9bd1543729625667caa520435"><span>LocalL4ScalarArray</span></a>  ()</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#locall4scalararray"><span>LocalL4ScalarArray</span></a></td>
-<td><a class="reference internal" href="#e2806279464496b875568f310ad0"><span>clone</span></a> ? ()</td>
+<td><a class="reference internal" href="#eccf9d3579be4c30a4a581f6f261a6c2"><span>clone</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a></td>
-<td><a class="reference internal" href="#a04a3db66b4b06b3f37aa1eb45c46a"><span>get</span></a> ? ( in UInt32 index )</td>
+<td><a class="reference internal" href="#ec0998422dfd44db987c59b046696648"><span>get</span></a> ? ( in UInt32 index )</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
-<td><a class="reference internal" href="#cfd955b929bc402da8af6b1b7eecaac6"><span>getString</span></a> ? ()</td>
+<td><a class="reference internal" href="#ae23c25e86ae41aaa001a3e0e8d8610f"><span>getString</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#ebd8add85f854437bb9ca1128696a7d9"><span>push</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value )</td>
+<td><a class="reference internal" href="#f42169f81d4a68a3f6cd0a395ccceb"><span>push</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#eda61684099b41a5bb57fa055439aa6d"><span>resize</span></a> ! ( in UInt32 size )</td>
+<td><a class="reference internal" href="#d9b3328e8164b84a50aa69dd73205c0"><span>resize</span></a> ! ( in UInt32 size )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#a4fbcddc54c9890e1280d6bd101f1"><span>set</span></a> ! ( in UInt32 index, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value )</td>
+<td><a class="reference internal" href="#a0764c2fd6904b0b9d5e906de2cda50a"><span>set</span></a> ! ( in UInt32 index, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value )</td>
 </tr>
 <tr class="row-odd"><td>UInt32</td>
-<td><a class="reference internal" href="#cd7ca73f84204aa5987e85d15c2f019e"><span>size</span></a> ? ()</td>
+<td><a class="reference internal" href="#a6372e53b9498a8bef58c457aabc82"><span>size</span></a> ? ()</td>
 </tr>
 </tbody>
 </table>
@@ -157,7 +158,7 @@ contain array of values, where arrays are usually smaller than 4.</p>
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="#locall4scalararray"><span>LocalL4ScalarArray</span></a></td>
-<td><a class="reference internal" href="#cbcf35e02773496c841f0ee87509c9ad"><span>=</span></a> ( <a class="reference internal" href="../Parameters/Param.html#param"><span>Param</span></a> other )</td>
+<td><a class="reference internal" href="#d44212c4a4c4acb866acf596fdcaeac"><span>=</span></a> ( <a class="reference internal" href="../Parameters/Param.html#param"><span>Param</span></a> other )</td>
 </tr>
 </tbody>
 </table>
@@ -165,46 +166,46 @@ contain array of values, where arrays are usually smaller than 4.</p>
 </div>
 <div class="section" id="methods-in-detail">
 <h2>Methods in detail<a class="headerlink" href="#methods-in-detail" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><span class="target" id="d19c5a09d618442596f3c58f9455eccf"></span><p><p class="klcode"><a class="reference internal" href="#locall4scalararray"><span>LocalL4ScalarArray</span></a> ( in <a class="reference internal" href="#locall4scalararray"><span>LocalL4ScalarArray</span></a> other )</p>
+<p><span class="target" id="a9328ba203344d0ebd960f4ed9063f43"></span><p><p class="klcode"><a class="reference internal" href="#locall4scalararray"><span>LocalL4ScalarArray</span></a> ( in <a class="reference internal" href="#locall4scalararray"><span>LocalL4ScalarArray</span></a> other )</p>
 <p class="plaintext">copy constructor</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d7a0feba214598bec1de7847fb8a82"></span><p><p class="klcode"><a class="reference internal" href="#locall4scalararray"><span>LocalL4ScalarArray</span></a> ()</p>
+<span class="target" id="a5d14bd9bd1543729625667caa520435"></span><p><p class="klcode"><a class="reference internal" href="#locall4scalararray"><span>LocalL4ScalarArray</span></a> ()</p>
 <p class="plaintext">default constructor</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="e2806279464496b875568f310ad0"></span><p><p class="klcode"><a class="reference internal" href="#locall4scalararray"><span>LocalL4ScalarArray</span></a> <a class="reference internal" href="#locall4scalararray"><span>LocalL4ScalarArray</span></a>.clone? ()</p>
+<span class="target" id="eccf9d3579be4c30a4a581f6f261a6c2"></span><p><p class="klcode"><a class="reference internal" href="#locall4scalararray"><span>LocalL4ScalarArray</span></a> <a class="reference internal" href="#locall4scalararray"><span>LocalL4ScalarArray</span></a>.clone? ()</p>
 <p class="plaintext">clone method</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a04a3db66b4b06b3f37aa1eb45c46a"></span><p><p class="klcode"><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> <a class="reference internal" href="#locall4scalararray"><span>LocalL4ScalarArray</span></a>.get? ( in UInt32 index )</p>
+<span class="target" id="ec0998422dfd44db987c59b046696648"></span><p><p class="klcode"><a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> <a class="reference internal" href="#locall4scalararray"><span>LocalL4ScalarArray</span></a>.get? ( in UInt32 index )</p>
 <p class="plaintext">returns the value stored at an index.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="cfd955b929bc402da8af6b1b7eecaac6"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#locall4scalararray"><span>LocalL4ScalarArray</span></a>.getString? ()</p>
+<span class="target" id="ae23c25e86ae41aaa001a3e0e8d8610f"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#locall4scalararray"><span>LocalL4ScalarArray</span></a>.getString? ()</p>
 <p class="plaintext">returns a description of the array as a <a class="reference internal" href="../Util/String.html#string"><span>String</span></a></p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ebd8add85f854437bb9ca1128696a7d9"></span><p><p class="klcode"><a class="reference internal" href="#locall4scalararray"><span>LocalL4ScalarArray</span></a>.push! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value )</p>
+<span class="target" id="f42169f81d4a68a3f6cd0a395ccceb"></span><p><p class="klcode"><a class="reference internal" href="#locall4scalararray"><span>LocalL4ScalarArray</span></a>.push! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value )</p>
 <p class="plaintext">appends a new <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value to the end of the array</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="eda61684099b41a5bb57fa055439aa6d"></span><p><p class="klcode"><a class="reference internal" href="#locall4scalararray"><span>LocalL4ScalarArray</span></a>.resize! ( in UInt32 size )</p>
+<span class="target" id="d9b3328e8164b84a50aa69dd73205c0"></span><p><p class="klcode"><a class="reference internal" href="#locall4scalararray"><span>LocalL4ScalarArray</span></a>.resize! ( in UInt32 size )</p>
 <p class="plaintext">resizes the array.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a4fbcddc54c9890e1280d6bd101f1"></span><p><p class="klcode"><a class="reference internal" href="#locall4scalararray"><span>LocalL4ScalarArray</span></a>.set! ( in UInt32 index, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value )</p>
+<span class="target" id="a0764c2fd6904b0b9d5e906de2cda50a"></span><p><p class="klcode"><a class="reference internal" href="#locall4scalararray"><span>LocalL4ScalarArray</span></a>.set! ( in UInt32 index, in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value )</p>
 <p class="plaintext">sets the value stored at an index</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="cd7ca73f84204aa5987e85d15c2f019e"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#locall4scalararray"><span>LocalL4ScalarArray</span></a>.size? ()</p>
+<span class="target" id="a6372e53b9498a8bef58c457aabc82"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#locall4scalararray"><span>LocalL4ScalarArray</span></a>.size? ()</p>
 <p class="plaintext">returns the size of the array (number of <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> elements stored).</p>
 </p>
 </p>
 </div>
 <div class="section" id="operators-in-detail">
 <h2>Operators in detail<a class="headerlink" href="#operators-in-detail" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><span class="target" id="cbcf35e02773496c841f0ee87509c9ad"></span><p class="klcode"><a class="reference internal" href="#locall4scalararray"><span>LocalL4ScalarArray</span></a> = ( <a class="reference internal" href="../Parameters/Param.html#param"><span>Param</span></a> other )</p>
+<p><span class="target" id="d44212c4a4c4acb866acf596fdcaeac"></span><p class="klcode"><a class="reference internal" href="#locall4scalararray"><span>LocalL4ScalarArray</span></a> = ( <a class="reference internal" href="../Parameters/Param.html#param"><span>Param</span></a> other )</p>
 <p class="plaintext">copy the content of another <a class="reference internal" href="#locall4scalararray"><span>LocalL4ScalarArray</span></a></p>
 </p>
 </div>

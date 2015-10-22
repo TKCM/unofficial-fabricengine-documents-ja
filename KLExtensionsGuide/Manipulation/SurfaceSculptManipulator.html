@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
     <link rel="up" title="Manipulation Extension’s Types" href="types.html" />
     <link rel="next" title="TransformManipulationCallback (object)" href="TransformManipulationCallback.html" />
@@ -225,28 +226,28 @@ positions on a mesh, pushing or pulling them in the direction of the paint brush
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#a23a0f88a9454473828cbe0f5bdc3560"><span>SurfaceSculptManipulator</span></a>  ( in <a class="reference internal" href="../Util/EvalContext.html#evalcontext"><span>EvalContext</span></a> evalContext )</td>
+<td><a class="reference internal" href="#afaab7f9c2ac4a6dbcbb6ba29a202b81"><span>SurfaceSculptManipulator</span></a>  ( in <a class="reference internal" href="../Util/EvalContext.html#evalcontext"><span>EvalContext</span></a> evalContext )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#f4d11272774c6e92f412f5420e0324"><span>SurfaceSculptManipulator</span></a>  ( in <a class="reference internal" href="#surfacesculptmanipulator"><span>SurfaceSculptManipulator</span></a> other )</td>
+<td><a class="reference internal" href="#f4d74ab091236554537cbccf"><span>SurfaceSculptManipulator</span></a>  ( in <a class="reference internal" href="#surfacesculptmanipulator"><span>SurfaceSculptManipulator</span></a> other )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#b570d12ff41288c94e08bbaefb003"><span>SurfaceSculptManipulator</span></a>  ()</td>
+<td><a class="reference internal" href="#e4b3180679d242109c938d5872869a1f"><span>SurfaceSculptManipulator</span></a>  ()</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#surfacesculptmanipulator"><span>SurfaceSculptManipulator</span></a></td>
-<td><a class="reference internal" href="#dcbb75d0a7148f6a5899a0dac41039b"><span>clone</span></a> ? ()</td>
+<td><a class="reference internal" href="#e7f56e4af4a11ad5acfae6b96024b"><span>clone</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#a8dda4a0ef4c11b126daa077f513fd"><span>onPaint</span></a> ! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent, in <a class="reference internal" href="SurfacePaintManipulator_PointCollection.html#surfacepaintmanipulator-pointcollection"><span>SurfacePaintManipulator_PointCollection</span></a> collectedPoints )</td>
+<td><a class="reference internal" href="#a8d50af19e64a7d8fd5577d3a59cc64"><span>onPaint</span></a> ! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent, in <a class="reference internal" href="SurfacePaintManipulator_PointCollection.html#surfacepaintmanipulator-pointcollection"><span>SurfacePaintManipulator_PointCollection</span></a> collectedPoints )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#a2f1e5bf50d443e09fe66b88c4b156b9"><span>onStrokeBegin</span></a> ! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent )</td>
+<td><a class="reference internal" href="#abad9618e2e4e2486f497889ab58535"><span>onStrokeBegin</span></a> ! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#fe9fd01f2d64a1595e8387bb4e24aa8"><span>onStrokeEnd</span></a> ! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent )</td>
+<td><a class="reference internal" href="#d4b6df0c35be48e3b4f97717cfb08167"><span>onStrokeEnd</span></a> ! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#cf4262e7ec704d9989bb199fe9cdfade"><span>setSculptStrength</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> sculptStrength )</td>
+<td><a class="reference internal" href="#a323def34483bbbf3b883bfa4c88"><span>setSculptStrength</span></a> ! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> sculptStrength )</td>
 </tr>
 </tbody>
 </table>
@@ -254,40 +255,40 @@ positions on a mesh, pushing or pulling them in the direction of the paint brush
 </div>
 <div class="section" id="methods-in-detail">
 <h3>Methods in detail<a class="headerlink" href="#methods-in-detail" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p><span class="target" id="a23a0f88a9454473828cbe0f5bdc3560"></span><p><p class="klcode"><a class="reference internal" href="#surfacesculptmanipulator"><span>SurfaceSculptManipulator</span></a> ( in <a class="reference internal" href="../Util/EvalContext.html#evalcontext"><span>EvalContext</span></a> evalContext )</p>
+<p><span class="target" id="afaab7f9c2ac4a6dbcbb6ba29a202b81"></span><p><p class="klcode"><a class="reference internal" href="#surfacesculptmanipulator"><span>SurfaceSculptManipulator</span></a> ( in <a class="reference internal" href="../Util/EvalContext.html#evalcontext"><span>EvalContext</span></a> evalContext )</p>
 <p class="plaintext">Constructor taking an <a class="reference internal" href="../Util/EvalContext.html#evalcontext"><span>EvalContext</span></a>.</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p class="last">The EvalContext provides contextual information to the operator setting up the Manipulator. A Sculpt manipulator might need to force the Host DCC application to re-evaluate if the manipulator is modifying a geometry bound to a deformer. See <a class="reference internal" href="#a8dda4a0ef4c11b126daa077f513fd"><span>SurfaceSculptManipulator.onPaint</span></a>.</p>
+<p class="last">The EvalContext provides contextual information to the operator setting up the Manipulator. A Sculpt manipulator might need to force the Host DCC application to re-evaluate if the manipulator is modifying a geometry bound to a deformer. See <a class="reference internal" href="#a8d50af19e64a7d8fd5577d3a59cc64"><span>SurfaceSculptManipulator.onPaint</span></a>.</p>
 </div>
 </p>
 <hr class="docutils" />
-<span class="target" id="f4d11272774c6e92f412f5420e0324"></span><p><p class="klcode"><a class="reference internal" href="#surfacesculptmanipulator"><span>SurfaceSculptManipulator</span></a> ( in <a class="reference internal" href="#surfacesculptmanipulator"><span>SurfaceSculptManipulator</span></a> other )</p>
+<span class="target" id="f4d74ab091236554537cbccf"></span><p><p class="klcode"><a class="reference internal" href="#surfacesculptmanipulator"><span>SurfaceSculptManipulator</span></a> ( in <a class="reference internal" href="#surfacesculptmanipulator"><span>SurfaceSculptManipulator</span></a> other )</p>
 <p class="plaintext">copy constructor</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b570d12ff41288c94e08bbaefb003"></span><p><p class="klcode"><a class="reference internal" href="#surfacesculptmanipulator"><span>SurfaceSculptManipulator</span></a> ()</p>
+<span class="target" id="e4b3180679d242109c938d5872869a1f"></span><p><p class="klcode"><a class="reference internal" href="#surfacesculptmanipulator"><span>SurfaceSculptManipulator</span></a> ()</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="dcbb75d0a7148f6a5899a0dac41039b"></span><p><p class="klcode"><a class="reference internal" href="#surfacesculptmanipulator"><span>SurfaceSculptManipulator</span></a> <a class="reference internal" href="#surfacesculptmanipulator"><span>SurfaceSculptManipulator</span></a>.clone? ()</p>
+<span class="target" id="e7f56e4af4a11ad5acfae6b96024b"></span><p><p class="klcode"><a class="reference internal" href="#surfacesculptmanipulator"><span>SurfaceSculptManipulator</span></a> <a class="reference internal" href="#surfacesculptmanipulator"><span>SurfaceSculptManipulator</span></a>.clone? ()</p>
 <p class="plaintext">clone method</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a8dda4a0ef4c11b126daa077f513fd"></span><p><p class="klcode"><a class="reference internal" href="#surfacesculptmanipulator"><span>SurfaceSculptManipulator</span></a>.onPaint! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent, in <a class="reference internal" href="SurfacePaintManipulator_PointCollection.html#surfacepaintmanipulator-pointcollection"><span>SurfacePaintManipulator_PointCollection</span></a> collectedPoints )</p>
+<span class="target" id="a8d50af19e64a7d8fd5577d3a59cc64"></span><p><p class="klcode"><a class="reference internal" href="#surfacesculptmanipulator"><span>SurfaceSculptManipulator</span></a>.onPaint! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent, in <a class="reference internal" href="SurfacePaintManipulator_PointCollection.html#surfacepaintmanipulator-pointcollection"><span>SurfacePaintManipulator_PointCollection</span></a> collectedPoints )</p>
 <p class="plaintext">Called during the paint stroke for each mouse move event.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a2f1e5bf50d443e09fe66b88c4b156b9"></span><p><p class="klcode"><a class="reference internal" href="#surfacesculptmanipulator"><span>SurfaceSculptManipulator</span></a>.onStrokeBegin! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent )</p>
+<span class="target" id="abad9618e2e4e2486f497889ab58535"></span><p><p class="klcode"><a class="reference internal" href="#surfacesculptmanipulator"><span>SurfaceSculptManipulator</span></a>.onStrokeBegin! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent )</p>
 <p class="plaintext">Called when the stroke starts when the user presses down the mouse button
 Adds the generated <a class="reference internal" href="SurfaceAttributePaintCommand.html#surfaceattributepaintcommand"><span>SurfaceAttributePaintCommand</span></a> command to the Host undo stack.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="fe9fd01f2d64a1595e8387bb4e24aa8"></span><p><p class="klcode"><a class="reference internal" href="#surfacesculptmanipulator"><span>SurfaceSculptManipulator</span></a>.onStrokeEnd! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent )</p>
+<span class="target" id="d4b6df0c35be48e3b4f97717cfb08167"></span><p><p class="klcode"><a class="reference internal" href="#surfacesculptmanipulator"><span>SurfaceSculptManipulator</span></a>.onStrokeEnd! ( io <a class="reference internal" href="MouseEvent.html#mouseevent"><span>MouseEvent</span></a> mouseEvent )</p>
 <p class="plaintext">Called when the stroke ends when the user releases the mouse button
 Adds the generated command to the <a class="reference internal" href="Host.html#host"><span>Host</span></a> undo stack.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="cf4262e7ec704d9989bb199fe9cdfade"></span><p><p class="klcode"><a class="reference internal" href="#surfacesculptmanipulator"><span>SurfaceSculptManipulator</span></a>.setSculptStrength! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> sculptStrength )</p>
+<span class="target" id="a323def34483bbbf3b883bfa4c88"></span><p><p class="klcode"><a class="reference internal" href="#surfacesculptmanipulator"><span>SurfaceSculptManipulator</span></a>.setSculptStrength! ( in <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> sculptStrength )</p>
 </p>
 </p>
 </div>

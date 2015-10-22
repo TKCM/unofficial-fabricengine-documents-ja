@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
     <link rel="up" title="Util Extension" href="index.html" />
     <link rel="next" title="Using the KL Tool to Develop and Debug Extensions" href="../../KLToolGuide/index.html" />
@@ -56,30 +57,30 @@
             
   <div class="section" id="util-extension-s-free-functions">
 <span id="util-extension-functions"></span><h1>Util Extension&#8217;s Free Functions<a class="headerlink" href="#util-extension-s-free-functions" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p><span class="target" id="b8a1daae11704cc7b18f0f5409ebed5c"></span><p><p class="klcode">Boolean BytesEqual ( in Data values1, in Data values2, in UInt64 dataSize )</p>
+<p><span class="target" id="ef1c3df414f48cbbbce85c81dda239f"></span><p><p class="klcode">Boolean BytesEqual ( in Data values1, in Data values2, in UInt64 dataSize )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="e2b705d39fa34f7881599bbf82bccf50"></span><p><p class="klcode">:ref:<a href="#id1"><span class="problematic" id="id2">`</span></a>Float32 &lt;float32&gt;`&lt;&gt; CastDataToFloat32Array ( in Data source, in Size float32count )</p>
+<span class="target" id="b8b9bf2fb6e4227ba4ef1accd854116"></span><p><p class="klcode">:ref:<a href="#id1"><span class="problematic" id="id2">`</span></a>Float32 &lt;float32&gt;`&lt;&gt; CastDataToFloat32Array ( in Data source, in Size float32count )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="cd1162772247ea831cdf4740ed60d7"></span><p><p class="klcode">SInt32&lt;&gt; CastDataToSInt32Array ( in Data source, in Size sint32count )</p>
+<span class="target" id="f1993ddc85c42bba1ee9eeb72d16a77"></span><p><p class="klcode">SInt32&lt;&gt; CastDataToSInt32Array ( in Data source, in Size sint32count )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f39f660aadc4eb8a072ce95b2304914"></span><p><p class="klcode">UInt32&lt;&gt; CastDataToUInt32Array ( in Data source, in Size uint32count )</p>
+<span class="target" id="c83085684ab472d91792d63448d3581"></span><p><p class="klcode">UInt32&lt;&gt; CastDataToUInt32Array ( in Data source, in Size uint32count )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d4ccc7e8e24e12814c2007b8bc109e"></span><p><p class="klcode">Boolean CompareAndUpdateBytes ( in Data toUpdate, in Data newValues, in UInt64 dataSize )</p>
+<span class="target" id="ba19170ca44ef873934af75f0414b"></span><p><p class="klcode">Boolean CompareAndUpdateBytes ( in Data toUpdate, in Data newValues, in UInt64 dataSize )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c72acb3fe55f483c8714bb9d2eaca6f7"></span><p><p class="klcode">CopyBytes ( in Data target, in Data source, in UInt64 dataSize )</p>
+<span class="target" id="a8a85c0037e946c4a5a62f359f5fb8b5"></span><p><p class="klcode">CopyBytes ( in Data target, in Data source, in UInt64 dataSize )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="bf42fbf51c4ff4902545a8b323ef24"></span><p><p class="klcode"><a class="reference internal" href="EvalContext.html#evalcontext"><span>EvalContext</span></a> EvalContext_GetInstance ()</p>
+<span class="target" id="ff55658c89d04f7489da420064ccc742"></span><p><p class="klcode"><a class="reference internal" href="EvalContext.html#evalcontext"><span>EvalContext</span></a> EvalContext_GetInstance ()</p>
 <p class="plaintext">Get the <a class="reference internal" href="EvalContext.html#evalcontext"><span>EvalContext</span></a> singleton, or construct
 it if it didn&#8217;t already exist.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ffd52ae99ef4ebaa922c6fc5c519ec8"></span><p><p class="klcode">GetBatchSizeAndCountForParallel ( in Size numIndices, in Size workloadMultiplier, in Size minBatchSize, io Size numBatches, io Size batchSize )</p>
+<span class="target" id="c4a5665d1d46e4b125251f279d3f1a"></span><p><p class="klcode">GetBatchSizeAndCountForParallel ( in Size numIndices, in Size workloadMultiplier, in Size minBatchSize, io Size numBatches, io Size batchSize )</p>
 <p class="plaintext">This function can be used to compute a batchsize for a given number of tasks.</p>
 <div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
 <span class="cm">** Example: GetBatchSizeAndCountForParallel</span>
@@ -109,70 +110,70 @@ it if it didn&#8217;t already exist.</p>
 </div>
 </p>
 <hr class="docutils" />
-<span class="target" id="a75c664ac56541aaa8ff446c3f904dfc"></span><p><p class="klcode">UInt8 Log2RoundUp ( in UInt32 value )</p>
+<span class="target" id="cbcb4b3628f44236a977ae86d9f437c5"></span><p><p class="klcode">UInt8 Log2RoundUp ( in UInt32 value )</p>
 <p class="plaintext">performs a logarithmic round up for the provided value</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f8ebc30ff40a4418830a2ccfb60ab1d1"></span><p><p class="klcode">Data OffsetByteData ( in Data base, in SInt64 byteOffset )</p>
+<span class="target" id="fd2b5552084b42bb57765ce0233410"></span><p><p class="klcode">Data OffsetByteData ( in Data base, in SInt64 byteOffset )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f227bb3f213a453fa6226cf84af4fb53"></span><p><p class="klcode">atomicClearBit ( io UInt32 val, in UInt32 bit )</p>
+<span class="target" id="feea6bc18b6b4491959dffefaad72b88"></span><p><p class="klcode">atomicClearBit ( io UInt32 val, in UInt32 bit )</p>
 <p class="plaintext">sets a bit to 0 for a given UInt32 value</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="dd84906414214f7d86346a8e6228c77b"></span><p><p class="klcode">atomicSetBit ( io UInt32 val, in UInt32 bit )</p>
+<span class="target" id="e1567a4e3282010d9b0090a457"></span><p><p class="klcode">atomicSetBit ( io UInt32 val, in UInt32 bit )</p>
 <p class="plaintext">sets a certain bit of a given UInt32 value</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="dbb9a24624956acfb211d2f3be206"></span><p><p class="klcode">atomicSetBit ( io UInt32 val, in UInt32 bit, in Boolean value )</p>
+<span class="target" id="db45f89d50a74788810ffef5e37001e5"></span><p><p class="klcode">atomicSetBit ( io UInt32 val, in UInt32 bit, in Boolean value )</p>
 <p class="plaintext">sets a bit to 0 or 1 for a given UInt32 value</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="dfbb5ed3794bf784a02b1106748c65"></span><p><p class="klcode">clearBit ( io UInt32 val, in UInt32 bit )</p>
+<span class="target" id="e38e4b95c4caa91034ee3db465f12"></span><p><p class="klcode">clearBit ( io UInt32 val, in UInt32 bit )</p>
 <p class="plaintext">sets a bit to 0 for a given UInt32 value</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c27cfa3392b44834af312696f0007ed5"></span><p><p class="klcode">clearBit ( io UInt64 val, in UInt64 bit )</p>
+<span class="target" id="e03312bdf8e649dca523aba91b671673"></span><p><p class="klcode">clearBit ( io UInt64 val, in UInt64 bit )</p>
 <p class="plaintext">sets a bit of a UInt64 value to 0</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f78e3cafc6834522a42afabf18aaef74"></span><p><p class="klcode">clearFlag ( io UInt16 val, in UInt16 flag )</p>
+<span class="target" id="bacd2404d0ef4cd2816bb32814f88308"></span><p><p class="klcode">clearFlag ( io UInt16 val, in UInt16 flag )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c78bcb733a214627b5a7cbaec97332d7"></span><p><p class="klcode">clearFlag ( io UInt8 val, in UInt8 flag )</p>
+<span class="target" id="df11ddc321147dfb2cbee6abbda5523"></span><p><p class="klcode">clearFlag ( io UInt8 val, in UInt8 flag )</p>
 <p class="plaintext">removes a given UInt8 flag from an UInt8 bit mask</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ba44a9ac2d448b29ee6d13629ccdad6"></span><p><p class="klcode"><a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> frexp ( in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> value, io Integer e )</p>
+<span class="target" id="a1d54c512e874cfb8a0d4c600d59f4d0"></span><p><p class="klcode"><a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> frexp ( in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> value, io Integer e )</p>
 <p class="plaintext">Get significant and exponent
 Breaks the floating point number x into its binary significant
 (a floating point value between 0.5(included) and 1.0(excluded))
 and an integral exponent for 2, such that:</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f5946a7dbf244811816a839edba64175"></span><p><p class="klcode"><a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> frexp ( in <a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> value, io Integer e )</p>
+<span class="target" id="d70e4dc19744435eafe502a19ee02837"></span><p><p class="klcode"><a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> frexp ( in <a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> value, io Integer e )</p>
 <p class="plaintext">Get significant and exponent
 Breaks the floating point number x into its binary significant
 (a floating point value between 0.5(included) and 1.0(excluded))
 and an integral exponent for 2, such that:</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="e0e09c94c2341ae9f48b56422df00b9"></span><p><p class="klcode">Boolean getBit ( in UInt32 val, in UInt32 bit )</p>
+<span class="target" id="ea9b9de7c8d4dacab5aeebeca7a0577"></span><p><p class="klcode">Boolean getBit ( in UInt32 val, in UInt32 bit )</p>
 <p class="plaintext">returns a certain bit of a given UInt32 value</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="af17538de4ace905b77ec89236b99"></span><p><p class="klcode">Boolean getBit ( in UInt64 val, in UInt64 bit )</p>
+<span class="target" id="c66c521c734f12af383b4e85a8d762"></span><p><p class="klcode">Boolean getBit ( in UInt64 val, in UInt64 bit )</p>
 <p class="plaintext">returns true if a given UInt64 flag is part of the UInt64 bit mask</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c6f24a46e27349c6975940aae48c5dc2"></span><p><p class="klcode">Boolean getFlag ( in UInt16 val, in UInt16 flag )</p>
+<span class="target" id="e981199cd9a4aa8ba9c93be7e1a720d"></span><p><p class="klcode">Boolean getFlag ( in UInt16 val, in UInt16 flag )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a4ac39daf72a4442874c1022ec46d99e"></span><p><p class="klcode">Boolean getFlag ( in UInt8 val, in UInt8 flag )</p>
+<span class="target" id="e6483f59dda4a6389dd8efb1963c6e0"></span><p><p class="klcode">Boolean getFlag ( in UInt8 val, in UInt8 flag )</p>
 <p class="plaintext">returns true if a given UInt8 flag is part of the UInt8 bit mask</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ea9ab471e8a7d89d04e3ff2fb"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> getSetBitsString ( in UInt32 val )</p>
+<span class="target" id="e8628894afa8487ff2d5be27acc"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> getSetBitsString ( in UInt32 val )</p>
 <p class="plaintext">returns a UInt32 number as a bitmask</p>
 <div class="highlight-kl"><div class="highlight"><pre><span class="cm">/*</span>
 <span class="cm">** Example: getSetBitsString</span>
@@ -200,263 +201,263 @@ and an integral exponent for 2, such that:</p>
 </div>
 </p>
 <hr class="docutils" />
-<span class="target" id="fbf15e7f44ac58e972daaddcc917a"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> getSetBitsString ( in UInt64 val )</p>
+<span class="target" id="d7d80a9ee46009e3b775af089ea77"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> getSetBitsString ( in UInt64 val )</p>
 <p class="plaintext">returns a UInt64 number as a bitmask</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b2d25a49beb36ab864fcd3509d"></span><p><p class="klcode">Boolean getThenClearBit ( io UInt32 val, in UInt32 bit )</p>
+<span class="target" id="f6496960b345da8692ea7e399af823"></span><p><p class="klcode">Boolean getThenClearBit ( io UInt32 val, in UInt32 bit )</p>
 <p class="plaintext">first gets and then clears a bit of a given UInt32 value</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f41aecbd4335b707a273d967157f"></span><p><p class="klcode">Boolean getThenSetBit ( io UInt32 val, in UInt32 bit )</p>
+<span class="target" id="a325d003f953470ab6e226b7efdeef47"></span><p><p class="klcode">Boolean getThenSetBit ( io UInt32 val, in UInt32 bit )</p>
 <p class="plaintext">first gets and then sets a bit of a given UInt32 value</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b4b637526b234dada02c8e673a2ecf07"></span><p><p class="klcode">Boolean getThenSetBit ( io UInt32 val, in UInt32 bit, in Boolean value )</p>
+<span class="target" id="a8bafa1334648be903dfa3d72f32252"></span><p><p class="klcode">Boolean getThenSetBit ( io UInt32 val, in UInt32 bit, in Boolean value )</p>
 <p class="plaintext">first gets and then sets a bit to 0 or 1 for a given UInt32 value</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b8d587bb3249469757f6f0c9b142da"></span><p><p class="klcode">Boolean getThenSetBit ( io UInt64 val, in UInt64 bit )</p>
+<span class="target" id="d079f8ace644821a1207f12cf8922b3"></span><p><p class="klcode">Boolean getThenSetBit ( io UInt64 val, in UInt64 bit )</p>
 <p class="plaintext">first gets and then sets a bit of a UInt64 value</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ebd7af64c20bb939a6a78747021"></span><p><p class="klcode">Boolean getThenSetBit ( io UInt64 val, in UInt64 bit, in Boolean value )</p>
+<span class="target" id="df8894dd483c6dd04bc0f0415"></span><p><p class="klcode">Boolean getThenSetBit ( io UInt64 val, in UInt64 bit, in Boolean value )</p>
 <p class="plaintext">first gets and then sets a bit of a UInt64 value to 0 or 1</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ecd0857ca4c92a6e5ca01a45b7b9e"></span><p><p class="klcode"><a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> ldexp ( in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> value, in Integer e )</p>
+<span class="target" id="e78bd0bbf234abfae7764cec981816a"></span><p><p class="klcode"><a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> ldexp ( in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> value, in Integer e )</p>
 <p class="plaintext">Generate value from significant and exponent
 Returns the result of multiplying x (the significant) by 2 raised
 to the power of exp (the exponent).</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a256835542539e7865cc854b5470"></span><p><p class="klcode"><a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> ldexp ( in <a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> value, in Integer e )</p>
+<span class="target" id="c956be7f56994199999081deed10de16"></span><p><p class="klcode"><a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> ldexp ( in <a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> value, in Integer e )</p>
 <p class="plaintext">Generate value from significant and exponent
 Returns the result of multiplying x (the significant) by 2 raised
 to the power of exp (the exponent).</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="bdb67ad935394c1f8db638fa252245a2"></span><p><p class="klcode">setBit ( io UInt32 val, in UInt32 bit )</p>
+<span class="target" id="b2d01224dce8e8754d9d9b14ac4"></span><p><p class="klcode">setBit ( io UInt32 val, in UInt32 bit )</p>
 <p class="plaintext">sets a certain bit of a given UInt32 value</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="cdaf50ca97941c29d7201400a69c28d"></span><p><p class="klcode">setBit ( io UInt32 val, in UInt32 bit, in Boolean value )</p>
+<span class="target" id="e8f0a9b0f1ea49f4bc9df4e723a11d12"></span><p><p class="klcode">setBit ( io UInt32 val, in UInt32 bit, in Boolean value )</p>
 <p class="plaintext">sets a bit to 0 or 1 for a given UInt32 value</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="feeb20c5594098aec814b52d35fbd7"></span><p><p class="klcode">setBit ( io UInt64 val, in UInt64 bit )</p>
+<span class="target" id="f76bc31f45008909d5bfd3411077"></span><p><p class="klcode">setBit ( io UInt64 val, in UInt64 bit )</p>
 <p class="plaintext">sets a bit of a given UInt64 value</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="fbffcf16bb4403be3b6b31c4f26657"></span><p><p class="klcode">setBit ( io UInt64 val, in UInt64 bit, in Boolean value )</p>
+<span class="target" id="aec56a1f4c4e22838795ed68a29152"></span><p><p class="klcode">setBit ( io UInt64 val, in UInt64 bit, in Boolean value )</p>
 <p class="plaintext">sets a bit of a UInt64 value to 0 or 1</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="e16ce67bb4334967b1a786c129e25ee1"></span><p><p class="klcode">setFlag ( io UInt16 val, in UInt16 flag )</p>
+<span class="target" id="c9b9ddf7d6499ca3cbcdc8b407e4c4"></span><p><p class="klcode">setFlag ( io UInt16 val, in UInt16 flag )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c1c73218c3455bb9a3fb7d182823ca"></span><p><p class="klcode">setFlag ( io UInt8 val, in UInt8 flag )</p>
+<span class="target" id="ef01885ecf8f4f8886be8eb501ef3742"></span><p><p class="klcode">setFlag ( io UInt8 val, in UInt8 flag )</p>
 <p class="plaintext">sets a given UInt8 flag as part of the UInt8 bit mask</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a56c723479734aa5a28bef01c96a7bd6"></span><p><p class="klcode">swap ( io UInt32 first, io UInt32 second )</p>
+<span class="target" id="c1e29b44fd74c7c9bcd099bb27795a7"></span><p><p class="klcode">swap ( io UInt32 first, io UInt32 second )</p>
 <p class="plaintext">swaps two UInt32 numbers</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f1792ac4bc614815b9b1252207414b35"></span><p><p class="klcode">Boolean synchronizeVersion ( in UInt32 source, io UInt32 observer )</p>
+<span class="target" id="a7d49ee84a809e5045bfddbb2c94"></span><p><p class="klcode">Boolean synchronizeVersion ( in UInt32 source, io UInt32 observer )</p>
 <p class="plaintext">returns true if the observer version needs to be synchronized with the source</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f2abbe37e0424afbb9cb98610e40e9fe"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/ARGB.html#argb"><span>ARGB</span></a> value )</p>
+<span class="target" id="b094c07d4baba049f0f67050358a"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/ARGB.html#argb"><span>ARGB</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ad99c34769664105beddaa766490ebff"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a> value )</p>
+<span class="target" id="c47a60e30ad419eb7a9fb531e5f6111"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="e32e156c82c4424ea454f7d27cf8fa77"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Euler.html#euler"><span>Euler</span></a> value )</p>
+<span class="target" id="a4abaccfab564430b57af6cfec90afe0"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Euler.html#euler"><span>Euler</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a34bc3c6cd0469888d71dccbd01765e"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> value )</p>
+<span class="target" id="bc00e1ed90f4409bf61cc6aaabec45d"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> value )</p>
 <p class="plaintext">Converts the <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value to a string, removing accuracy
 to ensure the same result across all platforms.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b6fe8181ee40ceb177973b8ab58aca"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> value )</p>
+<span class="target" id="fb9e22b96f64e06af6f8b2b559e6d6a"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> value )</p>
 <p class="plaintext">Converts the <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> value to a string, removing accuracy
 to ensure the same result across all platforms.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b729ff0c619c4a1b91fc21b6d9706a78"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Mat22.html#mat22"><span>Mat22</span></a> value )</p>
+<span class="target" id="ed7b7562c2194152a3ef34cae2b577b3"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Mat22.html#mat22"><span>Mat22</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="baa09fdb6845d7a28f77f123428124"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Mat33.html#mat33"><span>Mat33</span></a> value )</p>
+<span class="target" id="ccb9e43e6bfbc148b2ae4060c"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Mat33.html#mat33"><span>Mat33</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d4f799c2c674d73b01563605f82344d"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> value )</p>
+<span class="target" id="af7df0632979440399c903b89c173fab"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f29ffe80b41b5854712650e5c3253"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Quat.html#quat"><span>Quat</span></a> value )</p>
+<span class="target" id="ddda59c598a434593d8c39b5a6e3032"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Quat.html#quat"><span>Quat</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ee2ac4a1f484ed79889c3169a281543"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/RGB.html#rgb"><span>RGB</span></a> value )</p>
+<span class="target" id="abda2b0b4d243478e8d9c3eeeb95be1"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/RGB.html#rgb"><span>RGB</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b8cc17d64f9e81213c36fe87e642"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/RGBA.html#rgba"><span>RGBA</span></a> value )</p>
+<span class="target" id="ec66632ad2024aff8ab23138e6f042a1"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/RGBA.html#rgba"><span>RGBA</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="bc11909c1dab4911a37aed5b8368ea99"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Ray.html#ray"><span>Ray</span></a> value )</p>
+<span class="target" id="a8d1de04fef9b957580d63d4bf5"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Ray.html#ray"><span>Ray</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a39ae53ff1584bbeb6e816761c42e6b9"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/RotationOrder.html#rotationorder"><span>RotationOrder</span></a> value )</p>
+<span class="target" id="a942d39a2c4041e5ba48d1e221712783"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/RotationOrder.html#rotationorder"><span>RotationOrder</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="bde75a2b2a14ab583dd88a565753e78"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Vec2.html#vec2"><span>Vec2</span></a> value )</p>
+<span class="target" id="d652f449199e4eb22a067943b0"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Vec2.html#vec2"><span>Vec2</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a1ea2e0a2944d0bf1d9d8d5f0fdd70"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value )</p>
+<span class="target" id="b0b61b9ae46b5bfa6b77ad3607509"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c3ca2720206b43c7b87a6443dfb2aa97"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Vec3_d.html#vec3-d"><span>Vec3_d</span></a> value )</p>
+<span class="target" id="dae88cb4ccd48dabcf22c6501e83c76"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Vec3_d.html#vec3-d"><span>Vec3_d</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c0332487f464281238d83a0825c59"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Vec4.html#vec4"><span>Vec4</span></a> value )</p>
+<span class="target" id="c6beac21a47493caa24b1f0169eb29b"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Vec4.html#vec4"><span>Vec4</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c4ce92b11e5b4ab694f635a936c5ef05"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> value )</p>
+<span class="target" id="de689aece4c045eb858d8d43faba7f58"></span><p><p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="eafcb28d7444c58e6a2804089e9a56"></span><p><p class="klcode"><a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> unitTestTruncate ( in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> value )</p>
+<span class="target" id="a938a80ba6844159eba08d6b823418f"></span><p><p class="klcode"><a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> unitTestTruncate ( in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> value )</p>
 <p class="plaintext">Removes accuracy to the <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> value
 to ensure the same result across all platforms.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="e94ff97833145ec9b115397eed8ac45"></span><p><p class="klcode"><a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> unitTestTruncate ( in <a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> value )</p>
+<span class="target" id="d911401d6f34741b2238264f29d1106"></span><p><p class="klcode"><a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> unitTestTruncate ( in <a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> value )</p>
 <p class="plaintext">Removes accuracy to the <a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> value
 to ensure the same result across all platforms.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ffc4ddf5ce4c73adcac6fa7df9ba65"></span><p><p class="klcode">Boolean updateValue ( in Boolean source, io Boolean target )</p>
+<span class="target" id="ccc2b25035e4c28a09c9dbb9e3dc20a"></span><p><p class="klcode">Boolean updateValue ( in Boolean source, io Boolean target )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ac39c5181b584d81a9046347a4765abb"></span><p><p class="klcode">updateValue ( in Boolean source, io Boolean target, io Boolean changedAccumulator )</p>
+<span class="target" id="c82267dbb9a4d3cafdded29af53ab32"></span><p><p class="klcode">updateValue ( in Boolean source, io Boolean target, io Boolean changedAccumulator )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ac4842cd2704ba0973950f0b04bd540"></span><p><p class="klcode">updateValue ( in Boolean source, io Boolean target, io UInt32 version )</p>
+<span class="target" id="dc739de1d89348efb54e0f6ad1248393"></span><p><p class="klcode">updateValue ( in Boolean source, io Boolean target, io UInt32 version )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="df1e9684d5fa35397233f264556"></span><p><p class="klcode">Boolean updateValue ( in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> source, io <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> target )</p>
+<span class="target" id="b92d384882fe4951a90e9d11687a50df"></span><p><p class="klcode">Boolean updateValue ( in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> source, io <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> target )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f7f822b6b9a441f7bc84d56da9c98791"></span><p><p class="klcode">updateValue ( in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> source, io <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> target, io Boolean changedAccumulator )</p>
+<span class="target" id="c6f444dfaf8d4b9a92c1bc5b2a933217"></span><p><p class="klcode">updateValue ( in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> source, io <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> target, io Boolean changedAccumulator )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="efae9468dce4732ae95c7f1730fe46b"></span><p><p class="klcode">updateValue ( in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> source, io <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> target, io UInt32 version )</p>
+<span class="target" id="dffe3524f67a3bb51e4d2c1f4f4"></span><p><p class="klcode">updateValue ( in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> source, io <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> target, io UInt32 version )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ec030ed9b342e6b36cff9976d01462"></span><p><p class="klcode">Boolean updateValue ( in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> source, io UInt32 target )</p>
+<span class="target" id="e786c0dae4694d42badd81b05e4d0e12"></span><p><p class="klcode">Boolean updateValue ( in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> source, io UInt32 target )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c01b3644e9db5007eccc5b0af39"></span><p><p class="klcode">updateValue ( in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> source, io UInt32 target, io Boolean changedAccumulator )</p>
+<span class="target" id="fac10c882fb14710acd9f7228d9766a0"></span><p><p class="klcode">updateValue ( in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> source, io UInt32 target, io Boolean changedAccumulator )</p>
 <p class="plaintext">Compare bitcast to UInt32</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b3f7cfa48941468991243964a52798bf"></span><p><p class="klcode">updateValue ( in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> source, io UInt32 target, io UInt32 version )</p>
+<span class="target" id="ba60cbc7b84d418b9c5b5240620fe4d5"></span><p><p class="klcode">updateValue ( in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> source, io UInt32 target, io UInt32 version )</p>
 <p class="plaintext">Compare bitcast to UInt32</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b5c18b84d609487c85448fe4f1315332"></span><p><p class="klcode">Boolean updateValue ( in <a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> source, io <a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> target )</p>
+<span class="target" id="ccf3f7d666b04053a1ac0d6616326855"></span><p><p class="klcode">Boolean updateValue ( in <a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> source, io <a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> target )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b91d594d828caf2bbe51f7a089"></span><p><p class="klcode">updateValue ( in <a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> source, io <a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> target, io Boolean changedAccumulator )</p>
+<span class="target" id="f89b3bc5a9194647ab358382aa7fb273"></span><p><p class="klcode">updateValue ( in <a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> source, io <a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> target, io Boolean changedAccumulator )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="cb3a4a7ce4317a87201e8b2d74760"></span><p><p class="klcode">updateValue ( in <a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> source, io <a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> target, io UInt32 version )</p>
+<span class="target" id="cc4b92a513b546198a93cf3121e2c4aa"></span><p><p class="klcode">updateValue ( in <a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> source, io <a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> target, io UInt32 version )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ce34723a2a41659d46f485e36da966"></span><p><p class="klcode">Boolean updateValue ( in Object source, io Object target )</p>
+<span class="target" id="a78ada855b33402cb6ad6a1f9a3f490d"></span><p><p class="klcode">Boolean updateValue ( in Object source, io Object target )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="cb9a29f4720d4f59aceebe3d0ca2ed72"></span><p><p class="klcode">updateValue ( in Object source, io Object target, io Boolean changedAccumulator )</p>
+<span class="target" id="fea597a2484e412cba33a0e8565149d8"></span><p><p class="klcode">updateValue ( in Object source, io Object target, io Boolean changedAccumulator )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="dcda46fc3f7e4d1392ad5f1364c8c8db"></span><p><p class="klcode">updateValue ( in Object source, io Object target, io UInt32 version )</p>
+<span class="target" id="b18f2f481f88cf07a796047afd"></span><p><p class="klcode">updateValue ( in Object source, io Object target, io UInt32 version )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c2b693064e9747cfb9893b8130732757"></span><p><p class="klcode">Boolean updateValue ( in Ref&lt;Object&gt; source, io Ref&lt;Object&gt; target )</p>
+<span class="target" id="dee9954d7287457e85de89f0597c36c0"></span><p><p class="klcode">Boolean updateValue ( in Ref&lt;Object&gt; source, io Ref&lt;Object&gt; target )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f4afb9f6b4a5f0e180adb"></span><p><p class="klcode">updateValue ( in Ref&lt;Object&gt; source, io Ref&lt;Object&gt; target, io Boolean changedAccumulator )</p>
+<span class="target" id="d4deacb25f341ab8f87d2ce999d3a52"></span><p><p class="klcode">updateValue ( in Ref&lt;Object&gt; source, io Ref&lt;Object&gt; target, io Boolean changedAccumulator )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="bf6a2b81e324e93847bc7301f8aad34"></span><p><p class="klcode">updateValue ( in Ref&lt;Object&gt; source, io Ref&lt;Object&gt; target, io UInt32 version )</p>
+<span class="target" id="cfeefad1224ea6b386a6e449743f4b"></span><p><p class="klcode">updateValue ( in Ref&lt;Object&gt; source, io Ref&lt;Object&gt; target, io UInt32 version )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a4437e5e4da9b38ce1a022247147"></span><p><p class="klcode">Boolean updateValue ( in SInt32 source, io SInt32 target )</p>
+<span class="target" id="f2c613e5867a42b489b6cd3e695df641"></span><p><p class="klcode">Boolean updateValue ( in SInt32 source, io SInt32 target )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="e74cbc73acd410998afd647ccc6b41c"></span><p><p class="klcode">updateValue ( in SInt32 source, io SInt32 target, io Boolean changedAccumulator )</p>
+<span class="target" id="cf4acc646d689a5cc76037d9116"></span><p><p class="klcode">updateValue ( in SInt32 source, io SInt32 target, io Boolean changedAccumulator )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="cfd1f51526fa4127a950bf3bd1b7f0e4"></span><p><p class="klcode">updateValue ( in SInt32 source, io SInt32 target, io UInt32 version )</p>
+<span class="target" id="e9e469d5192c479c9c7bb966a55d4b5b"></span><p><p class="klcode">updateValue ( in SInt32 source, io SInt32 target, io UInt32 version )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="caaf3fe48719c6ef7ac51605487"></span><p><p class="klcode">Boolean updateValue ( in <a class="reference internal" href="String.html#string"><span>String</span></a> source, io <a class="reference internal" href="String.html#string"><span>String</span></a> target )</p>
+<span class="target" id="be4af555a8c0485cb8cbc9ed0f77d70b"></span><p><p class="klcode">Boolean updateValue ( in <a class="reference internal" href="String.html#string"><span>String</span></a> source, io <a class="reference internal" href="String.html#string"><span>String</span></a> target )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="edc8c8c83b4660b0e867812d35b4ff"></span><p><p class="klcode">updateValue ( in <a class="reference internal" href="String.html#string"><span>String</span></a> source, io <a class="reference internal" href="String.html#string"><span>String</span></a> target, io Boolean changedAccumulator )</p>
+<span class="target" id="ee6a24a38f54e04b9b3d7c0d87270d9"></span><p><p class="klcode">updateValue ( in <a class="reference internal" href="String.html#string"><span>String</span></a> source, io <a class="reference internal" href="String.html#string"><span>String</span></a> target, io Boolean changedAccumulator )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ca3bc509d5248858c194cbcc45d0c6b"></span><p><p class="klcode">updateValue ( in <a class="reference internal" href="String.html#string"><span>String</span></a> source, io <a class="reference internal" href="String.html#string"><span>String</span></a> target, io UInt32 version )</p>
+<span class="target" id="e0c2a280470a841b803ae924ad1f"></span><p><p class="klcode">updateValue ( in <a class="reference internal" href="String.html#string"><span>String</span></a> source, io <a class="reference internal" href="String.html#string"><span>String</span></a> target, io UInt32 version )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ea0d00d2d742498cc6f5d3e77eeead"></span><p><p class="klcode">Boolean updateValue ( in UInt32 source, io UInt32 target )</p>
+<span class="target" id="bd2b0bd54cb481d2893dc23737a1"></span><p><p class="klcode">Boolean updateValue ( in UInt32 source, io UInt32 target )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="df93821542d94c12aabe0f766512c562"></span><p><p class="klcode">updateValue ( in UInt32 source, io UInt32 target, io Boolean changedAccumulator )</p>
+<span class="target" id="de63bb38cbf34197b557d419fef602c7"></span><p><p class="klcode">updateValue ( in UInt32 source, io UInt32 target, io Boolean changedAccumulator )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f1bd8ad4365acbb91287662bff8"></span><p><p class="klcode">updateValue ( in UInt32 source, io UInt32 target, io UInt32 version )</p>
+<span class="target" id="da7d50ee12348b499f89ee146f8d487"></span><p><p class="klcode">updateValue ( in UInt32 source, io UInt32 target, io UInt32 version )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a3b44b806c4f1baffa47f41be909a5"></span><p><p class="klcode">Boolean updateValue ( in UInt8 source, io UInt8 target )</p>
+<span class="target" id="aa3f2989554aaa980e54290aa4ab6c"></span><p><p class="klcode">Boolean updateValue ( in UInt8 source, io UInt8 target )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="fbdab4dd3856f224e4f84cad8"></span><p><p class="klcode">updateValue ( in UInt8 source, io UInt8 target, io Boolean changedAccumulator )</p>
+<span class="target" id="dae9e6979d47588dcca23ef23146f0"></span><p><p class="klcode">updateValue ( in UInt8 source, io UInt8 target, io Boolean changedAccumulator )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="af1446db855c411da7e16dcba420090a"></span><p><p class="klcode">updateValue ( in UInt8 source, io UInt8 target, io UInt32 version )</p>
+<span class="target" id="d0d7588bc705457eaf27407a5ba2c54d"></span><p><p class="klcode">updateValue ( in UInt8 source, io UInt8 target, io UInt32 version )</p>
 </p>
 </p>
 </div>

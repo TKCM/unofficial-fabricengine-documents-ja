@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
     <link rel="up" title="FabricStatistics Extension’s Files" href="files.html" />
     <link rel="next" title="FabricStatisticsInternal.kl" href="FabricStatisticsInternal.kl.html" />
@@ -105,13 +106,13 @@ See <a class="reference internal" href="index.html#fabricstatistics"><span>Stati
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="StatisticRecord.html#statisticrecord"><span>StatisticRecord</span></a>[]</td>
-<td><a class="reference internal" href="StatisticSource.html#b356c5c4aafb42d48f4c2a4b0d885981"><span>getStatistics</span></a> ? ()</td>
+<td><a class="reference internal" href="StatisticSource.html#bf3a159c448f445b8c897737b11a03f1"><span>getStatistics</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td>Size</td>
-<td><a class="reference internal" href="StatisticSource.html#d18a8ade4904abd8ea864315467e2e7"><span>getStatisticsKey</span></a> ? ()</td>
+<td><a class="reference internal" href="StatisticSource.html#ac277ff6a42245caaa133700fa5ff99d"><span>getStatisticsKey</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="StatisticSource.html#a140cbc89af4801ba256a291b31485e"><span>setStatisticsKey</span></a> ! ( in Size key )</td>
+<td><a class="reference internal" href="StatisticSource.html#fb0ff1f980644599d44bce90542517e"><span>setStatisticsKey</span></a> ! ( in Size key )</td>
 </tr>
 </tbody>
 </table>
@@ -125,7 +126,7 @@ See <a class="reference internal" href="index.html#fabricstatistics"><span>Stati
 <hr class="docutils" />
 <p><p class="klcode">Size <a class="reference internal" href="StatisticSource.html#statisticsource"><span>StatisticSource</span></a>.getStatisticsKey? ()</p>
 <p class="plaintext">Retrieves the statistic key, for private usage from the FabricStatistic extension. This key should
-have the same value as the last <a class="reference internal" href="StatisticSource.html#a140cbc89af4801ba256a291b31485e"><span>StatisticSource.setStatisticsKey</span></a> call.</p>
+have the same value as the last <a class="reference internal" href="StatisticSource.html#fb0ff1f980644599d44bce90542517e"><span>StatisticSource.setStatisticsKey</span></a> call.</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
 <p class="last">See <a class="reference internal" href="StatisticsAutoRegisterMember.html#statisticsautoregistermember"><span>StatisticsAutoRegisterMember</span></a> for simplifying the support for this interface.</p>
@@ -134,7 +135,7 @@ have the same value as the last <a class="reference internal" href="StatisticSou
 <hr class="docutils" />
 <p><p class="klcode"><a class="reference internal" href="StatisticSource.html#statisticsource"><span>StatisticSource</span></a>.setStatisticsKey! ( in Size key )</p>
 <p class="plaintext">Sets a statistic key, for private usage from the FabricStatistic extension. This key should be stored
-and the same key should be returned by the <a class="reference internal" href="StatisticSource.html#d18a8ade4904abd8ea864315467e2e7"><span>StatisticSource.getStatisticsKey</span></a> function.</p>
+and the same key should be returned by the <a class="reference internal" href="StatisticSource.html#ac277ff6a42245caaa133700fa5ff99d"><span>StatisticSource.getStatisticsKey</span></a> function.</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
 <p class="last">See <a class="reference internal" href="StatisticsAutoRegisterMember.html#statisticsautoregistermember"><span>StatisticsAutoRegisterMember</span></a> for simplifying the support for this interface.</p>
@@ -149,7 +150,7 @@ and the same key should be returned by the <a class="reference internal" href="S
 <h2>Types<a class="headerlink" href="#types" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><div class="section" id="profilingevent-struct">
 <h3>ProfilingEvent (struct)<a class="headerlink" href="#profilingevent-struct" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p class="plaintext">Raw profiling data returned by <a class="reference internal" href="functions.html#f54950e9d7b5420695592cbd7abc37df"><span>GetProfilingEvents</span></a></p>
+<p class="plaintext">Raw profiling data returned by <a class="reference internal" href="functions.html#b4ab67eb93904ceca7c9f200ce8c27a7"><span>GetProfilingEvents</span></a></p>
 <div class="section" id="members">
 <h4>Members<a class="headerlink" href="#members" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <table border="1" class="paramtable docutils">
@@ -199,13 +200,13 @@ and the same key should be returned by the <a class="reference internal" href="S
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="ProfilingEvent.html#b805d694d17f484981c029056e2c1aa5"><span>ProfilingEvent</span></a>  ( in <a class="reference internal" href="ProfilingEvent.html#profilingevent"><span>ProfilingEvent</span></a> other )</td>
+<td><a class="reference internal" href="ProfilingEvent.html#ded3c56afa7492aabfa6f99b968303a"><span>ProfilingEvent</span></a>  ( in <a class="reference internal" href="ProfilingEvent.html#profilingevent"><span>ProfilingEvent</span></a> other )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="ProfilingEvent.html#ff1e7b613c47fc9c6155a6b3f004f6"><span>ProfilingEvent</span></a>  ()</td>
+<td><a class="reference internal" href="ProfilingEvent.html#c6afb34c46144c3bebe7067812327d5"><span>ProfilingEvent</span></a>  ()</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="ProfilingEvent.html#profilingevent"><span>ProfilingEvent</span></a></td>
-<td><a class="reference internal" href="ProfilingEvent.html#d78003b492785125c682b859e31"><span>clone</span></a> ? ()</td>
+<td><a class="reference internal" href="ProfilingEvent.html#e6cefa23345818674935ae29e9eea"><span>clone</span></a> ? ()</td>
 </tr>
 </tbody>
 </table>
@@ -216,7 +217,7 @@ and the same key should be returned by the <a class="reference internal" href="S
 <p><div class="section" id="autoprofilingevent-struct">
 <h3>AutoProfilingEvent (struct)<a class="headerlink" href="#autoprofilingevent-struct" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p class="plaintext">The <a class="reference internal" href="AutoProfilingEvent.html#autoprofilingevent"><span>AutoProfilingEvent</span></a> helper struct simplifies the recording of a profiling event by automatically calling
-<a class="reference internal" href="functions.html#b565f7320b86437e81e031ca4b5133c0"><span>BeginProfilingEvent</span></a> in its constructor and <a class="reference internal" href="functions.html#b2f55364935bca04c015af6e4bd"><span>EndProfilingEvent</span></a> in its destructor.
+<a class="reference internal" href="functions.html#f5546494857a04eabe40727db64"><span>BeginProfilingEvent</span></a> in its constructor and <a class="reference internal" href="functions.html#bbbf3b61839648d5b953598281ec3106"><span>EndProfilingEvent</span></a> in its destructor.
 This is intended to be created as a local variable, whose scope is the same as the profiled event.
 See <a class="reference internal" href="index.html#fabricstatisticsprofiling"><span>Profiling</span></a> for an example of usage.</p>
 <div class="section" id="id2">
@@ -244,19 +245,19 @@ See <a class="reference internal" href="index.html#fabricstatisticsprofiling"><s
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="AutoProfilingEvent.html#ec24bd6545bea727d5877dfa9caa"><span>AutoProfilingEvent</span></a>  ( in <a class="reference internal" href="AutoProfilingEvent.html#autoprofilingevent"><span>AutoProfilingEvent</span></a> other )</td>
+<td><a class="reference internal" href="AutoProfilingEvent.html#dec7bd2bd85b423390d73c626c4be99d"><span>AutoProfilingEvent</span></a>  ( in <a class="reference internal" href="AutoProfilingEvent.html#autoprofilingevent"><span>AutoProfilingEvent</span></a> other )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="AutoProfilingEvent.html#f7a70bec1e134bfeb6a1670de20eae17"><span>AutoProfilingEvent</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> label )</td>
+<td><a class="reference internal" href="AutoProfilingEvent.html#ba74ce0bb0647386d6f640f"><span>AutoProfilingEvent</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> label )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="AutoProfilingEvent.html#a29b4a362c74e7494a7d8080c6b81ce"><span>AutoProfilingEvent</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> label, in Ref&lt;<a class="reference internal" href="StatisticSource.html#statisticsource"><span>StatisticSource</span></a>&gt; source )</td>
+<td><a class="reference internal" href="AutoProfilingEvent.html#e95ad73b74e4411b8f9cd918fc08445c"><span>AutoProfilingEvent</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> label, in Ref&lt;<a class="reference internal" href="StatisticSource.html#statisticsource"><span>StatisticSource</span></a>&gt; source )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="AutoProfilingEvent.html#ead4ec36a5044e68a928e6a939d9820f"><span>AutoProfilingEvent</span></a>  ()</td>
+<td><a class="reference internal" href="AutoProfilingEvent.html#a480ca9cade493f8f426fae20d260e7"><span>AutoProfilingEvent</span></a>  ()</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="AutoProfilingEvent.html#autoprofilingevent"><span>AutoProfilingEvent</span></a></td>
-<td><a class="reference internal" href="AutoProfilingEvent.html#d405ed415bae4d3fad7036d4efef8b68"><span>clone</span></a> ? ()</td>
+<td><a class="reference internal" href="AutoProfilingEvent.html#d7e02649628e0442f9a0a9b78b"><span>clone</span></a> ? ()</td>
 </tr>
 </tbody>
 </table>
@@ -273,7 +274,7 @@ See <a class="reference internal" href="index.html#fabricstatisticsprofiling"><s
 <p class="plaintext">Return true if statistics collection is enabled.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last"><a class="reference internal" href="functions.html#fa3da4304185456eb332acce37c7074f"><span>EnableFabricStatistics</span></a>, <a class="reference internal" href="functions.html#dbc3571f9784a26bbd273a4ef3d6635"><span>DisableFabricStatistics</span></a></p>
+<p class="last"><a class="reference internal" href="functions.html#a0b2a6ed98435391454704dee7d6d8"><span>EnableFabricStatistics</span></a>, <a class="reference internal" href="functions.html#daf13fa1cac14ae8af7fcb7cff41ce2d"><span>DisableFabricStatistics</span></a></p>
 </div>
 </div>
 </p>
@@ -284,7 +285,7 @@ See <a class="reference internal" href="index.html#fabricstatisticsprofiling"><s
 See <a class="reference internal" href="index.html#fabricstatistics"><span>Statistics</span></a> for an example of usage.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last"><a class="reference internal" href="functions.html#dbc3571f9784a26bbd273a4ef3d6635"><span>DisableFabricStatistics</span></a>, <a class="reference internal" href="functions.html#f09cf374e74299bd701a46a3dd2636"><span>FabricStatisticsEnabled</span></a></p>
+<p class="last"><a class="reference internal" href="functions.html#daf13fa1cac14ae8af7fcb7cff41ce2d"><span>DisableFabricStatistics</span></a>, <a class="reference internal" href="functions.html#b3f609428e404a2c81abc1f258049869"><span>FabricStatisticsEnabled</span></a></p>
 </div>
 </div>
 </p>
@@ -294,7 +295,7 @@ See <a class="reference internal" href="index.html#fabricstatistics"><span>Stati
 <p class="plaintext">Disable statistics collection, and collected data is lost (reset).</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last"><a class="reference internal" href="functions.html#fa3da4304185456eb332acce37c7074f"><span>EnableFabricStatistics</span></a>, <a class="reference internal" href="functions.html#f09cf374e74299bd701a46a3dd2636"><span>FabricStatisticsEnabled</span></a></p>
+<p class="last"><a class="reference internal" href="functions.html#a0b2a6ed98435391454704dee7d6d8"><span>EnableFabricStatistics</span></a>, <a class="reference internal" href="functions.html#b3f609428e404a2c81abc1f258049869"><span>FabricStatisticsEnabled</span></a></p>
 </div>
 </div>
 </p>
@@ -308,7 +309,7 @@ See <a class="reference internal" href="index.html#fabricstatistics"><span>Stati
 </div>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last"><a class="reference internal" href="functions.html#e65aded841f69ed4a6d7e676aaa7"><span>UnregisterFromFabricStatistics</span></a>, <a class="reference internal" href="functions.html#fa3da4304185456eb332acce37c7074f"><span>EnableFabricStatistics</span></a></p>
+<p class="last"><a class="reference internal" href="functions.html#be89b8e26814ac5a9e89766ab2239bb"><span>UnregisterFromFabricStatistics</span></a>, <a class="reference internal" href="functions.html#a0b2a6ed98435391454704dee7d6d8"><span>EnableFabricStatistics</span></a></p>
 </div>
 </div>
 </p>
@@ -319,7 +320,7 @@ See <a class="reference internal" href="index.html#fabricstatistics"><span>Stati
 See <a class="reference internal" href="index.html#fabricstatistics"><span>Statistics</span></a> for an example of usage.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last"><a class="reference internal" href="functions.html#fa3da4304185456eb332acce37c7074f"><span>EnableFabricStatistics</span></a>, <a class="reference internal" href="functions.html#ee523fd9b7fe460c97dfea58e27d996b"><span>RegisterToFabricStatistics</span></a></p>
+<p class="last"><a class="reference internal" href="functions.html#a0b2a6ed98435391454704dee7d6d8"><span>EnableFabricStatistics</span></a>, <a class="reference internal" href="functions.html#c11f8be62b364c0e9005fe0dc4dac33c"><span>RegisterToFabricStatistics</span></a></p>
 </div>
 </div>
 </p>
@@ -333,7 +334,7 @@ See <a class="reference internal" href="index.html#fabricstatistics"><span>Stati
 </div>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last"><a class="reference internal" href="functions.html#ee523fd9b7fe460c97dfea58e27d996b"><span>RegisterToFabricStatistics</span></a>, <a class="reference internal" href="functions.html#fa3da4304185456eb332acce37c7074f"><span>EnableFabricStatistics</span></a></p>
+<p class="last"><a class="reference internal" href="functions.html#c11f8be62b364c0e9005fe0dc4dac33c"><span>RegisterToFabricStatistics</span></a>, <a class="reference internal" href="functions.html#a0b2a6ed98435391454704dee7d6d8"><span>EnableFabricStatistics</span></a></p>
 </div>
 </div>
 </p>
@@ -396,9 +397,8 @@ The second column is the <cite>Name</cite>. The <cite>Memory</cite> and <cite>GP
 </p>
 <p><div class="section" id="getstatisticstrings">
 <h3>GetStatisticStrings<a class="headerlink" href="#getstatisticstrings" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p class="klcode">GetStatisticStrings ( out <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> lines[], out Size levels[], in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> columnsToSelect[] )</p>
-<p class="plaintext">Returns the statistics as <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> lines and hierarchy levels (flattened hierarchy, root first).
-The <cite>Memory</cite> and <cite>GPUMemory</cite> records will be summed over the hierarchy.</p>
+<p class="klcode">GetStatisticStrings ( out <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> lines[], out Size levels[], in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> columnsToSelect[], in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> columnsToSum[] )</p>
+<p class="plaintext">Returns the statistics as <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> lines and hierarchy levels (flattened hierarchy, root first).</p>
 <table border="1" class="paramtable docutils">
 <colgroup>
 <col width="10%" />
@@ -413,6 +413,9 @@ The <cite>Memory</cite> and <cite>GPUMemory</cite> records will be summed over t
 </tr>
 <tr class="row-odd"><td>columnsToSelect</td>
 <td>Columns (record names) to gather. If empty, all statistics will be gathered.</td>
+</tr>
+<tr class="row-even"><td>columnsTosum</td>
+<td>Statistic records that should be summed over the hierarchy. Typically, <cite>Memory</cite> and <cite>GPUMemory</cite> can be summed.</td>
 </tr>
 </tbody>
 </table>
@@ -420,9 +423,8 @@ The <cite>Memory</cite> and <cite>GPUMemory</cite> records will be summed over t
 </p>
 <p><div class="section" id="id7">
 <h3>GetStatisticStrings<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p class="klcode">GetStatisticStrings ( out <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> lines[], out Size levels[], in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> columnsToSelect[] )</p>
-<p class="plaintext">Returns the statistics as <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> lines and hierarchy levels (flattened hierarchy, root first).
-The <cite>Memory</cite> and <cite>GPUMemory</cite> records will be summed over the hierarchy.</p>
+<p class="klcode">GetStatisticStrings ( out <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> lines[], out Size levels[], in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> columnsToSelect[], in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> columnsToSum[] )</p>
+<p class="plaintext">Returns the statistics as <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> lines and hierarchy levels (flattened hierarchy, root first).</p>
 <table border="1" class="paramtable docutils">
 <colgroup>
 <col width="10%" />
@@ -437,6 +439,9 @@ The <cite>Memory</cite> and <cite>GPUMemory</cite> records will be summed over t
 </tr>
 <tr class="row-odd"><td>columnsToSelect</td>
 <td>Columns (record names) to gather. If empty, all statistics will be gathered.</td>
+</tr>
+<tr class="row-even"><td>columnsTosum</td>
+<td>Statistic records that should be summed over the hierarchy. Typically, <cite>Memory</cite> and <cite>GPUMemory</cite> can be summed.</td>
 </tr>
 </tbody>
 </table>
@@ -444,9 +449,8 @@ The <cite>Memory</cite> and <cite>GPUMemory</cite> records will be summed over t
 </p>
 <p><div class="section" id="id8">
 <h3>GetStatisticStrings<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p class="klcode">GetStatisticStrings ( out <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> lines[], out Size levels[], in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> columnsToSelect[] )</p>
-<p class="plaintext">Returns the statistics as <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> lines and hierarchy levels (flattened hierarchy, root first).
-The <cite>Memory</cite> and <cite>GPUMemory</cite> records will be summed over the hierarchy.</p>
+<p class="klcode">GetStatisticStrings ( out <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> lines[], out Size levels[], in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> columnsToSelect[], in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> columnsToSum[] )</p>
+<p class="plaintext">Returns the statistics as <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> lines and hierarchy levels (flattened hierarchy, root first).</p>
 <table border="1" class="paramtable docutils">
 <colgroup>
 <col width="10%" />
@@ -462,62 +466,35 @@ The <cite>Memory</cite> and <cite>GPUMemory</cite> records will be summed over t
 <tr class="row-odd"><td>columnsToSelect</td>
 <td>Columns (record names) to gather. If empty, all statistics will be gathered.</td>
 </tr>
+<tr class="row-even"><td>columnsTosum</td>
+<td>Statistic records that should be summed over the hierarchy. Typically, <cite>Memory</cite> and <cite>GPUMemory</cite> can be summed.</td>
+</tr>
 </tbody>
 </table>
 </div>
 </p>
 <p><div class="section" id="getstatisticsreport">
 <h3>GetStatisticsReport<a class="headerlink" href="#getstatisticsreport" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> GetStatisticsReport ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> columnsToSelect[] )</p>
+<p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> GetStatisticsReport ()</p>
 <p class="plaintext">GetStatisticsReport returns a full statistics report as a single <a class="reference internal" href="../Util/String.html#string"><span>String</span></a>, providing a simple way to dump the results in the console from KL.
-The <cite>Memory</cite> and <cite>GPUMemory</cite> records will be summed over the hierarchy.</p>
-<table border="1" class="paramtable docutils">
-<colgroup>
-<col width="18%" />
-<col width="82%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>columnsToSelect</td>
-<td>Columns (record names) to gather. If empty, all statistics will be gathered.</td>
-</tr>
-</tbody>
-</table>
+The <cite>Memory</cite> and <cite>GPUMemory</cite> records will be summed over the hierarchy.
+See <a class="reference internal" href="index.html#fabricstatistics"><span>Statistics</span></a> for an example of usage.</p>
 </div>
 </p>
 <p><div class="section" id="id9">
 <h3>GetStatisticsReport<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> GetStatisticsReport ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> columnsToSelect[] )</p>
+<p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> GetStatisticsReport ()</p>
 <p class="plaintext">GetStatisticsReport returns a full statistics report as a single <a class="reference internal" href="../Util/String.html#string"><span>String</span></a>, providing a simple way to dump the results in the console from KL.
-The <cite>Memory</cite> and <cite>GPUMemory</cite> records will be summed over the hierarchy.</p>
-<table border="1" class="paramtable docutils">
-<colgroup>
-<col width="18%" />
-<col width="82%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>columnsToSelect</td>
-<td>Columns (record names) to gather. If empty, all statistics will be gathered.</td>
-</tr>
-</tbody>
-</table>
+The <cite>Memory</cite> and <cite>GPUMemory</cite> records will be summed over the hierarchy.
+See <a class="reference internal" href="index.html#fabricstatistics"><span>Statistics</span></a> for an example of usage.</p>
 </div>
 </p>
 <p><div class="section" id="id10">
 <h3>GetStatisticsReport<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> GetStatisticsReport ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> columnsToSelect[] )</p>
+<p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> GetStatisticsReport ()</p>
 <p class="plaintext">GetStatisticsReport returns a full statistics report as a single <a class="reference internal" href="../Util/String.html#string"><span>String</span></a>, providing a simple way to dump the results in the console from KL.
-The <cite>Memory</cite> and <cite>GPUMemory</cite> records will be summed over the hierarchy.</p>
-<table border="1" class="paramtable docutils">
-<colgroup>
-<col width="18%" />
-<col width="82%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>columnsToSelect</td>
-<td>Columns (record names) to gather. If empty, all statistics will be gathered.</td>
-</tr>
-</tbody>
-</table>
+The <cite>Memory</cite> and <cite>GPUMemory</cite> records will be summed over the hierarchy.
+See <a class="reference internal" href="index.html#fabricstatistics"><span>Statistics</span></a> for an example of usage.</p>
 </div>
 </p>
 <p><div class="section" id="fabricprofilingenabled">
@@ -529,13 +506,13 @@ The <cite>Memory</cite> and <cite>GPUMemory</cite> records will be summed over t
 <p><div class="section" id="startfabricprofiling">
 <h3>StartFabricProfiling<a class="headerlink" href="#startfabricprofiling" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p class="klcode">StartFabricProfiling ()</p>
-<p class="plaintext">Enables profiling events recording until <a class="reference internal" href="functions.html#b503a357a68f40f7867a4b65ead5be0a"><span>StopFabricProfiling</span></a> is called.</p>
+<p class="plaintext">Enables profiling events recording until <a class="reference internal" href="functions.html#cbf77ec2bf9a4ceeba62e433b92e850b"><span>StopFabricProfiling</span></a> is called.</p>
 </div>
 </p>
 <p><div class="section" id="id11">
 <h3>StartFabricProfiling<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p class="klcode">StartFabricProfiling ()</p>
-<p class="plaintext">Enables profiling events recording until <a class="reference internal" href="functions.html#b503a357a68f40f7867a4b65ead5be0a"><span>StopFabricProfiling</span></a> is called.</p>
+<p class="plaintext">Enables profiling events recording until <a class="reference internal" href="functions.html#cbf77ec2bf9a4ceeba62e433b92e850b"><span>StopFabricProfiling</span></a> is called.</p>
 </div>
 </p>
 <p><div class="section" id="startfabricprofilingframes">
@@ -544,7 +521,7 @@ The <cite>Memory</cite> and <cite>GPUMemory</cite> records will be summed over t
 <p class="plaintext">Enables profiling events recording for a certain number of frames.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last"><a class="reference internal" href="functions.html#b9406b95de88bd658a70c5"><span>FabricProfilingBeginFrame</span></a></p>
+<p class="last"><a class="reference internal" href="functions.html#f38f275c87f84bf5b4c3a5879a883eba"><span>FabricProfilingBeginFrame</span></a></p>
 </div>
 </div>
 </p>
@@ -554,7 +531,7 @@ The <cite>Memory</cite> and <cite>GPUMemory</cite> records will be summed over t
 <p class="plaintext">Marks the beginning of a new frame for profiling purposes.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">参考</p>
-<p class="last"><a class="reference internal" href="functions.html#b9406b95de88bd658a70c5"><span>FabricProfilingBeginFrame</span></a>, <a class="reference internal" href="functions.html#aa418dd6815473d9e0d9b9277f96000"><span>StartFabricProfiling</span></a></p>
+<p class="last"><a class="reference internal" href="functions.html#f38f275c87f84bf5b4c3a5879a883eba"><span>FabricProfilingBeginFrame</span></a>, <a class="reference internal" href="functions.html#b4429828041432d952d1aa426918b4b"><span>StartFabricProfiling</span></a></p>
 </div>
 <table border="1" class="paramtable docutils">
 <colgroup>
@@ -583,7 +560,7 @@ See <a class="reference internal" href="index.html#fabricstatisticsprofiling"><s
 <h3>BeginProfilingEvent<a class="headerlink" href="#beginprofilingevent" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p class="klcode">Size BeginProfilingEvent ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> label, in Ref&lt;<a class="reference internal" href="StatisticSource.html#statisticsource"><span>StatisticSource</span></a>&gt; source )</p>
 <p class="plaintext">Records a profiling event.
-The function returns a <cite>key</cite> that is needed for calling the associated <a class="reference internal" href="functions.html#b2f55364935bca04c015af6e4bd"><span>EndProfilingEvent</span></a>.
+The function returns a <cite>key</cite> that is needed for calling the associated <a class="reference internal" href="functions.html#bbbf3b61839648d5b953598281ec3106"><span>EndProfilingEvent</span></a>.
 It is recommended to use the <a class="reference internal" href="AutoProfilingEvent.html#autoprofilingevent"><span>AutoProfilingEvent</span></a> helper, for simplicity and to minimize error risks.
 See <a class="reference internal" href="index.html#fabricstatisticsprofiling"><span>Profiling</span></a> for an example of usage.</p>
 <table border="1" class="paramtable docutils">
@@ -606,7 +583,7 @@ See <a class="reference internal" href="index.html#fabricstatisticsprofiling"><s
 <h3>BeginProfilingEvent<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p class="klcode">Size BeginProfilingEvent ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> label, in Ref&lt;<a class="reference internal" href="StatisticSource.html#statisticsource"><span>StatisticSource</span></a>&gt; source )</p>
 <p class="plaintext">Records a profiling event.
-The function returns a <cite>key</cite> that is needed for calling the associated <a class="reference internal" href="functions.html#b2f55364935bca04c015af6e4bd"><span>EndProfilingEvent</span></a>.
+The function returns a <cite>key</cite> that is needed for calling the associated <a class="reference internal" href="functions.html#bbbf3b61839648d5b953598281ec3106"><span>EndProfilingEvent</span></a>.
 It is recommended to use the <a class="reference internal" href="AutoProfilingEvent.html#autoprofilingevent"><span>AutoProfilingEvent</span></a> helper, for simplicity and to minimize error risks.
 See <a class="reference internal" href="index.html#fabricstatisticsprofiling"><span>Profiling</span></a> for an example of usage.</p>
 <table border="1" class="paramtable docutils">
@@ -628,7 +605,7 @@ See <a class="reference internal" href="index.html#fabricstatisticsprofiling"><s
 <p><div class="section" id="endprofilingevent">
 <h3>EndProfilingEvent<a class="headerlink" href="#endprofilingevent" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p class="klcode">EndProfilingEvent ( in Size key )</p>
-<p class="plaintext">Records the end of a profiling event. The <cite>key</cite> must be the returned value of the associated <a class="reference internal" href="functions.html#b565f7320b86437e81e031ca4b5133c0"><span>BeginProfilingEvent</span></a> call.
+<p class="plaintext">Records the end of a profiling event. The <cite>key</cite> must be the returned value of the associated <a class="reference internal" href="functions.html#f5546494857a04eabe40727db64"><span>BeginProfilingEvent</span></a> call.
 It is recommended to use the <a class="reference internal" href="AutoProfilingEvent.html#autoprofilingevent"><span>AutoProfilingEvent</span></a> helper, for simplicity and to minimize error risks.</p>
 </div>
 </p>

@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
     <link rel="up" title="Util Extension’s Files" href="files.html" />
     <link rel="next" title="PEXUtils.kl" href="PEXUtils.kl.html" />
@@ -61,7 +62,7 @@
 <h2>Functions<a class="headerlink" href="#functions" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><div class="section" id="frexp">
 <h3>frexp<a class="headerlink" href="#frexp" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p class="klcode"><a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> frexp ( in <a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> value, io Integer e )</p>
+<p class="klcode"><a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> frexp ( in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> value, io Integer e )</p>
 <p class="plaintext">Get significant and exponent
 Breaks the floating point number x into its binary significant
 (a floating point value between 0.5(included) and 1.0(excluded))
@@ -70,7 +71,7 @@ and an integral exponent for 2, such that:</p>
 </p>
 <p><div class="section" id="id2">
 <h3>frexp<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p class="klcode"><a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> frexp ( in <a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> value, io Integer e )</p>
+<p class="klcode"><a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> frexp ( in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> value, io Integer e )</p>
 <p class="plaintext">Get significant and exponent
 Breaks the floating point number x into its binary significant
 (a floating point value between 0.5(included) and 1.0(excluded))
@@ -79,7 +80,7 @@ and an integral exponent for 2, such that:</p>
 </p>
 <p><div class="section" id="ldexp">
 <h3>ldexp<a class="headerlink" href="#ldexp" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p class="klcode"><a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> ldexp ( in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> value, in Integer e )</p>
+<p class="klcode"><a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> ldexp ( in <a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> value, in Integer e )</p>
 <p class="plaintext">Generate value from significant and exponent
 Returns the result of multiplying x (the significant) by 2 raised
 to the power of exp (the exponent).</p>
@@ -87,7 +88,7 @@ to the power of exp (the exponent).</p>
 </p>
 <p><div class="section" id="id3">
 <h3>ldexp<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p class="klcode"><a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> ldexp ( in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> value, in Integer e )</p>
+<p class="klcode"><a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> ldexp ( in <a class="reference internal" href="../Math/Float64.html#float64"><span>Float64</span></a> value, in Integer e )</p>
 <p class="plaintext">Generate value from significant and exponent
 Returns the result of multiplying x (the significant) by 2 raised
 to the power of exp (the exponent).</p>
@@ -102,7 +103,7 @@ to ensure the same result across all platforms.</p>
 </p>
 <p><div class="section" id="unittestprint">
 <h3>unitTestPrint<a class="headerlink" href="#unittestprint" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Euler.html#euler"><span>Euler</span></a> value )</p>
+<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </div>
@@ -116,119 +117,119 @@ to ensure the same result across all platforms.</p>
 </p>
 <p><div class="section" id="id5">
 <h3>unitTestPrint<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Euler.html#euler"><span>Euler</span></a> value )</p>
+<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </div>
 </p>
 <p><div class="section" id="id6">
 <h3>unitTestPrint<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Euler.html#euler"><span>Euler</span></a> value )</p>
+<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </div>
 </p>
 <p><div class="section" id="id7">
 <h3>unitTestPrint<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Euler.html#euler"><span>Euler</span></a> value )</p>
+<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </div>
 </p>
 <p><div class="section" id="id8">
 <h3>unitTestPrint<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Euler.html#euler"><span>Euler</span></a> value )</p>
+<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </div>
 </p>
 <p><div class="section" id="id9">
 <h3>unitTestPrint<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Euler.html#euler"><span>Euler</span></a> value )</p>
+<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </div>
 </p>
 <p><div class="section" id="id10">
 <h3>unitTestPrint<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Euler.html#euler"><span>Euler</span></a> value )</p>
+<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </div>
 </p>
 <p><div class="section" id="id11">
 <h3>unitTestPrint<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Euler.html#euler"><span>Euler</span></a> value )</p>
+<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </div>
 </p>
 <p><div class="section" id="id12">
 <h3>unitTestPrint<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Euler.html#euler"><span>Euler</span></a> value )</p>
+<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </div>
 </p>
 <p><div class="section" id="id13">
 <h3>unitTestPrint<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Euler.html#euler"><span>Euler</span></a> value )</p>
+<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </div>
 </p>
 <p><div class="section" id="id14">
 <h3>unitTestPrint<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Euler.html#euler"><span>Euler</span></a> value )</p>
+<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </div>
 </p>
 <p><div class="section" id="id15">
 <h3>unitTestPrint<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Euler.html#euler"><span>Euler</span></a> value )</p>
+<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </div>
 </p>
 <p><div class="section" id="id16">
 <h3>unitTestPrint<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Euler.html#euler"><span>Euler</span></a> value )</p>
+<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </div>
 </p>
 <p><div class="section" id="id17">
 <h3>unitTestPrint<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Euler.html#euler"><span>Euler</span></a> value )</p>
+<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </div>
 </p>
 <p><div class="section" id="id18">
 <h3>unitTestPrint<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Euler.html#euler"><span>Euler</span></a> value )</p>
+<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </div>
 </p>
 <p><div class="section" id="id19">
 <h3>unitTestPrint<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Euler.html#euler"><span>Euler</span></a> value )</p>
+<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </div>
 </p>
 <p><div class="section" id="id20">
 <h3>unitTestPrint<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Euler.html#euler"><span>Euler</span></a> value )</p>
+<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </div>
 </p>
 <p><div class="section" id="id21">
 <h3>unitTestPrint<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Euler.html#euler"><span>Euler</span></a> value )</p>
+<p class="klcode"><a class="reference internal" href="String.html#string"><span>String</span></a> unitTestPrint ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> value )</p>
 <p class="plaintext">Converts the value to a string
 ensuring the same result across all platforms.</p>
 </div>

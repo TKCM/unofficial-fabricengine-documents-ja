@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" /> 
   </head>
   <body role="document">
@@ -113,22 +114,22 @@ The actual overlapping pair management, storage, adding and removing of pairs is
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#e9afa8d9a5fa46a9a4bc90b70edc7a49"><span>aabbTest</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> aabbMin, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> aabbMax, in <a class="reference internal" href="BulletBroadphaseAabbCallback.html#bulletbroadphaseaabbcallback"><span>BulletBroadphaseAabbCallback</span></a> callback )</td>
+<td><a class="reference internal" href="#d3f117caf4f179e1a4c352397b382"><span>aabbTest</span></a> ? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> aabbMin, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> aabbMax, in <a class="reference internal" href="BulletBroadphaseAabbCallback.html#bulletbroadphaseaabbcallback"><span>BulletBroadphaseAabbCallback</span></a> callback )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#a1323d7607024a54ad34f617646fda5a"><span>calculateOverlappingPairs</span></a> ! ( in <a class="reference internal" href="BulletDispatcher.html#bulletdispatcher"><span>BulletDispatcher</span></a> dispatcher )</td>
+<td><a class="reference internal" href="#f5e72e8d283e473e807d5bbc1167add9"><span>calculateOverlappingPairs</span></a> ! ( in <a class="reference internal" href="BulletDispatcher.html#bulletdispatcher"><span>BulletDispatcher</span></a> dispatcher )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#c1dce880fba34e469c118fbcc5523174"><span>getBroadphaseAabb</span></a> ? ( io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> aabbMin, io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> aabbMax )</td>
+<td><a class="reference internal" href="#f29122cf0e44d1391a183ab906d0611"><span>getBroadphaseAabb</span></a> ? ( io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> aabbMin, io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> aabbMax )</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="BulletOverlappingPairCache.html#bulletoverlappingpaircache"><span>BulletOverlappingPairCache</span></a></td>
-<td><a class="reference internal" href="#a56f789924d7c908e8c1c2c94888e"><span>getOverlappingPairCache</span></a> ? ()</td>
+<td><a class="reference internal" href="#ce573a436483187fdb4bef5112d3c"><span>getOverlappingPairCache</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td>Data</td>
-<td><a class="reference internal" href="#c59e539b3d0244ef90ee2356c082bbd8"><span>getPointer</span></a> ? ()</td>
+<td><a class="reference internal" href="#b358b8349b8f4cdb9800094ffa82818b"><span>getPointer</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#f79d11674787b1d5656d5ababc65"><span>resetPool</span></a> ! ( in <a class="reference internal" href="BulletDispatcher.html#bulletdispatcher"><span>BulletDispatcher</span></a> dispatcher )</td>
+<td><a class="reference internal" href="#bdcdde5439b815b498bd9fa4c05"><span>resetPool</span></a> ! ( in <a class="reference internal" href="BulletDispatcher.html#bulletdispatcher"><span>BulletDispatcher</span></a> dispatcher )</td>
 </tr>
 </tbody>
 </table>
@@ -136,25 +137,25 @@ The actual overlapping pair management, storage, adding and removing of pairs is
 </div>
 <div class="section" id="functions-in-detail">
 <h2>Functions in detail<a class="headerlink" href="#functions-in-detail" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><span class="target" id="e9afa8d9a5fa46a9a4bc90b70edc7a49"></span><p><p class="klcode"><a class="reference internal" href="#bulletbroadphaseinterface"><span>BulletBroadphaseInterface</span></a>.aabbTest? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> aabbMin, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> aabbMax, in <a class="reference internal" href="BulletBroadphaseAabbCallback.html#bulletbroadphaseaabbcallback"><span>BulletBroadphaseAabbCallback</span></a> callback )</p>
+<p><span class="target" id="d3f117caf4f179e1a4c352397b382"></span><p><p class="klcode"><a class="reference internal" href="#bulletbroadphaseinterface"><span>BulletBroadphaseInterface</span></a>.aabbTest? ( in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> aabbMin, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> aabbMax, in <a class="reference internal" href="BulletBroadphaseAabbCallback.html#bulletbroadphaseaabbcallback"><span>BulletBroadphaseAabbCallback</span></a> callback )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a1323d7607024a54ad34f617646fda5a"></span><p><p class="klcode"><a class="reference internal" href="#bulletbroadphaseinterface"><span>BulletBroadphaseInterface</span></a>.calculateOverlappingPairs! ( in <a class="reference internal" href="BulletDispatcher.html#bulletdispatcher"><span>BulletDispatcher</span></a> dispatcher )</p>
+<span class="target" id="f5e72e8d283e473e807d5bbc1167add9"></span><p><p class="klcode"><a class="reference internal" href="#bulletbroadphaseinterface"><span>BulletBroadphaseInterface</span></a>.calculateOverlappingPairs! ( in <a class="reference internal" href="BulletDispatcher.html#bulletdispatcher"><span>BulletDispatcher</span></a> dispatcher )</p>
 <p class="plaintext">calculateOverlappingPairs is optional: incremental algorithms (sweep and prune) might do it during the set aabb</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c1dce880fba34e469c118fbcc5523174"></span><p><p class="klcode"><a class="reference internal" href="#bulletbroadphaseinterface"><span>BulletBroadphaseInterface</span></a>.getBroadphaseAabb? ( io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> aabbMin, io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> aabbMax )</p>
+<span class="target" id="f29122cf0e44d1391a183ab906d0611"></span><p><p class="klcode"><a class="reference internal" href="#bulletbroadphaseinterface"><span>BulletBroadphaseInterface</span></a>.getBroadphaseAabb? ( io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> aabbMin, io <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> aabbMax )</p>
 <p class="plaintext">getAabb returns the axis aligned bounding box in the &#8216;global&#8217; coordinate frame
 will add some transform later</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a56f789924d7c908e8c1c2c94888e"></span><p><p class="klcode"><a class="reference internal" href="BulletOverlappingPairCache.html#bulletoverlappingpaircache"><span>BulletOverlappingPairCache</span></a> <a class="reference internal" href="#bulletbroadphaseinterface"><span>BulletBroadphaseInterface</span></a>.getOverlappingPairCache? ()</p>
+<span class="target" id="ce573a436483187fdb4bef5112d3c"></span><p><p class="klcode"><a class="reference internal" href="BulletOverlappingPairCache.html#bulletoverlappingpaircache"><span>BulletOverlappingPairCache</span></a> <a class="reference internal" href="#bulletbroadphaseinterface"><span>BulletBroadphaseInterface</span></a>.getOverlappingPairCache? ()</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c59e539b3d0244ef90ee2356c082bbd8"></span><p><p class="klcode">Data <a class="reference internal" href="#bulletbroadphaseinterface"><span>BulletBroadphaseInterface</span></a>.getPointer? ()</p>
+<span class="target" id="b358b8349b8f4cdb9800094ffa82818b"></span><p><p class="klcode">Data <a class="reference internal" href="#bulletbroadphaseinterface"><span>BulletBroadphaseInterface</span></a>.getPointer? ()</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f79d11674787b1d5656d5ababc65"></span><p><p class="klcode"><a class="reference internal" href="#bulletbroadphaseinterface"><span>BulletBroadphaseInterface</span></a>.resetPool! ( in <a class="reference internal" href="BulletDispatcher.html#bulletdispatcher"><span>BulletDispatcher</span></a> dispatcher )</p>
+<span class="target" id="bdcdde5439b815b498bd9fa4c05"></span><p><p class="klcode"><a class="reference internal" href="#bulletbroadphaseinterface"><span>BulletBroadphaseInterface</span></a>.resetPool! ( in <a class="reference internal" href="BulletDispatcher.html#bulletdispatcher"><span>BulletDispatcher</span></a> dispatcher )</p>
 <p class="plaintext">reset broadphase internal structures, to ensure determinism/reproducability</p>
 </p>
 </p>

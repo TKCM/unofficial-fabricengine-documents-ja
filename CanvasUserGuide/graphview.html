@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" />
     <link rel="up" title="Canvas ユーザガイド" href="index.html" />
     <link rel="next" title="Timeline ウィジェット" href="timeline.html" />
@@ -148,7 +149,7 @@
 </li>
 </ul>
 </li>
-<li><p class="first"><em class="dfn">persist value</em> チェックボックスはトップレベルのグラフでのみ現れます。チェックを入れるとポートの値がグラフと共にpersist ―永続化、保存― されることを示します。 チェックが入らない場合、再度グラフを読み込むとポートの値はディフォルトへとリセットされます。値の永続化についての技術的詳細は <a class="reference internal" href="../CanvasProgrammerGuide/valuepersistance.html#canvas-programmer-guide-valuepersistance"><span>Port value persistance</span></a> を参照してください。</p>
+<li><p class="first"><em class="dfn">persist value</em> チェックボックスはトップレベルのグラフでのみ現れます。チェックを入れるとポートの値がグラフと共にpersist ―永続化、保存― されることを示します。 チェックが入らない場合、再度グラフを読み込むとポートの値はディフォルトへとリセットされます。値の永続化についての技術的詳細は <a class="reference internal" href="../CanvasProgrammerGuide/valuepersistance.html#canvas-programmer-guide-valuepersistance"><span>ポートの値の永続化（Port value persistance）</span></a> を参照してください。</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
 <p class="last">Maya や Softimage では、このオプションは変更した値や単純な型に応じ自動で設定されます。</p>
@@ -166,7 +167,7 @@
 </div>
 <div class="section" id="execute-ports">
 <h2>Execute ポート<a class="headerlink" href="#execute-ports" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>幾つかのノードでは <em class="dfn">Execute</em> とよばれる特別なノード必要とします。このノードはデータをやりとりすためではなく、特定のノード間を純粋にデイジーチェーンするためだけに存在します。データフローのためには <em class="dfn">Execute.Merge</em> とともに使用します。プログラマガイド内の <a class="reference internal" href="../CanvasProgrammerGuide/kl2dfg.html#canvas-programmer-guide-kl2dfg"><span>KL2DFG Command line utility</span></a> に詳細な情報があります。</p>
+<p>幾つかのノードでは <em class="dfn">Execute</em> とよばれる特別なノード必要とします。このノードはデータをやりとりすためではなく、特定のノード間を純粋にデイジーチェーンするためだけに存在します。データフローのためには <em class="dfn">Execute.Merge</em> とともに使用します。プログラマガイド内の <a class="reference internal" href="../CanvasProgrammerGuide/kl2dfg.html#canvas-programmer-guide-kl2dfg"><span>KL2DFG コマンドラインユーティリティ</span></a> に詳細な情報があります。</p>
 </div>
 <div class="section" id="subgraphs">
 <h2>サブグラフ<a class="headerlink" href="#subgraphs" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -196,7 +197,7 @@
 </div>
 <div class="section" id="custom-kl-nodes">
 <h2>カスタム KL ノード<a class="headerlink" href="#custom-kl-nodes" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Canvas ノードでは KL関数をノードに含むこともできます。KL関数ノードの作成には、グラフ中何もない場所を右クリックし <em class="dfn">New empty function</em> を選びます。KL関数を編集するには、そのノードをシフトキーを押しながらダブルクリックするか、ノードのコンテキストメニューから <em class="dfn">Edit</em> を選びます。カスタムKL関数についてのより詳しい情報はプログラマガイド内 <a class="reference internal" href="../CanvasProgrammerGuide/klfunctioneditor.html#canvas-programmer-guide-klfunctioneditor"><span>KL Function Editor</span></a> を参照してください。</p>
+<p>Canvas ノードでは KL関数をノードに含むこともできます。KL関数ノードの作成には、グラフ中何もない場所を右クリックし <em class="dfn">New empty function</em> を選びます。KL関数を編集するには、そのノードをシフトキーを押しながらダブルクリックするか、ノードのコンテキストメニューから <em class="dfn">Edit</em> を選びます。カスタムKL関数についてのより詳しい情報はプログラマガイド内 <a class="reference internal" href="../CanvasProgrammerGuide/klfunctioneditor.html#canvas-programmer-guide-klfunctioneditor"><span>KL Function エディタ</span></a> を参照してください。</p>
 </div>
 <div class="section" id="backdrops">
 <h2>Backdrops<a class="headerlink" href="#backdrops" title="このヘッドラインへのパーマリンク">¶</a></h2>

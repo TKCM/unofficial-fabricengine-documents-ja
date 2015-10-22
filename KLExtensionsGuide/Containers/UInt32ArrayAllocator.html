@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
     <link rel="up" title="Containers Extension’s Types" href="types.html" />
     <link rel="next" title="UInt32ArrayNoFree (struct)" href="UInt32ArrayNoFree.html" />
@@ -64,11 +65,11 @@ the owner can use a more compact encoding for the size. A simple way is to use t
 <p class="plaintext">Using a single buffer has multiple performance benefits, such as avoiding multiple heap allocation calls (slow),
 avoiding memory fragmentation (reduces global memory usage) and making the data access CPU cache friendly.
 This allocator is not threadsafe, but supporting a single thread avoids locking checks overhead.</p>
-<p class="plaintext">For performance reason, this allocator will only grow, unless <a class="reference internal" href="#fbac770d6feb45688f7738605dc18150"><span>UInt32ArrayAllocator.clear</span></a> or <a class="reference internal" href="#e9413fc830746f7b60dbd487be9097f"><span>UInt32ArrayAllocator.recompact</span></a> is called.
-A proper usage of this allocator should call <a class="reference internal" href="#e9413fc830746f7b60dbd487be9097f"><span>UInt32ArrayAllocator.recompact</span></a> when a large enough portion of the memory is unused (eg: 25% or 50%).</p>
+<p class="plaintext">For performance reason, this allocator will only grow, unless <a class="reference internal" href="#e2f6e4622d74e909cb84b083db8c400"><span>UInt32ArrayAllocator.clear</span></a> or <a class="reference internal" href="#bbd3b2f567c34e17ade22963d25a0789"><span>UInt32ArrayAllocator.recompact</span></a> is called.
+A proper usage of this allocator should call <a class="reference internal" href="#bbd3b2f567c34e17ade22963d25a0789"><span>UInt32ArrayAllocator.recompact</span></a> when a large enough portion of the memory is unused (eg: 25% or 50%).</p>
 <p class="plaintext">Although the <a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a> is able to reused free storage by using simplified heap-like structure, the user that cares
 about memory usage should monitor the portion of unused data (internal fragmentation) and recompact it when this portion is large
-enough (eg: 50%). This can be done through a call to <a class="reference internal" href="#e9413fc830746f7b60dbd487be9097f"><span>UInt32ArrayAllocator.recompact</span></a>, however the caller needs to remap all its indices
+enough (eg: 50%). This can be done through a call to <a class="reference internal" href="#bbd3b2f567c34e17ade22963d25a0789"><span>UInt32ArrayAllocator.recompact</span></a>, however the caller needs to remap all its indices
 accordingly.</p>
 <p class="plaintext">For optimal performance, the array indices (keys) are not safeguarded. The user should do the safeguarding if required.</p>
 <div class="admonition note">
@@ -183,46 +184,46 @@ accordingly.</p>
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#b6535e0c5a544c9ca7879783330ba837"><span>UInt32ArrayAllocator</span></a>  ( in <a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a> other )</td>
+<td><a class="reference internal" href="#f1893716def41ceaa9693147df2882e"><span>UInt32ArrayAllocator</span></a>  ( in <a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a> other )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
 <td><span class="xref std std-ref">UInt32ArrayAllocator</span>  ()</td>
 </tr>
 <tr class="row-odd"><td>UInt32</td>
-<td><a class="reference internal" href="#ad4d850364c4c519842370952aa7fe7"><span>allocate</span></a> ! ( in UInt32 allocateCount, in UInt32 reserveCount )</td>
+<td><a class="reference internal" href="#f31d46fde78244c3a017585063c6dc2c"><span>allocate</span></a> ! ( in UInt32 allocateCount, in UInt32 reserveCount )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#c42f44e13b5f42299b5e5a7ad98223a5"><span>append</span></a> ! ( in <a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a> other, io Size dataOffset )</td>
+<td><a class="reference internal" href="#bcbc01e2dfc452cb36bf0f91fc581d1"><span>append</span></a> ! ( in <a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a> other, io Size dataOffset )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#fbac770d6feb45688f7738605dc18150"><span>clear</span></a> ! ()</td>
+<td><a class="reference internal" href="#e2f6e4622d74e909cb84b083db8c400"><span>clear</span></a> ! ()</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a></td>
-<td><a class="reference internal" href="#bb51c4da7ac12e7a225b3445c"><span>clone</span></a> ? ()</td>
+<td><a class="reference internal" href="#e843a23ff8646558a0b31607be0676d"><span>clone</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#fe77296dc3241909f9b1953e0cc5396"><span>copy</span></a> ! ( in <a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a> src )</td>
+<td><a class="reference internal" href="#ae421d72e8304392b46def4d19bce7e4"><span>copy</span></a> ! ( in <a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a> src )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#a94d29c3df4a778612b6ce4fd4bf20"><span>free</span></a> ! ( in UInt32 head, in UInt32 count )</td>
+<td><a class="reference internal" href="#d3082772f2114a7788fa646eed17cf53"><span>free</span></a> ! ( in UInt32 head, in UInt32 count )</td>
 </tr>
 <tr class="row-odd"><td>Boolean</td>
-<td><a class="reference internal" href="#baadbdde4f4d938a8cb2c724c9ff59"><span>isUsed</span></a> ? ( in UInt32 i )</td>
+<td><a class="reference internal" href="#bbe403a5d94c549cb5ff0bf1c66d25"><span>isUsed</span></a> ? ( in UInt32 i )</td>
 </tr>
 <tr class="row-even"><td>Size</td>
-<td><a class="reference internal" href="#feca223ccea64532914a093ec62291f7"><span>memUsage</span></a> ? ()</td>
+<td><a class="reference internal" href="#cfc297487fd488cb4aff4bbc7e5b880"><span>memUsage</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td>UInt32</td>
-<td><a class="reference internal" href="#f552b4f5e0354fbab2dc94e77bb47488"><span>reallocate</span></a> ! ( in UInt32 head, in UInt32 prevCount, in UInt32 newCount, in UInt32 reserveCountIfShrinkOrMove )</td>
+<td><a class="reference internal" href="#ca2a60f3cbac43048b7d3699ea7b827a"><span>reallocate</span></a> ! ( in UInt32 head, in UInt32 prevCount, in UInt32 newCount, in UInt32 reserveCountIfShrinkOrMove )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#e9413fc830746f7b60dbd487be9097f"><span>recompact</span></a> ! ( io UInt32 oldIndexToNewIndex[] )</td>
+<td><a class="reference internal" href="#bbd3b2f567c34e17ade22963d25a0789"><span>recompact</span></a> ! ( io UInt32 oldIndexToNewIndex[] )</td>
 </tr>
 <tr class="row-odd"><td>UInt32</td>
-<td><a class="reference internal" href="#c01f9254546dea8c9b28eb37f0548"><span>size</span></a> ? ()</td>
+<td><a class="reference internal" href="#f0e3ec364504ac5bcf1fb3880949"><span>size</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td>UInt32</td>
-<td><a class="reference internal" href="#df654c389f6d453592fe451bda9c21d7"><span>unusedSize</span></a> ? ()</td>
+<td><a class="reference internal" href="#bebe7c358c4da0b5bc625753714f4c"><span>unusedSize</span></a> ? ()</td>
 </tr>
 </tbody>
 </table>
@@ -230,12 +231,12 @@ accordingly.</p>
 </div>
 <div class="section" id="methods-in-detail">
 <h2>Methods in detail<a class="headerlink" href="#methods-in-detail" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><span class="target" id="b6535e0c5a544c9ca7879783330ba837"></span><p><p class="klcode"><a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a> ( in <a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a> other )</p>
+<p><span class="target" id="f1893716def41ceaa9693147df2882e"></span><p><p class="klcode"><a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a> ( in <a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a> other )</p>
 <p class="plaintext">copy constructor</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b7edc1c194e2ab4a8031f56885a45"></span><hr class="docutils" />
-<span class="target" id="ad4d850364c4c519842370952aa7fe7"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a>.allocate! ( in UInt32 allocateCount, in UInt32 reserveCount )</p>
+<span class="target" id="a1374b55954e4dc0909485146c2a91dc"></span><hr class="docutils" />
+<span class="target" id="f31d46fde78244c3a017585063c6dc2c"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a>.allocate! ( in UInt32 allocateCount, in UInt32 reserveCount )</p>
 <p class="plaintext">allocate an array of a certain allocated size, but can reserve a additional entries.</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
@@ -243,38 +244,38 @@ accordingly.</p>
 </div>
 </p>
 <hr class="docutils" />
-<span class="target" id="c42f44e13b5f42299b5e5a7ad98223a5"></span><p><p class="klcode"><a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a>.append! ( in <a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a> other, io Size dataOffset )</p>
+<span class="target" id="bcbc01e2dfc452cb36bf0f91fc581d1"></span><p><p class="klcode"><a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a>.append! ( in <a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a> other, io Size dataOffset )</p>
 <p class="plaintext">appends one <a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a> to this one while using a data offset</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="fbac770d6feb45688f7738605dc18150"></span><p><p class="klcode"><a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a>.clear! ()</p>
+<span class="target" id="e2f6e4622d74e909cb84b083db8c400"></span><p><p class="klcode"><a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a>.clear! ()</p>
 <p class="plaintext">clears the managed array</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="bb51c4da7ac12e7a225b3445c"></span><p><p class="klcode"><a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a> <a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a>.clone? ()</p>
+<span class="target" id="e843a23ff8646558a0b31607be0676d"></span><p><p class="klcode"><a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a> <a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a>.clone? ()</p>
 <p class="plaintext">clone method</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="fe77296dc3241909f9b1953e0cc5396"></span><p><p class="klcode"><a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a>.copy! ( in <a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a> src )</p>
+<span class="target" id="ae421d72e8304392b46def4d19bce7e4"></span><p><p class="klcode"><a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a>.copy! ( in <a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a> src )</p>
 <p class="plaintext">copies another <a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a> into this one</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a94d29c3df4a778612b6ce4fd4bf20"></span><p><p class="klcode"><a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a>.free! ( in UInt32 head, in UInt32 count )</p>
+<span class="target" id="d3082772f2114a7788fa646eed17cf53"></span><p><p class="klcode"><a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a>.free! ( in UInt32 head, in UInt32 count )</p>
 <p class="plaintext">free the managed array given a head and a count</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="baadbdde4f4d938a8cb2c724c9ff59"></span><p><p class="klcode">Boolean <a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a>.isUsed? ( in UInt32 i )</p>
+<span class="target" id="bbe403a5d94c549cb5ff0bf1c66d25"></span><p><p class="klcode">Boolean <a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a>.isUsed? ( in UInt32 i )</p>
 <p class="plaintext">returns true if a given index is used</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="feca223ccea64532914a093ec62291f7"></span><p><p class="klcode">Size <a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a>.memUsage? ()</p>
+<span class="target" id="cfc297487fd488cb4aff4bbc7e5b880"></span><p><p class="klcode">Size <a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a>.memUsage? ()</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f552b4f5e0354fbab2dc94e77bb47488"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a>.reallocate! ( in UInt32 head, in UInt32 prevCount, in UInt32 newCount, in UInt32 reserveCountIfShrinkOrMove )</p>
+<span class="target" id="ca2a60f3cbac43048b7d3699ea7b827a"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a>.reallocate! ( in UInt32 head, in UInt32 prevCount, in UInt32 newCount, in UInt32 reserveCountIfShrinkOrMove )</p>
 <p class="plaintext">reallocate the managed array, based on a previous head and count, as well as a new count and a minimum reserved count</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="e9413fc830746f7b60dbd487be9097f"></span><p><p class="klcode"><a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a>.recompact! ( io UInt32 oldIndexToNewIndex[] )</p>
+<span class="target" id="bbd3b2f567c34e17ade22963d25a0789"></span><p><p class="klcode"><a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a>.recompact! ( io UInt32 oldIndexToNewIndex[] )</p>
 <p class="plaintext">recompact: will remove all unused data entries by compacting all data arrays, while maintaining their relative order.
 The caller needs to remap its data based on the returned index mapping (oldIndexToNewIndex).</p>
 <div class="admonition note">
@@ -283,11 +284,11 @@ The caller needs to remap its data based on the returned index mapping (oldIndex
 </div>
 </p>
 <hr class="docutils" />
-<span class="target" id="c01f9254546dea8c9b28eb37f0548"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a>.size? ()</p>
+<span class="target" id="f0e3ec364504ac5bcf1fb3880949"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a>.size? ()</p>
 <p class="plaintext">returns the size of the array</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="df654c389f6d453592fe451bda9c21d7"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a>.unusedSize? ()</p>
+<span class="target" id="bebe7c358c4da0b5bc625753714f4c"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#uint32arrayallocator"><span>UInt32ArrayAllocator</span></a>.unusedSize? ()</p>
 <p class="plaintext">returns the size of the array which is currently not in use</p>
 </p>
 </p>

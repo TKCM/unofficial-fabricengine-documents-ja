@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
     <link rel="up" title="Fbx Extension’s Types" href="types.html" />
     <link rel="next" title="FbxHelpers Extension" href="../FbxHelpers/index.html" />
@@ -88,52 +89,52 @@ with a pointer to a struct in C++ that owns the Fbx file handle.</p>
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#dc15f0f5282a4551a87a2f381a8dc3c6"><span>FbxHandle</span></a>  ( in <a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a> other )</td>
+<td><a class="reference internal" href="#b4c44afa0e7f473a8fa252de9d8a750b"><span>FbxHandle</span></a>  ( in <a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a> other )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#a24d387844546afa468d21e8fc4edaf"><span>FbxHandle</span></a>  ()</td>
+<td><a class="reference internal" href="#ad477e0de4305b12578a3dc4a5cf6"><span>FbxHandle</span></a>  ()</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a></td>
-<td><a class="reference internal" href="#d03e3471c8bd4080bd96f4d30af26266"><span>clone</span></a> ? ()</td>
+<td><a class="reference internal" href="#cc6af5c284353898fe3feb76d677c"><span>clone</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#cd2679e3d014491dbf02e11ea1c0bc15"><span>close</span></a> ! ()</td>
+<td><a class="reference internal" href="#f9181fd829ba46769495f94a2512c08c"><span>close</span></a> ! ()</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#ef0519c424438f9c4d36810a2797c5"><span>collectParentHierarchyChain</span></a> ! ( in <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> identifier, io <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> chain[] )</td>
+<td><a class="reference internal" href="#ea4ef7a285e4751a0c45c26f60d81cc"><span>collectParentHierarchyChain</span></a> ! ( in <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> identifier, io <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> chain[] )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#b552b884cca7463b9982e94882b7f794"><span>getAnimationLayerNames</span></a> ? ( out <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> layerNames[] )</td>
+<td><a class="reference internal" href="#bb2cde4e24a588faf7d9b9c029bdb"><span>getAnimationLayerNames</span></a> ? ( out <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> layerNames[] )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#cf151db6e6e4219ae1e1161be461e07"><span>getIdentifiers</span></a> ? ( io <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> identifiers[], in <a class="reference internal" href="../Util/ImporterOptions.html#importeroptions"><span>ImporterOptions</span></a> options )</td>
+<td><a class="reference internal" href="#c0b8838449574374b8905a7cadbebafd"><span>getIdentifiers</span></a> ? ( io <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> identifiers[], in <a class="reference internal" href="../Util/ImporterOptions.html#importeroptions"><span>ImporterOptions</span></a> options )</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
-<td><a class="reference internal" href="#bffeccfcc5e406ca45bb8289fd5867b"><span>getOpenedFilePath</span></a> ? ()</td>
+<td><a class="reference internal" href="#b168dfced4ce4a5c4ed0d14082a03"><span>getOpenedFilePath</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#a2ae06bdf44444e2b7e902884ad6517a"><span>openFileHandle</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> filePath, in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> textureFolder )</td>
+<td><a class="reference internal" href="#ebff8bb80ee3415c9c253a2ef8bc1e3d"><span>openFileHandle</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> filePath, in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> textureFolder )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#ddc1ee514b30b580c7b330986fff"><span>parseFCurve</span></a> ! ( in <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> identifier, out <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> values[] )</td>
+<td><a class="reference internal" href="#f7369cc004d4783424cdda5bd9a59"><span>parseFCurve</span></a> ! ( in <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> identifier, out <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> values[] )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#db3a4dc4b6f445ea10ac3f27e788833"><span>parsePolygonMeshAndAttributes</span></a> ! ( in <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> identifier, out UInt32 polygonSizes[], out UInt32 packedPolyPointIndices[], out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> positions[], out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> polyPointNormals[], out <a class="reference internal" href="../Math/Vec2.html#vec2"><span>Vec2</span></a> polyPointUVs[][] )</td>
+<td><a class="reference internal" href="#c41067d516c8488da15a966909a1dfe2"><span>parsePolygonMeshAndAttributes</span></a> ! ( in <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> identifier, out UInt32 polygonSizes[], out UInt32 packedPolyPointIndices[], out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> positions[], out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> polyPointNormals[], out <a class="reference internal" href="../Math/Vec2.html#vec2"><span>Vec2</span></a> polyPointUVs[][] )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#fdc9e291bed40ec8353d75fe1bbb05c"><span>parsePolygonMeshAndAttributes</span></a> ! ( in <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> identifier, out UInt32 polygonSizes[], out UInt32 packedPolyPointIndices[], out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> positions[], out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> polyPointNormals[], out <a class="reference internal" href="../Math/Vec2.html#vec2"><span>Vec2</span></a> polyPointUVs[][], out <a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a> polyPointColors[][] )</td>
+<td><a class="reference internal" href="#f7c1b324ee68b8783fb322f0166"><span>parsePolygonMeshAndAttributes</span></a> ! ( in <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> identifier, out UInt32 polygonSizes[], out UInt32 packedPolyPointIndices[], out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> positions[], out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> polyPointNormals[], out <a class="reference internal" href="../Math/Vec2.html#vec2"><span>Vec2</span></a> polyPointUVs[][], out <a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a> polyPointColors[][] )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#a1c654db29a4f1aa298b30a7f42ba7c"><span>parsePolygonMeshBbox</span></a> ! ( in <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> identifier, out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> bboxMin, out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> bboxMax )</td>
+<td><a class="reference internal" href="#a61e8408484780a633d419529ff528"><span>parsePolygonMeshBbox</span></a> ! ( in <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> identifier, out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> bboxMin, out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> bboxMax )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#b4e1f103d26d42b98f9bbb3a667c1760"><span>parseSkeleton</span></a> ! ( in <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> identifier, io <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> bones[] )</td>
+<td><a class="reference internal" href="#b17c75ec8f430f8fb6a7ea652f0397"><span>parseSkeleton</span></a> ! ( in <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> identifier, io <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> bones[] )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#ea347c21d0984dcfbf28db5fba52837c"><span>parseSkinWeights</span></a> ! ( in <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> identifier, out UInt32 nb[], out UInt32 packedOrderedIds[], out <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> packedOrderedWeights[] )</td>
+<td><a class="reference internal" href="#c976942038167be52ee3c47be"><span>parseSkinWeights</span></a> ! ( in <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> identifier, out UInt32 nb[], out UInt32 packedOrderedIds[], out <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> packedOrderedWeights[] )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#eb34076a6243e689ec579b35b884a3"><span>~FbxHandle</span></a>  ()</td>
+<td><a class="reference internal" href="#a28dc886704b4fa409f90c50ea088a"><span>~FbxHandle</span></a>  ()</td>
 </tr>
 </tbody>
 </table>
@@ -141,23 +142,23 @@ with a pointer to a struct in C++ that owns the Fbx file handle.</p>
 </div>
 <div class="section" id="methods-in-detail">
 <h2>Methods in detail<a class="headerlink" href="#methods-in-detail" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><span class="target" id="dc15f0f5282a4551a87a2f381a8dc3c6"></span><p><p class="klcode"><a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a> ( in <a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a> other )</p>
+<p><span class="target" id="b4c44afa0e7f473a8fa252de9d8a750b"></span><p><p class="klcode"><a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a> ( in <a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a> other )</p>
 <p class="plaintext">copy constructor</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a24d387844546afa468d21e8fc4edaf"></span><p><p class="klcode"><a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a> ()</p>
+<span class="target" id="ad477e0de4305b12578a3dc4a5cf6"></span><p><p class="klcode"><a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a> ()</p>
 <p class="plaintext">default constructor</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d03e3471c8bd4080bd96f4d30af26266"></span><p><p class="klcode"><a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a> <a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a>.clone? ()</p>
+<span class="target" id="cc6af5c284353898fe3feb76d677c"></span><p><p class="klcode"><a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a> <a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a>.clone? ()</p>
 <p class="plaintext">clone method</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="cd2679e3d014491dbf02e11ea1c0bc15"></span><p><p class="klcode"><a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a>.close! ()</p>
+<span class="target" id="f9181fd829ba46769495f94a2512c08c"></span><p><p class="klcode"><a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a>.close! ()</p>
 <p class="plaintext">Closes the Fbx file handle.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ef0519c424438f9c4d36810a2797c5"></span><p><p class="klcode"><a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a>.collectParentHierarchyChain! ( in <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> identifier, io <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> chain[] )</p>
+<span class="target" id="ea4ef7a285e4751a0c45c26f60d81cc"></span><p><p class="klcode"><a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a>.collectParentHierarchyChain! ( in <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> identifier, io <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> chain[] )</p>
 <p class="plaintext">Returns the list of nodes in the chain starting with the given identifier, up to the root.</p>
 <table border="1" class="paramtable docutils">
 <colgroup>
@@ -175,7 +176,7 @@ with a pointer to a struct in C++ that owns the Fbx file handle.</p>
 </table>
 </p>
 <hr class="docutils" />
-<span class="target" id="b552b884cca7463b9982e94882b7f794"></span><p><p class="klcode"><a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a>.getAnimationLayerNames? ( out <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> layerNames[] )</p>
+<span class="target" id="bb2cde4e24a588faf7d9b9c029bdb"></span><p><p class="klcode"><a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a>.getAnimationLayerNames? ( out <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> layerNames[] )</p>
 <p class="plaintext">Returns the list of animation layers for the Fbx scene stored in the file.</p>
 <table border="1" class="paramtable docutils">
 <colgroup>
@@ -190,7 +191,7 @@ with a pointer to a struct in C++ that owns the Fbx file handle.</p>
 </table>
 </p>
 <hr class="docutils" />
-<span class="target" id="cf151db6e6e4219ae1e1161be461e07"></span><p><p class="klcode"><a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a>.getIdentifiers? ( io <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> identifiers[], in <a class="reference internal" href="../Util/ImporterOptions.html#importeroptions"><span>ImporterOptions</span></a> options )</p>
+<span class="target" id="c0b8838449574374b8905a7cadbebafd"></span><p><p class="klcode"><a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a>.getIdentifiers? ( io <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> identifiers[], in <a class="reference internal" href="../Util/ImporterOptions.html#importeroptions"><span>ImporterOptions</span></a> options )</p>
 <p class="plaintext">Returns a list of Ref:<cite>ImporterIdentifier</cite> structs that give use a list of the contents within the fbx file.</p>
 <table border="1" class="paramtable docutils">
 <colgroup>
@@ -208,11 +209,11 @@ with a pointer to a struct in C++ that owns the Fbx file handle.</p>
 </table>
 </p>
 <hr class="docutils" />
-<span class="target" id="bffeccfcc5e406ca45bb8289fd5867b"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a>.getOpenedFilePath? ()</p>
+<span class="target" id="b168dfced4ce4a5c4ed0d14082a03"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a>.getOpenedFilePath? ()</p>
 <p class="plaintext">Returns the path to the file that was opened.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a2ae06bdf44444e2b7e902884ad6517a"></span><p><p class="klcode"><a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a>.openFileHandle! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> filePath, in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> textureFolder )</p>
+<span class="target" id="ebff8bb80ee3415c9c253a2ef8bc1e3d"></span><p><p class="klcode"><a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a>.openFileHandle! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> filePath, in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> textureFolder )</p>
 <p class="plaintext">Opens an Fbx file at the given path.
 was checked in the DCC at export time.
 at the same location as the original file with the name &#8216;&lt;filename&gt;.fbx&#8217;. You may need to
@@ -242,7 +243,7 @@ folder containing the fbx file.</p>
 </table>
 </p>
 <hr class="docutils" />
-<span class="target" id="ddc1ee514b30b580c7b330986fff"></span><p><p class="klcode"><a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a>.parseFCurve! ( in <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> identifier, out <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> values[] )</p>
+<span class="target" id="f7369cc004d4783424cdda5bd9a59"></span><p><p class="klcode"><a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a>.parseFCurve! ( in <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> identifier, out <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> values[] )</p>
 <p class="plaintext">Returns the data for an FCurve in the Fbx file.
 [time, value, intangent.x, intangent.y, outtangent.x, outtangent.y]</p>
 <div class="admonition note">
@@ -265,11 +266,11 @@ folder containing the fbx file.</p>
 </table>
 </p>
 <hr class="docutils" />
-<span class="target" id="db3a4dc4b6f445ea10ac3f27e788833"></span><p><p class="klcode"><a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a>.parsePolygonMeshAndAttributes! ( in <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> identifier, out UInt32 polygonSizes[], out UInt32 packedPolyPointIndices[], out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> positions[], out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> polyPointNormals[], out <a class="reference internal" href="../Math/Vec2.html#vec2"><span>Vec2</span></a> polyPointUVs[][] )</p>
+<span class="target" id="c41067d516c8488da15a966909a1dfe2"></span><p><p class="klcode"><a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a>.parsePolygonMeshAndAttributes! ( in <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> identifier, out UInt32 polygonSizes[], out UInt32 packedPolyPointIndices[], out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> positions[], out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> polyPointNormals[], out <a class="reference internal" href="../Math/Vec2.html#vec2"><span>Vec2</span></a> polyPointUVs[][] )</p>
 <p class="plaintext">Overload not passing any vertex colors</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="fdc9e291bed40ec8353d75fe1bbb05c"></span><p><p class="klcode"><a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a>.parsePolygonMeshAndAttributes! ( in <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> identifier, out UInt32 polygonSizes[], out UInt32 packedPolyPointIndices[], out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> positions[], out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> polyPointNormals[], out <a class="reference internal" href="../Math/Vec2.html#vec2"><span>Vec2</span></a> polyPointUVs[][], out <a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a> polyPointColors[][] )</p>
+<span class="target" id="f7c1b324ee68b8783fb322f0166"></span><p><p class="klcode"><a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a>.parsePolygonMeshAndAttributes! ( in <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> identifier, out UInt32 polygonSizes[], out UInt32 packedPolyPointIndices[], out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> positions[], out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> polyPointNormals[], out <a class="reference internal" href="../Math/Vec2.html#vec2"><span>Vec2</span></a> polyPointUVs[][], out <a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a> polyPointColors[][] )</p>
 <p class="plaintext">Returns the data for a polygon mesh in the Fbx file.</p>
 <table border="1" class="paramtable docutils">
 <colgroup>
@@ -299,7 +300,7 @@ folder containing the fbx file.</p>
 </table>
 </p>
 <hr class="docutils" />
-<span class="target" id="a1c654db29a4f1aa298b30a7f42ba7c"></span><p><p class="klcode"><a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a>.parsePolygonMeshBbox! ( in <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> identifier, out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> bboxMin, out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> bboxMax )</p>
+<span class="target" id="a61e8408484780a633d419529ff528"></span><p><p class="klcode"><a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a>.parsePolygonMeshBbox! ( in <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> identifier, out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> bboxMin, out <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> bboxMax )</p>
 <p class="plaintext">Computes and returns the bounding box for the polygon mesh specified by the given identifier.</p>
 <table border="1" class="paramtable docutils">
 <colgroup>
@@ -320,7 +321,7 @@ folder containing the fbx file.</p>
 </table>
 </p>
 <hr class="docutils" />
-<span class="target" id="b4e1f103d26d42b98f9bbb3a667c1760"></span><p><p class="klcode"><a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a>.parseSkeleton! ( in <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> identifier, io <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> bones[] )</p>
+<span class="target" id="b17c75ec8f430f8fb6a7ea652f0397"></span><p><p class="klcode"><a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a>.parseSkeleton! ( in <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> identifier, io <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> bones[] )</p>
 <p class="plaintext">Returns the list of nodes in the file that are used as skinning transforms for the given geometry</p>
 <table border="1" class="paramtable docutils">
 <colgroup>
@@ -338,7 +339,7 @@ folder containing the fbx file.</p>
 </table>
 </p>
 <hr class="docutils" />
-<span class="target" id="ea347c21d0984dcfbf28db5fba52837c"></span><p><p class="klcode"><a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a>.parseSkinWeights! ( in <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> identifier, out UInt32 nb[], out UInt32 packedOrderedIds[], out <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> packedOrderedWeights[] )</p>
+<span class="target" id="c976942038167be52ee3c47be"></span><p><p class="klcode"><a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a>.parseSkinWeights! ( in <a class="reference internal" href="../Util/ImporterIdentifier.html#importeridentifier"><span>ImporterIdentifier</span></a> identifier, out UInt32 nb[], out UInt32 packedOrderedIds[], out <a class="reference internal" href="../Math/Scalar.html#scalar"><span>Scalar</span></a> packedOrderedWeights[] )</p>
 <p class="plaintext">Returns the skinning data for a geometry stored in the Fbx file.</p>
 <table border="1" class="paramtable docutils">
 <colgroup>
@@ -362,7 +363,7 @@ folder containing the fbx file.</p>
 </table>
 </p>
 <hr class="docutils" />
-<span class="target" id="eb34076a6243e689ec579b35b884a3"></span><p><p class="klcode">~ <a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a> ()</p>
+<span class="target" id="a28dc886704b4fa409f90c50ea088a"></span><p><p class="klcode">~ <a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a> ()</p>
 <p class="plaintext">The destructor for the <a class="reference internal" href="#fbxhandle"><span>FbxHandle</span></a> will automatically close the Fbx file.</p>
 </p>
 </p>

@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
     <link rel="up" title="FabricStatistics Extension’s Interfaces" href="interfaces.html" />
     <link rel="next" title="StatisticSourceWithAutoRegisterMember (interface)" href="StatisticSourceWithAutoRegisterMember.html" />
@@ -101,13 +102,13 @@ See <a class="reference internal" href="index.html#fabricstatistics"><span>Stati
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="StatisticRecord.html#statisticrecord"><span>StatisticRecord</span></a>[]</td>
-<td><a class="reference internal" href="#b356c5c4aafb42d48f4c2a4b0d885981"><span>getStatistics</span></a> ? ()</td>
+<td><a class="reference internal" href="#bf3a159c448f445b8c897737b11a03f1"><span>getStatistics</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td>Size</td>
-<td><a class="reference internal" href="#d18a8ade4904abd8ea864315467e2e7"><span>getStatisticsKey</span></a> ? ()</td>
+<td><a class="reference internal" href="#ac277ff6a42245caaa133700fa5ff99d"><span>getStatisticsKey</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#a140cbc89af4801ba256a291b31485e"><span>setStatisticsKey</span></a> ! ( in Size key )</td>
+<td><a class="reference internal" href="#fb0ff1f980644599d44bce90542517e"><span>setStatisticsKey</span></a> ! ( in Size key )</td>
 </tr>
 </tbody>
 </table>
@@ -115,22 +116,22 @@ See <a class="reference internal" href="index.html#fabricstatistics"><span>Stati
 </div>
 <div class="section" id="functions-in-detail">
 <h2>Functions in detail<a class="headerlink" href="#functions-in-detail" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><span class="target" id="b356c5c4aafb42d48f4c2a4b0d885981"></span><p><p class="klcode"><a class="reference internal" href="StatisticRecord.html#statisticrecord"><span>StatisticRecord</span></a>[] <a class="reference internal" href="#statisticsource"><span>StatisticSource</span></a>.getStatistics? ()</p>
+<p><span class="target" id="bf3a159c448f445b8c897737b11a03f1"></span><p><p class="klcode"><a class="reference internal" href="StatisticRecord.html#statisticrecord"><span>StatisticRecord</span></a>[] <a class="reference internal" href="#statisticsource"><span>StatisticSource</span></a>.getStatistics? ()</p>
 <p class="plaintext">Returns all the statistics or information related to the StatisticSource (including the <cite>Name</cite>). The <cite>Type</cite> will be generated automatically if not provided.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d18a8ade4904abd8ea864315467e2e7"></span><p><p class="klcode">Size <a class="reference internal" href="#statisticsource"><span>StatisticSource</span></a>.getStatisticsKey? ()</p>
+<span class="target" id="ac277ff6a42245caaa133700fa5ff99d"></span><p><p class="klcode">Size <a class="reference internal" href="#statisticsource"><span>StatisticSource</span></a>.getStatisticsKey? ()</p>
 <p class="plaintext">Retrieves the statistic key, for private usage from the FabricStatistic extension. This key should
-have the same value as the last <a class="reference internal" href="#a140cbc89af4801ba256a291b31485e"><span>StatisticSource.setStatisticsKey</span></a> call.</p>
+have the same value as the last <a class="reference internal" href="#fb0ff1f980644599d44bce90542517e"><span>StatisticSource.setStatisticsKey</span></a> call.</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
 <p class="last">See <a class="reference internal" href="StatisticsAutoRegisterMember.html#statisticsautoregistermember"><span>StatisticsAutoRegisterMember</span></a> for simplifying the support for this interface.</p>
 </div>
 </p>
 <hr class="docutils" />
-<span class="target" id="a140cbc89af4801ba256a291b31485e"></span><p><p class="klcode"><a class="reference internal" href="#statisticsource"><span>StatisticSource</span></a>.setStatisticsKey! ( in Size key )</p>
+<span class="target" id="fb0ff1f980644599d44bce90542517e"></span><p><p class="klcode"><a class="reference internal" href="#statisticsource"><span>StatisticSource</span></a>.setStatisticsKey! ( in Size key )</p>
 <p class="plaintext">Sets a statistic key, for private usage from the FabricStatistic extension. This key should be stored
-and the same key should be returned by the <a class="reference internal" href="#d18a8ade4904abd8ea864315467e2e7"><span>StatisticSource.getStatisticsKey</span></a> function.</p>
+and the same key should be returned by the <a class="reference internal" href="#ac277ff6a42245caaa133700fa5ff99d"><span>StatisticSource.getStatisticsKey</span></a> function.</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
 <p class="last">See <a class="reference internal" href="StatisticsAutoRegisterMember.html#statisticsautoregistermember"><span>StatisticsAutoRegisterMember</span></a> for simplifying the support for this interface.</p>

@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
     <link rel="up" title="FabricStatistics Extension’s Types" href="types.html" />
     <link rel="next" title="ProfilingEvent (struct)" href="ProfilingEvent.html" />
@@ -58,7 +59,7 @@
   <div class="section" id="autoprofilingevent-struct">
 <span id="autoprofilingevent"></span><h1>AutoProfilingEvent (struct)<a class="headerlink" href="#autoprofilingevent-struct" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p><p class="plaintext">The <a class="reference internal" href="#autoprofilingevent"><span>AutoProfilingEvent</span></a> helper struct simplifies the recording of a profiling event by automatically calling
-<a class="reference internal" href="functions.html#b565f7320b86437e81e031ca4b5133c0"><span>BeginProfilingEvent</span></a> in its constructor and <a class="reference internal" href="functions.html#b2f55364935bca04c015af6e4bd"><span>EndProfilingEvent</span></a> in its destructor.
+<a class="reference internal" href="functions.html#f5546494857a04eabe40727db64"><span>BeginProfilingEvent</span></a> in its constructor and <a class="reference internal" href="functions.html#bbbf3b61839648d5b953598281ec3106"><span>EndProfilingEvent</span></a> in its destructor.
 This is intended to be created as a local variable, whose scope is the same as the profiled event.
 See <a class="reference internal" href="index.html#fabricstatisticsprofiling"><span>Profiling</span></a> for an example of usage.</p>
 <p><?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -106,19 +107,19 @@ See <a class="reference internal" href="index.html#fabricstatisticsprofiling"><s
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#ec24bd6545bea727d5877dfa9caa"><span>AutoProfilingEvent</span></a>  ( in <a class="reference internal" href="#autoprofilingevent"><span>AutoProfilingEvent</span></a> other )</td>
+<td><a class="reference internal" href="#dec7bd2bd85b423390d73c626c4be99d"><span>AutoProfilingEvent</span></a>  ( in <a class="reference internal" href="#autoprofilingevent"><span>AutoProfilingEvent</span></a> other )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#f7a70bec1e134bfeb6a1670de20eae17"><span>AutoProfilingEvent</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> label )</td>
+<td><a class="reference internal" href="#ba74ce0bb0647386d6f640f"><span>AutoProfilingEvent</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> label )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#a29b4a362c74e7494a7d8080c6b81ce"><span>AutoProfilingEvent</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> label, in Ref&lt;<a class="reference internal" href="StatisticSource.html#statisticsource"><span>StatisticSource</span></a>&gt; source )</td>
+<td><a class="reference internal" href="#e95ad73b74e4411b8f9cd918fc08445c"><span>AutoProfilingEvent</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> label, in Ref&lt;<a class="reference internal" href="StatisticSource.html#statisticsource"><span>StatisticSource</span></a>&gt; source )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#ead4ec36a5044e68a928e6a939d9820f"><span>AutoProfilingEvent</span></a>  ()</td>
+<td><a class="reference internal" href="#a480ca9cade493f8f426fae20d260e7"><span>AutoProfilingEvent</span></a>  ()</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#autoprofilingevent"><span>AutoProfilingEvent</span></a></td>
-<td><a class="reference internal" href="#d405ed415bae4d3fad7036d4efef8b68"><span>clone</span></a> ? ()</td>
+<td><a class="reference internal" href="#d7e02649628e0442f9a0a9b78b"><span>clone</span></a> ? ()</td>
 </tr>
 </tbody>
 </table>
@@ -126,23 +127,23 @@ See <a class="reference internal" href="index.html#fabricstatisticsprofiling"><s
 </div>
 <div class="section" id="methods-in-detail">
 <h2>Methods in detail<a class="headerlink" href="#methods-in-detail" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><span class="target" id="ec24bd6545bea727d5877dfa9caa"></span><p><p class="klcode"><a class="reference internal" href="#autoprofilingevent"><span>AutoProfilingEvent</span></a> ( in <a class="reference internal" href="#autoprofilingevent"><span>AutoProfilingEvent</span></a> other )</p>
+<p><span class="target" id="dec7bd2bd85b423390d73c626c4be99d"></span><p><p class="klcode"><a class="reference internal" href="#autoprofilingevent"><span>AutoProfilingEvent</span></a> ( in <a class="reference internal" href="#autoprofilingevent"><span>AutoProfilingEvent</span></a> other )</p>
 <p class="plaintext">copy constructor</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f7a70bec1e134bfeb6a1670de20eae17"></span><p><p class="klcode"><a class="reference internal" href="#autoprofilingevent"><span>AutoProfilingEvent</span></a> ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> label )</p>
+<span class="target" id="ba74ce0bb0647386d6f640f"></span><p><p class="klcode"><a class="reference internal" href="#autoprofilingevent"><span>AutoProfilingEvent</span></a> ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> label )</p>
 <p class="plaintext">Constructs a AutoProfilingEvent identified as <cite>label</cite>.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a29b4a362c74e7494a7d8080c6b81ce"></span><p><p class="klcode"><a class="reference internal" href="#autoprofilingevent"><span>AutoProfilingEvent</span></a> ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> label, in Ref&lt;<a class="reference internal" href="StatisticSource.html#statisticsource"><span>StatisticSource</span></a>&gt; source )</p>
+<span class="target" id="e95ad73b74e4411b8f9cd918fc08445c"></span><p><p class="klcode"><a class="reference internal" href="#autoprofilingevent"><span>AutoProfilingEvent</span></a> ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> label, in Ref&lt;<a class="reference internal" href="StatisticSource.html#statisticsource"><span>StatisticSource</span></a>&gt; source )</p>
 <p class="plaintext">Constructs a AutoProfilingEvent identified as <cite>label</cite> and related to the <cite>source</cite> object.</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ead4ec36a5044e68a928e6a939d9820f"></span><p><p class="klcode"><a class="reference internal" href="#autoprofilingevent"><span>AutoProfilingEvent</span></a> ()</p>
+<span class="target" id="a480ca9cade493f8f426fae20d260e7"></span><p><p class="klcode"><a class="reference internal" href="#autoprofilingevent"><span>AutoProfilingEvent</span></a> ()</p>
 <p class="plaintext">default constructor</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d405ed415bae4d3fad7036d4efef8b68"></span><p><p class="klcode"><a class="reference internal" href="#autoprofilingevent"><span>AutoProfilingEvent</span></a> <a class="reference internal" href="#autoprofilingevent"><span>AutoProfilingEvent</span></a>.clone? ()</p>
+<span class="target" id="d7e02649628e0442f9a0a9b78b"></span><p><p class="klcode"><a class="reference internal" href="#autoprofilingevent"><span>AutoProfilingEvent</span></a> <a class="reference internal" href="#autoprofilingevent"><span>AutoProfilingEvent</span></a>.clone? ()</p>
 <p class="plaintext">clone method</p>
 </p>
 </p>

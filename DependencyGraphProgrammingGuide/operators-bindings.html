@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" /> 
   </head>
   <body role="document">
@@ -74,7 +75,7 @@
 </div>
 <div class="section" id="setting-the-operator-entry-point">
 <h2>Setting the Operator Entry Point<a class="headerlink" href="#setting-the-operator-entry-point" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>In addition to source code, an operator needs an entry point, which is the name of the KL operator (see the <a class="reference internal" href="../KLProgrammingGuide/index.html#klpg"><span>KL Programming Guide</span></a>) in the source code that should be called when the operator is invoked.  Note that this <em>must</em> be an KL operator and not a KL function.  The entry point is specified by calling the <code class="samp docutils literal"><span class="pre">setEntryPoint</span></code> method.  By specifying the source code and entry point separately, it is possible to have multiple possible entry points into the same source code.</p>
+<p>In addition to source code, an operator needs an entry point, which is the name of the KL operator (see the <a class="reference internal" href="../KLProgrammingGuide/index.html#klpg"><span>KL プログラミングガイド</span></a>) in the source code that should be called when the operator is invoked.  Note that this <em>must</em> be an KL operator and not a KL function.  The entry point is specified by calling the <code class="samp docutils literal"><span class="pre">setEntryPoint</span></code> method.  By specifying the source code and entry point separately, it is possible to have multiple possible entry points into the same source code.</p>
 <div class="highlight-none"><div class="highlight"><pre>&gt;&gt;&gt; op.setEntryPoint(&#39;entry&#39;)
 &gt;&gt;&gt; op.getEntryPoint()
 &#39;entry&#39;

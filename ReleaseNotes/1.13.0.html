@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../index.html" /> 
   </head>
   <body role="document">
@@ -140,7 +141,7 @@
 <li>A new C++ <span class="xref std std-ref">SPLICESTANDALONE</span> application shell has been provided to make it easier to write standalone C++ Splice applications.</li>
 <li>New <a class="reference internal" href="../KLExtensionsGuide/Util/EvalContext.html#evalcontext"><span>EvalContext</span></a> KL object. This provides access to host and graph information, as well as dirty flag filtering.</li>
 <li>Maya now supports use of the <a class="reference internal" href="../KLExtensionsGuide/FabricInterfaces/Detachable.html#detachable"><span>Detachable</span></a> interface, which is invoked when a node in maya is deleted or undo is performed.</li>
-<li><a class="reference internal" href="../KLExtensionsGuide/Manipulation/Manipulator.html#manipulator"><span>Manipulator</span></a> objects can now call custom commands in the <a class="reference internal" href="../KLExtensionsGuide/Manipulation/Host.html#host"><span>Host</span></a> application, using the <a class="reference internal" href="../KLExtensionsGuide/Manipulation/Host.html#c940c6fc4f2c44d59571a56ceb4ea1a1"><span>Host.callCustomCommand</span></a> method. This allows to perform script command actions when manipulation occurs, for example to set an attribute value within the DCC.</li>
+<li><a class="reference internal" href="../KLExtensionsGuide/Manipulation/Manipulator.html#manipulator"><span>Manipulator</span></a> objects can now call custom commands in the <a class="reference internal" href="../KLExtensionsGuide/Manipulation/Host.html#host"><span>Host</span></a> application, using the <a class="reference internal" href="../KLExtensionsGuide/Manipulation/Host.html#d1340a1350734c1fa44fc67274e586d7"><span>Host.callCustomCommand</span></a> method. This allows to perform script command actions when manipulation occurs, for example to set an attribute value within the DCC.</li>
 <li>The Maya Deformer now uses an array of <a class="reference internal" href="../KLExtensionsGuide/Geometry/PolygonMesh.html#polygonmesh"><span>PolygonMesh</span></a> objects instead of mesh0, mesh1 etc ports.</li>
 <li>Customizable persistence support by using the <a class="reference internal" href="../KLExtensionsGuide/FabricInterfaces/Persistable.html#persistable"><span>Persistable</span></a> interface.</li>
 <li>SpliceNodes in Maya now persist both opaqueness and internal states of ports.</li>

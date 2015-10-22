@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
     <link rel="up" title="FileIO Extension’s Types" href="types.html" />
     <link rel="next" title="BinaryBlockReader (object)" href="BinaryBlockReader.html" />
@@ -95,97 +96,97 @@ This can be very useful within canvas to read and write data for file caching sc
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#ee1c715358ca4b7c9044e1508afddde5"><span>BinaryBlockIO</span></a>  ( in <a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a> other )</td>
+<td><a class="reference internal" href="#cbc3819334f147c5acbb851cb1580db0"><span>BinaryBlockIO</span></a>  ( in <a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a> other )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#a28caff4304f5a93efac8f54ff91ae"><span>BinaryBlockIO</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> filePath )</td>
+<td><a class="reference internal" href="#e481070cb70e4c148fa7f313d270238e"><span>BinaryBlockIO</span></a>  ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> filePath )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#de770654dc8c427ea143938293075011"><span>BinaryBlockIO</span></a>  ()</td>
+<td><a class="reference internal" href="#eb1334ece4578ba9ec1c76bc92fd6"><span>BinaryBlockIO</span></a>  ()</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a></td>
-<td><a class="reference internal" href="#a5ff2009a5bb40f0aa1c31801c9c1ce5"><span>clone</span></a> ? ()</td>
+<td><a class="reference internal" href="#bad79a3d2a1a493b869ab1eaa6c0da59"><span>clone</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#b8f750f5ec24e1da2ce5708fbb9341c"><span>close</span></a> ! ()</td>
+<td><a class="reference internal" href="#ab776d47c4240a94878a50fe0fdda"><span>close</span></a> ! ()</td>
 </tr>
 <tr class="row-even"><td>Boolean[]</td>
-<td><a class="reference internal" href="#b82bb2bbee04e988eb73f87b1ce5d81"><span>readBooleanArray</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
+<td><a class="reference internal" href="#ce8810cafed74b02b20776260dedd341"><span>readBooleanArray</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a>[]</td>
-<td><a class="reference internal" href="#cb6985e20b842e88bb5a2fe5eef2ba3"><span>readColorArray</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
+<td><a class="reference internal" href="#e780a720156240fdbd6d2659dbcb1461"><span>readColorArray</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a>[]</td>
-<td><a class="reference internal" href="#bd9eaa1c46ff88973d30850ff6dc"><span>readFloat32Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
+<td><a class="reference internal" href="#d2e33530ea42259cd6f0ddee443dc3"><span>readFloat32Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="../Math/Mat33.html#mat33"><span>Mat33</span></a>[]</td>
-<td><a class="reference internal" href="#b8af6bc8a8034356bfc4faf1102676bc"><span>readMat33Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
+<td><a class="reference internal" href="#b2b5bcfd1424cabbfeb5afbb1ff466e"><span>readMat33Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a>[]</td>
-<td><a class="reference internal" href="#ad6adfc6d74cc48c53755cf5c2bf8d"><span>readMat44Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
+<td><a class="reference internal" href="#c6d745db8c6473995bbca57bdbdec07"><span>readMat44Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="../Math/Quat.html#quat"><span>Quat</span></a>[]</td>
-<td><a class="reference internal" href="#a9d93ea0810b4606b307b93b980b58b7"><span>readQuatArray</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
+<td><a class="reference internal" href="#a3de891642698f616667316b066f"><span>readQuatArray</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
 </tr>
 <tr class="row-even"><td>SInt32[]</td>
-<td><a class="reference internal" href="#ffa225b712e64239abdcfbe205b1b944"><span>readSInt32Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
+<td><a class="reference internal" href="#b149f147fb6f4cf297522b23885a6573"><span>readSInt32Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
 </tr>
 <tr class="row-odd"><td>UInt32[]</td>
-<td><a class="reference internal" href="#a0de1e9ab7490a942abebfd39bae14"><span>readUInt32Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
+<td><a class="reference internal" href="#ab9314ad19662551d65d41a30"><span>readUInt32Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="../Math/Vec2.html#vec2"><span>Vec2</span></a>[]</td>
-<td><a class="reference internal" href="#f6d39212e8764e77be4f49c71d3bc280"><span>readVec2Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
+<td><a class="reference internal" href="#d21920e31c4b44f9a7e36327af008c8c"><span>readVec2Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a>[]</td>
-<td><a class="reference internal" href="#f73cc76b4a4a218b7e9353fe48bca6"><span>readVec3Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
+<td><a class="reference internal" href="#d81c7657c1043488c23f655da6776f7"><span>readVec3Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="../Math/Vec4.html#vec4"><span>Vec4</span></a>[]</td>
-<td><a class="reference internal" href="#c2bd5f7b84b25a694f56ef9bad8bc"><span>readVec4Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
+<td><a class="reference internal" href="#c3e7dbb85a434153bb81e26c81898351"><span>readVec4Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a>[]</td>
-<td><a class="reference internal" href="#ffa83d75cc78451e9727c8e11ceefe19"><span>readXfoArray</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
+<td><a class="reference internal" href="#f7dd3c4234f528fe1001cdc0b903b"><span>readXfoArray</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#fdaa59b6a5e4f7ca5e41f921f9d60a8"><span>setFilePath</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> filePath )</td>
+<td><a class="reference internal" href="#e08b0cedf667403cba85d82653f38ba5"><span>setFilePath</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> filePath )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#d247f54fd4ab3f540f9ea9eed1"><span>setMode</span></a> ! ( in SInt32 mode )</td>
+<td><a class="reference internal" href="#cfb045543d296e12f477c02ab5e"><span>setMode</span></a> ! ( in SInt32 mode )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#c8c7f0fca76442f99705da7131b3b7b"><span>writeBooleanArray</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in Boolean array[] )</td>
+<td><a class="reference internal" href="#b35ac2dbc69421caa21cb04f1a5dea8"><span>writeBooleanArray</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in Boolean array[] )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#b90e98d72ea147738ade3203721c541b"><span>writeColorArray</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a> array[] )</td>
+<td><a class="reference internal" href="#d359487a786d4c9a8f2db1d41b5642f6"><span>writeColorArray</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a> array[] )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#acf97a5d4785bdc3cf1e23542f29"><span>writeFloat32Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> array[] )</td>
+<td><a class="reference internal" href="#cc9b013424547f19657c5850cc15da4"><span>writeFloat32Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> array[] )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#cdbb0b724340689c903046cf40098a"><span>writeMat33Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Mat33.html#mat33"><span>Mat33</span></a> array[] )</td>
+<td><a class="reference internal" href="#efb9da579634343bdedfb975aeedddc"><span>writeMat33Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Mat33.html#mat33"><span>Mat33</span></a> array[] )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#fc27add40f89e475185a9f7ebfe"><span>writeMat44Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> array[] )</td>
+<td><a class="reference internal" href="#d4d8ddd901be4861ad3435c830c201f2"><span>writeMat44Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> array[] )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#d8623051478b8cb9695e3dcd1eb3"><span>writeQuatArray</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Quat.html#quat"><span>Quat</span></a> array[] )</td>
+<td><a class="reference internal" href="#bfad9e3877041bcbad313842c7bcaff"><span>writeQuatArray</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Quat.html#quat"><span>Quat</span></a> array[] )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#a2e87583e504004984ffb13611a762e"><span>writeSInt32Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in SInt32 array[] )</td>
+<td><a class="reference internal" href="#a84c75eaabac488da71c7d06847f8fc4"><span>writeSInt32Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in SInt32 array[] )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#a94507bfc4521a75d99ad3"><span>writeUInt32Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in UInt32 array[] )</td>
+<td><a class="reference internal" href="#f804ccb2527c4b57adbc557b5f4ad502"><span>writeUInt32Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in UInt32 array[] )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#b8b580e7ab204ce9bf076a78a2fcaf38"><span>writeVec2Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Vec2.html#vec2"><span>Vec2</span></a> array[] )</td>
+<td><a class="reference internal" href="#e123e1e45c0a680521042f6f37a"><span>writeVec2Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Vec2.html#vec2"><span>Vec2</span></a> array[] )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#ce2ce786a46db9ea832354e6fdbc1"><span>writeVec3Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> array[] )</td>
+<td><a class="reference internal" href="#e95b5c99142848ac820f68cd0d2bf"><span>writeVec3Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> array[] )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#ed8f6a57e124750a01d9dd9eaaea1cb"><span>writeVec4Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Vec4.html#vec4"><span>Vec4</span></a> array[] )</td>
+<td><a class="reference internal" href="#bc7fff5c5bd470990ec102906d3a38b"><span>writeVec4Array</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Vec4.html#vec4"><span>Vec4</span></a> array[] )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#f16a52829ca544ad95df4675ef13f25f"><span>writeXfoArray</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> array[] )</td>
+<td><a class="reference internal" href="#b7c7aa677d2e430d86820d580703dfd4"><span>writeXfoArray</span></a> ! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> array[] )</td>
 </tr>
 </tbody>
 </table>
@@ -193,126 +194,126 @@ This can be very useful within canvas to read and write data for file caching sc
 </div>
 <div class="section" id="methods-in-detail">
 <h2>Methods in detail<a class="headerlink" href="#methods-in-detail" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><span class="target" id="ee1c715358ca4b7c9044e1508afddde5"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a> ( in <a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a> other )</p>
+<p><span class="target" id="cbc3819334f147c5acbb851cb1580db0"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a> ( in <a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a> other )</p>
 <p class="plaintext">copy constructor</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a28caff4304f5a93efac8f54ff91ae"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a> ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> filePath )</p>
+<span class="target" id="e481070cb70e4c148fa7f313d270238e"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a> ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> filePath )</p>
 <p class="plaintext">standard constructor given a filePath</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="de770654dc8c427ea143938293075011"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a> ()</p>
+<span class="target" id="eb1334ece4578ba9ec1c76bc92fd6"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a> ()</p>
 <p class="plaintext">standard constructor</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a5ff2009a5bb40f0aa1c31801c9c1ce5"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a> <a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.clone? ()</p>
+<span class="target" id="bad79a3d2a1a493b869ab1eaa6c0da59"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a> <a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.clone? ()</p>
 <p class="plaintext">clone method</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b8f750f5ec24e1da2ce5708fbb9341c"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.close! ()</p>
+<span class="target" id="ab776d47c4240a94878a50fe0fdda"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.close! ()</p>
 <p class="plaintext">closes all readers / writes</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b82bb2bbee04e988eb73f87b1ce5d81"></span><p><p class="klcode">Boolean[] <a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.readBooleanArray! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</p>
+<span class="target" id="ce8810cafed74b02b20776260dedd341"></span><p><p class="klcode">Boolean[] <a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.readBooleanArray! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</p>
 <p class="plaintext">reads an array of Boolean</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="cb6985e20b842e88bb5a2fe5eef2ba3"></span><p><p class="klcode"><a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a>[] <a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.readColorArray! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</p>
+<span class="target" id="e780a720156240fdbd6d2659dbcb1461"></span><p><p class="klcode"><a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a>[] <a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.readColorArray! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</p>
 <p class="plaintext">reads an array of <a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a></p>
 </p>
 <hr class="docutils" />
-<span class="target" id="bd9eaa1c46ff88973d30850ff6dc"></span><p><p class="klcode"><a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a>[] <a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.readFloat32Array! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</p>
+<span class="target" id="d2e33530ea42259cd6f0ddee443dc3"></span><p><p class="klcode"><a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a>[] <a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.readFloat32Array! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</p>
 <p class="plaintext">reads an array of <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a></p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b8af6bc8a8034356bfc4faf1102676bc"></span><p><p class="klcode"><a class="reference internal" href="../Math/Mat33.html#mat33"><span>Mat33</span></a>[] <a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.readMat33Array! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</p>
+<span class="target" id="b2b5bcfd1424cabbfeb5afbb1ff466e"></span><p><p class="klcode"><a class="reference internal" href="../Math/Mat33.html#mat33"><span>Mat33</span></a>[] <a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.readMat33Array! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</p>
 <p class="plaintext">reads an array of <a class="reference internal" href="../Math/Mat33.html#mat33"><span>Mat33</span></a></p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ad6adfc6d74cc48c53755cf5c2bf8d"></span><p><p class="klcode"><a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a>[] <a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.readMat44Array! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</p>
+<span class="target" id="c6d745db8c6473995bbca57bdbdec07"></span><p><p class="klcode"><a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a>[] <a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.readMat44Array! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</p>
 <p class="plaintext">reads an array of <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a></p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a9d93ea0810b4606b307b93b980b58b7"></span><p><p class="klcode"><a class="reference internal" href="../Math/Quat.html#quat"><span>Quat</span></a>[] <a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.readQuatArray! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</p>
+<span class="target" id="a3de891642698f616667316b066f"></span><p><p class="klcode"><a class="reference internal" href="../Math/Quat.html#quat"><span>Quat</span></a>[] <a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.readQuatArray! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</p>
 <p class="plaintext">reads an array of <a class="reference internal" href="../Math/Quat.html#quat"><span>Quat</span></a></p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ffa225b712e64239abdcfbe205b1b944"></span><p><p class="klcode">SInt32[] <a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.readSInt32Array! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</p>
+<span class="target" id="b149f147fb6f4cf297522b23885a6573"></span><p><p class="klcode">SInt32[] <a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.readSInt32Array! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</p>
 <p class="plaintext">reads an array of SInt32</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a0de1e9ab7490a942abebfd39bae14"></span><p><p class="klcode">UInt32[] <a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.readUInt32Array! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</p>
+<span class="target" id="ab9314ad19662551d65d41a30"></span><p><p class="klcode">UInt32[] <a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.readUInt32Array! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</p>
 <p class="plaintext">reads an array of UInt32</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f6d39212e8764e77be4f49c71d3bc280"></span><p><p class="klcode"><a class="reference internal" href="../Math/Vec2.html#vec2"><span>Vec2</span></a>[] <a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.readVec2Array! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</p>
+<span class="target" id="d21920e31c4b44f9a7e36327af008c8c"></span><p><p class="klcode"><a class="reference internal" href="../Math/Vec2.html#vec2"><span>Vec2</span></a>[] <a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.readVec2Array! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</p>
 <p class="plaintext">reads an array of <a class="reference internal" href="../Math/Vec2.html#vec2"><span>Vec2</span></a></p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f73cc76b4a4a218b7e9353fe48bca6"></span><p><p class="klcode"><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a>[] <a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.readVec3Array! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</p>
+<span class="target" id="d81c7657c1043488c23f655da6776f7"></span><p><p class="klcode"><a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a>[] <a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.readVec3Array! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</p>
 <p class="plaintext">reads an array of <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c2bd5f7b84b25a694f56ef9bad8bc"></span><p><p class="klcode"><a class="reference internal" href="../Math/Vec4.html#vec4"><span>Vec4</span></a>[] <a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.readVec4Array! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</p>
+<span class="target" id="c3e7dbb85a434153bb81e26c81898351"></span><p><p class="klcode"><a class="reference internal" href="../Math/Vec4.html#vec4"><span>Vec4</span></a>[] <a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.readVec4Array! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</p>
 <p class="plaintext">reads an array of <a class="reference internal" href="../Math/Vec4.html#vec4"><span>Vec4</span></a></p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ffa83d75cc78451e9727c8e11ceefe19"></span><p><p class="klcode"><a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a>[] <a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.readXfoArray! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</p>
+<span class="target" id="f7dd3c4234f528fe1001cdc0b903b"></span><p><p class="klcode"><a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a>[] <a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.readXfoArray! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block )</p>
 <p class="plaintext">reads an array of <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a></p>
 </p>
 <hr class="docutils" />
-<span class="target" id="fdaa59b6a5e4f7ca5e41f921f9d60a8"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.setFilePath! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> filePath )</p>
+<span class="target" id="e08b0cedf667403cba85d82653f38ba5"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.setFilePath! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> filePath )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d247f54fd4ab3f540f9ea9eed1"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.setMode! ( in SInt32 mode )</p>
+<span class="target" id="cfb045543d296e12f477c02ab5e"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.setMode! ( in SInt32 mode )</p>
 <p class="plaintext">sets the mode of this block <a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a></p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c8c7f0fca76442f99705da7131b3b7b"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.writeBooleanArray! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in Boolean array[] )</p>
+<span class="target" id="b35ac2dbc69421caa21cb04f1a5dea8"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.writeBooleanArray! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in Boolean array[] )</p>
 <p class="plaintext">reads an array of Boolean</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b90e98d72ea147738ade3203721c541b"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.writeColorArray! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a> array[] )</p>
+<span class="target" id="d359487a786d4c9a8f2db1d41b5642f6"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.writeColorArray! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a> array[] )</p>
 <p class="plaintext">reads an array of <a class="reference internal" href="../Math/Color.html#color"><span>Color</span></a></p>
 </p>
 <hr class="docutils" />
-<span class="target" id="acf97a5d4785bdc3cf1e23542f29"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.writeFloat32Array! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> array[] )</p>
+<span class="target" id="cc9b013424547f19657c5850cc15da4"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.writeFloat32Array! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a> array[] )</p>
 <p class="plaintext">reads an array of <a class="reference internal" href="../Math/Float32.html#float32"><span>Float32</span></a></p>
 </p>
 <hr class="docutils" />
-<span class="target" id="cdbb0b724340689c903046cf40098a"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.writeMat33Array! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Mat33.html#mat33"><span>Mat33</span></a> array[] )</p>
+<span class="target" id="efb9da579634343bdedfb975aeedddc"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.writeMat33Array! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Mat33.html#mat33"><span>Mat33</span></a> array[] )</p>
 <p class="plaintext">reads an array of <a class="reference internal" href="../Math/Mat33.html#mat33"><span>Mat33</span></a></p>
 </p>
 <hr class="docutils" />
-<span class="target" id="fc27add40f89e475185a9f7ebfe"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.writeMat44Array! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> array[] )</p>
+<span class="target" id="d4d8ddd901be4861ad3435c830c201f2"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.writeMat44Array! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a> array[] )</p>
 <p class="plaintext">reads an array of <a class="reference internal" href="../Math/Mat44.html#mat44"><span>Mat44</span></a></p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d8623051478b8cb9695e3dcd1eb3"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.writeQuatArray! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Quat.html#quat"><span>Quat</span></a> array[] )</p>
+<span class="target" id="bfad9e3877041bcbad313842c7bcaff"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.writeQuatArray! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Quat.html#quat"><span>Quat</span></a> array[] )</p>
 <p class="plaintext">reads an array of <a class="reference internal" href="../Math/Quat.html#quat"><span>Quat</span></a></p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a2e87583e504004984ffb13611a762e"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.writeSInt32Array! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in SInt32 array[] )</p>
+<span class="target" id="a84c75eaabac488da71c7d06847f8fc4"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.writeSInt32Array! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in SInt32 array[] )</p>
 <p class="plaintext">reads an array of SInt32</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a94507bfc4521a75d99ad3"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.writeUInt32Array! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in UInt32 array[] )</p>
+<span class="target" id="f804ccb2527c4b57adbc557b5f4ad502"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.writeUInt32Array! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in UInt32 array[] )</p>
 <p class="plaintext">reads an array of UInt32</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b8b580e7ab204ce9bf076a78a2fcaf38"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.writeVec2Array! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Vec2.html#vec2"><span>Vec2</span></a> array[] )</p>
+<span class="target" id="e123e1e45c0a680521042f6f37a"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.writeVec2Array! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Vec2.html#vec2"><span>Vec2</span></a> array[] )</p>
 <p class="plaintext">reads an array of <a class="reference internal" href="../Math/Vec2.html#vec2"><span>Vec2</span></a></p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ce2ce786a46db9ea832354e6fdbc1"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.writeVec3Array! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> array[] )</p>
+<span class="target" id="e95b5c99142848ac820f68cd0d2bf"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.writeVec3Array! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a> array[] )</p>
 <p class="plaintext">reads an array of <a class="reference internal" href="../Math/Vec3.html#vec3"><span>Vec3</span></a></p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ed8f6a57e124750a01d9dd9eaaea1cb"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.writeVec4Array! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Vec4.html#vec4"><span>Vec4</span></a> array[] )</p>
+<span class="target" id="bc7fff5c5bd470990ec102906d3a38b"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.writeVec4Array! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Vec4.html#vec4"><span>Vec4</span></a> array[] )</p>
 <p class="plaintext">reads an array of <a class="reference internal" href="../Math/Vec4.html#vec4"><span>Vec4</span></a></p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f16a52829ca544ad95df4675ef13f25f"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.writeXfoArray! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> array[] )</p>
+<span class="target" id="b7c7aa677d2e430d86820d580703dfd4"></span><p><p class="klcode"><a class="reference internal" href="#binaryblockio"><span>BinaryBlockIO</span></a>.writeXfoArray! ( in <a class="reference internal" href="../Util/String.html#string"><span>String</span></a> block, in <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a> array[] )</p>
 <p class="plaintext">reads an array of <a class="reference internal" href="../Math/Xfo.html#xfo"><span>Xfo</span></a></p>
 </p>
 </p>

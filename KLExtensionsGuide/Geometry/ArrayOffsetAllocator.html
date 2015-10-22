@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" /> 
   </head>
   <body role="document">
@@ -104,127 +105,127 @@ Keeps track of &#8216;free&#8217; items.</p>
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#a1921b0d3f492086c9ceafc1140051"><span>ArrayOffsetAllocator</span></a>  ( in <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a> other )</td>
+<td><a class="reference internal" href="#cf6557a0f03c47e4bbf3d5df248c8e47"><span>ArrayOffsetAllocator</span></a>  ( in <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a> other )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#ed5f850f9544a7fab8719119586f6e4"><span>ArrayOffsetAllocator</span></a>  ()</td>
+<td><a class="reference internal" href="#bdc24c029363ae6a476fe929"><span>ArrayOffsetAllocator</span></a>  ()</td>
 </tr>
 <tr class="row-odd"><td>DataIter</td>
-<td><a class="reference internal" href="#f4fe77cf94074c34916c8baa1bff176e"><span>allocateArray</span></a> ! ( in UInt32 itemIndex, in UInt32 arraySize, in UInt32 nbExtraUInt32s, in UInt32 tempReservedSpaceForGrowth, in Boolean headerBit )</td>
+<td><a class="reference internal" href="#ca2bca88a4c028c9dd53df88b3fde"><span>allocateArray</span></a> ! ( in UInt32 itemIndex, in UInt32 arraySize, in UInt32 nbExtraUInt32s, in UInt32 tempReservedSpaceForGrowth, in Boolean headerBit )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#b94256cb4794db1b3f5ddd983ab278c"><span>append</span></a> ! ( in <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a> other, io Size firstOtherItem, io Size firstOtherData )</td>
+<td><a class="reference internal" href="#b8ea8f9453f474bbcec00b1c6df19db"><span>append</span></a> ! ( in <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a> other, io Size firstOtherItem, io Size firstOtherData )</td>
 </tr>
 <tr class="row-odd"><td>UInt32</td>
-<td><a class="reference internal" href="#f51417da4d9a493e8a024addb6166b6f"><span>arrayDataIterSize</span></a> ? ( in DataIter arrayDataIter )</td>
+<td><a class="reference internal" href="#cced528fb5e44e38a2255d1334ab8e2"><span>arrayDataIterSize</span></a> ? ( in DataIter arrayDataIter )</td>
 </tr>
 <tr class="row-even"><td>UInt32</td>
-<td><a class="reference internal" href="#b62495d47eea727a5c4c9ae4db0"><span>arrayDataIterSizeAndBit</span></a> ? ( in DataIter arrayDataIter, io Boolean bit )</td>
+<td><a class="reference internal" href="#e6cad186ef704d7f88035e71550dce81"><span>arrayDataIterSizeAndBit</span></a> ? ( in DataIter arrayDataIter, io Boolean bit )</td>
 </tr>
 <tr class="row-odd"><td>UInt32</td>
-<td><a class="reference internal" href="#c56722c90b74be08c29e86da74d982a"><span>arraySize</span></a> ? ( in UInt32 itemIndex )</td>
+<td><a class="reference internal" href="#ce3e4761b8e625fbc9c8d75b"><span>arraySize</span></a> ? ( in UInt32 itemIndex )</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a></td>
-<td><a class="reference internal" href="#e207c2f75514d09b17b55ac08703069"><span>clone</span></a> ? ()</td>
+<td><a class="reference internal" href="#f8bed74485a4728b77ad2a8692"><span>clone</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td>UInt32</td>
-<td><a class="reference internal" href="#e23bd61e43b646dab28627ea9c4522e7"><span>createItem</span></a> ! ()</td>
+<td><a class="reference internal" href="#e32c093f44ff4bf72408c2abeaf78"><span>createItem</span></a> ! ()</td>
 </tr>
 <tr class="row-even"><td>UInt32</td>
-<td><a class="reference internal" href="#c3dedc34f75b1ff7539ffab0818"><span>createItems</span></a> ! ( in Size count )</td>
+<td><a class="reference internal" href="#b6d19a924c184b40a256508dee466a12"><span>createItems</span></a> ! ( in Size count )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#f7da9a4a496f9440f15dee040014"><span>deleteItem</span></a> ! ( in UInt32 itemIndex )</td>
+<td><a class="reference internal" href="#a683aa90d84f919010067b6c80ad2c"><span>deleteItem</span></a> ! ( in UInt32 itemIndex )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#d1247f477f8d2c3b10f5fd5961"><span>freeArray</span></a> ! ( in UInt32 itemIndex, in UInt32 nbExtraUInt32s, in Boolean freeExtendedData )</td>
+<td><a class="reference internal" href="#cd8d9656e423eb3278576f3a9e000"><span>freeArray</span></a> ! ( in UInt32 itemIndex, in UInt32 nbExtraUInt32s, in Boolean freeExtendedData )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#b7622d1384ced9b6e6d09b101ec61"><span>freeExtendedDataIfRequired</span></a> ! ( in DataIter idxOffIter )</td>
+<td><a class="reference internal" href="#eeecc673261f43bb9c7b3fd9f8d75509"><span>freeExtendedDataIfRequired</span></a> ! ( in DataIter idxOffIter )</td>
 </tr>
 <tr class="row-even"><td>UInt32</td>
-<td><a class="reference internal" href="#c91ab031201d40aaa8488f80a3b38168"><span>getArrayExtraUInt32</span></a> ? ( in DataIter arrayIter, in UInt32 arraySize, in UInt32 extraUInt32Index )</td>
+<td><a class="reference internal" href="#a46a100d4acc94b6fce5f6f021fb"><span>getArrayExtraUInt32</span></a> ? ( in DataIter arrayIter, in UInt32 arraySize, in UInt32 extraUInt32Index )</td>
 </tr>
 <tr class="row-odd"><td>DataIter</td>
-<td><a class="reference internal" href="#cc0e10fa6e74691b5fc0a749f34f92e"><span>getArrayExtraUInt32Iter</span></a> ? ( in DataIter arrayIter, in UInt32 arraySize, in UInt32 extraUInt32Index )</td>
+<td><a class="reference internal" href="#dfea62785a48e3bb09e838ca78845b"><span>getArrayExtraUInt32Iter</span></a> ? ( in DataIter arrayIter, in UInt32 arraySize, in UInt32 extraUInt32Index )</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="IdxOff.html#idxoff"><span>IdxOff</span></a></td>
-<td><a class="reference internal" href="#ddbd47ac34c3415c9ef9895c1ba2d389"><span>getArrayItemIdxOff</span></a> ? ( in DataIter arrayIter, in UInt32 itemIndex )</td>
+<td><a class="reference internal" href="#f742ef371e1d460d9aed880202148250"><span>getArrayItemIdxOff</span></a> ? ( in DataIter arrayIter, in UInt32 itemIndex )</td>
 </tr>
 <tr class="row-odd"><td>DataIter</td>
-<td><a class="reference internal" href="#b591c0aa340f48919cad155a7a0f906f"><span>getArrayItemIndex</span></a> ? ( in DataIter arrayIter, in UInt32 itemIndex )</td>
+<td><a class="reference internal" href="#a49b7b004204fe6b1ca41018f9fa5f9"><span>getArrayItemIndex</span></a> ? ( in DataIter arrayIter, in UInt32 itemIndex )</td>
 </tr>
 <tr class="row-even"><td>DataIter</td>
-<td><a class="reference internal" href="#afe6aa86b5b4dbaae9e47a46d381139"><span>getArrayItemIter</span></a> ? ( in DataIter arrayIter, in UInt32 itemIndex )</td>
+<td><a class="reference internal" href="#b9048e6a4c40e38f5cc09f7f77c914"><span>getArrayItemIter</span></a> ? ( in DataIter arrayIter, in UInt32 itemIndex )</td>
 </tr>
 <tr class="row-odd"><td>DataIter</td>
-<td><a class="reference internal" href="#b5b07bb613e4bb4a3dbf5291ebe6cf7"><span>getArrayItemIter</span></a> ? ( in <a class="reference internal" href="IdxOff.html#idxoff"><span>IdxOff</span></a> idxOff )</td>
+<td><a class="reference internal" href="#e9ceb5c365e64b7ab46402ea5f42a7d4"><span>getArrayItemIter</span></a> ? ( in <a class="reference internal" href="IdxOff.html#idxoff"><span>IdxOff</span></a> idxOff )</td>
 </tr>
 <tr class="row-even"><td>DataIter</td>
-<td><a class="reference internal" href="#fd5a771c4a88868b447eab6f699a"><span>getArrayItemOffset</span></a> ? ( in DataIter arrayIter, in UInt32 itemIndex )</td>
+<td><a class="reference internal" href="#b048add3ba4782a389ee256268c40d"><span>getArrayItemOffset</span></a> ? ( in DataIter arrayIter, in UInt32 itemIndex )</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="IdxOff.html#idxoff"><span>IdxOff</span></a></td>
-<td><a class="reference internal" href="#dadb7aef4413c93e3153527a00f67"><span>getIdxOff</span></a> ? ( in DataIter idxOffIter )</td>
+<td><a class="reference internal" href="#a88cc898b8814da587804591ae492ec5"><span>getIdxOff</span></a> ? ( in DataIter idxOffIter )</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="IdxOffBit.html#idxoffbit"><span>IdxOffBit</span></a></td>
-<td><a class="reference internal" href="#a2531f0bd9ba44b0aa720b7958dcc07d"><span>getIdxOffBit</span></a> ? ( in DataIter idxOffIter )</td>
+<td><a class="reference internal" href="#a110e88fafb74d40bb8dd76181232ba8"><span>getIdxOffBit</span></a> ? ( in DataIter idxOffIter )</td>
 </tr>
 <tr class="row-odd"><td>UInt32</td>
-<td><a class="reference internal" href="#c3d83d9c646ab8ba777fff67bc9c7"><span>getIndex</span></a> ? ( in DataIter idxOffIter )</td>
+<td><a class="reference internal" href="#fc89e247259530983a9"><span>getIndex</span></a> ? ( in DataIter idxOffIter )</td>
 </tr>
 <tr class="row-even"><td>UInt32</td>
-<td><a class="reference internal" href="#eb34eba6e1f243c6ac89b6a1199e4f63"><span>getIndexFromDataIter</span></a> ? ( in DataIter itemDataIter )</td>
+<td><a class="reference internal" href="#d15cc2b0b62b48769dbb306ea3d25832"><span>getIndexFromDataIter</span></a> ? ( in DataIter itemDataIter )</td>
 </tr>
 <tr class="row-odd"><td>UInt32</td>
-<td><a class="reference internal" href="#dc2c2ed3d341d09e31475e79ae8a88"><span>getIndexFromIdxOffBit</span></a> ? ( in DataIter idxOffIter )</td>
+<td><a class="reference internal" href="#c37ea9465a8ceff34670af4d35"><span>getIndexFromIdxOffBit</span></a> ? ( in DataIter idxOffIter )</td>
 </tr>
 <tr class="row-even"><td>UInt32</td>
-<td><a class="reference internal" href="#ad99ad2d89c44d56bc30ced8deaff369"><span>getItemIndexFromArrayDataIter</span></a> ? ( in DataIter arrayIter )</td>
+<td><a class="reference internal" href="#e8a9c56724b5b91eb836fae92914d"><span>getItemIndexFromArrayDataIter</span></a> ? ( in DataIter arrayIter )</td>
 </tr>
 <tr class="row-odd"><td>DataIter</td>
-<td><a class="reference internal" href="#c2d98581c7ed421c974317c2557de327"><span>getItemIter</span></a> ? ( in UInt32 itemIndex )</td>
+<td><a class="reference internal" href="#d483fdede3b34410bb71626811503542"><span>getItemIter</span></a> ? ( in UInt32 itemIndex )</td>
 </tr>
 <tr class="row-even"><td>UInt32</td>
-<td><a class="reference internal" href="#d772d010e04a358942d618067411fa"><span>getOffset</span></a> ? ( in DataIter idxOffIter )</td>
+<td><a class="reference internal" href="#c75fa9d26ae6463bb14b045d08607529"><span>getOffset</span></a> ? ( in DataIter idxOffIter )</td>
 </tr>
 <tr class="row-odd"><td>UInt32</td>
-<td><a class="reference internal" href="#bf30f5d22894d35814cd3bd3cce60ed"><span>getOffsetAndBit</span></a> ? ( in DataIter idxOffIter, io Boolean headerBit )</td>
+<td><a class="reference internal" href="#e83ca99ffe52415ba087a0b2deabaf99"><span>getOffsetAndBit</span></a> ? ( in DataIter idxOffIter, io Boolean headerBit )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#a2256e3e84f4456b10facba096370c6"><span>initIdxOff</span></a> ! ( in DataIter iter, in UInt32 index, in UInt32 offset )</td>
+<td><a class="reference internal" href="#b0cc15f6d4d2580338de15b98ef7d"><span>initIdxOff</span></a> ! ( in DataIter iter, in UInt32 index, in UInt32 offset )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#f9b4bc4f519f412298fa2b442bb8b706"><span>initIdxOff</span></a> ! ( in DataIter iter, in UInt32 index, in UInt32 offset, in Boolean headerBit )</td>
+<td><a class="reference internal" href="#e60914e4084ec4872276ded44"><span>initIdxOff</span></a> ! ( in DataIter iter, in UInt32 index, in UInt32 offset, in Boolean headerBit )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#b0ba0040388a337c7370afe89d"><span>recompactData</span></a> ! ( io UInt32 oldIndexToNewDataIndex[] )</td>
+<td><a class="reference internal" href="#e3e9a007066a4c6f96e3e4a297e1a162"><span>recompactData</span></a> ! ( io UInt32 oldIndexToNewDataIndex[] )</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="ArrayOffsetAllocatorRecompactData.html#arrayoffsetallocatorrecompactdata"><span>ArrayOffsetAllocatorRecompactData</span></a>[]</td>
-<td><a class="reference internal" href="#e3f5d9643f49b40b48d399bb7fa"><span>recompactItemIndices</span></a> ! ()</td>
+<td><a class="reference internal" href="#e3317411a44c7b9ee312b38c62aea"><span>recompactItemIndices</span></a> ! ()</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#a0c7c8ae33849de9cffd2900ea9da8f"><span>remapIdxOff</span></a> ! ( in UInt32 entryIdx, in UInt32 oldIndexToNewDataIndex[] )</td>
+<td><a class="reference internal" href="#b43ed8007ed64bb68d485b27e8cd3364"><span>remapIdxOff</span></a> ! ( in UInt32 entryIdx, in UInt32 oldIndexToNewDataIndex[] )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#d07ed09070e4b43bc85dd2170229278"><span>remapIdxOff2</span></a> ! ( in UInt32 entryIdx, in Integer deltaData )</td>
+<td><a class="reference internal" href="#daac97119c204965ba9872a8b2285522"><span>remapIdxOff2</span></a> ! ( in UInt32 entryIdx, in Integer deltaData )</td>
 </tr>
 <tr class="row-even"><td>DataIter</td>
-<td><a class="reference internal" href="#ad5b81e8bdd24a7f9c9422e1ab85710f"><span>resizeArray</span></a> ! ( in UInt32 itemIndex, in UInt32 prevNbExtraUInt32s, in UInt32 arraySize, in UInt32 nbExtraUInt32s, in UInt32 tempReservedSpaceForGrowth )</td>
+<td><a class="reference internal" href="#b2fe37ba242ceb820eaa7a3926442"><span>resizeArray</span></a> ! ( in UInt32 itemIndex, in UInt32 prevNbExtraUInt32s, in UInt32 arraySize, in UInt32 nbExtraUInt32s, in UInt32 tempReservedSpaceForGrowth )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#a7936d04741644c5b3097c1ca652f7f7"><span>updateHeaderBit</span></a> ! ( in DataIter iter, in Boolean headerBit )</td>
+<td><a class="reference internal" href="#c875d96ad242f4ae212f62a31cd3ce"><span>updateHeaderBit</span></a> ! ( in DataIter iter, in Boolean headerBit )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#f34563927c7c41349dd23635c6516c2b"><span>updateIdxOff</span></a> ! ( in DataIter iter, in UInt32 index, in UInt32 offset )</td>
+<td><a class="reference internal" href="#bc2903ac257439b96926935335424a2"><span>updateIdxOff</span></a> ! ( in DataIter iter, in UInt32 index, in UInt32 offset )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#e73d0f068949d9b0464e4208b9e4c7"><span>updateIdxOff</span></a> ! ( in DataIter iter, in UInt32 index, in UInt32 offset, in Boolean headerBit )</td>
+<td><a class="reference internal" href="#d39e27e0894a9c99947d0e5ab3f5b2"><span>updateIdxOff</span></a> ! ( in DataIter iter, in UInt32 index, in UInt32 offset, in Boolean headerBit )</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#f04ca68f60f54d44a66e4edcb7a43e26"><span>updateIndexOfIdxOff</span></a> ! ( in DataIter entryIdx, in UInt32 newIndex )</td>
+<td><a class="reference internal" href="#b748e41719b4eb8d8ebd3af75"><span>updateIndexOfIdxOff</span></a> ! ( in DataIter entryIdx, in UInt32 newIndex )</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><a class="reference internal" href="#bb6ac4eee08458cbf877c9e69398145"><span>updateIndexOfIdxOffBit</span></a> ! ( in DataIter entryIdx, in UInt32 newIndex )</td>
+<td><a class="reference internal" href="#e17d393a68a4317ba225e5d8ed38065"><span>updateIndexOfIdxOffBit</span></a> ! ( in DataIter entryIdx, in UInt32 newIndex )</td>
 </tr>
 </tbody>
 </table>
@@ -239,7 +240,7 @@ Keeps track of &#8216;free&#8217; items.</p>
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a></td>
-<td><a class="reference internal" href="#e0dc0dd68ff742ea832561e2ecde9254"><span>=</span></a> ( <a class="reference internal" href="../Parameters/Param.html#param"><span>Param</span></a> other )</td>
+<td><a class="reference internal" href="#e4ea53e32140b38cdaac159145c845"><span>=</span></a> ( <a class="reference internal" href="../Parameters/Param.html#param"><span>Param</span></a> other )</td>
 </tr>
 </tbody>
 </table>
@@ -247,136 +248,136 @@ Keeps track of &#8216;free&#8217; items.</p>
 </div>
 <div class="section" id="methods-in-detail">
 <h2>Methods in detail<a class="headerlink" href="#methods-in-detail" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><span class="target" id="a1921b0d3f492086c9ceafc1140051"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a> ( in <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a> other )</p>
+<p><span class="target" id="cf6557a0f03c47e4bbf3d5df248c8e47"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a> ( in <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a> other )</p>
 <p class="plaintext">copy constructor</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ed5f850f9544a7fab8719119586f6e4"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a> ()</p>
+<span class="target" id="bdc24c029363ae6a476fe929"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a> ()</p>
 <p class="plaintext">default constructor</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f4fe77cf94074c34916c8baa1bff176e"></span><p><p class="klcode">DataIter <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.allocateArray! ( in UInt32 itemIndex, in UInt32 arraySize, in UInt32 nbExtraUInt32s, in UInt32 tempReservedSpaceForGrowth, in Boolean headerBit )</p>
+<span class="target" id="ca2bca88a4c028c9dd53df88b3fde"></span><p><p class="klcode">DataIter <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.allocateArray! ( in UInt32 itemIndex, in UInt32 arraySize, in UInt32 nbExtraUInt32s, in UInt32 tempReservedSpaceForGrowth, in Boolean headerBit )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b94256cb4794db1b3f5ddd983ab278c"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.append! ( in <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a> other, io Size firstOtherItem, io Size firstOtherData )</p>
+<span class="target" id="b8ea8f9453f474bbcec00b1c6df19db"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.append! ( in <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a> other, io Size firstOtherItem, io Size firstOtherData )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f51417da4d9a493e8a024addb6166b6f"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.arrayDataIterSize? ( in DataIter arrayDataIter )</p>
+<span class="target" id="cced528fb5e44e38a2255d1334ab8e2"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.arrayDataIterSize? ( in DataIter arrayDataIter )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b62495d47eea727a5c4c9ae4db0"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.arrayDataIterSizeAndBit? ( in DataIter arrayDataIter, io Boolean bit )</p>
+<span class="target" id="e6cad186ef704d7f88035e71550dce81"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.arrayDataIterSizeAndBit? ( in DataIter arrayDataIter, io Boolean bit )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c56722c90b74be08c29e86da74d982a"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.arraySize? ( in UInt32 itemIndex )</p>
+<span class="target" id="ce3e4761b8e625fbc9c8d75b"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.arraySize? ( in UInt32 itemIndex )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="e207c2f75514d09b17b55ac08703069"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a> <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.clone? ()</p>
+<span class="target" id="f8bed74485a4728b77ad2a8692"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a> <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.clone? ()</p>
 <p class="plaintext">clone method</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="e23bd61e43b646dab28627ea9c4522e7"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.createItem! ()</p>
+<span class="target" id="e32c093f44ff4bf72408c2abeaf78"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.createItem! ()</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c3dedc34f75b1ff7539ffab0818"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.createItems! ( in Size count )</p>
+<span class="target" id="b6d19a924c184b40a256508dee466a12"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.createItems! ( in Size count )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f7da9a4a496f9440f15dee040014"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.deleteItem! ( in UInt32 itemIndex )</p>
+<span class="target" id="a683aa90d84f919010067b6c80ad2c"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.deleteItem! ( in UInt32 itemIndex )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d1247f477f8d2c3b10f5fd5961"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.freeArray! ( in UInt32 itemIndex, in UInt32 nbExtraUInt32s, in Boolean freeExtendedData )</p>
+<span class="target" id="cd8d9656e423eb3278576f3a9e000"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.freeArray! ( in UInt32 itemIndex, in UInt32 nbExtraUInt32s, in Boolean freeExtendedData )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b7622d1384ced9b6e6d09b101ec61"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.freeExtendedDataIfRequired! ( in DataIter idxOffIter )</p>
+<span class="target" id="eeecc673261f43bb9c7b3fd9f8d75509"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.freeExtendedDataIfRequired! ( in DataIter idxOffIter )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c91ab031201d40aaa8488f80a3b38168"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.getArrayExtraUInt32? ( in DataIter arrayIter, in UInt32 arraySize, in UInt32 extraUInt32Index )</p>
+<span class="target" id="a46a100d4acc94b6fce5f6f021fb"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.getArrayExtraUInt32? ( in DataIter arrayIter, in UInt32 arraySize, in UInt32 extraUInt32Index )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="cc0e10fa6e74691b5fc0a749f34f92e"></span><p><p class="klcode">DataIter <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.getArrayExtraUInt32Iter? ( in DataIter arrayIter, in UInt32 arraySize, in UInt32 extraUInt32Index )</p>
+<span class="target" id="dfea62785a48e3bb09e838ca78845b"></span><p><p class="klcode">DataIter <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.getArrayExtraUInt32Iter? ( in DataIter arrayIter, in UInt32 arraySize, in UInt32 extraUInt32Index )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ddbd47ac34c3415c9ef9895c1ba2d389"></span><p><p class="klcode"><a class="reference internal" href="IdxOff.html#idxoff"><span>IdxOff</span></a> <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.getArrayItemIdxOff? ( in DataIter arrayIter, in UInt32 itemIndex )</p>
+<span class="target" id="f742ef371e1d460d9aed880202148250"></span><p><p class="klcode"><a class="reference internal" href="IdxOff.html#idxoff"><span>IdxOff</span></a> <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.getArrayItemIdxOff? ( in DataIter arrayIter, in UInt32 itemIndex )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b591c0aa340f48919cad155a7a0f906f"></span><p><p class="klcode">DataIter <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.getArrayItemIndex? ( in DataIter arrayIter, in UInt32 itemIndex )</p>
+<span class="target" id="a49b7b004204fe6b1ca41018f9fa5f9"></span><p><p class="klcode">DataIter <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.getArrayItemIndex? ( in DataIter arrayIter, in UInt32 itemIndex )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="afe6aa86b5b4dbaae9e47a46d381139"></span><p><p class="klcode">DataIter <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.getArrayItemIter? ( in DataIter arrayIter, in UInt32 itemIndex )</p>
+<span class="target" id="b9048e6a4c40e38f5cc09f7f77c914"></span><p><p class="klcode">DataIter <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.getArrayItemIter? ( in DataIter arrayIter, in UInt32 itemIndex )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b5b07bb613e4bb4a3dbf5291ebe6cf7"></span><p><p class="klcode">DataIter <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.getArrayItemIter? ( in <a class="reference internal" href="IdxOff.html#idxoff"><span>IdxOff</span></a> idxOff )</p>
+<span class="target" id="e9ceb5c365e64b7ab46402ea5f42a7d4"></span><p><p class="klcode">DataIter <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.getArrayItemIter? ( in <a class="reference internal" href="IdxOff.html#idxoff"><span>IdxOff</span></a> idxOff )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="fd5a771c4a88868b447eab6f699a"></span><p><p class="klcode">DataIter <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.getArrayItemOffset? ( in DataIter arrayIter, in UInt32 itemIndex )</p>
+<span class="target" id="b048add3ba4782a389ee256268c40d"></span><p><p class="klcode">DataIter <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.getArrayItemOffset? ( in DataIter arrayIter, in UInt32 itemIndex )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="dadb7aef4413c93e3153527a00f67"></span><p><p class="klcode"><a class="reference internal" href="IdxOff.html#idxoff"><span>IdxOff</span></a> <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.getIdxOff? ( in DataIter idxOffIter )</p>
+<span class="target" id="a88cc898b8814da587804591ae492ec5"></span><p><p class="klcode"><a class="reference internal" href="IdxOff.html#idxoff"><span>IdxOff</span></a> <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.getIdxOff? ( in DataIter idxOffIter )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a2531f0bd9ba44b0aa720b7958dcc07d"></span><p><p class="klcode"><a class="reference internal" href="IdxOffBit.html#idxoffbit"><span>IdxOffBit</span></a> <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.getIdxOffBit? ( in DataIter idxOffIter )</p>
+<span class="target" id="a110e88fafb74d40bb8dd76181232ba8"></span><p><p class="klcode"><a class="reference internal" href="IdxOffBit.html#idxoffbit"><span>IdxOffBit</span></a> <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.getIdxOffBit? ( in DataIter idxOffIter )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c3d83d9c646ab8ba777fff67bc9c7"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.getIndex? ( in DataIter idxOffIter )</p>
+<span class="target" id="fc89e247259530983a9"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.getIndex? ( in DataIter idxOffIter )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="eb34eba6e1f243c6ac89b6a1199e4f63"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.getIndexFromDataIter? ( in DataIter itemDataIter )</p>
+<span class="target" id="d15cc2b0b62b48769dbb306ea3d25832"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.getIndexFromDataIter? ( in DataIter itemDataIter )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="dc2c2ed3d341d09e31475e79ae8a88"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.getIndexFromIdxOffBit? ( in DataIter idxOffIter )</p>
+<span class="target" id="c37ea9465a8ceff34670af4d35"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.getIndexFromIdxOffBit? ( in DataIter idxOffIter )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ad99ad2d89c44d56bc30ced8deaff369"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.getItemIndexFromArrayDataIter? ( in DataIter arrayIter )</p>
+<span class="target" id="e8a9c56724b5b91eb836fae92914d"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.getItemIndexFromArrayDataIter? ( in DataIter arrayIter )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="c2d98581c7ed421c974317c2557de327"></span><p><p class="klcode">DataIter <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.getItemIter? ( in UInt32 itemIndex )</p>
+<span class="target" id="d483fdede3b34410bb71626811503542"></span><p><p class="klcode">DataIter <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.getItemIter? ( in UInt32 itemIndex )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d772d010e04a358942d618067411fa"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.getOffset? ( in DataIter idxOffIter )</p>
+<span class="target" id="c75fa9d26ae6463bb14b045d08607529"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.getOffset? ( in DataIter idxOffIter )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="bf30f5d22894d35814cd3bd3cce60ed"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.getOffsetAndBit? ( in DataIter idxOffIter, io Boolean headerBit )</p>
+<span class="target" id="e83ca99ffe52415ba087a0b2deabaf99"></span><p><p class="klcode">UInt32 <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.getOffsetAndBit? ( in DataIter idxOffIter, io Boolean headerBit )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a2256e3e84f4456b10facba096370c6"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.initIdxOff! ( in DataIter iter, in UInt32 index, in UInt32 offset )</p>
+<span class="target" id="b0cc15f6d4d2580338de15b98ef7d"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.initIdxOff! ( in DataIter iter, in UInt32 index, in UInt32 offset )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f9b4bc4f519f412298fa2b442bb8b706"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.initIdxOff! ( in DataIter iter, in UInt32 index, in UInt32 offset, in Boolean headerBit )</p>
+<span class="target" id="e60914e4084ec4872276ded44"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.initIdxOff! ( in DataIter iter, in UInt32 index, in UInt32 offset, in Boolean headerBit )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b0ba0040388a337c7370afe89d"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.recompactData! ( io UInt32 oldIndexToNewDataIndex[] )</p>
+<span class="target" id="e3e9a007066a4c6f96e3e4a297e1a162"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.recompactData! ( io UInt32 oldIndexToNewDataIndex[] )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="e3f5d9643f49b40b48d399bb7fa"></span><p><p class="klcode"><a class="reference internal" href="ArrayOffsetAllocatorRecompactData.html#arrayoffsetallocatorrecompactdata"><span>ArrayOffsetAllocatorRecompactData</span></a>[] <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.recompactItemIndices! ()</p>
+<span class="target" id="e3317411a44c7b9ee312b38c62aea"></span><p><p class="klcode"><a class="reference internal" href="ArrayOffsetAllocatorRecompactData.html#arrayoffsetallocatorrecompactdata"><span>ArrayOffsetAllocatorRecompactData</span></a>[] <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.recompactItemIndices! ()</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a0c7c8ae33849de9cffd2900ea9da8f"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.remapIdxOff! ( in UInt32 entryIdx, in UInt32 oldIndexToNewDataIndex[] )</p>
+<span class="target" id="b43ed8007ed64bb68d485b27e8cd3364"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.remapIdxOff! ( in UInt32 entryIdx, in UInt32 oldIndexToNewDataIndex[] )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="d07ed09070e4b43bc85dd2170229278"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.remapIdxOff2! ( in UInt32 entryIdx, in Integer deltaData )</p>
+<span class="target" id="daac97119c204965ba9872a8b2285522"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.remapIdxOff2! ( in UInt32 entryIdx, in Integer deltaData )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="ad5b81e8bdd24a7f9c9422e1ab85710f"></span><p><p class="klcode">DataIter <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.resizeArray! ( in UInt32 itemIndex, in UInt32 prevNbExtraUInt32s, in UInt32 arraySize, in UInt32 nbExtraUInt32s, in UInt32 tempReservedSpaceForGrowth )</p>
+<span class="target" id="b2fe37ba242ceb820eaa7a3926442"></span><p><p class="klcode">DataIter <a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.resizeArray! ( in UInt32 itemIndex, in UInt32 prevNbExtraUInt32s, in UInt32 arraySize, in UInt32 nbExtraUInt32s, in UInt32 tempReservedSpaceForGrowth )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a7936d04741644c5b3097c1ca652f7f7"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.updateHeaderBit! ( in DataIter iter, in Boolean headerBit )</p>
+<span class="target" id="c875d96ad242f4ae212f62a31cd3ce"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.updateHeaderBit! ( in DataIter iter, in Boolean headerBit )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f34563927c7c41349dd23635c6516c2b"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.updateIdxOff! ( in DataIter iter, in UInt32 index, in UInt32 offset )</p>
+<span class="target" id="bc2903ac257439b96926935335424a2"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.updateIdxOff! ( in DataIter iter, in UInt32 index, in UInt32 offset )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="e73d0f068949d9b0464e4208b9e4c7"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.updateIdxOff! ( in DataIter iter, in UInt32 index, in UInt32 offset, in Boolean headerBit )</p>
+<span class="target" id="d39e27e0894a9c99947d0e5ab3f5b2"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.updateIdxOff! ( in DataIter iter, in UInt32 index, in UInt32 offset, in Boolean headerBit )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f04ca68f60f54d44a66e4edcb7a43e26"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.updateIndexOfIdxOff! ( in DataIter entryIdx, in UInt32 newIndex )</p>
+<span class="target" id="b748e41719b4eb8d8ebd3af75"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.updateIndexOfIdxOff! ( in DataIter entryIdx, in UInt32 newIndex )</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="bb6ac4eee08458cbf877c9e69398145"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.updateIndexOfIdxOffBit! ( in DataIter entryIdx, in UInt32 newIndex )</p>
+<span class="target" id="e17d393a68a4317ba225e5d8ed38065"></span><p><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a>.updateIndexOfIdxOffBit! ( in DataIter entryIdx, in UInt32 newIndex )</p>
 </p>
 </p>
 </div>
 <div class="section" id="operators-in-detail">
 <h2>Operators in detail<a class="headerlink" href="#operators-in-detail" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><span class="target" id="e0dc0dd68ff742ea832561e2ecde9254"></span><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a> = ( <a class="reference internal" href="../Parameters/Param.html#param"><span>Param</span></a> other )</p>
+<p><span class="target" id="e4ea53e32140b38cdaac159145c845"></span><p class="klcode"><a class="reference internal" href="#arrayoffsetallocator"><span>ArrayOffsetAllocator</span></a> = ( <a class="reference internal" href="../Parameters/Param.html#param"><span>Param</span></a> other )</p>
 </p>
 </div>
 </p>

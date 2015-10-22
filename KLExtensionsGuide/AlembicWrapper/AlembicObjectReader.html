@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Fabric Engine 2.0.0 Unofficial Documentation (ja)" href="../../index.html" />
     <link rel="up" title="AlembicWrapper Extension’s Interfaces" href="interfaces.html" />
     <link rel="next" title="AlembicObjectWriter (interface)" href="AlembicObjectWriter.html" />
@@ -87,19 +88,19 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="../Alembic/AlembicIObject.html#alembiciobject"><span>AlembicIObject</span></a></td>
-<td><a class="reference internal" href="#b2d630447e97e5241af5163cd9"><span>getIObject</span></a> ? ()</td>
+<td><a class="reference internal" href="#d0da67e88d8424da97795dd087cdfca"><span>getIObject</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td>SInt32</td>
-<td><a class="reference internal" href="#bf30dfbaf4c94824a43afb3f2c31b"><span>getNumSamples</span></a> ? ()</td>
+<td><a class="reference internal" href="#acd1decaf91b4777b64ff232e5d99b35"><span>getNumSamples</span></a> ? ()</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="../Util/String.html#string"><span>String</span></a></td>
-<td><a class="reference internal" href="#a8ed1dd0d5f5a44b1"><span>getPath</span></a> ? ()</td>
+<td><a class="reference internal" href="#a7ee0364b264a3c8636fc917abb484c"><span>getPath</span></a> ? ()</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
-<td><a class="reference internal" href="#f9e51f54b45a287a54b9dab4b2613"><span>reset</span></a> ! ()</td>
+<td><a class="reference internal" href="#e703cfa727f46d488d17f8c1bafffed"><span>reset</span></a> ! ()</td>
 </tr>
 <tr class="row-odd"><td>Boolean</td>
-<td><a class="reference internal" href="#b00bff73a7480faba687a98dd92a41"><span>valid</span></a> ? ()</td>
+<td><a class="reference internal" href="#c18fca2cc43d9ad1bfac1d1d0d820"><span>valid</span></a> ? ()</td>
 </tr>
 </tbody>
 </table>
@@ -107,23 +108,23 @@
 </div>
 <div class="section" id="functions-in-detail">
 <h2>Functions in detail<a class="headerlink" href="#functions-in-detail" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><span class="target" id="b2d630447e97e5241af5163cd9"></span><p><p class="klcode"><a class="reference internal" href="../Alembic/AlembicIObject.html#alembiciobject"><span>AlembicIObject</span></a> <a class="reference internal" href="#alembicobjectreader"><span>AlembicObjectReader</span></a>.getIObject? ()</p>
+<p><span class="target" id="d0da67e88d8424da97795dd087cdfca"></span><p><p class="klcode"><a class="reference internal" href="../Alembic/AlembicIObject.html#alembiciobject"><span>AlembicIObject</span></a> <a class="reference internal" href="#alembicobjectreader"><span>AlembicObjectReader</span></a>.getIObject? ()</p>
 <p class="plaintext">returns the wrapped <a class="reference internal" href="../Alembic/AlembicIObject.html#alembiciobject"><span>AlembicIObject</span></a></p>
 </p>
 <hr class="docutils" />
-<span class="target" id="bf30dfbaf4c94824a43afb3f2c31b"></span><p><p class="klcode">SInt32 <a class="reference internal" href="#alembicobjectreader"><span>AlembicObjectReader</span></a>.getNumSamples? ()</p>
+<span class="target" id="acd1decaf91b4777b64ff232e5d99b35"></span><p><p class="klcode">SInt32 <a class="reference internal" href="#alembicobjectreader"><span>AlembicObjectReader</span></a>.getNumSamples? ()</p>
 <p class="plaintext">returns the number of samples this reader provides</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="a8ed1dd0d5f5a44b1"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#alembicobjectreader"><span>AlembicObjectReader</span></a>.getPath? ()</p>
+<span class="target" id="a7ee0364b264a3c8636fc917abb484c"></span><p><p class="klcode"><a class="reference internal" href="../Util/String.html#string"><span>String</span></a> <a class="reference internal" href="#alembicobjectreader"><span>AlembicObjectReader</span></a>.getPath? ()</p>
 <p class="plaintext">returns the full path of the wrapped <a class="reference internal" href="../Alembic/AlembicIObject.html#alembiciobject"><span>AlembicIObject</span></a></p>
 </p>
 <hr class="docutils" />
-<span class="target" id="f9e51f54b45a287a54b9dab4b2613"></span><p><p class="klcode"><a class="reference internal" href="#alembicobjectreader"><span>AlembicObjectReader</span></a>.reset! ()</p>
+<span class="target" id="e703cfa727f46d488d17f8c1bafffed"></span><p><p class="klcode"><a class="reference internal" href="#alembicobjectreader"><span>AlembicObjectReader</span></a>.reset! ()</p>
 <p class="plaintext">clears all pointers and releases all alembic containers</p>
 </p>
 <hr class="docutils" />
-<span class="target" id="b00bff73a7480faba687a98dd92a41"></span><p><p class="klcode">Boolean <a class="reference internal" href="#alembicobjectreader"><span>AlembicObjectReader</span></a>.valid? ()</p>
+<span class="target" id="c18fca2cc43d9ad1bfac1d1d0d820"></span><p><p class="klcode">Boolean <a class="reference internal" href="#alembicobjectreader"><span>AlembicObjectReader</span></a>.valid? ()</p>
 <p class="plaintext">returns true if this reader wraps a valid <a class="reference internal" href="../Alembic/AlembicIObject.html#alembiciobject"><span>AlembicIObject</span></a></p>
 </p>
 </p>
